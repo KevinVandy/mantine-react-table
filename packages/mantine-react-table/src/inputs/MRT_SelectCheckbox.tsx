@@ -1,8 +1,5 @@
 import React, { FC, MouseEvent } from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import Tooltip from '@mui/material/Tooltip';
-import Radio from '@mui/material/Radio';
-import type { Theme } from '@mui/material/styles';
+import { Checkbox, MantineTheme, Radio, Tooltip } from '@mantine/core';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
 interface Props {
@@ -33,29 +30,27 @@ export const MRT_SelectCheckbox: FC<Props> = ({ row, selectAll, table }) => {
     : muiSelectCheckboxProps;
 
   const commonProps = {
+    'aria-label': selectAll
+      ? localization.toggleSelectAll
+      : localization.toggleSelectRow,
     checked: selectAll
       ? selectAllMode === 'page'
         ? table.getIsAllPageRowsSelected()
         : table.getIsAllRowsSelected()
       : row?.getIsSelected(),
     disabled: isLoading,
-    inputProps: {
-      'aria-label': selectAll
-        ? localization.toggleSelectAll
-        : localization.toggleSelectRow,
-    },
     onChange: row
       ? row.getToggleSelectedHandler()
       : selectAllMode === 'all'
       ? table.getToggleAllRowsSelectedHandler()
       : table.getToggleAllPageRowsSelectedHandler(),
-    size: (density === 'compact' ? 'small' : 'medium') as 'small' | 'medium',
-    ...checkboxProps,
-    onClick: (e: MouseEvent<HTMLButtonElement>) => {
+    size: (density === 'compact' ? 'sm' : 'md') as 'sm' | 'md',
+    // ...checkboxProps,
+    onClick: (e: MouseEvent<HTMLInputElement>) => {
       e.stopPropagation();
       checkboxProps?.onClick?.(e);
     },
-    sx: (theme: Theme) => ({
+    sx: (theme: MantineTheme) => ({
       height: density === 'compact' ? '1.75rem' : '2.5rem',
       width: density === 'compact' ? '1.75rem' : '2.5rem',
       m: density !== 'compact' ? '-0.4rem' : undefined,
@@ -68,10 +63,10 @@ export const MRT_SelectCheckbox: FC<Props> = ({ row, selectAll, table }) => {
 
   return (
     <Tooltip
-      arrow
-      enterDelay={1000}
-      enterNextDelay={1000}
-      title={
+      withArrow
+      // openDelay={1000}
+      // 
+      label={
         checkboxProps?.title ??
         (selectAll
           ? localization.toggleSelectAll

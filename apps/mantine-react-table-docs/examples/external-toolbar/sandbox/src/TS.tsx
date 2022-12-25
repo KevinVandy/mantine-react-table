@@ -1,5 +1,5 @@
 import React, { FC, useReducer, useRef, useState } from 'react';
-import MaterialReactTable, {
+import MantineReactTable, {
   DensityState,
   MRT_ColumnDef,
   MRT_FullScreenToggleButton,
@@ -115,7 +115,7 @@ const Example: FC = () => {
         }
       </Typography>
       {/* The MRT Table */}
-      <MaterialReactTable
+      <MantineReactTable
         columns={columns}
         data={data}
         enableBottomToolbar={false}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -48,14 +48,14 @@ const data = [...Array(100)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const ColumnOrderingEnabled: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} enableColumnOrdering />
+export const ColumnOrderingEnabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} enableColumnOrdering />
 );
 
 export const ColumnOrderingDisabledPerColumn: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -88,8 +88,8 @@ export const ColumnOrderingDisabledPerColumn: Story<
   />
 );
 
-export const ColumnOrderingWithSelect: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const ColumnOrderingWithSelect: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableColumnOrdering
@@ -97,8 +97,8 @@ export const ColumnOrderingWithSelect: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const ColumnOrderingWithPinning: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const ColumnOrderingWithPinning: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableColumnOrdering
@@ -106,8 +106,8 @@ export const ColumnOrderingWithPinning: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const ColumnOrderingNoDragHandles: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const ColumnOrderingNoDragHandles: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableColumnDragging={false}

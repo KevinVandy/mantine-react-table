@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 
 const data = [
   //data definitions...
@@ -59,7 +59,7 @@ const Example = () => {
   const [rowSelection, setRowSelection] = useState({});
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       getRowId={(row) => row.userId}

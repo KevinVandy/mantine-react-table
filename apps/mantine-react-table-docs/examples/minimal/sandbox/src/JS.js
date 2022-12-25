@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { data } from './makeData';
 
 export const Example = () => {
@@ -32,7 +32,7 @@ export const Example = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableColumnActions={false}

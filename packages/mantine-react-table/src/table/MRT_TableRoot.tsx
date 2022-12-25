@@ -9,7 +9,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import Box from '@mui/material/Box';
+// import { Box } from '@mantine/core';
 import Dialog from '@mui/material/Dialog';
 import Grow from '@mui/material/Grow';
 import { MRT_ExpandAllButton } from '../buttons/MRT_ExpandAllButton';
@@ -35,12 +35,12 @@ import type {
   MRT_Row,
   MRT_TableInstance,
   MRT_TableState,
-  MaterialReactTableProps,
+  MantineReactTableProps,
   MRT_Localization,
 } from '..';
 
 export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
-  props: MaterialReactTableProps<TData> & { localization: MRT_Localization },
+  props: MantineReactTableProps<TData> & { localization: MRT_Localization },
 ) => {
   const bottomToolbarRef = useRef<HTMLDivElement>(null);
   const editInputRefs = useRef<Record<string, HTMLInputElement>>({});
@@ -342,7 +342,7 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
   return (
     <>
       <Dialog
-        PaperComponent={Box}
+        // PaperComponent={Box}
         TransitionComponent={!props.enableRowVirtualization ? Grow : undefined}
         disablePortal
         fullScreen

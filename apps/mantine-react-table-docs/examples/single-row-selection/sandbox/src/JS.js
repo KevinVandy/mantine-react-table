@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 
 const data = [
   //data definitions...
@@ -60,7 +60,7 @@ const Example = () => {
   const [rowSelection, setRowSelection] = useState < RowSelectionState > {};
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableMultiRowSelection={false} //use radio buttons instead of checkboxes

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -68,24 +68,24 @@ const data = [...Array(120)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const FilteringEnabledDefault: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} />
+export const FilteringEnabledDefault: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} />
 );
 
-export const ColumnFilteringDisabled: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const ColumnFilteringDisabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableColumnFilters={false}
   />
 );
 
-export const FilteringDisabled: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} enableFilters={false} />
+export const FilteringDisabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} enableFilters={false} />
 );
 
-export const FilterFnAndFilterVariants: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const FilterFnAndFilterVariants: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={[
       {
         header: 'Is Active',
@@ -142,9 +142,9 @@ export const FilterFnAndFilterVariants: Story<MaterialReactTableProps> = () => (
 );
 
 export const FilteringChangeModeEnabled: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -180,9 +180,9 @@ export const FilteringChangeModeEnabled: Story<
 );
 
 export const DisableSomeFilterTypesForCertainColumns: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -220,9 +220,9 @@ export const DisableSomeFilterTypesForCertainColumns: Story<
 );
 
 export const FilteringDisabledForCertainColumns: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -257,9 +257,9 @@ export const FilteringDisabledForCertainColumns: Story<
 );
 
 export const CustomFilterFunctionPerColumn: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -301,8 +301,8 @@ export const CustomFilterFunctionPerColumn: Story<
   />
 );
 
-export const CustomFilterFns: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const CustomFilterFns: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -345,8 +345,8 @@ export const CustomFilterFns: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const CustomFilterComponent: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const CustomFilterComponent: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -400,7 +400,7 @@ export const CustomFilterComponent: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const ManualFiltering: Story<MaterialReactTableProps> = () => {
+export const ManualFiltering: Story<MantineReactTableProps> = () => {
   const [rows, setRows] = useState(() => [...data]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -424,7 +424,7 @@ export const ManualFiltering: Story<MaterialReactTableProps> = () => {
   }, [columnFilters]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={rows}
       manualFiltering

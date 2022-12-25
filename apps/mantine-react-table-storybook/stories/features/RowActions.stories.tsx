@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -52,8 +52,8 @@ const data = [...Array(10)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const RowActionsEnabled: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const RowActionsEnabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableRowActions
@@ -90,9 +90,9 @@ export const RowActionsEnabled: Story<MaterialReactTableProps> = () => (
 );
 
 export const RowActionsAndEditingEnabled: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableRowActions
@@ -129,8 +129,8 @@ export const RowActionsAndEditingEnabled: Story<
   />
 );
 
-export const RowActionsLastColumn: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const RowActionsLastColumn: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableRowActions
@@ -168,8 +168,8 @@ export const RowActionsLastColumn: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const CustomRowActionButtons: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const CustomRowActionButtons: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableRowActions
@@ -199,9 +199,9 @@ export const CustomRowActionButtons: Story<MaterialReactTableProps> = () => (
 );
 
 export const CustomRowActionButtonsLastColumn: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableRowActions

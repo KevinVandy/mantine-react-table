@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mantine/core';
 import IconButton from '@mui/material/IconButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';

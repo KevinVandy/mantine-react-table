@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Import Mantine React Table and its Types
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 
 //Import Mantine React Table Translations
 import { MRT_Localization_NL } from 'mantine-react-table/locales/nl';
@@ -29,7 +29,7 @@ const columns = [
 
 const Example = () => {
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableColumnFilterModes

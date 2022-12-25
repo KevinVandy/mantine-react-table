@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import type { Virtualizer } from '@tanstack/react-virtual';
 import { fakeColumns, fakeData } from './makeData';
 
@@ -9,7 +9,7 @@ const Example: FC = () => {
     useRef<Virtualizer<HTMLDivElement, HTMLTableCellElement>>(null);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columnVirtualizerInstanceRef={columnVirtualizerInstanceRef} //optional
       columnVirtualizerProps={{ overscan: 4 }} //optionally customize the virtualizer
       columns={fakeColumns} //500 columns

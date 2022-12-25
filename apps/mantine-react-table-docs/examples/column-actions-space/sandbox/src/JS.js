@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 
 const data =
   //data definitions...
@@ -37,7 +37,7 @@ const Example = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       muiTableHeadCellProps={{

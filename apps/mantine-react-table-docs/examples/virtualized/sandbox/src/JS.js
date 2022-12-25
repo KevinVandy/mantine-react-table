@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { makeData, } from './makeData';
 
 const Example = () => {
@@ -102,7 +102,7 @@ const Example = () => {
   }, [sorting]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data} //10,000 rows
       enableBottomToolbar={false}

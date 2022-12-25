@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { Box, Typography } from '@mui/material';
 import { data } from './makeData';
 
@@ -53,7 +53,7 @@ const Example = () => {
         p: '4px',
       }}
     >
-      <MaterialReactTable
+      <MantineReactTable
         {...commonTableProps}
         data={data1}
         defaultColumn={{
@@ -83,7 +83,7 @@ const Example = () => {
           </Typography>
         )}
       />
-      <MaterialReactTable
+      <MantineReactTable
         {...commonTableProps}
         data={data2}
         getRowId={(originalRow) => `table-2-${originalRow.firstName}`}

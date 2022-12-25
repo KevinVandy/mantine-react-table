@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -46,10 +46,10 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const CustomWidths: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} />
+export const CustomWidths: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} />
 );
 
-export const CustomWidthsGrid: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} layoutMode="grid" />
+export const CustomWidthsGrid: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} layoutMode="grid" />
 );

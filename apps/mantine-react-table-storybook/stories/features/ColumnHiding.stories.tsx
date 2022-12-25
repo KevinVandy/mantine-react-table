@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -54,17 +54,17 @@ const data = [...Array(100)].map(() => ({
 }));
 
 export const ColumnHidingEnabledDefault: Story<
-  MaterialReactTableProps
-> = () => <MaterialReactTable columns={columns} data={data} />;
+  MantineReactTableProps
+> = () => <MantineReactTable columns={columns} data={data} />;
 
-export const ColumnHidingDisabled: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} enableHiding={false} />
+export const ColumnHidingDisabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} enableHiding={false} />
 );
 
 export const ColumnHidingDisabledButWithOrdering: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableHiding={false}
@@ -73,9 +73,9 @@ export const ColumnHidingDisabledButWithOrdering: Story<
 );
 
 export const ColumnHidingDisabledButWithPinning: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableHiding={false}
@@ -84,9 +84,9 @@ export const ColumnHidingDisabledButWithPinning: Story<
 );
 
 export const ColumnHidingDisabledPerColumn: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -124,9 +124,9 @@ export const ColumnHidingDisabledPerColumn: Story<
 );
 
 export const ColumnHidingWithHeaderGroups: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'Name',

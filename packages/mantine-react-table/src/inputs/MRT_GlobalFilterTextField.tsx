@@ -8,8 +8,7 @@ import React, {
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
-import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
+import { TextInput, Tooltip } from '@mantine/core';
 import { debounce } from '@mui/material/utils';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { MRT_TableInstance } from '..';
@@ -82,52 +81,52 @@ export const MRT_GlobalFilterTextField = <
       unmountOnExit
       mountOnEnter
     >
-      <TextField
+      <TextInput
         placeholder={localization.search}
         onChange={handleChange}
         value={searchValue ?? ''}
-        variant="standard"
-        InputProps={{
-          startAdornment: enableGlobalFilterModes ? (
-            <InputAdornment position="start">
-              <Tooltip arrow title={localization.changeSearchMode}>
-                <IconButton
-                  aria-label={localization.changeSearchMode}
-                  onClick={handleGlobalFilterMenuOpen}
-                  size="small"
-                  sx={{ height: '1.75rem', width: '1.75rem' }}
-                >
-                  <SearchIcon />
-                </IconButton>
-              </Tooltip>
-            </InputAdornment>
-          ) : (
-            <SearchIcon style={{ marginRight: '4px' }} />
-          ),
-          endAdornment: (
-            <InputAdornment position="end">
-              <Tooltip arrow title={localization.clearSearch ?? ''}>
-                <span>
-                  <IconButton
-                    aria-label={localization.clearSearch}
-                    disabled={!searchValue?.length}
-                    onClick={handleClear}
-                    size="small"
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </span>
-              </Tooltip>
-            </InputAdornment>
-          ),
-        }}
+        variant="default"
+        // InputProps={{
+        //   startAdornment: enableGlobalFilterModes ? (
+        //     <InputAdornment position="start">
+        //       <Tooltip withArrow label={localization.changeSearchMode}>
+        //         <IconButton
+        //           aria-label={localization.changeSearchMode}
+        //           onClick={handleGlobalFilterMenuOpen}
+        //           size="small"
+        //           sx={{ height: '1.75rem', width: '1.75rem' }}
+        //         >
+        //           <SearchIcon />
+        //         </IconButton>
+        //       </Tooltip>
+        //     </InputAdornment>
+        //   ) : (
+        //     <SearchIcon style={{ marginRight: '4px' }} />
+        //   ),
+        //   endAdornment: (
+        //     <InputAdornment position="end">
+        //       <Tooltip withArrow label={localization.clearSearch ?? ''}>
+        //         <span>
+        //           <IconButton
+        //             aria-label={localization.clearSearch}
+        //             disabled={!searchValue?.length}
+        //             onClick={handleClear}
+        //             size="small"
+        //           >
+        //             <CloseIcon />
+        //           </IconButton>
+        //         </span>
+        //       </Tooltip>
+        //     </InputAdornment>
+        //   ),
+        // }}
         {...textFieldProps}
-        inputRef={(inputRef) => {
-          searchInputRef.current = inputRef;
-          if (textFieldProps?.inputRef) {
-            textFieldProps.inputRef = inputRef;
-          }
-        }}
+        // inputRef={(inputRef) => {
+        //   searchInputRef.current = inputRef;
+        //   if (textFieldProps?.inputRef) {
+        //     textFieldProps.inputRef = inputRef;
+        //   }
+        // }}
       />
       <MRT_FilterOptionMenu
         anchorEl={anchorEl}

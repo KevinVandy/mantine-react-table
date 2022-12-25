@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import type { CheckboxProps } from '@mui/material/Checkbox';
 import type { MRT_Column, MRT_TableInstance } from '..';
 
@@ -46,10 +46,10 @@ export const MRT_FilterCheckbox: FC<Props> = ({ column, table }) => {
 
   return (
     <Tooltip
-      arrow
-      enterDelay={1000}
-      enterNextDelay={1000}
-      title={checkboxProps?.title ?? filterLabel}
+      withArrow
+      openDelay={1000}
+      
+      label={checkboxProps?.title ?? filterLabel}
     >
       <FormControlLabel
         control={

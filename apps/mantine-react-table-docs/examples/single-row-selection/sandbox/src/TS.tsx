@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useState } from 'react';
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import { RowSelectionState } from '@tanstack/react-table';
 
 const data = [
@@ -62,7 +62,7 @@ const Example: FC = () => {
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableMultiRowSelection={false} //use radio buttons instead of checkboxes

@@ -38,7 +38,7 @@ While you are fetching your data, you may want to show some loading indicators. 
 Rather than coding your own spinner or loading indicator, you can simply set the `isLoading` state to `true`, and Mantine React Table will show progress bars and cell skeletons for you.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data ?? []} //fallback to array if data is undefined
   state={{ isLoading: true }}
@@ -52,7 +52,7 @@ Rather than coding your own spinner or loading indicator, you can simply set the
 If you do not want both progress bars and cell skeletons to show, you can use the `showProgressBars` and `showSkeletons` states, instead.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data ?? []} //fallback to array if data is undefined
   state={{ showProgressBars: true }} //or showSkeletons

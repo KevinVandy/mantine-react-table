@@ -119,7 +119,7 @@ npm install mantine-react-table
 
 ```jsx
 import React, { useMemo, useRef, useState, useEffect } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 
 const data = [
   {
@@ -167,7 +167,7 @@ export default function App() {
   }
 
   return (
-    <MaterialReactTable 
+    <MantineReactTable 
       columns={columns} 
       data={data} 
       enableColumnOrdering //enable some features

@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 
 export type Person = {
   firstName: string;
@@ -94,7 +94,7 @@ const Example: FC = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableExpanding

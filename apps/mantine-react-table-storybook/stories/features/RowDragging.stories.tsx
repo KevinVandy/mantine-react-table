@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -48,11 +48,11 @@ const initData = [...Array(25)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const RowDraggingEnabled: Story<MaterialReactTableProps> = () => {
+export const RowDraggingEnabled: Story<MantineReactTableProps> = () => {
   const [data, _setData] = React.useState(() => initData);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       autoResetPageIndex={false}
       columns={columns}
       data={data}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
 } from 'mantine-react-table';
 
 const meta: Meta = {
@@ -133,10 +133,10 @@ const mockColumns: any = [
 ];
 
 export const PinnedColumnsWithStickyFooter: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={mockColumns}
       data={mockData}
       enablePinning

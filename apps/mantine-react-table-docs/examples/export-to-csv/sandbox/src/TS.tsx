@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import MaterialReactTable, {
+import MantineReactTable, {
   MRT_ColumnDef,
   MRT_Row,
 } from 'mantine-react-table';
@@ -63,7 +63,7 @@ const Example: FC = () => {
   };
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableRowSelection

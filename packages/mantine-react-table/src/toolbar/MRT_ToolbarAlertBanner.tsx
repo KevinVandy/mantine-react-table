@@ -1,9 +1,5 @@
 import React, { Fragment } from 'react';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import Collapse from '@mui/material/Collapse';
+import { Alert, Box, Chip, Collapse } from '@mantine/core';
 import { MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -60,10 +56,11 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           <Fragment key={`${index}-${columnId}`}>
             {index > 0 ? localization.thenBy : ''}
             <Chip
-              label={table.getColumn(columnId).columnDef.header}
-              onDelete={() => table.getColumn(columnId).toggleGrouping()}
+              onChange={() => table.getColumn(columnId).toggleGrouping()}
               {...chipProps}
-            />
+            >
+              {table.getColumn(columnId).columnDef.header}
+            </Chip>
           </Fragment>
         ))}
       </span>
@@ -72,7 +69,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
   return (
     <Collapse
       in={showAlertBanner || !!selectMessage || !!groupedByMessage}
-      timeout={stackAlertBanner ? 200 : 0}
+      transitionDuration={stackAlertBanner ? 200 : 0}
     >
       <Alert
         color="info"
@@ -98,7 +95,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
             : (alertProps?.sx as any)),
         })}
       >
-        {alertProps?.title && <AlertTitle>{alertProps.title}</AlertTitle>}
+        {alertProps?.title && <Box>{alertProps.title}</Box>}
         <Box sx={{ p: '0.5rem 1rem' }}>
           {alertProps?.children}
           {alertProps?.children && (selectMessage || groupedByMessage) && (

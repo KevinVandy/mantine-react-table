@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { Typography } from '@mui/material';
 import {
   QueryClient,
@@ -112,7 +112,7 @@ const Example = () => {
   }, [fetchMoreOnBottomReached]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={flatData}
       enablePagination={false}

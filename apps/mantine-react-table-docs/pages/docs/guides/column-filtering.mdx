@@ -154,7 +154,7 @@ const columns = [
 ];
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     data={data}
     columns={columns}
     filterFns={{
@@ -173,7 +173,7 @@ return (
 If you want to let the user switch between multiple different filter modes from a drop-down menu on the Filter Textfield, you can enable that with the `enableColumnFilterModes` prop or column option. This will enable the filter icon in the filter text field to open a drop-down menu with the available filter modes when clicked.
 
 ```tsx
-<MaterialReactTable columns={columns} data={data} enableColumnFilterModes />
+<MantineReactTable columns={columns} data={data} enableColumnFilterModes />
 ```
 
 #### Customize Filter Modes
@@ -223,7 +223,7 @@ const columns = [
 ];
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableColumnFilterModes
@@ -258,7 +258,7 @@ useEffect(() => {
 }, [columnFilters]);
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data} // this will already be filtered on the server
     manualFiltering //turn off client-side filtering
@@ -268,7 +268,7 @@ return (
 );
 ```
 
-> Specifying `manualFiltering` turns off all client-side filtering and assumes that the `data` you pass to `<MaterialReactTable />` is already filtered.
+> Specifying `manualFiltering` turns off all client-side filtering and assumes that the `data` you pass to `<MantineReactTable />` is already filtered.
 
 Here is the full Remote Data example featuring server-side **filtering**, pagination, and sorting.
 

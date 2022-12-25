@@ -1,6 +1,6 @@
 import React, { MouseEvent, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
 import { MRT_EditActionButtons } from './MRT_EditActionButtons';
 import type { MRT_Cell, MRT_Row, MRT_TableInstance } from '..';
@@ -65,7 +65,7 @@ export const MRT_ToggleRowActionMenuButton = <
       ) : row.id === editingRow?.id && editingMode === 'row' ? (
         <MRT_EditActionButtons row={row} table={table} />
       ) : !renderRowActionMenuItems && enableEditing ? (
-        <Tooltip placement="right" arrow title={localization.edit}>
+        <Tooltip position="right" withArrow label={localization.edit}>
           <IconButton
             aria-label={localization.edit}
             sx={commonIconButtonStyles}
@@ -77,10 +77,10 @@ export const MRT_ToggleRowActionMenuButton = <
       ) : renderRowActionMenuItems ? (
         <>
           <Tooltip
-            arrow
-            enterDelay={1000}
-            enterNextDelay={1000}
-            title={localization.rowActions}
+            withArrow
+            openDelay={1000}
+            
+            label={localization.rowActions}
           >
             <IconButton
               aria-label={localization.rowActions}

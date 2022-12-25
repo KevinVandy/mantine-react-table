@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 
 //nested data is ok, see accessorKeys in ColumnDef below
 const data = [
@@ -78,7 +78,7 @@ const Example = () => {
     [],
   );
 
-  return <MaterialReactTable columns={columns} data={data} />;
+  return <MantineReactTable columns={columns} data={data} />;
 };
 
 export default Example;

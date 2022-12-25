@@ -1,4 +1,4 @@
-import type { MRT_Localization } from '../MaterialReactTable';
+import type { MRT_Localization } from '../MantineReactTable';
 
 export const MRT_Localization_PT: MRT_Localization = {
   actions: 'Ações',

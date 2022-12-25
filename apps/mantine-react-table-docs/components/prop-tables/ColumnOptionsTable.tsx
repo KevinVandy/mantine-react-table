@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import {
   Link as MuiLink,
   Typography,
@@ -139,7 +139,7 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
   }, [onlyProps]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       displayColumnDefOptions={{

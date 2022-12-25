@@ -1,8 +1,8 @@
 import React from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mantine/core';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -60,12 +60,12 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
     >
       {variant === 'icon' ? (
         <>
-          <Tooltip arrow title={localization.cancel}>
+          <Tooltip withArrow label={localization.cancel}>
             <IconButton aria-label={localization.cancel} onClick={handleCancel}>
               <CancelIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip arrow title={localization.save}>
+          <Tooltip withArrow label={localization.save}>
             <IconButton
               aria-label={localization.save}
               color="info"

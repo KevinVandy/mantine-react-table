@@ -46,7 +46,7 @@ Mantine React Table has a built-in row-selection feature and makes it easy to ma
 Selection checkboxes can be enabled with the `enableRowSelection` prop.
 
 ```jsx
-<MaterialReactTable columns={columns} data={data} enableRowSelection />
+<MantineReactTable columns={columns} data={data} enableRowSelection />
 ```
 
 ### Access Selection State
@@ -61,7 +61,7 @@ The row selection state is managed internally by default, but more than likely, 
 const [rowSelection, setRowSelection] = useState({});
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableRowSelection
@@ -83,7 +83,7 @@ const someEventHandler = () => {
 };
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableRowSelection
@@ -102,7 +102,7 @@ return (
 By default, the `row.id` for each row in the table is simply the index of the row in the table. You can override this and tell Mantine React Table to use a more useful Row ID with the `getRowId` prop. For example, you may want some like this:
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableRowSelection
@@ -129,7 +129,7 @@ This can be very useful when you are trying to read your selection state and do 
 By default, a row can only be selected by either clicking the checkbox or radio button in the `mrt-row-select` column. If you want to be able to select a row by clicking anywhere on the row, you can add your own `onClick` function to a table body row like this:
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableRowSelection
@@ -146,7 +146,7 @@ By default, a row can only be selected by either clicking the checkbox or radio 
 By default, if you enable selection for each row, there will also be a select all checkbox in the header of the checkbox column. It can be hidden with the `enableSelectAll` prop.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableRowSelection
@@ -161,7 +161,7 @@ By default, if you enable selection for each row, there will also be a select al
 By default, the `enableMultiRowSelection` prop is set to `true`, which means that multiple rows can be selected at once with a checkbox. If you want to only allow a single row to be selected at a time, you can set this prop to `false` and a radio button will be used instead of a checkbox.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableMultiRowSelection={false} //shows radio buttons instead of checkboxes
@@ -176,7 +176,7 @@ By default, the `enableMultiRowSelection` prop is set to `true`, which means tha
 The selection checkboxes can be customized with the `muiSelectCheckboxProps` prop. Any prop that can be passed to a Mui Checkbox component can be specified here. For example, you may want to use a different color for the checkbox, or use some logic to disable certain rows from being selected.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableRowSelection

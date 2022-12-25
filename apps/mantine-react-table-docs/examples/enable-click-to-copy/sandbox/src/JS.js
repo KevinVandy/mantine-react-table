@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { ContentCopy } from '@mui/icons-material';
 import { data } from './makeData';
 
@@ -32,7 +32,7 @@ const Example = () => {
     [],
   );
 
-  return <MaterialReactTable columns={columns} data={data} />;
+  return <MantineReactTable columns={columns} data={data} />;
 };
 
 export default Example;

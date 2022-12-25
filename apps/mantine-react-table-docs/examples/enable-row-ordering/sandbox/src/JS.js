@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { data as initData } from './makeData';
 
 const Example = () => {
@@ -26,7 +26,7 @@ const Example = () => {
   const [data, setData] = useState(() => initData);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       autoResetPageIndex={false}
       columns={columns}
       data={data}

@@ -88,7 +88,7 @@ Each prop can either be passed as an object or as a callback function where you 
 #### Static Prop Objects
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableRowSelection
@@ -102,7 +102,7 @@ Each prop can either be passed as an object or as a callback function where you 
 #### Callback Functions to Dynamically Set Prop Values
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableRowSelection
@@ -129,7 +129,7 @@ Don't worry, `className` and `style` props will still work, but let's show off s
 1. The `sx` prop can be used just a simply as a `style` prop by default
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   muiTableHeadCellProps={{
@@ -145,7 +145,7 @@ Don't worry, `className` and `style` props will still work, but let's show off s
 2. The `sx` prop gets easy access to your _muiTheme_ without you having to call the theme from a `useTheme` hook.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   muiTableHeadCellProps={{
@@ -160,7 +160,7 @@ Don't worry, `className` and `style` props will still work, but let's show off s
 3. The `sx` prop gives you a much more concise way to add media queries to your styling.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   muiTableHeadCellProps={{
@@ -197,21 +197,21 @@ function App() {
 
 #### Customize Theme Just for your Table
 
-Thanks to Material UI allowing you to [nest multiple Theme Providers](https://mui.com/material-ui/customization/theming/#nesting-the-theme), you can change your MUI Theme just for the `<MaterialReactTable />` component by wrapping a `<ThemeProvider theme={createTheme(...)}>` around just your table. The values in this theme will only effect the `<MaterialReactTable />` component, and not the rest of your site. It will also inherit values from your global theme, so you do not have to redefine everything again. You can just tweak the values you want to change.
+Thanks to Material UI allowing you to [nest multiple Theme Providers](https://mui.com/material-ui/customization/theming/#nesting-the-theme), you can change your MUI Theme just for the `<MantineReactTable />` component by wrapping a `<ThemeProvider theme={createTheme(...)}>` around just your table. The values in this theme will only effect the `<MantineReactTable />` component, and not the rest of your site. It will also inherit values from your global theme, so you do not have to redefine everything again. You can just tweak the values you want to change.
 
 ```jsx
 import { createTheme, ThemeProvider } from '@mui/material';
 //in one of your normal components
 return (
   <ThemeProvider theme={createTheme({...})}>
-    <MaterialReactTable columns={columns} data={data} />
+    <MantineReactTable columns={columns} data={data} />
   </ThemeProvider>
 );
 ```
 
 #### Important Theme Values used by Mantine React Table
 
-`<MaterialReactTable />` will primarily use the following values internally from your MUI Theme by default:
+`<MantineReactTable />` will primarily use the following values internally from your MUI Theme by default:
 
 - `theme.palette.background.default` - used as the background color for most table components by default
 - `theme.palette.divider` - used in dividers in menus and for the column resizing handle
@@ -231,7 +231,7 @@ A common use case for this could be if you want to switch your primary and secon
 You can customize both the props and the styles of the internal `<Paper />` component that wraps the table by passing in a `muiTablePaperProps` prop. This is useful if you want to change the elevation of the paper, or add a border radius, or any other styling you want to do to the paper.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   muiTablePaperProps={{
@@ -252,7 +252,7 @@ You can customize both the props and the styles of the internal `<Paper />` comp
 If you need to style many of the rows or columns in a consistent manner, it usually makes sense to style the `<TableBody />` component itself. For example if you want to stripe the rows, you can do something like this:
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   muiTableBodyProps={{
@@ -271,7 +271,7 @@ If you need to style many of the rows or columns in a consistent manner, it usua
 Similarly, if you want to stripe the columns, you can do something like this:
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   muiTableBodyProps={{

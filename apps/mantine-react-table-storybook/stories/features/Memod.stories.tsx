@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -71,13 +71,13 @@ const generateData = () =>
     zipCode: faker.address.zipCode(),
   }));
 
-export const NoMemos: Story<MaterialReactTableProps> = () => {
+export const NoMemos: Story<MantineReactTableProps> = () => {
   const [tableData, setTableData] = React.useState([...generateData()]);
 
   const handleRegenerateData = () => setTableData([...generateData()]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={tableData}
       editingMode="row"
@@ -99,13 +99,13 @@ export const NoMemos: Story<MaterialReactTableProps> = () => {
   );
 };
 
-export const MemoCells: Story<MaterialReactTableProps> = () => {
+export const MemoCells: Story<MantineReactTableProps> = () => {
   const [tableData, setTableData] = React.useState([...generateData()]);
 
   const handleRegenerateData = () => setTableData([...generateData()]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={tableData}
       editingMode="row"
@@ -128,13 +128,13 @@ export const MemoCells: Story<MaterialReactTableProps> = () => {
   );
 };
 
-export const MemoRows: Story<MaterialReactTableProps> = () => {
+export const MemoRows: Story<MantineReactTableProps> = () => {
   const [tableData, setTableData] = React.useState([...generateData()]);
 
   const handleRegenerateData = () => setTableData([...generateData()]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={tableData}
       editingMode="row"
@@ -157,13 +157,13 @@ export const MemoRows: Story<MaterialReactTableProps> = () => {
   );
 };
 
-export const MemoTableBody: Story<MaterialReactTableProps> = () => {
+export const MemoTableBody: Story<MantineReactTableProps> = () => {
   const [tableData, setTableData] = React.useState([...generateData()]);
 
   const handleRegenerateData = () => setTableData([...generateData()]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={tableData}
       editingMode="row"

@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FocusEvent, KeyboardEvent, useState } from 'react';
-import TextField from '@mui/material/TextField';
-import type { TextFieldProps } from '@mui/material/TextField';
+import {TextInput, TextInputProps} from '@mantine/core';
 import type { MRT_Cell, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -42,7 +41,7 @@ export const MRT_EditCellTextField = <TData extends Record<string, any> = {}>({
         })
       : columnDef.muiTableBodyCellEditTextFieldProps;
 
-  const textFieldProps: TextFieldProps = {
+  const textFieldProps: TextInputProps = {
     ...mTableBodyCellEditTextFieldProps,
     ...mcTableBodyCellEditTextFieldProps,
   };
@@ -59,9 +58,9 @@ export const MRT_EditCellTextField = <TData extends Record<string, any> = {}>({
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     textFieldProps.onChange?.(event);
     setValue(event.target.value);
-    if (textFieldProps?.select) {
-      saveRow(event.target.value);
-    }
+    // if (textFieldProps?.select) {
+    //   saveRow(event.target.value);
+    // }
   };
 
   const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
@@ -82,23 +81,21 @@ export const MRT_EditCellTextField = <TData extends Record<string, any> = {}>({
   }
 
   return (
-    <TextField
+    <TextInput
       disabled={columnDef.enableEditing === false}
-      fullWidth
-      inputRef={(inputRef) => {
-        if (inputRef) {
-          editInputRefs.current[column.id] = inputRef;
-          if (textFieldProps.inputRef) {
-            textFieldProps.inputRef = inputRef;
-          }
-        }
-      }}
+      // inputRef={(inputRef) => {
+      //   if (inputRef) {
+      //     editInputRefs.current[column.id] = inputRef;
+      //     if (textFieldProps.inputRef) {
+      //       textFieldProps.inputRef = inputRef;
+      //     }
+      //   }
+      // }}
       label={showLabel ? column.columnDef.header : undefined}
-      margin="none"
       name={column.id}
       placeholder={columnDef.header}
       value={value}
-      variant="standard"
+      variant="default"
       {...textFieldProps}
       onClick={(e) => {
         e.stopPropagation();

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { citiesList, data, usStateList } from './makeData';
 
 const Example = () => {
@@ -42,7 +42,7 @@ const Example = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       initialState={{ showColumnFilters: true }}

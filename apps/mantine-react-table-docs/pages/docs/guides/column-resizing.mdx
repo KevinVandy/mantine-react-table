@@ -75,7 +75,7 @@ You may notice, however, that the column sizes might not change as much as you w
 You can improve this slightly by changing the table layout to `fixed` instead of the default `auto` in the `muiTableProps`.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   muiTableProps={{
     sx: {
       tableLayout: 'fixed',
@@ -99,7 +99,7 @@ defaultColumn = { minSize: 40, maxSize: 1000, size: 180 }; //units are in px
 You can modify the default column widths by setting the `defaultColumn` prop on the table.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   defaultColumn={{
@@ -115,7 +115,7 @@ You can modify the default column widths by setting the `defaultColumn` prop on 
 `enableColumnResizing` is the boolean prop that enables the column resizing feature.
 
 ```tsx
-<MaterialReactTable columns={columns} data={data} enableColumnResizing />
+<MantineReactTable columns={columns} data={data} enableColumnResizing />
 ```
 
 You can disable specific columns from being resizable by setting the `enableResizing` column option to false in their respective column definition.
@@ -127,7 +127,7 @@ You can disable specific columns from being resizable by setting the `enableResi
 The default `columnResizeMode` is `onEnd`, which means that the column resizing will only occur after the user has finished dragging the column resize handle and released their mouse. You can change the `columnResizeMode` to `onChange` to make the column resizing occur immediately as the user drags the column resize handle.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableColumnResizing

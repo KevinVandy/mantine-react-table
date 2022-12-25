@@ -15,24 +15,24 @@ Here is a brief overview of how to use Mantine React Table. This is a very simpl
 
 ### Setup
 
-To start using MaterialReactTable, you first need to [install](/docs/install) `mantine-react-table` and the necessary Material UI v5 dependencies.
+To start using MantineReactTable, you first need to [install](/docs/install) `mantine-react-table` and the necessary Material UI v5 dependencies.
 
 There are additional steps and customizations you can do for Material UI, if you have not set it up in your application already. Check out the [Material UI docs](https://mui.com/material-ui/getting-started/installation/) for more information.
 
 If you need to change the colors of the table components, advanced [Material UI Theming](https://mui.com/material-ui/customization/default-theme/) is covered in the [Customize Components](/docs/guides/customize-components#material-ui-theme) guide.
 
-### Import MaterialReactTable
+### Import MantineReactTable
 
 Once you have everything installed, you can import from `mantine-react-table` like this:
 
 ```tsx
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 ```
 
 If you are using TypeScript, you may also want to import some TypeScript types from `'mantine-react-table'` to take advantage of the advanced strong type checking and autocompletion features. The `MRT_ColumnDef` type is especially useful for defining your columns in a type-safe way.
 
 ```tsx
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import type { MRT_ColumnDef } from 'mantine-react-table'; // If using TypeScript (optional, but recommended)
 ```
 
@@ -141,11 +141,11 @@ const columns = useMemo<MRT_ColumnDef<YourDataType>[]>(
 
 ### Full Simple Example
 
-Put it all together, and you have a basic table! You can also play around and enable some features, either per column in the column definitions, or as props passed to `<MaterialReactTable />`.
+Put it all together, and you have a basic table! You can also play around and enable some features, either per column in the column definitions, or as props passed to `<MantineReactTable />`.
 
 ```tsx
 import React, { useMemo } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import type { MRT_ColumnDef } from 'mantine-react-table'; // If using TypeScript (optional, but recommended)
 
 //If using TypeScript, define the shape of your data (optional, but recommended)
@@ -186,7 +186,7 @@ export default function App() {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableRowSelection //enable some features

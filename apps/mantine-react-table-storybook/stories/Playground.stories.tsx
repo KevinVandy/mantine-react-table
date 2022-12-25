@@ -1,21 +1,21 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
   title: 'Prop Playground',
-  component: MaterialReactTable,
+  component: MantineReactTable,
 };
 
 export default meta;
 
-const Template: Story<MaterialReactTableProps<Person>> = (
-  args: MaterialReactTableProps<Person>,
-) => <MaterialReactTable {...args} />;
+const Template: Story<MantineReactTableProps<Person>> = (
+  args: MantineReactTableProps<Person>,
+) => <MantineReactTable {...args} />;
 
 export const Default = Template.bind({});
 
@@ -51,4 +51,4 @@ Default.args = {
     age: faker.datatype.number(80),
     address: faker.address.streetAddress(),
   })),
-} as MaterialReactTableProps<Person>;
+} as MantineReactTableProps<Person>;

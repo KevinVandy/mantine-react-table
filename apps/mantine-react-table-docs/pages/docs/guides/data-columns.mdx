@@ -170,7 +170,7 @@ const columns = useMemo(
 
 ### Enable or Disable Features Per Column
 
-In the same way that you can pass props to the main `<MaterialReactTable />` component to enable or disable features, you can also specify options on the column definitions to enable or disable features on a per-column basis.
+In the same way that you can pass props to the main `<MantineReactTable />` component to enable or disable features, you can also specify options on the column definitions to enable or disable features on a per-column basis.
 
 ```tsx
 const columns = useMemo(
@@ -227,7 +227,7 @@ However, the column sizes might not change as much as you would expect. This is 
 You can improve this slightly by changing the table layout to `fixed` instead of the default `auto` in the `muiTableProps`.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   muiTableProps={{
     sx: {
       tableLayout: 'fixed',

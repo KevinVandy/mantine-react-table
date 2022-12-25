@@ -1,6 +1,6 @@
-import MaterialReactTable from './MaterialReactTable';
-export default MaterialReactTable;
-export * from './MaterialReactTable';
+import MantineReactTable from './MantineReactTable';
+export default MantineReactTable;
+export * from './MantineReactTable';
 
 import type { MRT_Icons } from './icons';
 export type { MRT_Icons };

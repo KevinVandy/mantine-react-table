@@ -40,7 +40,7 @@ Then you can add your row action components with either the `renderRowActions` o
 If you want to embed all of your row actions into a single menu, then you can use the `renderRowActionMenuItems` prop.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   enableRowActions
   renderRowActionMenuItems={(row, index) => [
       <MenuItem onClick={() => console.info('Edit')}>Edit</MenuItem>,
@@ -55,7 +55,7 @@ If you want to embed all of your row actions into a single menu, then you can us
 If you want to add row action buttons, then you can use the `renderRowActions` prop.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   enableRowActions
   renderRowActions={(row, index) => (
     <Box>
@@ -77,7 +77,7 @@ If you want to add row action buttons, then you can use the `renderRowActions` p
 You can customize all column def options for the row actions column, including the column width, header text, and more using the `displayColumnDefOptions` prop.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   displayColumnDefOptions={{

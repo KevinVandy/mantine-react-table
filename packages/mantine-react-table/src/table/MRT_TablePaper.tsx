@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Paper from '@mui/material/Paper';
+import { Paper } from '@mantine/core';
 import { MRT_TopToolbar } from '../toolbar/MRT_TopToolbar';
 import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';
 import { MRT_TableContainer } from './MRT_TableContainer';
@@ -30,10 +30,10 @@ export const MRT_TablePaper: FC<Props> = ({ table }) => {
 
   return (
     <Paper
-      elevation={2}
       {...tablePaperProps}
       ref={(ref: HTMLDivElement) => {
         tablePaperRef.current = ref;
+        // @ts-ignore
         if (tablePaperProps?.ref) {
           //@ts-ignore
           tablePaperProps.ref.current = ref;

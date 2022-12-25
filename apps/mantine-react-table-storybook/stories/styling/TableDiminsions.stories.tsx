@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -43,8 +43,8 @@ const data = [...Array(25)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const MaxWidthAndCentered: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const MaxWidthAndCentered: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     muiTablePaperProps={{
@@ -56,8 +56,8 @@ export const MaxWidthAndCentered: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const maxHeight: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const maxHeight: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     muiTableContainerProps={{
@@ -68,8 +68,8 @@ export const maxHeight: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const minHeight: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const minHeight: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data.slice(0, 5)}
     muiTableContainerProps={{
@@ -80,9 +80,9 @@ export const minHeight: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const minHeightParent: Story<MaterialReactTableProps> = () => (
+export const minHeightParent: Story<MantineReactTableProps> = () => (
   <div style={{ height: '700px' }}>
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data.slice(0, 5)}
       muiTableContainerProps={({ table }) => ({

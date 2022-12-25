@@ -42,7 +42,7 @@ const columns = [
   //...
 ];
 
-return <MaterialReactTable columns={columns} data={data} />;
+return <MantineReactTable columns={columns} data={data} />;
 ```
 
 ### Enable Click to Copy For All Cells
@@ -50,7 +50,7 @@ return <MaterialReactTable columns={columns} data={data} />;
 Alternatively, you can enable click to copy globally by setting the `enableClickToCopy` prop to `true`. You could then opt out per column by setting the `enableClickToCopy` option to `false` on the column definition.
 
 ```tsx
-<MaterialReactTable columns={columns} data={data} enableClickToCopy />
+<MantineReactTable columns={columns} data={data} enableClickToCopy />
 ```
 
 ### Customize Copy Buttons
@@ -58,7 +58,7 @@ Alternatively, you can enable click to copy globally by setting the `enableClick
 The click to copy feature is built on top of the Material UI Button component. You can customize the copy button by passing in the `muiTableBodyCellCopyButtonProps` prop or as a column option in a column definition.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableClickToCopy

@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useState } from 'react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
   MRT_Row,
 } from 'mantine-react-table';
@@ -34,7 +34,7 @@ const Example: FC = () => {
   const [draggingRow, setDraggingRow] = useState<MRT_Row<Person> | null>(null);
   const [hoveredTable, setHoveredTable] = useState<string | null>(null);
 
-  const commonTableProps: Partial<MaterialReactTableProps<Person>> & {
+  const commonTableProps: Partial<MantineReactTableProps<Person>> & {
     columns: MRT_ColumnDef<Person>[];
   } = {
     columns,
@@ -59,7 +59,7 @@ const Example: FC = () => {
         p: '4px',
       }}
     >
-      <MaterialReactTable
+      <MantineReactTable
         {...commonTableProps}
         data={data1}
         getRowId={(originalRow) => `table-1-${originalRow.firstName}`}
@@ -86,7 +86,7 @@ const Example: FC = () => {
           </Typography>
         )}
       />
-      <MaterialReactTable
+      <MantineReactTable
         {...commonTableProps}
         data={data2}
         defaultColumn={{

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_Column,
   MRT_ColumnDef,
 } from 'mantine-react-table';
@@ -52,14 +52,14 @@ const data = [...Array(200)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const ColumnGroupingEnabled: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} enableGrouping />
+export const ColumnGroupingEnabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} enableGrouping />
 );
 
 export const ColumnGroupingNoDragHandles: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableGrouping
@@ -68,9 +68,9 @@ export const ColumnGroupingNoDragHandles: Story<
 );
 
 export const ColumnGroupingEnabledDropZoneBottom: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableGrouping
@@ -79,9 +79,9 @@ export const ColumnGroupingEnabledDropZoneBottom: Story<
 );
 
 export const ColumnGroupingEnabledCustomAggregate: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -113,9 +113,9 @@ export const ColumnGroupingEnabledCustomAggregate: Story<
 );
 
 export const ColumnGroupingBannerOnBottom: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableGrouping
@@ -123,7 +123,7 @@ export const ColumnGroupingBannerOnBottom: Story<
   />
 );
 
-export const GroupingColumnsSetState: Story<MaterialReactTableProps> = () => {
+export const GroupingColumnsSetState: Story<MantineReactTableProps> = () => {
   const [columns, setColumns] = useState<MRT_ColumnDef<any>[]>([]);
   const [data, setData] = useState<any>([]);
 
@@ -203,7 +203,7 @@ export const GroupingColumnsSetState: Story<MaterialReactTableProps> = () => {
   }, []);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableGrouping
@@ -213,13 +213,13 @@ export const GroupingColumnsSetState: Story<MaterialReactTableProps> = () => {
 };
 
 export const ColumnGroupingDropZoneAlwaysVisible: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const [draggingColumn, setDraggingColumn] =
     useState<MRT_Column<Person> | null>(null);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableGrouping

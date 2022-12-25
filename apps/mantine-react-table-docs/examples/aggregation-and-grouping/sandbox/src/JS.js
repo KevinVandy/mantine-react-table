@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Box, Stack } from '@mui/material';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { data } from './makeData';
 
 const Example = () => {
@@ -111,7 +111,7 @@ const Example = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableGrouping

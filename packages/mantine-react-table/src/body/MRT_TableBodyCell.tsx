@@ -221,8 +221,8 @@ export const MRT_TableBodyCell: FC<Props> = ({
             columnDef.enableEditing !== false &&
             ['table', 'cell'].includes(editingMode ?? '')
               ? theme.palette.mode === 'dark'
-                ? `${lighten(theme.palette.background.default, 0.2)} !important`
-                : `${darken(theme.palette.background.default, 0.1)} !important`
+                ? `${lighten(theme.colors.dark[7], 0.2)} !important`
+                : `${darken(theme.colors.dark[7], 0.1)} !important`
               : undefined,
         },
         ...getCommonCellStyles({

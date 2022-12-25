@@ -1,5 +1,5 @@
 import React, { useReducer, useRef, useState } from 'react';
-import MaterialReactTable, {
+import MantineReactTable, {
   MRT_FullScreenToggleButton,
   MRT_GlobalFilterTextField,
   MRT_ShowHideColumnsButton,
@@ -104,7 +104,7 @@ const Example = () => {
         }
       </Typography>
       {/* The MRT Table */}
-      <MaterialReactTable
+      <MantineReactTable
         columns={columns}
         data={data}
         enableBottomToolbar={false}

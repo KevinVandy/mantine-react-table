@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 //MRT Imports
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 
 //Material-UI Imports
 import {
@@ -137,7 +137,7 @@ const Example = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableColumnFilterModes

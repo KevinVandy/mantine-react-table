@@ -53,7 +53,7 @@ There is a tiny bit of extra overhead that gets added to your table's rendering 
 Enabling row virtualization is as simple as setting the `enableRowVirtualization` prop to `true`. However, you will probably also want to turn off pagination, which you can do by setting `enablePagination` to `false`.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enablePagination={false}
@@ -72,7 +72,7 @@ Take a look at the example below with 10,000 rows!
 Enabling column virtualization is also as simple as setting the `enableColumnVirtualization` prop to `true`.
 
 ```tsx
-<MaterialReactTable columns={columns} data={data} enableColumnVirtualization />
+<MantineReactTable columns={columns} data={data} enableColumnVirtualization />
 ```
 
 Take a look at the example below with 500 columns!
@@ -100,7 +100,7 @@ The `enableStickyHeader` prop is automatically set to `true` when row virtualiza
 You can adjust some of the virtualizer props that are used internally with the `rowVirtualizerProps` and `columnVirtualizerProps` props. The most useful virtualizer props are the `overscan` and `estimateSize` options. You may want to adjust these values if you have unusual row heights or column widths that are causing the default scrolling to act weirdly.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableColumnVirtualization
@@ -137,7 +137,7 @@ useEffect(() => {
 }, [sorting]);
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableColumnVirtualization

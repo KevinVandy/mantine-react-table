@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material';
 
 type Person = {
@@ -122,7 +122,7 @@ const Example: FC = () => {
 
   return (
     <ThemeProvider theme={tableTheme}>
-      <MaterialReactTable
+      <MantineReactTable
         columns={columns}
         data={data}
         enableRowSelection

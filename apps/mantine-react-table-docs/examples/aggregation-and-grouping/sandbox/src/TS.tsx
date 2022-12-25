@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import { Box, Stack } from '@mui/material';
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import { data, Person } from './makeData';
 
 const Example: FC = () => {
@@ -111,7 +111,7 @@ const Example: FC = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableGrouping

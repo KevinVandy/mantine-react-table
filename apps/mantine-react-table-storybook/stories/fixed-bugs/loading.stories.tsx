@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 
@@ -22,7 +22,7 @@ type Person = {
 };
 
 export const NestedLoadingDataWithInitialExpanded: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
@@ -53,7 +53,7 @@ export const NestedLoadingDataWithInitialExpanded: Story<
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={[]}
       state={{
@@ -65,7 +65,7 @@ export const NestedLoadingDataWithInitialExpanded: Story<
 };
 
 export const NestedLoadingDataWithInitialFilter: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
@@ -96,7 +96,7 @@ export const NestedLoadingDataWithInitialFilter: Story<
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={[]}
       state={{
@@ -108,7 +108,7 @@ export const NestedLoadingDataWithInitialFilter: Story<
 };
 
 export const NestedLoadingDataWithInitialGroup: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
@@ -139,7 +139,7 @@ export const NestedLoadingDataWithInitialGroup: Story<
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={[]}
       state={{
@@ -151,7 +151,7 @@ export const NestedLoadingDataWithInitialGroup: Story<
 };
 
 export const NestedLoadingDataWithInitialPage: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
@@ -182,7 +182,7 @@ export const NestedLoadingDataWithInitialPage: Story<
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={[]}
       state={{
@@ -194,7 +194,7 @@ export const NestedLoadingDataWithInitialPage: Story<
 };
 
 export const NestedLoadingDataWithInitialSort: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
@@ -225,7 +225,7 @@ export const NestedLoadingDataWithInitialSort: Story<
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={[]}
       state={{

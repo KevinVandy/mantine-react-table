@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import { MRT_Header, MRT_TableInstance } from '..';
 import type { TableCellProps } from '@mui/material/TableCell';
 
@@ -31,7 +31,7 @@ export const MRT_TableHeadCellSortLabel: FC<Props> = ({
     : localization.unsorted;
 
   return (
-    <Tooltip arrow placement="top" title={sortTooltip}>
+    <Tooltip withArrow position="top" label={sortTooltip}>
       <TableSortLabel
         aria-label={sortTooltip}
         active={!!column.getIsSorted()}

@@ -1,6 +1,6 @@
 import React, { FC, MouseEvent, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
@@ -52,11 +52,11 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
   return (
     <>
       <Tooltip
-        arrow
-        enterDelay={1000}
-        enterNextDelay={1000}
-        placement="top"
-        title={iconButtonProps?.title ?? localization.columnActions}
+        withArrow
+        openDelay={1000}
+        
+        position="top"
+        label={iconButtonProps?.title ?? localization.columnActions}
       >
         <IconButton
           aria-label={localization.columnActions}

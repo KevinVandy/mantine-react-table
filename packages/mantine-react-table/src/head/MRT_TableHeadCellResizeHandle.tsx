@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mantine/core';
 import Divider from '@mui/material/Divider';
 import { MRT_Header, MRT_TableInstance } from '..';
 
@@ -30,7 +30,7 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
         right: '1px',
         px: '4px',
         '&:active > hr': {
-          backgroundColor: theme.palette.info.main,
+          backgroundColor: theme.colors.blue[7],
           opacity: 1,
         },
       })}

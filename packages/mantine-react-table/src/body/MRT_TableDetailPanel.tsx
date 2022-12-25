@@ -67,7 +67,7 @@ export const MRT_TableDetailPanel: FC<Props> = ({
         {...tableCellProps}
         sx={(theme) => ({
           backgroundColor: virtualRow
-            ? lighten(theme.palette.background.default, 0.06)
+            ? lighten(theme.colors.dark[7], 0.06)
             : undefined,
           borderBottom: !row.getIsExpanded() ? 'none' : undefined,
           display: layoutMode === 'grid' ? 'flex' : 'table-cell',

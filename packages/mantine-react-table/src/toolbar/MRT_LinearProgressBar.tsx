@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import Collapse from '@mui/material/Collapse';
-import LinearProgress from '@mui/material/LinearProgress';
+import { Collapse, Progress } from '@mantine/core';
 import { MRT_TableInstance } from '..';
 
 interface Props {
@@ -23,8 +22,6 @@ export const MRT_LinearProgressBar: FC<Props> = ({ isTopToolbar, table }) => {
   return (
     <Collapse
       in={isLoading || showProgressBars}
-      mountOnEnter
-      unmountOnExit
       sx={{
         bottom: isTopToolbar ? 0 : undefined,
         position: 'absolute',
@@ -32,7 +29,7 @@ export const MRT_LinearProgressBar: FC<Props> = ({ isTopToolbar, table }) => {
         width: '100%',
       }}
     >
-      <LinearProgress
+      <Progress
         aria-label="Loading"
         aria-busy="true"
         sx={{ position: 'relative' }}

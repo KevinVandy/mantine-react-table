@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material';
 
 //column definitions...
@@ -114,7 +114,7 @@ const Example = () => {
 
   return (
     <ThemeProvider theme={tableTheme}>
-      <MaterialReactTable
+      <MantineReactTable
         columns={columns}
         data={data}
         enableRowSelection

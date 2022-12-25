@@ -58,7 +58,7 @@ const HomePage = () => {
               WebkitTextFillColor: 'transparent',
             })}
           >
-            Material&nbsp;React&nbsp;Table
+            Mantine&nbsp;React&nbsp;Table
             <Box
               component="sup"
               sx={{
@@ -91,7 +91,7 @@ const HomePage = () => {
           variant="h2"
         >
           Built with{' '}
-          <Link href="https://mui.com/" passHref legacyBehavior>
+          <Link href="https://mantine.dev/" passHref legacyBehavior>
             <MuiLink
               sx={{
                 color: (theme) => theme.palette.primary.dark,
@@ -101,7 +101,7 @@ const HomePage = () => {
               target="_blank"
               rel="noreferrer"
             >
-              Material&nbsp;UI<sup>V5</sup>
+              Mantine<sup>V5</sup>
             </MuiLink>
           </Link>{' '}
           and&nbsp;
@@ -262,7 +262,7 @@ const HomePage = () => {
             WebkitTextFillColor: 'transparent',
           })}
         >
-          &lt;MaterialReactTable&nbsp;/&gt;
+          &lt;MantineReactTable&nbsp;/&gt;
         </Box>{' '}
         Right For Your Project?
       </Typography>

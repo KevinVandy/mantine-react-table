@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -43,8 +43,8 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const enableRowNumbersOriginal: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const enableRowNumbersOriginal: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableRowNumbers
@@ -52,8 +52,8 @@ export const enableRowNumbersOriginal: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const enableRowNumbersStatic: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const enableRowNumbersStatic: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableRowNumbers
@@ -63,9 +63,9 @@ export const enableRowNumbersStatic: Story<MaterialReactTableProps> = () => (
 );
 
 export const enableRowNumbersOriginalVirtual: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enablePagination={false}
@@ -76,9 +76,9 @@ export const enableRowNumbersOriginalVirtual: Story<
 );
 
 export const enableRowNumbersStaticVirtual: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enablePagination={false}

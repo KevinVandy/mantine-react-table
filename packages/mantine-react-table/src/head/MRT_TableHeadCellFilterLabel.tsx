@@ -1,8 +1,8 @@
 import React, { FC, MouseEvent } from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mantine/core';
 import Grow from '@mui/material/Grow';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {
@@ -62,7 +62,7 @@ export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
       }
     >
       <Box component="span" sx={{ flex: '0 0' }}>
-        <Tooltip arrow placement="top" title={filterTooltip}>
+        <Tooltip withArrow position="top" label={filterTooltip}>
           <IconButton
             disableRipple
             onClick={(event: MouseEvent<HTMLButtonElement>) => {

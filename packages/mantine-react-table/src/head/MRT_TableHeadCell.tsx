@@ -1,5 +1,5 @@
 import React, { DragEvent, FC, ReactNode, useMemo } from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mantine/core';
 import TableCell from '@mui/material/TableCell';
 import { useTheme } from '@mui/material/styles';
 import { MRT_TableHeadCellColumnActionsButton } from './MRT_TableHeadCellColumnActionsButton';
@@ -218,7 +218,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
                 whiteSpace:
                   (columnDef.header?.length ?? 0) < 20 ? 'nowrap' : 'normal',
               }}
-              title={columnDefType === 'data' ? columnDef.header : undefined}
+              label={columnDefType === 'data' ? columnDef.header : undefined}
             >
               {headerElement}
             </Box>

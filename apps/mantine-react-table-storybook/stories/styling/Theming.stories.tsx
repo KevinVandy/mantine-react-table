@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -39,11 +39,11 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const DefaultTheme: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} enableRowSelection />
+export const DefaultTheme: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} enableRowSelection />
 );
 
-export const CustomLightTheme: Story<MaterialReactTableProps> = () => {
+export const CustomLightTheme: Story<MantineReactTableProps> = () => {
   const theme = createTheme({
     palette: {
       primary: {
@@ -59,12 +59,12 @@ export const CustomLightTheme: Story<MaterialReactTableProps> = () => {
   });
   return (
     <ThemeProvider theme={theme}>
-      <MaterialReactTable columns={columns} data={data} enableRowSelection />
+      <MantineReactTable columns={columns} data={data} enableRowSelection />
     </ThemeProvider>
   );
 };
 
-export const CustomDarkTheme: Story<MaterialReactTableProps> = () => {
+export const CustomDarkTheme: Story<MantineReactTableProps> = () => {
   const theme = createTheme({
     palette: {
       mode: 'dark',
@@ -78,7 +78,7 @@ export const CustomDarkTheme: Story<MaterialReactTableProps> = () => {
   });
   return (
     <ThemeProvider theme={theme}>
-      <MaterialReactTable columns={columns} data={data} enableRowSelection />
+      <MantineReactTable columns={columns} data={data} enableRowSelection />
     </ThemeProvider>
   );
 };

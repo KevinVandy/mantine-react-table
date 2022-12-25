@@ -5,16 +5,7 @@ import React, {
   SetStateAction,
   useMemo,
 } from 'react';
-import type { AlertProps } from '@mui/material/Alert';
-import type { ButtonProps } from '@mui/material/Button';
-import type { CheckboxProps } from '@mui/material/Checkbox';
-import type { ChipProps } from '@mui/material/Chip';
 import type { IconButtonProps } from '@mui/material/IconButton';
-import type { LinearProgressProps } from '@mui/material/LinearProgress';
-import type { PaperProps } from '@mui/material/Paper';
-import type { RadioProps } from '@mui/material/Radio';
-import type { SkeletonProps } from '@mui/material/Skeleton';
-import type { TableProps } from '@mui/material/Table';
 import type { TableBodyProps } from '@mui/material/TableBody';
 import type { TableCellProps } from '@mui/material/TableCell';
 import type { TableContainerProps } from '@mui/material/TableContainer';
@@ -22,8 +13,19 @@ import type { TableFooterProps } from '@mui/material/TableFooter';
 import type { TableHeadProps } from '@mui/material/TableHead';
 import type { TablePaginationProps } from '@mui/material/TablePagination';
 import type { TableRowProps } from '@mui/material/TableRow';
-import type { TextFieldProps } from '@mui/material/TextField';
-import type { ToolbarProps } from '@mui/material/Toolbar';
+import type {
+  BoxProps,
+  ProgressProps,
+  AlertProps,
+  ButtonProps,
+  CheckboxProps,
+  ChipProps,
+  PaperProps,
+  RadioProps,
+  SkeletonProps,
+  TableProps,
+  TextInputProps
+} from '@mantine/core';
 import type {
   AggregationFn,
   Cell,
@@ -189,7 +191,7 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> = Omit<
   getRowModel: () => MRT_RowModel<TData>;
   getSelectedRowModel: () => MRT_RowModel<TData>;
   getState: () => MRT_TableState<TData>;
-  options: MaterialReactTableProps<TData> & {
+  options: MantineReactTableProps<TData> & {
     icons: MRT_Icons;
     localization: MRT_Localization;
   };
@@ -407,7 +409,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         table: MRT_TableInstance<TData>;
       }) => ButtonProps);
   muiTableBodyCellEditTextFieldProps?:
-    | TextFieldProps
+    | TextInputProps
     | (({
         cell,
         column,
@@ -418,7 +420,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => TextFieldProps);
+      }) => TextInputProps);
   muiTableBodyCellProps?:
     | TableCellProps
     | (({
@@ -469,7 +471,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         table: MRT_TableInstance<TData>;
       }) => CheckboxProps);
   muiTableHeadCellFilterTextFieldProps?:
-    | TextFieldProps
+    | TextInputProps
     | (({
         table,
         column,
@@ -478,7 +480,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
         rangeFilterIndex?: number;
-      }) => TextFieldProps);
+      }) => TextInputProps);
   muiTableHeadCellProps?:
     | TableCellProps
     | (({
@@ -608,7 +610,7 @@ export type MRT_DisplayColumnIds =
  * See the full props list on the official docs site:
  * @link https://www.mantine-react-table.com/docs/api/props
  */
-export type MaterialReactTableProps<TData extends Record<string, any> = {}> =
+export type MantineReactTableProps<TData extends Record<string, any> = {}> =
   Omit<
     Partial<TableOptions<TData>>,
     | 'columns'
@@ -711,8 +713,8 @@ export type MaterialReactTableProps<TData extends Record<string, any> = {}> =
      */
     memoMode?: 'cells' | 'rows' | 'table-body';
     muiBottomToolbarProps?:
-      | ToolbarProps
-      | (({ table }: { table: MRT_TableInstance<TData> }) => ToolbarProps);
+      | BoxProps
+      | (({ table }: { table: MRT_TableInstance<TData> }) => BoxProps);
     muiExpandAllButtonProps?:
       | IconButtonProps
       | (({ table }: { table: MRT_TableInstance<TData> }) => IconButtonProps);
@@ -726,17 +728,17 @@ export type MaterialReactTableProps<TData extends Record<string, any> = {}> =
           row: MRT_Row<TData>;
         }) => IconButtonProps);
     muiLinearProgressProps?:
-      | LinearProgressProps
+      | ProgressProps
       | (({
           isTopToolbar,
           table,
         }: {
           isTopToolbar: boolean;
           table: MRT_TableInstance<TData>;
-        }) => LinearProgressProps);
+        }) => ProgressProps);
     muiSearchTextFieldProps?:
-      | TextFieldProps
-      | (({ table }: { table: MRT_TableInstance<TData> }) => TextFieldProps);
+      | TextInputProps
+      | (({ table }: { table: MRT_TableInstance<TData> }) => TextInputProps);
     muiSelectAllCheckboxProps?:
       | CheckboxProps
       | (({ table }: { table: MRT_TableInstance<TData> }) => CheckboxProps);
@@ -763,7 +765,7 @@ export type MaterialReactTableProps<TData extends Record<string, any> = {}> =
           table: MRT_TableInstance<TData>;
         }) => ButtonProps);
     muiTableBodyCellEditTextFieldProps?:
-      | TextFieldProps
+      | TextInputProps
       | (({
           cell,
           column,
@@ -774,7 +776,7 @@ export type MaterialReactTableProps<TData extends Record<string, any> = {}> =
           column: MRT_Column<TData>;
           row: MRT_Row<TData>;
           table: MRT_TableInstance<TData>;
-        }) => TextFieldProps);
+        }) => TextInputProps);
     muiTableBodyCellProps?:
       | TableCellProps
       | (({
@@ -889,7 +891,7 @@ export type MaterialReactTableProps<TData extends Record<string, any> = {}> =
           table: MRT_TableInstance<TData>;
         }) => CheckboxProps);
     muiTableHeadCellFilterTextFieldProps?:
-      | TextFieldProps
+      | TextInputProps
       | (({
           table,
           column,
@@ -898,7 +900,7 @@ export type MaterialReactTableProps<TData extends Record<string, any> = {}> =
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
           rangeFilterIndex?: number;
-        }) => TextFieldProps);
+        }) => TextInputProps);
     muiTableHeadCellProps?:
       | TableCellProps
       | (({
@@ -940,8 +942,8 @@ export type MaterialReactTableProps<TData extends Record<string, any> = {}> =
       | AlertProps
       | (({ table }: { table: MRT_TableInstance<TData> }) => AlertProps);
     muiTopToolbarProps?:
-      | ToolbarProps
-      | (({ table }: { table: MRT_TableInstance<TData> }) => ToolbarProps);
+      | BoxProps
+      | (({ table }: { table: MRT_TableInstance<TData> }) => BoxProps);
     onDensityChange?: OnChangeFn<DensityState>;
     onDraggingColumnChange?: OnChangeFn<MRT_Column<TData> | null>;
     onDraggingRowChange?: OnChangeFn<MRT_Row<TData> | null>;
@@ -1094,7 +1096,7 @@ export type MaterialReactTableProps<TData extends Record<string, any> = {}> =
     virtualizerProps?: any;
   };
 
-const MaterialReactTable = <TData extends Record<string, any> = {}>({
+const MantineReactTable = <TData extends Record<string, any> = {}>({
   aggregationFns,
   autoResetExpanded = false,
   columnResizeMode = 'onEnd',
@@ -1144,7 +1146,7 @@ const MaterialReactTable = <TData extends Record<string, any> = {}>({
   selectAllMode = 'page',
   sortingFns,
   ...rest
-}: MaterialReactTableProps<TData>) => {
+}: MantineReactTableProps<TData>) => {
   const _icons = useMemo(() => ({ ...MRT_Default_Icons, ...icons }), [icons]);
   const _localization = useMemo(
     () => ({
@@ -1245,4 +1247,4 @@ const MaterialReactTable = <TData extends Record<string, any> = {}>({
   );
 };
 
-export default MaterialReactTable;
+export default MantineReactTable;

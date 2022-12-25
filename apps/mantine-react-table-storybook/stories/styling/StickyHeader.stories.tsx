@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -49,17 +49,17 @@ const data = [...Array(100)].map(() => ({
 }));
 
 export const StickyHeaderDisabledDefault: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}
   />
 );
 
-export const EnableStickyHeader: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const EnableStickyHeader: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}
@@ -67,8 +67,8 @@ export const EnableStickyHeader: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const StickyHeaderShorterTable: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const StickyHeaderShorterTable: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableStickyHeader
@@ -107,8 +107,8 @@ const columnsWithFooters: MRT_ColumnDef<typeof data[0]>[] = [
   },
 ];
 
-export const disableStickyFooter: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const disableStickyFooter: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columnsWithFooters}
     data={data}
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}
@@ -119,8 +119,8 @@ export const disableStickyFooter: Story<MaterialReactTableProps> = () => (
   />
 );
 
-export const enableStickyFooter: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const enableStickyFooter: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columnsWithFooters}
     data={data}
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}

@@ -1,6 +1,6 @@
 import React, { FC, MouseEvent } from 'react';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
 interface Props {
@@ -36,11 +36,10 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
 
   return (
     <Tooltip
-      arrow
-      disableHoverListener={!canExpand && !renderDetailPanel}
-      enterDelay={1000}
-      enterNextDelay={1000}
-      title={
+      withArrow
+      disabled={!canExpand && !renderDetailPanel}
+      openDelay={1000}
+      label={
         iconButtonProps?.title ?? isExpanded
           ? localization.collapse
           : localization.expand

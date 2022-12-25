@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -38,11 +38,11 @@ const data = [...Array(21)].map(() => ({
 }));
 
 export const DefaultTableBodyCellStyles: Story<
-  MaterialReactTableProps
-> = () => <MaterialReactTable columns={columns} data={data} />;
+  MantineReactTableProps
+> = () => <MantineReactTable columns={columns} data={data} />;
 
-export const StyleAllMuiTableBodyCell: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const StyleAllMuiTableBodyCell: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     muiTableBodyCellProps={{
@@ -55,9 +55,9 @@ export const StyleAllMuiTableBodyCell: Story<MaterialReactTableProps> = () => (
 );
 
 export const StyleMuiTableBodyCellConditionallyIn1Column: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -92,8 +92,8 @@ export const StyleMuiTableBodyCellConditionallyIn1Column: Story<
   />
 );
 
-export const CustomCellRender: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const CustomCellRender: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',

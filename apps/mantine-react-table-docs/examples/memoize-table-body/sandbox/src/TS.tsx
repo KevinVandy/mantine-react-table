@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import { Typography } from '@mui/material';
 import { data, Person } from './makeData';
 
@@ -33,7 +33,7 @@ export const Example: FC = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableBottomToolbar={false} //no need for bottom toolbar if no pagination

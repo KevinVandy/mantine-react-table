@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -54,19 +54,19 @@ const data = [...Array(25)].map(() => ({
 }));
 
 export const DensePaddingToggleEnabledDefault: Story<
-  MaterialReactTableProps
-> = () => <MaterialReactTable columns={columns} data={data} />;
+  MantineReactTableProps
+> = () => <MantineReactTable columns={columns} data={data} />;
 
-export const DensePaddingDisabled: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const DensePaddingDisabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableDensityToggle={false}
   />
 );
 
-export const DefaultToDensePadding: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const DefaultToDensePadding: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     initialState={{

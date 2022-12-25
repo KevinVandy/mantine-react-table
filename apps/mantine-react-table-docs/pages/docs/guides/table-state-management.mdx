@@ -28,7 +28,7 @@ See the [State Options API Docs](/docs/api/state-options) for more information o
 
 Before jumping in and managing a bunch of state yourself, you should first see if you actually need to.
 
-You can store a reference to the underlying table instance by using the `tableInstanceRef` prop. This is a mutable ref object that will be populated with the table instance once the table has been initialized internally. This reference can be very useful, especially if you need it for components that are rendered outside of `<MaterialReactTable />`.
+You can store a reference to the underlying table instance by using the `tableInstanceRef` prop. This is a mutable ref object that will be populated with the table instance once the table has been initialized internally. This reference can be very useful, especially if you need it for components that are rendered outside of `<MantineReactTable />`.
 
 ```tsx
 //must initialize with null to make TS happy
@@ -45,7 +45,7 @@ return (
     <ExternalButton onClick={someEventHandler}>
       Export or Something
     </ExternalButton>
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       tableInstanceRef={tableInstanceRef}
@@ -72,7 +72,7 @@ const columns = useMemo(
 );
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     tableInstanceRef={tableInstanceRef}
@@ -91,7 +91,7 @@ If all you care about is setting parts of the initial or default state when the 
 For example, let's say you do not need access to the `showColumnFilters` state, but you want to set the default value to `true` when the table mounts. You can do that with the `initialState` prop:
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   initialState={{
@@ -123,7 +123,7 @@ useEffect(() => {
 }, [pagination]);
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     state={{ pagination }}
@@ -154,7 +154,7 @@ const handlePaginationChange = (updater: Updater<PaginationState>) => {//Updater
 }
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     state={{ pagination }}

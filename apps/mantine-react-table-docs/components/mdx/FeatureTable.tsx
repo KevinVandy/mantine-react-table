@@ -1,4 +1,4 @@
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import React from 'react';
 
 const columns: MRT_ColumnDef<typeof data[0]>[] = [
@@ -245,7 +245,7 @@ const data = [
 
 const FeatureTable = () => {
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enablePagination={false}

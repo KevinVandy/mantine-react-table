@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { fakeColumns, fakeData } from './makeData';
 
 const Example = () => {
@@ -8,7 +8,7 @@ const Example = () => {
     useRef(null);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columnVirtualizerInstanceRef={columnVirtualizerInstanceRef} //optional
       columnVirtualizerProps={{ overscan: 4 }} //optionally customize the virtualizer
       columns={fakeColumns} //500 columns

@@ -5,11 +5,11 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mantine/core';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Switch from '@mui/material/Switch';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import Typography from '@mui/material/Typography';
 import { MRT_ColumnPinningButtons } from '../buttons/MRT_ColumnPinningButtons';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
@@ -149,10 +149,10 @@ export const MRT_ShowHideColumnsMenuItems = <
               checked={switchChecked}
               control={
                 <Tooltip
-                  arrow
-                  enterDelay={1000}
-                  enterNextDelay={1000}
-                  title={localization.toggleVisibility}
+                  withArrow
+                  openDelay={1000}
+                  
+                  label={localization.toggleVisibility}
                 >
                   <Switch />
                 </Tooltip>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -115,14 +115,14 @@ const columns = [
   },
 ] as MRT_ColumnDef<typeof data[0]>[];
 
-export const Aggregation: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} enableGrouping />
+export const Aggregation: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} enableGrouping />
 );
 
 export const AggregationExpandedDefault: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableGrouping
@@ -131,9 +131,9 @@ export const AggregationExpandedDefault: Story<
 );
 
 export const AggregationGroupedAndExpandedDefault: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableGrouping
@@ -146,8 +146,8 @@ export const AggregationGroupedAndExpandedDefault: Story<
   />
 );
 
-export const MultiAggregationPerColumn: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const MultiAggregationPerColumn: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',

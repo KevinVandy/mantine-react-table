@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Box } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { alpha } from '@mui/material/styles';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
 import { commonToolbarStyles } from './MRT_TopToolbar';
-import { MRT_TableInstance } from '..';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
+import type { MRT_TableInstance } from '..';
 
 interface Props {
   table: MRT_TableInstance;
@@ -29,7 +28,7 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
   } = table;
   const { isFullScreen } = getState();
 
-  const isMobile = useMediaQuery('(max-width:720px)');
+  const isMobile = useMediaQuery('(max-width: 720px)');
 
   const toolbarProps =
     muiBottomToolbarProps instanceof Function
@@ -39,11 +38,11 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
   const stackAlertBanner = isMobile || !!renderBottomToolbarCustomActions;
 
   return (
-    <Toolbar
-      variant="dense"
+    <Box
       {...toolbarProps}
       ref={(ref: HTMLDivElement) => {
         bottomToolbarRef.current = ref;
+        // @ts-ignore
         if (toolbarProps?.ref) {
           // @ts-ignore
           toolbarProps.ref.current = ref;
@@ -54,7 +53,7 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
           ...commonToolbarStyles({ theme }),
           bottom: isFullScreen ? '0' : undefined,
           boxShadow: `0 1px 2px -1px ${alpha(
-            theme.palette.common.black,
+            theme.black,
             0.1,
           )} inset`,
           left: 0,
@@ -106,6 +105,6 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
             )}
         </Box>
       </Box>
-    </Toolbar>
+    </Box>
   );
 };

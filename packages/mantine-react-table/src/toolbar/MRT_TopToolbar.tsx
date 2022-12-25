@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Box, MantineTheme } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { lighten } from '@mui/material/styles';
 import { MRT_GlobalFilterTextField } from '../inputs/MRT_GlobalFilterTextField';
 import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
@@ -10,11 +9,10 @@ import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
-import type { Theme } from '@mui/material/styles';
 
-export const commonToolbarStyles = ({ theme }: { theme: Theme }) => ({
+export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   alignItems: 'flex-start',
-  backgroundColor: lighten(theme.palette.background.default, 0.04),
+  backgroundColor: lighten(theme.colors.dark[7], 0.04),
   backgroundImage: 'none',
   display: 'grid',
   flexWrap: 'wrap-reverse',
@@ -48,7 +46,7 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
 
   const { isFullScreen, showGlobalFilter } = getState();
 
-  const isMobile = useMediaQuery('(max-width:720px)');
+  const isMobile = useMediaQuery('(max-width: 720px)');
 
   const toolbarProps =
     muiTopToolbarProps instanceof Function
@@ -59,11 +57,11 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
     isMobile || !!renderTopToolbarCustomActions || showGlobalFilter;
 
   return (
-    <Toolbar
-      variant="dense"
+    <Box
       {...toolbarProps}
       ref={(ref: HTMLDivElement) => {
         topToolbarRef.current = ref;
+        // @ts-ignore
         if (toolbarProps?.ref) {
           // @ts-ignore
           toolbarProps.ref.current = ref;
@@ -131,6 +129,6 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
           <MRT_TablePagination table={table} position="top" />
         )}
       <MRT_LinearProgressBar isTopToolbar table={table} />
-    </Toolbar>
+    </Box>
   );
 };

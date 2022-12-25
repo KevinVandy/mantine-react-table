@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -53,14 +53,14 @@ const data = [...Array(55)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const HeaderGroups: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} />
+export const HeaderGroups: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} />
 );
 
 export const HeaderGroupsWithStickyHeader: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableStickyHeader
@@ -68,8 +68,8 @@ export const HeaderGroupsWithStickyHeader: Story<
   />
 );
 
-export const HeaderAndFooterGroups: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const HeaderAndFooterGroups: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={[
       {
         header: 'Name',
@@ -112,24 +112,24 @@ export const HeaderAndFooterGroups: Story<MaterialReactTableProps> = () => (
 );
 
 export const HeaderGroupsWithColumnOrdering: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable columns={columns} data={data} enableColumnOrdering />
+  <MantineReactTable columns={columns} data={data} enableColumnOrdering />
 );
 
 export const HeaderGroupsWithColumnPinning: Story<
-  MaterialReactTableProps
-> = () => <MaterialReactTable columns={columns} data={data} enablePinning />;
+  MantineReactTableProps
+> = () => <MantineReactTable columns={columns} data={data} enablePinning />;
 
 export const HeaderGroupsWithColumResizing: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable columns={columns} data={data} enableColumnResizing />
+  <MantineReactTable columns={columns} data={data} enableColumnResizing />
 );
 
-export const MixedHeaderGroups: Story<MaterialReactTableProps> = () => {
+export const MixedHeaderGroups: Story<MantineReactTableProps> = () => {
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           accessorKey: 'firstName',
@@ -163,9 +163,9 @@ export const MixedHeaderGroups: Story<MaterialReactTableProps> = () => {
   );
 };
 
-export const DeepMixedHeaderGroups: Story<MaterialReactTableProps> = () => {
+export const DeepMixedHeaderGroups: Story<MantineReactTableProps> = () => {
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           accessorKey: 'firstName',

@@ -55,7 +55,7 @@ It is possible to change and override the default behavior of built-in display c
 Let's say you need to adjust the width of the Actions column to be wide enough to fit all of your action buttons. You could do that as follows:
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   displayColumnDefOptions={{ 'mrt-row-actions': { size: 300 } }} //change width of actions column to 300px
@@ -73,7 +73,7 @@ Let's say you need to adjust the width of the Actions column to be wide enough t
 Or maybe you want to enable a feature that is off by default for display columns, such as column ordering or pinning.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   displayColumnDefOptions={{

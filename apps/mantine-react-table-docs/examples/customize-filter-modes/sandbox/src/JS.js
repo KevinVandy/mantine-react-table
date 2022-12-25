@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { MenuItem } from '@mui/material';
 import { data } from './makeData';
 
@@ -49,7 +49,7 @@ const Example = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableColumnFilterModes //enable changing filter mode for all columns unless explicitly disabled in a column def

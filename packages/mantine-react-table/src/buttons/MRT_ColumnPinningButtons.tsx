@@ -1,7 +1,7 @@
 import React from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mantine/core';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import type { MRT_Column, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -29,14 +29,14 @@ export const MRT_ColumnPinningButtons = <
   return (
     <Box sx={{ minWidth: '70px', textAlign: 'center' }}>
       {column.getIsPinned() ? (
-        <Tooltip arrow title={localization.unpin}>
+        <Tooltip withArrow label={localization.unpin}>
           <IconButton onClick={() => handlePinColumn(false)} size="small">
             <PushPinIcon />
           </IconButton>
         </Tooltip>
       ) : (
         <>
-          <Tooltip arrow title={localization.pinToLeft}>
+          <Tooltip withArrow label={localization.pinToLeft}>
             <IconButton onClick={() => handlePinColumn('left')} size="small">
               <PushPinIcon
                 style={{
@@ -45,7 +45,7 @@ export const MRT_ColumnPinningButtons = <
               />
             </IconButton>
           </Tooltip>
-          <Tooltip arrow title={localization.pinToRight}>
+          <Tooltip withArrow label={localization.pinToRight}>
             <IconButton onClick={() => handlePinColumn('right')} size="small">
               <PushPinIcon
                 style={{

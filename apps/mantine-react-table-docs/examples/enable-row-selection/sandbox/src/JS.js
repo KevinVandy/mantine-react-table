@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 
 const data = [
   {
@@ -64,7 +64,7 @@ const Example = () => {
   }, [rowSelection]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableRowSelection

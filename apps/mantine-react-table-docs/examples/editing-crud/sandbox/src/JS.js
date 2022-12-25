@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import MaterialReactTable from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import {
   Box,
   Button,
@@ -145,7 +145,7 @@ const Example = () => {
 
   return (
     <>
-      <MaterialReactTable
+      <MantineReactTable
         displayColumnDefOptions={{
           'mrt-row-actions': {
             muiTableHeadCellProps: {

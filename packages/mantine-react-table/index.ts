@@ -1,3 +1,3 @@
-import MaterialReactTable from './src/MaterialReactTable';
-export default MaterialReactTable;
+import MantineReactTable from './src/MantineReactTable';
+export default MantineReactTable;
 export * from './src/index';

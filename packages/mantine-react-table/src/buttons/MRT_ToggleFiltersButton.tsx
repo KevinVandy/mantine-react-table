@@ -1,7 +1,7 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import type { IconButtonProps } from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import { MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}>
@@ -30,7 +30,7 @@ export const MRT_ToggleFiltersButton = <
   };
 
   return (
-    <Tooltip arrow title={rest?.title ?? localization.showHideFilters}>
+    <Tooltip withArrow label={rest?.title ?? localization.showHideFilters}>
       <IconButton
         aria-label={localization.showHideFilters}
         onClick={handleToggleShowFilters}

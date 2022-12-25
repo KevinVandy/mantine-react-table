@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useState } from 'react';
-import MaterialReactTable, {
+import MantineReactTable, {
   MRT_Cell,
   MRT_ColumnDef,
 } from 'mantine-react-table';
@@ -44,7 +44,7 @@ const Example: FC = () => {
   };
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={tableData}
       editingMode="table"

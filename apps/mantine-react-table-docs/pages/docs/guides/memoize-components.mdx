@@ -39,7 +39,7 @@ These features are incompatible with cell memoization because they depend on tab
 </Box>
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableDensityToggle={false} //density does not work with memoized cells
@@ -69,7 +69,7 @@ These features are incompatible with row memoization because they require the en
 </Box>
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableDensityToggle={false} //density does not work with memoized rows
@@ -102,7 +102,7 @@ None of these features will work with table body memoization because the entire 
 </Box>
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableColumnActions={false} //no need for column actions if none of them are enabled

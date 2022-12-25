@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
@@ -11,8 +11,8 @@ const meta: Meta = {
 
 export default meta;
 
-export const DetailPanelEnabled: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const DetailPanelEnabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -48,9 +48,9 @@ export const DetailPanelEnabled: Story<MaterialReactTableProps> = () => (
 );
 
 export const DetailPanelEnabledConditional: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -100,9 +100,9 @@ export const DetailPanelEnabledConditional: Story<
 );
 
 export const DetailPanelExpandColumnLast: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -149,9 +149,9 @@ export const DetailPanelExpandColumnLast: Story<
 );
 
 export const DetailPanelExpandedByDefault: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -188,9 +188,9 @@ export const DetailPanelExpandedByDefault: Story<
 );
 
 export const DetailPanelExpandAllDisabled: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',

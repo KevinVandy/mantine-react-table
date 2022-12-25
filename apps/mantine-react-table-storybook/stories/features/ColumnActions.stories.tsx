@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -52,11 +52,11 @@ const data: Row[] = [...Array(100)].map(() => ({
 }));
 
 export const ColumnActionsEnabledDefault: Story<
-  MaterialReactTableProps
-> = () => <MaterialReactTable columns={columns} data={data} />;
+  MantineReactTableProps
+> = () => <MantineReactTable columns={columns} data={data} />;
 
-export const ColumnActionsDisabled: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const ColumnActionsDisabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     enableColumnActions={false}
@@ -64,9 +64,9 @@ export const ColumnActionsDisabled: Story<MaterialReactTableProps> = () => (
 );
 
 export const ColumnActionsDisabledPerColumn: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',
@@ -97,9 +97,9 @@ export const ColumnActionsDisabledPerColumn: Story<
 );
 
 export const ColumnActionsEnabledPerColumn: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={[
       {
         header: 'First Name',

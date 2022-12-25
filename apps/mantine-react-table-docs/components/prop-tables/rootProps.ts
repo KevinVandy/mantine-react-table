@@ -1,11 +1,11 @@
-import { MaterialReactTableProps } from 'mantine-react-table';
+import { MantineReactTableProps } from 'mantine-react-table';
 
 export type PropRow = {
   defaultValue?: string;
   description?: string;
   link?: string;
   linkText?: string;
-  propName: keyof MaterialReactTableProps;
+  propName: keyof MantineReactTableProps;
   required?: boolean;
   source?: 'MRT' | 'TanStack Table' | 'TanStack Virtual' | 'Material UI' | '';
   type?: string;

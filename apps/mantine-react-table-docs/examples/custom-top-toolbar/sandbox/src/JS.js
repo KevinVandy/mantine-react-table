@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MaterialReactTable, {
+import MantineReactTable, {
   MRT_ToggleDensePaddingButton,
   MRT_FullScreenToggleButton,
 } from 'mantine-react-table';
@@ -33,7 +33,7 @@ const Example = () => {
   );
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       enableRowSelection

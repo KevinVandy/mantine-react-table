@@ -68,7 +68,7 @@ const columns = [
 ];
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableSorting={false} //disable sorting for all columns
@@ -99,7 +99,7 @@ There are 6 built-in sorting functions that you can choose from: ` alphanumeric`
 If none of these sorting functions meet your needs, you can add your own custom sorting functions by specifying more sorting functions in the `sortingFns` prop.
 
 ```tsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   sortingFns={{
@@ -145,7 +145,7 @@ useEffect(() => {
 }, [sorting]);
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     manualSorting

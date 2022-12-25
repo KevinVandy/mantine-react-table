@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import { MRT_TableInstance } from '..';
 
 interface Props {
@@ -32,10 +32,10 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
 
   return (
     <Tooltip
-      arrow
-      enterDelay={1000}
-      enterNextDelay={1000}
-      title={
+      withArrow
+      openDelay={1000}
+      
+      label={
         iconButtonProps?.title ?? isAllRowsExpanded
           ? localization.collapseAll
           : localization.expandAll

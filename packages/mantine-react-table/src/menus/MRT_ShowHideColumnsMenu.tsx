@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mantine/core';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';

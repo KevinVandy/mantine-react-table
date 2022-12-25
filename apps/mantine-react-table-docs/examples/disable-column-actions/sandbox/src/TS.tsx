@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 
 const Example: FC = () => {
   const columns = useMemo(
@@ -40,7 +40,7 @@ const Example: FC = () => {
     //end
   );
 
-  return <MaterialReactTable columns={columns} data={data} />;
+  return <MantineReactTable columns={columns} data={data} />;
 };
 
 export default Example;

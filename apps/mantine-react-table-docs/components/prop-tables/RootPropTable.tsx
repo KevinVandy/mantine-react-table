@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import {
@@ -14,7 +14,7 @@ import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { PropRow, rootProps } from './rootProps';
 
 interface Props {
-  onlyProps?: Set<keyof MaterialReactTableProps>;
+  onlyProps?: Set<keyof MantineReactTableProps>;
 }
 
 const RootPropTable: FC<Props> = ({ onlyProps }) => {
@@ -149,7 +149,7 @@ const RootPropTable: FC<Props> = ({ onlyProps }) => {
   }, [onlyProps]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       displayColumnDefOptions={{

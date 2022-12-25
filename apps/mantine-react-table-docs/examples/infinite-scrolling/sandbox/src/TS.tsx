@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import { Typography } from '@mui/material';
 import type { ColumnFiltersState, SortingState } from '@tanstack/react-table';
 import type { Virtualizer } from '@tanstack/react-virtual';
@@ -132,7 +132,7 @@ const Example: FC = () => {
   }, [fetchMoreOnBottomReached]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={flatData}
       enablePagination={false}

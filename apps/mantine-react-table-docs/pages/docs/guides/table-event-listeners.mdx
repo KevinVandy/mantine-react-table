@@ -24,7 +24,7 @@ Here are a few common examples of some useful event listeners you might want to 
 #### Add an onClick to a Table Row
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   muiTableBodyRowProps={({ row }) => ({
     onClick: (event) => {
       console.info(event, row.id);
@@ -39,7 +39,7 @@ Here are a few common examples of some useful event listeners you might want to 
 #### Add an onDoubleClick to a Table Cell
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   muiTableBodyCellProps={({ cell }) => ({
     onDoubleClick: (event) => {
       console.info(event, cell.id);
@@ -52,7 +52,7 @@ Here are a few common examples of some useful event listeners you might want to 
 
 ```jsx
 //add to every edit text field
-<MaterialReactTable
+<MantineReactTable
   muiTableBodyCellEditTextFieldProps={({ cell }) => ({
     onBlur: (event) => {
       console.info(event, cell.id);
@@ -82,7 +82,7 @@ const columns = [
 
 ```jsx
 //add to every edit text field
-<MaterialReactTable
+<MantineReactTable
   muiTableBodyCellEditTextFieldProps={({ cell }) => ({
     onChange: (event) => {
       console.info(event, cell.id);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
@@ -37,38 +37,38 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const PaginationEnabledDefault: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} />
+export const PaginationEnabledDefault: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} />
 );
 
 export const PaginationDisabledOrOverriden: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable columns={columns} data={data} enablePagination={false} />
+  <MantineReactTable columns={columns} data={data} enablePagination={false} />
 );
 
-export const PaginationPositionBottom: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable
+export const PaginationPositionBottom: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
     columns={columns}
     data={data}
     positionPagination="bottom"
   />
 );
 
-export const PaginationPositionTop: Story<MaterialReactTableProps> = () => (
-  <MaterialReactTable columns={columns} data={data} positionPagination="top" />
+export const PaginationPositionTop: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} positionPagination="top" />
 );
 
 export const PaginationPositionTopAndBottom: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable columns={columns} data={data} positionPagination="both" />
+  <MantineReactTable columns={columns} data={data} positionPagination="both" />
 );
 
 export const PaginationPositionTopAndBottomNoInternalActions: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     positionPagination="both"
@@ -77,9 +77,9 @@ export const PaginationPositionTopAndBottomNoInternalActions: Story<
 );
 
 export const CustomizePaginationComponents: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     initialState={{ pagination: { pageSize: 5, pageIndex: 0 } }}

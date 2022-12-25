@@ -91,7 +91,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
         }}
         {...tableRowProps}
         sx={(theme) => ({
-          backgroundColor: lighten(theme.palette.background.default, 0.06),
+          backgroundColor: lighten(theme.colors.dark[7], 0.06),
           display: layoutMode === 'grid' ? 'flex' : 'table-row',
           opacity:
             draggingRow?.id === row.id || hoveredRow?.id === row.id ? 0.5 : 1,
@@ -106,8 +106,8 @@ export const MRT_TableBodyRow: FC<Props> = ({
             backgroundColor:
               tableRowProps?.hover !== false && getIsSomeColumnsPinned()
                 ? theme.palette.mode === 'dark'
-                  ? `${lighten(theme.palette.background.default, 0.12)}`
-                  : `${darken(theme.palette.background.default, 0.05)}`
+                  ? `${lighten(theme.colors.dark[7], 0.12)}`
+                  : `${darken(theme.colors.dark[7], 0.05)}`
                 : undefined,
           },
           ...(tableRowProps?.sx instanceof Function

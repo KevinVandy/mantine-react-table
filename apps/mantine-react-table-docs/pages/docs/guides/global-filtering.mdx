@@ -94,7 +94,7 @@ Client-side filtering (and global filtering) is enabled by default. This means t
 You can use any of the built-in `filterFns` or any of the custom filter functions that you have defined in the `filterFns` prop, just like you would with the column filters.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   globalFilterFn="contains" //turn off fuzzy matching and use simple contains filter function
@@ -104,7 +104,7 @@ You can use any of the built-in `filterFns` or any of the custom filter function
 or a custom filter function:
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   filterFns={{
@@ -124,7 +124,7 @@ If you keep the default `fuzzy` filterFn option as the global filter function, y
 If you do not want ranked results to be enabled, but you still want fuzzy matching, you can set the `enableGlobalFilterRankedResults` prop to `false`.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableGlobalFilterRankedResults={false} //preserve the order of the data when fuzzy match searching
@@ -136,7 +136,7 @@ If you do not want ranked results to be enabled, but you still want fuzzy matchi
 Similar to the column filter modes, you can enable the user to be able to choose between multiple different filter modes for the global filter with the `enableGlobalFilterModes` prop. You can then customize which filter modes are available in the dropdown by setting the `globalFilterModeOptions` prop, or by rendering your own custom menu items with the `renderGlobalFilterModeMenuItems` prop.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableGlobalFilterModes //enable the user to choose between multiple search filter modes
@@ -153,7 +153,7 @@ Also, if you want to show the search text box by default and not hide it behind 
 You can customize the position of the global filter (search box) in the top toolbar by setting the `positionGlobalFilter` prop to `left` or `right`. It is shown on the right by default.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   positionGlobalFilter="left" //show the global filter on the left side of the top toolbar
@@ -168,7 +168,7 @@ You can customize the position of the global filter (search box) in the top tool
 You can customize the search text field by passing in props to the `muiSearchTextFieldProps` prop. This is useful if you want to customize the placeholder text, add styles, or any other text field props.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   muiSearchTextFieldProps={{
@@ -199,7 +199,7 @@ useEffect(() => {
 }, [globalFilter]);
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data} // this will already be filtered on the server
     manualFiltering //turn off client-side filtering
@@ -209,7 +209,7 @@ return (
 );
 ```
 
-> Specifying `manualFiltering` turns off all client-side filtering, and assumes that the `data` you pass to `<MaterialReactTable />` is already filtered.
+> Specifying `manualFiltering` turns off all client-side filtering, and assumes that the `data` you pass to `<MantineReactTable />` is already filtered.
 
 Here is the full Remote Data example showing off server-side **filtering**, pagination, and sorting.
 

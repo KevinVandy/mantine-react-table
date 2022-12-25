@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import MaterialReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 
 type Person = {
   name: {
@@ -88,7 +88,7 @@ const Example: FC = () => {
     [],
   );
 
-  return <MaterialReactTable columns={columns} data={data} />;
+  return <MantineReactTable columns={columns} data={data} />;
 };
 
 export default Example;

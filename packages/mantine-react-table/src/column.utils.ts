@@ -10,7 +10,7 @@ import { alpha, lighten } from '@mui/material/styles';
 import type { TableCellProps } from '@mui/material/TableCell';
 import type { Theme } from '@mui/material/styles';
 import type {
-  MaterialReactTableProps,
+  MantineReactTableProps,
   MRT_Column,
   MRT_ColumnDef,
   MRT_DefinedColumnDef,
@@ -51,13 +51,13 @@ export const prepareColumns = <TData extends Record<string, any> = {}>({
   sortingFns,
 }: {
   aggregationFns: typeof MRT_AggregationFns &
-    MaterialReactTableProps<TData>['aggregationFns'];
+    MantineReactTableProps<TData>['aggregationFns'];
   columnDefs: MRT_ColumnDef<TData>[];
   columnFilterFns: { [key: string]: MRT_FilterOption };
   defaultDisplayColumn: Partial<MRT_ColumnDef<TData>>;
-  filterFns: typeof MRT_FilterFns & MaterialReactTableProps<TData>['filterFns'];
+  filterFns: typeof MRT_FilterFns & MantineReactTableProps<TData>['filterFns'];
   sortingFns: typeof MRT_SortingFns &
-    MaterialReactTableProps<TData>['sortingFns'];
+    MantineReactTableProps<TData>['sortingFns'];
 }): MRT_DefinedColumnDef<TData>[] =>
   columnDefs.map((columnDef) => {
     //assign columnId
@@ -134,7 +134,7 @@ export const reorderColumn = <TData extends Record<string, any> = {}>(
 };
 
 export const showExpandColumn = <TData extends Record<string, any> = {}>(
-  props: MaterialReactTableProps<TData>,
+  props: MantineReactTableProps<TData>,
   grouping?: GroupingState,
 ) =>
   !!(
@@ -146,7 +146,7 @@ export const showExpandColumn = <TData extends Record<string, any> = {}>(
 export const getLeadingDisplayColumnIds = <
   TData extends Record<string, any> = {},
 >(
-  props: MaterialReactTableProps<TData>,
+  props: MantineReactTableProps<TData>,
 ) =>
   [
     (props.enableRowDragging || props.enableRowOrdering) && 'mrt-row-drag',
@@ -165,7 +165,7 @@ export const getLeadingDisplayColumnIds = <
 export const getTrailingDisplayColumnIds = <
   TData extends Record<string, any> = {},
 >(
-  props: MaterialReactTableProps<TData>,
+  props: MantineReactTableProps<TData>,
 ) => [
   props.positionActionsColumn === 'last' &&
     (props.enableRowActions ||
@@ -180,7 +180,7 @@ export const getTrailingDisplayColumnIds = <
 export const getDefaultColumnOrderIds = <
   TData extends Record<string, any> = {},
 >(
-  props: MaterialReactTableProps<TData>,
+  props: MantineReactTableProps<TData>,
 ) =>
   [
     ...getLeadingDisplayColumnIds(props),
@@ -240,7 +240,7 @@ export const getCommonCellStyles = ({
 }) => ({
   backgroundColor:
     column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-      ? alpha(lighten(theme.palette.background.default, 0.04), 0.97)
+      ? alpha(lighten(theme.colors.dark[7], 0.04), 0.97)
       : 'inherit',
   backgroundImage: 'inherit',
   boxShadow: getIsLastLeftPinnedColumn(table, column)

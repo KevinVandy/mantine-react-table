@@ -1,7 +1,7 @@
 import React, { MouseEvent, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import type { IconButtonProps } from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import { MRT_ShowHideColumnsMenu } from '../menus/MRT_ShowHideColumnsMenu';
 import { MRT_TableInstance } from '..';
 
@@ -31,7 +31,7 @@ export const MRT_ShowHideColumnsButton = <
 
   return (
     <>
-      <Tooltip arrow title={rest?.title ?? localization.showHideColumns}>
+      <Tooltip withArrow label={rest?.title ?? localization.showHideColumns}>
         <IconButton
           aria-label={localization.showHideColumns}
           onClick={handleClick}

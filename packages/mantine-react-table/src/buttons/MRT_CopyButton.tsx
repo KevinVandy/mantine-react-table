@@ -1,6 +1,5 @@
 import React, { MouseEvent, ReactNode, useState } from 'react';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import { Button, Tooltip } from '@mantine/core';
 import { MRT_Cell, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -51,20 +50,19 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
 
   return (
     <Tooltip
-      arrow
-      enterDelay={1000}
-      enterNextDelay={1000}
-      placement="top"
-      title={
-        buttonProps?.title ??
+      withArrow
+      openDelay={1000}
+      position="top"
+      label={
+        // buttonProps?.title ??
         (copied ? localization.copiedToClipboard : localization.clickToCopy)
       }
     >
       <Button
         onClick={(e) => handleCopy(e, cell.getValue())}
-        size="small"
+        size="sm"
         type="button"
-        variant="text"
+        variant="default"
         {...buttonProps}
         sx={(theme) => ({
           backgroundColor: 'transparent',

@@ -73,7 +73,7 @@ const data = [
 ];
 
 return (
-  <MaterialReactTable
+  <MantineReactTable
     columns={columns}
     data={data}
     enableExpanding
@@ -89,7 +89,7 @@ return (
 By default, Mantine React Table will show the expand all button in the expand column header. You can disable this by setting the `enableExpandAll` prop to `false`.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableExpanding
@@ -102,7 +102,7 @@ By default, Mantine React Table will show the expand all button in the expand co
 By default, Mantine React Table will treat expanded sub-rows the same as any other row when it comes to pagination. This means that some expanded rows may be on the next page. You can change this behavior by setting the `paginateExpandedRows` prop to `false`.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableExpanding
@@ -119,7 +119,7 @@ If you are using the [filtering features](/docs/guides/column-filtering) along-s
 By default, filtering is done from parent rows down (so if a parent row is filtered out, all of its children will be filtered out as well). Setting the `filterFromLeafRows` prop to `true` will cause filtering to be done from leaf rows up (which means parent rows will be kept so long as one of their child, or grand-child, etc. rows pass the filtering).
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableExpanding
@@ -136,7 +136,7 @@ By default, filtering is done for all rows (max depth of 100), no matter if they
 This is useful for situations where you want a row's entire child hierarchy to be visible regardless of the applied filter.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableExpanding
@@ -151,7 +151,7 @@ You can manage the initial state of the expanded rows with the `expanded` state 
 For example, you may want all rows to be expanded by default. You can simply set the `expanded` state option to `true` to do this.
 
 ```jsx
-<MaterialReactTable
+<MantineReactTable
   columns={columns}
   data={data}
   enableExpanding

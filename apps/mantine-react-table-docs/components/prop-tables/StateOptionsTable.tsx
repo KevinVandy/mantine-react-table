@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import MaterialReactTable, {
+import MantineReactTable, {
   MRT_ColumnDef,
   MRT_TableState,
 } from 'mantine-react-table';
@@ -124,7 +124,7 @@ const StateOptionsTable: FC<Props> = ({ onlyProps }) => {
   }, [onlyProps]);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={data}
       displayColumnDefOptions={{

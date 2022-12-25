@@ -7,14 +7,14 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mantine/core';
 import Checkbox from '@mui/material/Checkbox';
 import Chip from '@mui/material/Chip';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mantine/core';
 import { debounce } from '@mui/material/utils';
 import type { TextFieldProps } from '@mui/material/TextField';
 import type { MRT_Header, MRT_TableInstance } from '..';
@@ -237,7 +237,7 @@ export const MRT_FilterTextField: FC<Props> = ({
         InputProps={{
           startAdornment: showChangeModeButton ? (
             <InputAdornment position="start">
-              <Tooltip arrow title={localization.changeFilterMode}>
+              <Tooltip withArrow label={localization.changeFilterMode}>
                 <span>
                   <IconButton
                     aria-label={localization.changeFilterMode}
@@ -260,9 +260,9 @@ export const MRT_FilterTextField: FC<Props> = ({
           endAdornment: !filterChipLabel && (
             <InputAdornment position="end">
               <Tooltip
-                arrow
-                placement="right"
-                title={localization.clearFilter ?? ''}
+                withArrow
+                position="right"
+                label={localization.clearFilter ?? ''}
               >
                 <span>
                   <IconButton

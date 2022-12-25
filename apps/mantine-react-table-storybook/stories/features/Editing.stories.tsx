@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { MenuItem } from '@mui/material';
@@ -21,7 +21,7 @@ const data = [...Array(100)].map(() => ({
 }));
 
 export const EditingEnabledEditModeModalDefault: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const [tableData, setTableData] = useState(data);
 
@@ -32,7 +32,7 @@ export const EditingEnabledEditModeModalDefault: Story<
   };
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           header: 'First Name',
@@ -63,7 +63,7 @@ export const EditingEnabledEditModeModalDefault: Story<
   );
 };
 
-export const EditingEnabledEditModeRow: Story<MaterialReactTableProps> = () => {
+export const EditingEnabledEditModeRow: Story<MantineReactTableProps> = () => {
   const [tableData, setTableData] = useState(data);
 
   const handleSaveRow = ({ exitEditingMode, row, values }) => {
@@ -73,7 +73,7 @@ export const EditingEnabledEditModeRow: Story<MaterialReactTableProps> = () => {
   };
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           header: 'First Name',
@@ -106,7 +106,7 @@ export const EditingEnabledEditModeRow: Story<MaterialReactTableProps> = () => {
 };
 
 export const EditingEnabledEditModeCell: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const [tableData, setTableData] = useState(data);
 
@@ -116,7 +116,7 @@ export const EditingEnabledEditModeCell: Story<
   };
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           header: 'First Name',
@@ -153,7 +153,7 @@ export const EditingEnabledEditModeCell: Story<
 };
 
 export const EditingEnabledEditModeTable: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const [tableData, setTableData] = useState(data);
 
@@ -164,7 +164,7 @@ export const EditingEnabledEditModeTable: Story<
   };
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           header: 'First Name',
@@ -199,7 +199,7 @@ export const EditingEnabledEditModeTable: Story<
   );
 };
 
-export const EditingCustomizeInput: Story<MaterialReactTableProps> = () => {
+export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
   const [tableData, setTableData] = useState(data);
 
   const handleSaveRow = ({ row, values }) => {
@@ -265,7 +265,7 @@ export const EditingCustomizeInput: Story<MaterialReactTableProps> = () => {
   ];
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           header: 'First Name',
@@ -305,7 +305,7 @@ export const EditingCustomizeInput: Story<MaterialReactTableProps> = () => {
   );
 };
 
-// export const EditingWithValidation: Story<MaterialReactTableProps> = () => {
+// export const EditingWithValidation: Story<MantineReactTableProps> = () => {
 //   const [tableData, setTableData] = useState(data);
 //   const [firstNameError, setFirstNameError] = useState<string | boolean>(false);
 //   const [lastNameError, setLastNameError] = useState<string | boolean>(false);
@@ -336,7 +336,7 @@ export const EditingCustomizeInput: Story<MaterialReactTableProps> = () => {
 //   };
 
 //   return (
-//     <MaterialReactTable
+//     <MantineReactTable
 //       columns={[
 //         {
 //           header: 'First Name',
@@ -380,7 +380,7 @@ export const EditingCustomizeInput: Story<MaterialReactTableProps> = () => {
 //   );
 // };
 
-export const EditingEnabledAsync: Story<MaterialReactTableProps> = () => {
+export const EditingEnabledAsync: Story<MantineReactTableProps> = () => {
   const [tableData, setTableData] = useState(data);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -394,7 +394,7 @@ export const EditingEnabledAsync: Story<MaterialReactTableProps> = () => {
   };
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           header: 'First Name',
@@ -438,11 +438,11 @@ const nestedData = [...Array(10)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const EditingNestedData: Story<MaterialReactTableProps> = () => {
+export const EditingNestedData: Story<MantineReactTableProps> = () => {
   const [tableData, setTableData] = useState(() => nestedData);
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           header: 'First Name',
@@ -486,7 +486,7 @@ export const EditingNestedData: Story<MaterialReactTableProps> = () => {
 };
 
 export const EditingEnabledEditModeTableWithGroupedRows: Story<
-  MaterialReactTableProps
+  MantineReactTableProps
 > = () => {
   const [tableData, setTableData] = useState(data);
 
@@ -497,7 +497,7 @@ export const EditingEnabledEditModeTableWithGroupedRows: Story<
   };
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={[
         {
           header: 'First Name',

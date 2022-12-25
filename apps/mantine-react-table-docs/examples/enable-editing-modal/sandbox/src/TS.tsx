@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useState } from 'react';
-import MaterialReactTable, {
-  MaterialReactTableProps,
+import MantineReactTable, {
+  MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { data, Person } from './makeData';
@@ -37,7 +37,7 @@ const Example: FC = () => {
 
   const [tableData, setTableData] = useState<Person[]>(() => data);
 
-  const handleSaveRow: MaterialReactTableProps<Person>['onEditingRowSave'] =
+  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] =
     async ({ exitEditingMode, row, values }) => {
       //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
       tableData[row.index] = values;
@@ -47,7 +47,7 @@ const Example: FC = () => {
     };
 
   return (
-    <MaterialReactTable
+    <MantineReactTable
       columns={columns}
       data={tableData}
       editingMode="modal" //default
