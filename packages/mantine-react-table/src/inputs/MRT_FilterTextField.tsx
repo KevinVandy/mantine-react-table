@@ -7,16 +7,16 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { Box } from '@mantine/core';
-import Checkbox from '@mui/material/Checkbox';
-import Chip from '@mui/material/Chip';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import MenuItem from '@mui/material/MenuItem';
-import TextField from '@mui/material/TextField';
-import { Tooltip } from '@mantine/core';
+import {
+  ActionIcon,
+  Box,
+  Checkbox,
+  Chip,
+  TextInput,
+  TextInputProps,
+  Tooltip,
+} from '@mantine/core';
 import { debounce } from '@mui/material/utils';
-import type { TextFieldProps } from '@mui/material/TextField';
 import type { MRT_Header, MRT_TableInstance } from '..';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 
@@ -67,7 +67,7 @@ export const MRT_FilterTextField: FC<Props> = ({
   const textFieldProps = {
     ...mTableHeadCellFilterTextFieldProps,
     ...mcTableHeadCellFilterTextFieldProps,
-  } as TextFieldProps;
+  } as TextInputProps;
 
   const isRangeFilter =
     columnDef.filterVariant === 'range' || rangeFilterIndex !== undefined;
@@ -190,40 +190,38 @@ export const MRT_FilterTextField: FC<Props> = ({
 
   return (
     <>
-      <TextField
-        fullWidth
-        inputProps={{
-          disabled: !!filterChipLabel,
-          sx: {
-            textOverflow: 'ellipsis',
-            width: filterChipLabel ? 0 : undefined,
-          },
-          title: filterPlaceholder,
-        }}
-        helperText={
-          showChangeModeButton ? (
-            <label>
-              {localization.filterMode.replace(
-                '{filterType}',
-                // @ts-ignore
-                localization[
-                  `filter${
-                    currentFilterOption?.charAt(0)?.toUpperCase() +
-                    currentFilterOption?.slice(1)
-                  }`
-                ],
-              )}
-            </label>
-          ) : null
-        }
-        FormHelperTextProps={{
-          sx: {
-            fontSize: '0.75rem',
-            lineHeight: '0.8rem',
-            whiteSpace: 'nowrap',
-          },
-        }}
-        margin="none"
+      <TextInput
+        // inputProps={{
+        //   disabled: !!filterChipLabel,
+        //   sx: {
+        //     textOverflow: 'ellipsis',
+        //     width: filterChipLabel ? 0 : undefined,
+        //   },
+        //   title: filterPlaceholder,
+        // }}
+        // helperText={
+        //   showChangeModeButton ? (
+        //     <label>
+        //       {localization.filterMode.replace(
+        //         '{filterType}',
+        //         // @ts-ignore
+        //         localization[
+        //           `filter${
+        //             currentFilterOption?.charAt(0)?.toUpperCase() +
+        //             currentFilterOption?.slice(1)
+        //           }`
+        //         ],
+        //       )}
+        //     </label>
+        //   ) : null
+        // }
+        // FormHelperTextProps={{
+        //   sx: {
+        //     fontSize: '0.75rem',
+        //     lineHeight: '0.8rem',
+        //     whiteSpace: 'nowrap',
+        //   },
+        // }}
         placeholder={
           filterChipLabel || isSelectFilter || isMultiSelectFilter
             ? undefined
@@ -233,92 +231,94 @@ export const MRT_FilterTextField: FC<Props> = ({
         onClick={(e: MouseEvent<HTMLInputElement>) => e.stopPropagation()}
         select={isSelectFilter || isMultiSelectFilter}
         value={filterValue}
-        variant="standard"
-        InputProps={{
-          startAdornment: showChangeModeButton ? (
-            <InputAdornment position="start">
-              <Tooltip withArrow label={localization.changeFilterMode}>
-                <span>
-                  <IconButton
-                    aria-label={localization.changeFilterMode}
-                    onClick={handleFilterMenuOpen}
-                    size="small"
-                    sx={{ height: '1.75rem', width: '1.75rem' }}
-                  >
-                    <FilterListIcon />
-                  </IconButton>
-                </span>
-              </Tooltip>
-              {filterChipLabel && (
-                <Chip
-                  onDelete={handleClearEmptyFilterChip}
-                  label={filterChipLabel}
-                />
-              )}
-            </InputAdornment>
-          ) : null,
-          endAdornment: !filterChipLabel && (
-            <InputAdornment position="end">
-              <Tooltip
-                withArrow
-                position="right"
-                label={localization.clearFilter ?? ''}
-              >
-                <span>
-                  <IconButton
-                    aria-label={localization.clearFilter}
-                    disabled={!filterValue?.length}
-                    onClick={handleClear}
-                    size="small"
-                    sx={{
-                      height: '1.75rem',
-                      width: '1.75rem',
-                    }}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                </span>
-              </Tooltip>
-            </InputAdornment>
-          ),
-        }}
-        SelectProps={{
-          displayEmpty: true,
-          multiple: isMultiSelectFilter,
-          renderValue: isMultiSelectFilter
-            ? (selected: any) =>
-                !selected?.length ? (
-                  <Box sx={{ opacity: 0.5 }}>{filterPlaceholder}</Box>
-                ) : (
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '2px' }}>
-                    {(selected as string[])?.map((value) => {
-                      const selectedValue = columnDef.filterSelectOptions?.find(
-                        (option) =>
-                          option instanceof Object
-                            ? option.value === value
-                            : option === value,
-                      );
-                      return (
-                        <Chip
-                          key={value}
-                          label={
-                            selectedValue instanceof Object
-                              ? selectedValue.text
-                              : selectedValue
-                          }
-                        />
-                      );
-                    })}
-                  </Box>
-                )
-            : undefined,
-        }}
+        variant="default"
+        // InputProps={{
+        //   startAdornment: showChangeModeButton ? (
+        //     <InputAdornment position="start">
+        //       <Tooltip withArrow label={localization.changeFilterMode}>
+        //         <span>
+        //           <IconButton
+        //             aria-label={localization.changeFilterMode}
+        //             onClick={handleFilterMenuOpen}
+        //             size="small"
+        //             sx={{ height: '1.75rem', width: '1.75rem' }}
+        //           >
+        //             <FilterListIcon />
+        //           </IconButton>
+        //         </span>
+        //       </Tooltip>
+        //       {filterChipLabel && (
+        //         <Chip
+        //           onDelete={handleClearEmptyFilterChip}
+        //           label={filterChipLabel}
+        //         />
+        //       )}
+        //     </InputAdornment>
+        //   ) : null,
+        //   endAdornment: !filterChipLabel && (
+        //     <InputAdornment position="end">
+        //       <Tooltip
+        //         withArrow
+        //         position="right"
+        //         label={localization.clearFilter ?? ''}
+        //       >
+        //         <span>
+        //           <IconButton
+        //             aria-label={localization.clearFilter}
+        //             disabled={!filterValue?.length}
+        //             onClick={handleClear}
+        //             size="small"
+        //             sx={{
+        //               height: '1.75rem',
+        //               width: '1.75rem',
+        //             }}
+        //           >
+        //             <CloseIcon />
+        //           </IconButton>
+        //         </span>
+        //       </Tooltip>
+        //     </InputAdornment>
+        //   ),
+        // }}
+        // SelectProps={{
+        //   displayEmpty: true,
+        //   multiple: isMultiSelectFilter,
+        //   renderValue: isMultiSelectFilter
+        //     ? (selected: any) =>
+        //         !selected?.length ? (
+        //           <Box sx={{ opacity: 0.5 }}>{filterPlaceholder}</Box>
+        //         ) : (
+        //           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '2px' }}>
+        //             {(selected as string[])?.map((value) => {
+        //               const selectedValue = columnDef.filterSelectOptions?.find(
+        //                 (option) =>
+        //                   option instanceof Object
+        //                     ? option.value === value
+        //                     : option === value,
+        //               );
+        //               return (
+        //                 <Chip
+        //                   key={value}
+        //                   label={
+        //                     selectedValue instanceof Object
+        //                       ? selectedValue.text
+        //                       : selectedValue
+        //                   }
+        //                 />
+        //               );
+        //             })}
+        //           </Box>
+        //         )
+        //     : undefined,
+        // }}
         {...textFieldProps}
-        inputRef={(inputRef) => {
-          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
-            inputRef;
-          if (textFieldProps.inputRef) {
-            textFieldProps.inputRef = inputRef;
+        ref={(node) => {
+          if (node) {
+            filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+              node;
+            if (textFieldProps.ref) {
+              textFieldProps.ref = node;
+            }
           }
         }}
         sx={(theme) => ({
@@ -337,13 +337,13 @@ export const MRT_FilterTextField: FC<Props> = ({
             ? textFieldProps.sx(theme)
             : (textFieldProps?.sx as any)),
         })}
-      >
-        {(isSelectFilter || isMultiSelectFilter) && (
+      />
+      {/* {(isSelectFilter || isMultiSelectFilter) && (
           <MenuItem divider disabled hidden value="">
             <Box sx={{ opacity: 0.5 }}>{filterPlaceholder}</Box>
           </MenuItem>
-        )}
-        {columnDef?.filterSelectOptions?.map(
+        )} */}
+      {/* {columnDef?.filterSelectOptions?.map(
           (option: string | { text: string; value: string }) => {
             let value: string;
             let text: string;
@@ -377,8 +377,7 @@ export const MRT_FilterTextField: FC<Props> = ({
               </MenuItem>
             );
           },
-        )}
-      </TextField>
+        )} */}
       <MRT_FilterOptionMenu
         anchorEl={anchorEl}
         header={header}

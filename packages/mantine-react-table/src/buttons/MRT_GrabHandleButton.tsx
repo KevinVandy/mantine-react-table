@@ -1,11 +1,9 @@
 import React, { DragEventHandler } from 'react';
-import IconButton from '@mui/material/IconButton';
-import type { IconButtonProps } from '@mui/material/IconButton';
-import { Tooltip } from '@mantine/core';
+import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
 import { MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
-  iconButtonProps?: IconButtonProps;
+  iconButtonProps?: ActionIconProps;
   onDragStart: DragEventHandler<HTMLButtonElement>;
   onDragEnd: DragEventHandler<HTMLButtonElement>;
   table: MRT_TableInstance<TData>;
@@ -28,14 +26,12 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
     <Tooltip
       withArrow
       openDelay={1000}
-      
       position="top"
       label={iconButtonProps?.title ?? localization.move}
     >
-      <IconButton
-        disableRipple
+      <ActionIcon
         draggable="true"
-        size="small"
+        size="sm"
         {...iconButtonProps}
         onClick={(e) => {
           e.stopPropagation();
@@ -63,7 +59,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
         title={undefined}
       >
         <DragHandleIcon />
-      </IconButton>
+      </ActionIcon>
     </Tooltip>
   );
 };

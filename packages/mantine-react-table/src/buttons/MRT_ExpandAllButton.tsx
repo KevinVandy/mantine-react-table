@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import IconButton from '@mui/material/IconButton';
-import { Tooltip } from '@mantine/core';
+import { ActionIcon, Tooltip } from '@mantine/core';
 import { MRT_TableInstance } from '..';
 
 interface Props {
@@ -34,7 +33,6 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
     <Tooltip
       withArrow
       openDelay={1000}
-      
       label={
         iconButtonProps?.title ?? isAllRowsExpanded
           ? localization.collapseAll
@@ -42,7 +40,7 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
       }
     >
       <span>
-        <IconButton
+        <ActionIcon
           aria-label={localization.expandAll}
           disabled={
             isLoading || (!renderDetailPanel && !getCanSomeRowsExpand())
@@ -67,7 +65,7 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
               transition: 'transform 150ms',
             }}
           />
-        </IconButton>
+        </ActionIcon>
       </span>
     </Tooltip>
   );

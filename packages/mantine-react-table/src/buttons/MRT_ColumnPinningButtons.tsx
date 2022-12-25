@@ -1,7 +1,5 @@
 import React from 'react';
-import { Box } from '@mantine/core';
-import IconButton from '@mui/material/IconButton';
-import { Tooltip } from '@mantine/core';
+import { ActionIcon, Box, Tooltip } from '@mantine/core';
 import type { MRT_Column, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -30,29 +28,29 @@ export const MRT_ColumnPinningButtons = <
     <Box sx={{ minWidth: '70px', textAlign: 'center' }}>
       {column.getIsPinned() ? (
         <Tooltip withArrow label={localization.unpin}>
-          <IconButton onClick={() => handlePinColumn(false)} size="small">
+          <ActionIcon onClick={() => handlePinColumn(false)} size="sm">
             <PushPinIcon />
-          </IconButton>
+          </ActionIcon>
         </Tooltip>
       ) : (
         <>
           <Tooltip withArrow label={localization.pinToLeft}>
-            <IconButton onClick={() => handlePinColumn('left')} size="small">
+            <ActionIcon onClick={() => handlePinColumn('left')} size="sm">
               <PushPinIcon
                 style={{
                   transform: 'rotate(90deg)',
                 }}
               />
-            </IconButton>
+            </ActionIcon>
           </Tooltip>
           <Tooltip withArrow label={localization.pinToRight}>
-            <IconButton onClick={() => handlePinColumn('right')} size="small">
+            <ActionIcon onClick={() => handlePinColumn('right')} size="sm">
               <PushPinIcon
                 style={{
                   transform: 'rotate(-90deg)',
                 }}
               />
-            </IconButton>
+            </ActionIcon>
           </Tooltip>
         </>
       )}

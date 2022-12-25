@@ -1,6 +1,5 @@
 import React, { FC, MouseEvent, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import { Tooltip } from '@mantine/core';
+import { ActionIcon, Tooltip } from '@mantine/core';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
@@ -58,10 +57,10 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
         position="top"
         label={iconButtonProps?.title ?? localization.columnActions}
       >
-        <IconButton
+        <ActionIcon
           aria-label={localization.columnActions}
           onClick={handleClick}
-          size="small"
+          size="sm"
           {...iconButtonProps}
           sx={(theme) => ({
             height: '2rem',
@@ -80,7 +79,7 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
           title={undefined}
         >
           <MoreVertIcon />
-        </IconButton>
+        </ActionIcon>
       </Tooltip>
       {anchorEl && (
         <MRT_ColumnActionMenu

@@ -24,23 +24,23 @@ export const MRT_TableHeadCellGrabHandle: FC<Props> = ({
   const { columnDef } = column;
   const { hoveredColumn, draggingColumn, columnOrder } = getState();
 
-  const mIconButtonProps =
+  const mActionIconProps =
     muiTableHeadCellDragHandleProps instanceof Function
       ? muiTableHeadCellDragHandleProps({ column, table })
       : muiTableHeadCellDragHandleProps;
 
-  const mcIconButtonProps =
+  const mcActionIconProps =
     columnDef.muiTableHeadCellDragHandleProps instanceof Function
       ? columnDef.muiTableHeadCellDragHandleProps({ column, table })
       : columnDef.muiTableHeadCellDragHandleProps;
 
-  const iconButtonProps = {
-    ...mIconButtonProps,
-    ...mcIconButtonProps,
+  const actionIconProps = {
+    ...mActionIconProps,
+    ...mcActionIconProps,
   };
 
   const handleDragStart = (event: DragEvent<HTMLButtonElement>) => {
-    iconButtonProps?.onDragStart?.(event);
+    actionIconProps?.onDragStart?.(event);
     setDraggingColumn(column);
     event.dataTransfer.setDragImage(
       tableHeadCellRef.current as HTMLElement,
@@ -50,7 +50,7 @@ export const MRT_TableHeadCellGrabHandle: FC<Props> = ({
   };
 
   const handleDragEnd = (event: DragEvent<HTMLButtonElement>) => {
-    iconButtonProps?.onDragEnd?.(event);
+    actionIconProps?.onDragEnd?.(event);
     if (hoveredColumn?.id === 'drop-zone') {
       column.toggleGrouping();
     } else if (
@@ -68,7 +68,7 @@ export const MRT_TableHeadCellGrabHandle: FC<Props> = ({
 
   return (
     <MRT_GrabHandleButton
-      iconButtonProps={iconButtonProps}
+      iconButtonProps={actionIconProps}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       table={table}

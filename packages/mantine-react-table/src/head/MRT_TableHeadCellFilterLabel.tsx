@@ -1,8 +1,5 @@
 import React, { FC, MouseEvent } from 'react';
-import { Box } from '@mantine/core';
-import Grow from '@mui/material/Grow';
-import IconButton from '@mui/material/IconButton';
-import { Tooltip } from '@mantine/core';
+import { ActionIcon, Box, Transition, Tooltip } from '@mantine/core';
 import { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {
@@ -53,40 +50,41 @@ export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
     .replace('" "', '');
 
   return (
-    <Grow
-      unmountOnExit
-      in={
+    <Transition
+      transition="scale"
+      mounted={
         (!!column.getFilterValue() && !isRangeFilter) ||
         (isRangeFilter && // @ts-ignore
           (!!column.getFilterValue()?.[0] || !!column.getFilterValue()?.[1]))
       }
     >
-      <Box component="span" sx={{ flex: '0 0' }}>
-        <Tooltip withArrow position="top" label={filterTooltip}>
-          <IconButton
-            disableRipple
-            onClick={(event: MouseEvent<HTMLButtonElement>) => {
-              setShowFilters(true);
-              queueMicrotask(() => {
-                filterInputRefs.current[`${column.id}-0`]?.focus();
-                filterInputRefs.current[`${column.id}-0`]?.select();
-              });
-              event.stopPropagation();
-            }}
-            size="small"
-            sx={{
-              height: '12px',
-              m: 0,
-              opacity: 0.8,
-              p: '2px',
-              transform: 'scale(0.66)',
-              width: '12px',
-            }}
-          >
-            <FilterAltIcon />
-          </IconButton>
-        </Tooltip>
-      </Box>
-    </Grow>
+      {(styles) => (
+        <Box component="span" sx={{ flex: '0 0' }} style={styles}>
+          <Tooltip withArrow position="top" label={filterTooltip}>
+            <ActionIcon
+              onClick={(event: MouseEvent<HTMLButtonElement>) => {
+                setShowFilters(true);
+                queueMicrotask(() => {
+                  filterInputRefs.current[`${column.id}-0`]?.focus();
+                  filterInputRefs.current[`${column.id}-0`]?.select();
+                });
+                event.stopPropagation();
+              }}
+              size="sm"
+              sx={{
+                height: '12px',
+                m: 0,
+                opacity: 0.8,
+                p: '2px',
+                transform: 'scale(0.66)',
+                width: '12px',
+              }}
+            >
+              <FilterAltIcon />
+            </ActionIcon>
+          </Tooltip>
+        </Box>
+      )}
+    </Transition>
   );
 };

@@ -1,6 +1,5 @@
 import React, { FC, MouseEvent } from 'react';
-import IconButton from '@mui/material/IconButton';
-import { Tooltip } from '@mantine/core';
+import { ActionIcon, Tooltip } from '@mantine/core';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
 interface Props {
@@ -46,7 +45,7 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
       }
     >
       <span>
-        <IconButton
+        <ActionIcon
           aria-label={localization.expand}
           disabled={!canExpand && !renderDetailPanel}
           {...iconButtonProps}
@@ -68,7 +67,7 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
               transition: 'transform 150ms',
             }}
           />
-        </IconButton>
+        </ActionIcon>
       </span>
     </Tooltip>
   );

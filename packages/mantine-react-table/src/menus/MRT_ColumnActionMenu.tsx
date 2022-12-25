@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Box } from '@mantine/core';
-import IconButton from '@mui/material/IconButton';
+import { ActionIcon, Box } from '@mantine/core';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -251,14 +250,14 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
               )}
             </Box>
             {showFilterModeSubMenu && (
-              <IconButton
+              <ActionIcon
                 onClick={handleOpenFilterModeMenu}
                 onMouseEnter={handleOpenFilterModeMenu}
-                size="small"
+                size="sm"
                 sx={{ p: 0 }}
               >
                 <ArrowRightIcon />
-              </IconButton>
+              </ActionIcon>
             )}
           </MenuItem>,
           showFilterModeSubMenu && (
@@ -384,14 +383,14 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
               String(columnDef.header),
             )}
           </Box>
-          <IconButton
+          <ActionIcon
             onClick={handleOpenShowHideColumnsMenu}
             onMouseEnter={handleOpenShowHideColumnsMenu}
-            size="small"
+            size="sm"
             sx={{ p: 0 }}
           >
             <ArrowRightIcon />
-          </IconButton>
+          </ActionIcon>
         </MenuItem>,
         <MRT_ShowHideColumnsMenu
           anchorEl={showHideColumnsMenuAnchorEl}

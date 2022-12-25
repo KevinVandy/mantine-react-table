@@ -5,7 +5,6 @@ import React, {
   SetStateAction,
   useMemo,
 } from 'react';
-import type { IconButtonProps } from '@mui/material/IconButton';
 import type { TableBodyProps } from '@mui/material/TableBody';
 import type { TableCellProps } from '@mui/material/TableCell';
 import type { TableContainerProps } from '@mui/material/TableContainer';
@@ -14,6 +13,7 @@ import type { TableHeadProps } from '@mui/material/TableHead';
 import type { TablePaginationProps } from '@mui/material/TablePagination';
 import type { TableRowProps } from '@mui/material/TableRow';
 import type {
+  ActionIconProps,
   BoxProps,
   ProgressProps,
   AlertProps,
@@ -444,23 +444,23 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         column: MRT_Column<TData>;
       }) => TableCellProps);
   muiTableHeadCellColumnActionsButtonProps?:
-    | IconButtonProps
+    | ActionIconProps
     | (({
         table,
         column,
       }: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
-      }) => IconButtonProps);
+      }) => ActionIconProps);
   muiTableHeadCellDragHandleProps?:
-    | IconButtonProps
+    | ActionIconProps
     | (({
         table,
         column,
       }: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
-      }) => IconButtonProps);
+      }) => ActionIconProps);
   muiTableHeadCellFilterCheckboxProps?:
     | CheckboxProps
     | (({
@@ -716,17 +716,17 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
       | BoxProps
       | (({ table }: { table: MRT_TableInstance<TData> }) => BoxProps);
     muiExpandAllButtonProps?:
-      | IconButtonProps
-      | (({ table }: { table: MRT_TableInstance<TData> }) => IconButtonProps);
+      | ActionIconProps
+      | (({ table }: { table: MRT_TableInstance<TData> }) => ActionIconProps);
     muiExpandButtonProps?:
-      | IconButtonProps
+      | ActionIconProps
       | (({
           row,
           table,
         }: {
           table: MRT_TableInstance<TData>;
           row: MRT_Row<TData>;
-        }) => IconButtonProps);
+        }) => ActionIconProps);
     muiLinearProgressProps?:
       | ProgressProps
       | (({
@@ -807,14 +807,14 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
       | TableBodyProps
       | (({ table }: { table: MRT_TableInstance<TData> }) => TableBodyProps);
     muiTableBodyRowDragHandleProps?:
-      | IconButtonProps
+      | ActionIconProps
       | (({
           table,
           row,
         }: {
           table: MRT_TableInstance<TData>;
           row: MRT_Row<TData>;
-        }) => IconButtonProps);
+        }) => ActionIconProps);
     muiTableBodyRowProps?:
       | TableRowProps
       | (({
@@ -864,23 +864,23 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           footerGroup: MRT_HeaderGroup<TData>;
         }) => TableRowProps);
     muiTableHeadCellColumnActionsButtonProps?:
-      | IconButtonProps
+      | ActionIconProps
       | (({
           table,
           column,
         }: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
-        }) => IconButtonProps);
+        }) => ActionIconProps);
     muiTableHeadCellDragHandleProps?:
-      | IconButtonProps
+      | ActionIconProps
       | (({
           table,
           column,
         }: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
-        }) => IconButtonProps);
+        }) => ActionIconProps);
     muiTableHeadCellFilterCheckboxProps?:
       | CheckboxProps
       | (({

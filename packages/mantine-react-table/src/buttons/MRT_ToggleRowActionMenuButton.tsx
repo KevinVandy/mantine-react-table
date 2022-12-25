@@ -1,11 +1,10 @@
 import React, { MouseEvent, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import { Tooltip } from '@mantine/core';
+import { ActionIcon, Tooltip } from '@mantine/core';
 import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
 import { MRT_EditActionButtons } from './MRT_EditActionButtons';
 import type { MRT_Cell, MRT_Row, MRT_TableInstance } from '..';
 
-const commonIconButtonStyles = {
+const commonActionIconStyles = {
   height: '2rem',
   ml: '10px',
   opacity: 0.5,
@@ -66,30 +65,25 @@ export const MRT_ToggleRowActionMenuButton = <
         <MRT_EditActionButtons row={row} table={table} />
       ) : !renderRowActionMenuItems && enableEditing ? (
         <Tooltip position="right" withArrow label={localization.edit}>
-          <IconButton
+          <ActionIcon
             aria-label={localization.edit}
-            sx={commonIconButtonStyles}
+            sx={commonActionIconStyles}
             onClick={handleStartEditMode}
           >
             <EditIcon />
-          </IconButton>
+          </ActionIcon>
         </Tooltip>
       ) : renderRowActionMenuItems ? (
         <>
-          <Tooltip
-            withArrow
-            openDelay={1000}
-            
-            label={localization.rowActions}
-          >
-            <IconButton
+          <Tooltip withArrow openDelay={1000} label={localization.rowActions}>
+            <ActionIcon
               aria-label={localization.rowActions}
               onClick={handleOpenRowActionMenu}
-              size="small"
-              sx={commonIconButtonStyles}
+              size="sm"
+              sx={commonActionIconStyles}
             >
               <MoreHorizIcon />
-            </IconButton>
+            </ActionIcon>
           </Tooltip>
           <MRT_RowActionMenu
             anchorEl={anchorEl}
