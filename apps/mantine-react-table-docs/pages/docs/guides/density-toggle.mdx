@@ -1,0 +1,54 @@
+import Head from 'next/head';
+import RootPropTable from '../../../components/prop-tables/RootPropTable';
+import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
+import DisableExample from '../../../examples/disable-density-toggle';
+
+<Head>
+  <title>Density Toggle Feature Guide - Mantine React Table Docs</title>
+  <meta
+    name="description"
+    content="How to use, customize, or disable the density toggle button feature of Mantine React Table"
+  />
+</Head>
+
+## Density Toggle Feature Guide
+
+Mantine React Table includes a density toggle button in the top toolbar by default where a user can toggle between 3 different density levels. This is a great feature to include to help with accessibility for different user preferences, but it can easily be disabled if it is not wanted.
+
+### Relevant Props
+
+<RootPropTable
+  onlyProps={new Set(['enableDensityToggle', 'onDensityChange'])}
+/>
+
+### Relevant State
+
+<StateOptionsTable onlyProps={new Set(['density'])} />
+
+### Default Density
+
+By default, Mantine React Table will render with a medium `comfortable` density.
+
+A density toggle is shown by default to let a user change the density to cycle through `spacious`, `comfortable`, and `compact` densities.
+
+> When a `compact` density is set, whitespace is set to `nowrap` by default to keep the rows as short in height as possible. This can be overridden in the `muiTableBodyCellProps` styles or sx prop.
+
+#### Change Default Density
+
+If you want to change the default density, you can set that in either the `initialState` prop or the `state` prop.
+
+```tsx
+<MaterialReactTable
+  data={data}
+  columns={columns}
+  initialState={{ density: 'compact' }}
+/>
+```
+
+### Disable or Hide the Density Toggle
+
+You can change the default density, and disable the density toggle itself if you want.
+
+In this example, the density toggle is disabled and a `compact` density is set by default in the `initialState` prop.
+
+<DisableExample />

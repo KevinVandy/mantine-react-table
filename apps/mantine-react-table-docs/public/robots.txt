@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/data
+
+# Host
+Host: https://www.mantine-react-table.com
+
+# Sitemaps
+Sitemap: https://www.mantine-react-table.com/sitemap.xml
