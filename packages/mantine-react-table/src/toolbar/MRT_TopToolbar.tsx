@@ -19,6 +19,7 @@ export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   minHeight: '3.5rem',
   overflow: 'hidden',
   p: '0 !important',
+  position: 'relative',
   transition: 'all 150ms ease-in-out',
   zIndex: 1,
 });

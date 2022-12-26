@@ -5,7 +5,7 @@ import {
   useVirtualizer,
   Virtualizer,
 } from '@tanstack/react-virtual';
-import Table from '@mui/material/Table';
+import { Table } from '@mantine/core';
 import { MRT_TableHead } from '../head/MRT_TableHead';
 import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
@@ -24,7 +24,6 @@ export const MRT_Table: FC<Props> = ({ table }) => {
       enableColumnResizing,
       enableColumnVirtualization,
       enablePinning,
-      enableStickyHeader,
       enableTableFooter,
       enableTableHead,
       layoutMode,
@@ -33,7 +32,7 @@ export const MRT_Table: FC<Props> = ({ table }) => {
     },
     refs: { tableContainerRef },
   } = table;
-  const { isFullScreen, columnPinning, columnVisibility } = getState();
+  const { columnPinning, columnVisibility } = getState();
 
   const tableProps =
     muiTableProps instanceof Function
@@ -123,8 +122,9 @@ export const MRT_Table: FC<Props> = ({ table }) => {
   };
 
   return (
+    // @ts-ignore
     <Table
-      stickyHeader={enableStickyHeader || isFullScreen}
+      highlightOnHover
       {...tableProps}
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table',

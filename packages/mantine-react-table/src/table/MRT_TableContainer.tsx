@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useLayoutEffect, useState } from 'react';
-import TableContainer from '@mui/material/TableContainer';
+import { Box } from '@mantine/core';
 import { MRT_Table } from './MRT_Table';
 import type { MRT_TableInstance } from '..';
 
@@ -40,7 +40,7 @@ export const MRT_TableContainer: FC<Props> = ({ table }) => {
   });
 
   return (
-    <TableContainer
+    <Box
       {...tableContainerProps}
       ref={(node: HTMLDivElement) => {
         if (node) {
@@ -69,6 +69,6 @@ export const MRT_TableContainer: FC<Props> = ({ table }) => {
       }}
     >
       <MRT_Table table={table} />
-    </TableContainer>
+    </Box>
   );
 };

@@ -1,5 +1,5 @@
 import React, { DragEvent, FC, memo, useMemo, useRef } from 'react';
-import TableRow from '@mui/material/TableRow';
+import { Box } from '@mantine/core';
 import { darken, lighten, useTheme } from '@mui/material/styles';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
@@ -78,11 +78,11 @@ export const MRT_TableBodyRow: FC<Props> = ({
 
   return (
     <>
-      <TableRow
+      <Box
+        component='tr'
         data-index={virtualRow?.index}
-        hover
         onDragEnter={handleDragEnter}
-        selected={row.getIsSelected()}
+        // selected={row.getIsSelected()}
         ref={(node: HTMLTableRowElement) => {
           if (node) {
             rowRef.current = node;
@@ -105,7 +105,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
           '&:hover td': {
             backgroundColor:
               tableRowProps?.hover !== false && getIsSomeColumnsPinned()
-                ? theme.palette.mode === 'dark'
+                ? theme.colorScheme === 'dark'
                   ? `${lighten(theme.colors.dark[7], 0.12)}`
                   : `${darken(theme.colors.dark[7], 0.05)}`
                 : undefined,
@@ -150,7 +150,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
         {virtualPaddingRight ? (
           <td style={{ display: 'flex', width: virtualPaddingRight }} />
         ) : null}
-      </TableRow>
+      </Box>
       {renderDetailPanel && !row.getIsGrouped() && (
         <MRT_TableDetailPanel
           parentRowRef={rowRef}

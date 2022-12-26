@@ -33,7 +33,6 @@ export const MRT_TablePaper: FC<Props> = ({ table }) => {
       {...tablePaperProps}
       ref={(ref: HTMLDivElement) => {
         tablePaperRef.current = ref;
-        // @ts-ignore
         if (tablePaperProps?.ref) {
           //@ts-ignore
           tablePaperProps.ref.current = ref;

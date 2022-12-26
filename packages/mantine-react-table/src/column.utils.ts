@@ -7,8 +7,7 @@ import { MRT_AggregationFns } from './aggregationFns';
 import { MRT_FilterFns } from './filterFns';
 import { MRT_SortingFns } from './sortingFns';
 import { alpha, lighten } from '@mui/material/styles';
-import type { TableCellProps } from '@mui/material/TableCell';
-import type { Theme } from '@mui/material/styles';
+import { BoxProps, MantineTheme } from '@mantine/core';
 import type {
   MantineReactTableProps,
   MRT_Column,
@@ -235,8 +234,8 @@ export const getCommonCellStyles = ({
   column: MRT_Column;
   header?: MRT_Header;
   table: MRT_TableInstance;
-  tableCellProps: TableCellProps;
-  theme: Theme;
+  tableCellProps: BoxProps;
+  theme: MantineTheme;
 }) => ({
   backgroundColor:
     column.getIsPinned() && column.columnDef.columnDefType !== 'group'
@@ -244,9 +243,9 @@ export const getCommonCellStyles = ({
       : 'inherit',
   backgroundImage: 'inherit',
   boxShadow: getIsLastLeftPinnedColumn(table, column)
-    ? `-4px 0 8px -6px ${alpha(theme.palette.common.black, 0.2)} inset`
+    ? `-4px 0 8px -6px ${alpha(theme.black, 0.2)} inset`
     : getIsFirstRightPinnedColumn(column)
-    ? `4px 0 8px -6px ${alpha(theme.palette.common.black, 0.2)} inset`
+    ? `4px 0 8px -6px ${alpha(theme.black, 0.2)} inset`
     : undefined,
   display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
   left:

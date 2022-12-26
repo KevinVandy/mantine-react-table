@@ -8,8 +8,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import Skeleton from '@mui/material/Skeleton';
-import TableCell from '@mui/material/TableCell';
+import {Box, Skeleton} from '@mantine/core'
 import { darken, lighten, useTheme } from '@mui/material/styles';
 import { MRT_EditCellTextField } from '../inputs/MRT_EditCellTextField';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
@@ -173,7 +172,8 @@ export const MRT_TableBodyCell: FC<Props> = ({
   };
 
   return (
-    <TableCell
+    <Box
+      component="td"
       data-index={virtualCell?.index}
       ref={(node: HTMLTableCellElement) => {
         if (node) {
@@ -220,7 +220,7 @@ export const MRT_TableBodyCell: FC<Props> = ({
             enableEditing &&
             columnDef.enableEditing !== false &&
             ['table', 'cell'].includes(editingMode ?? '')
-              ? theme.palette.mode === 'dark'
+              ? theme.colorScheme === 'dark'
                 ? `${lighten(theme.colors.dark[7], 0.2)} !important`
                 : `${darken(theme.colors.dark[7], 0.1)} !important`
               : undefined,
@@ -237,7 +237,6 @@ export const MRT_TableBodyCell: FC<Props> = ({
       <>
         {cell.getIsPlaceholder() ? null : isLoading || showSkeletons ? (
           <Skeleton
-            animation="wave"
             height={20}
             width={skeletonWidth}
             {...skeletonProps}
@@ -271,7 +270,7 @@ export const MRT_TableBodyCell: FC<Props> = ({
       {cell.getIsGrouped() && !columnDef.GroupedCell && (
         <> ({row.subRows?.length})</>
       )}
-    </TableCell>
+    </Box>
   );
 };
 

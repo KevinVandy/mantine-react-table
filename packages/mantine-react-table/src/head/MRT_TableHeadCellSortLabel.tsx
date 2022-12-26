@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import { Tooltip } from '@mantine/core';
+import { BoxProps, Tooltip } from '@mantine/core';
 import { MRT_Header, MRT_TableInstance } from '..';
-import type { TableCellProps } from '@mui/material/TableCell';
 
 interface Props {
   header: MRT_Header;
   table: MRT_TableInstance;
-  tableCellProps?: TableCellProps;
+  tableCellProps?: BoxProps;
 }
 
 export const MRT_TableHeadCellSortLabel: FC<Props> = ({

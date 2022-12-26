@@ -4,8 +4,7 @@ import {
   Virtualizer,
   VirtualItem,
 } from '@tanstack/react-virtual';
-import TableBody from '@mui/material/TableBody';
-import Typography from '@mui/material/Typography';
+import { Box, Text } from '@mantine/core';
 import { Memo_MRT_TableBodyRow, MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { rankGlobalFuzzy } from '../sortingFns';
 import type { MRT_Row, MRT_TableInstance } from '..';
@@ -41,8 +40,6 @@ export const MRT_TableBody: FC<Props> = ({
       muiTableBodyProps,
       rowVirtualizerInstanceRef,
       rowVirtualizerProps,
-      virtualizerInstanceRef,
-      virtualizerProps,
     },
     refs: { tableContainerRef, tablePaperRef },
   } = table;
@@ -53,11 +50,6 @@ export const MRT_TableBody: FC<Props> = ({
     muiTableBodyProps instanceof Function
       ? muiTableBodyProps({ table })
       : muiTableBodyProps;
-
-  const vProps_old =
-    virtualizerProps instanceof Function
-      ? virtualizerProps({ table })
-      : virtualizerProps;
 
   const vProps =
     rowVirtualizerProps instanceof Function
@@ -102,7 +94,6 @@ export const MRT_TableBody: FC<Props> = ({
         getScrollElement: () => tableContainerRef.current,
         measureElement: (element) => element?.getBoundingClientRect().height,
         overscan: 4,
-        ...vProps_old,
         ...vProps,
       })
     : undefined;
@@ -111,17 +102,13 @@ export const MRT_TableBody: FC<Props> = ({
     rowVirtualizerInstanceRef.current = rowVirtualizer;
   }
 
-  //deprecated
-  if (virtualizerInstanceRef && rowVirtualizer) {
-    virtualizerInstanceRef.current = rowVirtualizer;
-  }
-
   const virtualRows = rowVirtualizer
     ? rowVirtualizer.getVirtualItems()
     : undefined;
 
   return (
-    <TableBody
+    <Box
+      component="tbody"
       {...tableBodyProps}
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
@@ -135,16 +122,16 @@ export const MRT_TableBody: FC<Props> = ({
           : (tableBodyProps?.sx as any)),
       })}
     >
-      {tableBodyProps?.children ??
+      {
         (!rows.length ? (
           <tr style={{ display: layoutMode === 'grid' ? 'grid' : 'table-row' }}>
             <td
               colSpan={table.getVisibleLeafColumns().length}
               style={{ display: layoutMode === 'grid' ? 'grid' : 'table-cell' }}
             >
-              <Typography
+              <Text
                 sx={{
-                  color: 'text.secondary',
+                  color: 'gray',
                   fontStyle: 'italic',
                   maxWidth: `min(100vw, ${
                     tablePaperRef.current?.clientWidth ?? 360
@@ -157,7 +144,7 @@ export const MRT_TableBody: FC<Props> = ({
                 {globalFilter || columnFilters.length
                   ? localization.noResultsFound
                   : localization.noRecordsToDisplay}
-              </Typography>
+              </Text>
             </td>
           </tr>
         ) : (
@@ -189,7 +176,7 @@ export const MRT_TableBody: FC<Props> = ({
             })}
           </>
         ))}
-    </TableBody>
+    </Box>
   );
 };
 

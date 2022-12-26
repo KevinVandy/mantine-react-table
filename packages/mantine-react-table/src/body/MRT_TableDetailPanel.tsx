@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
-import Collapse from '@mui/material/Collapse';
-import TableCell from '@mui/material/TableCell';
-import TableRow from '@mui/material/TableRow';
+import { Box, Collapse } from '@mantine/core';
 import { lighten } from '@mui/material/styles';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Row, MRT_TableInstance } from '..';
@@ -42,7 +40,8 @@ export const MRT_TableDetailPanel: FC<Props> = ({
       : muiTableDetailPanelProps;
 
   return (
-    <TableRow
+    <Box
+      component="tr"
       className="Mui-TableBodyCell-DetailPanel"
       {...tableRowProps}
       sx={(theme) => ({
@@ -61,7 +60,8 @@ export const MRT_TableDetailPanel: FC<Props> = ({
           : (tableRowProps?.sx as any)),
       })}
     >
-      <TableCell
+      <Box
+        component="td"
         className="Mui-TableBodyCell-DetailPanel"
         colSpan={getVisibleLeafColumns().length}
         {...tableCellProps}
@@ -81,11 +81,11 @@ export const MRT_TableDetailPanel: FC<Props> = ({
         })}
       >
         {renderDetailPanel && (
-          <Collapse in={row.getIsExpanded()} mountOnEnter unmountOnExit>
+          <Collapse in={row.getIsExpanded()}>
             {!isLoading && renderDetailPanel({ row, table })}
           </Collapse>
         )}
-      </TableCell>
-    </TableRow>
+      </Box>
+    </Box>
   );
 };

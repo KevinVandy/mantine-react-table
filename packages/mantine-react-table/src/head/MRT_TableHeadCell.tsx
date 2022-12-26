@@ -1,6 +1,5 @@
 import React, { DragEvent, FC, ReactNode, useMemo } from 'react';
-import { Box } from '@mantine/core';
-import TableCell from '@mui/material/TableCell';
+import { Box, MantineTheme } from '@mantine/core';
 import { useTheme } from '@mui/material/styles';
 import { MRT_TableHeadCellColumnActionsButton } from './MRT_TableHeadCellColumnActionsButton';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
@@ -9,7 +8,6 @@ import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
 import { MRT_TableHeadCellResizeHandle } from './MRT_TableHeadCellResizeHandle';
 import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
 import { getCommonCellStyles } from '../column.utils';
-import type { Theme } from '@mui/material/styles';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {
@@ -119,7 +117,8 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
       : columnDef?.Header ?? (columnDef.header as ReactNode);
 
   return (
-    <TableCell
+    <Box
+      component="td"
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={header.colSpan}
       onDragEnter={handleDragEnter}
@@ -129,7 +128,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
         }
       }}
       {...tableCellProps}
-      sx={(theme: Theme) => ({
+      sx={(theme: MantineTheme) => ({
         flexDirection: layoutMode === 'grid' ? 'column' : undefined,
         fontWeight: 'bold',
         overflow: 'visible',
@@ -218,7 +217,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
                 whiteSpace:
                   (columnDef.header?.length ?? 0) < 20 ? 'nowrap' : 'normal',
               }}
-              label={columnDefType === 'data' ? columnDef.header : undefined}
+              title={columnDefType === 'data' ? columnDef.header : undefined}
             >
               {headerElement}
             </Box>
@@ -263,6 +262,6 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
       {column.getCanFilter() && (
         <MRT_TableHeadCellFilterContainer header={header} table={table} />
       )}
-    </TableCell>
+    </Box>
   );
 };

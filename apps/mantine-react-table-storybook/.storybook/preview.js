@@ -1,4 +1,5 @@
 import { createTheme, Link, ThemeProvider, Typography } from '@mui/material';
+import { ColorSchemeProvider, MantineProvider, Text } from '@mantine/core';
 import { useDarkMode } from 'storybook-dark-mode';
 
 export const parameters = {
@@ -31,36 +32,40 @@ const withThemeProvider = (Story, context) => {
     palette: { mode: useDarkMode() ? 'dark' : 'light' },
   });
 
+  const colorScheme = useDarkMode() ? 'dark' : 'light';
+
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Typography
-        sx={{
-          pb: '0.5rem',
-          color: useDarkMode() ? '#fff' : '#666',
-        }}
-        variant="subtitle2"
-      >
-        Looking for the main docs site? Click{' '}
-        <Link
-          href="https://www.mantine-react-table.com"
-          target="_blank"
-          rel="noopener"
-        >
-          here.
-        </Link>
-      </Typography>
-      <Typography
-        variant="subtitle2"
-        sx={{
-          pb: '1rem',
-          color: useDarkMode() ? '#fff' : '#666',
-        }}
-      >
-        View source code below in the story tab on Canvas or the Show Code
-        Button in Docs. Toggle dark and light mode in the toolbar buttons above.
-      </Typography>
-      <Story {...context} />
-    </ThemeProvider>
+    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={() => { }}>
+      <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+        <ThemeProvider theme={defaultTheme}>
+          <Text
+            sx={{
+              pb: '0.5rem',
+              color: useDarkMode() ? '#fff' : '#666',
+            }}
+          >
+            Looking for the main docs site? Click{' '}
+            <Link
+              href="https://www.mantine-react-table.com"
+              target="_blank"
+              rel="noopener"
+            >
+              here.
+            </Link>
+          </Text>
+          <Text
+            sx={{
+              pb: '1rem',
+              color: useDarkMode() ? '#fff' : '#666',
+            }}
+          >
+            View source code below in the story tab on Canvas or the Show Code
+            Button in Docs. Toggle dark and light mode in the toolbar buttons above.
+          </Text>
+          <Story {...context} />
+        </ThemeProvider>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 };
 

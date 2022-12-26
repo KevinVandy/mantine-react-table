@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import TableFooter from '@mui/material/TableFooter';
+import { Box } from '@mantine/core';
 import { lighten } from '@mui/material/styles';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
 import type { VirtualItem } from '@tanstack/react-virtual';
@@ -34,7 +34,8 @@ export const MRT_TableFooter: FC<Props> = ({
     (isFullScreen || enableStickyFooter) && enableStickyFooter !== false;
 
   return (
-    <TableFooter
+    <Box
+      component="tfoot"
       {...tableFooterProps}
       sx={(theme) => ({
         backgroundColor: lighten(theme.colors.dark[7], 0.06),
@@ -42,9 +43,9 @@ export const MRT_TableFooter: FC<Props> = ({
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
         opacity: stickFooter ? 0.97 : undefined,
         outline: stickFooter
-          ? theme.palette.mode === 'light'
-            ? `1px solid ${theme.palette.grey[300]}`
-            : `1px solid ${theme.palette.grey[700]}`
+          ? theme.colorScheme === 'light'
+            ? `1px solid ${theme.colors.gray[3]}`
+            : `1px solid ${theme.colors.gray[7]}`
           : undefined,
         position: stickFooter ? 'sticky' : undefined,
         zIndex: stickFooter ? 1 : undefined,
@@ -63,6 +64,6 @@ export const MRT_TableFooter: FC<Props> = ({
           virtualPaddingRight={virtualPaddingRight}
         />
       ))}
-    </TableFooter>
+    </Box>
   );
 };
