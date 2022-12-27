@@ -11,7 +11,7 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
   const {
     getState,
     options: {
-      icons: { ExpandMoreIcon },
+      icons: { IconChevronDown },
       localization,
       muiExpandButtonProps,
       renderDetailPanel,
@@ -59,7 +59,7 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
           })}
           title={undefined}
         >
-          <ExpandMoreIcon
+          <IconChevronDown
             style={{
               transform: `rotate(${
                 !canExpand && !renderDetailPanel ? -90 : isExpanded ? -180 : 0

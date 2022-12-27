@@ -17,7 +17,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
 }: Props<TData>) => {
   const {
     options: {
-      icons: { DragHandleIcon },
+      icons: { IconMenu },
       localization,
     },
   } = table;
@@ -58,7 +58,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
         })}
         title={undefined}
       >
-        <DragHandleIcon />
+        <IconMenu />
       </ActionIcon>
     </Tooltip>
   );

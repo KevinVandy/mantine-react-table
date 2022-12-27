@@ -16,7 +16,7 @@ export const MRT_ToggleDensePaddingButton = <
   const {
     getState,
     options: {
-      icons: { DensityLargeIcon, DensityMediumIcon, DensitySmallIcon },
+      icons: { IconMenu, IconMenu2 },
       localization,
     },
     setDensity,
@@ -42,11 +42,11 @@ export const MRT_ToggleDensePaddingButton = <
         title={undefined}
       >
         {density === 'compact' ? (
-          <DensitySmallIcon />
+          <IconMenu2 />
         ) : density === 'comfortable' ? (
-          <DensityMediumIcon />
+          <IconMenu2 />
         ) : (
-          <DensityLargeIcon />
+          <IconMenu />
         )}
       </ActionIcon>
     </Tooltip>

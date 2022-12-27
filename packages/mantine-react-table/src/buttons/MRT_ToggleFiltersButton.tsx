@@ -16,7 +16,7 @@ export const MRT_ToggleFiltersButton = <
   const {
     getState,
     options: {
-      icons: { FilterListIcon, FilterListOffIcon },
+      icons: { IconFilter, IconFilterOff },
       localization,
     },
     setShowFilters,
@@ -35,7 +35,7 @@ export const MRT_ToggleFiltersButton = <
         {...rest}
         title={undefined}
       >
-        {showColumnFilters ? <FilterListOffIcon /> : <FilterListIcon />}
+        {showColumnFilters ? <IconFilterOff /> : <IconFilter />}
       </ActionIcon>
     </Tooltip>
   );

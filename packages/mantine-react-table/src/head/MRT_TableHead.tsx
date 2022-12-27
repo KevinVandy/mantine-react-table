@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import TableHead from '@mui/material/TableHead';
+import { Box } from '@mantine/core';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_TableInstance } from '..';
@@ -32,7 +32,8 @@ export const MRT_TableHead: FC<Props> = ({
   const stickyHeader = enableStickyHeader || isFullScreen;
 
   return (
-    <TableHead
+    <Box
+      component="thead"
       {...tableHeadProps}
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
@@ -55,6 +56,6 @@ export const MRT_TableHead: FC<Props> = ({
           virtualPaddingRight={virtualPaddingRight}
         />
       ))}
-    </TableHead>
+    </Box>
   );
 };

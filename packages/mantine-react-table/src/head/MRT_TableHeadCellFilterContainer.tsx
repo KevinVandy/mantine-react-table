@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Collapse from '@mui/material/Collapse';
+import { Collapse } from '@mantine/core';
 import { MRT_FilterRangeFields } from '../inputs/MRT_FilterRangeFields';
 import { MRT_FilterTextField } from '../inputs/MRT_FilterTextField';
 import { MRT_Header, MRT_TableInstance } from '..';
@@ -20,7 +20,7 @@ export const MRT_TableHeadCellFilterContainer: FC<Props> = ({
   const { columnDef } = column;
 
   return (
-    <Collapse in={showColumnFilters} mountOnEnter unmountOnExit>
+    <Collapse in={showColumnFilters}>
       {columnDef.filterVariant === 'checkbox' ? (
         <MRT_FilterCheckbox column={column} table={table} />
       ) : columnDef.filterVariant === 'range' ||

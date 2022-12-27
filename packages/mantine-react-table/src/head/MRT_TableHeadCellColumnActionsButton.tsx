@@ -14,7 +14,7 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
 }) => {
   const {
     options: {
-      icons: { MoreVertIcon },
+      icons: { IconDotsVertical },
       localization,
       muiTableHeadCellColumnActionsButtonProps,
     },
@@ -53,7 +53,6 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
       <Tooltip
         withArrow
         openDelay={1000}
-        
         position="top"
         label={iconButtonProps?.title ?? localization.columnActions}
       >
@@ -78,7 +77,7 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
           })}
           title={undefined}
         >
-          <MoreVertIcon />
+          <IconDotsVertical />
         </ActionIcon>
       </Tooltip>
       {anchorEl && (

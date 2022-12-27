@@ -27,7 +27,7 @@ export const MRT_RowActionMenu: FC<Props> = ({
   const {
     getState,
     options: {
-      icons: { EditIcon },
+      icons: { IconEdit },
       enableEditing,
       localization,
       renderRowActionMenuItems,
@@ -48,7 +48,7 @@ export const MRT_RowActionMenu: FC<Props> = ({
         <MenuItem onClick={handleEdit} sx={commonMenuItemStyles}>
           <Box sx={commonListItemStyles}>
             <ListItemIcon>
-              <EditIcon />
+              <IconEdit />
             </ListItemIcon>
             {localization.edit}
           </Box>

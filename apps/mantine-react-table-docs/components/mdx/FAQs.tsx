@@ -6,7 +6,7 @@ import {
   AccordionSummary,
   Typography,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import IconChevronDown from '@mui/icons-material/ExpandMore';
 
 interface FAQStructuredData {
   '@context': string;
@@ -38,7 +38,7 @@ export const FAQs: FC<Props> = ({ faqStructuredData }) => {
       </Head>
       {faqStructuredData.mainEntity.map((faq, index) => (
         <Accordion elevation={4} key={index}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <AccordionSummary expandIcon={<IconChevronDown />}>
             <Typography variant="h4">{faq.name}</Typography>
           </AccordionSummary>
           <AccordionDetails

@@ -16,7 +16,7 @@ export const MRT_ShowHideColumnsButton = <
 }: Props<TData>) => {
   const {
     options: {
-      icons: { ViewColumnIcon },
+      icons: { IconColumns },
       localization,
     },
   } = table;
@@ -36,7 +36,7 @@ export const MRT_ShowHideColumnsButton = <
           {...rest}
           title={undefined}
         >
-          <ViewColumnIcon />
+          <IconColumns />
         </ActionIcon>
       </Tooltip>
       {anchorEl && (

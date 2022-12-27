@@ -16,7 +16,7 @@ export const MRT_FullScreenToggleButton = <
   const {
     getState,
     options: {
-      icons: { FullscreenExitIcon, FullscreenIcon },
+      icons: { IconMinimize, IconMaximize },
       localization,
     },
     setIsFullScreen,
@@ -35,7 +35,7 @@ export const MRT_FullScreenToggleButton = <
         {...rest}
         title={undefined}
       >
-        {isFullScreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
+        {isFullScreen ? <IconMinimize /> : <IconMaximize />}
       </ActionIcon>
     </Tooltip>
   );

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import TableRow from '@mui/material/TableRow';
+import { Box } from '@mantine/core';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
 import { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Header, MRT_HeaderGroup, MRT_TableInstance } from '..';
@@ -40,7 +40,7 @@ export const MRT_TableFooterRow: FC<Props> = ({
       : muiTableFooterRowProps;
 
   return (
-    <TableRow
+    <Box component="tr"
       {...tableRowProps}
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'flex' : 'table-row',
@@ -65,6 +65,6 @@ export const MRT_TableFooterRow: FC<Props> = ({
       {virtualPaddingRight ? (
         <th style={{ display: 'flex', width: virtualPaddingRight }} />
       ) : null}
-    </TableRow>
+    </Box>
   );
 };

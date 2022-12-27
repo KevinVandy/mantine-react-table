@@ -16,7 +16,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
   const {
     getState,
     options: {
-      icons: { CancelIcon, SaveIcon },
+      icons: { IconCircleX, IconDeviceFloppy },
       localization,
       onEditingRowSave,
       onEditingRowCancel,
@@ -59,7 +59,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
         <>
           <Tooltip withArrow label={localization.cancel}>
             <ActionIcon aria-label={localization.cancel} onClick={handleCancel}>
-              <CancelIcon />
+              <IconCircleX />
             </ActionIcon>
           </Tooltip>
           <Tooltip withArrow label={localization.save}>
@@ -68,7 +68,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
               color="blue"
               onClick={handleSave}
             >
-              <SaveIcon />
+              <IconDeviceFloppy />
             </ActionIcon>
           </Tooltip>
         </>

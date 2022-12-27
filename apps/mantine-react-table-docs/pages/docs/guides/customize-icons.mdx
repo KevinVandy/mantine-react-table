@@ -30,9 +30,9 @@ To replace a default icon, specify the icon in the `icons` prop. You should get 
   data={data}
   icons={{
     //change sort icon, connect internal props so that it gets styled correctly
-    ArrowDownwardIcon: (props) =>  <FontAwesomeIcon icon={faSortDown} {...props} />,
-    SearchIcon: () => <FontAwesomeIcon icon={faSearch} />,
-    SortIcon: (props) => (<FontAwesomeIcon icon={faArrowDownWideShort} {...props} />), //best practice
+    IconArrowDown: (props) =>  <FontAwesomeIcon icon={faSortDown} {...props} />,
+    IconSearch: () => <FontAwesomeIcon icon={faSearch} />,
+    IconArrowsSort: (props) => (<FontAwesomeIcon icon={faArrowDownWideShort} {...props} />), //best practice
   }}
 ```
 

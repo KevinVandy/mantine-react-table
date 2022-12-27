@@ -8,13 +8,13 @@ import React, {
   useState,
 } from 'react';
 import {
-  ActionIcon,
-  Box,
-  Checkbox,
-  Chip,
+  // ActionIcon,
+  // Box,
+  // Checkbox,
+  // Chip,
   TextInput,
   TextInputProps,
-  Tooltip,
+  // Tooltip,
 } from '@mantine/core';
 import { debounce } from '@mui/material/utils';
 import type { MRT_Header, MRT_TableInstance } from '..';
@@ -33,15 +33,15 @@ export const MRT_FilterTextField: FC<Props> = ({
 }) => {
   const {
     options: {
-      enableColumnFilterModes,
-      columnFilterModeOptions,
-      icons: { FilterListIcon, CloseIcon },
+      // enableColumnFilterModes,
+      // columnFilterModeOptions,
+      // icons: { IconFilter, IconX },
       localization,
       manualFiltering,
       muiTableHeadCellFilterTextFieldProps,
     },
     refs: { filterInputRefs },
-    setColumnFilterFns,
+    // setColumnFilterFns,
   } = table;
   const { column } = header;
   const { columnDef } = column;
@@ -94,14 +94,14 @@ export const MRT_FilterTextField: FC<Props> = ({
     : rangeFilterIndex === 1
     ? localization.max
     : '';
-  const allowedColumnFilterOptions =
-    columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
-  const showChangeModeButton =
-    enableColumnFilterModes &&
-    columnDef.enableColumnFilterModes !== false &&
-    !rangeFilterIndex &&
-    (allowedColumnFilterOptions === undefined ||
-      !!allowedColumnFilterOptions?.length);
+  // const allowedColumnFilterOptions =
+  //   columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
+  // const showChangeModeButton =
+  //   enableColumnFilterModes &&
+  //   columnDef.enableColumnFilterModes !== false &&
+  //   !rangeFilterIndex &&
+  //   (allowedColumnFilterOptions === undefined ||
+  //     !!allowedColumnFilterOptions?.length);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [filterValue, setFilterValue] = useState<string | string[]>(() =>
@@ -160,18 +160,18 @@ export const MRT_FilterTextField: FC<Props> = ({
     }
   };
 
-  const handleClearEmptyFilterChip = () => {
-    setFilterValue('');
-    column.setFilterValue(undefined);
-    setColumnFilterFns((prev) => ({
-      ...prev,
-      [header.id]: 'fuzzy',
-    }));
-  };
+  // const handleClearEmptyFilterChip = () => {
+  //   setFilterValue('');
+  //   column.setFilterValue(undefined);
+  //   setColumnFilterFns((prev) => ({
+  //     ...prev,
+  //     [header.id]: 'fuzzy',
+  //   }));
+  // };
 
-  const handleFilterMenuOpen = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleFilterMenuOpen = (event: MouseEvent<HTMLElement>) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
   const isMounted = useRef(false);
 
@@ -229,7 +229,7 @@ export const MRT_FilterTextField: FC<Props> = ({
         }
         onChange={handleChange}
         onClick={(e: MouseEvent<HTMLInputElement>) => e.stopPropagation()}
-        select={isSelectFilter || isMultiSelectFilter}
+        // select={isSelectFilter || isMultiSelectFilter}
         value={filterValue}
         variant="default"
         // InputProps={{
@@ -243,7 +243,7 @@ export const MRT_FilterTextField: FC<Props> = ({
         //             size="small"
         //             sx={{ height: '1.75rem', width: '1.75rem' }}
         //           >
-        //             <FilterListIcon />
+        //             <IconFilter />
         //           </IconButton>
         //         </span>
         //       </Tooltip>
@@ -273,7 +273,7 @@ export const MRT_FilterTextField: FC<Props> = ({
         //               width: '1.75rem',
         //             }}
         //           >
-        //             <CloseIcon />
+        //             <IconX />
         //           </IconButton>
         //         </span>
         //       </Tooltip>
@@ -316,9 +316,9 @@ export const MRT_FilterTextField: FC<Props> = ({
           if (node) {
             filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
               node;
-            if (textFieldProps.ref) {
-              textFieldProps.ref = node;
-            }
+            // if (textFieldProps.ref) {
+            //   textFieldProps.ref = node;
+            // }
           }
         }}
         sx={(theme) => ({

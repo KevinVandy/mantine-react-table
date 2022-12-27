@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import TableCell from '@mui/material/TableCell';
+import { Box } from '@mantine/core';
 import { getCommonCellStyles } from '../column.utils';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
@@ -34,10 +34,10 @@ export const MRT_TableFooterCell: FC<Props> = ({ footer, table }) => {
   };
 
   return (
-    <TableCell
+    <Box
+      component="th"
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={footer.colSpan}
-      variant="head"
       {...tableCellProps}
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table-cell',
@@ -72,6 +72,6 @@ export const MRT_TableFooterCell: FC<Props> = ({ footer, table }) => {
             columnDef.footer ??
             null}
       </>
-    </TableCell>
+    </Box>
   );
 };

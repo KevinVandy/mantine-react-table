@@ -46,16 +46,18 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
       enablePinning,
       enableSorting,
       icons: {
-        ArrowRightIcon,
-        ClearAllIcon,
-        ViewColumnIcon,
-        DynamicFeedIcon,
-        FilterListIcon,
-        FilterListOffIcon,
-        PushPinIcon,
-        SortIcon,
-        RestartAltIcon,
-        VisibilityOffIcon,
+        IconArrowAutofitContent,
+        IconSortAscending,
+        IconSortDescending,
+        IconBoxMultiple,
+        IconCaretRight,
+        IconClearAll,
+        IconColumns,
+        IconEyeOff,
+        IconFilter,
+        IconFilterOff,
+        IconPinned,
+        IconPinnedOff,
       },
       localization,
       renderColumnActionsMenuItems,
@@ -177,7 +179,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
             >
               <Box sx={commonListItemStyles}>
                 <ListItemIcon>
-                  <ClearAllIcon />
+                  <IconClearAll />
                 </ListItemIcon>
                 {localization.clearSort}
               </Box>
@@ -190,9 +192,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
             >
               <Box sx={commonListItemStyles}>
                 <ListItemIcon>
-                  <SortIcon
-                    style={{ transform: 'rotate(180deg) scaleX(-1)' }}
-                  />
+                  <IconSortAscending />
                 </ListItemIcon>
                 {localization.sortByColumnAsc?.replace(
                   '{column}',
@@ -209,7 +209,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
             >
               <Box sx={commonListItemStyles}>
                 <ListItemIcon>
-                  <SortIcon />
+                  <IconSortDescending />
                 </ListItemIcon>
                 {localization.sortByColumnDesc?.replace(
                   '{column}',
@@ -229,7 +229,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
           >
             <Box sx={commonListItemStyles}>
               <ListItemIcon>
-                <FilterListOffIcon />
+                <IconFilterOff />
               </ListItemIcon>
               {localization.clearFilter}
             </Box>
@@ -242,7 +242,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
           >
             <Box sx={commonListItemStyles}>
               <ListItemIcon>
-                <FilterListIcon />
+                <IconFilter />
               </ListItemIcon>
               {localization.filterByColumn?.replace(
                 '{column}',
@@ -256,7 +256,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
                 size="sm"
                 sx={{ p: 0 }}
               >
-                <ArrowRightIcon />
+                <IconCaretRight />
               </ActionIcon>
             )}
           </MenuItem>,
@@ -281,7 +281,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
           >
             <Box sx={commonListItemStyles}>
               <ListItemIcon>
-                <DynamicFeedIcon />
+                <IconBoxMultiple />
               </ListItemIcon>
               {localization[
                 column.getIsGrouped() ? 'ungroupByColumn' : 'groupByColumn'
@@ -299,7 +299,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
           >
             <Box sx={commonListItemStyles}>
               <ListItemIcon>
-                <PushPinIcon style={{ transform: 'rotate(90deg)' }} />
+                <IconPinned style={{ transform: 'rotate(90deg)' }} />
               </ListItemIcon>
               {localization.pinToLeft}
             </Box>
@@ -312,7 +312,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
           >
             <Box sx={commonListItemStyles}>
               <ListItemIcon>
-                <PushPinIcon style={{ transform: 'rotate(-90deg)' }} />
+                <IconPinned style={{ transform: 'rotate(-90deg)' }} />
               </ListItemIcon>
               {localization.pinToRight}
             </Box>
@@ -326,7 +326,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
           >
             <Box sx={commonListItemStyles}>
               <ListItemIcon>
-                <PushPinIcon />
+                <IconPinnedOff />
               </ListItemIcon>
               {localization.unpin}
             </Box>
@@ -342,7 +342,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
           >
             <Box sx={commonListItemStyles}>
               <ListItemIcon>
-                <RestartAltIcon />
+                <IconArrowAutofitContent />
               </ListItemIcon>
               {localization.resetColumnSize}
             </Box>
@@ -357,7 +357,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
         >
           <Box sx={commonListItemStyles}>
             <ListItemIcon>
-              <VisibilityOffIcon />
+              <IconEyeOff />
             </ListItemIcon>
             {localization.hideColumn?.replace(
               '{column}',
@@ -376,7 +376,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
         >
           <Box sx={commonListItemStyles}>
             <ListItemIcon>
-              <ViewColumnIcon />
+              <IconColumns />
             </ListItemIcon>
             {localization.showAllColumns?.replace(
               '{column}',
@@ -389,7 +389,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({
             size="sm"
             sx={{ p: 0 }}
           >
-            <ArrowRightIcon />
+            <IconCaretRight />
           </ActionIcon>
         </MenuItem>,
         <MRT_ShowHideColumnsMenu

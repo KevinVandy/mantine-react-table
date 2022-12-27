@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionIcon, Box, Tooltip } from '@mantine/core';
+import { ActionIcon, Box, Flex, Tooltip } from '@mantine/core';
 import type { MRT_Column, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -15,7 +15,7 @@ export const MRT_ColumnPinningButtons = <
 }: Props<TData>) => {
   const {
     options: {
-      icons: { PushPinIcon },
+      icons: { IconPinned, IconPinnedOff },
       localization,
     },
   } = table;
@@ -25,18 +25,24 @@ export const MRT_ColumnPinningButtons = <
   };
 
   return (
-    <Box sx={{ minWidth: '70px', textAlign: 'center' }}>
+    <Flex
+      sx={{
+        minWidth: '70px',
+        alignContent: 'center',
+        justifyContent: 'center',
+      }}
+    >
       {column.getIsPinned() ? (
         <Tooltip withArrow label={localization.unpin}>
-          <ActionIcon onClick={() => handlePinColumn(false)} size="sm">
-            <PushPinIcon />
+          <ActionIcon onClick={() => handlePinColumn(false)} size="md">
+            <IconPinnedOff />
           </ActionIcon>
         </Tooltip>
       ) : (
         <>
           <Tooltip withArrow label={localization.pinToLeft}>
-            <ActionIcon onClick={() => handlePinColumn('left')} size="sm">
-              <PushPinIcon
+            <ActionIcon onClick={() => handlePinColumn('left')} size="md">
+              <IconPinned
                 style={{
                   transform: 'rotate(90deg)',
                 }}
@@ -44,8 +50,8 @@ export const MRT_ColumnPinningButtons = <
             </ActionIcon>
           </Tooltip>
           <Tooltip withArrow label={localization.pinToRight}>
-            <ActionIcon onClick={() => handlePinColumn('right')} size="sm">
-              <PushPinIcon
+            <ActionIcon onClick={() => handlePinColumn('right')} size="md">
+              <IconPinned
                 style={{
                   transform: 'rotate(-90deg)',
                 }}
@@ -54,6 +60,6 @@ export const MRT_ColumnPinningButtons = <
           </Tooltip>
         </>
       )}
-    </Box>
+    </Flex>
   );
 };

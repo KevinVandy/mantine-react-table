@@ -19,7 +19,6 @@ export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   minHeight: '3.5rem',
   overflow: 'hidden',
   p: '0 !important',
-  position: 'relative',
   transition: 'all 150ms ease-in-out',
   zIndex: 1,
 });
@@ -70,7 +69,7 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
       }}
       sx={(theme) =>
         ({
-          position: isFullScreen ? 'sticky' : undefined,
+          position: isFullScreen ? 'sticky' : 'relative',
           top: isFullScreen ? '0' : undefined,
           ...commonToolbarStyles({ theme }),
           ...(toolbarProps?.sx instanceof Function

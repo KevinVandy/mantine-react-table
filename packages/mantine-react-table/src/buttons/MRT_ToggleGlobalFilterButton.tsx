@@ -16,7 +16,7 @@ export const MRT_ToggleGlobalFilterButton = <
   const {
     getState,
     options: {
-      icons: { SearchIcon, SearchOffIcon },
+      icons: { IconSearch, IconCircleOff },
 
       localization,
     },
@@ -38,7 +38,7 @@ export const MRT_ToggleGlobalFilterButton = <
         {...rest}
         title={undefined}
       >
-        {showGlobalFilter ? <SearchOffIcon /> : <SearchIcon />}
+        {showGlobalFilter ? <IconCircleOff /> : <IconSearch />}
       </ActionIcon>
     </Tooltip>
   );

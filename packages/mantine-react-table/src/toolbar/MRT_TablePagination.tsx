@@ -17,7 +17,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
     setPageIndex,
     setPageSize,
     options: {
-      muiTablePaginationProps,
+      // muiTablePaginationProps,
       enableToolbarInternalActions,
       localization,
       rowCount,
@@ -31,10 +31,10 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
   const totalRowCount = rowCount ?? getPrePaginationRowModel().rows.length;
   const showFirstLastPageButtons = totalRowCount / pageSize > 2;
 
-  const tablePaginationProps =
-    muiTablePaginationProps instanceof Function
-      ? muiTablePaginationProps({ table })
-      : muiTablePaginationProps;
+  // const tablePaginationProps =
+  //   muiTablePaginationProps instanceof Function
+  //     ? muiTablePaginationProps({ table })
+  //     : muiTablePaginationProps;
 
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setPageSize(+event.target.value);
@@ -64,13 +64,13 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
       rowsPerPageOptions={[5, 10, 15, 20, 25, 30, 50, 100]}
       showFirstButton={showFirstLastPageButtons}
       showLastButton={showFirstLastPageButtons}
-      {...tablePaginationProps}
+      // {...tablePaginationProps}
       SelectProps={{
         sx: { m: '0 1rem 0 1ch' },
         MenuProps: { MenuListProps: { disablePadding: true }, sx: { m: 0 } },
-        ...tablePaginationProps?.SelectProps,
+        // ...tablePaginationProps?.SelectProps,
       }}
-      sx={(theme) => ({
+      sx={() => ({
         '& .MuiTablePagination-toolbar': {
           display: 'flex',
           alignItems: 'center',
@@ -98,9 +98,9 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
             : undefined,
         position: 'relative',
         zIndex: 2,
-        ...(tablePaginationProps?.sx instanceof Function
-          ? tablePaginationProps.sx(theme)
-          : (tablePaginationProps?.sx as any)),
+        // ...(tablePaginationProps?.sx instanceof Function
+        //   ? tablePaginationProps.sx(theme)
+        //   : (tablePaginationProps?.sx as any)),
       })}
     />
   );

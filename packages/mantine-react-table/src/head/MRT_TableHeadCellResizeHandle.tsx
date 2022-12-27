@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import { Box } from '@mantine/core';
-import Divider from '@mui/material/Divider';
+import { Box, Divider } from '@mantine/core';
 import { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {
@@ -44,7 +43,6 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
       }}
     >
       <Divider
-        flexItem
         orientation="vertical"
         sx={{
           borderRadius: '2px',

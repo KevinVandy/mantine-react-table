@@ -13,7 +13,7 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
     getCanSomeRowsExpand,
     getState,
     options: {
-      icons: { KeyboardDoubleArrowDownIcon },
+      icons: { IconChevronsDown },
       localization,
       muiExpandAllButtonProps,
       renderDetailPanel,
@@ -57,7 +57,7 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
           })}
           title={undefined}
         >
-          <KeyboardDoubleArrowDownIcon
+          <IconChevronsDown
             style={{
               transform: `rotate(${
                 isAllRowsExpanded ? -180 : getIsSomeRowsExpanded() ? -90 : 0

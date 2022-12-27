@@ -32,32 +32,32 @@ config.autoAddCss = false;
  * If you skip customizing some icons, those particular icons will fallback the the default Material-UI icons.
  */
 const fontAwesomeIcons: Partial<MRT_Icons> = {
-  ArrowDownwardIcon: (props: any) => (
+  IconArrowDown: (props: any) => (
     <FontAwesomeIcon icon={faSortDown} {...props} />
   ),
-  ClearAllIcon: () => <FontAwesomeIcon icon={faBarsStaggered} />,
-  DensityLargeIcon: () => <FontAwesomeIcon icon={faGripLines} />,
-  DensityMediumIcon: () => <FontAwesomeIcon icon={faBars} />,
-  DensitySmallIcon: () => <FontAwesomeIcon icon={faBars} />,
-  DragHandleIcon: () => <FontAwesomeIcon icon={faGripLines} />,
-  FilterListIcon: (props: any) => (
+  IconClearAll: () => <FontAwesomeIcon icon={faBarsStaggered} />,
+  IconMenu: () => <FontAwesomeIcon icon={faGripLines} />,
+  IconMenu2: () => <FontAwesomeIcon icon={faBars} />,
+  IconMenu2: () => <FontAwesomeIcon icon={faBars} />,
+  IconMenu: () => <FontAwesomeIcon icon={faGripLines} />,
+  IconFilter: (props: any) => (
     <FontAwesomeIcon icon={faFilter} {...props} />
   ),
-  FilterListOffIcon: () => <FontAwesomeIcon icon={faFilterCircleXmark} />,
-  FullscreenExitIcon: () => <FontAwesomeIcon icon={faCompress} />,
-  FullscreenIcon: () => <FontAwesomeIcon icon={faExpand} />,
-  SearchIcon: (props: any) => <FontAwesomeIcon icon={faSearch} {...props} />,
-  SearchOffIcon: () => <FontAwesomeIcon icon={faSearchMinus} />,
-  ViewColumnIcon: () => <FontAwesomeIcon icon={faColumns} />,
-  MoreVertIcon: () => <FontAwesomeIcon icon={faEllipsisVertical} />,
-  MoreHorizIcon: () => <FontAwesomeIcon icon={faEllipsisH} />,
-  SortIcon: (props: any) => (
+  IconFilterOff: () => <FontAwesomeIcon icon={faFilterCircleXmark} />,
+  IconMinimize: () => <FontAwesomeIcon icon={faCompress} />,
+  IconMaximize: () => <FontAwesomeIcon icon={faExpand} />,
+  IconSearch: (props: any) => <FontAwesomeIcon icon={faSearch} {...props} />,
+  IconCircleOff: () => <FontAwesomeIcon icon={faSearchMinus} />,
+  IconColumns: () => <FontAwesomeIcon icon={faColumns} />,
+  IconDotsVertical: () => <FontAwesomeIcon icon={faEllipsisVertical} />,
+  IconDots: () => <FontAwesomeIcon icon={faEllipsisH} />,
+  IconArrowsSort: (props: any) => (
     <FontAwesomeIcon icon={faArrowDownWideShort} {...props} /> //props so that style rotation transforms are applied
   ),
-  PushPinIcon: (props: any) => (
+  IconPin: (props: any) => (
     <FontAwesomeIcon icon={faThumbTack} {...props} /> //props so that style rotation transforms are applied
   ),
-  VisibilityOffIcon: () => <FontAwesomeIcon icon={faEyeSlash} />,
+  IconEyeOff: () => <FontAwesomeIcon icon={faEyeSlash} />,
 };
 
 const Example: FC = () => {

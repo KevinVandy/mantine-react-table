@@ -10,7 +10,7 @@ interface Props {
 export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
   const {
     options: {
-      icons: { FilterAltIcon },
+      icons: { IconFilter },
       localization,
     },
     refs: { filterInputRefs },
@@ -80,7 +80,7 @@ export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
                 width: '12px',
               }}
             >
-              <FilterAltIcon />
+              <IconFilter />
             </ActionIcon>
           </Tooltip>
         </Box>

@@ -33,7 +33,7 @@ export const MRT_ToggleRowActionMenuButton = <
     options: {
       editingMode,
       enableEditing,
-      icons: { EditIcon, MoreHorizIcon },
+      icons: { IconEdit, IconDots },
       localization,
       renderRowActionMenuItems,
       renderRowActions,
@@ -70,7 +70,7 @@ export const MRT_ToggleRowActionMenuButton = <
             sx={commonActionIconStyles}
             onClick={handleStartEditMode}
           >
-            <EditIcon />
+            <IconEdit />
           </ActionIcon>
         </Tooltip>
       ) : renderRowActionMenuItems ? (
@@ -82,7 +82,7 @@ export const MRT_ToggleRowActionMenuButton = <
               size="sm"
               sx={commonActionIconStyles}
             >
-              <MoreHorizIcon />
+              <IconDots />
             </ActionIcon>
           </Tooltip>
           <MRT_RowActionMenu

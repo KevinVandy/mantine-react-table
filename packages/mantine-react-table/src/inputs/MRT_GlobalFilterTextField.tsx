@@ -1,14 +1,14 @@
 import React, {
   ChangeEvent,
-  MouseEvent,
+  // MouseEvent,
   useCallback,
   useEffect,
   useState,
 } from 'react';
 import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import { TextInput, Tooltip } from '@mantine/core';
+// import IconButton from '@mui/material/IconButton';
+// import InputAdornment from '@mui/material/InputAdornment';
+import { TextInput } from '@mantine/core';
 import { debounce } from '@mui/material/utils';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { MRT_TableInstance } from '..';
@@ -26,13 +26,13 @@ export const MRT_GlobalFilterTextField = <
     getState,
     setGlobalFilter,
     options: {
-      enableGlobalFilterModes,
-      icons: { SearchIcon, CloseIcon },
+      // enableGlobalFilterModes,
+      // icons: { IconSearch, IconX },
       localization,
       manualFiltering,
       muiSearchTextFieldProps,
     },
-    refs: { searchInputRef },
+    // refs: { searchInputRef },
   } = table;
   const { globalFilter, showGlobalFilter } = getState();
 
@@ -59,9 +59,9 @@ export const MRT_GlobalFilterTextField = <
     handleChangeDebounced(event);
   };
 
-  const handleGlobalFilterMenuOpen = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleGlobalFilterMenuOpen = (event: MouseEvent<HTMLElement>) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
   const handleClear = () => {
     setSearchValue('');
@@ -96,12 +96,12 @@ export const MRT_GlobalFilterTextField = <
         //           size="small"
         //           sx={{ height: '1.75rem', width: '1.75rem' }}
         //         >
-        //           <SearchIcon />
+        //           <IconSearch />
         //         </IconButton>
         //       </Tooltip>
         //     </InputAdornment>
         //   ) : (
-        //     <SearchIcon style={{ marginRight: '4px' }} />
+        //     <IconSearch style={{ marginRight: '4px' }} />
         //   ),
         //   endAdornment: (
         //     <InputAdornment position="end">
@@ -113,7 +113,7 @@ export const MRT_GlobalFilterTextField = <
         //             onClick={handleClear}
         //             size="small"
         //           >
-        //             <CloseIcon />
+        //             <IconX />
         //           </IconButton>
         //         </span>
         //       </Tooltip>
