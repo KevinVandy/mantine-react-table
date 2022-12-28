@@ -72,7 +72,7 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
           fontFamily: 'inherit',
           fontSize: 'inherit',
           letterSpacing: 'inherit',
-          m: '-0.25rem',
+          margin: '-0.25rem',
           minWidth: 'unset',
           textAlign: 'inherit',
           textTransform: 'inherit',

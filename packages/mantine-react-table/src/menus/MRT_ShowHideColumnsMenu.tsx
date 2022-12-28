@@ -89,7 +89,7 @@ export const MRT_ShowHideColumnsMenu = <
         sx={{
           display: 'flex',
           justifyContent: isSubMenu ? 'center' : 'space-between',
-          p: '0.5rem',
+          padding: '0.5rem',
           pt: 0,
         }}
       >

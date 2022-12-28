@@ -1,5 +1,5 @@
 import React, { DragEvent, FC, ReactNode, useMemo } from 'react';
-import { Box, MantineTheme } from '@mantine/core';
+import { Box, Flex, MantineTheme } from '@mantine/core';
 import { useTheme } from '@mui/material/styles';
 import { MRT_TableHeadCellColumnActionsButton } from './MRT_TableHeadCellColumnActionsButton';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
@@ -132,7 +132,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
         flexDirection: layoutMode === 'grid' ? 'column' : undefined,
         fontWeight: 'bold',
         overflow: 'visible',
-        p:
+        padding:
           density === 'compact'
             ? '0.5rem'
             : density === 'comfortable'
@@ -142,13 +142,13 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
             : columnDefType === 'display'
             ? '1rem 1.25rem'
             : '1.5rem',
-        pb:
+        paddingBottom:
           columnDefType === 'display'
             ? 0
             : showColumnFilters || density === 'compact'
             ? '0.4rem'
             : '0.6rem',
-        pt:
+        paddingTop:
           columnDefType === 'group' || density === 'compact'
             ? '0.25rem'
             : density === 'comfortable'
@@ -173,11 +173,10 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
       })}
     >
       {header.isPlaceholder ? null : (
-        <Box
+        <Flex
           className="Mui-TableHeadCell-Content"
           sx={{
             alignItems: 'flex-start',
-            display: 'flex',
             flexDirection:
               tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
             justifyContent:
@@ -190,7 +189,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
             width: '100%',
           }}
         >
-          <Box
+          <Flex
             className="Mui-TableHeadCell-Content-Labels"
             onClick={column.getToggleSortingHandler()}
             sx={{
@@ -199,7 +198,6 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
                 column.getCanSort() && columnDefType !== 'group'
                   ? 'pointer'
                   : undefined,
-              display: 'flex',
               flexDirection:
                 tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
               overflow: columnDefType === 'data' ? 'hidden' : undefined,
@@ -209,7 +207,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
                   : undefined,
             }}
           >
-            <Box
+            <Flex
               className="Mui-TableHeadCell-Content-Wrapper"
               sx={{
                 overflow: columnDefType === 'data' ? 'hidden' : undefined,
@@ -220,7 +218,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
               title={columnDefType === 'data' ? columnDef.header : undefined}
             >
               {headerElement}
-            </Box>
+            </Flex>
             {column.getCanSort() && (
               <MRT_TableHeadCellSortLabel
                 header={header}
@@ -231,9 +229,9 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
             {column.getCanFilter() && (
               <MRT_TableHeadCellFilterLabel header={header} table={table} />
             )}
-          </Box>
+          </Flex>
           {columnDefType !== 'group' && (
-            <Box
+            <Flex
               className="Mui-TableHeadCell-Content-Actions"
               sx={{ whiteSpace: 'nowrap' }}
             >
@@ -252,12 +250,12 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
                   table={table}
                 />
               )}
-            </Box>
+            </Flex>
           )}
           {column.getCanResize() && (
             <MRT_TableHeadCellResizeHandle header={header} table={table} />
           )}
-        </Box>
+        </Flex>
       )}
       {column.getCanFilter() && (
         <MRT_TableHeadCellFilterContainer header={header} table={table} />

@@ -39,7 +39,7 @@ const Footer = () => {
         target="_blank"
         sx={{
           height: '3rem',
-          m: '3rem auto',
+          margin: '3rem auto',
           cursor: 'pointer',
           textAlign: 'center',
         }}
@@ -75,8 +75,8 @@ const Footer = () => {
           borderRadius: '8px',
           borderBottomLeftRadius: '0',
           borderBottomRightRadius: '0',
-          mt: '100px',
-          p: '1.5rem',
+          marginTop: '100px',
+          padding: '1.5rem',
         }}
       >
         <Typography color="text.secondary" textAlign="center">
@@ -131,12 +131,12 @@ const Footer = () => {
             Twitter
           </Link>
         </Box>
-        <Divider sx={{ m: '2rem 0' }} />
+        <Divider sx={{ margin: '2rem 0' }} />
         <Box
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
-            mt: '1rem',
+            marginTop: '1rem',
             gap: '0.5rem',
             flexDirection: {
               xs: 'column',

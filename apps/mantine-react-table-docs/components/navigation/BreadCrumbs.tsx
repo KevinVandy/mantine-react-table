@@ -41,7 +41,7 @@ const BreadCrumbs: FC = () => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
-      <MuiBreadcrumbs aria-label="breadcrumb" sx={{ pt: '1rem' }}>
+      <MuiBreadcrumbs aria-label="breadcrumb" sx={{ paddingTop: '1rem' }}>
         {breadCrumbLinks.map((link, index) => (
           <Link key={index} href={link} passHref legacyBehavior>
             <MuiLink

@@ -40,7 +40,7 @@ const withThemeProvider = (Story, context) => {
         <ThemeProvider theme={defaultTheme}>
           <Text
             sx={{
-              pb: '0.5rem',
+              paddingBottom: '0.5rem',
               color: useDarkMode() ? '#fff' : '#666',
             }}
           >
@@ -55,7 +55,7 @@ const withThemeProvider = (Story, context) => {
           </Text>
           <Text
             sx={{
-              pb: '1rem',
+              paddingBottom: '1rem',
               color: useDarkMode() ? '#fff' : '#666',
             }}
           >

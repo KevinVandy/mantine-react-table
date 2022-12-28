@@ -56,7 +56,7 @@ const Example: FC = () => {
         gridTemplateColumns: { xs: 'auto', lg: '1fr 1fr' },
         gap: '1rem',
         overflow: 'auto',
-        p: '4px',
+        padding: '4px',
       }}
     >
       <MantineReactTable

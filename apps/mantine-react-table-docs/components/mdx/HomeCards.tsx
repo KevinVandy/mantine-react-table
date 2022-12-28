@@ -26,7 +26,7 @@ const cardData = [
 
 export const HomeCards = () => {
   return (
-    <Stack sx={{ mt: '1rem', gap: '1rem' }}>
+    <Stack sx={{ marginTop: '1rem', gap: '1rem' }}>
       {cardData.map((cd, index) => (
         <Card
           key={index}
@@ -35,7 +35,7 @@ export const HomeCards = () => {
             backgroundColor: alpha(theme.palette.primary.main, 0.1),
             display: 'flex',
             gap: '1.5rem',
-            p: '1rem',
+            padding: '1rem',
           })}
           variant="outlined"
         >

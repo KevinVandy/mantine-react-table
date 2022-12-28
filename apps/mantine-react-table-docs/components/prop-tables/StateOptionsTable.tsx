@@ -154,7 +154,7 @@ const StateOptionsTable: FC<Props> = ({ onlyProps }) => {
         variant: 'outlined',
       }}
       muiTablePaperProps={{
-        sx: { mb: '1.5rem' },
+        sx: { marginBottom: '1.5rem' },
         id: onlyProps ? 'relevant-state-options-table' : 'state-options-table',
       }}
       positionGlobalFilter="left"

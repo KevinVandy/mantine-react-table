@@ -8,7 +8,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {Box, Skeleton} from '@mantine/core'
+import { Box, Skeleton } from '@mantine/core';
 import { darken, lighten, useTheme } from '@mui/material/styles';
 import { MRT_EditCellTextField } from '../inputs/MRT_EditCellTextField';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
@@ -187,7 +187,7 @@ export const MRT_TableBodyCell: FC<Props> = ({
         alignItems: layoutMode === 'grid' ? 'center' : undefined,
         cursor: isEditable && editingMode === 'cell' ? 'pointer' : 'inherit',
         overflow: 'hidden',
-        p:
+        padding: `${
           density === 'compact'
             ? columnDefType === 'display'
               ? '0 0.5rem'
@@ -198,8 +198,9 @@ export const MRT_TableBodyCell: FC<Props> = ({
               : '1rem'
             : columnDefType === 'display'
             ? '1rem 1.25rem'
-            : '1.5rem',
-        pl:
+            : '1.5rem'
+        } !important`,
+        paddingLeft:
           column.id === 'mrt-row-expand'
             ? `${
                 row.depth +
@@ -208,7 +209,7 @@ export const MRT_TableBodyCell: FC<Props> = ({
                   : density === 'comfortable'
                   ? 0.75
                   : 1.25)
-              }rem`
+              }rem !important`
             : undefined,
         textOverflow: columnDefType !== 'display' ? 'ellipsis' : undefined,
         whiteSpace: density === 'compact' ? 'nowrap' : 'normal',
@@ -236,11 +237,7 @@ export const MRT_TableBodyCell: FC<Props> = ({
     >
       <>
         {cell.getIsPlaceholder() ? null : isLoading || showSkeletons ? (
-          <Skeleton
-            height={20}
-            width={skeletonWidth}
-            {...skeletonProps}
-          />
+          <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />
         ) : enableRowNumbers &&
           rowNumberMode === 'static' &&
           column.id === 'mrt-row-numbers' ? (

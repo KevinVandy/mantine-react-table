@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Alert, Box, Chip, Collapse } from '@mantine/core';
+import { Alert, Box, Chip, Collapse, Flex } from '@mantine/core';
 import { MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -50,20 +50,21 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
 
   const groupedByMessage =
     grouping.length > 0 ? (
-      <span>
+      <Flex>
         {localization.groupedBy}{' '}
         {grouping.map((columnId, index) => (
           <Fragment key={`${index}-${columnId}`}>
             {index > 0 ? localization.thenBy : ''}
             <Chip
               onChange={() => table.getColumn(columnId).toggleGrouping()}
+              sx={{ paddingLeft: '1ch' }}
               {...chipProps}
             >
               {table.getColumn(columnId).columnDef.header}
             </Chip>
           </Fragment>
         ))}
-      </span>
+      </Flex>
     ) : null;
 
   return (
@@ -96,7 +97,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
         })}
       >
         {alertProps?.title && <Box>{alertProps.title}</Box>}
-        <Box sx={{ p: '0.5rem 1rem' }}>
+        <Flex sx={{ padding: '0.5rem 1rem' }}>
           {alertProps?.children}
           {alertProps?.children && (selectMessage || groupedByMessage) && (
             <br />
@@ -104,7 +105,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           {selectMessage}
           {selectMessage && groupedByMessage && <br />}
           {groupedByMessage}
-        </Box>
+        </Flex>
       </Alert>
     </Collapse>
   );

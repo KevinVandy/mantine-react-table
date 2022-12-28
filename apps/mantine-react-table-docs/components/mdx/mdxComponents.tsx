@@ -20,16 +20,16 @@ export const mdxComponents = {
   h1: (props: any) => <Typography variant="h1" {...props} />,
   h2: (props: any) => <LinkHeading variant="h2" {...props} />,
   h3: (props: any) => (
-    <LinkHeading variant="h3" sx={{ mt: '3rem' }} {...props} />
+    <LinkHeading variant="h3" sx={{ marginTop: '3rem' }} {...props} />
   ),
   h4: (props: any) => (
-    <LinkHeading variant="h4" sx={{ mt: '2rem' }} {...props} />
+    <LinkHeading variant="h4" sx={{ marginTop: '2rem' }} {...props} />
   ),
   h5: (props: any) => (
-    <LinkHeading variant="h5" sx={{ mt: '2rem' }} {...props} />
+    <LinkHeading variant="h5" sx={{ marginTop: '2rem' }} {...props} />
   ),
   h6: (props: any) => <Typography variant="h6" {...props} />,
-  hr: (props: any) => <Divider sx={{ mb: '1rem' }} {...props} />,
+  hr: (props: any) => <Divider sx={{ marginBottom: '1rem' }} {...props} />,
   li: (props: any) => (
     <li className="docsearch-content" {...props}>
       <Typography variant="body1">{props.children}</Typography>
@@ -44,7 +44,7 @@ export const mdxComponents = {
           md: 'justify',
         },
         lineHeight: '1.75rem',
-        m: '0.75rem 0',
+        margin: '0.75rem 0',
       }}
       variant="body1"
       {...props}

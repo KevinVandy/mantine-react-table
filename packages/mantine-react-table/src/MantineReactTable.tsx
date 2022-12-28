@@ -49,6 +49,8 @@ type HTMLPropsRef<T extends HTMLElement> = HTMLProps<T> & {
   ref?: MutableRefObject<T>;
 };
 
+type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
+
 /**
  * Most of this file is just TypeScript types
  */
@@ -420,7 +422,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         table: MRT_TableInstance<TData>;
       }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
   muiTableBodyCellProps?:
-    | (BoxProps & HTMLPropsRef<HTMLTableCellElement>)
+    | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
     | (({
         cell,
         column,
@@ -431,16 +433,16 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>);
+      }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
   muiTableFooterCellProps?:
-    | (BoxProps & HTMLPropsRef<HTMLTableCellElement>)
+    | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
     | (({
         table,
         column,
       }: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
-      }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>);
+      }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
   muiTableHeadCellColumnActionsButtonProps?:
     | (ActionIconProps & HTMLPropsRef<HTMLButtonElement>)
     | (({
@@ -480,14 +482,14 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         rangeFilterIndex?: number;
       }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
   muiTableHeadCellProps?:
-    | (BoxProps & HTMLPropsRef<HTMLTableCellElement>)
+    | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
     | (({
         table,
         column,
       }: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
-      }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>);
+      }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
   renderColumnActionsMenuItems?: ({
     closeMenu,
     column,
@@ -792,7 +794,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           table: MRT_TableInstance<TData>;
         }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
     muiTableBodyCellProps?:
-      | (BoxProps & HTMLPropsRef<HTMLTableCellElement>)
+      | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
       | (({
           cell,
           column,
@@ -803,7 +805,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           column: MRT_Column<TData>;
           row: MRT_Row<TData>;
           table: MRT_TableInstance<TData>;
-        }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>);
+        }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
     muiTableBodyCellSkeletonProps?:
       | (SkeletonProps & HTMLPropsRef<HTMLDivElement>)
       | (({
@@ -861,14 +863,14 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           row: MRT_Row<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>);
     muiTableFooterCellProps?:
-      | (BoxProps & HTMLPropsRef<HTMLTableCellElement>)
+      | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
       | (({
           table,
           column,
         }: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
-        }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>);
+        }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
     muiTableFooterProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableSectionElement>)
       | (({
@@ -924,14 +926,14 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           rangeFilterIndex?: number;
         }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
     muiTableHeadCellProps?:
-      | (BoxProps & HTMLPropsRef<HTMLTableCellElement>)
+      | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
       | (({
           table,
           column,
         }: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
-        }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>);
+        }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
     muiTableHeadProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableSectionElement>)
       | (({

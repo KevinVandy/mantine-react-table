@@ -127,7 +127,7 @@ const ColumnInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
         variant: 'outlined',
       }}
       muiTablePaperProps={{
-        sx: { mb: '1.5rem' },
+        sx: { marginBottom: '1.5rem' },
         id: onlyProps
           ? 'relevant-column-instance-apis-table'
           : 'column-instance-apis-table',

@@ -32,7 +32,7 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
             sx={{
               gap: '1.5rem',
               minWidth: { xs: '300px', sm: '360px', md: '400px' },
-              pt: '1rem',
+              paddingTop: '1rem',
               width: '100%',
             }}
           >
@@ -50,7 +50,7 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
           </Stack>
         </form>
       </DialogContent>
-      <DialogActions sx={{ p: '1.25rem' }}>
+      <DialogActions sx={{ padding: '1.25rem' }}>
         <MRT_EditActionButtons row={row} table={table} variant="text" />
       </DialogActions>
     </Dialog>

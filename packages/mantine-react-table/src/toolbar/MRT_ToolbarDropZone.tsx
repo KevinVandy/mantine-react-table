@@ -1,6 +1,6 @@
 import React, { DragEvent, useEffect } from 'react';
 import { alpha } from '@mui/material/styles';
-import { Box, Text, Transition } from '@mantine/core';
+import { Flex, Text, Transition } from '@mantine/core';
 import { MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -37,7 +37,7 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
   return (
     <Transition mounted={showToolbarDropZone} transition="fade">
       {(styles) => (
-        <Box
+        <Flex
           className="Mui-ToolbarDropZone"
           sx={(theme) => ({
             alignItems: 'center',
@@ -46,7 +46,6 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
               hoveredColumn?.id === 'drop-zone' ? 0.2 : 0.1,
             ),
             border: `dashed ${theme.colors.blue[7]} 2px`,
-            display: 'flex',
             justifyContent: 'center',
             height: 'calc(100% - 4px)',
             position: 'absolute',
@@ -62,7 +61,7 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
               draggingColumn?.columnDef?.header ?? '',
             )}
           </Text>
-        </Box>
+        </Flex>
       )}
     </Transition>
   );

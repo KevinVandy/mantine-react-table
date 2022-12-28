@@ -8,7 +8,8 @@ import { MRT_ShowHideColumnsMenu } from './MRT_ShowHideColumnsMenu';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
 export const commonMenuItemStyles = {
-  py: '6px',
+  paddingTop: '6px',
+  paddingBottom: '6px',
   my: 0,
   justifyContent: 'space-between',
   alignItems: 'center',

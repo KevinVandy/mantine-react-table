@@ -33,11 +33,11 @@ export const LinkCards = () => {
   return (
     <Box
       sx={{
-        mt: '4rem',
+        marginTop: '4rem',
         textAlign: 'center',
       }}
     >
-      <Typography sx={{ p: '1rem' }} variant="h3">
+      <Typography sx={{ padding: '1rem' }} variant="h3">
         Important Links
       </Typography>
       <Box
@@ -69,7 +69,7 @@ export const LinkCards = () => {
                 fontWeight: 'bold',
                 gap: '1rem',
                 justifyContent: 'center',
-                p: '1rem',
+                padding: '1rem',
                 width: '10rem',
                 '&:hover': {
                   boxShadow: `1px 4px 8px ${alpha(

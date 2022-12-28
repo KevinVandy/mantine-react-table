@@ -329,7 +329,6 @@ export const MRT_FilterTextField: FC<Props> = ({
             ? '120px'
             : 'auto',
           width: 'calc(100% + 4px)',
-          mx: '-2px',
           '& .MuiSelect-icon': {
             mr: '1.5rem',
           },

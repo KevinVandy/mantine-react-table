@@ -27,7 +27,8 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
         mr: density === 'compact' ? '-0.5rem' : '-1rem',
         position: 'absolute',
         right: '1px',
-        px: '4px',
+        paddingLeft: '4px',
+        paddingRight: '4px',
         '&:active > hr': {
           backgroundColor: theme.colors.blue[7],
           opacity: 1,

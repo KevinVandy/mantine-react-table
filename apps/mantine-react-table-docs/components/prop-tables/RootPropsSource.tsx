@@ -5,7 +5,7 @@ const TS = require('!!raw-loader!./RootPropTable.tsx').default;
 
 const ExampleTable = () => {
   return (
-    <Box sx={{ mt: '20rem' }}>
+    <Box sx={{ marginTop: '20rem' }}>
       <Typography>
         Wanna see the source code for this table? Check it out down below!
       </Typography>

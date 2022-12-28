@@ -122,7 +122,6 @@ export const MRT_Table: FC<Props> = ({ table }) => {
   };
 
   return (
-    // @ts-ignore
     <Table
       highlightOnHover
       {...tableProps}

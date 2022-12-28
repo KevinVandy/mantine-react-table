@@ -66,7 +66,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
       showLastButton={showFirstLastPageButtons}
       // {...tablePaginationProps}
       SelectProps={{
-        sx: { m: '0 1rem 0 1ch' },
+        sx: { margin: '0 1rem 0 1ch' },
         MenuProps: { MenuListProps: { disablePadding: true }, sx: { m: 0 } },
         // ...tablePaginationProps?.SelectProps,
       }}
@@ -76,19 +76,19 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           alignItems: 'center',
         },
         '& .MuiTablePagination-selectLabel': {
-          m: '0 -1px',
+          margin: '0 -1px',
         },
         '&. MuiInputBase-root': {
-          m: '0 1px',
+          margin: '0 1px',
         },
         '& . MuiTablePagination-select': {
-          m: '0 1px',
+          margin: '0 1px',
         },
         '& .MuiTablePagination-displayedRows': {
-          m: '0 1px',
+          margin: '0 1px',
         },
         '& .MuiTablePagination-actions': {
-          m: '0 1px',
+          margin: '0 1px',
         },
         mt:
           position === 'top' &&

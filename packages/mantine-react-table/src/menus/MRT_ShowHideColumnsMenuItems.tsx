@@ -104,7 +104,8 @@ export const MRT_ShowHideColumnsMenuItems = <
             ? `2px dashed ${theme.palette.primary.main}`
             : 'none',
           pl: `${(column.depth + 0.5) * 2}rem`,
-          py: '6px',
+          paddingTop: '6px',
+          paddingBottom: '6px',
         })}
       >
         <Box

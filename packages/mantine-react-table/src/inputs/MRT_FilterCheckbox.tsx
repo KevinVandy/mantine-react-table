@@ -86,7 +86,7 @@ export const MRT_FilterCheckbox: FC<Props> = ({ column, table }) => {
         }
         disableTypography
         label={checkboxProps.title ?? filterLabel}
-        sx={{ color: 'text.secondary', mt: '-4px', fontWeight: 'normal' }}
+        sx={{ color: 'text.secondary', marginTop: '-4px', fontWeight: 'normal' }}
         title={undefined}
       />
     </Tooltip>

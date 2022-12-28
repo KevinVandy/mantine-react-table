@@ -97,7 +97,7 @@ const Example: FC = () => {
                   borderRadius: '0.25rem',
                   color: '#fff',
                   maxWidth: '9ch',
-                  p: '0.25rem',
+                  padding: '0.25rem',
                 })}
               >
                 {cell.getValue<number>()?.toLocaleString?.('en-US', {

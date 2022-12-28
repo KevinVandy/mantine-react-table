@@ -20,7 +20,7 @@ import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
 const HomePage = () => {
   return (
     <>
-      <Stack sx={{ maxWidth: '95ch', m: 'auto' }}>
+      <Stack sx={{ maxWidth: '95ch', margin: 'auto' }}>
         <Typography
           sx={{
             textAlign: 'center',
@@ -32,7 +32,7 @@ const HomePage = () => {
               xl: '5rem',
             },
             fontWeight: 'bold',
-            mt: '5rem',
+            marginTop: '5rem',
             mb: {
               xs: '1rem',
               md: '1.5rem',
@@ -83,7 +83,7 @@ const HomePage = () => {
               md: '2.2rem',
               lg: '2.25rem',
             },
-            mb: '3rem',
+            marginBottom: '3rem',
             textAlign: 'center',
             lineHeight: '2.25rem',
             fontWeight: 'normal',
@@ -128,7 +128,7 @@ const HomePage = () => {
               md: '1.4rem',
               lg: '1.5rem',
             },
-            mt: '2rem',
+            marginTop: '2rem',
             textAlign: 'center',
             lineHeight: {
               xs: '1.8rem',
@@ -145,8 +145,8 @@ const HomePage = () => {
         </Typography>
         <Box
           sx={{
-            m: '3rem auto',
-            mb: '1rem',
+            margin: '3rem auto',
+            marginBottom: '1rem',
             display: 'grid',
             gap: '1.5rem',
             width: '100%',
@@ -248,7 +248,7 @@ const HomePage = () => {
       <Typography
         sx={{
           textAlign: 'center',
-          mt: '5rem',
+          marginTop: '5rem',
           fontSize: { xs: '1.5rem', md: '2rem', xl: '2.5rem' },
         }}
         variant="h3"
@@ -270,7 +270,7 @@ const HomePage = () => {
         color="text.secondary"
         sx={{
           textAlign: 'center',
-          m: '2rem',
+          margin: '2rem',
         }}
         variant="h4"
       >
@@ -281,14 +281,14 @@ const HomePage = () => {
         color="text.secondary"
         sx={{
           textAlign: 'center',
-          m: '2rem',
+          margin: '2rem',
         }}
         variant="h4"
       >
         Feature Comparison
       </LinkHeading>
       <FeatureTable />
-      <Typography component="p" variant="subtitle2" sx={{ mt: '1rem' }}>
+      <Typography component="p" variant="subtitle2" sx={{ marginTop: '1rem' }}>
         *If you see any inaccuracies in this table, PRs are welcome!
       </Typography>
       <LinkCards />

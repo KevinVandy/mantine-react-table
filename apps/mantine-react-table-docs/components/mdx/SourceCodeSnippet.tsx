@@ -92,7 +92,7 @@ export const SourceCodeSnippet: FC<Props> = ({
         display: 'flex',
         flexDirection: 'column',
         gap: '1rem',
-        m: '2rem auto',
+        margin: '2rem auto',
       }}
     >
       <Divider />

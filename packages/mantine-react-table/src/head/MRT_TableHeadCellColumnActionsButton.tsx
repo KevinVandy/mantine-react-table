@@ -24,7 +24,7 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
     setAnchorEl(event.currentTarget);
@@ -63,7 +63,7 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
           {...iconButtonProps}
           sx={(theme) => ({
             height: '2rem',
-            m: '-8px -4px',
+            margin: '-4px -2px',
             opacity: 0.5,
             transform: 'scale(0.85)',
             transition: 'opacity 150ms',
@@ -75,7 +75,7 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
               ? iconButtonProps.sx(theme)
               : (iconButtonProps?.sx as any)),
           })}
-          title={undefined}
+          // title={undefined}
         >
           <IconDotsVertical />
         </ActionIcon>

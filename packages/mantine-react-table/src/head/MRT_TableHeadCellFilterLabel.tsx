@@ -75,7 +75,7 @@ export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
                 height: '12px',
                 m: 0,
                 opacity: 0.8,
-                p: '2px',
+                padding: '2px',
                 transform: 'scale(0.66)',
                 width: '12px',
               }}

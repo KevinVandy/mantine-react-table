@@ -112,14 +112,14 @@ const SideBar: FC<Props> = ({ navOpen, setNavOpen }) => {
         sx={{
           overflow: 'visible',
           overflowY: navOpen ? 'overlay' : 'hidden',
-          mt: '64px',
+          marginTop: '64px',
           p: 0,
-          pb: '10rem',
+          paddingBottom: '10rem',
           scrollPaddingTop: '20%',
           transition: 'all .2s',
           width: navOpen ? '280px' : 0,
           '@media (max-width: 900px)': {
-            mt: '50px',
+            marginTop: '50px',
           },
         }}
       >
@@ -202,7 +202,7 @@ const SideBar: FC<Props> = ({ navOpen, setNavOpen }) => {
                                         {external3 && (
                                           <LaunchIcon
                                             fontSize="small"
-                                            sx={{ m: '-0.25rem 1px' }}
+                                            sx={{ margin: '-0.25rem 1px' }}
                                           />
                                         )}
                                       </MenuLink>
@@ -233,7 +233,7 @@ const SideBar: FC<Props> = ({ navOpen, setNavOpen }) => {
                               {external2 && (
                                 <LaunchIcon
                                   fontSize="small"
-                                  sx={{ m: '-0.25rem 1px' }}
+                                  sx={{ margin: '-0.25rem 1px' }}
                                 />
                               )}
                             </MenuLink>
@@ -262,7 +262,7 @@ const SideBar: FC<Props> = ({ navOpen, setNavOpen }) => {
                       {external1 && (
                         <LaunchIcon
                           fontSize="small"
-                          sx={{ m: '-0.25rem 1px' }}
+                          sx={{ margin: '-0.25rem 1px' }}
                         />
                       )}
                     </MenuLink>

@@ -43,7 +43,7 @@ export const MRT_TableFooterCell: FC<Props> = ({ footer, table }) => {
         display: layoutMode === 'grid' ? 'grid' : 'table-cell',
         fontWeight: 'bold',
         justifyContent: columnDefType === 'group' ? 'center' : undefined,
-        p:
+        padding:
           density === 'compact'
             ? '0.5rem'
             : density === 'comfortable'

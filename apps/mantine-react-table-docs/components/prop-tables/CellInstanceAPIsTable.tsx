@@ -127,7 +127,7 @@ const CellInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
         variant: 'outlined',
       }}
       muiTablePaperProps={{
-        sx: { mb: '1.5rem' },
+        sx: { marginBottom: '1.5rem' },
         id: onlyProps
           ? 'relevant-cell-instance-apis-table'
           : 'cell-instance-apis-table',

@@ -226,7 +226,8 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
                 display: 'flex',
                 gap: '2ch',
                 my: 0,
-                py: '6px',
+                paddingTop: '6px',
+                paddingBottom: '6px',
               }}
               value={option}
             >

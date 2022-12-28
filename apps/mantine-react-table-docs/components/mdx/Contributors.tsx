@@ -28,19 +28,19 @@ export const Contributors = () => {
   return (
     <Box
       sx={{
-        mt: '4rem',
+        marginTop: '4rem',
         textAlign: 'center',
       }}
     >
       <Box
         sx={{
-          p: '1rem 150px 3rem 150px',
+          padding: '1rem 150px 3rem 150px',
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
           gap: '1.5rem',
           '@media(max-width: 900px)': {
-            p: '1rem 16px 2rem 16px',
+            padding: '1rem 16px 2rem 16px',
           },
         }}
       >
@@ -66,7 +66,7 @@ export const Contributors = () => {
                 minHeight: '200px',
                 gap: '1rem',
                 justifyContent: 'center',
-                p: '1rem',
+                padding: '1rem',
                 textAlign: 'center',
                 width: '10rem',
                 '&:hover': {

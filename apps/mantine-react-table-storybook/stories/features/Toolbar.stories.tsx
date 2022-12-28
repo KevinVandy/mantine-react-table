@@ -363,7 +363,7 @@ export const renderCustomTopToolbar: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    renderTopToolbar={() => <Box sx={{ p: '2rem' }}>Custom Top Toolbar</Box>}
+    renderTopToolbar={() => <Box sx={{ padding: '2rem' }}>Custom Top Toolbar</Box>}
   />
 );
 
@@ -372,7 +372,7 @@ export const renderCustomBottomToolbar: Story<MantineReactTableProps> = () => (
     columns={columns}
     data={data}
     renderBottomToolbar={() => (
-      <Box sx={{ p: '2rem' }}>Custom Bottom Toolbar</Box>
+      <Box sx={{ padding: '2rem' }}>Custom Bottom Toolbar</Box>
     )}
   />
 );

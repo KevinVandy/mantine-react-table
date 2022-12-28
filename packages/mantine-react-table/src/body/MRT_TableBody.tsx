@@ -136,7 +136,8 @@ export const MRT_TableBody: FC<Props> = ({
                   maxWidth: `min(100vw, ${
                     tablePaperRef.current?.clientWidth ?? 360
                   }px)`,
-                  py: '2rem',
+                  paddingTop: '2rem',
+                  paddingBottom: '2rem',
                   textAlign: 'center',
                   width: '100%',
                 }}

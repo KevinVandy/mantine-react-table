@@ -50,7 +50,7 @@ export const MaxWidthAndCentered: Story<MantineReactTableProps> = () => (
     muiTablePaperProps={{
       sx: {
         maxWidth: '800px',
-        m: 'auto',
+        margin: 'auto',
       },
     }}
   />

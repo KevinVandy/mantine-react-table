@@ -67,7 +67,7 @@ const Example: FC = () => {
   const [showColumnFilters, setShowColumnFilters] = useState(false);
 
   return (
-    <Box sx={{ border: 'gray 2px dashed', p: '1rem' }}>
+    <Box sx={{ border: 'gray 2px dashed', padding: '1rem' }}>
       {/* Our Custom External Top Toolbar */}
       {tableInstanceRef.current && (
         <Toolbar
@@ -81,7 +81,7 @@ const Example: FC = () => {
             },
             gap: '1rem',
             justifyContent: 'space-between',
-            p: '1.5rem 0',
+            padding: '1.5rem 0',
           })}
         >
           <Box>

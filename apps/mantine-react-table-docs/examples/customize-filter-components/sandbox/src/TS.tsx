@@ -87,7 +87,7 @@ const Example: FC = () => {
       data={data}
       initialState={{ showColumnFilters: true }} //show filters by default
       muiTableHeadCellFilterTextFieldProps={{
-        sx: { m: '0.5rem 0', width: '100%' },
+        sx: { margin: '0.5rem 0', width: '100%' },
         variant: 'outlined',
       }}
     />
