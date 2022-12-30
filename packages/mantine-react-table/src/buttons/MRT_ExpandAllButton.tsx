@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
-import { MRT_TableInstance } from '..';
+import type { MRT_TableInstance } from '..';
 
 interface Props {
   table: MRT_TableInstance;

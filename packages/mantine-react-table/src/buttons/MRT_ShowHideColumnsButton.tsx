@@ -1,10 +1,10 @@
 import React, { MouseEvent, useState } from 'react';
 import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
 import { MRT_ShowHideColumnsMenu } from '../menus/MRT_ShowHideColumnsMenu';
-import { MRT_TableInstance } from '..';
+import type { HTMLPropsRef, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}>
-  extends ActionIconProps {
+  extends ActionIconProps, HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
 }
 

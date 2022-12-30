@@ -1,9 +1,9 @@
 import React, { DragEventHandler } from 'react';
 import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
-import { MRT_TableInstance } from '..';
+import type { HTMLPropsRef, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
-  iconButtonProps?: ActionIconProps;
+  iconButtonProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;
   onDragStart: DragEventHandler<HTMLButtonElement>;
   onDragEnd: DragEventHandler<HTMLButtonElement>;
   table: MRT_TableInstance<TData>;
@@ -17,7 +17,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
 }: Props<TData>) => {
   const {
     options: {
-      icons: { IconMenu },
+      icons: { IconGripHorizontal },
       localization,
     },
   } = table;
@@ -58,7 +58,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
         })}
         title={undefined}
       >
-        <IconMenu />
+        <IconGripHorizontal />
       </ActionIcon>
     </Tooltip>
   );

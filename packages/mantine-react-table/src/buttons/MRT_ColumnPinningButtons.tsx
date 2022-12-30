@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionIcon, Box, Flex, Tooltip } from '@mantine/core';
+import { ActionIcon, Flex, Tooltip } from '@mantine/core';
 import type { MRT_Column, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {

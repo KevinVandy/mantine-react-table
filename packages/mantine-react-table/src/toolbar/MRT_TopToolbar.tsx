@@ -4,7 +4,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { lighten } from '../colorManipulator';
 import { MRT_GlobalFilterTextField } from '../inputs/MRT_GlobalFilterTextField';
 import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
-import { MRT_TableInstance } from '..';
+import type { MRT_TableInstance } from '..';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';

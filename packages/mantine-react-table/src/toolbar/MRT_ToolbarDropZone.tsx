@@ -1,7 +1,7 @@
 import React, { DragEvent, useEffect } from 'react';
 import { alpha} from '../colorManipulator';
 import { Flex, Text, Transition } from '@mantine/core';
-import { MRT_TableInstance } from '..';
+import type { MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;

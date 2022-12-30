@@ -1,5 +1,3 @@
-
-
 import {
   IconArrowAutofitContent,
   IconArrowDown,
@@ -20,16 +18,18 @@ import {
   IconEyeOff,
   IconFilter,
   IconFilterOff,
+  IconGripHorizontal,
   IconMaximize,
-  IconMenu,
-  IconMenu2,
   IconMinimize,
   IconPinned,
   IconPinnedOff,
   IconSearch,
   IconSortAscending,
   IconSortDescending,
-  IconX
+  IconStack,
+  IconStack2,
+  IconStack3,
+  IconX,
 } from '@tabler/icons';
 
 export interface MRT_Icons {
@@ -52,15 +52,17 @@ export interface MRT_Icons {
   IconEyeOff: any;
   IconFilter: any;
   IconFilterOff: any;
+  IconGripHorizontal: any;
   IconMaximize: any;
-  IconMenu2: any;
-  IconMenu: any;
   IconMinimize: any;
   IconPinned: any;
   IconPinnedOff: any;
   IconSearch: any;
   IconSortAscending: any;
   IconSortDescending: any;
+  IconStack2: any;
+  IconStack3: any;
+  IconStack: any;
   IconX: any;
 }
 
@@ -84,14 +86,16 @@ export const MRT_Default_Icons: MRT_Icons = {
   IconEyeOff,
   IconFilter,
   IconFilterOff,
+  IconGripHorizontal,
   IconMaximize,
-  IconMenu,
-  IconMenu2,
   IconMinimize,
   IconPinned,
   IconPinnedOff,
   IconSearch,
   IconSortAscending,
   IconSortDescending,
+  IconStack,
+  IconStack2,
+  IconStack3,
   IconX,
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
-import { MRT_TableInstance } from '..';
+import { HTMLPropsRef, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}>
-  extends ActionIconProps {
+  extends ActionIconProps, HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
 }
 
@@ -16,7 +16,7 @@ export const MRT_ToggleDensePaddingButton = <
   const {
     getState,
     options: {
-      icons: { IconMenu, IconMenu2 },
+      icons: { IconStack, IconStack2, IconStack3 },
       localization,
     },
     setDensity,
@@ -42,11 +42,11 @@ export const MRT_ToggleDensePaddingButton = <
         title={undefined}
       >
         {density === 'compact' ? (
-          <IconMenu2 />
+          <IconStack3 />
         ) : density === 'comfortable' ? (
-          <IconMenu2 />
+          <IconStack2 />
         ) : (
-          <IconMenu />
+          <IconStack />
         )}
       </ActionIcon>
     </Tooltip>

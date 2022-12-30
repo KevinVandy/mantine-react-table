@@ -45,7 +45,10 @@ import { MRT_SortingFns } from './sortingFns';
 import { MRT_TableRoot } from './table/MRT_TableRoot';
 import { MRT_Localization_EN } from './_locales/en';
 
-type HTMLPropsRef<T extends HTMLElement> = HTMLProps<T> & {
+export type HTMLPropsRef<T extends HTMLElement> = Omit<
+  HTMLProps<T>,
+  'color' | 'size' | 'type'
+> & {
   ref?: MutableRefObject<T>;
 };
 

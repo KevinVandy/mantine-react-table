@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Collapse, Progress } from '@mantine/core';
-import { MRT_TableInstance } from '..';
+import type { MRT_TableInstance } from '..';
 
 interface Props {
   isTopToolbar: boolean;

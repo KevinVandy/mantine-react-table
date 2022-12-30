@@ -54,7 +54,7 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
       openDelay={1000}
       position="top"
       label={
-        // buttonProps?.title ??
+        buttonProps?.title ??
         (copied ? localization.copiedToClipboard : localization.clickToCopy)
       }
     >
