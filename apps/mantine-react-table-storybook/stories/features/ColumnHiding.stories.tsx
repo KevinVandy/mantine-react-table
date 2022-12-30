@@ -53,9 +53,9 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const ColumnHidingEnabledDefault: Story<
-  MantineReactTableProps
-> = () => <MantineReactTable columns={columns} data={data} />;
+export const ColumnHidingEnabledDefault: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} />
+);
 
 export const ColumnHidingDisabled: Story<MantineReactTableProps> = () => (
   <MantineReactTable columns={columns} data={data} enableHiding={false} />

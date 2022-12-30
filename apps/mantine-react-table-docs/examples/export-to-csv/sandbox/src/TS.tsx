@@ -1,8 +1,5 @@
 import React, { FC } from 'react';
-import MantineReactTable, {
-  MRT_ColumnDef,
-  MRT_Row,
-} from 'mantine-react-table';
+import MantineReactTable, { MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { Box, Button } from '@mui/material';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { ExportToCsv } from 'export-to-csv'; //or use your library of choice here
@@ -70,7 +67,12 @@ const Example: FC = () => {
       positionToolbarAlertBanner="bottom"
       renderTopToolbarCustomActions={({ table }) => (
         <Box
-          sx={{ display: 'flex', gap: '1rem', padding: '0.5rem', flexWrap: 'wrap' }}
+          sx={{
+            display: 'flex',
+            gap: '1rem',
+            padding: '0.5rem',
+            flexWrap: 'wrap',
+          }}
         >
           <Button
             color="primary"

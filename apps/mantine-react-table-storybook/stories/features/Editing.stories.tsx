@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-import MantineReactTable, {
-  MantineReactTableProps,
-} from 'mantine-react-table';
+import MantineReactTable, { MantineReactTableProps } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { MenuItem } from '@mui/material';
 
@@ -105,9 +103,7 @@ export const EditingEnabledEditModeRow: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const EditingEnabledEditModeCell: Story<
-  MantineReactTableProps
-> = () => {
+export const EditingEnabledEditModeCell: Story<MantineReactTableProps> = () => {
   const [tableData, setTableData] = useState(data);
 
   const handleSaveCell = (cell, value) => {

@@ -3,7 +3,8 @@ import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
 import { HTMLPropsRef, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}>
-  extends ActionIconProps, HTMLPropsRef<HTMLButtonElement> {
+  extends ActionIconProps,
+    HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
 }
 
@@ -34,10 +35,15 @@ export const MRT_ToggleDensePaddingButton = <
   };
 
   return (
-    <Tooltip withArrow label={rest?.title ?? localization.toggleDensity}>
+    <Tooltip
+      withinPortal
+      withArrow
+      label={rest?.title ?? localization.toggleDensity}
+    >
       <ActionIcon
         aria-label={localization.toggleDensity}
         onClick={handleToggleDensePadding}
+        size="lg"
         {...rest}
         title={undefined}
       >

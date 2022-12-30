@@ -241,9 +241,7 @@ export const EnableRowVirtualizationStickyFooter: Story<
   />
 );
 
-export const EnableColumnVirtualization: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableColumnVirtualization: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData.slice(0, 10)}
@@ -330,9 +328,7 @@ export const EnableColumnVirtualizationStickyFooter: Story<
   />
 );
 
-export const RowAndColumnVirtualization: Story<
-  MantineReactTableProps
-> = () => (
+export const RowAndColumnVirtualization: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData}

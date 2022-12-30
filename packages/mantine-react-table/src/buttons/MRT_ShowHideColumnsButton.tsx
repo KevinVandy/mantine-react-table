@@ -4,7 +4,8 @@ import { MRT_ShowHideColumnsMenu } from '../menus/MRT_ShowHideColumnsMenu';
 import type { HTMLPropsRef, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}>
-  extends ActionIconProps, HTMLPropsRef<HTMLButtonElement> {
+  extends ActionIconProps,
+    HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
 }
 
@@ -29,10 +30,15 @@ export const MRT_ShowHideColumnsButton = <
 
   return (
     <>
-      <Tooltip withArrow label={rest?.title ?? localization.showHideColumns}>
+      <Tooltip
+        withinPortal
+        withArrow
+        label={rest?.title ?? localization.showHideColumns}
+      >
         <ActionIcon
           aria-label={localization.showHideColumns}
           onClick={handleClick}
+          size="lg"
           {...rest}
           title={undefined}
         >

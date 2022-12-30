@@ -122,61 +122,60 @@ export const MRT_TableBody: FC<Props> = ({
           : (tableBodyProps?.sx as any)),
       })}
     >
-      {
-        (!rows.length ? (
-          <tr style={{ display: layoutMode === 'grid' ? 'grid' : 'table-row' }}>
-            <td
-              colSpan={table.getVisibleLeafColumns().length}
-              style={{ display: layoutMode === 'grid' ? 'grid' : 'table-cell' }}
+      {!rows.length ? (
+        <tr style={{ display: layoutMode === 'grid' ? 'grid' : 'table-row' }}>
+          <td
+            colSpan={table.getVisibleLeafColumns().length}
+            style={{ display: layoutMode === 'grid' ? 'grid' : 'table-cell' }}
+          >
+            <Text
+              sx={{
+                color: 'gray',
+                fontStyle: 'italic',
+                maxWidth: `min(100vw, ${
+                  tablePaperRef.current?.clientWidth ?? 360
+                }px)`,
+                paddingTop: '2rem',
+                paddingBottom: '2rem',
+                textAlign: 'center',
+                width: '100%',
+              }}
             >
-              <Text
-                sx={{
-                  color: 'gray',
-                  fontStyle: 'italic',
-                  maxWidth: `min(100vw, ${
-                    tablePaperRef.current?.clientWidth ?? 360
-                  }px)`,
-                  paddingTop: '2rem',
-                  paddingBottom: '2rem',
-                  textAlign: 'center',
-                  width: '100%',
-                }}
-              >
-                {globalFilter || columnFilters.length
-                  ? localization.noResultsFound
-                  : localization.noRecordsToDisplay}
-              </Text>
-            </td>
-          </tr>
-        ) : (
-          <>
-            {(virtualRows ?? rows).map((rowOrVirtualRow, rowIndex) => {
-              const row = rowVirtualizer
-                ? rows[rowOrVirtualRow.index]
-                : (rowOrVirtualRow as MRT_Row);
-              const props = {
-                columnVirtualizer,
-                key: row.id,
-                measureElement: rowVirtualizer?.measureElement,
-                numRows: rows.length,
-                row,
-                rowIndex: rowVirtualizer ? rowOrVirtualRow.index : rowIndex,
-                table,
-                virtualColumns,
-                virtualPaddingLeft,
-                virtualPaddingRight,
-                virtualRow: rowVirtualizer
-                  ? (rowOrVirtualRow as VirtualItem)
-                  : undefined,
-              };
-              return memoMode === 'rows' ? (
-                <Memo_MRT_TableBodyRow {...props} />
-              ) : (
-                <MRT_TableBodyRow {...props} />
-              );
-            })}
-          </>
-        ))}
+              {globalFilter || columnFilters.length
+                ? localization.noResultsFound
+                : localization.noRecordsToDisplay}
+            </Text>
+          </td>
+        </tr>
+      ) : (
+        <>
+          {(virtualRows ?? rows).map((rowOrVirtualRow, rowIndex) => {
+            const row = rowVirtualizer
+              ? rows[rowOrVirtualRow.index]
+              : (rowOrVirtualRow as MRT_Row);
+            const props = {
+              columnVirtualizer,
+              key: row.id,
+              measureElement: rowVirtualizer?.measureElement,
+              numRows: rows.length,
+              row,
+              rowIndex: rowVirtualizer ? rowOrVirtualRow.index : rowIndex,
+              table,
+              virtualColumns,
+              virtualPaddingLeft,
+              virtualPaddingRight,
+              virtualRow: rowVirtualizer
+                ? (rowOrVirtualRow as VirtualItem)
+                : undefined,
+            };
+            return memoMode === 'rows' ? (
+              <Memo_MRT_TableBodyRow {...props} />
+            ) : (
+              <MRT_TableBodyRow {...props} />
+            );
+          })}
+        </>
+      )}
     </Box>
   );
 };

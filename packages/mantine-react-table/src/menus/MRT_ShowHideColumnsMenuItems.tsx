@@ -150,9 +150,9 @@ export const MRT_ShowHideColumnsMenuItems = <
               checked={switchChecked}
               control={
                 <Tooltip
+                  withinPortal
                   withArrow
                   openDelay={1000}
-                  
                   label={localization.toggleVisibility}
                 >
                   <Switch />

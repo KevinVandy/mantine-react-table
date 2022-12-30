@@ -19,7 +19,7 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
   } = table;
   const { density } = getState();
 
-  const iconButtonProps =
+  const actionIconProps =
     muiExpandButtonProps instanceof Function
       ? muiExpandButtonProps({ table, row })
       : muiExpandButtonProps;
@@ -30,16 +30,17 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
   const handleToggleExpand = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     row.toggleExpanded();
-    iconButtonProps?.onClick?.(event);
+    actionIconProps?.onClick?.(event);
   };
 
   return (
     <Tooltip
+      withinPortal
       withArrow
       disabled={!canExpand && !renderDetailPanel}
       openDelay={1000}
       label={
-        iconButtonProps?.title ?? isExpanded
+        actionIconProps?.title ?? isExpanded
           ? localization.collapse
           : localization.expand
       }
@@ -48,14 +49,14 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
         <ActionIcon
           aria-label={localization.expand}
           disabled={!canExpand && !renderDetailPanel}
-          {...iconButtonProps}
+          {...actionIconProps}
           onClick={handleToggleExpand}
           sx={(theme) => ({
             height: density === 'compact' ? '1.75rem' : '2.25rem',
             width: density === 'compact' ? '1.75rem' : '2.25rem',
-            ...(iconButtonProps?.sx instanceof Function
-              ? iconButtonProps.sx(theme)
-              : (iconButtonProps?.sx as any)),
+            ...(actionIconProps?.sx instanceof Function
+              ? actionIconProps.sx(theme)
+              : (actionIconProps?.sx as any)),
           })}
           title={undefined}
         >

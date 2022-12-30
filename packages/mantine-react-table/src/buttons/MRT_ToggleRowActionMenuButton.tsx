@@ -64,7 +64,12 @@ export const MRT_ToggleRowActionMenuButton = <
       ) : row.id === editingRow?.id && editingMode === 'row' ? (
         <MRT_EditActionButtons row={row} table={table} />
       ) : !renderRowActionMenuItems && enableEditing ? (
-        <Tooltip position="right" withArrow label={localization.edit}>
+        <Tooltip
+          withinPortal
+          position="right"
+          withArrow
+          label={localization.edit}
+        >
           <ActionIcon
             aria-label={localization.edit}
             sx={commonActionIconStyles}
@@ -75,7 +80,12 @@ export const MRT_ToggleRowActionMenuButton = <
         </Tooltip>
       ) : renderRowActionMenuItems ? (
         <>
-          <Tooltip withArrow openDelay={1000} label={localization.rowActions}>
+          <Tooltip
+            withinPortal
+            withArrow
+            openDelay={1000}
+            label={localization.rowActions}
+          >
             <ActionIcon
               aria-label={localization.rowActions}
               onClick={handleOpenRowActionMenu}

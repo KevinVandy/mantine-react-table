@@ -3,7 +3,8 @@ import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
 import type { HTMLPropsRef, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}>
-  extends ActionIconProps, HTMLPropsRef<HTMLButtonElement> {
+  extends ActionIconProps,
+    HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
 }
 
@@ -28,10 +29,15 @@ export const MRT_ToggleFiltersButton = <
   };
 
   return (
-    <Tooltip withArrow label={rest?.title ?? localization.showHideFilters}>
+    <Tooltip
+      withinPortal
+      withArrow
+      label={rest?.title ?? localization.showHideFilters}
+    >
       <ActionIcon
         aria-label={localization.showHideFilters}
         onClick={handleToggleShowFilters}
+        size="lg"
         {...rest}
         title={undefined}
       >

@@ -5,7 +5,6 @@ import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Header, MRT_HeaderGroup, MRT_TableInstance } from '..';
 
-
 interface Props {
   headerGroup: MRT_HeaderGroup;
   table: MRT_TableInstance;
@@ -31,7 +30,8 @@ export const MRT_TableHeadRow: FC<Props> = ({
       : muiTableHeadRowProps;
 
   return (
-    <Box component="tr"
+    <Box
+      component="tr"
       {...tableRowProps}
       sx={(theme) => ({
         backgroundColor: lighten(theme.colors.dark[7], 0.04),

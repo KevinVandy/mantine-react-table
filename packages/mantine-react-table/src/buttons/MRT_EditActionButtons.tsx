@@ -57,12 +57,12 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
     >
       {variant === 'icon' ? (
         <>
-          <Tooltip withArrow label={localization.cancel}>
+          <Tooltip withinPortal withArrow label={localization.cancel}>
             <ActionIcon aria-label={localization.cancel} onClick={handleCancel}>
               <IconCircleX />
             </ActionIcon>
           </Tooltip>
-          <Tooltip withArrow label={localization.save}>
+          <Tooltip withinPortal withArrow label={localization.save}>
             <ActionIcon
               aria-label={localization.save}
               color="blue"

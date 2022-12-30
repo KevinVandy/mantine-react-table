@@ -29,9 +29,7 @@ config.autoAddCss = false;
  * If you skip customizing some icons, those particular icons will fallback the the default Material-UI icons.
  */
 const fontAwesomeIcons = {
-  IconArrowDown: (props) => (
-    <FontAwesomeIcon icon={faSortDown} {...props} />
-  ),
+  IconArrowDown: (props) => <FontAwesomeIcon icon={faSortDown} {...props} />,
   IconClearAll: () => <FontAwesomeIcon icon={faBarsStaggered} />,
   IconMenu: () => <FontAwesomeIcon icon={faGripLines} />,
   IconMenu2: () => <FontAwesomeIcon icon={faBars} />,

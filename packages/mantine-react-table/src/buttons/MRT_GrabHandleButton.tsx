@@ -3,14 +3,14 @@ import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
 import type { HTMLPropsRef, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
-  iconButtonProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;
+  actionIconProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;
   onDragStart: DragEventHandler<HTMLButtonElement>;
   onDragEnd: DragEventHandler<HTMLButtonElement>;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
-  iconButtonProps,
+  actionIconProps,
   onDragEnd,
   onDragStart,
   table,
@@ -24,18 +24,19 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
 
   return (
     <Tooltip
+      withinPortal
       withArrow
       openDelay={1000}
       position="top"
-      label={iconButtonProps?.title ?? localization.move}
+      label={actionIconProps?.title ?? localization.move}
     >
       <ActionIcon
         draggable="true"
         size="sm"
-        {...iconButtonProps}
+        {...actionIconProps}
         onClick={(e) => {
           e.stopPropagation();
-          iconButtonProps?.onClick?.(e);
+          actionIconProps?.onClick?.(e);
         }}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
@@ -44,7 +45,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
           margin: '0 -0.1rem',
           opacity: 0.5,
           padding: '2px',
-          transition: 'all 150ms ease-in-out',
+          transition: 'opacity 150ms ease-in-out',
           '&:hover': {
             backgroundColor: 'transparent',
             opacity: 1,
@@ -52,9 +53,9 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
           '&:active': {
             cursor: 'grabbing',
           },
-          ...(iconButtonProps?.sx instanceof Function
-            ? iconButtonProps?.sx(theme)
-            : (iconButtonProps?.sx as any)),
+          ...(actionIconProps?.sx instanceof Function
+            ? actionIconProps?.sx(theme)
+            : (actionIconProps?.sx as any)),
         })}
         title={undefined}
       >

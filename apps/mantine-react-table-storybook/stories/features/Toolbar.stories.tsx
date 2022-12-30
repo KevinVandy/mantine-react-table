@@ -79,9 +79,7 @@ export const NoToolbars: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const HideToolbarInternalActions: Story<
-  MantineReactTableProps
-> = () => (
+export const HideToolbarInternalActions: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -142,9 +140,7 @@ export const CustomTopToolbarActions: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CustomBottomToolbarActions: Story<
-  MantineReactTableProps
-> = () => (
+export const CustomBottomToolbarActions: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -363,7 +359,9 @@ export const renderCustomTopToolbar: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    renderTopToolbar={() => <Box sx={{ padding: '2rem' }}>Custom Top Toolbar</Box>}
+    renderTopToolbar={() => (
+      <Box sx={{ padding: '2rem' }}>Custom Top Toolbar</Box>
+    )}
   />
 );
 

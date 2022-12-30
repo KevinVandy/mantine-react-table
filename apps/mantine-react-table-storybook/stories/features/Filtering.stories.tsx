@@ -141,9 +141,7 @@ export const FilterFnAndFilterVariants: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const FilteringChangeModeEnabled: Story<
-  MantineReactTableProps
-> = () => (
+export const FilteringChangeModeEnabled: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={[
       {

@@ -43,6 +43,7 @@ export const MRT_FilterCheckbox: FC<Props> = ({ column, table }) => {
 
   return (
     <Tooltip
+      withinPortal
       withArrow
       openDelay={1000}
       label={checkboxProps?.title ?? filterLabel}

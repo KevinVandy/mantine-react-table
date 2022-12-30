@@ -1,13 +1,14 @@
 import React from 'react';
 import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
-import type{ HTMLPropsRef, MRT_TableInstance } from '..';
+import type { HTMLPropsRef, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}>
-  extends ActionIconProps, HTMLPropsRef<HTMLButtonElement> {
+  extends ActionIconProps,
+    HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_FullScreenToggleButton = <
+export const MRT_ToggleButtonFullScreen = <
   TData extends Record<string, any> = {},
 >({
   table,
@@ -28,10 +29,15 @@ export const MRT_FullScreenToggleButton = <
   };
 
   return (
-    <Tooltip withArrow label={rest?.title ?? localization.toggleFullScreen}>
+    <Tooltip
+      withinPortal
+      withArrow
+      label={rest?.title ?? localization.toggleFullScreen}
+    >
       <ActionIcon
         aria-label={localization.showHideFilters}
         onClick={handleToggleFullScreen}
+        size="lg"
         {...rest}
         title={undefined}
       >

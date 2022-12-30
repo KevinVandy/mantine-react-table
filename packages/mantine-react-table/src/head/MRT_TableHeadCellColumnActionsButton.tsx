@@ -43,7 +43,7 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
         })
       : columnDef.muiTableHeadCellColumnActionsButtonProps;
 
-  const iconButtonProps = {
+  const actionIconProps = {
     ...mTableHeadCellColumnActionsButtonProps,
     ...mcTableHeadCellColumnActionsButtonProps,
   };
@@ -51,31 +51,27 @@ export const MRT_TableHeadCellColumnActionsButton: FC<Props> = ({
   return (
     <>
       <Tooltip
+        withinPortal
         withArrow
         openDelay={1000}
         position="top"
-        label={iconButtonProps?.title ?? localization.columnActions}
+        label={actionIconProps?.title ?? localization.columnActions}
       >
         <ActionIcon
           aria-label={localization.columnActions}
           onClick={handleClick}
           size="sm"
-          {...iconButtonProps}
+          {...actionIconProps}
           sx={(theme) => ({
-            height: '2rem',
-            margin: '-4px -2px',
             opacity: 0.5,
-            transform: 'scale(0.85)',
             transition: 'opacity 150ms',
-            width: '2rem',
             '&:hover': {
               opacity: 1,
             },
-            ...(iconButtonProps?.sx instanceof Function
-              ? iconButtonProps.sx(theme)
-              : (iconButtonProps?.sx as any)),
+            ...(actionIconProps?.sx instanceof Function
+              ? actionIconProps.sx(theme)
+              : (actionIconProps?.sx as any)),
           })}
-          // title={undefined}
         >
           <IconDotsVertical />
         </ActionIcon>

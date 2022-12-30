@@ -60,7 +60,7 @@ export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
     >
       {(styles) => (
         <Box component="span" sx={{ flex: '0 0' }} style={styles}>
-          <Tooltip withArrow position="top" label={filterTooltip}>
+          <Tooltip withinPortal withArrow position="top" label={filterTooltip}>
             <ActionIcon
               onClick={(event: MouseEvent<HTMLButtonElement>) => {
                 setShowFilters(true);
@@ -70,14 +70,10 @@ export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
                 });
                 event.stopPropagation();
               }}
-              size="sm"
+              size="xs"
               sx={{
-                height: '12px',
-                m: 0,
-                opacity: 0.8,
+                opacity: 0.5,
                 padding: '2px',
-                transform: 'scale(0.66)',
-                width: '12px',
               }}
             >
               <IconFilter />

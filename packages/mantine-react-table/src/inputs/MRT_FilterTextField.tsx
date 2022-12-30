@@ -235,7 +235,7 @@ export const MRT_FilterTextField: FC<Props> = ({
         // InputProps={{
         //   startAdornment: showChangeModeButton ? (
         //     <InputAdornment position="start">
-        //       <Tooltip withArrow label={localization.changeFilterMode}>
+        //       <Tooltip withinPortal withArrow label={localization.changeFilterMode}>
         //         <span>
         //           <IconButton
         //             aria-label={localization.changeFilterMode}
@@ -257,7 +257,7 @@ export const MRT_FilterTextField: FC<Props> = ({
         //   ) : null,
         //   endAdornment: !filterChipLabel && (
         //     <InputAdornment position="end">
-        //       <Tooltip
+        //       <Tooltip withinPortal
         //         withArrow
         //         position="right"
         //         label={localization.clearFilter ?? ''}

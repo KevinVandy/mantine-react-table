@@ -63,9 +63,10 @@ export const MRT_SelectCheckbox: FC<Props> = ({ row, selectAll, table }) => {
 
   return (
     <Tooltip
+      withinPortal
       withArrow
       // openDelay={1000}
-      // 
+      //
       label={
         checkboxProps?.title ??
         (selectAll

@@ -81,7 +81,7 @@ export const MRT_GlobalFilterTextField = <
         // InputProps={{
         //   startAdornment: enableGlobalFilterModes ? (
         //     <InputAdornment position="start">
-        //       <Tooltip withArrow label={localization.changeSearchMode}>
+        //       <Tooltip withinPortal withArrow label={localization.changeSearchMode}>
         //         <IconButton
         //           aria-label={localization.changeSearchMode}
         //           onClick={handleGlobalFilterMenuOpen}
@@ -97,7 +97,7 @@ export const MRT_GlobalFilterTextField = <
         //   ),
         //   endAdornment: (
         //     <InputAdornment position="end">
-        //       <Tooltip withArrow label={localization.clearSearch ?? ''}>
+        //       <Tooltip withinPortal withArrow label={localization.clearSearch ?? ''}>
         //         <span>
         //           <IconButton
         //             aria-label={localization.clearSearch}

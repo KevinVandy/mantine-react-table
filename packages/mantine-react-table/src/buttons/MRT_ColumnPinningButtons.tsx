@@ -33,14 +33,14 @@ export const MRT_ColumnPinningButtons = <
       }}
     >
       {column.getIsPinned() ? (
-        <Tooltip withArrow label={localization.unpin}>
+        <Tooltip withinPortal withArrow label={localization.unpin}>
           <ActionIcon onClick={() => handlePinColumn(false)} size="md">
             <IconPinnedOff />
           </ActionIcon>
         </Tooltip>
       ) : (
         <>
-          <Tooltip withArrow label={localization.pinToLeft}>
+          <Tooltip withinPortal withArrow label={localization.pinToLeft}>
             <ActionIcon onClick={() => handlePinColumn('left')} size="md">
               <IconPinned
                 style={{
@@ -49,7 +49,7 @@ export const MRT_ColumnPinningButtons = <
               />
             </ActionIcon>
           </Tooltip>
-          <Tooltip withArrow label={localization.pinToRight}>
+          <Tooltip withinPortal withArrow label={localization.pinToRight}>
             <ActionIcon onClick={() => handlePinColumn('right')} size="md">
               <IconPinned
                 style={{

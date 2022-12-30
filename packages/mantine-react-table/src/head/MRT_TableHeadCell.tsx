@@ -161,6 +161,9 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
             : column.getIsPinned() && columnDefType !== 'group'
             ? 2
             : 1,
+        '&:hover .mantine-ActionIcon-root': {
+          opacity: 1,
+        },
         ...getCommonCellStyles({
           column,
           header,
@@ -219,11 +222,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
               {headerElement}
             </Flex>
             {column.getCanSort() && (
-              <MRT_TableHeadCellSortLabel
-                header={header}
-                table={table}
-                tableCellProps={tableCellProps}
-              />
+              <MRT_TableHeadCellSortLabel header={header} table={table} />
             )}
             {column.getCanFilter() && (
               <MRT_TableHeadCellFilterLabel header={header} table={table} />
@@ -232,7 +231,11 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
           {columnDefType !== 'group' && (
             <Flex
               className="Mui-TableHeadCell-Content-Actions"
-              sx={{ whiteSpace: 'nowrap' }}
+              sx={{
+                alignItems: 'center',
+                alignSelf: 'center',
+                whiteSpace: 'nowrap',
+              }}
             >
               {showDragHandle && (
                 <MRT_TableHeadCellGrabHandle

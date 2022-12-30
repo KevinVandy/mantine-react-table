@@ -67,7 +67,12 @@ const Example = () => {
       positionToolbarAlertBanner="bottom"
       renderTopToolbarCustomActions={({ table }) => (
         <Box
-          sx={{ display: 'flex', gap: '1rem', padding: '0.5rem', flexWrap: 'wrap' }}
+          sx={{
+            display: 'flex',
+            gap: '1rem',
+            padding: '0.5rem',
+            flexWrap: 'wrap',
+          }}
         >
           <Button
             color="primary"

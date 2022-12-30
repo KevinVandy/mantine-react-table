@@ -22,7 +22,7 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
   } = table;
   const { density, isLoading } = getState();
 
-  const iconButtonProps =
+  const actionIconProps =
     muiExpandAllButtonProps instanceof Function
       ? muiExpandAllButtonProps({ table })
       : muiExpandAllButtonProps;
@@ -31,10 +31,11 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
 
   return (
     <Tooltip
+      withinPortal
       withArrow
       openDelay={1000}
       label={
-        iconButtonProps?.title ?? isAllRowsExpanded
+        actionIconProps?.title ?? isAllRowsExpanded
           ? localization.collapseAll
           : localization.expandAll
       }
@@ -46,14 +47,14 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
             isLoading || (!renderDetailPanel && !getCanSomeRowsExpand())
           }
           onClick={() => toggleAllRowsExpanded(!isAllRowsExpanded)}
-          {...iconButtonProps}
+          {...actionIconProps}
           sx={(theme) => ({
             height: density === 'compact' ? '1.75rem' : '2.25rem',
             width: density === 'compact' ? '1.75rem' : '2.25rem',
             mt: density !== 'compact' ? '-0.25rem' : undefined,
-            ...(iconButtonProps?.sx instanceof Function
-              ? iconButtonProps?.sx(theme)
-              : (iconButtonProps?.sx as any)),
+            ...(actionIconProps?.sx instanceof Function
+              ? actionIconProps?.sx(theme)
+              : (actionIconProps?.sx as any)),
           })}
           title={undefined}
         >

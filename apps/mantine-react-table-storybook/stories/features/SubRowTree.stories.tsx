@@ -68,9 +68,7 @@ export const SubRowTreeEnabledDefault: Story<MantineReactTableProps> = () => (
   <MantineReactTable columns={columns} data={data} enableExpanding />
 );
 
-export const SubRowTreeDisableExpandAll: Story<
-  MantineReactTableProps
-> = () => (
+export const SubRowTreeDisableExpandAll: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}

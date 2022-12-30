@@ -38,9 +38,9 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const DefaultTableHeadCellStyles: Story<
-  MantineReactTableProps
-> = () => <MantineReactTable columns={columns} data={data} />;
+export const DefaultTableHeadCellStyles: Story<MantineReactTableProps> = () => (
+  <MantineReactTable columns={columns} data={data} />
+);
 
 export const StyleAllMuiTableHeadCell: Story<MantineReactTableProps> = () => (
   <MantineReactTable

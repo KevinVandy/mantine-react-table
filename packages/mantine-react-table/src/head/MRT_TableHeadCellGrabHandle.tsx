@@ -68,7 +68,7 @@ export const MRT_TableHeadCellGrabHandle: FC<Props> = ({
 
   return (
     <MRT_GrabHandleButton
-      iconButtonProps={actionIconProps}
+      actionIconProps={actionIconProps}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       table={table}

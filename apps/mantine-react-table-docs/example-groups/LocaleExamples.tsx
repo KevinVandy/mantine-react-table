@@ -54,12 +54,18 @@ const TR_Table = dynamic(() => import('../examples/localization-i18n-tr'), {
 const VI_Table = dynamic(() => import('../examples/localization-i18n-vi'), {
   suspense: true,
 });
-const ZH_HANS_Table = dynamic( () => import('../examples/localization-i18n-zh-hans'), {
-  suspense: true,
-});
-const ZH_HANT_Table = dynamic( () => import('../examples/localization-i18n-zh-hant'), {
-  suspense: true,
-});
+const ZH_HANS_Table = dynamic(
+  () => import('../examples/localization-i18n-zh-hans'),
+  {
+    suspense: true,
+  },
+);
+const ZH_HANT_Table = dynamic(
+  () => import('../examples/localization-i18n-zh-hant'),
+  {
+    suspense: true,
+  },
+);
 
 const supportedLocales = [
   'cs',

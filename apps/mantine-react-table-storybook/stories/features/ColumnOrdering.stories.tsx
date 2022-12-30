@@ -106,7 +106,9 @@ export const ColumnOrderingWithPinning: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ColumnOrderingNoDragHandles: Story<MantineReactTableProps> = () => (
+export const ColumnOrderingNoDragHandles: Story<
+  MantineReactTableProps
+> = () => (
   <MantineReactTable
     columns={columns}
     data={data}

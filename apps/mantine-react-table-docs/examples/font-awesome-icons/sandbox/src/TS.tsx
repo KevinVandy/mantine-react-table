@@ -40,9 +40,7 @@ const fontAwesomeIcons: Partial<MRT_Icons> = {
   IconMenu2: () => <FontAwesomeIcon icon={faBars} />,
   IconMenu2: () => <FontAwesomeIcon icon={faBars} />,
   IconMenu: () => <FontAwesomeIcon icon={faGripLines} />,
-  IconFilter: (props: any) => (
-    <FontAwesomeIcon icon={faFilter} {...props} />
-  ),
+  IconFilter: (props: any) => <FontAwesomeIcon icon={faFilter} {...props} />,
   IconFilterOff: () => <FontAwesomeIcon icon={faFilterCircleXmark} />,
   IconMinimize: () => <FontAwesomeIcon icon={faCompress} />,
   IconMaximize: () => <FontAwesomeIcon icon={faExpand} />,

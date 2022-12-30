@@ -35,8 +35,12 @@ const withThemeProvider = (Story, context) => {
   const colorScheme = useDarkMode() ? 'dark' : 'light';
 
   return (
-    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={() => { }}>
-      <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={() => {}}>
+      <MantineProvider
+        theme={{ colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
         <ThemeProvider theme={defaultTheme}>
           <Text
             sx={{
@@ -60,7 +64,8 @@ const withThemeProvider = (Story, context) => {
             }}
           >
             View source code below in the story tab on Canvas or the Show Code
-            Button in Docs. Toggle dark and light mode in the toolbar buttons above.
+            Button in Docs. Toggle dark and light mode in the toolbar buttons
+            above.
           </Text>
           <Story {...context} />
         </ThemeProvider>

@@ -119,9 +119,7 @@ export const Aggregation: Story<MantineReactTableProps> = () => (
   <MantineReactTable columns={columns} data={data} enableGrouping />
 );
 
-export const AggregationExpandedDefault: Story<
-  MantineReactTableProps
-> = () => (
+export const AggregationExpandedDefault: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}

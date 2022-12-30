@@ -40,7 +40,8 @@ export const MRT_TableFooterRow: FC<Props> = ({
       : muiTableFooterRowProps;
 
   return (
-    <Box component="tr"
+    <Box
+      component="tr"
       {...tableRowProps}
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'flex' : 'table-row',

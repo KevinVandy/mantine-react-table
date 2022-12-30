@@ -1,22 +1,16 @@
 import React, { FC } from 'react';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import { BoxProps, Tooltip } from '@mantine/core';
-import { MRT_Header, MRT_TableInstance } from '..';
+import { ActionIcon, Tooltip } from '@mantine/core';
+import type { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {
   header: MRT_Header;
   table: MRT_TableInstance;
-  tableCellProps?: BoxProps;
 }
 
-export const MRT_TableHeadCellSortLabel: FC<Props> = ({
-  header,
-  table,
-  tableCellProps,
-}) => {
+export const MRT_TableHeadCellSortLabel: FC<Props> = ({ header, table }) => {
   const {
     options: {
-      icons: { IconArrowDown },
+      icons: { IconSortDescending, IconSortAscending, IconArrowsSort },
       localization,
     },
   } = table;
@@ -30,25 +24,26 @@ export const MRT_TableHeadCellSortLabel: FC<Props> = ({
     : localization.unsorted;
 
   return (
-    <Tooltip withArrow position="top" label={sortTooltip}>
-      <TableSortLabel
+    <Tooltip withinPortal withArrow position="top" label={sortTooltip}>
+      <ActionIcon
         aria-label={sortTooltip}
-        active={!!column.getIsSorted()}
-        direction={
-          column.getIsSorted()
-            ? (column.getIsSorted() as 'asc' | 'desc')
-            : undefined
-        }
+        size="xs"
         sx={{
-          flex: '0 0',
-          width: '2.3ch',
-          transform:
-            tableCellProps?.align !== 'right'
-              ? 'translateX(-0.5ch)'
-              : undefined,
+          opacity: column.getIsSorted() ? 1 : 0,
+          transition: 'opacity 150ms ease-in-out',
+          '&:hover': {
+            opacity: 1,
+          },
         }}
-        IconComponent={IconArrowDown}
-      />
+      >
+        {column.getIsSorted() === 'desc' ? (
+          <IconSortDescending />
+        ) : column.getIsSorted() === 'asc' ? (
+          <IconSortAscending />
+        ) : (
+          <IconArrowsSort />
+        )}
+      </ActionIcon>
     </Tooltip>
   );
 };

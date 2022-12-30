@@ -52,7 +52,7 @@ export type HTMLPropsRef<T extends HTMLElement> = Omit<
   ref?: MutableRefObject<T>;
 };
 
-type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
+export type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
 
 /**
  * Most of this file is just TypeScript types

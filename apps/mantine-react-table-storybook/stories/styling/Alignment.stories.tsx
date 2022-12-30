@@ -96,9 +96,7 @@ export const CenterCellsWithGrabHandleNoSorting: Story<
   />
 );
 
-export const CenterCellsNoColumnActions: Story<
-  MantineReactTableProps
-> = () => (
+export const CenterCellsNoColumnActions: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
