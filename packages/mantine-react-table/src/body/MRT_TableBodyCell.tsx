@@ -8,8 +8,8 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { Box, Skeleton } from '@mantine/core';
-import { darken, lighten, useTheme } from '@mui/material/styles';
+import { Box, Skeleton, useMantineTheme } from '@mantine/core';
+import { darken, lighten } from '../colorManipulator';
 import { MRT_EditCellTextField } from '../inputs/MRT_EditCellTextField';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyRowGrabHandle } from './MRT_TableBodyRowGrabHandle';
@@ -39,7 +39,7 @@ export const MRT_TableBodyCell: FC<Props> = ({
   table,
   virtualCell,
 }) => {
-  const theme = useTheme();
+  const theme = useMantineTheme();
   const {
     getState,
     options: {
@@ -110,9 +110,9 @@ export const MRT_TableBodyCell: FC<Props> = ({
   const draggingBorder = useMemo(
     () =>
       draggingColumn?.id === column.id
-        ? `1px dashed ${theme.palette.text.secondary}`
+        ? `1px dashed ${theme.colors.gray[7]}`
         : hoveredColumn?.id === column.id
-        ? `2px dashed ${theme.palette.primary.main}`
+        ? `2px dashed ${theme.primaryColor}`
         : undefined,
     [draggingColumn, hoveredColumn],
   );

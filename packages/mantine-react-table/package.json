@@ -59,7 +59,6 @@
     "@emotion/styled": "^11.10.5",
     "@mantine/core": "^5.9.5",
     "@mantine/hooks": "^5.9.5",
-    "@mantine/modals": "^5.9.5",
     "@mui/material": "^5.11.1",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-node-resolve": "^15.0.1",

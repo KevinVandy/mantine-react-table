@@ -1,5 +1,5 @@
 import React, { DragEvent, useEffect } from 'react';
-import { alpha } from '@mui/material/styles';
+import { alpha} from '../colorManipulator';
 import { Flex, Text, Transition } from '@mantine/core';
 import { MRT_TableInstance } from '..';
 

@@ -6,7 +6,7 @@ import type {
 import { MRT_AggregationFns } from './aggregationFns';
 import { MRT_FilterFns } from './filterFns';
 import { MRT_SortingFns } from './sortingFns';
-import { alpha, lighten } from '@mui/material/styles';
+import { alpha, lighten } from './colorManipulator';
 import { BoxProps, MantineTheme } from '@mantine/core';
 import type {
   MantineReactTableProps,

@@ -1,6 +1,5 @@
 import React, { DragEvent, FC, ReactNode, useMemo } from 'react';
-import { Box, Flex, MantineTheme } from '@mantine/core';
-import { useTheme } from '@mui/material/styles';
+import { Box, Flex, MantineTheme, useMantineTheme } from '@mantine/core';
 import { MRT_TableHeadCellColumnActionsButton } from './MRT_TableHeadCellColumnActionsButton';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
@@ -16,7 +15,7 @@ interface Props {
 }
 
 export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
-  const theme = useTheme();
+  const theme = useMantineTheme();
   const {
     getState,
     options: {
@@ -81,9 +80,9 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
   const draggingBorder = useMemo(
     () =>
       draggingColumn?.id === column.id
-        ? `1px dashed ${theme.palette.text.secondary}`
+        ? `1px dashed ${theme.colors.gray[7]}`
         : hoveredColumn?.id === column.id
-        ? `2px dashed ${theme.palette.primary.main}`
+        ? `2px dashed ${theme.primaryColor}`
         : undefined,
     [draggingColumn, hoveredColumn],
   );
@@ -201,7 +200,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
               flexDirection:
                 tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
               overflow: columnDefType === 'data' ? 'hidden' : undefined,
-              pl:
+              paddingLeft:
                 tableCellProps?.align === 'center'
                   ? `${headerPL}rem`
                   : undefined,

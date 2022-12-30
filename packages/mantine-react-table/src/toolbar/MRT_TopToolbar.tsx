@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { Box, MantineTheme } from '@mantine/core';
+import { Box, Flex, MantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { lighten } from '@mui/material/styles';
+import { lighten } from '../colorManipulator';
 import { MRT_GlobalFilterTextField } from '../inputs/MRT_GlobalFilterTextField';
 import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
 import { MRT_TableInstance } from '..';
@@ -61,9 +61,7 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
       {...toolbarProps}
       ref={(ref: HTMLDivElement) => {
         topToolbarRef.current = ref;
-        // @ts-ignore
         if (toolbarProps?.ref) {
-          // @ts-ignore
           toolbarProps.ref.current = ref;
         }
       }}
@@ -87,11 +85,10 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
       {['both', 'top'].includes(positionToolbarDropZone ?? '') && (
         <MRT_ToolbarDropZone table={table} />
       )}
-      <Box
+      <Flex
         sx={{
           alignItems: 'flex-start',
           boxSizing: 'border-box',
-          display: 'flex',
           justifyContent: 'space-between',
           padding: '0.5rem',
           position: stackAlertBanner ? 'relative' : 'absolute',
@@ -105,9 +102,8 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
         )}
         {renderTopToolbarCustomActions?.({ table }) ?? <span />}
         {enableToolbarInternalActions ? (
-          <Box
+          <Flex
             sx={{
-              display: 'flex',
               flexWrap: 'wrap-reverse',
               justifyContent: 'flex-end',
             }}
@@ -116,14 +112,14 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
               <MRT_GlobalFilterTextField table={table} />
             )}
             <MRT_ToolbarInternalButtons table={table} />
-          </Box>
+          </Flex>
         ) : (
           enableGlobalFilter &&
           positionGlobalFilter === 'right' && (
             <MRT_GlobalFilterTextField table={table} />
           )
         )}
-      </Box>
+      </Flex>
       {enablePagination &&
         ['top', 'both'].includes(positionPagination ?? '') && (
           <MRT_TablePagination table={table} position="top" />

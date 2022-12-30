@@ -9,9 +9,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-// import { Box } from '@mantine/core';
-import Dialog from '@mui/material/Dialog';
-import Grow from '@mui/material/Grow';
+import { Modal } from '@mantine/core';
 import { MRT_ExpandAllButton } from '../buttons/MRT_ExpandAllButton';
 import { MRT_ExpandButton } from '../buttons/MRT_ExpandButton';
 import { MRT_ToggleRowActionMenuButton } from '../buttons/MRT_ToggleRowActionMenuButton';
@@ -314,7 +312,8 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
     setShowAlertBanner: props.onShowAlertBannerChange ?? setShowAlertBanner,
     setShowFilters: props.onShowFiltersChange ?? setShowFilters,
     setShowGlobalFilter: props.onShowGlobalFilterChange ?? setShowGlobalFilter,
-    setShowToolbarDropZone: props.onShowToolbarDropZoneChange ?? setShowToolbarDropZone,
+    setShowToolbarDropZone:
+      props.onShowToolbarDropZoneChange ?? setShowToolbarDropZone,
   } as MRT_TableInstance<TData>;
 
   if (props.tableInstanceRef) {
@@ -341,18 +340,21 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
 
   return (
     <>
-      <Dialog
-        // PaperComponent={Box}
-        TransitionComponent={!props.enableRowVirtualization ? Grow : undefined}
-        disablePortal
+      <Modal
         fullScreen
-        keepMounted={false}
         onClose={() => table.setIsFullScreen(false)}
-        open={table.getState().isFullScreen}
+        opened={table.getState().isFullScreen}
         transitionDuration={400}
+        withCloseButton={false}
+        withinPortal={false}
+        sx={{
+          '& .mantine-Modal-modal': {
+            padding: 0,
+          },
+        }}
       >
         <MRT_TablePaper table={table as any} />
-      </Dialog>
+      </Modal>
       {!table.getState().isFullScreen && (
         <MRT_TablePaper table={table as any} />
       )}

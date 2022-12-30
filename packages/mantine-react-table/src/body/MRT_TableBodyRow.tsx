@@ -1,6 +1,6 @@
 import React, { DragEvent, FC, memo, useMemo, useRef } from 'react';
-import { Box } from '@mantine/core';
-import { darken, lighten, useTheme } from '@mui/material/styles';
+import { Box, useMantineTheme } from '@mantine/core';
+import { darken, lighten } from '../colorManipulator';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
@@ -31,7 +31,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
   virtualPaddingRight,
   virtualRow,
 }) => {
-  const theme = useTheme();
+  const theme = useMantineTheme();
   const {
     getIsSomeColumnsPinned,
     getState,
@@ -63,9 +63,9 @@ export const MRT_TableBodyRow: FC<Props> = ({
   const draggingBorder = useMemo(
     () =>
       draggingRow?.id === row.id
-        ? `1px dashed ${theme.palette.text.secondary}`
+        ? `1px dashed ${theme.colors.gray[7]}`
         : hoveredRow?.id === row.id
-        ? `2px dashed ${theme.palette.primary.main}`
+        ? `2px dashed ${theme.primaryColor}`
         : undefined,
     [draggingRow, hoveredRow],
   );
@@ -79,7 +79,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
   return (
     <>
       <Box
-        component='tr'
+        component="tr"
         data-index={virtualRow?.index}
         onDragEnter={handleDragEnter}
         // selected={row.getIsSelected()}

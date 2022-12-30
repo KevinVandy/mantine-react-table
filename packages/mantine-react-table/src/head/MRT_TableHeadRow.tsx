@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Box } from '@mantine/core';
-import { alpha, lighten } from '@mui/material/styles';
+import { alpha, lighten } from '../colorManipulator';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Header, MRT_HeaderGroup, MRT_TableInstance } from '..';

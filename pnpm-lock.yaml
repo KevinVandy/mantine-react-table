@@ -21,7 +21,6 @@ importers:
       '@fortawesome/react-fontawesome': ^0.2.0
       '@mantine/core': ^5.9.5
       '@mantine/hooks': ^5.9.5
-      '@mantine/modals': ^5.9.5
       '@mdx-js/loader': ^2.2.1
       '@mdx-js/react': ^2.2.1
       '@mui/icons-material': ^5.11.0
@@ -59,7 +58,6 @@ importers:
       '@fortawesome/react-fontawesome': 0.2.0_z27bm67dtmuyyvss23ckjdrcuy
       '@mantine/core': 5.9.5_hzg3oku4uxnt5crkeceagoktyy
       '@mantine/hooks': 5.9.5_react@18.2.0
-      '@mantine/modals': 5.9.5_h4zmljtfubfbwzvuu4gizrlimy
       '@mdx-js/loader': 2.2.1
       '@mdx-js/react': 2.2.1_react@18.2.0
       '@mui/icons-material': 5.11.0_q2xbhzmvmqgan5d7ygs6qjfrou
@@ -98,7 +96,6 @@ importers:
       '@faker-js/faker': ^7.6.0
       '@mantine/core': ^5.9.5
       '@mantine/hooks': ^5.9.5
-      '@mantine/modals': ^5.9.5
       '@mui/icons-material': ^5.11.0
       '@mui/material': ^5.11.1
       '@storybook/addon-a11y': ^6.5.15
@@ -131,7 +128,6 @@ importers:
       '@faker-js/faker': 7.6.0
       '@mantine/core': 5.9.5_hzg3oku4uxnt5crkeceagoktyy
       '@mantine/hooks': 5.9.5_react@18.2.0
-      '@mantine/modals': 5.9.5_h4zmljtfubfbwzvuu4gizrlimy
       '@mui/icons-material': 5.11.0_q2xbhzmvmqgan5d7ygs6qjfrou
       '@mui/material': 5.11.1_lskpmcsdi7ipu6qpuapyu56ihm
       '@tabler/icons': 1.118.0_biqbaboplfbrettd7655fr4n2y
@@ -170,7 +166,6 @@ importers:
       '@emotion/styled': ^11.10.5
       '@mantine/core': ^5.9.5
       '@mantine/hooks': ^5.9.5
-      '@mantine/modals': ^5.9.5
       '@mui/material': ^5.11.1
       '@rollup/plugin-babel': ^6.0.3
       '@rollup/plugin-node-resolve': ^15.0.1
@@ -208,7 +203,6 @@ importers:
       '@emotion/styled': 11.10.5_pwtpayi7py7ecifctvjbac33ee
       '@mantine/core': 5.9.5_hzg3oku4uxnt5crkeceagoktyy
       '@mantine/hooks': 5.9.5_react@18.2.0
-      '@mantine/modals': 5.9.5_h4zmljtfubfbwzvuu4gizrlimy
       '@mui/material': 5.11.1_lskpmcsdi7ipu6qpuapyu56ihm
       '@rollup/plugin-babel': 6.0.3_quedi3p7womesqmjrcxptomfpa
       '@rollup/plugin-node-resolve': 15.0.1_rollup@2.79.1
@@ -2473,20 +2467,6 @@ packages:
       react: '>=16.8.0'
     dependencies:
       react: 18.2.0
-
-  /@mantine/modals/5.9.5_h4zmljtfubfbwzvuu4gizrlimy:
-    resolution: {integrity: sha512-ZVtvzHCyjkkztWhz3gkbsX8wdm7j0lN8dAaF51xvQHs9eZPgP5gXzyGpqeU23trk8O+4b6nY/TT2+5amJ/SKrQ==}
-    peerDependencies:
-      '@mantine/core': 5.9.5
-      '@mantine/hooks': 5.9.5
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@mantine/core': 5.9.5_hzg3oku4uxnt5crkeceagoktyy
-      '@mantine/hooks': 5.9.5_react@18.2.0
-      '@mantine/utils': 5.9.5_react@18.2.0
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
 
   /@mantine/styles/5.9.5_sogmqz4enknxtkxk3k5s6bqwnq:
     resolution: {integrity: sha512-Rixu60eVS9aP8ugTM0Yoc5MpXXsfemRlu2PDZGL0fhcOyUYHi5mXvlhgxqrET3zkFrBJ+PHuPLQBgBimffGqiw==}

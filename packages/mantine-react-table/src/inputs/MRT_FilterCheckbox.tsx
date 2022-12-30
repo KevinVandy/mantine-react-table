@@ -1,8 +1,5 @@
 import React, { FC } from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { Tooltip } from '@mantine/core';
-import type { CheckboxProps } from '@mui/material/Checkbox';
+import { Checkbox, CheckboxProps, Tooltip } from '@mantine/core';
 import type { MRT_Column, MRT_TableInstance } from '..';
 
 interface Props {
@@ -48,46 +45,37 @@ export const MRT_FilterCheckbox: FC<Props> = ({ column, table }) => {
     <Tooltip
       withArrow
       openDelay={1000}
-      
       label={checkboxProps?.title ?? filterLabel}
     >
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={column.getFilterValue() === 'true'}
-            indeterminate={column.getFilterValue() === undefined}
-            color={
-              column.getFilterValue() === undefined ? 'default' : 'primary'
-            }
-            size={density === 'compact' ? 'small' : 'medium'}
-            {...checkboxProps}
-            onClick={(e) => {
-              e.stopPropagation();
-              checkboxProps?.onClick?.(e);
-            }}
-            onChange={(e, checked) => {
-              column.setFilterValue(
-                column.getFilterValue() === undefined
-                  ? 'true'
-                  : column.getFilterValue() === 'true'
-                  ? 'false'
-                  : undefined,
-              );
-              checkboxProps?.onChange?.(e, checked);
-            }}
-            sx={(theme) => ({
-              height: '2.5rem',
-              width: '2.5rem',
-              ...(checkboxProps?.sx instanceof Function
-                ? checkboxProps.sx(theme)
-                : (checkboxProps?.sx as any)),
-            })}
-          />
-        }
-        disableTypography
+      <Checkbox
+        checked={column.getFilterValue() === 'true'}
+        indeterminate={column.getFilterValue() === undefined}
+        color={column.getFilterValue() === undefined ? 'default' : 'primary'}
+        size={density === 'compact' ? 'sm' : 'md'}
         label={checkboxProps.title ?? filterLabel}
-        sx={{ color: 'text.secondary', marginTop: '-4px', fontWeight: 'normal' }}
         title={undefined}
+        {...checkboxProps}
+        onClick={(e) => {
+          e.stopPropagation();
+          checkboxProps?.onClick?.(e);
+        }}
+        onChange={(e) => {
+          column.setFilterValue(
+            column.getFilterValue() === undefined
+              ? 'true'
+              : column.getFilterValue() === 'true'
+              ? 'false'
+              : undefined,
+          );
+          checkboxProps?.onChange?.(e);
+        }}
+        sx={(theme) => ({
+          height: '2.5rem',
+          width: '2.5rem',
+          ...(checkboxProps?.sx instanceof Function
+            ? checkboxProps.sx(theme)
+            : (checkboxProps?.sx as any)),
+        })}
       />
     </Tooltip>
   );

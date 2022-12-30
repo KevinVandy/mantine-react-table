@@ -5,10 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import Collapse from '@mui/material/Collapse';
-// import IconButton from '@mui/material/IconButton';
-// import InputAdornment from '@mui/material/InputAdornment';
-import { TextInput } from '@mantine/core';
+import { Collapse, TextInput } from '@mantine/core';
 import { debounce } from '@mui/material/utils';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { MRT_TableInstance } from '..';
@@ -32,7 +29,7 @@ export const MRT_GlobalFilterTextField = <
       manualFiltering,
       muiSearchTextFieldProps,
     },
-    // refs: { searchInputRef },
+    refs: { searchInputRef },
   } = table;
   const { globalFilter, showGlobalFilter } = getState();
 
@@ -75,12 +72,7 @@ export const MRT_GlobalFilterTextField = <
   }, [globalFilter]);
 
   return (
-    <Collapse
-      in={showGlobalFilter}
-      orientation="horizontal"
-      unmountOnExit
-      mountOnEnter
-    >
+    <Collapse in={showGlobalFilter}>
       <TextInput
         placeholder={localization.search}
         onChange={handleChange}
@@ -121,12 +113,15 @@ export const MRT_GlobalFilterTextField = <
         //   ),
         // }}
         {...textFieldProps}
-        // inputRef={(inputRef) => {
-        //   searchInputRef.current = inputRef;
-        //   if (textFieldProps?.inputRef) {
-        //     textFieldProps.inputRef = inputRef;
-        //   }
-        // }}
+        ref={(node) => {
+          if (node) {
+            searchInputRef.current = node;
+            if (textFieldProps?.ref) {
+              // @ts-ignore
+              textFieldProps.ref = node;
+            }
+          }
+        }}
       />
       <MRT_FilterOptionMenu
         anchorEl={anchorEl}

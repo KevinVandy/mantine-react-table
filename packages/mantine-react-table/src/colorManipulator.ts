@@ -1,24 +1,39 @@
+/**
+ * This particular source code was adapted from material-ui
+ * @link https://github.com/mui/material-ui/blob/master/packages/mui-system/src/colorManipulator.js
+ */
 
+/**
+ * Returns a number whose value is limited to the given range.
+ * @param {number} value The value to be clamped
+ * @param {number} min The lower boundary of the output range
+ * @param {number} max The upper boundary of the output range
+ * @returns {number} A number in the range [min, max]
+ */
 function clamp(value: number, min = 0, max = 1) {
   if (process.env.NODE_ENV !== 'production') {
     if (value < min || value > max) {
       console.error(
-        `MUI: The value provided ${value} is out of range [${min}, ${max}].`,
+        `The value provided ${value} is out of range [${min}, ${max}].`,
       );
     }
   }
-
   return Math.min(Math.max(min, value), max);
 }
 
+/**
+ * Converts a color from CSS hex format to CSS rgb format.
+ * @param {string} color - Hex color, i.e. #nnn or #nnnnnn
+ * @returns {string} A CSS rgb color string
+ */
+export function hexToRgb(color: `#${string}`) {
+  const colorValue = color.slice(1);
 
-export function hexToRgb(color: string) {
-  color = color.slice(1);
-
-  const re = new RegExp(`.{1,${color.length >= 6 ? 2 : 1}}`, 'g');
-  let colors = color.match(re);
+  const re = new RegExp(`.{1,${colorValue.length >= 6 ? 2 : 1}}`, 'g');
+  let colors = colorValue.match(re);
 
   if (colors && colors[0].length === 1) {
+    //@ts-ignore
     colors = colors.map((n) => n + n);
   }
 
@@ -33,6 +48,10 @@ export function hexToRgb(color: string) {
     : '';
 }
 
+function intToHex(int: number) {
+  const hex = int.toString(16);
+  return hex.length === 1 ? `0${hex}` : hex;
+}
 
 /**
  * Returns an object with the type and values of a color.
@@ -41,7 +60,7 @@ export function hexToRgb(color: string) {
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @returns {object} - A MUI color object: {type: string, values: number[]}
  */
-export function decomposeColor(color) {
+export function decomposeColor(color: any): any {
   // Idempotent
   if (color.type) {
     return color;
@@ -56,7 +75,7 @@ export function decomposeColor(color) {
 
   if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
     console.error(
-      'MUI: Unsupported `%s` color.\n' +
+      'Unsupported `%s` color.\n' +
         'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
       color,
     );
@@ -77,7 +96,7 @@ export function decomposeColor(color) {
       ) === -1
     ) {
       console.error(
-        'MUI: unsupported `%s` color space.\n' +
+        'Unsupported `%s` color space.\n' +
           'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
         colorSpace,
       );
@@ -85,7 +104,7 @@ export function decomposeColor(color) {
   } else {
     values = values.split(',');
   }
-  values = values.map((value) => parseFloat(value));
+  values = values.map((value: any) => parseFloat(value));
 
   return { type, values, colorSpace };
 }
@@ -97,13 +116,15 @@ export function decomposeColor(color) {
  * @param {array} color.values - [n,n,n] or [n,n,n,n]
  * @returns {string} A CSS color string
  */
-export function recomposeColor(color) {
+export function recomposeColor(color: any) {
   const { type, colorSpace } = color;
   let { values } = color;
 
   if (type.indexOf('rgb') !== -1) {
     // Only convert the first 3 values to int (i.e. not alpha)
-    values = values.map((n, i) => (i < 3 ? parseInt(n, 10) : n));
+    values = values.map((n: string, i: number) =>
+      i < 3 ? parseInt(n, 10) : n,
+    );
   } else if (type.indexOf('hsl') !== -1) {
     values[1] = `${values[1]}%`;
     values[2] = `${values[2]}%`;
@@ -122,7 +143,7 @@ export function recomposeColor(color) {
  * @param {string} color - RGB color, i.e. rgb(n, n, n)
  * @returns {string} A CSS rgb color string, i.e. #nnnnnn
  */
-export function rgbToHex(color) {
+export function rgbToHex(color: string) {
   // Idempotent
   if (color.indexOf('#') === 0) {
     return color;
@@ -130,23 +151,23 @@ export function rgbToHex(color) {
 
   const { values } = decomposeColor(color);
   return `#${values
-    .map((n, i) => intToHex(i === 3 ? Math.round(255 * n) : n))
+    .map((n: number, i: number) => intToHex(i === 3 ? Math.round(255 * n) : n))
     .join('')}`;
 }
 
 /**
  * Converts a color from hsl format to rgb format.
- * @param {string} color - HSL color values
+ * @param {string} decomposedColor - HSL color values
  * @returns {string} rgb color values
  */
-export function hslToRgb(color) {
-  color = decomposeColor(color);
-  const { values } = color;
+export function hslToRgb(color: string) {
+  const decomposedColor = decomposeColor(color);
+  const { values } = decomposedColor;
   const h = values[0];
   const s = values[1] / 100;
   const l = values[2] / 100;
   const a = s * Math.min(l, 1 - l);
-  const f = (n, k = (n + h / 30) % 12) =>
+  const f = (n: number, k = (n + h / 30) % 12) =>
     l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
 
   let type = 'rgb';
@@ -156,7 +177,7 @@ export function hslToRgb(color) {
     Math.round(f(4) * 255),
   ];
 
-  if (color.type === 'hsla') {
+  if (decomposedColor.type === 'hsla') {
     type += 'a';
     rgb.push(values[3]);
   }
@@ -171,7 +192,7 @@ export function hslToRgb(color) {
  * @param {number} value - value to set the alpha channel to in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function alpha(color, value) {
+export function alpha(color: any, value: number) {
   color = decomposeColor(color);
   value = clamp(value);
 
@@ -189,48 +210,51 @@ export function alpha(color, value) {
 
 /**
  * Darkens a color.
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
+ * @param {string} decomposedColor - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function darken(color, coefficient) {
-  color = decomposeColor(color);
+export function darken(color: string, coefficient: number) {
+  const decomposedColor = decomposeColor(color);
   coefficient = clamp(coefficient);
 
-  if (color.type.indexOf('hsl') !== -1) {
-    color.values[2] *= 1 - coefficient;
+  if (decomposedColor.type.indexOf('hsl') !== -1) {
+    decomposedColor.values[2] *= 1 - coefficient;
   } else if (
-    color.type.indexOf('rgb') !== -1 ||
-    color.type.indexOf('color') !== -1
+    decomposedColor.type.indexOf('rgb') !== -1 ||
+    decomposedColor.type.indexOf('color') !== -1
   ) {
     for (let i = 0; i < 3; i += 1) {
-      color.values[i] *= 1 - coefficient;
+      decomposedColor.values[i] *= 1 - coefficient;
     }
   }
-  return recomposeColor(color);
+  return recomposeColor(decomposedColor);
 }
 
 /**
  * Lightens a color.
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
+ * @param {string} decomposedColor - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function lighten(color, coefficient) {
-  color = decomposeColor(color);
+export function lighten(color: string, coefficient: number) {
+  const decomposedColor = decomposeColor(color);
   coefficient = clamp(coefficient);
 
-  if (color.type.indexOf('hsl') !== -1) {
-    color.values[2] += (100 - color.values[2]) * coefficient;
-  } else if (color.type.indexOf('rgb') !== -1) {
+  if (decomposedColor.type.indexOf('hsl') !== -1) {
+    decomposedColor.values[2] +=
+      (100 - decomposedColor.values[2]) * coefficient;
+  } else if (decomposedColor.type.indexOf('rgb') !== -1) {
     for (let i = 0; i < 3; i += 1) {
-      color.values[i] += (255 - color.values[i]) * coefficient;
+      decomposedColor.values[i] +=
+        (255 - decomposedColor.values[i]) * coefficient;
     }
-  } else if (color.type.indexOf('color') !== -1) {
+  } else if (decomposedColor.type.indexOf('color') !== -1) {
     for (let i = 0; i < 3; i += 1) {
-      color.values[i] += (1 - color.values[i]) * coefficient;
+      decomposedColor.values[i] +=
+        (1 - decomposedColor.values[i]) * coefficient;
     }
   }
 
-  return recomposeColor(color);
+  return recomposeColor(decomposedColor);
 }

@@ -30,9 +30,13 @@ export const MRT_LinearProgressBar: FC<Props> = ({ isTopToolbar, table }) => {
       }}
     >
       <Progress
+        animate
         aria-label="Loading"
         aria-busy="true"
-        sx={{ position: 'relative' }}
+        sx={{
+          position: 'relative',
+        }}
+        value={100}
         {...linearProgressProps}
       />
     </Collapse>

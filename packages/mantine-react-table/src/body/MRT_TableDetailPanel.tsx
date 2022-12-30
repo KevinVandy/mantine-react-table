@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Box, Collapse } from '@mantine/core';
-import { lighten } from '@mui/material/styles';
+import { lighten } from '../colorManipulator';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
