@@ -1,6 +1,6 @@
 import React, { DragEvent, FC, ReactNode, useMemo } from 'react';
 import { Box, Flex, MantineTheme, useMantineTheme } from '@mantine/core';
-import { MRT_TableHeadCellColumnActionsButton } from './MRT_TableHeadCellColumnActionsButton';
+import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
 import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
@@ -247,7 +247,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
                 />
               )}
               {showColumnActions && (
-                <MRT_TableHeadCellColumnActionsButton
+                <MRT_ColumnActionMenu
                   header={header}
                   table={table}
                 />

@@ -70,9 +70,9 @@ export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
                 });
                 event.stopPropagation();
               }}
-              size="xs"
+              size="sm"
               sx={{
-                opacity: 0.5,
+                opacity: column.getFilterValue() ? 1 : 0.5,
                 padding: '2px',
               }}
             >

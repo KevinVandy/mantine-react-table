@@ -5,15 +5,8 @@ import MantineReactTable, {
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { Button, MenuItem as MuiMenuItem, styled } from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ShareIcon from '@mui/icons-material/Share';
-
-const MenuItem = styled(MuiMenuItem)({
-  display: 'flex',
-  gap: '0.75rem',
-});
+import { Button, Menu } from '@mantine/core';
+import { IconShare, IconUser, IconTrash } from '@tabler/icons';
 
 const meta: Meta = {
   title: 'Features/Row Actions Examples',
@@ -57,34 +50,34 @@ export const RowActionsEnabled: Story<MantineReactTableProps> = () => (
     columns={columns}
     data={data}
     enableRowActions
-    renderRowActionMenuItems={({ row, closeMenu }) => [
-      <MenuItem
+    renderRowActionMenuItems={({ row }) => [
+      <Menu.Item
+        icon={<IconUser />}
         key={1}
         onClick={() => {
           console.info('View Profile', row);
-          closeMenu();
         }}
       >
-        <AccountCircleIcon /> View Profile
-      </MenuItem>,
-      <MenuItem
+        View Profile
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconTrash />}
         key={2}
         onClick={() => {
           console.info('Remove', row);
-          closeMenu();
         }}
       >
-        <DeleteIcon /> Remove
-      </MenuItem>,
-      <MenuItem
+        Remove
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconShare />}
         key={3}
         onClick={() => {
           console.info('Share', row);
-          closeMenu();
         }}
       >
-        <ShareIcon /> Share
-      </MenuItem>,
+        Share
+      </Menu.Item>,
     ]}
   />
 );
@@ -97,34 +90,34 @@ export const RowActionsAndEditingEnabled: Story<
     data={data}
     enableRowActions
     enableEditing
-    renderRowActionMenuItems={({ row, closeMenu }) => [
-      <MenuItem
+    renderRowActionMenuItems={({ row }) => [
+      <Menu.Item
+        icon={<IconUser />}
         key={1}
         onClick={() => {
           console.info('View Profile', row);
-          closeMenu();
         }}
       >
-        <AccountCircleIcon /> View Profile
-      </MenuItem>,
-      <MenuItem
+        View Profile
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconTrash />}
         key={2}
         onClick={() => {
           console.info('Remove', row);
-          closeMenu();
         }}
       >
-        <DeleteIcon /> Remove
-      </MenuItem>,
-      <MenuItem
+        Remove
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconShare />}
         key={3}
         onClick={() => {
           console.info('Share', row);
-          closeMenu();
         }}
       >
-        <ShareIcon /> Share
-      </MenuItem>,
+        Share
+      </Menu.Item>,
     ]}
   />
 );
@@ -136,34 +129,34 @@ export const RowActionsLastColumn: Story<MantineReactTableProps> = () => (
     enableRowActions
     initialState={{ density: 'compact' }}
     positionActionsColumn="last"
-    renderRowActionMenuItems={({ row, closeMenu }) => [
-      <MenuItem
+    renderRowActionMenuItems={({ row }) => [
+      <Menu.Item
+        icon={<IconUser />}
         key={1}
         onClick={() => {
           console.info('View Profile', row);
-          closeMenu();
         }}
       >
-        <AccountCircleIcon /> View Profile
-      </MenuItem>,
-      <MenuItem
+        View Profile
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconTrash />}
         key={2}
         onClick={() => {
           console.info('Remove', row);
-          closeMenu();
         }}
       >
-        <DeleteIcon /> Remove
-      </MenuItem>,
-      <MenuItem
+        Remove
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconShare />}
         key={3}
         onClick={() => {
           console.info('Share', row);
-          closeMenu();
         }}
       >
-        <ShareIcon /> Share
-      </MenuItem>,
+        Share
+      </Menu.Item>,
     ]}
   />
 );
@@ -176,7 +169,7 @@ export const CustomRowActionButtons: Story<MantineReactTableProps> = () => (
     renderRowActions={({ row }) => (
       <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '0.5rem' }}>
         <Button
-          variant="contained"
+          variant="filled"
           color="primary"
           onClick={() => {
             console.info('View Profile', row);
@@ -185,7 +178,7 @@ export const CustomRowActionButtons: Story<MantineReactTableProps> = () => (
           View
         </Button>
         <Button
-          variant="contained"
+          variant="filled"
           color="error"
           onClick={() => {
             console.info('Remove', row);
@@ -209,7 +202,7 @@ export const CustomRowActionButtonsLastColumn: Story<
     renderRowActions={({ row }) => (
       <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '0.5rem' }}>
         <Button
-          variant="contained"
+          variant="filled"
           color="primary"
           onClick={() => {
             console.info('View Profile', row);
@@ -218,7 +211,7 @@ export const CustomRowActionButtonsLastColumn: Story<
           View
         </Button>
         <Button
-          variant="contained"
+          variant="filled"
           color="error"
           onClick={() => {
             console.info('Remove', row);

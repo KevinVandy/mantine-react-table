@@ -494,11 +494,9 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         column: MRT_Column<TData>;
       }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
   renderColumnActionsMenuItems?: ({
-    closeMenu,
     column,
     table,
   }: {
-    closeMenu: () => void;
     column: MRT_Column<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode[];
@@ -1043,11 +1041,9 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     }) => ReactNode;
     renderColumnActionsMenuItems?: ({
       column,
-      closeMenu,
       table,
     }: {
       column: MRT_Column<TData>;
-      closeMenu: () => void;
       table: MRT_TableInstance<TData>;
     }) => ReactNode[];
     renderColumnFilterModeMenuItems?: ({
@@ -1078,11 +1074,9 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
       table: MRT_TableInstance<TData>;
     }) => ReactNode[];
     renderRowActionMenuItems?: ({
-      closeMenu,
       row,
       table,
     }: {
-      closeMenu: () => void;
       row: MRT_Row<TData>;
       table: MRT_TableInstance<TData>;
     }) => ReactNode[];

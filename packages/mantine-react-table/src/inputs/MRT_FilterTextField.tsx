@@ -7,15 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {
-  // ActionIcon,
-  // Box,
-  // Checkbox,
-  // Chip,
-  TextInput,
-  TextInputProps,
-  // Tooltip,
-} from '@mantine/core';
+import { ActionIcon, Flex, TextInput, Tooltip } from '@mantine/core';
 import { debounce } from '@mui/material/utils';
 import type { MRT_Header, MRT_TableInstance } from '..';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
@@ -33,9 +25,9 @@ export const MRT_FilterTextField: FC<Props> = ({
 }) => {
   const {
     options: {
-      // enableColumnFilterModes,
-      // columnFilterModeOptions,
-      // icons: { IconFilter, IconX },
+      enableColumnFilterModes,
+      columnFilterModeOptions,
+      icons: { IconFilter, IconX },
       localization,
       manualFiltering,
       muiTableHeadCellFilterTextFieldProps,
@@ -67,7 +59,7 @@ export const MRT_FilterTextField: FC<Props> = ({
   const textFieldProps = {
     ...mTableHeadCellFilterTextFieldProps,
     ...mcTableHeadCellFilterTextFieldProps,
-  } as TextInputProps;
+  };
 
   const isRangeFilter =
     columnDef.filterVariant === 'range' || rangeFilterIndex !== undefined;
@@ -94,14 +86,14 @@ export const MRT_FilterTextField: FC<Props> = ({
     : rangeFilterIndex === 1
     ? localization.max
     : '';
-  // const allowedColumnFilterOptions =
-  //   columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
-  // const showChangeModeButton =
-  //   enableColumnFilterModes &&
-  //   columnDef.enableColumnFilterModes !== false &&
-  //   !rangeFilterIndex &&
-  //   (allowedColumnFilterOptions === undefined ||
-  //     !!allowedColumnFilterOptions?.length);
+  const allowedColumnFilterOptions =
+    columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
+  const showChangeModeButton =
+    enableColumnFilterModes &&
+    columnDef.enableColumnFilterModes !== false &&
+    !rangeFilterIndex &&
+    (allowedColumnFilterOptions === undefined ||
+      !!allowedColumnFilterOptions?.length);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [filterValue, setFilterValue] = useState<string | string[]>(() =>
@@ -169,15 +161,22 @@ export const MRT_FilterTextField: FC<Props> = ({
   //   }));
   // };
 
-  // const handleFilterMenuOpen = (event: MouseEvent<HTMLElement>) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
+  const handleFilterMenuOpen = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isMounted.current && column.getFilterValue() === undefined) {
-      handleClear();
+    if (isMounted.current) {
+      const filterValue = column.getFilterValue();
+      if (filterValue === undefined) {
+        handleClear();
+      } else if (isRangeFilter && rangeFilterIndex !== undefined) {
+        setFilterValue((filterValue as [string, string])[rangeFilterIndex]);
+      } else {
+        setFilterValue(filterValue as string);
+      }
     }
     isMounted.current = true;
   }, [column.getFilterValue()]);
@@ -189,16 +188,22 @@ export const MRT_FilterTextField: FC<Props> = ({
   }
 
   return (
-    <>
+    <Flex>
+      {showChangeModeButton && (
+        <Tooltip withinPortal withArrow label={localization.changeFilterMode}>
+          <ActionIcon
+            aria-label={localization.changeFilterMode}
+            onClick={handleFilterMenuOpen}
+            size="sm"
+            sx={{ height: '1.75rem', width: '1.75rem' }}
+          >
+            <IconFilter />
+          </ActionIcon>
+        </Tooltip>
+      )}
       <TextInput
-        // inputProps={{
-        //   disabled: !!filterChipLabel,
-        //   sx: {
-        //     textOverflow: 'ellipsis',
-        //     width: filterChipLabel ? 0 : undefined,
-        //   },
-        //   title: filterPlaceholder,
-        // }}
+        disabled={!!filterChipLabel}
+        title={filterPlaceholder}
         // helperText={
         //   showChangeModeButton ? (
         //     <label>
@@ -230,56 +235,35 @@ export const MRT_FilterTextField: FC<Props> = ({
         onChange={handleChange}
         onClick={(e: MouseEvent<HTMLInputElement>) => e.stopPropagation()}
         // select={isSelectFilter || isMultiSelectFilter}
+        rightSection={
+          !filterChipLabel && filterValue?.toString()?.length ? (
+            <ActionIcon
+              aria-label={localization.clearFilter}
+              onClick={handleClear}
+              size="sm"
+              sx={{
+                '&:disabled': {
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                },
+              }}
+              title={localization.clearFilter ?? ''}
+            >
+              <IconX />
+            </ActionIcon>
+          ) : null
+        }
         value={filterValue}
-        variant="default"
-        // InputProps={{
-        //   startAdornment: showChangeModeButton ? (
-        //     <InputAdornment position="start">
-        //       <Tooltip withinPortal withArrow label={localization.changeFilterMode}>
-        //         <span>
-        //           <IconButton
-        //             aria-label={localization.changeFilterMode}
-        //             onClick={handleFilterMenuOpen}
-        //             size="small"
-        //             sx={{ height: '1.75rem', width: '1.75rem' }}
-        //           >
-        //             <IconFilter />
-        //           </IconButton>
-        //         </span>
-        //       </Tooltip>
-        //       {filterChipLabel && (
-        //         <Chip
-        //           onDelete={handleClearEmptyFilterChip}
-        //           label={filterChipLabel}
-        //         />
-        //       )}
-        //     </InputAdornment>
-        //   ) : null,
-        //   endAdornment: !filterChipLabel && (
-        //     <InputAdornment position="end">
-        //       <Tooltip withinPortal
-        //         withArrow
-        //         position="right"
-        //         label={localization.clearFilter ?? ''}
-        //       >
-        //         <span>
-        //           <IconButton
-        //             aria-label={localization.clearFilter}
-        //             disabled={!filterValue?.length}
-        //             onClick={handleClear}
-        //             size="small"
-        //             sx={{
-        //               height: '1.75rem',
-        //               width: '1.75rem',
-        //             }}
-        //           >
-        //             <IconX />
-        //           </IconButton>
-        //         </span>
-        //       </Tooltip>
-        //     </InputAdornment>
-        //   ),
-        // }}
+        variant="unstyled"
+        icon={
+          // filterChipLabel ? (
+          //   <Chip
+          //     onDelete={handleClearEmptyFilterChip}
+          //     label={filterChipLabel}
+          //   />
+          // ) :
+          null
+        }
         // SelectProps={{
         //   displayEmpty: true,
         //   multiple: isMultiSelectFilter,
@@ -316,22 +300,19 @@ export const MRT_FilterTextField: FC<Props> = ({
           if (node) {
             filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
               node;
-            // if (textFieldProps.ref) {
-            //   textFieldProps.ref = node;
-            // }
+            if (textFieldProps.ref) {
+              textFieldProps.ref.current = node;
+            }
           }
         }}
         sx={(theme) => ({
-          p: 0,
+          borderBottom: `2px solid ${theme.colors.gray[7]}`,
           minWidth: isRangeFilter
             ? '100px'
             : !filterChipLabel
             ? '120px'
             : 'auto',
           width: 'calc(100% + 4px)',
-          '& .MuiSelect-icon': {
-            mr: '1.5rem',
-          },
           ...(textFieldProps?.sx instanceof Function
             ? textFieldProps.sx(theme)
             : (textFieldProps?.sx as any)),
@@ -384,6 +365,6 @@ export const MRT_FilterTextField: FC<Props> = ({
         table={table}
         setFilterValue={setFilterValue}
       />
-    </>
+    </Flex>
   );
 };
