@@ -10,7 +10,7 @@ import { MRT_FilterOptionMenu } from './menus/MRT_FilterOptionMenu';
 import { MRT_GlobalFilterTextField } from './inputs/MRT_GlobalFilterTextField';
 import { MRT_ShowHideColumnsButton } from './buttons/MRT_ShowHideColumnsButton';
 import { MRT_TablePagination } from './toolbar/MRT_TablePagination';
-import { MRT_ToggleButtonFullScreen } from './buttons/MRT_ToggleButtonFullScreen';
+import { MRT_ToggleFullScreenButton } from './buttons/MRT_ToggleFullScreenButton';
 import { MRT_ToggleDensePaddingButton } from './buttons/MRT_ToggleDensePaddingButton';
 import { MRT_ToggleFiltersButton } from './buttons/MRT_ToggleFiltersButton';
 import { MRT_ToggleGlobalFilterButton } from './buttons/MRT_ToggleGlobalFilterButton';
@@ -25,7 +25,7 @@ export {
   MRT_GlobalFilterTextField,
   MRT_ShowHideColumnsButton,
   MRT_TablePagination,
-  MRT_ToggleButtonFullScreen,
+  MRT_ToggleFullScreenButton,
   MRT_ToggleDensePaddingButton,
   MRT_ToggleFiltersButton,
   MRT_ToggleGlobalFilterButton,

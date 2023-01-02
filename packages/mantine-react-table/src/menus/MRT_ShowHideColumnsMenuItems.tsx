@@ -5,12 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { Box } from '@mantine/core';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Switch from '@mui/material/Switch';
-import { Tooltip } from '@mantine/core';
-import Typography from '@mui/material/Typography';
+import { Box, Menu, Switch, Tooltip, Text } from '@mantine/core';
 import { MRT_ColumnPinningButtons } from '../buttons/MRT_ColumnPinningButtons';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
 import { reorderColumn } from '../column.utils';
@@ -89,21 +84,19 @@ export const MRT_ShowHideColumnsMenuItems = <
 
   return (
     <>
-      <MenuItem
-        disableRipple
+      <Menu.Item
         ref={menuItemRef as any}
         onDragEnter={handleDragEnter}
         sx={(theme) => ({
           alignItems: 'center',
           justifyContent: 'flex-start',
-          my: 0,
           opacity: isDragging ? 0.5 : 1,
           outline: isDragging
-            ? `1px dashed ${theme.palette.divider}`
+            ? `1px dashed ${theme.colors.gray[7]}`
             : hoveredColumn?.id === column.id
-            ? `2px dashed ${theme.palette.primary.main}`
+            ? `2px dashed ${theme.primaryColor}`
             : 'none',
-          pl: `${(column.depth + 0.5) * 2}rem`,
+          paddingLeft: `${(column.depth + 0.5) * 2}rem`,
           paddingTop: '6px',
           paddingBottom: '6px',
         })}
@@ -138,37 +131,27 @@ export const MRT_ShowHideColumnsMenuItems = <
               <Box sx={{ width: '70px' }} />
             ))}
           {enableHiding ? (
-            <FormControlLabel
-              componentsProps={{
-                typography: {
-                  sx: {
-                    mb: 0,
-                    opacity: columnDefType !== 'display' ? 1 : 0.5,
-                  },
-                },
-              }}
-              checked={switchChecked}
-              control={
-                <Tooltip
-                  withinPortal
-                  withArrow
-                  openDelay={1000}
-                  label={localization.toggleVisibility}
-                >
-                  <Switch />
-                </Tooltip>
-              }
-              disabled={(isSubMenu && switchChecked) || !column.getCanHide()}
-              label={columnDef.header}
-              onChange={() => handleToggleColumnHidden(column)}
-            />
+            <Tooltip
+              withinPortal
+              withArrow
+              openDelay={1000}
+              label={localization.toggleVisibility}
+            >
+              <Switch
+                checked={switchChecked}
+                disabled={(isSubMenu && switchChecked) || !column.getCanHide()}
+                label={columnDef.header}
+                onChange={() => handleToggleColumnHidden(column)}
+                sx={{
+                  cursor: 'pointer !important',
+                }}
+              />
+            </Tooltip>
           ) : (
-            <Typography sx={{ alignSelf: 'center' }}>
-              {columnDef.header}
-            </Typography>
+            <Text sx={{ alignSelf: 'center' }}>{columnDef.header}</Text>
           )}
         </Box>
-      </MenuItem>
+      </Menu.Item>
       {column.columns?.map((c: MRT_Column<TData>, i) => (
         <MRT_ShowHideColumnsMenuItems
           allColumns={allColumns}

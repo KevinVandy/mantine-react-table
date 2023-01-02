@@ -225,7 +225,6 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
                 alignItems: 'center',
                 display: 'flex',
                 gap: '2ch',
-                my: 0,
                 paddingTop: '6px',
                 paddingBottom: '6px',
               }}

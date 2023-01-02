@@ -71,8 +71,8 @@ export const MRT_TableDetailPanel: FC<Props> = ({
             : undefined,
           borderBottom: !row.getIsExpanded() ? 'none' : undefined,
           display: layoutMode === 'grid' ? 'flex' : 'table-cell',
-          pb: row.getIsExpanded() ? '1rem' : 0,
-          pt: row.getIsExpanded() ? '1rem' : 0,
+          paddingBottom: row.getIsExpanded() ? '1rem !important' : '0 !important',
+          paddingTop: row.getIsExpanded() ? '1rem !important' : '0 !important',
           transition: 'all 150ms ease-in-out',
           width: `${table.getTotalSize()}px`,
           ...(tableCellProps?.sx instanceof Function

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex } from '@mantine/core';
-import { MRT_ToggleButtonFullScreen } from '../buttons/MRT_ToggleButtonFullScreen';
+import { MRT_ToggleFullScreenButton } from '../buttons/MRT_ToggleFullScreenButton';
 import { MRT_ShowHideColumnsButton } from '../buttons/MRT_ShowHideColumnsButton';
 import { MRT_ToggleDensePaddingButton } from '../buttons/MRT_ToggleDensePaddingButton';
 import { MRT_ToggleFiltersButton } from '../buttons/MRT_ToggleFiltersButton';
@@ -58,7 +58,7 @@ export const MRT_ToolbarInternalButtons = <
             <MRT_ToggleDensePaddingButton table={table} />
           )}
           {enableFullScreenToggle && (
-            <MRT_ToggleButtonFullScreen table={table} />
+            <MRT_ToggleFullScreenButton table={table} />
           )}
         </>
       )}

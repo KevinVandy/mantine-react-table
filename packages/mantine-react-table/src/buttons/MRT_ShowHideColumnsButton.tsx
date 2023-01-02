@@ -1,5 +1,5 @@
-import React, { MouseEvent, useState } from 'react';
-import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
+import React from 'react';
+import { ActionIcon, ActionIconProps, Menu, Tooltip } from '@mantine/core';
 import { MRT_ShowHideColumnsMenu } from '../menus/MRT_ShowHideColumnsMenu';
 import type { HTMLPropsRef, MRT_TableInstance } from '..';
 
@@ -22,36 +22,24 @@ export const MRT_ShowHideColumnsButton = <
     },
   } = table;
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   return (
-    <>
+    <Menu closeOnItemClick={false}>
       <Tooltip
         withinPortal
         withArrow
         label={rest?.title ?? localization.showHideColumns}
       >
-        <ActionIcon
-          aria-label={localization.showHideColumns}
-          onClick={handleClick}
-          size="lg"
-          {...rest}
-          title={undefined}
-        >
-          <IconColumns />
-        </ActionIcon>
+        <Menu.Target>
+          <ActionIcon
+            aria-label={localization.showHideColumns}
+            size="lg"
+            {...rest}
+          >
+            <IconColumns />
+          </ActionIcon>
+        </Menu.Target>
       </Tooltip>
-      {anchorEl && (
-        <MRT_ShowHideColumnsMenu
-          anchorEl={anchorEl}
-          setAnchorEl={setAnchorEl}
-          table={table}
-        />
-      )}
-    </>
+      <MRT_ShowHideColumnsMenu table={table} />
+    </Menu>
   );
 };

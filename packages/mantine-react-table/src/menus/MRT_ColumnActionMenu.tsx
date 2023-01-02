@@ -1,8 +1,5 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { ActionIcon, Menu, Tooltip } from '@mantine/core';
-
-import { MRT_FilterOptionMenu } from './MRT_FilterOptionMenu';
-import { MRT_ShowHideColumnsMenu } from './MRT_ShowHideColumnsMenu';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
 export const commonListItemStyles = {
@@ -21,8 +18,6 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
     toggleAllColumnsVisible,
     setColumnOrder,
     options: {
-      columnFilterModeOptions,
-      enableColumnFilterModes,
       enableColumnFilters,
       enableColumnResizing,
       enableGrouping,
@@ -32,7 +27,6 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
       icons: {
         IconArrowAutofitContent,
         IconBoxMultiple,
-        IconCaretRight,
         IconClearAll,
         IconColumns,
         IconDotsVertical,
@@ -72,11 +66,6 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
     ...mTableHeadCellColumnActionsButtonProps,
     ...mcTableHeadCellColumnActionsButtonProps,
   };
-
-  const [filterMenuAnchorEl, setFilterMenuAnchorEl] =
-    useState<null | HTMLElement>(null);
-  const [showHideColumnsMenuAnchorEl, setShowHideColumnsMenuAnchorEl] =
-    useState<null | HTMLElement>(null);
 
   const handleClearSort = () => {
     column.clearSorting();
@@ -120,30 +109,6 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
     toggleAllColumnsVisible(true);
   };
 
-  const handleOpenFilterModeMenu = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-    setFilterMenuAnchorEl(event.currentTarget);
-  };
-
-  const handleOpenShowHideColumnsMenu = (
-    event: React.MouseEvent<HTMLElement>,
-  ) => {
-    event.stopPropagation();
-    setShowHideColumnsMenuAnchorEl(event.currentTarget);
-  };
-
-  const isSelectFilter = !!columnDef.filterSelectOptions;
-
-  const allowedColumnFilterOptions =
-    columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
-
-  const showFilterModeSubMenu =
-    enableColumnFilterModes &&
-    columnDef.enableColumnFilterModes !== false &&
-    !isSelectFilter &&
-    (allowedColumnFilterOptions === undefined ||
-      !!allowedColumnFilterOptions?.length);
-
   return (
     <Menu closeOnItemClick withinPortal>
       <Tooltip
@@ -182,30 +147,27 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
             column,
             table,
           }) ??
-          (enableSorting &&
-            column.getCanSort() && [
+          (enableSorting && column.getCanSort() && (
+            <>
               <Menu.Item
                 disabled={!column.getIsSorted()}
                 icon={<IconClearAll />}
-                key={0}
                 onClick={handleClearSort}
               >
                 {localization.clearSort}
-              </Menu.Item>,
+              </Menu.Item>
               <Menu.Item
                 disabled={column.getIsSorted() === 'asc'}
                 icon={<IconSortAscending />}
-                key={1}
                 onClick={handleSortAsc}
               >
                 {localization.sortByColumnAsc?.replace(
                   '{column}',
                   String(columnDef.header),
                 )}
-              </Menu.Item>,
+              </Menu.Item>
               <Menu.Item
                 icon={<IconSortDescending />}
-                key={2}
                 disabled={column.getIsSorted() === 'desc'}
                 onClick={handleSortDesc}
               >
@@ -213,149 +175,105 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
                   '{column}',
                   String(columnDef.header),
                 )}
-              </Menu.Item>,
-              (enableColumnFilters || enableGrouping || enableHiding) && (
+              </Menu.Item>
+              {(enableColumnFilters || enableGrouping || enableHiding) && (
                 <Menu.Divider key={3} />
-              ),
-            ])}
-        {enableColumnFilters &&
-          column.getCanFilter() &&
-          [
+              )}
+            </>
+          ))}
+        {enableColumnFilters && column.getCanFilter() && (
+          <>
             <Menu.Item
               disabled={!column.getFilterValue()}
               icon={<IconFilterOff />}
-              key={0}
               onClick={handleClearFilter}
             >
               {localization.clearFilter}
-            </Menu.Item>,
-            <Menu.Item
-              icon={<IconFilter />}
-              key={1}
-              onClick={handleFilterByColumn}
-            >
+            </Menu.Item>
+            <Menu.Item icon={<IconFilter />} onClick={handleFilterByColumn}>
               {localization.filterByColumn?.replace(
                 '{column}',
                 String(columnDef.header),
               )}
-              {showFilterModeSubMenu && (
-                <ActionIcon
-                  onClick={handleOpenFilterModeMenu}
-                  onMouseEnter={handleOpenFilterModeMenu}
-                  size="sm"
-                  sx={{ p: 0 }}
-                >
-                  <IconCaretRight />
-                </ActionIcon>
-              )}
-            </Menu.Item>,
-            enableGrouping || (enableHiding && <Menu.Divider key={2} />),
-            showFilterModeSubMenu && (
-              <MRT_FilterOptionMenu
-                anchorEl={filterMenuAnchorEl}
-                header={header}
-                key={3}
-                onSelect={handleFilterByColumn}
-                setAnchorEl={setFilterMenuAnchorEl}
-                table={table}
-              />
-            ),
-          ].filter(Boolean)}
-        {enableGrouping &&
-          column.getCanGroup() && [
-            <Menu.Item
-              icon={<IconBoxMultiple />}
-              key={0}
-              onClick={handleGroupByColumn}
-            >
+            </Menu.Item>
+            {(enableGrouping || enableHiding) && <Menu.Divider key={2} />}
+          </>
+        )}
+        {enableGrouping && column.getCanGroup() && (
+          <>
+            <Menu.Item icon={<IconBoxMultiple />} onClick={handleGroupByColumn}>
               {localization[
                 column.getIsGrouped() ? 'ungroupByColumn' : 'groupByColumn'
               ]?.replace('{column}', String(columnDef.header))}
-            </Menu.Item>,
-            enablePinning && <Menu.Divider key={2} />,
-          ]}
-        {enablePinning &&
-          column.getCanPin() && [
+            </Menu.Item>
+            {enablePinning && <Menu.Divider />}
+          </>
+        )}
+        {enablePinning && column.getCanPin() && (
+          <>
             <Menu.Item
               disabled={column.getIsPinned() === 'left' || !column.getCanPin()}
               icon={<IconPinned style={{ transform: 'rotate(90deg)' }} />}
-              key={0}
               onClick={() => handlePinColumn('left')}
             >
               {localization.pinToLeft}
-            </Menu.Item>,
+            </Menu.Item>
             <Menu.Item
               disabled={column.getIsPinned() === 'right' || !column.getCanPin()}
               icon={<IconPinned style={{ transform: 'rotate(-90deg)' }} />}
-              key={1}
               onClick={() => handlePinColumn('right')}
             >
               {localization.pinToRight}
-            </Menu.Item>,
+            </Menu.Item>
             <Menu.Item
               disabled={!column.getIsPinned()}
               icon={<IconPinnedOff />}
-              key={2}
               onClick={() => handlePinColumn(false)}
             >
               {localization.unpin}
-            </Menu.Item>,
-            enableHiding && <Menu.Divider key={2} />,
-          ]}
-        {enableColumnResizing &&
-          column.getCanResize() && [
-            <Menu.Item
-              disabled={!columnSizing[column.id]}
-              icon={<IconArrowAutofitContent />}
-              key={0}
-              onClick={handleResetColumnSize}
-            >
-              {localization.resetColumnSize}
-            </Menu.Item>,
-          ]}
-        {enableHiding && [
+            </Menu.Item>
+            {enableHiding && <Menu.Divider />}
+          </>
+        )}
+        {enableColumnResizing && column.getCanResize() && (
           <Menu.Item
-            disabled={!column.getCanHide()}
-            icon={<IconEyeOff />}
+            disabled={!columnSizing[column.id]}
+            icon={<IconArrowAutofitContent />}
             key={0}
-            onClick={handleHideColumn}
+            onClick={handleResetColumnSize}
           >
-            {localization.hideColumn?.replace(
-              '{column}',
-              String(columnDef.header),
-            )}
-          </Menu.Item>,
-          <Menu.Item
-            disabled={
-              !Object.values(columnVisibility).filter((visible) => !visible)
-                .length
-            }
-            icon={<IconColumns />}
-            key={1}
-            onClick={handleShowAllColumns}
-            rightSection={
-              <ActionIcon
-                onClick={handleOpenShowHideColumnsMenu}
-                onMouseEnter={handleOpenShowHideColumnsMenu}
-                size="sm"
-              >
-                <IconCaretRight />
-              </ActionIcon>
-            }
-          >
-            {localization.showAllColumns?.replace(
-              '{column}',
-              String(columnDef.header),
-            )}
-          </Menu.Item>,
-          <MRT_ShowHideColumnsMenu
-            anchorEl={showHideColumnsMenuAnchorEl}
-            isSubMenu
-            key={2}
-            setAnchorEl={setShowHideColumnsMenuAnchorEl}
-            table={table}
-          />,
-        ]}
+            {localization.resetColumnSize}
+          </Menu.Item>
+        )}
+        {enableHiding && (
+          <>
+            <Menu.Item
+              disabled={!column.getCanHide()}
+              icon={<IconEyeOff />}
+              key={0}
+              onClick={handleHideColumn}
+            >
+              {localization.hideColumn?.replace(
+                '{column}',
+                String(columnDef.header),
+              )}
+            </Menu.Item>
+            <Menu.Item
+              disabled={
+                !Object.values(columnVisibility).filter((visible) => !visible)
+                  .length
+              }
+              icon={<IconColumns />}
+              key={1}
+              onClick={handleShowAllColumns}
+            >
+              {localization.showAllColumns?.replace(
+                '{column}',
+                String(columnDef.header),
+              )}
+            </Menu.Item>
+          </>
+        )}
       </Menu.Dropdown>
     </Menu>
   );

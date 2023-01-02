@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import MantineReactTable, {
   MantineReactTableProps,
   MRT_ColumnDef,
-  MRT_FullScreenToggleButton,
+  MRT_ToggleFullScreenButton,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { Box, Button, IconButton, Tooltip, Typography } from '@mui/material';
@@ -99,7 +99,7 @@ export const CustomToolbarInternalActions: Story<
     renderToolbarInternalActions={({ table }) => {
       return (
         <>
-          <MRT_FullScreenToggleButton table={table} />
+          <MRT_ToggleFullScreenButton table={table} />
         </>
       );
     }}

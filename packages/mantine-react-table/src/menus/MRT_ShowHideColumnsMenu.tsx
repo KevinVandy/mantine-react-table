@@ -1,25 +1,18 @@
 import React, { useMemo, useState } from 'react';
-import { Box } from '@mantine/core';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import Menu from '@mui/material/Menu';
+import { Button, Divider, Flex, Menu } from '@mantine/core';
 import { MRT_ShowHideColumnsMenuItems } from './MRT_ShowHideColumnsMenuItems';
 import { getDefaultColumnOrderIds } from '../column.utils';
 import type { MRT_Column, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
-  anchorEl: HTMLElement | null;
   isSubMenu?: boolean;
-  setAnchorEl: (anchorEl: HTMLElement | null) => void;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_ShowHideColumnsMenu = <
   TData extends Record<string, any> = {},
 >({
-  anchorEl,
   isSubMenu,
-  setAnchorEl,
   table,
 }: Props<TData>) => {
   const {
@@ -40,7 +33,7 @@ export const MRT_ShowHideColumnsMenu = <
       localization,
     },
   } = table;
-  const { density, columnOrder, columnPinning } = getState();
+  const { columnOrder, columnPinning } = getState();
 
   const hideAllColumns = () => {
     getAllLeafColumns()
@@ -77,26 +70,19 @@ export const MRT_ShowHideColumnsMenu = <
   );
 
   return (
-    <Menu
-      anchorEl={anchorEl}
-      open={!!anchorEl}
-      onClose={() => setAnchorEl(null)}
-      MenuListProps={{
-        dense: density === 'compact',
-      }}
-    >
-      <Box
+    <Menu.Dropdown>
+      <Flex
         sx={{
-          display: 'flex',
           justifyContent: isSubMenu ? 'center' : 'space-between',
           padding: '0.5rem',
-          pt: 0,
+          gap: '0.5rem',
         }}
       >
         {!isSubMenu && enableHiding && (
           <Button
             disabled={!getIsSomeColumnsVisible()}
             onClick={hideAllColumns}
+            variant="subtle"
           >
             {localization.hideAll}
           </Button>
@@ -108,6 +94,7 @@ export const MRT_ShowHideColumnsMenu = <
                 getDefaultColumnOrderIds(table.options as any),
               )
             }
+            variant="subtle"
           >
             {localization.resetOrder}
           </Button>
@@ -116,6 +103,7 @@ export const MRT_ShowHideColumnsMenu = <
           <Button
             disabled={!getIsSomeColumnsPinned()}
             onClick={() => table.resetColumnPinning(true)}
+            variant="subtle"
           >
             {localization.unpinAll}
           </Button>
@@ -124,11 +112,12 @@ export const MRT_ShowHideColumnsMenu = <
           <Button
             disabled={getIsAllColumnsVisible()}
             onClick={() => toggleAllColumnsVisible(true)}
+            variant="subtle"
           >
             {localization.showAll}
           </Button>
         )}
-      </Box>
+      </Flex>
       <Divider />
       {allColumns.map((column, index) => (
         <MRT_ShowHideColumnsMenuItems
@@ -141,6 +130,6 @@ export const MRT_ShowHideColumnsMenu = <
           table={table}
         />
       ))}
-    </Menu>
+    </Menu.Dropdown>
   );
 };

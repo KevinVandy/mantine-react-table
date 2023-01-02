@@ -8,7 +8,7 @@ interface Props<TData extends Record<string, any> = {}>
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ToggleButtonFullScreen = <
+export const MRT_ToggleFullScreenButton = <
   TData extends Record<string, any> = {},
 >({
   table,

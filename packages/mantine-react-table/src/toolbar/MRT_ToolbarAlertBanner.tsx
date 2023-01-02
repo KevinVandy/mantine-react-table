@@ -80,9 +80,8 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           borderRadius: 0,
           fontSize: '1rem',
           left: 0,
-          p: 0,
           position: 'relative',
-          mb: stackAlertBanner
+          marginBottom: stackAlertBanner
             ? 0
             : positionToolbarAlertBanner === 'bottom'
             ? '-1rem'

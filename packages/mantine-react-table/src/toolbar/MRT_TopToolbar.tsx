@@ -4,11 +4,11 @@ import { useMediaQuery } from '@mantine/hooks';
 import { lighten } from '../colorManipulator';
 import { MRT_GlobalFilterTextField } from '../inputs/MRT_GlobalFilterTextField';
 import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
-import type { MRT_TableInstance } from '..';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
+import type { MRT_TableInstance } from '..';
 
 export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   alignItems: 'flex-start',
