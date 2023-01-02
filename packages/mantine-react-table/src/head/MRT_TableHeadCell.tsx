@@ -30,11 +30,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
     refs: { tableHeadCellRefs },
     setHoveredColumn,
   } = table;
-  const {
-    draggingColumn,
-    grouping,
-    hoveredColumn,
-  } = getState();
+  const { draggingColumn, grouping, hoveredColumn } = getState();
   const { column } = header;
   const { columnDef } = column;
   const { columnDefType } = columnDef;
@@ -224,10 +220,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
                 />
               )}
               {showColumnActions && (
-                <MRT_ColumnActionMenu
-                  header={header}
-                  table={table}
-                />
+                <MRT_ColumnActionMenu header={header} table={table} />
               )}
             </Flex>
           )}

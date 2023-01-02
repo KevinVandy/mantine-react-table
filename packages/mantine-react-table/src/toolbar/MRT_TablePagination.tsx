@@ -60,11 +60,13 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
         onChange={(value: string) => setPageSize(+value)}
         value={pageSize.toString()}
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
+          '@media (min-width: 720px)': {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          },
           '& .mantine-Select-input': {
-            width: '80px',
+            width: '90px',
           },
         }}
       />

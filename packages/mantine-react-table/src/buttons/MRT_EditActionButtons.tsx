@@ -74,7 +74,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
         </>
       ) : (
         <>
-          <Button onClick={handleCancel}>{localization.cancel}</Button>
+          <Button onClick={handleCancel} variant="subtle">{localization.cancel}</Button>
           <Button onClick={handleSave} variant="filled">
             {localization.save}
           </Button>

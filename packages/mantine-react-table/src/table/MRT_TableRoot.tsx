@@ -77,9 +77,7 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
   const [columnOrder, setColumnOrder] = useState(
     initialState.columnOrder ?? [],
   );
-  const [density, setDensity] = useState(
-    initialState?.density ?? 'md',
-  );
+  const [density, setDensity] = useState(initialState?.density ?? 'md');
   const [draggingColumn, setDraggingColumn] =
     useState<MRT_Column<TData> | null>(initialState.draggingColumn ?? null);
   const [draggingRow, setDraggingRow] = useState<MRT_Row<TData> | null>(

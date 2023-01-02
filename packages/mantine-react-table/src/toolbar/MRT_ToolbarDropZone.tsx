@@ -47,9 +47,9 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
             ),
             border: `dashed ${theme.colors.blue[7]} 2px`,
             justifyContent: 'center',
-            height: 'calc(100% - 4px)',
+            height: 'calc(100% - 2px)',
             position: 'absolute',
-            width: 'calc(100% - 4px)',
+            width: 'calc(100% - 2px)',
             zIndex: 2,
           })}
           onDragEnter={handleDragEnter}

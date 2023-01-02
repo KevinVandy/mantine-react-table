@@ -1,9 +1,4 @@
-import React, {
-  ChangeEvent,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@mantine/core';
 import { debounce } from '@mui/material/utils';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';

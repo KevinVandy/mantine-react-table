@@ -35,7 +35,7 @@ const withThemeProvider = (Story, context) => {
   const colorScheme = useDarkMode() ? 'dark' : 'light';
 
   return (
-    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={() => { }}>
+    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={() => {}}>
       <MantineProvider
         theme={{ colorScheme }}
         withGlobalStyles

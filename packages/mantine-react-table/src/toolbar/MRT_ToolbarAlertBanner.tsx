@@ -16,6 +16,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
     getSelectedRowModel,
     getState,
     options: {
+      icons: { IconX },
       localization,
       muiToolbarAlertBannerProps,
       muiToolbarAlertBannerChipProps,
@@ -60,7 +61,8 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
               sx={{ paddingLeft: '1ch' }}
               {...chipProps}
             >
-              {table.getColumn(columnId).columnDef.header}
+              {table.getColumn(columnId).columnDef.header}{' '}
+              <IconX size="12pt" style={{ transform: 'translate(6px, 3px)' }} />
             </Chip>
           </Fragment>
         ))}

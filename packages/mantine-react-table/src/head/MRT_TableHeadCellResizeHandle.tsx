@@ -43,7 +43,7 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
           : undefined,
       }}
     >
-      <Divider 
+      <Divider
         orientation="vertical"
         size="lg"
         sx={{

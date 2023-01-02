@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Modal, Stack, Text } from '@mantine/core';
+import { Flex, Modal, Stack, Text } from '@mantine/core';
 import { MRT_EditActionButtons } from '../buttons/MRT_EditActionButtons';
 import { MRT_EditCellTextField } from '../inputs/MRT_EditCellTextField';
 import type { MRT_Row, MRT_TableInstance } from '..';
@@ -16,17 +16,25 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
   table,
 }: Props<TData>) => {
   const {
-    options: { localization },
+    options: { localization, onEditingRowCancel },
+    setEditingRow,
   } = table;
 
   return (
-    <Modal onClose={() => {}} withCloseButton={false} opened={open}>
+    <Modal
+      closeOnClickOutside={false}
+      onClose={() => {
+        onEditingRowCancel?.({ row, table });
+        setEditingRow(null);
+      }}
+      opened={open}
+      withCloseButton={false}
+    >
       <Text sx={{ textAlign: 'center' }}>{localization.edit}</Text>
       <form onSubmit={(e) => e.preventDefault()}>
         <Stack
           sx={{
             gap: '1.5rem',
-            minWidth: { xs: '300px', sm: '360px', md: '400px' },
             paddingTop: '1rem',
             width: '100%',
           }}
