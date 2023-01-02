@@ -36,7 +36,7 @@ const Example = () => {
       columns={columns}
       data={data}
       enableDensityToggle={false}
-      initialState={{ density: 'compact' }}
+      initialState={{ density: 'xs' }}
     />
   );
 };

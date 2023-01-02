@@ -3,7 +3,6 @@ import {
   IconArrowDown,
   IconArrowsSort,
   IconBoxMultiple,
-  IconCaretRight,
   IconChevronDown,
   IconChevronUp,
   IconChevronsDown,
@@ -37,7 +36,6 @@ export interface MRT_Icons {
   IconArrowDown: any;
   IconArrowsSort: any;
   IconBoxMultiple: any;
-  IconCaretRight: any;
   IconChevronDown: any;
   IconChevronUp: any;
   IconChevronsDown: any;
@@ -71,7 +69,6 @@ export const MRT_Default_Icons: MRT_Icons = {
   IconArrowDown,
   IconArrowsSort,
   IconBoxMultiple,
-  IconCaretRight,
   IconChevronDown,
   IconChevronUp,
   IconChevronsDown,

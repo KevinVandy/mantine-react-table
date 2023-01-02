@@ -34,6 +34,7 @@ export const MRT_ShowHideColumnsButton = <
             aria-label={localization.showHideColumns}
             size="lg"
             {...rest}
+            title={undefined}
           >
             <IconColumns />
           </ActionIcon>

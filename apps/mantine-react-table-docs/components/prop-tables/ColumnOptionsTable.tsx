@@ -159,7 +159,7 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
       enableTopToolbar={!onlyProps}
       initialState={{
         columnVisibility: { required: false, description: false },
-        density: 'compact',
+        density: 'xs',
         showGlobalFilter: true,
         sorting: [
           { id: 'required', desc: true },

@@ -101,7 +101,7 @@ export const EnableRowVirtualizationDense: Story<
     enableRowNumbers
     enableRowVirtualization
     enableBottomToolbar={false}
-    initialState={{ density: 'compact' }}
+    initialState={{ density: 'xs' }}
   />
 );
 
@@ -128,7 +128,7 @@ export const EnableRowVirtualizationSpacious: Story<
     enableRowNumbers
     enableRowVirtualization
     enableBottomToolbar={false}
-    initialState={{ density: 'spacious' }}
+    initialState={{ density: 'xl' }}
   />
 );
 
@@ -190,7 +190,7 @@ export const EnableRowVirtualizationWithMemoizedCells: Story<
     enablePagination={false}
     enableRowNumbers
     enableRowVirtualization
-    initialState={{ density: 'compact' }}
+    initialState={{ density: 'xs' }}
     memoMode="cells"
   />
 );
@@ -206,7 +206,7 @@ export const EnableRowVirtualizationWithMemoizedRows: Story<
     enablePagination={false}
     enableRowNumbers
     enableRowVirtualization
-    initialState={{ density: 'compact' }}
+    initialState={{ density: 'xs' }}
     memoMode="rows"
   />
 );

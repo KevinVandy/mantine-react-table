@@ -9,7 +9,6 @@ interface Props {
 
 export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
   const {
-    getState,
     options: {
       icons: { IconChevronDown },
       localization,
@@ -17,7 +16,6 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
       renderDetailPanel,
     },
   } = table;
-  const { density } = getState();
 
   const actionIconProps =
     muiExpandButtonProps instanceof Function
@@ -45,31 +43,31 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
           : localization.expand
       }
     >
-      <span>
-        <ActionIcon
-          aria-label={localization.expand}
-          disabled={!canExpand && !renderDetailPanel}
-          {...actionIconProps}
-          onClick={handleToggleExpand}
-          sx={(theme) => ({
-            height: density === 'compact' ? '1.75rem' : '2.25rem',
-            width: density === 'compact' ? '1.75rem' : '2.25rem',
-            ...(actionIconProps?.sx instanceof Function
-              ? actionIconProps.sx(theme)
-              : (actionIconProps?.sx as any)),
-          })}
-          title={undefined}
-        >
-          <IconChevronDown
-            style={{
-              transform: `rotate(${
-                !canExpand && !renderDetailPanel ? -90 : isExpanded ? -180 : 0
-              }deg)`,
-              transition: 'transform 150ms',
-            }}
-          />
-        </ActionIcon>
-      </span>
+      <ActionIcon
+        aria-label={localization.expand}
+        disabled={!canExpand && !renderDetailPanel}
+        {...actionIconProps}
+        onClick={handleToggleExpand}
+        sx={(theme) => ({
+          '&:disabled': {
+            backgroundColor: 'transparent',
+            border: 'none',
+          },
+          ...(actionIconProps?.sx instanceof Function
+            ? actionIconProps.sx(theme)
+            : (actionIconProps?.sx as any)),
+        })}
+        title={undefined}
+      >
+        <IconChevronDown
+          style={{
+            transform: `rotate(${
+              !canExpand && !renderDetailPanel ? -90 : isExpanded ? -180 : 0
+            }deg)`,
+            transition: 'transform 150ms',
+          }}
+        />
+      </ActionIcon>
     </Tooltip>
   );
 };

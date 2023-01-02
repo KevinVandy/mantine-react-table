@@ -20,7 +20,7 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
     },
     toggleAllRowsExpanded,
   } = table;
-  const { density, isLoading } = getState();
+  const { isLoading } = getState();
 
   const actionIconProps =
     muiExpandAllButtonProps instanceof Function
@@ -40,34 +40,32 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
           : localization.expandAll
       }
     >
-      <span>
-        <ActionIcon
-          aria-label={localization.expandAll}
-          disabled={
-            isLoading || (!renderDetailPanel && !getCanSomeRowsExpand())
-          }
-          onClick={() => toggleAllRowsExpanded(!isAllRowsExpanded)}
-          {...actionIconProps}
-          sx={(theme) => ({
-            height: density === 'compact' ? '1.75rem' : '2.25rem',
-            width: density === 'compact' ? '1.75rem' : '2.25rem',
-            mt: density !== 'compact' ? '-0.25rem' : undefined,
-            ...(actionIconProps?.sx instanceof Function
-              ? actionIconProps?.sx(theme)
-              : (actionIconProps?.sx as any)),
-          })}
-          title={undefined}
-        >
-          <IconChevronsDown
-            style={{
-              transform: `rotate(${
-                isAllRowsExpanded ? -180 : getIsSomeRowsExpanded() ? -90 : 0
-              }deg)`,
-              transition: 'transform 150ms',
-            }}
-          />
-        </ActionIcon>
-      </span>
+      <ActionIcon
+        aria-label={localization.expandAll}
+        disabled={isLoading || (!renderDetailPanel && !getCanSomeRowsExpand())}
+        onClick={() => toggleAllRowsExpanded(!isAllRowsExpanded)}
+        {...actionIconProps}
+        sx={(theme) => ({
+          marginLeft: '6px',
+          '&:disabled': {
+            backgroundColor: 'transparent',
+            border: 'none',
+          },
+          ...(actionIconProps?.sx instanceof Function
+            ? actionIconProps?.sx(theme)
+            : (actionIconProps?.sx as any)),
+        })}
+        title={undefined}
+      >
+        <IconChevronsDown
+          style={{
+            transform: `rotate(${
+              isAllRowsExpanded ? -180 : getIsSomeRowsExpanded() ? -90 : 0
+            }deg)`,
+            transition: 'transform 150ms',
+          }}
+        />
+      </ActionIcon>
     </Tooltip>
   );
 };

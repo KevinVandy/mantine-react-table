@@ -255,7 +255,7 @@ const FeatureTable = () => {
       enablePinning
       initialState={{
         sorting: [{ id: 'feature', desc: false }],
-        density: 'compact',
+        density: 'xs',
         columnPinning: { left: ['feature'] },
       }}
     />

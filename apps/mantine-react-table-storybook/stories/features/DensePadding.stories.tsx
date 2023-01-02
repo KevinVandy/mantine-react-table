@@ -71,7 +71,7 @@ export const DefaultToDensePadding: Story<MantineReactTableProps> = () => (
     data={data}
     initialState={{
       pagination: { pageSize: 25, pageIndex: 0 },
-      density: 'compact',
+      density: 'xs',
     }}
   />
 );

@@ -12,7 +12,7 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
     getState,
     options: { columnResizeMode },
   } = table;
-  const { density, showColumnFilters } = getState();
+  const { showColumnFilters } = getState();
   const { column } = header;
   const { columnDef } = column;
   const { columnDefType } = columnDef;
@@ -24,12 +24,12 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
       onTouchStart={header.getResizeHandler()}
       sx={(theme) => ({
         cursor: 'col-resize',
-        mr: density === 'compact' ? '-0.5rem' : '-1rem',
+        marginRight: '-0.5rem',
         position: 'absolute',
         right: '1px',
         paddingLeft: '4px',
         paddingRight: '4px',
-        '&:active > hr': {
+        '&:active > .mantine-Divider-vertical': {
           backgroundColor: theme.colors.blue[7],
           opacity: 1,
         },
@@ -43,8 +43,9 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
           : undefined,
       }}
     >
-      <Divider
+      <Divider 
         orientation="vertical"
+        size="lg"
         sx={{
           borderRadius: '2px',
           borderWidth: '2px',

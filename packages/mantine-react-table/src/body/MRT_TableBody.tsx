@@ -90,7 +90,7 @@ export const MRT_TableBody: FC<Props> = ({
     ? useVirtualizer({
         count: rows.length,
         estimateSize: () =>
-          density === 'compact' ? 37 : density === 'comfortable' ? 58 : 73,
+          density === 'xs' ? 37 : density === 'md' ? 58 : 73,
         getScrollElement: () => tableContainerRef.current,
         measureElement: (element) => element?.getBoundingClientRect().height,
         overscan: 4,

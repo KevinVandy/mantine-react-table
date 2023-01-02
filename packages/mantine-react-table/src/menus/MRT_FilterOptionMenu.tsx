@@ -193,7 +193,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
       onClose={() => setAnchorEl(null)}
       open={!!anchorEl}
       MenuListProps={{
-        dense: density === 'compact',
+        dense: density === 'xs',
       }}
     >
       {(header && column && columnDef

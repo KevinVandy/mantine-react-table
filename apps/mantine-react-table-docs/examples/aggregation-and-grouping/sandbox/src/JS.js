@@ -118,7 +118,7 @@ const Example = () => {
       enableStickyHeader
       enableStickyFooter
       initialState={{
-        density: 'compact',
+        density: 'xs',
         expanded: true, //expand all groups by default
         grouping: ['state'], //an array of columns to group by by default (can be multiple)
         pagination: { pageIndex: 0, pageSize: 20 },

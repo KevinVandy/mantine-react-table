@@ -32,7 +32,7 @@ export const MRT_Table: FC<Props> = ({ table }) => {
     },
     refs: { tableContainerRef },
   } = table;
-  const { columnPinning, columnVisibility } = getState();
+  const { columnPinning, columnVisibility, density } = getState();
 
   const tableProps =
     muiTableProps instanceof Function
@@ -124,6 +124,7 @@ export const MRT_Table: FC<Props> = ({ table }) => {
   return (
     <Table
       highlightOnHover
+      verticalSpacing={density}
       {...tableProps}
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table',

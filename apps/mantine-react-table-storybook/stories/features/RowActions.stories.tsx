@@ -127,7 +127,7 @@ export const RowActionsLastColumn: Story<MantineReactTableProps> = () => (
     columns={columns}
     data={data}
     enableRowActions
-    initialState={{ density: 'compact' }}
+    initialState={{ density: 'xs' }}
     positionActionsColumn="last"
     renderRowActionMenuItems={({ row }) => [
       <Menu.Item

@@ -58,7 +58,7 @@ export type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
  * Most of this file is just TypeScript types
  */
 
-export type DensityState = 'comfortable' | 'compact' | 'spacious';
+export type DensityState = 'xs' | 'md' | 'xl';
 
 type LiteralUnion<T extends U, U = string> = T | (U & Record<never, never>);
 

@@ -26,11 +26,7 @@ export const MRT_ToggleDensePaddingButton = <
 
   const handleToggleDensePadding = () => {
     const nextDensity =
-      density === 'comfortable'
-        ? 'compact'
-        : density === 'compact'
-        ? 'spacious'
-        : 'comfortable';
+      density === 'md' ? 'xs' : density === 'xs' ? 'xl' : 'md';
     setDensity(nextDensity);
   };
 
@@ -47,9 +43,9 @@ export const MRT_ToggleDensePaddingButton = <
         {...rest}
         title={undefined}
       >
-        {density === 'compact' ? (
+        {density === 'xs' ? (
           <IconStack3 />
-        ) : density === 'comfortable' ? (
+        ) : density === 'md' ? (
           <IconStack2 />
         ) : (
           <IconStack />

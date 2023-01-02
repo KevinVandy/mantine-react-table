@@ -58,7 +58,7 @@ const Example: FC = () => {
 
   //we need to manage the state that should trigger the MRT_ components in our custom toolbar to re-render
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [density, setDensity] = useState<DensityState>('comfortable');
+  const [density, setDensity] = useState<DensityState>('md');
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 5,

@@ -10,10 +10,8 @@ interface Props {
 
 export const MRT_TableFooterCell: FC<Props> = ({ footer, table }) => {
   const {
-    getState,
     options: { layoutMode, muiTableFooterCellProps },
   } = table;
-  const { density } = getState();
   const { column } = footer;
   const { columnDef } = column;
   const { columnDefType } = columnDef;
@@ -43,12 +41,7 @@ export const MRT_TableFooterCell: FC<Props> = ({ footer, table }) => {
         display: layoutMode === 'grid' ? 'grid' : 'table-cell',
         fontWeight: 'bold',
         justifyContent: columnDefType === 'group' ? 'center' : undefined,
-        padding:
-          density === 'compact'
-            ? '0.5rem'
-            : density === 'comfortable'
-            ? '1rem'
-            : '1.5rem',
+        padding: '0.5rem',
         verticalAlign: 'top',
         zIndex: column.getIsPinned() && columnDefType !== 'group' ? 2 : 1,
         ...getCommonCellStyles({

@@ -1,5 +1,11 @@
 import React, { FC, MouseEvent } from 'react';
-import { Checkbox, MantineTheme, Radio, Tooltip } from '@mantine/core';
+import {
+  Checkbox,
+  CheckboxProps,
+  Radio,
+  RadioProps,
+  Tooltip,
+} from '@mantine/core';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
 interface Props {
@@ -44,29 +50,20 @@ export const MRT_SelectCheckbox: FC<Props> = ({ row, selectAll, table }) => {
       : selectAllMode === 'all'
       ? table.getToggleAllRowsSelectedHandler()
       : table.getToggleAllPageRowsSelectedHandler(),
-    size: (density === 'compact' ? 'sm' : 'md') as 'sm' | 'md',
-    // ...checkboxProps,
+    size: density === 'xs' ? 'sm' : 'md',
+    ...checkboxProps,
     onClick: (e: MouseEvent<HTMLInputElement>) => {
       e.stopPropagation();
       checkboxProps?.onClick?.(e);
     },
-    sx: (theme: MantineTheme) => ({
-      height: density === 'compact' ? '1.75rem' : '2.5rem',
-      width: density === 'compact' ? '1.75rem' : '2.5rem',
-      m: density !== 'compact' ? '-0.4rem' : undefined,
-      ...(checkboxProps?.sx instanceof Function
-        ? checkboxProps.sx(theme)
-        : (checkboxProps?.sx as any)),
-    }),
     title: undefined,
-  };
+  } as CheckboxProps & RadioProps;
 
   return (
     <Tooltip
       withinPortal
       withArrow
-      // openDelay={1000}
-      //
+      openDelay={1000}
       label={
         checkboxProps?.title ??
         (selectAll

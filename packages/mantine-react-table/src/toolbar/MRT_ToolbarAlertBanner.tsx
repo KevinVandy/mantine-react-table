@@ -86,6 +86,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
             : positionToolbarAlertBanner === 'bottom'
             ? '-1rem'
             : undefined,
+          padding: '0.5rem',
           right: 0,
           top: 0,
           width: '100%',

@@ -165,13 +165,13 @@ export const stateOptions: StateRow[] = [
     type: 'Array<string>',
   },
   {
-    defaultValue: "'comfortable'",
+    defaultValue: "'md'",
     description: '',
     link: '',
     linkText: '',
     source: 'TanStack Table',
     stateOption: 'density',
-    type: "'comfortable' | 'compact' | 'spacious'",
+    type: "'md' | 'xs' | 'xl'",
   },
   {
     defaultValue: 'false',

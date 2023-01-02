@@ -52,9 +52,8 @@ export const MRT_FilterCheckbox: FC<Props> = ({ column, table }) => {
         checked={column.getFilterValue() === 'true'}
         indeterminate={column.getFilterValue() === undefined}
         color={column.getFilterValue() === undefined ? 'default' : 'primary'}
-        size={density === 'compact' ? 'sm' : 'md'}
+        size={density === 'xs' ? 'sm' : 'md'}
         label={checkboxProps.title ?? filterLabel}
-        title={undefined}
         {...checkboxProps}
         onClick={(e) => {
           e.stopPropagation();
@@ -77,6 +76,7 @@ export const MRT_FilterCheckbox: FC<Props> = ({ column, table }) => {
             ? checkboxProps.sx(theme)
             : (checkboxProps?.sx as any)),
         })}
+        title={undefined}
       />
     </Tooltip>
   );

@@ -114,7 +114,7 @@ const RowInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
       enableTopToolbar={!onlyProps}
       initialState={{
         columnVisibility: { description: false },
-        density: 'compact',
+        density: 'xs',
         showGlobalFilter: true,
         sorting: [{ id: 'rowInstanceAPI', desc: false }],
       }}
