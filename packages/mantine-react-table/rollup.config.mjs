@@ -29,8 +29,9 @@ const supportedLocales = [
 export default [
   {
     external: [
-      '@mui/icons-material',
-      '@mui/material',
+      '@mantine/core',
+      '@mantine/hooks',
+      '@tabler/icons',
       '@tanstack/match-sorter-utils',
       '@tanstack/react-table',
       '@tanstack/react-virtual',

@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { ActionIcon, Flex, TextInput, Tooltip } from '@mantine/core';
+import { ActionIcon, Flex, Menu, TextInput, Tooltip } from '@mantine/core';
 import { debounce } from '@mui/material/utils';
 import type { MRT_Header, MRT_TableInstance } from '..';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
@@ -95,7 +95,6 @@ export const MRT_FilterTextField: FC<Props> = ({
     (allowedColumnFilterOptions === undefined ||
       !!allowedColumnFilterOptions?.length);
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [filterValue, setFilterValue] = useState<string | string[]>(() =>
     isMultiSelectFilter
       ? (column.getFilterValue() as string[]) || []
@@ -161,10 +160,6 @@ export const MRT_FilterTextField: FC<Props> = ({
   //   }));
   // };
 
-  const handleFilterMenuOpen = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -188,18 +183,31 @@ export const MRT_FilterTextField: FC<Props> = ({
   }
 
   return (
-    <Flex>
+    <Flex align="flex-end">
       {showChangeModeButton && (
-        <Tooltip withinPortal withArrow label={localization.changeFilterMode}>
-          <ActionIcon
-            aria-label={localization.changeFilterMode}
-            onClick={handleFilterMenuOpen}
-            size="sm"
-            sx={{ height: '1.75rem', width: '1.75rem' }}
+        <Menu withinPortal>
+          <Tooltip
+            label={localization.changeFilterMode}
+            position="bottom-start"
+            withArrow
+            withinPortal
           >
-            <IconFilter />
-          </ActionIcon>
-        </Tooltip>
+            <Menu.Target>
+              <ActionIcon
+                aria-label={localization.changeFilterMode}
+                size="sm"
+                sx={{ height: '1.75rem', width: '1.75rem' }}
+              >
+                <IconFilter />
+              </ActionIcon>
+            </Menu.Target>
+          </Tooltip>
+          <MRT_FilterOptionMenu
+            header={header}
+            table={table}
+            setFilterValue={setFilterValue}
+          />
+        </Menu>
       )}
       <TextInput
         disabled={!!filterChipLabel}
@@ -358,13 +366,6 @@ export const MRT_FilterTextField: FC<Props> = ({
             );
           },
         )} */}
-      <MRT_FilterOptionMenu
-        anchorEl={anchorEl}
-        header={header}
-        setAnchorEl={setAnchorEl}
-        table={table}
-        setFilterValue={setFilterValue}
-      />
     </Flex>
   );
 };

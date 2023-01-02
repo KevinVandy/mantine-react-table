@@ -1,7 +1,5 @@
 import React, { useMemo } from 'react';
-import { Box } from '@mantine/core';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Flex, Menu } from '@mantine/core';
 import type {
   MRT_FilterOption,
   MRT_Header,
@@ -100,19 +98,15 @@ export const mrtFilterOptions = (
 ];
 
 interface Props<TData extends Record<string, any> = {}> {
-  anchorEl: HTMLElement | null;
   header?: MRT_Header<TData>;
   onSelect?: () => void;
-  setAnchorEl: (anchorEl: HTMLElement | null) => void;
   setFilterValue?: (filterValue: any) => void;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
-  anchorEl,
   header,
   onSelect,
-  setAnchorEl,
   setFilterValue,
   table,
 }: Props<TData>) => {
@@ -128,7 +122,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
     setColumnFilterFns,
     setGlobalFilterFn,
   } = table;
-  const { globalFilterFn, density } = getState();
+  const { globalFilterFn } = getState();
   const { column } = header ?? {};
   const { columnDef } = column ?? {};
 
@@ -179,7 +173,6 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
     } else {
       setGlobalFilterFn(option);
     }
-    setAnchorEl(null);
     onSelect?.();
   };
 
@@ -187,15 +180,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
     !!header && columnDef ? columnDef._filterFn : globalFilterFn;
 
   return (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'center', horizontal: 'right' }}
-      onClose={() => setAnchorEl(null)}
-      open={!!anchorEl}
-      MenuListProps={{
-        dense: density === 'xs',
-      }}
-    >
+    <Menu.Dropdown>
       {(header && column && columnDef
         ? columnDef.renderColumnFilterModeMenuItems?.({
             column: column as any,
@@ -216,25 +201,37 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
           })) ??
         internalFilterOptions.map(
           ({ option, label, divider, symbol }, index) => (
-            <MenuItem
-              divider={divider}
-              key={index}
-              onClick={() => handleSelectFilterMode(option as MRT_FilterOption)}
-              selected={option === filterOption}
-              sx={{
-                alignItems: 'center',
-                display: 'flex',
-                gap: '2ch',
-                paddingTop: '6px',
-                paddingBottom: '6px',
-              }}
-              value={option}
-            >
-              <Box sx={{ fontSize: '1.25rem', width: '2ch' }}>{symbol}</Box>
-              {label}
-            </MenuItem>
+            <>
+              <Menu.Item
+                key={index}
+                onClick={() =>
+                  handleSelectFilterMode(option as MRT_FilterOption)
+                }
+                color={option === filterOption ? 'blue' : undefined}
+                sx={{
+                  '& > .mantine-Menu-itemLabel': {
+                    display: 'flex',
+                    flexWrap: 'nowrap',
+                    gap: '1ch',
+                  },
+                }}
+                value={option}
+              >
+                <Flex
+                  sx={{
+                    fontSize: '1.25rem',
+                    transform: 'translateY(-2px)',
+                    width: '2ch',
+                  }}
+                >
+                  {symbol}
+                </Flex>
+                <Flex align="center">{label}</Flex>
+              </Menu.Item>
+              {divider && <Menu.Divider />}
+            </>
           ),
         )}
-    </Menu>
+    </Menu.Dropdown>
   );
 };

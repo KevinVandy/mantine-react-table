@@ -1,11 +1,10 @@
 import React, {
   ChangeEvent,
-  // MouseEvent,
   useCallback,
   useEffect,
   useState,
 } from 'react';
-import { Collapse, TextInput } from '@mantine/core';
+import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@mantine/core';
 import { debounce } from '@mui/material/utils';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import type { MRT_TableInstance } from '..';
@@ -23,8 +22,8 @@ export const MRT_GlobalFilterTextField = <
     getState,
     setGlobalFilter,
     options: {
-      // enableGlobalFilterModes,
-      // icons: { IconSearch, IconX },
+      enableGlobalFilterModes,
+      icons: { IconSearch, IconX },
       localization,
       manualFiltering,
       muiSearchTextFieldProps,
@@ -38,7 +37,6 @@ export const MRT_GlobalFilterTextField = <
       ? muiSearchTextFieldProps({ table })
       : muiSearchTextFieldProps;
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [searchValue, setSearchValue] = useState(globalFilter ?? '');
 
   const handleChangeDebounced = useCallback(
@@ -56,10 +54,6 @@ export const MRT_GlobalFilterTextField = <
     handleChangeDebounced(event);
   };
 
-  // const handleGlobalFilterMenuOpen = (event: MouseEvent<HTMLElement>) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
   const handleClear = () => {
     setSearchValue('');
     setGlobalFilter(undefined);
@@ -72,46 +66,45 @@ export const MRT_GlobalFilterTextField = <
   }, [globalFilter]);
 
   return (
-    <Collapse in={showGlobalFilter}>
+    <Collapse in={showGlobalFilter} sx={{ '& > div': { display: 'flex' } }}>
+      {enableGlobalFilterModes && (
+        <Menu withinPortal>
+          <Menu.Target>
+            <ActionIcon aria-label={localization.changeSearchMode} size="sm">
+              <IconSearch />
+            </ActionIcon>
+          </Menu.Target>
+          <MRT_FilterOptionMenu table={table} onSelect={handleClear} />
+        </Menu>
+      )}
       <TextInput
         placeholder={localization.search}
         onChange={handleChange}
         value={searchValue ?? ''}
-        variant="default"
-        // InputProps={{
-        //   startAdornment: enableGlobalFilterModes ? (
-        //     <InputAdornment position="start">
-        //       <Tooltip withinPortal withArrow label={localization.changeSearchMode}>
-        //         <IconButton
-        //           aria-label={localization.changeSearchMode}
-        //           onClick={handleGlobalFilterMenuOpen}
-        //           size="small"
-        //           sx={{ height: '1.75rem', width: '1.75rem' }}
-        //         >
-        //           <IconSearch />
-        //         </IconButton>
-        //       </Tooltip>
-        //     </InputAdornment>
-        //   ) : (
-        //     <IconSearch style={{ marginRight: '4px' }} />
-        //   ),
-        //   endAdornment: (
-        //     <InputAdornment position="end">
-        //       <Tooltip withinPortal withArrow label={localization.clearSearch ?? ''}>
-        //         <span>
-        //           <IconButton
-        //             aria-label={localization.clearSearch}
-        //             disabled={!searchValue?.length}
-        //             onClick={handleClear}
-        //             size="small"
-        //           >
-        //             <IconX />
-        //           </IconButton>
-        //         </span>
-        //       </Tooltip>
-        //     </InputAdornment>
-        //   ),
-        // }}
+        variant="filled"
+        icon={!enableGlobalFilterModes && <IconSearch />}
+        rightSection={
+          <Tooltip
+            withinPortal
+            withArrow
+            label={localization.clearSearch ?? ''}
+          >
+            <ActionIcon
+              aria-label={localization.clearSearch}
+              disabled={!searchValue?.length}
+              onClick={handleClear}
+              size="sm"
+              sx={{
+                '&:disabled': {
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                },
+              }}
+            >
+              <IconX />
+            </ActionIcon>
+          </Tooltip>
+        }
         {...textFieldProps}
         ref={(node) => {
           if (node) {
@@ -122,12 +115,6 @@ export const MRT_GlobalFilterTextField = <
             }
           }
         }}
-      />
-      <MRT_FilterOptionMenu
-        anchorEl={anchorEl}
-        setAnchorEl={setAnchorEl}
-        table={table}
-        onSelect={handleClear}
       />
     </Collapse>
   );
