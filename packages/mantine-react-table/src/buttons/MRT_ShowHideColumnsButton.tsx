@@ -23,7 +23,7 @@ export const MRT_ShowHideColumnsButton = <
   } = table;
 
   return (
-    <Menu closeOnItemClick={false}>
+    <Menu closeOnItemClick={false} withinPortal>
       <Tooltip
         withinPortal
         withArrow

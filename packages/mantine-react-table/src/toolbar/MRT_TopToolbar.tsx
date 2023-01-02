@@ -122,7 +122,9 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
       </Flex>
       {enablePagination &&
         ['top', 'both'].includes(positionPagination ?? '') && (
-          <MRT_TablePagination table={table} position="top" />
+          <Flex justify="end">
+            <MRT_TablePagination table={table} position="top" />
+          </Flex>
         )}
       <MRT_LinearProgressBar isTopToolbar table={table} />
     </Box>

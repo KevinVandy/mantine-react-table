@@ -4,6 +4,8 @@ import {
   IconArrowsSort,
   IconBoxMultiple,
   IconChevronDown,
+  IconChevronLeft,
+  IconChevronRight,
   IconChevronUp,
   IconChevronsDown,
   IconCircleOff,
@@ -25,9 +27,11 @@ import {
   IconSearch,
   IconSortAscending,
   IconSortDescending,
-  IconStack,
-  IconStack2,
-  IconStack3,
+  IconTallymark1,
+  IconTallymark2,
+  IconTallymark3,
+  IconTallymark4,
+  IconTallymarks,
   IconX,
 } from '@tabler/icons';
 
@@ -37,6 +41,8 @@ export interface MRT_Icons {
   IconArrowsSort: any;
   IconBoxMultiple: any;
   IconChevronDown: any;
+  IconChevronLeft: any;
+  IconChevronRight: any;
   IconChevronUp: any;
   IconChevronsDown: any;
   IconCircleOff: any;
@@ -58,9 +64,11 @@ export interface MRT_Icons {
   IconSearch: any;
   IconSortAscending: any;
   IconSortDescending: any;
-  IconStack2: any;
-  IconStack3: any;
-  IconStack: any;
+  IconTallymark1: any;
+  IconTallymark2: any;
+  IconTallymark3: any;
+  IconTallymark4: any;
+  IconTallymarks: any;
   IconX: any;
 }
 
@@ -70,6 +78,8 @@ export const MRT_Default_Icons: MRT_Icons = {
   IconArrowsSort,
   IconBoxMultiple,
   IconChevronDown,
+  IconChevronLeft,
+  IconChevronRight,
   IconChevronUp,
   IconChevronsDown,
   IconCircleOff,
@@ -91,8 +101,10 @@ export const MRT_Default_Icons: MRT_Icons = {
   IconSearch,
   IconSortAscending,
   IconSortDescending,
-  IconStack,
-  IconStack2,
-  IconStack3,
+  IconTallymark1,
+  IconTallymark2,
+  IconTallymark3,
+  IconTallymark4,
+  IconTallymarks,
   IconX,
 };

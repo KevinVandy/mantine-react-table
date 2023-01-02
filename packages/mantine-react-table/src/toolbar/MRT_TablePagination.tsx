@@ -1,11 +1,19 @@
-import React, { ChangeEvent } from 'react';
-import TablePagination from '@mui/material/TablePagination';
+import React from 'react';
+import { ActionIcon, Flex, Select, Sx, Text } from '@mantine/core';
 import type { MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
   position?: 'top' | 'bottom';
   table: MRT_TableInstance<TData>;
 }
+
+const commonActionButtonStyles: Sx = {
+  userSelect: 'none',
+  '&:disabled': {
+    backgroundColor: 'transparent',
+    border: 'none',
+  },
+};
 
 export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
   table,
@@ -17,8 +25,8 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
     setPageIndex,
     setPageSize,
     options: {
-      // muiTablePaginationProps,
       enableToolbarInternalActions,
+      icons: { IconChevronLeft, IconChevronRight },
       localization,
       rowCount,
     },
@@ -30,78 +38,81 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
 
   const totalRowCount = rowCount ?? getPrePaginationRowModel().rows.length;
   const showFirstLastPageButtons = totalRowCount / pageSize > 2;
-
-  // const tablePaginationProps =
-  //   muiTablePaginationProps instanceof Function
-  //     ? muiTablePaginationProps({ table })
-  //     : muiTablePaginationProps;
-
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setPageSize(+event.target.value);
-  };
+  const firstRowIndex = pageIndex * pageSize;
+  const lastRowIndex = Math.min(pageIndex * pageSize + pageSize, totalRowCount);
 
   return (
-    <TablePagination
-      component="div"
-      count={totalRowCount}
-      getItemAriaLabel={(type) =>
-        type === 'first'
-          ? localization.goToFirstPage
-          : type === 'last'
-          ? localization.goToLastPage
-          : type === 'next'
-          ? localization.goToNextPage
-          : localization.goToPreviousPage
+    <Flex
+      align="center"
+      justify="space-between"
+      gap="lg"
+      py="xs"
+      px="sm"
+      mt={
+        position === 'top' && enableToolbarInternalActions && !showGlobalFilter
+          ? '3rem'
+          : undefined
       }
-      labelDisplayedRows={({ from, to, count }) =>
-        `${from}-${to} ${localization.of} ${count}`
-      }
-      labelRowsPerPage={localization.rowsPerPage}
-      onPageChange={(_: any, newPage: number) => setPageIndex(newPage)}
-      onRowsPerPageChange={handleChangeRowsPerPage}
-      page={pageIndex}
-      rowsPerPage={pageSize}
-      rowsPerPageOptions={[5, 10, 15, 20, 25, 30, 50, 100]}
-      showFirstButton={showFirstLastPageButtons}
-      showLastButton={showFirstLastPageButtons}
-      // {...tablePaginationProps}
-      SelectProps={{
-        sx: { margin: '0 1rem 0 1ch' },
-        MenuProps: { MenuListProps: { disablePadding: true }, sx: { m: 0 } },
-        // ...tablePaginationProps?.SelectProps,
-      }}
-      sx={() => ({
-        '& .MuiTablePagination-toolbar': {
+    >
+      <Select
+        data={['5', '10', '15', '20', '25', '30', '50', '100']}
+        label={localization.rowsPerPage}
+        onChange={(value: string) => setPageSize(+value)}
+        value={pageSize.toString()}
+        sx={{
           display: 'flex',
           alignItems: 'center',
-        },
-        '& .MuiTablePagination-selectLabel': {
-          margin: '0 -1px',
-        },
-        '&. MuiInputBase-root': {
-          margin: '0 1px',
-        },
-        '& . MuiTablePagination-select': {
-          margin: '0 1px',
-        },
-        '& .MuiTablePagination-displayedRows': {
-          margin: '0 1px',
-        },
-        '& .MuiTablePagination-actions': {
-          margin: '0 1px',
-        },
-        mt:
-          position === 'top' &&
-          enableToolbarInternalActions &&
-          !showGlobalFilter
-            ? '3.5rem'
-            : undefined,
-        position: 'relative',
-        zIndex: 2,
-        // ...(tablePaginationProps?.sx instanceof Function
-        //   ? tablePaginationProps.sx(theme)
-        //   : (tablePaginationProps?.sx as any)),
-      })}
-    />
+          gap: '8px',
+          '& .mantine-Select-input': {
+            width: '80px',
+          },
+        }}
+      />
+      <Text>{`${firstRowIndex + 1}-${lastRowIndex} ${
+        localization.of
+      } ${totalRowCount}`}</Text>
+      <Flex gap="xs">
+        {showFirstLastPageButtons && (
+          <ActionIcon
+            aria-label={localization.goToFirstPage}
+            disabled={pageIndex <= 0}
+            onClick={() => setPageIndex(0)}
+            sx={commonActionButtonStyles}
+          >
+            <b style={{ transform: 'translate(4px, -1.5px)' }}>|</b>
+            <IconChevronLeft />
+          </ActionIcon>
+        )}
+        <ActionIcon
+          aria-label={localization.goToPreviousPage}
+          disabled={pageIndex <= 0}
+          onClick={() => setPageIndex(pageIndex - 1)}
+          sx={commonActionButtonStyles}
+        >
+          <IconChevronLeft />
+        </ActionIcon>
+        <ActionIcon
+          aria-label={localization.goToNextPage}
+          disabled={lastRowIndex >= totalRowCount}
+          onClick={() => setPageIndex(pageIndex + 1)}
+          sx={commonActionButtonStyles}
+        >
+          <IconChevronRight />
+        </ActionIcon>
+        {showFirstLastPageButtons && (
+          <ActionIcon
+            aria-label={localization.goToLastPage}
+            disabled={lastRowIndex >= totalRowCount}
+            onClick={() =>
+              setPageIndex(Math.ceil(totalRowCount / pageSize) - 1)
+            }
+            sx={commonActionButtonStyles}
+          >
+            <IconChevronRight />
+            <b style={{ transform: 'translate(-4px, -1.5px)' }}>|</b>
+          </ActionIcon>
+        )}
+      </Flex>
+    </Flex>
   );
 };
