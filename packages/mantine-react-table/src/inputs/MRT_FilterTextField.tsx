@@ -2,15 +2,14 @@ import React, {
   ChangeEvent,
   FC,
   MouseEvent,
-  useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react';
 import { ActionIcon, Flex, Menu, TextInput, Tooltip } from '@mantine/core';
-import { debounce } from '@mui/material/utils';
-import type { MRT_Header, MRT_TableInstance } from '..';
+import { useDebouncedValue } from '@mantine/hooks';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
+import type { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {
   header: MRT_Header;
@@ -65,9 +64,9 @@ export const MRT_FilterTextField: FC<Props> = ({
     columnDef.filterVariant === 'range' || rangeFilterIndex !== undefined;
   const isSelectFilter = columnDef.filterVariant === 'select';
   const isMultiSelectFilter = columnDef.filterVariant === 'multi-select';
-  const isTextboxFilter =
-    columnDef.filterVariant === 'text' ||
-    (!isSelectFilter && !isMultiSelectFilter);
+  // const isTextboxFilter =
+  //   columnDef.filterVariant === 'text' ||
+  //   (!isSelectFilter && !isMultiSelectFilter);
   const currentFilterOption = columnDef._filterFn;
   const filterChipLabel = ['empty', 'notEmpty'].includes(currentFilterOption)
     ? //@ts-ignore
@@ -95,7 +94,11 @@ export const MRT_FilterTextField: FC<Props> = ({
     (allowedColumnFilterOptions === undefined ||
       !!allowedColumnFilterOptions?.length);
 
-  const [filterValue, setFilterValue] = useState<string | string[]>(() =>
+  const isMounted = useRef(false);
+
+  const [filterValue, setFilterValue] = useState<
+    string | number | Date | null | string[]
+  >(() =>
     isMultiSelectFilter
       ? (column.getFilterValue() as string[]) || []
       : isRangeFilter
@@ -105,33 +108,51 @@ export const MRT_FilterTextField: FC<Props> = ({
       : (column.getFilterValue() as string) ?? '',
   );
 
-  const handleChangeDebounced = useCallback(
-    debounce(
-      (event: ChangeEvent<HTMLInputElement>) => {
-        const value =
-          textFieldProps.type === 'date'
-            ? event.target.valueAsDate
-            : textFieldProps.type === 'number'
-            ? event.target.valueAsNumber
-            : event.target.value;
-        if (isRangeFilter) {
-          column.setFilterValue((old: Array<string | Date | number | null>) => {
-            const newFilterValues = old ?? ['', ''];
-            newFilterValues[rangeFilterIndex as number] = value;
-            return newFilterValues;
-          });
-        } else {
-          column.setFilterValue(value ?? undefined);
-        }
-      },
-      isTextboxFilter ? (manualFiltering ? 400 : 200) : 1,
-    ),
-    [],
+  const [debouncedFilterValue] = useDebouncedValue(
+    filterValue,
+    manualFiltering ? 400 : 200,
   );
 
+  //send deboundedFilterValue to table instance
+  useEffect(() => {
+    if (!isMounted.current) return;
+    if (isRangeFilter) {
+      column.setFilterValue((old: [string, string]) => {
+        const newFilterValues = old ?? ['', ''];
+        newFilterValues[rangeFilterIndex as number] =
+          debouncedFilterValue as string;
+        return newFilterValues;
+      });
+    } else {
+      column.setFilterValue(debouncedFilterValue ?? undefined);
+    }
+  }, [debouncedFilterValue]);
+
+  //receive table filter value and set it to local state
+  useEffect(() => {
+    if (isMounted.current) {
+      const tableFilterValue = column.getFilterValue();
+      if (tableFilterValue === undefined) {
+        handleClear();
+      } else if (isRangeFilter && rangeFilterIndex !== undefined) {
+        setFilterValue(
+          (tableFilterValue as [string, string])[rangeFilterIndex],
+        );
+      } else {
+        setFilterValue(tableFilterValue as string);
+      }
+    }
+    isMounted.current = true;
+  }, [column.getFilterValue()]);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFilterValue(event.target.value);
-    handleChangeDebounced(event);
+    setFilterValue(
+      textFieldProps.type === 'date'
+        ? event.target.valueAsDate
+        : textFieldProps.type === 'number'
+        ? event.target.valueAsNumber
+        : event.target.value,
+    );
   };
 
   const handleClear = () => {
@@ -159,22 +180,6 @@ export const MRT_FilterTextField: FC<Props> = ({
   //     [header.id]: 'fuzzy',
   //   }));
   // };
-
-  const isMounted = useRef(false);
-
-  useEffect(() => {
-    if (isMounted.current) {
-      const filterValue = column.getFilterValue();
-      if (filterValue === undefined) {
-        handleClear();
-      } else if (isRangeFilter && rangeFilterIndex !== undefined) {
-        setFilterValue((filterValue as [string, string])[rangeFilterIndex]);
-      } else {
-        setFilterValue(filterValue as string);
-      }
-    }
-    isMounted.current = true;
-  }, [column.getFilterValue()]);
 
   if (columnDef.Filter) {
     return (
@@ -261,7 +266,7 @@ export const MRT_FilterTextField: FC<Props> = ({
             </ActionIcon>
           ) : null
         }
-        value={filterValue}
+        value={filterValue?.toString()}
         variant="unstyled"
         icon={
           // filterChipLabel ? (

@@ -4,8 +4,8 @@ import MantineReactTable, {
   MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
+import { Button, Flex } from '@mantine/core';
 import { faker } from '@faker-js/faker';
-import { MenuItem, TextField } from '@mui/material';
 import { ColumnFiltersState } from '@tanstack/react-table';
 
 const meta: Meta = {
@@ -32,6 +32,7 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
   {
     header: 'Age',
     accessorKey: 'age',
+    filterVariant: 'range',
   },
   {
     Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(), //transform data to readable format for cell render
@@ -361,25 +362,25 @@ export const CustomFilterComponent: Story<MantineReactTableProps> = () => (
       {
         header: 'Gender',
         accessorKey: 'gender',
-        Filter: ({ header }) => (
-          <TextField
-            onChange={(e) =>
-              header.column.setFilterValue(e.target.value || undefined)
-            }
-            select
-            value={header.column.getFilterValue() ?? ''}
-            margin="none"
-            placeholder="Filter"
-            variant="standard"
-            fullWidth
-          >
-            {/*@ts-ignore*/}
-            <MenuItem value={null}>All</MenuItem>
-            <MenuItem value="Male">Male</MenuItem>
-            <MenuItem value="Female">Female</MenuItem>
-            <MenuItem value="Other">Other</MenuItem>
-          </TextField>
-        ),
+        // Filter: ({ header }) => (
+        //   <TextField
+        //     onChange={(e) =>
+        //       header.column.setFilterValue(e.target.value || undefined)
+        //     }
+        //     select
+        //     value={header.column.getFilterValue() ?? ''}
+        //     margin="none"
+        //     placeholder="Filter"
+        //     variant="standard"
+        //     fullWidth
+        //   >
+        //     {/*@ts-ignore*/}
+        //     <MenuItem value={null}>All</MenuItem>
+        //     <MenuItem value="Male">Male</MenuItem>
+        //     <MenuItem value="Female">Female</MenuItem>
+        //     <MenuItem value="Other">Other</MenuItem>
+        //   </TextField>
+        // ),
         filterFn: (row, _columnIds, filterValue) =>
           row.getValue<string>('gender').toLowerCase() ===
           filterValue.toLowerCase(),
@@ -432,3 +433,38 @@ export const ManualFiltering: Story<MantineReactTableProps> = () => {
     />
   );
 };
+
+export const ExternalSetFilterValue: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    initialState={{ showColumnFilters: true }}
+    renderTopToolbarCustomActions={({ table }) => (
+      <Flex gap="md">
+        <Button
+          onClick={() =>
+            table.setColumnFilters((prev) => [
+              ...prev,
+              { id: 'firstName', value: 'Joe' },
+            ])
+          }
+        >
+          Find Joes
+        </Button>
+        <Button
+          onClick={() =>
+            table.setColumnFilters((prev) => [
+              ...prev,
+              { id: 'age', value: [18, 25] },
+            ])
+          }
+        >
+          Find 18-25 Age Range
+        </Button>
+        <Button onClick={() => table.resetColumnFilters()}>
+          Reset Filters
+        </Button>
+      </Flex>
+    )}
+  />
+);

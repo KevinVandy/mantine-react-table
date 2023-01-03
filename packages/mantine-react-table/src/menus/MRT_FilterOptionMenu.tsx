@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import { Flex, Menu } from '@mantine/core';
 import type {
   MRT_FilterOption,
@@ -201,9 +201,8 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
           })) ??
         internalFilterOptions.map(
           ({ option, label, divider, symbol }, index) => (
-            <>
+            <Fragment key={index}>
               <Menu.Item
-                key={index}
                 onClick={() =>
                   handleSelectFilterMode(option as MRT_FilterOption)
                 }
@@ -229,7 +228,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
                 <Flex align="center">{label}</Flex>
               </Menu.Item>
               {divider && <Menu.Divider />}
-            </>
+            </Fragment>
           ),
         )}
     </Menu.Dropdown>

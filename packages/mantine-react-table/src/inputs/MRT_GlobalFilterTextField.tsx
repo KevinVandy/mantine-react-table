@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@mantine/core';
-import { debounce } from '@mui/material/utils';
+import { useDebouncedValue } from '@mantine/hooks';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import type { MRT_TableInstance } from '..';
 
@@ -34,31 +34,25 @@ export const MRT_GlobalFilterTextField = <
 
   const [searchValue, setSearchValue] = useState(globalFilter ?? '');
 
-  const handleChangeDebounced = useCallback(
-    debounce(
-      (event: ChangeEvent<HTMLInputElement>) => {
-        setGlobalFilter(event.target.value ?? undefined);
-      },
-      manualFiltering ? 500 : 250,
-    ),
-    [],
+  const [debouncedSearchValue] = useDebouncedValue(
+    searchValue,
+    manualFiltering ? 500 : 250,
   );
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-    handleChangeDebounced(event);
-  };
-
-  const handleClear = () => {
-    setSearchValue('');
-    setGlobalFilter(undefined);
-  };
+  useEffect(() => {
+    setGlobalFilter(debouncedSearchValue || undefined);
+  }, [debouncedSearchValue]);
 
   useEffect(() => {
     if (globalFilter === undefined) {
       handleClear();
     }
   }, [globalFilter]);
+
+  const handleClear = () => {
+    setSearchValue('');
+    setGlobalFilter(undefined);
+  };
 
   return (
     <Collapse in={showGlobalFilter} sx={{ '& > div': { display: 'flex' } }}>
@@ -74,7 +68,7 @@ export const MRT_GlobalFilterTextField = <
       )}
       <TextInput
         placeholder={localization.search}
-        onChange={handleChange}
+        onChange={(event) => setSearchValue(event.target.value)}
         value={searchValue ?? ''}
         variant="filled"
         icon={!enableGlobalFilterModes && <IconSearch />}
