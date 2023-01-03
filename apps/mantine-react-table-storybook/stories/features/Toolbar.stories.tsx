@@ -6,9 +6,8 @@ import MantineReactTable, {
   MRT_ToggleFullScreenButton,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { Box, Button, IconButton, Tooltip, Typography } from '@mui/material';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Box, Button, ActionIcon, Tooltip, Title } from '@mantine/core';
+import { IconPlus, IconTrash } from '@tabler/icons';
 
 const meta: Meta = {
   title: 'Features/Toolbar Examples',
@@ -112,7 +111,7 @@ export const TableTitle: Story<MantineReactTableProps> = () => (
     data={data}
     enableRowSelection
     renderTopToolbarCustomActions={() => {
-      return <Typography variant="h4">Table Title</Typography>;
+      return <Title order={3}>Table Title</Title>;
     }}
   />
 );
@@ -129,10 +128,10 @@ export const CustomTopToolbarActions: Story<MantineReactTableProps> = () => (
 
       return (
         <div>
-          <Tooltip arrow title="Create New User">
-            <IconButton onClick={handleCreateNewUser}>
-              <AddBoxIcon />
-            </IconButton>
+          <Tooltip withArrow label="Create New User">
+            <ActionIcon onClick={handleCreateNewUser}>
+              <IconPlus />
+            </ActionIcon>
           </Tooltip>
         </div>
       );
@@ -152,10 +151,10 @@ export const CustomBottomToolbarActions: Story<MantineReactTableProps> = () => (
 
       return (
         <div>
-          <Tooltip arrow title="Create New User">
-            <IconButton onClick={handleCreateNewUser}>
-              <AddBoxIcon />
-            </IconButton>
+          <Tooltip withArrow label="Create New User">
+            <ActionIcon onClick={handleCreateNewUser}>
+              <IconPlus />
+            </ActionIcon>
           </Tooltip>
         </div>
       );
@@ -195,7 +194,7 @@ export const CustomTopToolbarSelectionActions: Story<
             color="error"
             disabled={table.getSelectedRowModel().flatRows.length === 0}
             onClick={handleDeactivate}
-            variant="contained"
+            variant="filled"
           >
             Deactivate
           </Button>
@@ -203,7 +202,7 @@ export const CustomTopToolbarSelectionActions: Story<
             color="success"
             disabled={table.getSelectedRowModel().flatRows.length === 0}
             onClick={handleActivate}
-            variant="contained"
+            variant="filled"
           >
             Activate
           </Button>
@@ -211,7 +210,7 @@ export const CustomTopToolbarSelectionActions: Story<
             color="info"
             disabled={table.getSelectedRowModel().flatRows.length === 0}
             onClick={handleContact}
-            variant="contained"
+            variant="filled"
           >
             Contact
           </Button>
@@ -253,7 +252,7 @@ export const CustomBottomToolbarSelectionActions: Story<
             color="error"
             disabled={table.getSelectedRowModel().flatRows.length === 0}
             onClick={handleDeactivate}
-            variant="contained"
+            variant="filled"
           >
             Deactivate
           </Button>
@@ -261,7 +260,7 @@ export const CustomBottomToolbarSelectionActions: Story<
             color="success"
             disabled={table.getSelectedRowModel().flatRows.length === 0}
             onClick={handleActivate}
-            variant="contained"
+            variant="filled"
           >
             Activate
           </Button>
@@ -269,7 +268,7 @@ export const CustomBottomToolbarSelectionActions: Story<
             color="info"
             disabled={table.getSelectedRowModel().flatRows.length === 0}
             onClick={handleContact}
-            variant="contained"
+            variant="filled"
           >
             Contact
           </Button>
@@ -295,19 +294,19 @@ export const ToolbarAlertBannerBottom: Story<MantineReactTableProps> = () => (
 
       return (
         <div>
-          <Tooltip arrow title="Create New User">
-            <IconButton onClick={handleCreateNewUser}>
-              <AddBoxIcon />
-            </IconButton>
+          <Tooltip withArrow label="Create New User">
+            <ActionIcon onClick={handleCreateNewUser}>
+              <IconPlus />
+            </ActionIcon>
           </Tooltip>
-          <Tooltip arrow title="Remove Users">
+          <Tooltip withArrow label="Remove Users">
             <span>
-              <IconButton
+              <ActionIcon
                 disabled={table.getSelectedRowModel().flatRows.length === 0}
                 onClick={handleRemoveUsers}
               >
-                <DeleteIcon />
-              </IconButton>
+                <IconTrash />
+              </ActionIcon>
             </span>
           </Tooltip>
         </div>
@@ -334,19 +333,19 @@ export const ToolbarAlertBannerBottomWithActionsAlsoBottom: Story<
 
       return (
         <div>
-          <Tooltip arrow title="Create New User">
-            <IconButton onClick={handleCreateNewUser}>
-              <AddBoxIcon />
-            </IconButton>
+          <Tooltip withArrow label="Create New User">
+            <ActionIcon onClick={handleCreateNewUser}>
+              <IconPlus />
+            </ActionIcon>
           </Tooltip>
-          <Tooltip arrow title="Remove Users">
+          <Tooltip withArrow label="Remove Users">
             <span>
-              <IconButton
+              <ActionIcon
                 disabled={table.getSelectedRowModel().flatRows.length === 0}
                 onClick={handleRemoveUsers}
               >
-                <DeleteIcon />
-              </IconButton>
+                <IconTrash />
+              </ActionIcon>
             </span>
           </Tooltip>
         </div>

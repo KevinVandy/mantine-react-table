@@ -5,8 +5,6 @@ import MantineReactTable, {
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { createTheme, ThemeProvider } from '@mui/material';
-import { esES } from '@mui/material/locale';
 
 const meta: Meta = {
   title: 'Features/Localization Examples',
@@ -48,46 +46,44 @@ const data = [...Array(100)].map(() => ({
 export const CustomSpanishLocalizationExample: Story<
   MantineReactTableProps
 > = () => (
-  <ThemeProvider theme={createTheme({}, esES)}>
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableGrouping
-      enableEditing
-      enableRowSelection
-      localization={{
-        actions: 'Acciones',
-        cancel: 'Cancelar',
-        clearFilter: 'Filtro claro',
-        clearSearch: 'Borrar búsqueda',
-        clearSort: 'Ordenar claro',
-        columnActions: 'Acciones de columna',
-        edit: 'Editar',
-        expand: 'Expandir',
-        expandAll: 'Expandir todo',
-        filterByColumn: 'Filtrar por {column}',
-        groupByColumn: 'Agrupar por {column}',
-        groupedBy: 'Agrupados por ',
-        hideAll: 'Ocultar todo',
-        hideColumn: 'Ocultar columna de {column}',
-        rowActions: 'Acciones de fila',
-        save: 'Salvar',
-        search: 'Búsqueda',
-        selectedCountOfRowCountRowsSelected:
-          '{selectedCount} de {rowCount} fila(s) seleccionadas',
-        showAll: 'Mostrar todo',
-        showHideColumns: 'Mostrar/Ocultar columnas',
-        showHideFilters: 'Alternar filtros',
-        showHideSearch: 'Alternar búsqueda',
-        sortByColumnAsc: 'Ordenar por {column} ascendente',
-        sortByColumnDesc: 'Ordenar por {column} descendiendo',
-        thenBy: ', entonces por ',
-        toggleDensity: 'Alternar relleno denso',
-        toggleFullScreen: 'Alternar pantalla completa',
-        toggleSelectAll: 'Seleccionar todo',
-        toggleSelectRow: 'Seleccionar fila',
-        ungroupByColumn: 'Desagrupar por {column}',
-      }}
-    />
-  </ThemeProvider>
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableGrouping
+    enableEditing
+    enableRowSelection
+    localization={{
+      actions: 'Acciones',
+      cancel: 'Cancelar',
+      clearFilter: 'Filtro claro',
+      clearSearch: 'Borrar búsqueda',
+      clearSort: 'Ordenar claro',
+      columnActions: 'Acciones de columna',
+      edit: 'Editar',
+      expand: 'Expandir',
+      expandAll: 'Expandir todo',
+      filterByColumn: 'Filtrar por {column}',
+      groupByColumn: 'Agrupar por {column}',
+      groupedBy: 'Agrupados por ',
+      hideAll: 'Ocultar todo',
+      hideColumn: 'Ocultar columna de {column}',
+      rowActions: 'Acciones de fila',
+      save: 'Salvar',
+      search: 'Búsqueda',
+      selectedCountOfRowCountRowsSelected:
+        '{selectedCount} de {rowCount} fila(s) seleccionadas',
+      showAll: 'Mostrar todo',
+      showHideColumns: 'Mostrar/Ocultar columnas',
+      showHideFilters: 'Alternar filtros',
+      showHideSearch: 'Alternar búsqueda',
+      sortByColumnAsc: 'Ordenar por {column} ascendente',
+      sortByColumnDesc: 'Ordenar por {column} descendiendo',
+      thenBy: ', entonces por ',
+      toggleDensity: 'Alternar relleno denso',
+      toggleFullScreen: 'Alternar pantalla completa',
+      toggleSelectAll: 'Seleccionar todo',
+      toggleSelectRow: 'Seleccionar fila',
+      ungroupByColumn: 'Desagrupar por {column}',
+    }}
+  />
 );

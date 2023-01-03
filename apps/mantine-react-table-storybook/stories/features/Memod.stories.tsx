@@ -5,7 +5,7 @@ import MantineReactTable, {
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { Button } from '@mui/material';
+import { Button } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Features/Memo Mode Examples',
@@ -91,7 +91,7 @@ export const NoMemos: Story<MantineReactTableProps> = () => {
       enableStickyHeader
       initialState={{ pagination: { pageSize: 100, pageIndex: 0 } }}
       renderTopToolbarCustomActions={() => (
-        <Button onClick={handleRegenerateData} variant="contained">
+        <Button onClick={handleRegenerateData} variant="filled">
           Regenerate Data
         </Button>
       )}
@@ -120,7 +120,7 @@ export const MemoCells: Story<MantineReactTableProps> = () => {
       initialState={{ pagination: { pageSize: 100, pageIndex: 0 } }}
       memoMode="cells"
       renderTopToolbarCustomActions={() => (
-        <Button onClick={handleRegenerateData} variant="contained">
+        <Button onClick={handleRegenerateData} variant="filled">
           Regenerate Data
         </Button>
       )}
@@ -149,7 +149,7 @@ export const MemoRows: Story<MantineReactTableProps> = () => {
       initialState={{ pagination: { pageSize: 100, pageIndex: 0 } }}
       memoMode="rows"
       renderTopToolbarCustomActions={() => (
-        <Button onClick={handleRegenerateData} variant="contained">
+        <Button onClick={handleRegenerateData} variant="filled">
           Regenerate Data
         </Button>
       )}
@@ -178,7 +178,7 @@ export const MemoTableBody: Story<MantineReactTableProps> = () => {
       initialState={{ pagination: { pageSize: 100, pageIndex: 0 } }}
       memoMode="table-body"
       renderTopToolbarCustomActions={() => (
-        <Button onClick={handleRegenerateData} variant="contained">
+        <Button onClick={handleRegenerateData} variant="filled">
           Regenerate Data
         </Button>
       )}

@@ -6,7 +6,7 @@ import MantineReactTable, {
   MRT_TableInstance,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { Button } from '@mui/material';
+import { Button } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Features/Selection Examples',

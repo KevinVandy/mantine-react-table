@@ -5,7 +5,7 @@ import MantineReactTable, {
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { Box } from '@mui/material';
+import { Box } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Styling/Style Table Head Cells',
@@ -69,7 +69,7 @@ export const StyleTableHeadCellsIndividually: Story<
         header: 'Last Name',
         accessorKey: 'lastName',
         muiTableHeadCellProps: {
-          sx: (theme) => ({ color: theme.palette.primary.main }),
+          sx: (theme) => ({ color: theme.primaryColor }),
         },
       },
       {

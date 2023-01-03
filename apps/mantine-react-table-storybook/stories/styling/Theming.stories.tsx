@@ -5,7 +5,7 @@ import MantineReactTable, {
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { MantineProvider } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Styling/Theming',
@@ -44,41 +44,41 @@ export const DefaultTheme: Story<MantineReactTableProps> = () => (
 );
 
 export const CustomLightTheme: Story<MantineReactTableProps> = () => {
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#ff9800',
-      },
-      background: {
-        default: '#ffffef',
-      },
-      secondary: {
-        main: '#00bcd4',
-      },
-    },
-  });
+  // const theme = createTheme({
+  //   palette: {
+  //     primary: {
+  //       main: '#ff9800',
+  //     },
+  //     background: {
+  //       default: '#ffffef',
+  //     },
+  //     secondary: {
+  //       main: '#00bcd4',
+  //     },
+  //   },
+  // });
   return (
-    <ThemeProvider theme={theme}>
+    <MantineProvider theme={{ primaryColor: '#ff9800' }}>
       <MantineReactTable columns={columns} data={data} enableRowSelection />
-    </ThemeProvider>
+    </MantineProvider>
   );
 };
 
 export const CustomDarkTheme: Story<MantineReactTableProps> = () => {
-  const theme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#81980f',
-      },
-      secondary: {
-        main: '#00bcd4',
-      },
-    },
-  });
+  // const theme = createTheme({
+  //   palette: {
+  //     mode: 'dark',
+  //     primary: {
+  //       main: '#81980f',
+  //     },
+  //     secondary: {
+  //       main: '#00bcd4',
+  //     },
+  //   },
+  // });
   return (
-    <ThemeProvider theme={theme}>
+    <MantineProvider theme={{ colorScheme: 'dark', primaryColor: '#81980f' }}>
       <MantineReactTable columns={columns} data={data} enableRowSelection />
-    </ThemeProvider>
+    </MantineProvider>
   );
 };

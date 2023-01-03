@@ -5,7 +5,7 @@ import MantineReactTable, {
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack } from '@mantine/core';
 import { aggregationFns } from '@tanstack/react-table';
 
 const meta: Meta = {

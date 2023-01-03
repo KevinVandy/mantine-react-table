@@ -5,7 +5,7 @@ import MantineReactTable, {
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { Button } from '@mui/material';
+import { Button } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Styling/Styling Display Columns',
@@ -76,7 +76,7 @@ export const CustomizeDisplayColumns: Story<MantineReactTableProps> = () => (
     renderRowActions={({ row }) => (
       <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '0.5rem' }}>
         <Button
-          variant="contained"
+          variant="filled"
           color="primary"
           onClick={() => {
             console.info('View Profile', row);
@@ -85,7 +85,7 @@ export const CustomizeDisplayColumns: Story<MantineReactTableProps> = () => (
           View
         </Button>
         <Button
-          variant="contained"
+          variant="filled"
           color="error"
           onClick={() => {
             console.info('Remove', row);

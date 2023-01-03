@@ -32,12 +32,9 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
     "@faker-js/faker": "^7.6.0",
     "@mantine/core": "^5.9.5",
     "@mantine/hooks": "^5.9.5",
-    "@mui/icons-material": "^5.11.0",
-    "@mui/material": "^5.11.1",
     "@tabler/icons": "1.118.0",
     "@tanstack/react-table": "^8.7.4",
     "mantine-react-table": "workspace:*",

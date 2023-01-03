@@ -92,12 +92,9 @@ importers:
       '@babel/core': ^7.20.7
       '@babel/preset-react': ^7.18.6
       '@emotion/react': ^11.10.5
-      '@emotion/styled': ^11.10.5
       '@faker-js/faker': ^7.6.0
       '@mantine/core': ^5.9.5
       '@mantine/hooks': ^5.9.5
-      '@mui/icons-material': ^5.11.0
-      '@mui/material': ^5.11.1
       '@storybook/addon-a11y': ^6.5.15
       '@storybook/addon-actions': ^6.5.15
       '@storybook/addon-essentials': ^6.5.15
@@ -124,12 +121,9 @@ importers:
       webpack: ^5.75.0
     dependencies:
       '@emotion/react': 11.10.5_3grbeiqrb6djg67fiejiqngkdi
-      '@emotion/styled': 11.10.5_pwtpayi7py7ecifctvjbac33ee
       '@faker-js/faker': 7.6.0
       '@mantine/core': 5.9.5_hzg3oku4uxnt5crkeceagoktyy
       '@mantine/hooks': 5.9.5_react@18.2.0
-      '@mui/icons-material': 5.11.0_q2xbhzmvmqgan5d7ygs6qjfrou
-      '@mui/material': 5.11.1_lskpmcsdi7ipu6qpuapyu56ihm
       '@tabler/icons': 1.118.0_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-table': 8.7.4_biqbaboplfbrettd7655fr4n2y
       mantine-react-table: link:../../packages/mantine-react-table
@@ -2130,31 +2124,6 @@ packages:
       babel-plugin-emotion: 10.2.2
       react: 16.14.0
     dev: true
-
-  /@emotion/styled/11.10.5_pwtpayi7py7ecifctvjbac33ee:
-    resolution: {integrity: sha512-8EP6dD7dMkdku2foLoruPCNkRevzdcBaY6q0l0OsbyJK+x8D9HWjX27ARiSIKNF634hY9Zdoedh8bJCiva8yZw==}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-      '@emotion/react': ^11.0.0-rc.0
-      '@types/react': '*'
-      react: '>=16.8.0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/core': 7.20.7
-      '@babel/runtime': 7.20.7
-      '@emotion/babel-plugin': 11.10.5_@babel+core@7.20.7
-      '@emotion/is-prop-valid': 1.2.0
-      '@emotion/react': 11.10.5_3grbeiqrb6djg67fiejiqngkdi
-      '@emotion/serialize': 1.1.1
-      '@emotion/use-insertion-effect-with-fallbacks': 1.0.0_react@18.2.0
-      '@emotion/utils': 1.2.0
-      '@types/react': 18.0.26
-      react: 18.2.0
-    dev: false
 
   /@emotion/styled/11.10.5_qvatmowesywn4ye42qoh247szu:
     resolution: {integrity: sha512-8EP6dD7dMkdku2foLoruPCNkRevzdcBaY6q0l0OsbyJK+x8D9HWjX27ARiSIKNF634hY9Zdoedh8bJCiva8yZw==}

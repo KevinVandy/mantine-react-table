@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import MantineReactTable, { MantineReactTableProps } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { MenuItem } from '@mui/material';
+// import { Menu } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Features/Editing Examples',
@@ -203,62 +203,62 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
     setTableData([...tableData]);
   };
 
-  const usStates = [
-    'Alabama',
-    'Alaska',
-    'American Samoa',
-    'Arizona',
-    'Arkansas',
-    'California',
-    'Colorado',
-    'Connecticut',
-    'Delaware',
-    'Florida',
-    'Georgia',
-    'Guam',
-    'Hawaii',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Kansas',
-    'Kentucky',
-    'Louisiana',
-    'Maine',
-    'Maryland',
-    'Massachusetts',
-    'Michigan',
-    'Minnesota',
-    'Mississippi',
-    'Missouri',
-    'Montana',
-    'Nebraska',
-    'Nevada',
-    'New Hampshire',
-    'New Jersey',
-    'New Mexico',
-    'New York',
-    'North Carolina',
-    'North Dakota',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Palau',
-    'Pennsylvania',
-    'Rhode Island',
-    'South Carolina',
-    'South Dakota',
-    'Tennessee',
-    'Texas',
-    'Utah',
-    'Vermont',
-    'Virgin Island',
-    'Virginia',
-    'Washington',
-    'West Virginia',
-    'Wisconsin',
-    'Wyoming',
-  ];
+  // const usStates = [
+  //   'Alabama',
+  //   'Alaska',
+  //   'American Samoa',
+  //   'Arizona',
+  //   'Arkansas',
+  //   'California',
+  //   'Colorado',
+  //   'Connecticut',
+  //   'Delaware',
+  //   'Florida',
+  //   'Georgia',
+  //   'Guam',
+  //   'Hawaii',
+  //   'Idaho',
+  //   'Illinois',
+  //   'Indiana',
+  //   'Iowa',
+  //   'Kansas',
+  //   'Kentucky',
+  //   'Louisiana',
+  //   'Maine',
+  //   'Maryland',
+  //   'Massachusetts',
+  //   'Michigan',
+  //   'Minnesota',
+  //   'Mississippi',
+  //   'Missouri',
+  //   'Montana',
+  //   'Nebraska',
+  //   'Nevada',
+  //   'New Hampshire',
+  //   'New Jersey',
+  //   'New Mexico',
+  //   'New York',
+  //   'North Carolina',
+  //   'North Dakota',
+  //   'Ohio',
+  //   'Oklahoma',
+  //   'Oregon',
+  //   'Palau',
+  //   'Pennsylvania',
+  //   'Rhode Island',
+  //   'South Carolina',
+  //   'South Dakota',
+  //   'Tennessee',
+  //   'Texas',
+  //   'Utah',
+  //   'Vermont',
+  //   'Virgin Island',
+  //   'Virginia',
+  //   'Washington',
+  //   'West Virginia',
+  //   'Wisconsin',
+  //   'Wyoming',
+  // ];
 
   return (
     <MantineReactTable
@@ -278,14 +278,14 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
         {
           header: 'State',
           accessorKey: 'state',
-          muiTableBodyCellEditTextFieldProps: () => ({
-            children: usStates.map((state) => (
-              <MenuItem key={state} value={state}>
-                {state}
-              </MenuItem>
-            )),
-            select: true,
-          }),
+          // muiTableBodyCellEditTextFieldProps: () => ({
+          //   children: usStates.map((state) => (
+          //     <Menu.Item key={state} value={state}>
+          //       {state}
+          //     </Menu.Item>
+          //   )),
+          //   select: true,
+          // }),
         },
         {
           header: 'Phone Number',
@@ -295,7 +295,7 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
       data={tableData}
       enableRowActions
       enableEditing
-      muiTableBodyCellEditTextFieldProps={{ variant: 'outlined' }}
+      muiTableBodyCellEditTextFieldProps={{ variant: 'filled' }}
       onEditingRowSave={handleSaveRow}
     />
   );
