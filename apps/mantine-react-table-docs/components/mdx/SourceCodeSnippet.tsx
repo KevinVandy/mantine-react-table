@@ -135,7 +135,7 @@ export const SourceCodeSnippet: FC<Props> = ({
         <LinkHeading tableId={tableId} order={4}>
           Source Code
         </LinkHeading>
-        <Prism.Tabs defaultValue="ts">
+        <Prism.Tabs defaultValue={defaultTS ? 'ts' : 'js'}>
           <Prism.TabsList>
             <Prism.Tab value="ts" icon={<IconBrandTypescript />}>
               TypeScript

@@ -4,8 +4,14 @@ import Head from 'next/head';
 import PlausibleProvider from 'next-plausible';
 import { useRouter } from 'next/router';
 import { MDXProvider } from '@mdx-js/react';
-import { Box, ThemeProvider, useMediaQuery } from '@mui/material';
-import { AppShell, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { ThemeProvider } from '@mui/material';
+import {
+  AppShell,
+  ColorSchemeProvider,
+  MantineProvider,
+  Box,
+} from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { mdxComponents } from '../components/mdx/mdxComponents';
 import TopBar from '../components/navigation/TopBar';
 import SideBar from '../components/navigation/Sidebar';
@@ -117,7 +123,7 @@ function App({ Component, pageProps }: AppProps) {
           toggleColorScheme={() => {}}
         >
           <MantineProvider
-            theme={{ colorScheme: isLightTheme ? 'light' : 'dark' }}
+            theme={{ colorScheme: isLightTheme ? 'light' : 'dark', }}
             withGlobalStyles
             withNormalizeCSS
           >
@@ -141,68 +147,15 @@ function App({ Component, pageProps }: AppProps) {
                   }
                 >
                   <Box
-                    component="main"
-                    sx={(theme) => ({
-                      backgroundColor: theme.palette.background.default,
-                      color: theme.palette.text.primary,
+                    sx={{
+                      maxWidth: '1600px',
+                      margin: 'auto',
                       minHeight: '100vh',
-                      p: `64px ${
+                      padding: `16px ${
                         showMiniNav && isXLDesktop ? '250px' : '32px'
                       } 0 ${
                         (navOpen || isDesktop) && !isMobile ? '300px' : '32px'
                       }`,
-                      transition: 'all 100ms ease-in-out',
-                    })}
-                  >
-                    <Box
-                      sx={{
-                        maxWidth: '1200px',
-                        margin: 'auto',
-                        transition: 'all 100ms ease-in-out',
-                        width: '100%',
-                      }}
-                    >
-                      {showBreadCrumbs && <BreadCrumbs />}
-                      {showMiniNav && !isXLDesktop && <MiniNav />}
-                      {pathname === '/' ? (
-                        <Component {...pageProps} />
-                      ) : (
-                        <article>
-                          <Component {...pageProps} />
-                        </article>
-                      )}
-                    </Box>
-                    {showMiniNav && isXLDesktop && <MiniNav />}
-                  </Box>
-                </AppShell>
-                {/* <TopBar
-                  isLightTheme={isLightTheme}
-                  navOpen={navOpen || isDesktop}
-                  setIsLightTheme={setIsLightTheme}
-                  setNavOpen={setNavOpen}
-                />
-                <SideBar
-                  navOpen={navOpen || isDesktop}
-                  setNavOpen={setNavOpen}
-                />
-                <Box
-                  component="main"
-                  sx={(theme) => ({
-                    backgroundColor: theme.palette.background.default,
-                    color: theme.palette.text.primary,
-                    minHeight: '100vh',
-                    p: `64px ${
-                      showMiniNav && isXLDesktop ? '250px' : '32px'
-                    } 0 ${
-                      (navOpen || isDesktop) && !isMobile ? '300px' : '32px'
-                    }`,
-                    transition: 'all 100ms ease-in-out',
-                  })}
-                >
-                  <Box
-                    sx={{
-                      maxWidth: '1200px',
-                      margin: 'auto',
                       transition: 'all 100ms ease-in-out',
                       width: '100%',
                     }}
@@ -216,10 +169,9 @@ function App({ Component, pageProps }: AppProps) {
                         <Component {...pageProps} />
                       </article>
                     )}
-                    <Footer />
                   </Box>
                   {showMiniNav && isXLDesktop && <MiniNav />}
-                </Box> */}
+                </AppShell>
               </MDXProvider>
             </ThemeProvider>
           </MantineProvider>

@@ -1,16 +1,15 @@
 import { FC } from 'react';
 import { Prism } from '@mantine/prism';
+import { Paper, useMantineTheme } from '@mantine/core';
 
-import { useMantineTheme } from '@mantine/core';
-
-  export const SampleCodeSnippet: FC<any> = (props) => {
+export const SampleCodeSnippet: FC<any> = (props) => {
   const theme = useMantineTheme();
 
   if (!props.className) {
     return (
       <code
         style={{
-          backgroundColor: theme.colors.blue[9],
+          backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.2),
           padding: '4px',
           margin: '0 0.5ch',
         }}
@@ -20,8 +19,10 @@ import { useMantineTheme } from '@mantine/core';
   }
 
   return (
-    <Prism {...props} language={props.className.replace(/language-/, '')}>
-      {props.children}
-    </Prism>
+    <Paper radius="sm" shadow="md">
+      <Prism {...props} language={props.className.replace(/language-/, '')}>
+        {props.children}
+      </Prism>
+    </Paper>
   );
 };

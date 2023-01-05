@@ -1,15 +1,20 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import { usePlausible } from 'next-plausible';
-import { Header, Box, Tooltip, Text, ActionIcon, Flex } from '@mantine/core';
+import {
+  Header,
+  Box,
+  Tooltip,
+  Text,
+  ActionIcon,
+  Flex,
+  Burger,
+} from '@mantine/core';
 import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons';
 import { useMediaQuery } from '@mantine/hooks';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import Image from 'next/image';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 interface Props {
   isLightTheme: boolean;
@@ -41,17 +46,11 @@ const TopBar: FC<Props> = ({
     >
       <Flex align="center" gap="md">
         {!isDesktop && (
-          <ActionIcon
-            aria-label="Open nav menu"
+          <Burger
+            opened={navOpen}
             onClick={() => setNavOpen(!navOpen)}
-            size="xl"
-          >
-            {navOpen ? (
-              <MenuOpenIcon color="inherit" />
-            ) : (
-              <MenuIcon color="inherit" />
-            )}
-          </ActionIcon>
+            title="Open nav menu"
+          />
         )}
         <Link href="/" passHref legacyBehavior>
           <Text

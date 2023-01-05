@@ -272,7 +272,7 @@ const HomePage = () => {
           textAlign: 'center',
           margin: '2rem',
         }}
-        variant="h4"
+        order={4}
       >
         Let&apos;s Compare
       </LinkHeading>
@@ -283,7 +283,7 @@ const HomePage = () => {
           textAlign: 'center',
           margin: '2rem',
         }}
-        variant="h4"
+        order={4}
       >
         Feature Comparison
       </LinkHeading>
