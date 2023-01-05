@@ -74,7 +74,7 @@ const Example: FC = () => {
           '/api/data',
           process.env.NODE_ENV === 'production'
             ? 'https://www.mantine-react-table.com'
-            : 'http://localhost:3000',
+            : 'http://localhost:3001',
         );
         url.searchParams.set('start', `${pageParam * fetchSize}`);
         url.searchParams.set('size', `${fetchSize}`);

@@ -1,42 +1,17 @@
 import { FC, useState, useEffect } from 'react';
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import darkCodeTheme from 'prism-react-renderer/themes/vsDark';
-import lightCodeTheme from 'prism-react-renderer/themes/vsLight';
+import { Box, Flex, Divider, Button } from '@mantine/core';
+import { Prism } from '@mantine/prism';
 import {
-  ToggleButton,
-  ToggleButtonGroup,
-  useTheme,
-  styled,
-  IconButton,
-  Tooltip,
-  Divider,
-  useMediaQuery,
-  Box,
-  Button,
-  Paper,
-} from '@mui/material';
-import CodeIcon from '@mui/icons-material/Code';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LaunchIcon from '@mui/icons-material/Launch';
-import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
-import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
-import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
+  IconBrandTypescript,
+  IconBrandJavascript,
+  IconApi,
+  IconBrandGithub,
+  IconBolt,
+  IconBrandCodesandbox,
+  IconExternalLink,
+} from '@tabler/icons';
 import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
-
-const CopyButton = styled(IconButton)({
-  position: 'absolute',
-  top: '0.5rem',
-  right: '0.5rem',
-});
-
-const ToggleFullCodeButton = styled(IconButton)({
-  position: 'absolute',
-  top: '0.5rem',
-  right: '3.5rem',
-});
 
 export interface Props {
   Component?: FC;
@@ -56,35 +31,20 @@ export const SourceCodeSnippet: FC<Props> = ({
   typeScriptCode,
 }) => {
   const plausible = usePlausible();
-  const theme = useTheme();
-  const isMobile = useMediaQuery('(max-width: 720px)');
-  const [isTypeScript, setIsTypeScript] = useState(true);
-  const [showApiCode, setShowApiCode] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
-  const [isFullCode, setIsFullCode] = useState(false);
-
-  let skipCodeLine = false;
+  const [defaultTS, setDefaultTS] = useState(true);
 
   useEffect(
     () =>
-      setIsTypeScript(
-        localStorage.getItem('isTypeScript') === 'true' || !javaScriptCode,
+      setDefaultTS(
+        localStorage.getItem('defaultTS') === 'true' || !javaScriptCode,
       ),
     [javaScriptCode],
   );
 
   useEffect(
-    () => localStorage.setItem('isTypeScript', isTypeScript.toString()),
-    [isTypeScript],
+    () => localStorage.setItem('defaultTS', defaultTS.toString()),
+    [defaultTS],
   );
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(
-      isTypeScript ? typeScriptCode : javaScriptCode ?? '',
-    );
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 3000);
-  };
 
   return (
     <Box
@@ -105,217 +65,108 @@ export const SourceCodeSnippet: FC<Props> = ({
               gap: '1rem',
             }}
           >
-            <LinkHeading
-              tableId={tableId}
-              variant="h4"
-              textTransform="capitalize"
-            >
+            <LinkHeading tableId={tableId} order={4}>
               Demo
             </LinkHeading>
             {showCodeSandboxLink && (
-              <Box
+              <Flex
                 sx={{
-                  display: { xs: 'grid', sm: 'flex' },
                   flexWrap: 'wrap',
                   gap: '1rem',
-                  justifyContent: { xs: 'center', sm: 'flex-start' },
-                  width: { xs: '100%', sm: 'auto' },
+                  '@media (max-width: 720px)': {
+                    justifyContent: 'center',
+                  },
                 }}
               >
-                <Button
-                  color="success"
-                  endIcon={<LaunchIcon />}
+                <a
                   href={`https://stackblitz.com/github/KevinVandy/mantine-react-table/tree/main/apps/mantine-react-table-docs/examples/${tableId}/sandbox?file=src/TS.tsx`}
-                  onClick={() => plausible('open-stackblitz')}
                   rel="noreferrer"
-                  startIcon={<ElectricBoltIcon />}
-                  sx={{ cursor: 'pointer' }}
                   target="_blank"
-                  variant="outlined"
                 >
-                  Open Stackblitz
-                </Button>
-                <Button
-                  color="warning"
-                  endIcon={<LaunchIcon />}
+                  <Button
+                    color="green"
+                    leftIcon={<IconBolt />}
+                    onClick={() => plausible('open-stackblitz')}
+                    rightIcon={<IconExternalLink />}
+                    variant="outline"
+                  >
+                    Open Stackblitz
+                  </Button>
+                </a>
+                <a
                   href={`https://codesandbox.io/s/github/KevinVandy/mantine-react-table/tree/main/apps/mantine-react-table-docs/examples/${tableId}/sandbox?file=/src/TS.tsx`}
-                  onClick={() => plausible('open-code-sandbox')}
                   rel="noreferrer"
-                  startIcon={<CodeIcon />}
-                  sx={{ cursor: 'pointer' }}
                   target="_blank"
-                  variant="outlined"
                 >
-                  Open Code Sandbox
-                </Button>
-                <Button
-                  color="info"
-                  endIcon={<LaunchIcon />}
+                  <Button
+                    color="yellow"
+                    leftIcon={<IconBrandCodesandbox />}
+                    onClick={() => plausible('open-code-sandbox')}
+                    rightIcon={<IconExternalLink />}
+                    variant="outline"
+                  >
+                    Open Code Sandbox
+                  </Button>
+                </a>
+                <a
                   href={`https://github.com/KevinVandy/mantine-react-table/tree/main/apps/mantine-react-table-docs/examples/${tableId}/sandbox/src/${
-                    isTypeScript ? 'TS.tsx' : 'JS.js'
+                    defaultTS ? 'TS.tsx' : 'JS.js'
                   }`}
-                  onClick={() => plausible('open-on-github')}
                   rel="noreferrer"
-                  startIcon={<GitHubIcon />}
-                  sx={{ cursor: 'pointer' }}
                   target="_blank"
-                  variant="outlined"
                 >
-                  Open on GitHub
-                </Button>
-              </Box>
+                  <Button
+                    color="blue"
+                    rightIcon={<IconExternalLink />}
+                    onClick={() => plausible('open-on-github')}
+                    leftIcon={<IconBrandGithub />}
+                    variant="outline"
+                  >
+                    Open on GitHub
+                  </Button>
+                </a>
+              </Flex>
             )}
           </Box>
           <Component />
         </>
       )}
-      <div>
-        <Box sx={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          <LinkHeading
-            tableId={tableId}
-            textTransform="capitalize"
-            variant="h4"
-          >
-            Source Code
-          </LinkHeading>
-          <ToggleButtonGroup>
-            <ToggleButton
-              onClick={() => {
-                setIsTypeScript(true);
-                setShowApiCode(false);
-                plausible('toggle-to-typescript');
-              }}
-              selected={isTypeScript && !showApiCode}
-              sx={{ textTransform: 'none' }}
-              value="ts"
-            >
-              {isMobile ? 'TS' : 'TypeScript'}
-            </ToggleButton>
+      <Flex sx={{ gap: '1rem', flexWrap: 'wrap', flexDirection: 'column' }}>
+        <LinkHeading tableId={tableId} order={4}>
+          Source Code
+        </LinkHeading>
+        <Prism.Tabs defaultValue="ts">
+          <Prism.TabsList>
+            <Prism.Tab value="ts" icon={<IconBrandTypescript />}>
+              TypeScript
+            </Prism.Tab>
             {javaScriptCode && (
-              <ToggleButton
-                onClick={() => {
-                  setIsTypeScript(false);
-                  setShowApiCode(false);
-                  plausible('toggle-to-javascript');
-                }}
-                selected={!isTypeScript && !showApiCode}
-                sx={{ textTransform: 'none' }}
-                value="js"
-              >
-                {isMobile ? 'JS' : 'JavaScript'}
-              </ToggleButton>
+              <Prism.Tab value="js" icon={<IconBrandJavascript />}>
+                JavaScript
+              </Prism.Tab>
             )}
             {apiCode && (
-              <ToggleButton
-                onClick={() => {
-                  setShowApiCode(true);
-                }}
-                value="js"
-                selected={showApiCode}
-              >
+              <Prism.Tab value="api" icon={<IconApi />}>
                 API
-              </ToggleButton>
+              </Prism.Tab>
             )}
-          </ToggleButtonGroup>
-        </Box>
-        <Paper elevation={3}>
-          <Highlight
-            {...defaultProps}
-            code={
-              showApiCode
-                ? apiCode ?? ''
-                : isTypeScript
-                ? typeScriptCode
-                : javaScriptCode ?? ''
-            }
-            language={showApiCode || isTypeScript ? 'tsx' : 'jsx'}
-            theme={
-              theme.palette.mode === 'dark' ? darkCodeTheme : lightCodeTheme
-            }
-          >
-            {({ className, style, tokens, getLineProps, getTokenProps }) => (
-              <div
-                style={{
-                  position: 'relative',
-                  fontSize: isMobile ? '1em' : '1.2em',
-                }}
-              >
-                <Tooltip arrow title={isCopied ? 'Copied!' : 'Copy Code'}>
-                  <CopyButton onClick={handleCopy}>
-                    {isCopied ? <LibraryAddCheckIcon /> : <ContentCopyIcon />}
-                  </CopyButton>
-                </Tooltip>
-                <Tooltip
-                  arrow
-                  title={
-                    isFullCode
-                      ? 'Hide columns and data definitions'
-                      : 'Show columns and data definitions'
-                  }
-                >
-                  <ToggleFullCodeButton
-                    onClick={() => setIsFullCode(!isFullCode)}
-                  >
-                    {isFullCode ? <UnfoldLessIcon /> : <UnfoldMoreIcon />}
-                  </ToggleFullCodeButton>
-                </Tooltip>
-                <pre
-                  className={className}
-                  style={{
-                    ...style,
-                    padding: isMobile
-                      ? '3rem 0.5rem 1rem 0.5rem'
-                      : '0.5rem 0.25rem',
-                    overflowX: 'auto',
-                  }}
-                >
-                  {tokens.map((line, i) => (
-                    <div
-                      key={i}
-                      {...getLineProps({ line, key: i })}
-                      style={{
-                        ...style,
-                        display: !isFullCode && skipCodeLine ? 'none' : 'block',
-                      }}
-                    >
-                      {!isMobile && (
-                        <span
-                          style={{
-                            paddingRight: '2ch',
-                            paddingLeft: `${4 - String(i + 1).length}ch`,
-                            color: theme.palette.text.secondary,
-                            userSelect: 'none',
-                          }}
-                        >
-                          {i + 1}
-                        </span>
-                      )}
-                      {line.map((token, key) => {
-                        if (
-                          token.content === '//column definitions...' ||
-                          token.content === '//data definitions...'
-                        ) {
-                          skipCodeLine = true;
-                          if (isFullCode) {
-                            return null;
-                          }
-                        } else if (token.content === '//end') {
-                          skipCodeLine = false;
-                          return null;
-                        }
-                        return (
-                          <span key={key} {...getTokenProps({ token, key })} />
-                        );
-                      })}
-                    </div>
-                  ))}
-                </pre>
-              </div>
-            )}
-          </Highlight>
-        </Paper>
-      </div>
-      <Divider />
+          </Prism.TabsList>
+
+          <Prism.Panel withLineNumbers language="tsx" value="ts">
+            {typeScriptCode}
+          </Prism.Panel>
+          {javaScriptCode && (
+            <Prism.Panel withLineNumbers language="jsx" value="js">
+              {javaScriptCode}
+            </Prism.Panel>
+          )}
+          {apiCode && (
+            <Prism.Panel withLineNumbers language="typescript" value="api">
+              {apiCode}
+            </Prism.Panel>
+          )}
+        </Prism.Tabs>
+      </Flex>
     </Box>
   );
 };

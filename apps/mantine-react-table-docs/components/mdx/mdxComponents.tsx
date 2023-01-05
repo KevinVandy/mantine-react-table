@@ -1,42 +1,42 @@
-import { Typography, Link as MuiLink, Divider } from '@mui/material';
+import Link from 'next/link';
+import { Anchor, Divider, Text, Title } from '@mantine/core';
 import { Blockquote } from './Blockquote';
 import { SampleCodeSnippet } from './SampleCodeSnippet';
 import { LinkHeading } from './LinkHeading';
-import Link from 'next/link';
 
 export const mdxComponents = {
   a: (props: any) => (
     <Link href={props.href} passHref legacyBehavior>
-      <MuiLink
+      <Anchor
         target={props.href.startsWith('http') ? '_blank' : undefined}
         rel="noreferrer"
       >
         {props.children}
-      </MuiLink>
+      </Anchor>
     </Link>
   ),
   blockquote: (props: any) => <Blockquote {...props} />,
   code: (props: any) => <SampleCodeSnippet {...props} />,
-  h1: (props: any) => <Typography variant="h1" {...props} />,
-  h2: (props: any) => <LinkHeading variant="h2" {...props} />,
+  h1: (props: any) => <Title order={1} {...props} />,
+  h2: (props: any) => <LinkHeading order={2} {...props} />,
   h3: (props: any) => (
-    <LinkHeading variant="h3" sx={{ marginTop: '3rem' }} {...props} />
+    <LinkHeading order={3} sx={{ marginTop: '3rem' }} {...props} />
   ),
   h4: (props: any) => (
-    <LinkHeading variant="h4" sx={{ marginTop: '2rem' }} {...props} />
+    <LinkHeading order={4} sx={{ marginTop: '2rem' }} {...props} />
   ),
   h5: (props: any) => (
-    <LinkHeading variant="h5" sx={{ marginTop: '2rem' }} {...props} />
+    <LinkHeading order={5} sx={{ marginTop: '2rem' }} {...props} />
   ),
-  h6: (props: any) => <Typography variant="h6" {...props} />,
+  h6: (props: any) => <Title order={6} {...props} />,
   hr: (props: any) => <Divider sx={{ marginBottom: '1rem' }} {...props} />,
   li: (props: any) => (
     <li className="docsearch-content" {...props}>
-      <Typography variant="body1">{props.children}</Typography>
+      <Text>{props.children}</Text>
     </li>
   ),
   p: (props: any) => (
-    <Typography
+    <Text
       className="docsearch-content"
       sx={{
         textAlign: {
@@ -46,7 +46,6 @@ export const mdxComponents = {
         lineHeight: '1.75rem',
         margin: '0.75rem 0',
       }}
-      variant="body1"
       {...props}
     />
   ),

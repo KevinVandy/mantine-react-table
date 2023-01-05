@@ -1,6 +1,7 @@
 import { FC, useMemo } from 'react';
 import Link from 'next/link';
-import { Breadcrumbs as MuiBreadcrumbs, Link as MuiLink } from '@mui/material';
+// import { Breadcrumbs as MuiBreadcrumbs, Link as MuiLink } from '@mui/material';
+import { Anchor, Breadcrumbs } from '@mantine/core';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
@@ -41,13 +42,17 @@ const BreadCrumbs: FC = () => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
-      <MuiBreadcrumbs aria-label="breadcrumb" sx={{ paddingTop: '1rem' }}>
+      <Breadcrumbs aria-label="breadcrumb" sx={{ paddingBottom: '1rem' }}>
         {breadCrumbLinks.map((link, index) => (
           <Link key={index} href={link} passHref legacyBehavior>
-            <MuiLink
+            <Anchor
               color="inherit"
-              sx={{ cursor: 'pointer', textTransform: 'capitalize' }}
-              underline="hover"
+              sx={{
+                cursor: 'pointer',
+                textTransform: 'capitalize',
+                textDecoration: 'none',
+                '&:hover': { textDecoration: 'hover' },
+              }}
             >
               {link
                 .split('/')
@@ -56,10 +61,10 @@ const BreadCrumbs: FC = () => {
                 ?.replaceAll('css', 'CSS')
                 ?.replaceAll(' ui', ' UI')
                 ?.replaceAll('api', 'API')}
-            </MuiLink>
+            </Anchor>
           </Link>
         ))}
-      </MuiBreadcrumbs>
+      </Breadcrumbs>
     </>
   );
 };

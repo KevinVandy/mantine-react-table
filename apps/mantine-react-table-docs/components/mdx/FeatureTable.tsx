@@ -13,7 +13,7 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
     muiTableHeadCellProps: {
       align: 'center',
       sx: (theme) => ({
-        color: theme.palette.primary.main,
+        color: theme.primaryColor,
       }),
     },
     muiTableBodyCellProps: {

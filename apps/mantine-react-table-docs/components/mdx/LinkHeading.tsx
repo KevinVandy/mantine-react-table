@@ -1,20 +1,22 @@
 import { FC, ReactNode, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import LinkIcon from '@mui/icons-material/Link';
-import AddLinkIcon from '@mui/icons-material/AddLink';
 import {
-  IconButton,
+  ActionIcon,
+  Anchor,
+  packSx,
+  Sx,
+  Title,
+  TitleProps,
   Tooltip,
-  Typography,
-  TypographyProps,
-  Link as MuiLink,
-} from '@mui/material';
+} from '@mantine/core';
+import { IconLink } from '@tabler/icons';
 
-interface Props extends TypographyProps {
+interface Props extends TitleProps {
   children: ReactNode | string;
   tableId?: string;
   href?: string;
+  sx?: Sx | Sx[];
 }
 
 export const LinkHeading: FC<Props> = ({ children, tableId, ...rest }) => {
@@ -37,7 +39,7 @@ export const LinkHeading: FC<Props> = ({ children, tableId, ...rest }) => {
 
   return (
     <Link href={href} passHref legacyBehavior>
-      <MuiLink
+      <Anchor
         sx={{
           color: 'inherit',
           textDecoration: 'none',
@@ -46,13 +48,17 @@ export const LinkHeading: FC<Props> = ({ children, tableId, ...rest }) => {
           },
         }}
       >
-        <Typography
+        <Title
           className={id.includes('relevant') ? 'relevant' : undefined}
           id={id}
           {...rest}
+          sx={[
+            { display: 'flex', gap: '1rem', alignItems: 'center' },
+            ...packSx(rest.sx),
+          ]}
         >
-          {children}{' '}
-          <IconButton
+          {children}
+          <ActionIcon
             aria-label="Copy link"
             onClick={handleCopy}
             sx={{
@@ -63,12 +69,12 @@ export const LinkHeading: FC<Props> = ({ children, tableId, ...rest }) => {
               },
             }}
           >
-            <Tooltip arrow title={isCopied ? 'Copied!' : 'Copy Link'}>
-              {isCopied ? <AddLinkIcon /> : <LinkIcon />}
+            <Tooltip withinPortal withArrow label={isCopied ? 'Copied!' : 'Copy Link'}>
+              <IconLink />
             </Tooltip>
-          </IconButton>
-        </Typography>
-      </MuiLink>
+          </ActionIcon>
+        </Title>
+      </Anchor>
     </Link>
   );
 };
