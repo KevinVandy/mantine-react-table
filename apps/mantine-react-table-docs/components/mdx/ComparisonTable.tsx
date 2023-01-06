@@ -1,4 +1,4 @@
-import { Box, Link } from '@mui/material';
+import { Box, Anchor } from '@mantine/core';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import React from 'react';
 
@@ -8,17 +8,19 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
     header: 'Library',
     size: 250,
     Cell: ({ cell, row }) => (
-      <Link
+      <Anchor
         href={row.original.libraryLink}
         target="_blank"
         rel="noreferrer"
         sx={(theme) => ({
           color:
             cell.getValue() === 'Mantine React Table'
-              ? theme.palette.primary.main
+              ? theme.colors.blue[7]
               : cell.getValue() === 'TanStack Table (React Table)'
-              ? theme.palette.secondary.light
-              : theme.palette.text.primary,
+              ? theme.colors.teal[7]
+              : theme.colorScheme === 'dark'
+              ? theme.white
+              : theme.black,
           fontWeight: 'bold',
           textDecoration: 'none',
           '&:hover': {
@@ -27,7 +29,7 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
         })}
       >
         <>{cell.getValue()}</>
-      </Link>
+      </Anchor>
     ),
   },
   {

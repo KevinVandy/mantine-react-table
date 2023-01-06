@@ -22,6 +22,7 @@ import { theme } from '../styles/MuiTheme';
 import docsearch from '@docsearch/js';
 import '../styles/globals.css';
 import '@docsearch/css';
+import { SuggestsEditsButton } from '../components/mdx/SuggestsEditsButton';
 
 function App({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
@@ -169,6 +170,7 @@ function App({ Component, pageProps }: AppProps) {
                         <Component {...pageProps} />
                       </article>
                     )}
+                    <SuggestsEditsButton />
                   </Box>
                   {showMiniNav && isXLDesktop && <MiniNav />}
                 </AppShell>

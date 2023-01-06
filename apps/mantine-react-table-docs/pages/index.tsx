@@ -234,13 +234,10 @@ const HomePage = () => {
             </Button>
           </Link>
         </Box>
-        <Box>
-          <SampleCodeSnippet
-            className="language-bash"
-            style={{ paddingBottom: '1rem' }}
-          >
-            npm i mantine-react-table @mui/material @mui/icons-material
-            @emotion/react @emotion/styled
+        <Box py="1rem">
+          <SampleCodeSnippet className="language-bash">
+            npm i mantine-react-table @mantine/core @mantine/hooks
+            @emotion/react @tabler/icons
           </SampleCodeSnippet>
         </Box>
         <HomeCards />

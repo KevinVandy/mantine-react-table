@@ -1,11 +1,6 @@
 import { FC } from 'react';
 import Head from 'next/head';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from '@mui/material';
+import { Accordion, Box, Text, Title } from '@mantine/core';
 import IconChevronDown from '@mui/icons-material/ExpandMore';
 
 interface FAQStructuredData {
@@ -36,17 +31,20 @@ export const FAQs: FC<Props> = ({ faqStructuredData }) => {
           }}
         />
       </Head>
-      {faqStructuredData.mainEntity.map((faq, index) => (
-        <Accordion elevation={4} key={index}>
-          <AccordionSummary expandIcon={<IconChevronDown />}>
-            <Typography variant="h4">{faq.name}</Typography>
-          </AccordionSummary>
-          <AccordionDetails
-            dangerouslySetInnerHTML={{ __html: faq.acceptedAnswer.text }}
-            sx={{ lineHeight: '2rem' }}
-          />
-        </Accordion>
-      ))}
+      <Accordion variant='separated'>
+        {faqStructuredData.mainEntity.map((faq, index) => (
+          <Accordion.Item key={index} value={faq.name}>
+            <Accordion.Control>
+              <Title order={4}>{faq.name}</Title>
+            </Accordion.Control>
+            <Accordion.Panel sx={{ lineHeight: '2rem' }}>
+              <Box
+                dangerouslySetInnerHTML={{ __html: faq.acceptedAnswer.text }}
+              ></Box>
+            </Accordion.Panel>
+          </Accordion.Item>
+        ))}
+      </Accordion>
     </>
   );
 };

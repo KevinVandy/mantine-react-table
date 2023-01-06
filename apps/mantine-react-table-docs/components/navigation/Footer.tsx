@@ -1,223 +1,155 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { usePlausible } from 'next-plausible';
-import { Box, Button, Divider, Link, Paper, Typography } from '@mui/material';
-import { Edit, GitHub } from '@mui/icons-material';
+import { FC } from 'react';
+import { Box, Divider, Anchor, Paper, Text } from '@mantine/core';
 import TableOfContentsList from './TableOfContentsList';
 import { routes } from './routes';
 
-const Footer = () => {
-  const { pathname } = useRouter();
-  const plausible = usePlausible();
-
+const Footer: FC = () => {
   return (
-    <Box
-      component="footer"
+    <Paper
+      component='footer'
       sx={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
+        borderRadius: '8px',
+        borderBottomLeftRadius: '0',
+        borderBottomRightRadius: '0',
         marginTop: '100px',
+        padding: '1.5rem',
       }}
     >
-      <Button
-        color="secondary"
-        endIcon={<GitHub />}
-        startIcon={<Edit />}
-        href={`https://github.com/KevinVandy/mantine-react-table/edit/main/apps/mantine-react-table-docs/pages${pathname}${
-          ['/'].includes(pathname)
-            ? 'index.tsx'
-            : ['/docs', '/docs/api', '/docs/examples', '/docs/guides'].includes(
-                pathname,
-              )
-            ? '/index.mdx'
-            : '.mdx'
-        }`}
-        onClick={() => plausible('edit-on-github')}
-        rel="noreferrer"
-        target="_blank"
+      <Text color="gray" ta="center">
+        © {new Date().getFullYear()} Kevin&nbsp;Van&nbsp;Cott
+      </Text>
+      <Box
         sx={{
-          height: '3rem',
-          margin: '3rem auto',
-          cursor: 'pointer',
-          textAlign: 'center',
-        }}
-        variant="outlined"
-      >
-        Suggest an Edit for this page on GitHub
-      </Button>
-      <Typography
-        sx={{
-          justifyContent: 'center',
           display: 'flex',
-          alignContent: 'center',
+          justifyContent: 'center',
+          gap: '1rem',
+          flexWrap: 'wrap',
         }}
-        variant="subtitle2"
       >
-        You can help make these docs better!{' '}
-        <a
-          aria-label="Learn how to contribute"
-          href="http://makeapullrequest.com"
+        <Anchor
+          color="text.secondary"
+          href="https://www.npmjs.com/package/mantine-react-table"
           target="_blank"
-          rel="noreferrer"
-          style={{ marginLeft: '0.5rem' }}
+          rel="noopener"
         >
-          <img
-            alt="PRs are Welcome"
-            src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
-          />
-        </a>
-      </Typography>
-      <Paper
-        elevation={3}
+          NPM
+        </Anchor>
+        <Anchor
+          color="text.secondary"
+          href="https://github.com/KevinVandy/mantine-react-table"
+          target="_blank"
+          rel="noopener"
+        >
+          Source Code
+        </Anchor>
+        <Anchor
+          color="text.secondary"
+          href="https://github.com/KevinVandy/mantine-react-table/issues"
+          target="_blank"
+          rel="noopener"
+        >
+          Submit a Bug Report
+        </Anchor>
+        <Anchor
+          color="text.secondary"
+          href="https://discord.gg/5wqyRx6fnm"
+          target="_blank"
+          rel="noopener"
+        >
+          Join&nbsp;the&nbsp;Discord!
+        </Anchor>
+        <Anchor
+          color="text.secondary"
+          href="https://twitter.com/ThomasVanCott"
+          target="_blank"
+          rel="noopener"
+        >
+          Twitter
+        </Anchor>
+      </Box>
+      <Divider sx={{ margin: '2rem 0' }} />
+      <Box
         sx={{
-          borderRadius: '8px',
-          borderBottomLeftRadius: '0',
-          borderBottomRightRadius: '0',
-          marginTop: '100px',
-          padding: '1.5rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          marginTop: '1rem',
+          gap: '0.5rem',
+          justifyContent: 'space-between',
+          '@media (max-width: 800px)': {
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+          },
+          '@media (max-width: 600px)': {
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+          },
         }}
       >
-        <Typography color="text.secondary" textAlign="center">
-          © {new Date().getFullYear()} Kevin&nbsp;Van&nbsp;Cott
-        </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '1rem',
-            flexWrap: 'wrap',
-          }}
-        >
-          <Link
-            color="text.secondary"
-            href="https://www.npmjs.com/package/mantine-react-table"
-            target="_blank"
-            rel="noopener"
-          >
-            NPM
-          </Link>
-          <Link
-            color="text.secondary"
-            href="https://github.com/KevinVandy/mantine-react-table"
-            target="_blank"
-            rel="noopener"
-          >
-            Source Code
-          </Link>
-          <Link
-            color="text.secondary"
-            href="https://github.com/KevinVandy/mantine-react-table/issues"
-            target="_blank"
-            rel="noopener"
-          >
-            Submit a Bug Report
-          </Link>
-          <Link
-            color="text.secondary"
-            href="https://discord.gg/5wqyRx6fnm"
-            target="_blank"
-            rel="noopener"
-          >
-            Join&nbsp;the&nbsp;Discord!
-          </Link>
-          <Link
-            color="text.secondary"
-            href="https://twitter.com/ThomasVanCott"
-            target="_blank"
-            rel="noopener"
-          >
-            Twitter
-          </Link>
+        <Box>
+          <Text>Site Directory</Text>
+          <TableOfContentsList items={routes} isFooter />
         </Box>
-        <Divider sx={{ margin: '2rem 0' }} />
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            marginTop: '1rem',
-            gap: '0.5rem',
-            flexDirection: {
-              xs: 'column',
-              sm: 'row',
-            },
-            justifyContent: {
-              xs: 'flex-start',
-              sm: 'space-around',
-              md: 'space-between',
-            },
-          }}
-        >
-          <Box>
-            <Typography>Site Directory</Typography>
-            <TableOfContentsList items={routes} isFooter />
-          </Box>
-          <Box>
-            <Typography>API Reference</Typography>
-            <TableOfContentsList
-              items={
-                routes.find((item) => item.href === '/docs/getting-started')
-                  ?.items ?? []
-              }
-              isFooter
-            />
-            <TableOfContentsList
-              items={
-                routes
-                  .find((item) => item.href === '/docs/api')
-                  ?.items?.find((item) => item.label === 'Props and Options')
-                  ?.items ?? []
-              }
-              isFooter
-            />
-            <TableOfContentsList
-              items={
-                routes
-                  .find((item) => item.href === '/docs/api')
-                  ?.items?.find((item) => item.label === 'Instance APIs')
-                  ?.items ?? []
-              }
-              isFooter
-            />
-          </Box>
-          <Box>
-            <Typography>Examples</Typography>
-            <TableOfContentsList
-              items={
-                routes.find((item) => item.href === '/docs/examples')?.items ??
-                []
-              }
-              isFooter
-            />
-          </Box>
-          <Box>
-            <Typography>Fundamental Guides</Typography>
-            <TableOfContentsList
-              items={
-                (
-                  routes.find((item) => item.href === '/docs/guides')?.items ??
-                  []
-                ).find((item) => item.label === 'Fundamentals')?.items ?? []
-              }
-              isFooter
-            />
-          </Box>
-          <Box>
-            <Typography>Feature Guides</Typography>
-            <TableOfContentsList
-              items={
-                (
-                  routes.find((item) => item.href === '/docs/guides')?.items ??
-                  []
-                ).find((item) => item.label === 'Feature Guides')?.items ?? []
-              }
-              isFooter
-            />
-          </Box>
+        <Box>
+          <Text>API Reference</Text>
+          <TableOfContentsList
+            items={
+              routes.find((item) => item.href === '/docs/getting-started')
+                ?.items ?? []
+            }
+            isFooter
+          />
+          <TableOfContentsList
+            items={
+              routes
+                .find((item) => item.href === '/docs/api')
+                ?.items?.find((item) => item.label === 'Props and Options')
+                ?.items ?? []
+            }
+            isFooter
+          />
+          <TableOfContentsList
+            items={
+              routes
+                .find((item) => item.href === '/docs/api')
+                ?.items?.find((item) => item.label === 'Instance APIs')
+                ?.items ?? []
+            }
+            isFooter
+          />
         </Box>
-      </Paper>
-    </Box>
+        <Box>
+          <Text>Examples</Text>
+          <TableOfContentsList
+            items={
+              routes.find((item) => item.href === '/docs/examples')?.items ?? []
+            }
+            isFooter
+          />
+        </Box>
+        <Box>
+          <Text>Fundamental Guides</Text>
+          <TableOfContentsList
+            items={
+              (
+                routes.find((item) => item.href === '/docs/guides')?.items ?? []
+              ).find((item) => item.label === 'Fundamentals')?.items ?? []
+            }
+            isFooter
+          />
+        </Box>
+        <Box>
+          <Text>Feature Guides</Text>
+          <TableOfContentsList
+            items={
+              (
+                routes.find((item) => item.href === '/docs/guides')?.items ?? []
+              ).find((item) => item.label === 'Feature Guides')?.items ?? []
+            }
+            isFooter
+          />
+        </Box>
+      </Box>
+    </Paper>
   );
 };
 

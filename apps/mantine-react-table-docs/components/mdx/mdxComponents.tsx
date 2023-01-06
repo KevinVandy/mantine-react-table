@@ -17,18 +17,18 @@ export const mdxComponents = {
   ),
   blockquote: (props: any) => <Blockquote {...props} />,
   code: (props: any) => <SampleCodeSnippet {...props} />,
-  h1: (props: any) => <Title order={1} {...props} />,
-  h2: (props: any) => <LinkHeading order={2} {...props} />,
+  h1: (props: any) => <Title order={1} my="lg" {...props} />,
+  h2: (props: any) => <LinkHeading order={2} my="lg" {...props} />,
   h3: (props: any) => (
-    <LinkHeading order={3} sx={{ marginTop: '3rem' }} {...props} />
+    <LinkHeading order={3} sx={{ marginTop: '3rem' }} my="lg" {...props} />
   ),
   h4: (props: any) => (
-    <LinkHeading order={4} sx={{ marginTop: '2rem' }} {...props} />
+    <LinkHeading order={4} sx={{ marginTop: '2rem' }} my="lg" {...props} />
   ),
   h5: (props: any) => (
-    <LinkHeading order={5} sx={{ marginTop: '2rem' }} {...props} />
+    <LinkHeading order={5} sx={{ marginTop: '2rem' }} my="lg" {...props} />
   ),
-  h6: (props: any) => <Title order={6} {...props} />,
+  h6: (props: any) => <Title order={6} my="md" {...props} />,
   hr: (props: any) => <Divider sx={{ marginBottom: '1rem' }} {...props} />,
   li: (props: any) => (
     <li className="docsearch-content" {...props}>

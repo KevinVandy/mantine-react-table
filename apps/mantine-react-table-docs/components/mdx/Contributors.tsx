@@ -1,4 +1,4 @@
-import { alpha, Box, Card, Typography, useTheme, Link } from '@mui/material';
+import { Box, Card, Text, Anchor } from '@mantine/core';
 import Image from 'next/image';
 
 const cardData = [
@@ -23,7 +23,7 @@ const cardData = [
 ];
 
 export const Contributors = () => {
-  const theme = useTheme();
+
 
   return (
     <Box
@@ -45,7 +45,7 @@ export const Contributors = () => {
         }}
       >
         {cardData.map((cd, index) => (
-          <Link
+          <Anchor
             key={index}
             href={cd.href}
             target="_blank"
@@ -53,15 +53,13 @@ export const Contributors = () => {
             sx={{ textDecoration: 'none' }}
           >
             <Card
-              elevation={4}
               sx={(theme) => ({
                 alignItems: 'center',
                 borderRadius: '0.5rem',
-                color: theme.palette.primary.dark,
+                color: theme.colors.blue[7],
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
-                fontWeight: 'bold',
                 minWidth: '200px',
                 minHeight: '200px',
                 gap: '1rem',
@@ -70,10 +68,7 @@ export const Contributors = () => {
                 textAlign: 'center',
                 width: '10rem',
                 '&:hover': {
-                  boxShadow: `1px 4px 8px ${alpha(
-                    theme.palette.primary.dark,
-                    0.5,
-                  )}`,
+                  boxShadow: `1px 4px 8px black`,
                   '& img': {
                     transform: 'scale(1.01)',
                     transition: 'transform 150ms ease-in-out',
@@ -88,10 +83,10 @@ export const Contributors = () => {
                 height={170}
                 style={{ borderRadius: '4px' }}
               />
-              <Typography variant="body1">{cd.name}</Typography>
-              <Typography variant="body2">{cd.role}</Typography>
+              <Text >{cd.name}</Text>
+              <Text size="xs">{cd.role}</Text>
             </Card>
-          </Link>
+          </Anchor>
         ))}
       </Box>
     </Box>
