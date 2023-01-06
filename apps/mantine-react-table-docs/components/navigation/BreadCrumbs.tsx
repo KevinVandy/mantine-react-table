@@ -1,9 +1,8 @@
 import { FC, useMemo } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
-// import { Breadcrumbs as MuiBreadcrumbs, Link as MuiLink } from '@mui/material';
 import { Anchor, Breadcrumbs } from '@mantine/core';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 
 const BreadCrumbs: FC = () => {
   const { route } = useRouter();

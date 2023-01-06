@@ -15,7 +15,7 @@ const Footer: FC = () => {
         padding: '1.5rem',
       }}
     >
-      <Text color="gray" ta="center">
+      <Text color="gray.5" ta="center">
         © {new Date().getFullYear()} Kevin&nbsp;Van&nbsp;Cott
       </Text>
       <Box

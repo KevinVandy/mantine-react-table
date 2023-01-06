@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Link, Typography, useMediaQuery } from '@mui/material';
+import { FC, useEffect, useState } from 'react';
+import { Box, Anchor, Text } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 
-const MiniNav = () => {
+const MiniNav: FC = () => {
   const { pathname } = useRouter();
   const isXLDesktop = useMediaQuery('(min-width: 1800px)');
   const [headings, setHeadings] = useState<NodeListOf<HTMLElement>>();
@@ -23,6 +24,7 @@ const MiniNav = () => {
         maxWidth: isXLDesktop ? '250px' : '500px',
       }}
     >
+      <Text size="md">On This Page</Text>
       <ul style={{ padding: 0 }}>
         {Array.from(headings ?? []).map((heading, index) => {
           if (
@@ -48,19 +50,17 @@ const MiniNav = () => {
                     : 0,
               }}
             >
-              <Link
+              <Anchor
                 href={`#${heading.id}`}
                 sx={(theme) => ({
                   color:
-                    theme.palette.grey[
-                      theme.palette.mode === 'dark' ? 400 : 700
-                    ],
+                    theme.colorScheme === 'dark'
+                      ? theme.colors.gray[3]
+                      : theme.colors.gray[7],
                 })}
               >
-                <Typography component="span" variant="subtitle2">
-                  {heading.innerText}
-                </Typography>
-              </Link>
+                <Text underline component="span">{heading.innerText}</Text>
+              </Anchor>
             </li>
           );
         })}

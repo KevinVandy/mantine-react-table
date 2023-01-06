@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
-import { Box, Link as MuiLink, Typography } from '@mui/material';
+import { Box, Anchor, Text } from '@mantine/core';
 import { LinkHeading } from '../mdx/LinkHeading';
 
 interface Props {
@@ -25,9 +25,15 @@ const TableOfContentsList: FC<Props> = ({
         {items.map((item, index) => (
           <li key={index}>
             <Link href={item.href} passHref legacyBehavior>
-              <MuiLink
-                sx={{
-                  color: isFooter ? 'text.secondary' : 'primary.main',
+              <Anchor
+                sx={(theme) => ({
+                  color: !isFooter
+                    ? theme.colorScheme === 'dark'
+                      ? theme.white
+                      : theme.black
+                    : theme.colorScheme === 'dark'
+                    ? theme.colors.gray[3]
+                    : theme.colors.gray[7],
                   cursor: 'pointer',
                   lineHeight: isFooter ? '1.6rem' : '2rem',
                   fontSize: isFooter ? '0.9rem' : '1.2rem',
@@ -35,10 +41,10 @@ const TableOfContentsList: FC<Props> = ({
                   '&:hover': {
                     textDecoration: 'underline',
                   },
-                }}
+                })}
               >
                 {item.label}
-              </MuiLink>
+              </Anchor>
             </Link>
           </li>
         ))}
@@ -49,7 +55,7 @@ const TableOfContentsList: FC<Props> = ({
       <>
         {items.map((item, index) => (
           <Box key={index}>
-            <LinkHeading variant="h3" href={item.href}>
+            <LinkHeading order={3} href={item.href}>
               {item.label}
             </LinkHeading>
             {item.items && <TableOfContentsList items={item.items} />}

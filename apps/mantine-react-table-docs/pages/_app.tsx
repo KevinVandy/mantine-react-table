@@ -29,9 +29,11 @@ function App({ Component, pageProps }: AppProps) {
 
   const showBreadCrumbs = pathname !== '/';
   const showMiniNav =
-    pathname.includes('/docs/guides/') ||
-    pathname.includes('/docs/usage') ||
-    pathname.includes('/docs/install');
+    (pathname.includes('/docs/') &&
+      !pathname.includes('/examples/') &&
+      !pathname.includes('/api/')) ||
+    pathname === '/about' ||
+    pathname === '/changelog';
 
   const isMobile = useMediaQuery('(max-width: 900px)');
   const isTablet = useMediaQuery('(min-width: 900px)');
