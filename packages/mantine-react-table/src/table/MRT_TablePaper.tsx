@@ -30,6 +30,8 @@ export const MRT_TablePaper: FC<Props> = ({ table }) => {
 
   return (
     <Paper
+      shadow="xs"
+      withBorder
       {...tablePaperProps}
       ref={(ref: HTMLDivElement) => {
         tablePaperRef.current = ref;

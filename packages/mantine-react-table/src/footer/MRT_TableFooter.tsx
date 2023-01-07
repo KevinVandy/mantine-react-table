@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Box } from '@mantine/core';
-import { lighten } from '../colorManipulator';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_TableInstance } from '..';
@@ -38,7 +37,7 @@ export const MRT_TableFooter: FC<Props> = ({
       component="tfoot"
       {...tableFooterProps}
       sx={(theme) => ({
-        backgroundColor: lighten(theme.colors.dark[7], 0.06),
+        backgroundColor: theme.fn.lighten(theme.colors.dark[7], 0.06),
         bottom: stickFooter ? 0 : undefined,
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
         opacity: stickFooter ? 0.97 : undefined,

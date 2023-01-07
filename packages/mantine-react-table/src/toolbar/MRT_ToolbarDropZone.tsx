@@ -1,5 +1,4 @@
 import React, { DragEvent, useEffect } from 'react';
-import { alpha } from '../colorManipulator';
 import { Flex, Text, Transition } from '@mantine/core';
 import type { MRT_TableInstance } from '..';
 
@@ -41,7 +40,7 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
           className="Mui-ToolbarDropZone"
           sx={(theme) => ({
             alignItems: 'center',
-            backgroundColor: alpha(
+            backgroundColor: theme.fn.rgba(
               theme.colors.blue[7],
               hoveredColumn?.id === 'drop-zone' ? 0.2 : 0.1,
             ),

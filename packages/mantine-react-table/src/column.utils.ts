@@ -6,7 +6,6 @@ import type {
 import { MRT_AggregationFns } from './aggregationFns';
 import { MRT_FilterFns } from './filterFns';
 import { MRT_SortingFns } from './sortingFns';
-import { alpha, lighten } from './colorManipulator';
 import { BoxProps, MantineTheme } from '@mantine/core';
 import type {
   MantineReactTableProps,
@@ -239,13 +238,15 @@ export const getCommonCellStyles = ({
 }) => ({
   backgroundColor:
     column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-      ? alpha(lighten(theme.colors.dark[7], 0.04), 0.97)
+      ? theme.fn.rgba(
+          theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+          0.97,
+        )
       : 'inherit',
-  backgroundImage: 'inherit',
   boxShadow: getIsLastLeftPinnedColumn(table, column)
-    ? `-4px 0 8px -6px ${alpha(theme.black, 0.2)} inset`
+    ? `-4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
     : getIsFirstRightPinnedColumn(column)
-    ? `4px 0 8px -6px ${alpha(theme.black, 0.2)} inset`
+    ? `4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
     : undefined,
   display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
   left:

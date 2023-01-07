@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Box } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { alpha } from '../colorManipulator';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
@@ -52,7 +51,7 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
         ({
           ...commonToolbarStyles({ theme }),
           bottom: isFullScreen ? '0' : undefined,
-          boxShadow: `0 1px 2px -1px ${alpha(theme.black, 0.1)} inset`,
+          boxShadow: `0 1px 2px -1px ${theme.fn.rgba(theme.black, 0.1)} inset`,
           left: 0,
           position: isFullScreen ? 'fixed' : 'relative',
           right: 0,

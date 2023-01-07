@@ -1,6 +1,5 @@
 import React, { DragEvent, FC, memo, useMemo, useRef } from 'react';
 import { Box, useMantineTheme } from '@mantine/core';
-import { darken, lighten } from '../colorManipulator';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
@@ -8,6 +7,7 @@ import type { MRT_Cell, MRT_Row, MRT_TableInstance } from '..';
 
 interface Props {
   columnVirtualizer?: Virtualizer<HTMLDivElement, HTMLTableCellElement>;
+  enableHover?: boolean;
   measureElement?: (element: HTMLTableRowElement) => void;
   numRows: number;
   row: MRT_Row;
@@ -21,6 +21,7 @@ interface Props {
 
 export const MRT_TableBodyRow: FC<Props> = ({
   columnVirtualizer,
+  enableHover,
   measureElement,
   numRows,
   row,
@@ -82,7 +83,6 @@ export const MRT_TableBodyRow: FC<Props> = ({
         component="tr"
         data-index={virtualRow?.index}
         onDragEnter={handleDragEnter}
-        // selected={row.getIsSelected()}
         ref={(node: HTMLTableRowElement) => {
           if (node) {
             rowRef.current = node;
@@ -91,7 +91,14 @@ export const MRT_TableBodyRow: FC<Props> = ({
         }}
         {...tableRowProps}
         sx={(theme) => ({
-          backgroundColor: lighten(theme.colors.dark[7], 0.06),
+          backgroundColor:
+            theme.colorScheme === 'dark'
+              ? row.getIsSelected()
+                ? theme.fn.rgba(theme.colors.blue[7], 0.1)
+                : theme.fn.lighten(theme.colors.dark[7], 0.06)
+              : row.getIsSelected()
+              ? theme.fn.rgba(theme.colors.blue[7], 0.1)
+              : theme.white,
           display: layoutMode === 'grid' ? 'flex' : 'table-row',
           opacity:
             draggingRow?.id === row.id || hoveredRow?.id === row.id ? 0.5 : 1,
@@ -104,10 +111,10 @@ export const MRT_TableBodyRow: FC<Props> = ({
           width: '100%',
           '&:hover td': {
             backgroundColor:
-              tableRowProps?.hover !== false && getIsSomeColumnsPinned()
+              enableHover !== false && getIsSomeColumnsPinned()
                 ? theme.colorScheme === 'dark'
-                  ? `${lighten(theme.colors.dark[7], 0.12)}`
-                  : `${darken(theme.colors.dark[7], 0.05)}`
+                  ? `${theme.fn.lighten(theme.colors.dark[7], 0.12)}`
+                  : `${theme.fn.darken(theme.colors.dark[7], 0.05)}`
                 : undefined,
           },
           ...(tableRowProps?.sx instanceof Function
@@ -125,7 +132,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
             : (cellOrVirtualCell as MRT_Cell);
           const props = {
             cell,
-            enableHover: tableRowProps?.hover !== false,
+            enableHover,
             key: cell.id,
             measureElement: columnVirtualizer?.measureElement,
             numRows,

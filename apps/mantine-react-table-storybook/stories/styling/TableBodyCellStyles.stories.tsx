@@ -78,8 +78,8 @@ export const StyleMuiTableBodyCellConditionallyIn1Column: Story<
                 : undefined,
             fontWeight:
               cell.column.id === 'age' && cell.getValue<number>() > 40
-                ? '700'
-                : '400',
+                ? 'bold'
+                : 'normal',
           },
         }),
       },

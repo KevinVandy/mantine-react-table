@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Box } from '@mantine/core';
-import { alpha, lighten } from '../colorManipulator';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Header, MRT_HeaderGroup, MRT_TableInstance } from '..';
@@ -34,8 +33,11 @@ export const MRT_TableHeadRow: FC<Props> = ({
       component="tr"
       {...tableRowProps}
       sx={(theme) => ({
-        backgroundColor: lighten(theme.colors.dark[7], 0.04),
-        boxShadow: `4px 0 8px ${alpha(theme.black, 0.1)}`,
+        backgroundColor:
+          theme.colorScheme === 'dark'
+            ? theme.fn.lighten(theme.colors.dark[7], 0.04)
+            : theme.white,
+        boxShadow: `4px 0 8px ${theme.fn.rgba(theme.black, 0.1)}`,
         display: layoutMode === 'grid' ? 'flex' : 'table-row',
         top: 0,
         ...(tableRowProps?.sx instanceof Function

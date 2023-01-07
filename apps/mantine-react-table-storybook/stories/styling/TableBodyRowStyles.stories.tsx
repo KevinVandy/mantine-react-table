@@ -45,8 +45,8 @@ export const DisableRowHoverEffect: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableBodyRowProps={{
-      hover: false,
+    muiTableProps={{
+      highlightOnHover: false,
     }}
   />
 );

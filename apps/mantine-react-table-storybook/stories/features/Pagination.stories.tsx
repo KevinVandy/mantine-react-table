@@ -83,12 +83,12 @@ export const CustomizePaginationComponents: Story<
     columns={columns}
     data={data}
     initialState={{ pagination: { pageSize: 5, pageIndex: 0 } }}
-    muiTablePaginationProps={{
-      rowsPerPageOptions: [5, 10, 20],
-      showFirstButton: false,
-      showLastButton: false,
-      SelectProps: { native: true },
-      labelRowsPerPage: 'Number of rows visible',
-    }}
+    // muiTablePaginationProps={{
+    //   rowsPerPageOptions: [5, 10, 20],
+    //   showFirstButton: false,
+    //   showLastButton: false,
+    //   SelectProps: { native: true },
+    //   labelRowsPerPage: 'Number of rows visible',
+    // }}
   />
 );

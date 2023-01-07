@@ -115,6 +115,7 @@ export const MRT_Table: FC<Props> = ({ table }) => {
   }
 
   const props = {
+    enableHover: tableProps?.highlightOnHover,
     table,
     virtualColumns,
     virtualPaddingLeft,

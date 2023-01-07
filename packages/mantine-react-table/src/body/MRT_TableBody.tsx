@@ -11,6 +11,7 @@ import type { MRT_Row, MRT_TableInstance } from '..';
 
 interface Props {
   columnVirtualizer?: Virtualizer<HTMLDivElement, HTMLTableCellElement>;
+  enableHover?: boolean;
   table: MRT_TableInstance;
   virtualColumns?: VirtualItem[];
   virtualPaddingLeft?: number;
@@ -19,6 +20,7 @@ interface Props {
 
 export const MRT_TableBody: FC<Props> = ({
   columnVirtualizer,
+  enableHover,
   table,
   virtualColumns,
   virtualPaddingLeft,
@@ -155,6 +157,7 @@ export const MRT_TableBody: FC<Props> = ({
               : (rowOrVirtualRow as MRT_Row);
             const props = {
               columnVirtualizer,
+              enableHover,
               key: row.id,
               measureElement: rowVirtualizer?.measureElement,
               numRows: rows.length,

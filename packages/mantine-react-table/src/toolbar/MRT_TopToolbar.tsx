@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Box, Flex, MantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { lighten } from '../colorManipulator';
 import { MRT_GlobalFilterTextField } from '../inputs/MRT_GlobalFilterTextField';
 import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
 import { MRT_TablePagination } from './MRT_TablePagination';
@@ -12,7 +11,10 @@ import type { MRT_TableInstance } from '..';
 
 export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   alignItems: 'flex-start',
-  backgroundColor: lighten(theme.colors.dark[7], 0.04),
+  backgroundColor:
+    theme.colorScheme === 'dark'
+      ? theme.fn.lighten(theme.colors.dark[7], 0.04)
+      : theme.white,
   backgroundImage: 'none',
   display: 'grid',
   flexWrap: 'wrap-reverse',

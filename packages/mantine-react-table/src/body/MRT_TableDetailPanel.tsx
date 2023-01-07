@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Box, Collapse } from '@mantine/core';
-import { lighten } from '../colorManipulator';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
@@ -67,7 +66,7 @@ export const MRT_TableDetailPanel: FC<Props> = ({
         {...tableCellProps}
         sx={(theme) => ({
           backgroundColor: virtualRow
-            ? lighten(theme.colors.dark[7], 0.06)
+            ? theme.fn.lighten(theme.colors.dark[7], 0.06)
             : undefined,
           borderBottom: !row.getIsExpanded() ? 'none' : undefined,
           display: layoutMode === 'grid' ? 'flex' : 'table-cell',

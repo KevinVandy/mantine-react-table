@@ -9,7 +9,6 @@ import React, {
   useState,
 } from 'react';
 import { Box, Skeleton, useMantineTheme } from '@mantine/core';
-import { darken, lighten } from '../colorManipulator';
 import { MRT_EditCellTextField } from '../inputs/MRT_EditCellTextField';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyRowGrabHandle } from './MRT_TableBodyRowGrabHandle';
@@ -202,8 +201,8 @@ export const MRT_TableBodyCell: FC<Props> = ({
             columnDef.enableEditing !== false &&
             ['table', 'cell'].includes(editingMode ?? '')
               ? theme.colorScheme === 'dark'
-                ? `${lighten(theme.colors.dark[7], 0.2)} !important`
-                : `${darken(theme.colors.dark[7], 0.1)} !important`
+                ? `${theme.fn.lighten(theme.colors.dark[7], 0.2)} !important`
+                : `${theme.fn.darken(theme.colors.dark[7], 0.1)} !important`
               : undefined,
         },
         ...getCommonCellStyles({

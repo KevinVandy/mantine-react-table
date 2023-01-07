@@ -48,7 +48,7 @@ export const NoBoxShadow: Story<MantineReactTableProps> = () => (
     columns={columns}
     data={data}
     muiTablePaperProps={{
-      elevation: 0,
+      shadow: 'xs',
     }}
   />
 );
