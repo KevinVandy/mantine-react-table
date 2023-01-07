@@ -64,7 +64,7 @@ const Example: FC = () => {
       columns={columns}
       data={data}
       getRowId={(row) => row.userId}
-      muiTableBodyRowProps={({ row }) => ({
+      mantineTableBodyRowProps={({ row }) => ({
         //implement row selection click events manually
         onClick: () =>
           setRowSelection((prev) => ({

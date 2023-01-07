@@ -22,7 +22,7 @@ const StateOptionsTable: FC<Props> = ({ onlyProps }) => {
           accessorKey: 'stateOption',
           enableClickToCopy: true,
           header: 'State Option',
-          muiTableBodyCellCopyButtonProps: ({ cell }) => ({
+          mantineCopyButtonProps: ({ cell }) => ({
             className: 'state-option',
             // component: 'a',
             id: `${cell.getValue<string>()}-state-option`,
@@ -148,12 +148,12 @@ const StateOptionsTable: FC<Props> = ({ onlyProps }) => {
         showGlobalFilter: true,
         sorting: [{ id: 'stateOption', desc: false }],
       }}
-      muiSearchTextFieldProps={{
+      mantineSearchTextInputProps={{
         placeholder: 'Search State Options',
         sx: { minWidth: '18rem' },
         variant: 'outlined',
       }}
-      muiTablePaperProps={{
+      mantinePaperProps={{
         sx: { marginBottom: '1.5rem' },
         id: onlyProps ? 'relevant-state-options-table' : 'state-options-table',
       }}

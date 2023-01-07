@@ -47,7 +47,7 @@ export const MaxWidthAndCentered: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTablePaperProps={{
+    mantinePaperProps={{
       sx: {
         maxWidth: '800px',
         margin: 'auto',
@@ -60,7 +60,7 @@ export const maxHeight: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableContainerProps={{
+    mantineTableContainerProps={{
       sx: {
         maxHeight: '500px',
       },
@@ -72,7 +72,7 @@ export const minHeight: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data.slice(0, 5)}
-    muiTableContainerProps={{
+    mantineTableContainerProps={{
       sx: {
         minHeight: '800px',
       },
@@ -85,12 +85,12 @@ export const minHeightParent: Story<MantineReactTableProps> = () => (
     <MantineReactTable
       columns={columns}
       data={data.slice(0, 5)}
-      muiTableContainerProps={({ table }) => ({
+      mantineTableContainerProps={({ table }) => ({
         sx: {
           height: `calc(100% - ${table.refs.topToolbarRef.current?.offsetHeight}px - ${table.refs.bottomToolbarRef.current?.offsetHeight}px)`,
         },
       })}
-      muiTablePaperProps={{
+      mantinePaperProps={{
         sx: {
           height: '100%',
         },

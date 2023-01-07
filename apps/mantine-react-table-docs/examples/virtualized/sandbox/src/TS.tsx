@@ -116,7 +116,7 @@ const Example: FC = () => {
       enablePinning
       enableRowNumbers
       enableRowVirtualization
-      muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
+      mantineTableContainerProps={{ sx: { maxHeight: '600px' } }}
       onSortingChange={setSorting}
       state={{ isLoading, sorting }}
       rowVirtualizerInstanceRef={rowVirtualizerInstanceRef} //optional

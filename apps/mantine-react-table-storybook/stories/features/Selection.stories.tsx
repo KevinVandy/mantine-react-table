@@ -50,7 +50,7 @@ export const SelectionEnabledWithRowClick: Story<
     columns={columns}
     data={data}
     enableRowSelection
-    muiTableBodyRowProps={({ row }) => ({
+    mantineTableBodyRowProps={({ row }) => ({
       onClick: row.getToggleSelectedHandler(),
       sx: {
         cursor: 'pointer',
@@ -68,7 +68,7 @@ export const ManualSelection: Story<MantineReactTableProps> = () => {
     <MantineReactTable
       columns={columns}
       data={data}
-      muiTableBodyRowProps={({ row }) => ({
+      mantineTableBodyRowProps={({ row }) => ({
         onClick: () =>
           setRowSelection((prev) => ({
             ...prev,
@@ -133,7 +133,7 @@ export const SingleSelectionRadioWithRowClick: Story<
     data={data}
     enableRowSelection
     enableMultiRowSelection={false}
-    muiTableBodyRowProps={({ row }) => ({
+    mantineTableBodyRowProps={({ row }) => ({
       onClick: row.getToggleSelectedHandler(),
       sx: {
         cursor: 'pointer',
@@ -149,7 +149,7 @@ export const SelectCheckboxSecondaryColor: Story<
     columns={columns}
     data={data}
     enableRowSelection
-    muiSelectCheckboxProps={{ color: 'secondary' }}
+    mantineSelectCheckboxProps={{ color: 'secondary' }}
   />
 );
 

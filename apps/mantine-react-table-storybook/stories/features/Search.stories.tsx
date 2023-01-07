@@ -145,7 +145,7 @@ export const CustomizeSearchTextBox: Story<MantineReactTableProps> = () => (
     columns={columns}
     data={data}
     initialState={{ showGlobalFilter: true }}
-    muiSearchTextFieldProps={{
+    mantineSearchTextInputProps={{
       variant: 'filled',
       placeholder: 'Search 100 rows',
       label: 'Search',

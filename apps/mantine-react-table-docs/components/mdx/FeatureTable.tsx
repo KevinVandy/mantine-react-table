@@ -10,13 +10,13 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
   {
     accessorKey: 'mrt',
     header: 'Mantine React Table',
-    muiTableHeadCellProps: {
+    mantineTableHeadCellProps: {
       align: 'center',
       sx: (theme) => ({
         color: theme.primaryColor,
       }),
     },
-    muiTableBodyCellProps: {
+    mantineTableBodyCellProps: {
       align: 'center',
     },
     Cell: ({ cell }) =>
@@ -25,10 +25,10 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
   {
     accessorKey: 'mt',
     header: 'Material Table',
-    muiTableHeadCellProps: {
+    mantineTableHeadCellProps: {
       align: 'center',
     },
-    muiTableBodyCellProps: {
+    mantineTableBodyCellProps: {
       align: 'center',
     },
     Cell: ({ cell }) =>
@@ -37,10 +37,10 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
   {
     accessorKey: 'muix',
     header: 'Material UI X',
-    muiTableHeadCellProps: {
+    mantineTableHeadCellProps: {
       align: 'center',
     },
-    muiTableBodyCellProps: {
+    mantineTableBodyCellProps: {
       align: 'center',
     },
     Cell: ({ cell }) =>

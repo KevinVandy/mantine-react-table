@@ -21,16 +21,16 @@ export const MRT_GlobalFilterTextField = <
       icons: { IconSearch, IconX },
       localization,
       manualFiltering,
-      muiSearchTextFieldProps,
+      mantineSearchTextInputProps,
     },
     refs: { searchInputRef },
   } = table;
   const { globalFilter, showGlobalFilter } = getState();
 
   const textFieldProps =
-    muiSearchTextFieldProps instanceof Function
-      ? muiSearchTextFieldProps({ table })
-      : muiSearchTextFieldProps;
+    mantineSearchTextInputProps instanceof Function
+      ? mantineSearchTextInputProps({ table })
+      : mantineSearchTextInputProps;
 
   const [searchValue, setSearchValue] = useState(globalFilter ?? '');
 

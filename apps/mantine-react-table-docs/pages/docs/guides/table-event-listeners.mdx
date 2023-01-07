@@ -13,7 +13,7 @@ import Example from '../../../examples/enable-column-ordering';
 
 You can pretty much add ANY event listener to ANY component in Mantine React Table.
 
-You can do this by passing props to any of the `mui...Props` props. This guide gives a few examples of the most common use cases, but there are limitless possibilities.
+You can do this by passing props to any of the `mantine...Props` props. This guide gives a few examples of the most common use cases, but there are limitless possibilities.
 
 ### Add Event Listeners to any of the Material UI Components
 
@@ -25,7 +25,7 @@ Here are a few common examples of some useful event listeners you might want to 
 
 ```jsx
 <MantineReactTable
-  muiTableBodyRowProps={({ row }) => ({
+  mantineTableBodyRowProps={({ row }) => ({
     onClick: (event) => {
       console.info(event, row.id);
     },
@@ -40,7 +40,7 @@ Here are a few common examples of some useful event listeners you might want to 
 
 ```jsx
 <MantineReactTable
-  muiTableBodyCellProps={({ cell }) => ({
+  mantineTableBodyCellProps={({ cell }) => ({
     onDoubleClick: (event) => {
       console.info(event, cell.id);
     },
@@ -53,7 +53,7 @@ Here are a few common examples of some useful event listeners you might want to 
 ```jsx
 //add to every edit text field
 <MantineReactTable
-  muiTableBodyCellEditTextFieldProps={({ cell }) => ({
+  mantineEditTextInputProps={({ cell }) => ({
     onBlur: (event) => {
       console.info(event, cell.id);
     },
@@ -67,7 +67,7 @@ const columns = [
   {
     accessorKey: 'name',
     header: 'Name',
-    muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+    mantineEditTextInputProps: ({ cell }) => ({
       onBlur: (event) => {
         console.info(event);
       },
@@ -83,7 +83,7 @@ const columns = [
 ```jsx
 //add to every edit text field
 <MantineReactTable
-  muiTableBodyCellEditTextFieldProps={({ cell }) => ({
+  mantineEditTextInputProps={({ cell }) => ({
     onChange: (event) => {
       console.info(event, cell.id);
     },
@@ -97,7 +97,7 @@ const columns = [
   {
     accessorKey: 'name',
     header: 'Name',
-    muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
+    mantineEditTextInputProps: ({ cell }) => ({
       onChange: (event) => {
         console.info(event);
       },

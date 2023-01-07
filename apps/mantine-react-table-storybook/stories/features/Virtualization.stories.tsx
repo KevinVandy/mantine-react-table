@@ -381,7 +381,7 @@ export const MaxVirtualization: Story<MantineReactTableProps> = () => (
     enablePinning
     enableRowNumbers
     enableRowVirtualization
-    muiTableContainerProps={{ sx: { maxHeight: 500 } }}
-    muiTablePaperProps={{ sx: { margin: 'auto', maxWidth: 1000 } }}
+    mantineTableContainerProps={{ sx: { maxHeight: 500 } }}
+    mantinePaperProps={{ sx: { margin: 'auto', maxWidth: 1000 } }}
   />
 );

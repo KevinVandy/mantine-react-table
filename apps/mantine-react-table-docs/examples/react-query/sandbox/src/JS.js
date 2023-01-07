@@ -83,7 +83,7 @@ const Example = () => {
       manualFiltering
       manualPagination
       manualSorting
-      muiToolbarAlertBannerProps={
+      mantineToolbarAlertBannerProps={
         isError
           ? {
               color: 'error',

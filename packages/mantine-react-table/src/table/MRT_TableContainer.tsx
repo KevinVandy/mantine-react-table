@@ -13,7 +13,7 @@ interface Props {
 export const MRT_TableContainer: FC<Props> = ({ table }) => {
   const {
     getState,
-    options: { enableStickyHeader, muiTableContainerProps },
+    options: { enableStickyHeader, mantineTableContainerProps },
     refs: { tableContainerRef, bottomToolbarRef, topToolbarRef },
   } = table;
   const { isFullScreen } = getState();
@@ -21,9 +21,9 @@ export const MRT_TableContainer: FC<Props> = ({ table }) => {
   const [totalToolbarHeight, setTotalToolbarHeight] = useState(0);
 
   const tableContainerProps =
-    muiTableContainerProps instanceof Function
-      ? muiTableContainerProps({ table })
-      : muiTableContainerProps;
+    mantineTableContainerProps instanceof Function
+      ? mantineTableContainerProps({ table })
+      : mantineTableContainerProps;
 
   useIsomorphicLayoutEffect(() => {
     const topToolbarHeight =

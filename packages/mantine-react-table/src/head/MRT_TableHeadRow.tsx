@@ -20,13 +20,13 @@ export const MRT_TableHeadRow: FC<Props> = ({
   virtualPaddingRight,
 }) => {
   const {
-    options: { layoutMode, muiTableHeadRowProps },
+    options: { layoutMode, mantineTableHeadRowProps },
   } = table;
 
   const tableRowProps =
-    muiTableHeadRowProps instanceof Function
-      ? muiTableHeadRowProps({ headerGroup, table })
-      : muiTableHeadRowProps;
+    mantineTableHeadRowProps instanceof Function
+      ? mantineTableHeadRowProps({ headerGroup, table })
+      : mantineTableHeadRowProps;
 
   return (
     <Box

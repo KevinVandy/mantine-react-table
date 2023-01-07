@@ -19,7 +19,7 @@ const RowInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
           accessorKey: 'rowInstanceAPI',
           enableClickToCopy: true,
           header: 'State Option',
-          muiTableBodyCellCopyButtonProps: ({ cell }) => ({
+          mantineCopyButtonProps: ({ cell }) => ({
             className: 'row-instance-api',
             id: `${cell.getValue<string>()}-row-instance-api`,
           }),
@@ -118,12 +118,12 @@ const RowInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
         showGlobalFilter: true,
         sorting: [{ id: 'rowInstanceAPI', desc: false }],
       }}
-      muiSearchTextFieldProps={{
+      mantineSearchTextInputProps={{
         placeholder: 'Search Row APIs',
         sx: { minWidth: '18rem' },
         variant: 'outlined',
       }}
-      muiTablePaperProps={{
+      mantinePaperProps={{
         sx: { marginBottom: '1.5rem' },
         id: onlyProps
           ? 'relevant-row-instance-apis-table'

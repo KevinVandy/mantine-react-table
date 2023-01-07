@@ -56,10 +56,10 @@ export const CenterCells: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableHeadCellProps={{
+    mantineTableHeadCellProps={{
       align: 'center',
     }}
-    muiTableBodyCellProps={{
+    mantineTableBodyCellProps={{
       align: 'center',
     }}
   />
@@ -70,10 +70,10 @@ export const CenterCellsWithGrabHandle: Story<MantineReactTableProps> = () => (
     columns={columns}
     data={data}
     enableColumnDragging
-    muiTableHeadCellProps={{
+    mantineTableHeadCellProps={{
       align: 'center',
     }}
-    muiTableBodyCellProps={{
+    mantineTableBodyCellProps={{
       align: 'center',
     }}
   />
@@ -87,10 +87,10 @@ export const CenterCellsWithGrabHandleNoSorting: Story<
     data={data}
     enableColumnDragging
     enableSorting={false}
-    muiTableHeadCellProps={{
+    mantineTableHeadCellProps={{
       align: 'center',
     }}
-    muiTableBodyCellProps={{
+    mantineTableBodyCellProps={{
       align: 'center',
     }}
   />
@@ -101,10 +101,10 @@ export const CenterCellsNoColumnActions: Story<MantineReactTableProps> = () => (
     columns={columns}
     data={data}
     enableColumnActions={false}
-    muiTableHeadCellProps={{
+    mantineTableHeadCellProps={{
       align: 'center',
     }}
-    muiTableBodyCellProps={{
+    mantineTableBodyCellProps={{
       align: 'center',
     }}
   />
@@ -124,10 +124,10 @@ export const RightAlignNumberColumn: Story<MantineReactTableProps> = () => (
       {
         header: 'Age',
         accessorKey: 'age',
-        muiTableBodyCellProps: {
+        mantineTableBodyCellProps: {
           align: 'right',
         },
-        muiTableHeadCellProps: {
+        mantineTableHeadCellProps: {
           align: 'right',
         },
       },

@@ -17,7 +17,7 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
     getState,
     options: {
       enablePagination,
-      muiBottomToolbarProps,
+      mantineBottomToolbarProps,
       positionPagination,
       positionToolbarAlertBanner,
       positionToolbarDropZone,
@@ -30,9 +30,9 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
   const isMobile = useMediaQuery('(max-width: 720px)');
 
   const toolbarProps =
-    muiBottomToolbarProps instanceof Function
-      ? muiBottomToolbarProps({ table })
-      : muiBottomToolbarProps;
+    mantineBottomToolbarProps instanceof Function
+      ? mantineBottomToolbarProps({ table })
+      : mantineBottomToolbarProps;
 
   const stackAlertBanner = isMobile || !!renderBottomToolbarCustomActions;
 

@@ -24,7 +24,7 @@ Client-side pagination is enabled by default in Mantine React Table. There are a
       'enablePagination',
       'getPaginationRowModel',
       'manualPagination',
-      'muiTablePaginationProps',
+      'mantinePaginationProps',
       'onPaginationChange',
       'pageCount',
       'rowCount',
@@ -58,13 +58,13 @@ Next there is `paginateExpandedRows`, which works in conjunction expanding featu
 
 #### Customize Pagination Components
 
-You can customize the pagination component with the `muiTablePaginationProps` prop to change things like the `rowsPerPageOptions` or whether or not to show the first and last page buttons, and more.
+You can customize the pagination component with the `mantinePaginationProps` prop to change things like the `rowsPerPageOptions` or whether or not to show the first and last page buttons, and more.
 
 ```jsx
 <MantineReactTable
   columns={columns}
   data={data}
-  muiTablePaginationProps={{
+  mantinePaginationProps={{
     rowsPerPageOptions: [5, 10],
     showFirstLastPageButtons: false,
   }}

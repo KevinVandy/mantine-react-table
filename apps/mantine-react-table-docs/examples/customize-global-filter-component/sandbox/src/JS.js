@@ -40,7 +40,7 @@ const Example = () => {
         showGlobalFilter: true,
       }}
       positionGlobalFilter="left"
-      muiSearchTextFieldProps={{
+      mantineSearchTextInputProps={{
         placeholder: `Search ${data.length} rows`,
         sx: { minWidth: '300px' },
         variant: 'outlined',

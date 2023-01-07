@@ -988,7 +988,7 @@ export const rootProps: PropRow[] = [
     type: 'TableMeta ',
   },
   {
-    propName: 'muiExpandAllButtonProps',
+    propName: 'mantineExpandAllButtonProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/icon-button/#props',
@@ -998,7 +998,7 @@ export const rootProps: PropRow[] = [
     type: 'IconButtonProps | ({ table }) => IconButtonProps',
   },
   {
-    propName: 'muiExpandButtonProps',
+    propName: 'mantineExpandButtonProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/icon-button/#props',
@@ -1008,7 +1008,7 @@ export const rootProps: PropRow[] = [
     type: 'IconButtonProps | ({ row, table }) => IconButtonProps',
   },
   {
-    propName: 'muiLinearProgressProps',
+    propName: 'mantineLinearProgressProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/linear-progress/#props',
@@ -1018,17 +1018,17 @@ export const rootProps: PropRow[] = [
     type: 'LinearProgressProps | ({ isTopToolbar, table }) => LinearProgressProps',
   },
   {
-    propName: 'muiSearchTextFieldProps',
+    propName: 'mantineSearchTextInputProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/text-field/#props',
     linkText: 'Material UI TextField Props',
     required: false,
     source: 'Material UI',
-    type: 'TextFieldProps | ({ table }) => TextFieldProps',
+    type: 'TextInputProps | ({ table }) => TextInputProps',
   },
   {
-    propName: 'muiSelectAllCheckboxProps',
+    propName: 'mantineSelectAllCheckboxProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/checkbox/#props',
@@ -1038,7 +1038,7 @@ export const rootProps: PropRow[] = [
     type: 'CheckboxProps | ({ table }) => CheckboxProps',
   },
   {
-    propName: 'muiSelectCheckboxProps',
+    propName: 'mantineSelectCheckboxProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/checkbox/#props',
@@ -1048,7 +1048,7 @@ export const rootProps: PropRow[] = [
     type: 'CheckboxProps | ({ row, table }) => CheckboxProps',
   },
   {
-    propName: 'muiTableBodyCellCopyButtonProps',
+    propName: 'mantineCopyButtonProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/button/#props',
@@ -1058,17 +1058,17 @@ export const rootProps: PropRow[] = [
     type: 'ButtonProps | ({ cell, column, row, table }) => ButtonProps',
   },
   {
-    propName: 'muiTableBodyCellEditTextFieldProps',
+    propName: 'mantineEditTextInputProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/text-field/#props',
     linkText: 'Material UI TextField Props',
     required: false,
     source: 'Material UI',
-    type: 'TextFieldProps | ({ cell, column, row, table }) => TextFieldProps',
+    type: 'TextInputProps | ({ cell, column, row, table }) => TextInputProps',
   },
   {
-    propName: 'muiTableBodyCellProps',
+    propName: 'mantineTableBodyCellProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-cell/#props',
@@ -1078,7 +1078,7 @@ export const rootProps: PropRow[] = [
     type: 'TableCellProps | ({ cell, column, row, table }) => TableCellProps',
   },
   {
-    propName: 'muiTableBodyCellSkeletonProps',
+    propName: 'mantineSkeletonProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/skeleton/#props',
@@ -1088,7 +1088,7 @@ export const rootProps: PropRow[] = [
     type: 'SkeletonProps | ({ cell, column, row, table }) => SkeletonProps',
   },
   {
-    propName: 'muiTableBodyProps',
+    propName: 'mantineTableBodyProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-body/#props',
@@ -1098,7 +1098,7 @@ export const rootProps: PropRow[] = [
     type: 'TableBodyProps | ({ table }) => TableBodyProps',
   },
   {
-    propName: 'muiTableBodyRowDragHandleProps',
+    propName: 'mantineRowDragHandleProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/icon-button/#props',
@@ -1108,7 +1108,7 @@ export const rootProps: PropRow[] = [
     type: 'IconButtonProps | ({ row, table }) => IconButtonProps',
   },
   {
-    propName: 'muiTableBodyRowProps',
+    propName: 'mantineTableBodyRowProps',
     defaultValue: '{ hover: true }',
     description: '',
     link: 'https://mui.com/material-ui/api/table-row/#props',
@@ -1118,7 +1118,7 @@ export const rootProps: PropRow[] = [
     type: 'TableRowProps | ({ isDetailPanel, row, table }) => TableRowProps',
   },
   {
-    propName: 'muiTableContainerProps',
+    propName: 'mantineTableContainerProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-container/#props',
@@ -1128,7 +1128,7 @@ export const rootProps: PropRow[] = [
     type: 'TableContainerProps | ({ table }) => TableContainerProps',
   },
   {
-    propName: 'muiTableDetailPanelProps',
+    propName: 'mantineDetailPanelProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-cell/#props',
@@ -1138,7 +1138,7 @@ export const rootProps: PropRow[] = [
     type: 'TableCellProps | ({ row, table }) => TableCellProps',
   },
   {
-    propName: 'muiTableFooterCellProps',
+    propName: 'mantineTableFooterCellProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-cell/#props',
@@ -1148,7 +1148,7 @@ export const rootProps: PropRow[] = [
     type: 'TableCellProps| ({table, column}) => TableCellProps',
   },
   {
-    propName: 'muiTableFooterProps',
+    propName: 'mantineTableFooterProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-footer/#props',
@@ -1158,7 +1158,7 @@ export const rootProps: PropRow[] = [
     type: 'TableFooterProps | ({ table }) => TableFooterProps);',
   },
   {
-    propName: 'muiTableFooterRowProps',
+    propName: 'mantineTableFooterRowProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-row/#props',
@@ -1168,7 +1168,7 @@ export const rootProps: PropRow[] = [
     type: 'TableRowProps | ({table, footerGroup}) => TableRowProps',
   },
   {
-    propName: 'muiTableHeadCellColumnActionsButtonProps',
+    propName: 'mantineColumnActionsButtonProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/icon-button/#props',
@@ -1178,7 +1178,7 @@ export const rootProps: PropRow[] = [
     type: 'IconButtonProps | (({table, column}) => IconButtonProps);',
   },
   {
-    propName: 'muiTableHeadCellDragHandleProps',
+    propName: 'mantineColumnDragHandleProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/icon-button/#props',
@@ -1188,7 +1188,7 @@ export const rootProps: PropRow[] = [
     type: 'IconButtonProps | ({table, column}) => IconButtonProps',
   },
   {
-    propName: 'muiTableHeadCellFilterCheckboxProps',
+    propName: 'mantineFilterCheckboxProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/checkbox/#props',
@@ -1198,17 +1198,17 @@ export const rootProps: PropRow[] = [
     type: 'CheckboxProps | ({ column, table}) => CheckboxProps',
   },
   {
-    propName: 'muiTableHeadCellFilterTextFieldProps',
+    propName: 'mantineFilterTextInputProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/text-field/#props',
     linkText: 'Material UI TextField Props',
     required: false,
     source: 'Material UI',
-    type: 'TextFieldProps | ({ table, column, rangeFilterIndex}) => TextFieldProps',
+    type: 'TextInputProps | ({ table, column, rangeFilterIndex}) => TextInputProps',
   },
   {
-    propName: 'muiTableHeadCellProps',
+    propName: 'mantineTableHeadCellProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-cell/#props',
@@ -1218,7 +1218,7 @@ export const rootProps: PropRow[] = [
     type: 'TableCellProps | ({ table, column}) => TableCellProps',
   },
   {
-    propName: 'muiTableHeadProps',
+    propName: 'mantineTableHeadProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-head/#props',
@@ -1228,7 +1228,7 @@ export const rootProps: PropRow[] = [
     type: 'TableHeadProps | ({ table }) => TableHeadProps',
   },
   {
-    propName: 'muiTableHeadRowProps',
+    propName: 'mantineTableHeadRowProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-row/#props',
@@ -1238,7 +1238,7 @@ export const rootProps: PropRow[] = [
     type: 'TableRowProps | ({ table, headerGroup}) => TableRowProps',
   },
   {
-    propName: 'muiTablePaginationProps',
+    propName: 'mantinePaginationProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table-pagination/#props',
@@ -1248,7 +1248,7 @@ export const rootProps: PropRow[] = [
     type: 'Partial<TablePaginationProps> | ({ table }) => Partial<TablePaginationProps>',
   },
   {
-    propName: 'muiTablePaperProps',
+    propName: 'mantinePaperProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/paper/#props',
@@ -1258,7 +1258,7 @@ export const rootProps: PropRow[] = [
     type: 'PaperProps | ({ table }} => PaperProps',
   },
   {
-    propName: 'muiTableProps',
+    propName: 'mantineTableProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/table/',
@@ -1268,7 +1268,7 @@ export const rootProps: PropRow[] = [
     type: 'TableProps',
   },
   {
-    propName: 'muiToolbarAlertBannerChipProps',
+    propName: 'mantineToolbarAlertBannerChipProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/chip/#props',
@@ -1278,7 +1278,7 @@ export const rootProps: PropRow[] = [
     type: 'ChipProps| ({ table }} => ChipProps',
   },
   {
-    propName: 'muiToolbarAlertBannerProps',
+    propName: 'mantineToolbarAlertBannerProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/alert/#props',
@@ -1288,7 +1288,7 @@ export const rootProps: PropRow[] = [
     type: 'AlertProps | ({ table }) => AlertProps',
   },
   {
-    propName: 'muiBottomToolbarProps',
+    propName: 'mantineBottomToolbarProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/toolbar/#props',
@@ -1298,7 +1298,7 @@ export const rootProps: PropRow[] = [
     type: 'ToolbarProps | ({ table }) => ToolbarProps',
   },
   {
-    propName: 'muiTopToolbarProps',
+    propName: 'mantineTopToolbarProps',
     defaultValue: '',
     description: '',
     link: 'https://mui.com/material-ui/api/toolbar/#props',

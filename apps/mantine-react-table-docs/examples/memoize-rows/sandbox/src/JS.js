@@ -49,7 +49,7 @@ export const Example = () => {
       enableStickyHeader
       initialState={{ pagination: { pageSize: 20, pageIndex: 0 } }}
       memoMode="rows"
-      muiTableContainerProps={{ sx: { maxHeight: '500px' } }}
+      mantineTableContainerProps={{ sx: { maxHeight: '500px' } }}
       renderTopToolbarCustomActions={() => (
         <Typography component="span" variant="h4">
           Memoized Rows

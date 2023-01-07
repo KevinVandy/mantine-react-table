@@ -15,7 +15,7 @@ const Example: FC = () => {
       {
         accessorKey: 'id',
         header: 'ID',
-        muiTableHeadCellFilterTextFieldProps: { placeholder: 'ID' },
+        mantineFilterTextInputProps: { placeholder: 'ID' },
       },
       {
         accessorKey: 'firstName',
@@ -86,7 +86,7 @@ const Example: FC = () => {
       columns={columns}
       data={data}
       initialState={{ showColumnFilters: true }} //show filters by default
-      muiTableHeadCellFilterTextFieldProps={{
+      mantineFilterTextInputProps={{
         sx: { margin: '0.5rem 0', width: '100%' },
         variant: 'outlined',
       }}

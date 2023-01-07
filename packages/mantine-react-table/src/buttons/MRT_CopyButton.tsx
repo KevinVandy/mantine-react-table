@@ -14,7 +14,7 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
   table,
 }: Props<TData>) => {
   const {
-    options: { localization, muiTableBodyCellCopyButtonProps },
+    options: { localization, mantineCopyButtonProps },
   } = table;
   const { column, row } = cell;
   const { columnDef } = column;
@@ -29,19 +29,19 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
   };
 
   const mTableBodyCellCopyButtonProps =
-    muiTableBodyCellCopyButtonProps instanceof Function
-      ? muiTableBodyCellCopyButtonProps({ cell, column, row, table })
-      : muiTableBodyCellCopyButtonProps;
+    mantineCopyButtonProps instanceof Function
+      ? mantineCopyButtonProps({ cell, column, row, table })
+      : mantineCopyButtonProps;
 
   const mcTableBodyCellCopyButtonProps =
-    columnDef.muiTableBodyCellCopyButtonProps instanceof Function
-      ? columnDef.muiTableBodyCellCopyButtonProps({
+    columnDef.mantineCopyButtonProps instanceof Function
+      ? columnDef.mantineCopyButtonProps({
           cell,
           column,
           row,
           table,
         })
-      : columnDef.muiTableBodyCellCopyButtonProps;
+      : columnDef.mantineCopyButtonProps;
 
   const buttonProps = {
     ...mTableBodyCellCopyButtonProps,

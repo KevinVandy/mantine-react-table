@@ -68,7 +68,7 @@ export const RowOrderingEnabled: Story<MantineReactTableProps> = () => {
       data={data}
       enableRowOrdering
       enableSorting={false}
-      muiTableBodyRowDragHandleProps={({ table }) => ({
+      mantineRowDragHandleProps={({ table }) => ({
         onDragEnd: () => {
           const { draggingRow, hoveredRow } = table.getState();
           if (hoveredRow && draggingRow) {
@@ -99,7 +99,7 @@ export const RowOrderingWithSelect: Story<MantineReactTableProps> = () => {
       enableRowSelection
       enableSorting={false}
       getRowId={(row) => row.email}
-      muiTableBodyRowDragHandleProps={{
+      mantineRowDragHandleProps={{
         onDragEnd: () => {
           if (hoveredRow && draggingRow) {
             data.splice(
@@ -134,7 +134,7 @@ export const RowOrderingWithPinning: Story<MantineReactTableProps> = () => {
       enableRowOrdering
       enablePinning
       enableSorting={false}
-      muiTableBodyRowDragHandleProps={{
+      mantineRowDragHandleProps={{
         onDragEnd: () => {
           if (hoveredRow && draggingRow) {
             data.splice(
@@ -170,7 +170,7 @@ export const RowAndColumnOrdering: Story<MantineReactTableProps> = () => {
       enablePinning
       enableRowOrdering
       enableSorting={false}
-      muiTableBodyRowDragHandleProps={{
+      mantineRowDragHandleProps={{
         onDragEnd: () => {
           if (hoveredRow && draggingRow) {
             data.splice(

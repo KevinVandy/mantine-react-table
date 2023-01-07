@@ -29,7 +29,7 @@ export const MRT_FilterTextField: FC<Props> = ({
       icons: { IconFilter, IconX },
       localization,
       manualFiltering,
-      muiTableHeadCellFilterTextFieldProps,
+      mantineFilterTextInputProps,
     },
     refs: { filterInputRefs },
     // setColumnFilterFns,
@@ -37,27 +37,27 @@ export const MRT_FilterTextField: FC<Props> = ({
   const { column } = header;
   const { columnDef } = column;
 
-  const mTableHeadCellFilterTextFieldProps =
-    muiTableHeadCellFilterTextFieldProps instanceof Function
-      ? muiTableHeadCellFilterTextFieldProps({
+  const mTableHeadCellFilterTextInputProps =
+    mantineFilterTextInputProps instanceof Function
+      ? mantineFilterTextInputProps({
           column,
           table,
           rangeFilterIndex,
         })
-      : muiTableHeadCellFilterTextFieldProps;
+      : mantineFilterTextInputProps;
 
-  const mcTableHeadCellFilterTextFieldProps =
-    columnDef.muiTableHeadCellFilterTextFieldProps instanceof Function
-      ? columnDef.muiTableHeadCellFilterTextFieldProps({
+  const mcTableHeadCellFilterTextInputProps =
+    columnDef.mantineFilterTextInputProps instanceof Function
+      ? columnDef.mantineFilterTextInputProps({
           column,
           table,
           rangeFilterIndex,
         })
-      : columnDef.muiTableHeadCellFilterTextFieldProps;
+      : columnDef.mantineFilterTextInputProps;
 
   const textFieldProps = {
-    ...mTableHeadCellFilterTextFieldProps,
-    ...mcTableHeadCellFilterTextFieldProps,
+    ...mTableHeadCellFilterTextInputProps,
+    ...mcTableHeadCellFilterTextInputProps,
   };
 
   const isRangeFilter =

@@ -41,7 +41,7 @@ export const Example = () => {
       enableSorting={false}
       enableBottomToolbar={false}
       enableTopToolbar={false}
-      muiTableBodyRowProps={{ hover: false }}
+      mantineTableBodyRowProps={{ hover: false }}
     />
   );
 };

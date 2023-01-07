@@ -30,7 +30,7 @@ const columns = [
     accessorKey: 'username',
     header: 'Username',
     //you can access a column instance in many callback functions in a column definition like this
-    muiTableHeadCellProps: ({ column }) => ({
+    mantineTableHeadCellProps: ({ column }) => ({
       sx: {
         color: column.getIsSorted() ? 'red' : 'black',
       },

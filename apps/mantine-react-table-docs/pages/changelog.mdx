@@ -31,11 +31,11 @@ import Head from 'next/head';
 #### v1.4.3 (2022-12-15)
 
 - Fix MUI debounce import when `@mui/material v5.11.0` is installed
-- Fix select placeholder when muiTableBodyCellEditTextFieldProps.placeholder is set
+- Fix select placeholder when mantineEditTextInputProps.placeholder is set
 
 #### v1.4.2 (2022-12-11)
 
-- Fix custom `muiTableBodyProps.children` not being rendered
+- Fix custom `mantineTableBodyProps.children` not being rendered
 - Give TableBody a default minHeight of 100px when no rows are present
 
 #### v1.4.1 (2022-12-11)
@@ -234,16 +234,16 @@ import Head from 'next/head';
 ### Pre 1.0 breaking changes
 
 - v1.0.0-beta.16 - `selectAllMode` default value changed to `"page"`
-- v1.0.0-beta.6 - `onColumnDrop` and `onRowDrop` props removed, since they can easily be hooked up manually in `muiTableBodyRowCellDragHandleProps`
+- v1.0.0-beta.6 - `onColumnDrop` and `onRowDrop` props removed, since they can easily be hooked up manually in `mantineTableBodyRowCellDragHandleProps`
 - v0.41.0 - Filter start icon will no longer be shown if `enableColumnFilterModes` is not enabled
 - v0.40.7 - `enabledGlobalFilterOptions` renamed to `globalFilterModeOptions`
 - v0.40.2 - new `tableInstanceRef` and `virtualizerInstanceRef` props
 - v0.39.0 - Renamed `enableColumnFilterChangeMode` to `enableColumnFilterModes`, renamed `enableGlobalFilterChangeMode` to `enableGlobalFilterModes`. New `renderColumnFilterModeMenuItems` and `renderGlobalFilterModeMenuItems` props.
 - v0.38.3 - New `enableStickyFooter` prop useful for aggregation features
-- v0.38.0 - New `GroupedColumn` cell render column def option, new `muiToolbarAlertBannerChipProps`, renamed `muiTableToolbarAlertBannerProps` to `muiToolbarAlertBannerProps`, `muiTableTopToolbarProps` to `muiTopToolbarProps`, `muiTableBottomToolbarProps` to `muiBottomToolbarProps`
+- v0.38.0 - New `GroupedColumn` cell render column def option, new `mantineToolbarAlertBannerChipProps`, renamed `mantineTableToolbarAlertBannerProps` to `mantineToolbarAlertBannerProps`, `mantineTableTopToolbarProps` to `mantineTopToolbarProps`, `mantineTableBottomToolbarProps` to `mantineBottomToolbarProps`
 - v0.37.2 - Aggregation cell renders enabled, `AggregatedCell` needed to render aggregated cell.
 - v0.37.0 - Major Editing Feature Changes: `"modal"` is now the default `editingMode`. New required `exitEditingMode` param in `onEditingRowSave` to allow dev to exit editing mode only after validation passes. Fix auto-filled values not saving in editing row submit. `tableId` prop removed as it is now unnecessary and was being confused with an html id attribute. Major internal ref refactors to better follow React best practices and improve performance.
-- v0.36.0 - `onCellEditBlur` and `onCellEditChange` props removed because the already exist on `muiTableBodyCellEditTextFieldProps`. Examples given [here](/docs/guides/editing)
+- v0.36.0 - `onCellEditBlur` and `onCellEditChange` props removed because the already exist on `mantineEditTextInputProps`. Examples given [here](/docs/guides/editing)
 - v0.35.2 - Change `onEditRowSubmit` name to `onEditingRowSave`
 - v0.35.1 - "current" prefix in some state options removed from name (i.e. `currentEditingRow` is now just `editingRow`), new editing value(s) arguments, better types for editing features
 - v0.34.0 - rolled back to react-virtual 2.0 to fix flickering issue, MRT_Internal Toolbar components are now exported from MRT instead of in params

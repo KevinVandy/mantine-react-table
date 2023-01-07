@@ -88,7 +88,7 @@ const Example: FC = () => {
       data={data}
       enableSelectAll={false}
       enableRowSelection
-      muiSelectCheckboxProps={({ row }) => ({
+      mantineSelectCheckboxProps={({ row }) => ({
         color: 'secondary',
         disabled: row.getValue<number>('age') < 21,
       })}

@@ -75,7 +75,7 @@ export const StickyHeaderShorterTable: Story<MantineReactTableProps> = () => (
     enableRowSelection
     enablePinning
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}
-    muiTableContainerProps={{ sx: { maxHeight: 400 } }}
+    mantineTableContainerProps={{ sx: { maxHeight: 400 } }}
   />
 );
 
@@ -112,7 +112,7 @@ export const disableStickyFooter: Story<MantineReactTableProps> = () => (
     columns={columnsWithFooters}
     data={data}
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}
-    muiTableContainerProps={{ sx: { maxHeight: 400 } }}
+    mantineTableContainerProps={{ sx: { maxHeight: 400 } }}
     enableStickyHeader
     enableStickyFooter={false}
     enableRowNumbers
@@ -124,7 +124,7 @@ export const enableStickyFooter: Story<MantineReactTableProps> = () => (
     columns={columnsWithFooters}
     data={data}
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}
-    muiTableContainerProps={{ sx: { maxHeight: 400 } }}
+    mantineTableContainerProps={{ sx: { maxHeight: 400 } }}
     enableStickyHeader
     enableStickyFooter
     enableRowNumbers

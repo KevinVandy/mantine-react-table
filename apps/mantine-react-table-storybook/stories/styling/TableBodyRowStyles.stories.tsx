@@ -45,7 +45,7 @@ export const DisableRowHoverEffect: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableProps={{
+    mantineTableProps={{
       highlightOnHover: false,
     }}
   />
@@ -55,7 +55,7 @@ export const StyleMuiTableBodyRow: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableBodyRowProps={{
+    mantineTableBodyRowProps={{
       sx: {
         backgroundColor: 'rgba(52, 210, 235, 0.1)',
         borderRight: '1px solid rgba(224,224,224,1)',
@@ -68,14 +68,14 @@ export const StyleCustomStripedRows: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableBodyProps={{
+    mantineTableBodyProps={{
       sx: () => ({
         '& tr:nth-of-type(odd)': {
           backgroundColor: 'limegreen',
         },
       }),
     }}
-    muiTableBodyCellProps={{ sx: { border: 'none' } }}
+    mantineTableBodyCellProps={{ sx: { border: 'none' } }}
   />
 );
 
@@ -85,14 +85,14 @@ export const StyleCustomStripedRowsDetailPanel: Story<
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableBodyProps={{
+    mantineTableBodyProps={{
       sx: () => ({
         '& tr:nth-child(4n+3)': {
           backgroundColor: 'limegreen',
         },
       }),
     }}
-    muiTableBodyCellProps={{ sx: { border: 'none' } }}
+    mantineTableBodyCellProps={{ sx: { border: 'none' } }}
     renderDetailPanel={() => <div>Detail Panel</div>}
   />
 );
@@ -103,7 +103,7 @@ export const ConditionallyStyleMuiTableRow: Story<
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableBodyRowProps={({ row }) => ({
+    mantineTableBodyRowProps={({ row }) => ({
       sx: {
         backgroundColor:
           row.getValue<number>('age') > 50 ? 'rgba(255, 54, 33, 0.18)' : '',

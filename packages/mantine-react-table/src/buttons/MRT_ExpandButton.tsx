@@ -12,15 +12,15 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
     options: {
       icons: { IconChevronDown },
       localization,
-      muiExpandButtonProps,
+      mantineExpandButtonProps,
       renderDetailPanel,
     },
   } = table;
 
   const actionIconProps =
-    muiExpandButtonProps instanceof Function
-      ? muiExpandButtonProps({ table, row })
-      : muiExpandButtonProps;
+    mantineExpandButtonProps instanceof Function
+      ? mantineExpandButtonProps({ table, row })
+      : mantineExpandButtonProps;
 
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();

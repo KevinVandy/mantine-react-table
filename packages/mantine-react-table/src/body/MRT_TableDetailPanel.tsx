@@ -21,22 +21,22 @@ export const MRT_TableDetailPanel: FC<Props> = ({
     getState,
     options: {
       layoutMode,
-      muiTableBodyRowProps,
-      muiTableDetailPanelProps,
+      mantineTableBodyRowProps,
+      mantineDetailPanelProps,
       renderDetailPanel,
     },
   } = table;
   const { isLoading } = getState();
 
   const tableRowProps =
-    muiTableBodyRowProps instanceof Function
-      ? muiTableBodyRowProps({ isDetailPanel: true, row, table })
-      : muiTableBodyRowProps;
+    mantineTableBodyRowProps instanceof Function
+      ? mantineTableBodyRowProps({ isDetailPanel: true, row, table })
+      : mantineTableBodyRowProps;
 
   const tableCellProps =
-    muiTableDetailPanelProps instanceof Function
-      ? muiTableDetailPanelProps({ row, table })
-      : muiTableDetailPanelProps;
+    mantineDetailPanelProps instanceof Function
+      ? mantineDetailPanelProps({ row, table })
+      : mantineDetailPanelProps;
 
   return (
     <Box

@@ -30,7 +30,7 @@ const columns = [
     accessorKey: 'salary',
     header: 'Salary',
     //you can access a row instance in column definition option callbacks like this
-    muiTableBodyCellEditTextFieldProps: ({ row }) => ({
+    mantineEditTextInputProps: ({ row }) => ({
       disabled: row.original.employmentStatus === 'Retired',
     }),
     //or in the component override callbacks like this
@@ -49,7 +49,7 @@ return (
     columns={columns}
     data={data}
     //or a row instance in callback props like this
-    muiSelectCheckboxProps={({ row }) => ({
+    mantineSelectCheckboxProps={({ row }) => ({
       disabled: row.original.isAccountActive === false,
     })}
     renderDetailPanel={({ row }) => (

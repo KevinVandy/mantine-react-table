@@ -28,16 +28,16 @@ export const MRT_Table: FC<Props> = ({ table }) => {
       enableTableHead,
       layoutMode,
       memoMode,
-      muiTableProps,
+      mantineTableProps,
     },
     refs: { tableContainerRef },
   } = table;
   const { columnPinning, columnVisibility, density } = getState();
 
   const tableProps =
-    muiTableProps instanceof Function
-      ? muiTableProps({ table })
-      : muiTableProps;
+    mantineTableProps instanceof Function
+      ? mantineTableProps({ table })
+      : mantineTableProps;
 
   const vProps =
     columnVirtualizerProps instanceof Function

@@ -70,10 +70,10 @@ const Example: FC = () => {
     [tableData],
   );
 
-  const getCommonEditTextFieldProps = useCallback(
+  const getCommonEditTextInputProps = useCallback(
     (
       cell: MRT_Cell<Person>,
-    ): MRT_ColumnDef<Person>['muiTableBodyCellEditTextFieldProps'] => {
+    ): MRT_ColumnDef<Person>['mantineEditTextInputProps'] => {
       return {
         error: !!validationErrors[cell.id],
         helperText: validationErrors[cell.id],
@@ -117,23 +117,23 @@ const Example: FC = () => {
         accessorKey: 'firstName',
         header: 'First Name',
         size: 140,
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+        mantineEditTextInputProps: ({ cell }) => ({
+          ...getCommonEditTextInputProps(cell),
         }),
       },
       {
         accessorKey: 'lastName',
         header: 'Last Name',
         size: 140,
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+        mantineEditTextInputProps: ({ cell }) => ({
+          ...getCommonEditTextInputProps(cell),
         }),
       },
       {
         accessorKey: 'email',
         header: 'Email',
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+        mantineEditTextInputProps: ({ cell }) => ({
+          ...getCommonEditTextInputProps(cell),
           type: 'email',
         }),
       },
@@ -141,15 +141,15 @@ const Example: FC = () => {
         accessorKey: 'age',
         header: 'Age',
         size: 80,
-        muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
-          ...getCommonEditTextFieldProps(cell),
+        mantineEditTextInputProps: ({ cell }) => ({
+          ...getCommonEditTextInputProps(cell),
           type: 'number',
         }),
       },
       {
         accessorKey: 'state',
         header: 'State',
-        muiTableBodyCellEditTextFieldProps: {
+        mantineEditTextInputProps: {
           select: true, //change to select for a dropdown
           children: states.map((state) => (
             <MenuItem key={state} value={state}>
@@ -159,7 +159,7 @@ const Example: FC = () => {
         },
       },
     ],
-    [getCommonEditTextFieldProps],
+    [getCommonEditTextInputProps],
   );
 
   return (
@@ -167,7 +167,7 @@ const Example: FC = () => {
       <MantineReactTable
         displayColumnDefOptions={{
           'mrt-row-actions': {
-            muiTableHeadCellProps: {
+            mantineTableHeadCellProps: {
               align: 'center',
             },
             size: 120,

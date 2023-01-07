@@ -40,7 +40,7 @@ const Example: FC = () => {
     <MantineReactTable
       columns={columns}
       data={data}
-      muiTableHeadCellProps={{
+      mantineTableHeadCellProps={{
         sx: {
           '& .Mui-TableHeadCell-Content': {
             justifyContent: 'space-between',

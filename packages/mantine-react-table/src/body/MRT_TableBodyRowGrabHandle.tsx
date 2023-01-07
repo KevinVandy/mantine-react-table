@@ -14,14 +14,14 @@ export const MRT_TableBodyRowGrabHandle: FC<Props> = ({
   table,
 }) => {
   const {
-    options: { muiTableBodyRowDragHandleProps },
+    options: { mantineRowDragHandleProps },
   } = table;
   const { row } = cell;
 
   const actionIconProps =
-    muiTableBodyRowDragHandleProps instanceof Function
-      ? muiTableBodyRowDragHandleProps({ row, table })
-      : muiTableBodyRowDragHandleProps;
+    mantineRowDragHandleProps instanceof Function
+      ? mantineRowDragHandleProps({ row, table })
+      : mantineRowDragHandleProps;
 
   const handleDragStart = (event: DragEvent<HTMLButtonElement>) => {
     actionIconProps?.onDragStart?.(event);

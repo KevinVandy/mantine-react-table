@@ -10,21 +10,21 @@ interface Props {
 
 export const MRT_TableFooterCell: FC<Props> = ({ footer, table }) => {
   const {
-    options: { layoutMode, muiTableFooterCellProps },
+    options: { layoutMode, mantineTableFooterCellProps },
   } = table;
   const { column } = footer;
   const { columnDef } = column;
   const { columnDefType } = columnDef;
 
   const mTableFooterCellProps =
-    muiTableFooterCellProps instanceof Function
-      ? muiTableFooterCellProps({ column, table })
-      : muiTableFooterCellProps;
+    mantineTableFooterCellProps instanceof Function
+      ? mantineTableFooterCellProps({ column, table })
+      : mantineTableFooterCellProps;
 
   const mcTableFooterCellProps =
-    columnDef.muiTableFooterCellProps instanceof Function
-      ? columnDef.muiTableFooterCellProps({ column, table })
-      : columnDef.muiTableFooterCellProps;
+    columnDef.mantineTableFooterCellProps instanceof Function
+      ? columnDef.mantineTableFooterCellProps({ column, table })
+      : columnDef.mantineTableFooterCellProps;
 
   const tableCellProps = {
     ...mTableFooterCellProps,

@@ -20,14 +20,14 @@ export const MRT_TableHead: FC<Props> = ({
   const {
     getHeaderGroups,
     getState,
-    options: { enableStickyHeader, layoutMode, muiTableHeadProps },
+    options: { enableStickyHeader, layoutMode, mantineTableHeadProps },
   } = table;
   const { isFullScreen } = getState();
 
   const tableHeadProps =
-    muiTableHeadProps instanceof Function
-      ? muiTableHeadProps({ table })
-      : muiTableHeadProps;
+    mantineTableHeadProps instanceof Function
+      ? mantineTableHeadProps({ table })
+      : mantineTableHeadProps;
 
   const stickyHeader = enableStickyHeader || isFullScreen;
 

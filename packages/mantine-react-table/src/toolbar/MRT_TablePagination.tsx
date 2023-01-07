@@ -28,6 +28,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
       enableToolbarInternalActions,
       icons: { IconChevronLeft, IconChevronRight },
       localization,
+      mantinePaginationProps,
       rowCount,
     },
   } = table;
@@ -36,8 +37,15 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
     showGlobalFilter,
   } = getState();
 
+  const paginationProps =
+    mantinePaginationProps instanceof Function
+      ? mantinePaginationProps({ table })
+      : mantinePaginationProps;
+
   const totalRowCount = rowCount ?? getPrePaginationRowModel().rows.length;
-  const showFirstLastPageButtons = totalRowCount / pageSize > 2;
+  const showFirstLastPageButtons =
+    totalRowCount / pageSize > 2 &&
+    paginationProps?.showFirstLastPageButtons !== false;
   const firstRowIndex = pageIndex * pageSize;
   const lastRowIndex = Math.min(pageIndex * pageSize + pageSize, totalRowCount);
 
@@ -54,22 +62,35 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           : undefined
       }
     >
-      <Select
-        data={['5', '10', '15', '20', '25', '30', '50', '100']}
-        label={localization.rowsPerPage}
-        onChange={(value: string) => setPageSize(+value)}
-        value={pageSize.toString()}
-        sx={{
-          '@media (min-width: 720px)': {
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-          },
-          '& .mantine-Select-input': {
-            width: '90px',
-          },
-        }}
-      />
+      {paginationProps?.showRowsPerPage && (
+        <Select
+          data={
+            paginationProps?.rowsPerPageOptions ?? [
+              '5',
+              '10',
+              '15',
+              '20',
+              '25',
+              '30',
+              '50',
+              '100',
+            ]
+          }
+          label={localization.rowsPerPage}
+          onChange={(value: string) => setPageSize(+value)}
+          value={pageSize.toString()}
+          sx={{
+            '@media (min-width: 720px)': {
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+            },
+            '& .mantine-Select-input': {
+              width: '90px',
+            },
+          }}
+        />
+      )}
       <Text>{`${firstRowIndex + 1}-${lastRowIndex} ${
         localization.of
       } ${totalRowCount}`}</Text>

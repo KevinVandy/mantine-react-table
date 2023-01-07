@@ -39,14 +39,14 @@ const Example: FC = () => {
       displayColumnDefOptions={{
         'mrt-row-actions': {
           size: 350, //set custom width
-          muiTableHeadCellProps: {
+          mantineTableHeadCellProps: {
             align: 'center', //change head cell props
           },
         },
         'mrt-row-numbers': {
           enableColumnOrdering: true, //turn on some features that are usually off
           enableResizing: true,
-          muiTableHeadCellProps: {
+          mantineTableHeadCellProps: {
             sx: {
               fontSize: '1.2rem',
             },

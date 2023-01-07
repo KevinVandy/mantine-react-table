@@ -87,7 +87,7 @@ const Example = () => {
       data={data}
       enableSelectAll={false}
       enableRowSelection
-      muiSelectCheckboxProps={({ row }) => ({
+      mantineSelectCheckboxProps={({ row }) => ({
         color: 'secondary',
         disabled: row.getValue('age') < 21,
       })}

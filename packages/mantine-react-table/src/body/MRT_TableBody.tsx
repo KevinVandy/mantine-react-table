@@ -39,7 +39,7 @@ export const MRT_TableBody: FC<Props> = ({
       manualFiltering,
       manualSorting,
       memoMode,
-      muiTableBodyProps,
+      mantineTableBodyProps,
       rowVirtualizerInstanceRef,
       rowVirtualizerProps,
     },
@@ -49,9 +49,9 @@ export const MRT_TableBody: FC<Props> = ({
     getState();
 
   const tableBodyProps =
-    muiTableBodyProps instanceof Function
-      ? muiTableBodyProps({ table })
-      : muiTableBodyProps;
+    mantineTableBodyProps instanceof Function
+      ? mantineTableBodyProps({ table })
+      : mantineTableBodyProps;
 
   const vProps =
     rowVirtualizerProps instanceof Function

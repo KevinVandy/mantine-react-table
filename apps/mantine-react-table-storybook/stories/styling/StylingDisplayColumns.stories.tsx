@@ -44,7 +44,7 @@ export const CustomizeDisplayColumns: Story<MantineReactTableProps> = () => (
     data={data}
     displayColumnDefOptions={{
       'mrt-row-actions': {
-        muiTableHeadCellProps: {
+        mantineTableHeadCellProps: {
           sx: {
             fontSize: '1.25rem',
             fontStyle: 'italic',
@@ -59,7 +59,7 @@ export const CustomizeDisplayColumns: Story<MantineReactTableProps> = () => (
       },
       'mrt-row-numbers': {
         enableColumnOrdering: true,
-        muiTableBodyCellProps: {
+        mantineTableBodyCellProps: {
           sx: {
             color: 'red',
             fontSize: '1.5rem',

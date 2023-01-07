@@ -68,7 +68,7 @@ const Example: FC = () => {
       enableMultiRowSelection={false} //use radio buttons instead of checkboxes
       enableRowSelection
       getRowId={(row) => row.userId} //give each row a more useful id
-      muiTableBodyRowProps={({ row }) => ({
+      mantineTableBodyRowProps={({ row }) => ({
         //add onClick to row to select upon clicking anywhere in the row
         onClick: row.getToggleSelectedHandler(),
         sx: { cursor: 'pointer' },

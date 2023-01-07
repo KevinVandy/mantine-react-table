@@ -140,14 +140,14 @@ const Example: FC = () => {
       enableRowVirtualization //optional, but recommended if it is likely going to be more than 100 rows
       manualFiltering
       manualSorting
-      muiTableContainerProps={{
+      mantineTableContainerProps={{
         ref: tableContainerRef, //get access to the table container element
         sx: { maxHeight: '600px' }, //give the table a max height
         onScroll: (
           event: UIEvent<HTMLDivElement>, //add an event listener to the table container element
         ) => fetchMoreOnBottomReached(event.target as HTMLDivElement),
       }}
-      muiToolbarAlertBannerProps={
+      mantineToolbarAlertBannerProps={
         isError
           ? {
               color: 'error',

@@ -16,7 +16,7 @@ export const MRT_TableHeadCellGrabHandle: FC<Props> = ({
 }) => {
   const {
     getState,
-    options: { enableColumnOrdering, muiTableHeadCellDragHandleProps },
+    options: { enableColumnOrdering, mantineColumnDragHandleProps },
     setColumnOrder,
     setDraggingColumn,
     setHoveredColumn,
@@ -25,14 +25,14 @@ export const MRT_TableHeadCellGrabHandle: FC<Props> = ({
   const { hoveredColumn, draggingColumn, columnOrder } = getState();
 
   const mActionIconProps =
-    muiTableHeadCellDragHandleProps instanceof Function
-      ? muiTableHeadCellDragHandleProps({ column, table })
-      : muiTableHeadCellDragHandleProps;
+    mantineColumnDragHandleProps instanceof Function
+      ? mantineColumnDragHandleProps({ column, table })
+      : mantineColumnDragHandleProps;
 
   const mcActionIconProps =
-    columnDef.muiTableHeadCellDragHandleProps instanceof Function
-      ? columnDef.muiTableHeadCellDragHandleProps({ column, table })
-      : columnDef.muiTableHeadCellDragHandleProps;
+    columnDef.mantineColumnDragHandleProps instanceof Function
+      ? columnDef.mantineColumnDragHandleProps({ column, table })
+      : columnDef.mantineColumnDragHandleProps;
 
   const actionIconProps = {
     ...mActionIconProps,

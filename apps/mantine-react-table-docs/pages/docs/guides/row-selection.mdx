@@ -28,8 +28,8 @@ Mantine React Table has a built-in row-selection feature and makes it easy to ma
       'enableSelectAll',
       'enableSubRowSelection',
       'getRowId',
-      'muiSelectAllCheckboxProps',
-      'muiSelectCheckboxProps',
+      'mantineSelectAllCheckboxProps',
+      'mantineSelectCheckboxProps',
       'onRowSelectionChange',
       'positionToolbarAlertBanner',
       'selectAllMode',
@@ -134,7 +134,7 @@ By default, a row can only be selected by either clicking the checkbox or radio 
   data={data}
   enableRowSelection
   //clicking anywhere on the row will select it
-  muiTableBodyRowProps={({ row }) => ({
+  mantineTableBodyRowProps={({ row }) => ({
     onClick: row.getToggleSelectedHandler(),
     sx: { cursor: 'pointer' },
   })}
@@ -173,14 +173,14 @@ By default, the `enableMultiRowSelection` prop is set to `true`, which means tha
 
 ### Customize Select Checkboxes or Radio Buttons
 
-The selection checkboxes can be customized with the `muiSelectCheckboxProps` prop. Any prop that can be passed to a Mui Checkbox component can be specified here. For example, you may want to use a different color for the checkbox, or use some logic to disable certain rows from being selected.
+The selection checkboxes can be customized with the `mantineSelectCheckboxProps` prop. Any prop that can be passed to a Mui Checkbox component can be specified here. For example, you may want to use a different color for the checkbox, or use some logic to disable certain rows from being selected.
 
 ```tsx
 <MantineReactTable
   columns={columns}
   data={data}
   enableRowSelection
-  muiSelectCheckboxProps={{
+  mantineSelectCheckboxProps={{
     color: 'secondary',
   }}
 />

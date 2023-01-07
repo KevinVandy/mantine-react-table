@@ -45,7 +45,7 @@ const Example = () => {
     <MantineReactTable
       columns={columns}
       data={data}
-      muiLinearProgressProps={({ isTopToolbar }) => ({
+      mantineLinearProgressProps={({ isTopToolbar }) => ({
         color: 'secondary',
         variant: 'determinate', //if you want to show exact progress value
         value: progress, //value between 0 and 100

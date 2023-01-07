@@ -10,26 +10,26 @@ interface Props {
 export const MRT_FilterCheckbox: FC<Props> = ({ column, table }) => {
   const {
     getState,
-    options: { localization, muiTableHeadCellFilterCheckboxProps },
+    options: { localization, mantineFilterCheckboxProps },
   } = table;
   const { density } = getState();
   const { columnDef } = column;
 
   const mTableHeadCellFilterCheckboxProps =
-    muiTableHeadCellFilterCheckboxProps instanceof Function
-      ? muiTableHeadCellFilterCheckboxProps({
+    mantineFilterCheckboxProps instanceof Function
+      ? mantineFilterCheckboxProps({
           column,
           table,
         })
-      : muiTableHeadCellFilterCheckboxProps;
+      : mantineFilterCheckboxProps;
 
   const mcTableHeadCellFilterCheckboxProps =
-    columnDef.muiTableHeadCellFilterCheckboxProps instanceof Function
-      ? columnDef.muiTableHeadCellFilterCheckboxProps({
+    columnDef.mantineFilterCheckboxProps instanceof Function
+      ? columnDef.mantineFilterCheckboxProps({
           column,
           table,
         })
-      : columnDef.muiTableHeadCellFilterCheckboxProps;
+      : columnDef.mantineFilterCheckboxProps;
 
   const checkboxProps = {
     ...mTableHeadCellFilterCheckboxProps,

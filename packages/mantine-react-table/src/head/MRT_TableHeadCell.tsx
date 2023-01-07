@@ -25,7 +25,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
       enableGrouping,
       enableMultiSort,
       layoutMode,
-      muiTableHeadCellProps,
+      mantineTableHeadCellProps,
     },
     refs: { tableHeadCellRefs },
     setHoveredColumn,
@@ -36,14 +36,14 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
   const { columnDefType } = columnDef;
 
   const mTableHeadCellProps =
-    muiTableHeadCellProps instanceof Function
-      ? muiTableHeadCellProps({ column, table })
-      : muiTableHeadCellProps;
+    mantineTableHeadCellProps instanceof Function
+      ? mantineTableHeadCellProps({ column, table })
+      : mantineTableHeadCellProps;
 
   const mcTableHeadCellProps =
-    columnDef.muiTableHeadCellProps instanceof Function
-      ? columnDef.muiTableHeadCellProps({ column, table })
-      : columnDef.muiTableHeadCellProps;
+    columnDef.mantineTableHeadCellProps instanceof Function
+      ? columnDef.mantineTableHeadCellProps({ column, table })
+      : columnDef.mantineTableHeadCellProps;
 
   const tableCellProps = {
     ...mTableHeadCellProps,

@@ -45,7 +45,7 @@ export const StyleAllMuiTableBodyCell: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableBodyCellProps={{
+    mantineTableBodyCellProps={{
       sx: {
         backgroundColor: 'rgba(52, 210, 235, 0.1)',
         borderRight: '1px solid rgba(224,224,224,1)',
@@ -70,7 +70,7 @@ export const StyleMuiTableBodyCellConditionallyIn1Column: Story<
       {
         header: 'Age',
         accessorKey: 'age',
-        muiTableBodyCellProps: ({ cell }) => ({
+        mantineTableBodyCellProps: ({ cell }) => ({
           sx: {
             backgroundColor:
               cell.getValue<number>() > 40

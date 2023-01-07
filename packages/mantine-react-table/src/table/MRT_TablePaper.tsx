@@ -15,7 +15,7 @@ export const MRT_TablePaper: FC<Props> = ({ table }) => {
     options: {
       enableBottomToolbar,
       enableTopToolbar,
-      muiTablePaperProps,
+      mantinePaperProps,
       renderBottomToolbar,
       renderTopToolbar,
     },
@@ -24,9 +24,9 @@ export const MRT_TablePaper: FC<Props> = ({ table }) => {
   const { isFullScreen } = getState();
 
   const tablePaperProps =
-    muiTablePaperProps instanceof Function
-      ? muiTablePaperProps({ table })
-      : muiTablePaperProps;
+    mantinePaperProps instanceof Function
+      ? mantinePaperProps({ table })
+      : mantinePaperProps;
 
   return (
     <Paper

@@ -46,7 +46,7 @@ export const StyleAllMuiTableHeadCell: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableHeadCellProps={{
+    mantineTableHeadCellProps={{
       sx: {
         backgroundColor: 'rgba(52, 210, 235, 0.1)',
         borderRight: '1px solid rgba(224,224,224,1)',
@@ -68,14 +68,14 @@ export const StyleTableHeadCellsIndividually: Story<
       {
         header: 'Last Name',
         accessorKey: 'lastName',
-        muiTableHeadCellProps: {
+        mantineTableHeadCellProps: {
           sx: (theme) => ({ color: theme.primaryColor }),
         },
       },
       {
         header: 'Age',
         accessorKey: 'age',
-        muiTableHeadCellProps: {
+        mantineTableHeadCellProps: {
           sx: {
             color: 'red',
           },

@@ -50,7 +50,7 @@ const Example: FC = () => {
       data={tableData}
       editingMode="cell"
       enableEditing
-      muiTableBodyCellEditTextFieldProps={({ cell }) => ({
+      mantineEditTextInputProps={({ cell }) => ({
         //onBlur is more efficient, but could use onChange instead
         onBlur: (event) => {
           handleSaveCell(cell, event.target.value);

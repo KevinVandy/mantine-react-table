@@ -40,7 +40,7 @@ const Example: FC = () => {
     columns,
     enableRowDragging: true,
     enableFullScreenToggle: false,
-    muiTableContainerProps: {
+    mantineTableContainerProps: {
       sx: {
         minHeight: '320px',
       },
@@ -63,7 +63,7 @@ const Example: FC = () => {
         {...commonTableProps}
         data={data1}
         getRowId={(originalRow) => `table-1-${originalRow.firstName}`}
-        muiTableBodyRowDragHandleProps={{
+        mantineRowDragHandleProps={{
           onDragEnd: () => {
             if (hoveredTable === 'table-2') {
               setData2((data2) => [...data2, draggingRow!.original]);
@@ -74,7 +74,7 @@ const Example: FC = () => {
             setHoveredTable(null);
           },
         }}
-        muiTablePaperProps={{
+        mantinePaperProps={{
           onDragEnter: () => setHoveredTable('table-1'),
           sx: {
             outline: hoveredTable === 'table-1' ? '2px dashed pink' : undefined,
@@ -93,7 +93,7 @@ const Example: FC = () => {
           size: 100,
         }}
         getRowId={(originalRow) => `table-2-${originalRow.firstName}`}
-        muiTableBodyRowDragHandleProps={{
+        mantineRowDragHandleProps={{
           onDragEnd: () => {
             if (hoveredTable === 'table-1') {
               setData1((data1) => [...data1, draggingRow!.original]);
@@ -104,7 +104,7 @@ const Example: FC = () => {
             setHoveredTable(null);
           },
         }}
-        muiTablePaperProps={{
+        mantinePaperProps={{
           onDragEnter: () => setHoveredTable('table-2'),
           sx: {
             outline: hoveredTable === 'table-2' ? '2px dashed pink' : undefined,

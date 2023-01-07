@@ -140,14 +140,14 @@ export const PinnedColumnsWithStickyFooter: Story<
       enablePinning
       enableStickyHeader
       enableStickyFooter
-      muiTableContainerProps={{
+      mantineTableContainerProps={{
         sx: { maxHeight: 300 },
       }}
-      muiTableHeadCellProps={{
+      mantineTableHeadCellProps={{
         align: 'center',
         sx: { borderLeft: '1px solid black' },
       }}
-      muiTableBodyCellProps={{
+      mantineTableBodyCellProps={{
         align: 'center',
         sx: { borderLeft: '1px solid black' },
       }}

@@ -67,7 +67,7 @@ const Example = () => {
       enableRowSelection
       getRowId={(row) => row.userId} //give each row a more useful id
       //add onClick to row to select upon clicking anywhere in the row
-      muiTableBodyRowProps={({ row }) => ({
+      mantineTableBodyRowProps={({ row }) => ({
         onClick: row.getToggleSelectedHandler(),
         sx: { cursor: 'pointer' },
       })}

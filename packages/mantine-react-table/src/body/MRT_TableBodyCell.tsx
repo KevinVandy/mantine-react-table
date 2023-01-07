@@ -49,8 +49,8 @@ export const MRT_TableBodyCell: FC<Props> = ({
       enableGrouping,
       enableRowNumbers,
       layoutMode,
-      muiTableBodyCellProps,
-      muiTableBodyCellSkeletonProps,
+      mantineTableBodyCellProps,
+      mantineSkeletonProps,
       rowNumberMode,
     },
     refs: { editInputRefs },
@@ -71,14 +71,14 @@ export const MRT_TableBodyCell: FC<Props> = ({
   const { columnDefType } = columnDef;
 
   const mTableCellBodyProps =
-    muiTableBodyCellProps instanceof Function
-      ? muiTableBodyCellProps({ cell, column, row, table })
-      : muiTableBodyCellProps;
+    mantineTableBodyCellProps instanceof Function
+      ? mantineTableBodyCellProps({ cell, column, row, table })
+      : mantineTableBodyCellProps;
 
   const mcTableCellBodyProps =
-    columnDef.muiTableBodyCellProps instanceof Function
-      ? columnDef.muiTableBodyCellProps({ cell, column, row, table })
-      : columnDef.muiTableBodyCellProps;
+    columnDef.mantineTableBodyCellProps instanceof Function
+      ? columnDef.mantineTableBodyCellProps({ cell, column, row, table })
+      : columnDef.mantineTableBodyCellProps;
 
   const tableCellProps = {
     ...mTableCellBodyProps,
@@ -86,9 +86,9 @@ export const MRT_TableBodyCell: FC<Props> = ({
   };
 
   const skeletonProps =
-    muiTableBodyCellSkeletonProps instanceof Function
-      ? muiTableBodyCellSkeletonProps({ cell, column, row, table })
-      : muiTableBodyCellSkeletonProps;
+    mantineSkeletonProps instanceof Function
+      ? mantineSkeletonProps({ cell, column, row, table })
+      : mantineSkeletonProps;
 
   const [skeletonWidth, setSkeletonWidth] = useState(0);
   useEffect(

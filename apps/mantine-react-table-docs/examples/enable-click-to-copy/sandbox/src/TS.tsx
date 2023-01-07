@@ -18,7 +18,7 @@ const Example: FC = () => {
         accessorKey: 'email',
         header: 'Email',
         enableClickToCopy: true,
-        muiTableBodyCellCopyButtonProps: {
+        mantineCopyButtonProps: {
           fullWidth: true,
           startIcon: <ContentCopy />,
           sx: { justifyContent: 'flex-start' },

@@ -22,7 +22,7 @@ const ColumnInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
           accessorKey: 'columnInstanceAPI',
           enableClickToCopy: true,
           header: 'State Option',
-          muiTableBodyCellCopyButtonProps: ({ cell }) => ({
+          mantineCopyButtonProps: ({ cell }) => ({
             className: 'column-instance-api',
             id: `${cell.getValue<string>()}-column-instance-api`,
           }),
@@ -121,12 +121,12 @@ const ColumnInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
         showGlobalFilter: true,
         sorting: [{ id: 'columnInstanceAPI', desc: false }],
       }}
-      muiSearchTextFieldProps={{
+      mantineSearchTextInputProps={{
         placeholder: 'Search Column APIs',
         sx: { minWidth: '18rem' },
         variant: 'outlined',
       }}
-      muiTablePaperProps={{
+      mantinePaperProps={{
         sx: { marginBottom: '1.5rem' },
         id: onlyProps
           ? 'relevant-column-instance-apis-table'

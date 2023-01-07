@@ -28,7 +28,7 @@ const RootPropTable: FC<Props> = ({ onlyProps }) => {
           enableClickToCopy: true,
           header: 'Prop Name',
           accessorKey: 'propName',
-          muiTableBodyCellCopyButtonProps: ({ cell }) => ({
+          mantineCopyButtonProps: ({ cell }) => ({
             className: 'prop',
             // component: 'a',
             id: `${cell.getValue<string>()}-prop`,
@@ -176,12 +176,12 @@ const RootPropTable: FC<Props> = ({ onlyProps }) => {
           { id: 'propName', desc: false },
         ],
       }}
-      muiSearchTextFieldProps={{
+      mantineSearchTextInputProps={{
         placeholder: 'Search All Props',
         sx: { minWidth: '18rem' },
         variant: 'outlined',
       }}
-      muiTablePaperProps={{
+      mantinePaperProps={{
         sx: { marginBottom: '1.5rem' },
         id: onlyProps ? 'relevant-props-table' : 'props-table',
       }}

@@ -20,20 +20,20 @@ export const MRT_SelectCheckbox: FC<Props> = ({ row, selectAll, table }) => {
     options: {
       localization,
       enableMultiRowSelection,
-      muiSelectCheckboxProps,
-      muiSelectAllCheckboxProps,
+      mantineSelectCheckboxProps,
+      mantineSelectAllCheckboxProps,
       selectAllMode,
     },
   } = table;
   const { density, isLoading } = getState();
 
   const checkboxProps = !row
-    ? muiSelectAllCheckboxProps instanceof Function
-      ? muiSelectAllCheckboxProps({ table })
-      : muiSelectAllCheckboxProps
-    : muiSelectCheckboxProps instanceof Function
-    ? muiSelectCheckboxProps({ row, table })
-    : muiSelectCheckboxProps;
+    ? mantineSelectAllCheckboxProps instanceof Function
+      ? mantineSelectAllCheckboxProps({ table })
+      : mantineSelectAllCheckboxProps
+    : mantineSelectCheckboxProps instanceof Function
+    ? mantineSelectCheckboxProps({ row, table })
+    : mantineSelectCheckboxProps;
 
   const commonProps = {
     'aria-label': selectAll

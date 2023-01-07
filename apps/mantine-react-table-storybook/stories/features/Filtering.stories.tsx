@@ -39,7 +39,7 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
     accessorFn: (row) => new Date(row.birthDate), //transform data before processing so sorting works
     accessorKey: 'birthDate',
     header: 'Birth Date',
-    muiTableHeadCellFilterTextFieldProps: {
+    mantineFilterTextInputProps: {
       type: 'date',
     },
     sortingFn: 'datetime',

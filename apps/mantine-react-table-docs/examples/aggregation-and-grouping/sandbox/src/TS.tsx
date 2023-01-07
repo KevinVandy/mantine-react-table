@@ -124,8 +124,8 @@ const Example: FC = () => {
         pagination: { pageIndex: 0, pageSize: 20 },
         sorting: [{ id: 'state', desc: false }], //sort by state by default
       }}
-      muiToolbarAlertBannerChipProps={{ color: 'primary' }}
-      muiTableContainerProps={{ sx: { maxHeight: 700 } }}
+      mantineToolbarAlertBannerChipProps={{ color: 'primary' }}
+      mantineTableContainerProps={{ sx: { maxHeight: 700 } }}
     />
   );
 };

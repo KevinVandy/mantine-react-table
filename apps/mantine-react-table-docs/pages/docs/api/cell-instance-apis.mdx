@@ -30,7 +30,7 @@ const columns = [
     accessorKey: 'username',
     header: 'Username',
     //you can access a cell in many callback column definition options like this
-    muiTableBodyCellProps: ({ cell }) => ({
+    mantineTableBodyCellProps: ({ cell }) => ({
       onClick: () => {
         console.log(cell.getValue(), cell.id);
       },
@@ -47,7 +47,7 @@ return (
     columns={columns}
     data={data}
     //or in callback props like this
-    muiTableBodyCellEditTextFieldProps={({ cell }) => ({
+    mantineEditTextInputProps={({ cell }) => ({
       disabled: cell.getValue() === 'admin',
     })}
   />

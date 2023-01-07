@@ -52,12 +52,12 @@ export const SetRowHeight: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableBodyRowProps={{
+    mantineTableBodyRowProps={{
       sx: {
         height: '10px',
       },
     }}
-    muiTableBodyCellProps={{
+    mantineTableBodyCellProps={{
       sx: {
         padding: '2px 16px',
       },

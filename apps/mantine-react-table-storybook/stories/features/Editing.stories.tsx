@@ -139,7 +139,7 @@ export const EditingEnabledEditModeCell: Story<MantineReactTableProps> = () => {
       data={tableData}
       editingMode="cell"
       enableEditing
-      muiTableBodyCellEditTextFieldProps={({ cell }) => ({
+      mantineEditTextInputProps={({ cell }) => ({
         onBlur: (event) => {
           handleSaveCell(cell, event.target.value);
         },
@@ -186,7 +186,7 @@ export const EditingEnabledEditModeTable: Story<
       data={tableData}
       editingMode="table"
       enableEditing
-      muiTableBodyCellEditTextFieldProps={({ cell }) => ({
+      mantineEditTextInputProps={({ cell }) => ({
         onBlur: (event) => {
           handleSaveCell(cell, event.target.value);
         },
@@ -278,7 +278,7 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
         {
           header: 'State',
           accessorKey: 'state',
-          // muiTableBodyCellEditTextFieldProps: () => ({
+          // mantineEditTextInputProps: () => ({
           //   children: usStates.map((state) => (
           //     <Menu.Item key={state} value={state}>
           //       {state}
@@ -295,7 +295,7 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
       data={tableData}
       enableRowActions
       enableEditing
-      muiTableBodyCellEditTextFieldProps={{ variant: 'filled' }}
+      mantineEditTextInputProps={{ variant: 'filled' }}
       onEditingRowSave={handleSaveRow}
     />
   );
@@ -337,7 +337,7 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
 //         {
 //           header: 'First Name',
 //           accessorKey: 'firstName',
-//           muiTableBodyCellEditTextFieldProps: {
+//           mantineEditTextInputProps: {
 //             error: !!firstNameError,
 //             helperText: firstNameError,
 //           },
@@ -348,7 +348,7 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
 //         {
 //           header: 'Last Name',
 //           accessorKey: 'lastName',
-//           muiTableBodyCellEditTextFieldProps: {
+//           mantineEditTextInputProps: {
 //             error: !!lastNameError,
 //             helperText: lastNameError,
 //           },
@@ -359,7 +359,7 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
 //         {
 //           header: 'Phone Number',
 //           accessorKey: 'phoneNumber',
-//           muiTableBodyCellEditTextFieldProps: {
+//           mantineEditTextInputProps: {
 //             error: !!phoneNumberError,
 //             helperText: phoneNumberError,
 //           },

@@ -9,10 +9,10 @@ const Example = () => {
         accessorKey: 'firstName',
         header: 'First Name',
         size: 100,
-        muiTableHeadCellProps: {
+        mantineTableHeadCellProps: {
           align: 'center',
         },
-        muiTableBodyCellProps: {
+        mantineTableBodyCellProps: {
           align: 'center',
         },
       },
@@ -20,30 +20,30 @@ const Example = () => {
         accessorKey: 'lastName',
         header: 'Last Name',
         size: 100,
-        muiTableHeadCellProps: {
+        mantineTableHeadCellProps: {
           align: 'center',
         },
-        muiTableBodyCellProps: {
+        mantineTableBodyCellProps: {
           align: 'center',
         },
       },
       {
         accessorKey: 'age',
         header: 'Age',
-        muiTableHeadCellProps: {
+        mantineTableHeadCellProps: {
           align: 'right',
         },
-        muiTableBodyCellProps: {
+        mantineTableBodyCellProps: {
           align: 'right',
         },
       },
       {
         accessorKey: 'salary',
         header: 'Salary',
-        muiTableHeadCellProps: {
+        mantineTableHeadCellProps: {
           align: 'right',
         },
-        muiTableBodyCellProps: {
+        mantineTableBodyCellProps: {
           align: 'right',
         },
         Cell: ({ cell }) =>

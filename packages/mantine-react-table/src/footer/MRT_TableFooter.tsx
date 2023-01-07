@@ -20,14 +20,14 @@ export const MRT_TableFooter: FC<Props> = ({
   const {
     getFooterGroups,
     getState,
-    options: { enableStickyFooter, layoutMode, muiTableFooterProps },
+    options: { enableStickyFooter, layoutMode, mantineTableFooterProps },
   } = table;
   const { isFullScreen } = getState();
 
   const tableFooterProps =
-    muiTableFooterProps instanceof Function
-      ? muiTableFooterProps({ table })
-      : muiTableFooterProps;
+    mantineTableFooterProps instanceof Function
+      ? mantineTableFooterProps({ table })
+      : mantineTableFooterProps;
 
   const stickFooter =
     (isFullScreen || enableStickyFooter) && enableStickyFooter !== false;

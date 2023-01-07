@@ -35,7 +35,7 @@ const Example: FC = () => {
       data={data}
       enableStickyHeader
       enableStickyFooter
-      muiTableContainerProps={{ sx: { maxHeight: '300px' } }}
+      mantineTableContainerProps={{ sx: { maxHeight: '300px' } }}
     />
   );
 };

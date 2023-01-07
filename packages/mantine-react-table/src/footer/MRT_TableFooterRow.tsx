@@ -20,7 +20,7 @@ export const MRT_TableFooterRow: FC<Props> = ({
   virtualPaddingRight,
 }) => {
   const {
-    options: { layoutMode, muiTableFooterRowProps },
+    options: { layoutMode, mantineTableFooterRowProps },
   } = table;
 
   // if no content in row, skip row
@@ -35,9 +35,9 @@ export const MRT_TableFooterRow: FC<Props> = ({
     return null;
 
   const tableRowProps =
-    muiTableFooterRowProps instanceof Function
-      ? muiTableFooterRowProps({ footerGroup, table })
-      : muiTableFooterRowProps;
+    mantineTableFooterRowProps instanceof Function
+      ? mantineTableFooterRowProps({ footerGroup, table })
+      : mantineTableFooterRowProps;
 
   return (
     <Box

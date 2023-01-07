@@ -31,7 +31,7 @@ Mantine React Table has a powerful built-in global filtering (search) feature th
       'globalFilterFn',
       'globalFilterModeOptions',
       'manualFiltering',
-      'muiSearchTextFieldProps',
+      'mantineSearchTextInputProps',
       'onGlobalFilterChange',
       'onGlobalFilterFnChange',
       'onShowGlobalFilterChange',
@@ -165,13 +165,13 @@ You can customize the position of the global filter (search box) in the top tool
 
 ### Customize the Search Text Field
 
-You can customize the search text field by passing in props to the `muiSearchTextFieldProps` prop. This is useful if you want to customize the placeholder text, add styles, or any other text field props.
+You can customize the search text field by passing in props to the `mantineSearchTextInputProps` prop. This is useful if you want to customize the placeholder text, add styles, or any other text field props.
 
 ```jsx
 <MantineReactTable
   columns={columns}
   data={data}
-  muiSearchTextFieldProps={{
+  mantineSearchTextInputProps={{
     placeholder: 'Search all users',
     sx: { minWidth: '300px' },
     variant: 'outlined',

@@ -47,14 +47,14 @@ const Example: FC = () => {
     <MantineReactTable
       columns={columns}
       data={data}
-      muiTablePaperProps={{
+      mantinePaperProps={{
         elevation: 0,
         sx: {
           borderRadius: '0',
           border: '1px dashed #e0e0e0',
         },
       }}
-      muiTableBodyProps={{
+      mantineTableBodyProps={{
         sx: (theme) => ({
           '& tr:nth-of-type(odd)': {
             backgroundColor: darken(theme.palette.background.default, 0.1),

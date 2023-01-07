@@ -39,7 +39,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
         IconSortDescending,
       },
       localization,
-      muiTableHeadCellColumnActionsButtonProps,
+      mantineColumnActionsButtonProps,
       renderColumnActionsMenuItems,
     },
     refs: { filterInputRefs },
@@ -50,17 +50,17 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
   const { columnSizing, columnVisibility } = getState();
 
   const mTableHeadCellColumnActionsButtonProps =
-    muiTableHeadCellColumnActionsButtonProps instanceof Function
-      ? muiTableHeadCellColumnActionsButtonProps({ column, table })
-      : muiTableHeadCellColumnActionsButtonProps;
+    mantineColumnActionsButtonProps instanceof Function
+      ? mantineColumnActionsButtonProps({ column, table })
+      : mantineColumnActionsButtonProps;
 
   const mcTableHeadCellColumnActionsButtonProps =
-    columnDef.muiTableHeadCellColumnActionsButtonProps instanceof Function
-      ? columnDef.muiTableHeadCellColumnActionsButtonProps({
+    columnDef.mantineColumnActionsButtonProps instanceof Function
+      ? columnDef.mantineColumnActionsButtonProps({
           column,
           table,
         })
-      : columnDef.muiTableHeadCellColumnActionsButtonProps;
+      : columnDef.mantineColumnActionsButtonProps;
 
   const actionIconProps = {
     ...mTableHeadCellColumnActionsButtonProps,

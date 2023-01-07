@@ -18,8 +18,8 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
     options: {
       icons: { IconX },
       localization,
-      muiToolbarAlertBannerProps,
-      muiToolbarAlertBannerChipProps,
+      mantineToolbarAlertBannerProps,
+      mantineToolbarAlertBannerChipProps,
       positionToolbarAlertBanner,
       rowCount,
     },
@@ -27,14 +27,14 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
   const { grouping, showAlertBanner } = getState();
 
   const alertProps =
-    muiToolbarAlertBannerProps instanceof Function
-      ? muiToolbarAlertBannerProps({ table })
-      : muiToolbarAlertBannerProps;
+    mantineToolbarAlertBannerProps instanceof Function
+      ? mantineToolbarAlertBannerProps({ table })
+      : mantineToolbarAlertBannerProps;
 
   const chipProps =
-    muiToolbarAlertBannerChipProps instanceof Function
-      ? muiToolbarAlertBannerChipProps({ table })
-      : muiToolbarAlertBannerChipProps;
+    mantineToolbarAlertBannerChipProps instanceof Function
+      ? mantineToolbarAlertBannerChipProps({ table })
+      : mantineToolbarAlertBannerChipProps;
 
   const selectMessage =
     getSelectedRowModel().rows.length > 0

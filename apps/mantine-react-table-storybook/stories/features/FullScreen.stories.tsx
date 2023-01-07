@@ -91,7 +91,7 @@ export const ControlledFullScreen: Story<MantineReactTableProps> = () => {
       data={data}
       onIsFullScreenChange={setIsFullScreen}
       state={{ isFullScreen }}
-      muiTableBodyCellProps={({ cell }) => ({
+      mantineTableBodyCellProps={({ cell }) => ({
         title: cell.getValue<string>(),
       })}
     />

@@ -77,7 +77,7 @@ export const DetailPanelEnabledConditional: Story<
       zipCode: faker.address.zipCode(),
       phone: faker.phone.number(),
     }))}
-    muiExpandButtonProps={({ row }) => ({
+    mantineExpandButtonProps={({ row }) => ({
       sx: {
         display: row.original.age > 50 ? 'flex' : 'none',
       },
@@ -126,10 +126,10 @@ export const DetailPanelExpandColumnLast: Story<
     }))}
     displayColumnDefOptions={{
       'mrt-row-expand': {
-        muiTableHeadCellProps: {
+        mantineTableHeadCellProps: {
           align: 'right',
         },
-        muiTableBodyCellProps: {
+        mantineTableBodyCellProps: {
           align: 'right',
         },
       },

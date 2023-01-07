@@ -83,7 +83,7 @@ export const CustomizePaginationComponents: Story<
     columns={columns}
     data={data}
     initialState={{ pagination: { pageSize: 5, pageIndex: 0 } }}
-    // muiTablePaginationProps={{
+    // mantinePaginationProps={{
     //   rowsPerPageOptions: [5, 10, 20],
     //   showFirstButton: false,
     //   showLastButton: false,

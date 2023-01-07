@@ -33,10 +33,10 @@ const Example = () => {
       data={data}
       displayColumnDefOptions={{
         'mrt-row-expand': {
-          muiTableHeadCellProps: {
+          mantineTableHeadCellProps: {
             align: 'right',
           },
-          muiTableBodyCellProps: {
+          mantineTableBodyCellProps: {
             align: 'right',
           },
         },

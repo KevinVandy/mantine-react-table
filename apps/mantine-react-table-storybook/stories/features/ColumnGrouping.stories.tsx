@@ -228,7 +228,7 @@ export const ColumnGroupingDropZoneAlwaysVisible: Story<
           ? { dropToGroupBy: 'Drag a column here to group by it' }
           : undefined
       }
-      muiTopToolbarProps={{
+      mantineTopToolbarProps={{
         sx: {
           '& .Mui-ToolbarDropZone': {
             border: '1px solid red',

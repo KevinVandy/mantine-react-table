@@ -15,7 +15,7 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
     options: {
       icons: { IconChevronsDown },
       localization,
-      muiExpandAllButtonProps,
+      mantineExpandAllButtonProps,
       renderDetailPanel,
     },
     toggleAllRowsExpanded,
@@ -23,9 +23,9 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
   const { isLoading } = getState();
 
   const actionIconProps =
-    muiExpandAllButtonProps instanceof Function
-      ? muiExpandAllButtonProps({ table })
-      : muiExpandAllButtonProps;
+    mantineExpandAllButtonProps instanceof Function
+      ? mantineExpandAllButtonProps({ table })
+      : mantineExpandAllButtonProps;
 
   const isAllRowsExpanded = getIsAllRowsExpanded();
 

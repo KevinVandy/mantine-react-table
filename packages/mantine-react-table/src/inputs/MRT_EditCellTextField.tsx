@@ -15,7 +15,7 @@ export const MRT_EditCellTextField = <TData extends Record<string, any> = {}>({
 }: Props<TData>) => {
   const {
     getState,
-    options: { muiTableBodyCellEditTextFieldProps },
+    options: { mantineEditTextInputProps },
     refs: { editInputRefs },
     setEditingCell,
     setEditingRow,
@@ -26,24 +26,24 @@ export const MRT_EditCellTextField = <TData extends Record<string, any> = {}>({
 
   const [value, setValue] = useState(() => cell.getValue<string>());
 
-  const mTableBodyCellEditTextFieldProps =
-    muiTableBodyCellEditTextFieldProps instanceof Function
-      ? muiTableBodyCellEditTextFieldProps({ cell, column, row, table })
-      : muiTableBodyCellEditTextFieldProps;
+  const mTableBodyCellEditTextInputProps =
+    mantineEditTextInputProps instanceof Function
+      ? mantineEditTextInputProps({ cell, column, row, table })
+      : mantineEditTextInputProps;
 
-  const mcTableBodyCellEditTextFieldProps =
-    columnDef.muiTableBodyCellEditTextFieldProps instanceof Function
-      ? columnDef.muiTableBodyCellEditTextFieldProps({
+  const mcTableBodyCellEditTextInputProps =
+    columnDef.mantineEditTextInputProps instanceof Function
+      ? columnDef.mantineEditTextInputProps({
           cell,
           column,
           row,
           table,
         })
-      : columnDef.muiTableBodyCellEditTextFieldProps;
+      : columnDef.mantineEditTextInputProps;
 
   const textFieldProps: TextInputProps = {
-    ...mTableBodyCellEditTextFieldProps,
-    ...mcTableBodyCellEditTextFieldProps,
+    ...mTableBodyCellEditTextInputProps,
+    ...mcTableBodyCellEditTextInputProps,
   };
 
   const saveRow = (newValue: string) => {

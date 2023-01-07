@@ -40,7 +40,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
       enableRowOrdering,
       layoutMode,
       memoMode,
-      muiTableBodyRowProps,
+      mantineTableBodyRowProps,
       renderDetailPanel,
     },
     setHoveredRow,
@@ -49,9 +49,9 @@ export const MRT_TableBodyRow: FC<Props> = ({
     getState();
 
   const tableRowProps =
-    muiTableBodyRowProps instanceof Function
-      ? muiTableBodyRowProps({ row, table })
-      : muiTableBodyRowProps;
+    mantineTableBodyRowProps instanceof Function
+      ? mantineTableBodyRowProps({ row, table })
+      : mantineTableBodyRowProps;
 
   const handleDragEnter = (_e: DragEvent) => {
     if (enableRowOrdering && draggingRow) {

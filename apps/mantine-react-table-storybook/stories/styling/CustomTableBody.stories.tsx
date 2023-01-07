@@ -52,7 +52,7 @@ export const CustomTableBody: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    muiTableBodyProps={{
+    mantineTableBodyProps={{
       children: 'Custom Table Body',
     }}
   />

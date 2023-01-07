@@ -46,7 +46,7 @@ export const Example: FC = () => {
       enableSorting={false} //sorting does not work with memoized table body
       enableStickyHeader
       memoMode="table-body" // memoize table body to improve render performance, but break all features
-      muiTableContainerProps={{ sx: { maxHeight: '500px' } }}
+      mantineTableContainerProps={{ sx: { maxHeight: '500px' } }}
       renderTopToolbarCustomActions={() => (
         <Typography component="span" variant="h4">
           Static Memoized Table

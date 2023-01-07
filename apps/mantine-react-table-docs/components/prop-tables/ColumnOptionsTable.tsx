@@ -25,7 +25,7 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
           accessorKey: 'columnOption',
           enableClickToCopy: true,
           header: 'Column Option',
-          muiTableBodyCellCopyButtonProps: ({ cell, row }) => ({
+          mantineCopyButtonProps: ({ cell, row }) => ({
             className: 'column-option',
             // component: 'a',
             id: `${cell.getValue<string>()}-column-option`,
@@ -166,12 +166,12 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
           { id: 'columnOption', desc: false },
         ],
       }}
-      muiSearchTextFieldProps={{
+      mantineSearchTextInputProps={{
         placeholder: 'Search Column Options',
         sx: { minWidth: '18rem' },
         variant: 'outlined',
       }}
-      muiTablePaperProps={{
+      mantinePaperProps={{
         sx: { marginBottom: '1.5rem' },
         id: onlyProps
           ? 'relevant-column-options-table'
