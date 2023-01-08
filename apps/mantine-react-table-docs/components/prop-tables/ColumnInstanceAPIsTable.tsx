@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import MantineReactTable, {
   MRT_ColumnDef,
   MRT_Column,
 } from 'mantine-react-table';
-import { Link as MuiLink, Typography, useMediaQuery } from '@mui/material';
+import { Anchor, Text } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { ColumnInstanceAPI, columnInstanceAPIs } from './columnInstanceAPIs';
 
@@ -33,17 +34,7 @@ const ColumnInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
           header: 'Type',
           enableGlobalFilter: false,
           Cell: ({ cell }) => (
-            <SampleCodeSnippet
-              className="language-js"
-              enableCopyButton={false}
-              style={{
-                backgroundColor: 'transparent',
-                fontSize: '0.9rem',
-                margin: 0,
-                padding: 0,
-                minHeight: 'unset',
-              }}
-            >
+            <SampleCodeSnippet language="typescript" noCopy>
               {cell.getValue<string>()}
             </SampleCodeSnippet>
           ),
@@ -55,7 +46,7 @@ const ColumnInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
           header: 'More Info Links',
           Cell: ({ cell, row }) => (
             <Link href={cell.getValue() as string} passHref legacyBehavior>
-              <MuiLink
+              <Anchor
                 target={
                   (cell.getValue() as string).startsWith('http')
                     ? '_blank'
@@ -64,7 +55,7 @@ const ColumnInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
                 rel="noreferrer"
               >
                 {row.original?.linkText}
-              </MuiLink>
+              </Anchor>
             </Link>
           ),
         },
@@ -124,7 +115,7 @@ const ColumnInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
       mantineSearchTextInputProps={{
         placeholder: 'Search Column APIs',
         sx: { minWidth: '18rem' },
-        variant: 'outlined',
+        variant: 'filled',
       }}
       mantinePaperProps={{
         sx: { marginBottom: '1.5rem' },
@@ -134,11 +125,9 @@ const ColumnInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
       }}
       positionGlobalFilter="left"
       renderDetailPanel={({ row }) => (
-        <Typography
-          color={row.original.description ? 'secondary.main' : 'text.secondary'}
-        >
+        <Text color={row.original.description ? 'teal' : 'gray'}>
           {row.original.description || 'No Description Provided... Yet...'}
-        </Typography>
+        </Text>
       )}
       rowNumberMode="static"
       onColumnPinningChange={setColumnPinning}

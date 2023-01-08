@@ -1,21 +1,23 @@
 import { FC } from 'react';
-import { alpha, darken, useMediaQuery, useTheme } from '@mui/material';
+import { Box } from '@mantine/core';
 
 export const Blockquote: FC<any> = (props) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery('(max-width: 720px)');
   return (
-    <blockquote
-      style={{
-        borderLeft: `solid 8px ${alpha(
-          darken(theme.palette.secondary.main, 0.2),
+    <Box
+      component="blockquote"
+      sx={(theme) => ({
+        borderLeft: `solid 8px ${theme.fn.rgba(
+          theme.fn.darken(theme.colors.blue[7], 0.2),
           0.6,
         )}`,
         padding: '0.5rem 1rem',
-        backgroundColor: alpha(theme.palette.primary.main, 0.05),
+        backgroundColor: theme.fn.rgba(theme.primaryColor, 0.05),
         borderRadius: '4px',
-        margin: isMobile ? '1rem' : '3rem',
-      }}
+        margin: '3rem',
+        '@media (max-width: 720px)': {
+          margin: '1rem',
+        },
+      })}
       {...props}
     />
   );

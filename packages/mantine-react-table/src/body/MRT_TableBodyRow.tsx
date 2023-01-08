@@ -95,7 +95,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
             theme.colorScheme === 'dark'
               ? row.getIsSelected()
                 ? theme.fn.rgba(theme.colors.blue[7], 0.1)
-                : theme.fn.lighten(theme.colors.dark[7], 0.06)
+                : theme.colors.dark[7]
               : row.getIsSelected()
               ? theme.fn.rgba(theme.colors.blue[7], 0.1)
               : theme.white,
@@ -114,7 +114,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
               enableHover !== false && getIsSomeColumnsPinned()
                 ? theme.colorScheme === 'dark'
                   ? `${theme.fn.lighten(theme.colors.dark[7], 0.12)}`
-                  : `${theme.fn.darken(theme.colors.dark[7], 0.05)}`
+                  : `${theme.fn.darken(theme.white, 0.05)}`
                 : undefined,
           },
           ...(tableRowProps?.sx instanceof Function

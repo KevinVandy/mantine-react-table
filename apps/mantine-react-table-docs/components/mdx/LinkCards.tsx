@@ -1,4 +1,4 @@
-import { alpha, Box, Card, Typography, Link } from '@mui/material';
+import { Box, Card, Text, Title, Anchor } from '@mantine/core';
 import Image from 'next/image';
 
 const cardData = [
@@ -37,9 +37,9 @@ export const LinkCards = () => {
         textAlign: 'center',
       }}
     >
-      <Typography sx={{ padding: '1rem' }} variant="h3">
+      <Title sx={{ padding: '1rem' }} order={3}>
         Important Links
-      </Typography>
+      </Title>
       <Box
         sx={{
           display: 'flex',
@@ -49,7 +49,7 @@ export const LinkCards = () => {
         }}
       >
         {cardData.map((cd, index) => (
-          <Link
+          <Anchor
             key={index}
             href={cd.href}
             target="_blank"
@@ -57,11 +57,11 @@ export const LinkCards = () => {
             sx={{ textDecoration: 'none' }}
           >
             <Card
-              elevation={4}
+              shadow="md"
+              withBorder
               sx={(theme) => ({
                 alignItems: 'center',
                 borderRadius: '0.5rem',
-                color: theme.palette.primary.dark,
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
@@ -72,10 +72,7 @@ export const LinkCards = () => {
                 padding: '1rem',
                 width: '10rem',
                 '&:hover': {
-                  boxShadow: `1px 4px 8px ${alpha(
-                    theme.palette.primary.dark,
-                    0.5,
-                  )}`,
+                  boxShadow: `1px 4px 8px gray`,
                   '& img': {
                     transform: 'scale(1.01)',
                     transition: 'transform 150ms ease-in-out',
@@ -84,9 +81,9 @@ export const LinkCards = () => {
               })}
             >
               <Image src={cd.image} alt={cd.text} width={60} height={60} />
-              <Typography>{cd.text}</Typography>
+              <Text>{cd.text}</Text>
             </Card>
-          </Link>
+          </Anchor>
         ))}
       </Box>
     </Box>

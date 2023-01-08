@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import Head from 'next/head';
-import { Accordion, Box, Text, Title } from '@mantine/core';
-import IconChevronDown from '@mui/icons-material/ExpandMore';
+import { Accordion, Box, Title } from '@mantine/core';
 
 interface FAQStructuredData {
   '@context': string;
@@ -31,7 +30,7 @@ export const FAQs: FC<Props> = ({ faqStructuredData }) => {
           }}
         />
       </Head>
-      <Accordion variant='separated'>
+      <Accordion variant="separated">
         {faqStructuredData.mainEntity.map((faq, index) => (
           <Accordion.Item key={index} value={faq.name}>
             <Accordion.Control>

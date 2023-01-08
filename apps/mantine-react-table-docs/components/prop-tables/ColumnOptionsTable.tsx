@@ -1,12 +1,8 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
-import {
-  Link as MuiLink,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Anchor, Text } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { ColumnOption, columnOptions } from './columnOptions';
 
@@ -15,7 +11,6 @@ interface Props {
 }
 
 const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
-  const theme = useTheme();
   const isDesktop = useMediaQuery('(min-width: 1200px)');
 
   const columns = useMemo(
@@ -27,15 +22,16 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
           header: 'Column Option',
           mantineCopyButtonProps: ({ cell, row }) => ({
             className: 'column-option',
-            // component: 'a',
             id: `${cell.getValue<string>()}-column-option`,
-            // href: `#${cell.getValue<string>()}-column-option`,
           }),
           Cell: ({ cell, row }) =>
             row.original?.required ? (
-              <strong style={{ color: theme.palette.primary.dark }}>
+              <Text
+                component="strong"
+                sx={(theme) => ({ color: theme.colors.blue[7] })}
+              >
                 {cell.getValue<string>()}*
-              </strong>
+              </Text>
             ) : (
               cell.getValue<string>()
             ),
@@ -45,17 +41,7 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
           header: 'Type',
           enableGlobalFilter: false,
           Cell: ({ cell }) => (
-            <SampleCodeSnippet
-              className="language-js"
-              enableCopyButton={false}
-              style={{
-                backgroundColor: 'transparent',
-                fontSize: '0.9rem',
-                margin: 0,
-                padding: 0,
-                minHeight: 'unset',
-              }}
-            >
+            <SampleCodeSnippet language="typescript" noCopy>
               {cell.getValue<string>()}
             </SampleCodeSnippet>
           ),
@@ -70,17 +56,7 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
           enableGlobalFilter: false,
           header: 'Default Value',
           Cell: ({ cell }) => (
-            <SampleCodeSnippet
-              className="language-js"
-              enableCopyButton={false}
-              style={{
-                backgroundColor: 'transparent',
-                fontSize: '0.9rem',
-                margin: 0,
-                padding: 0,
-                minHeight: 'unset',
-              }}
-            >
+            <SampleCodeSnippet language="typescript" noCopy>
               {cell.getValue<string>()}
             </SampleCodeSnippet>
           ),
@@ -97,7 +73,7 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
           header: 'More Info Links',
           Cell: ({ cell, row }) => (
             <Link href={cell.getValue() as string} passHref legacyBehavior>
-              <MuiLink
+              <Anchor
                 target={
                   (cell.getValue() as string).startsWith('http')
                     ? '_blank'
@@ -106,12 +82,12 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
                 rel="noreferrer"
               >
                 {row.original?.linkText}
-              </MuiLink>
+              </Anchor>
             </Link>
           ),
         },
       ] as MRT_ColumnDef<ColumnOption>[],
-    [theme],
+    [],
   );
 
   const [columnPinning, setColumnPinning] = useState({});
@@ -169,7 +145,7 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
       mantineSearchTextInputProps={{
         placeholder: 'Search Column Options',
         sx: { minWidth: '18rem' },
-        variant: 'outlined',
+        variant: 'filled',
       }}
       mantinePaperProps={{
         sx: { marginBottom: '1.5rem' },
@@ -179,11 +155,9 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
       }}
       positionGlobalFilter="left"
       renderDetailPanel={({ row }) => (
-        <Typography
-          color={row.original.description ? 'secondary.main' : 'text.secondary'}
-        >
+        <Text color={row.original.description ? 'teal' : 'gray'}>
           {row.original.description || 'No Description Provided... Yet...'}
-        </Typography>
+        </Text>
       )}
       rowNumberMode="static"
       onColumnPinningChange={setColumnPinning}

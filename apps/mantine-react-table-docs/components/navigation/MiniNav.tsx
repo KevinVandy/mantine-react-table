@@ -59,7 +59,9 @@ const MiniNav: FC = () => {
                       : theme.colors.gray[7],
                 })}
               >
-                <Text underline component="span">{heading.innerText}</Text>
+                <Text underline component="span">
+                  {heading.innerText}
+                </Text>
               </Anchor>
             </li>
           );

@@ -6,7 +6,7 @@ import { routes } from './routes';
 const Footer: FC = () => {
   return (
     <Paper
-      component='footer'
+      component="footer"
       sx={{
         borderRadius: '8px',
         borderBottomLeftRadius: '0',

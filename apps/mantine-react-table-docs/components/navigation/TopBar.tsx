@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePlausible } from 'next-plausible';
 import {
   Header,
@@ -12,9 +13,7 @@ import {
 } from '@mantine/core';
 import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons';
 import { useMediaQuery } from '@mantine/hooks';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import Image from 'next/image';
-import LightModeIcon from '@mui/icons-material/LightMode';
+import { IconSun, IconMoonStars } from '@tabler/icons';
 
 interface Props {
   isLightTheme: boolean;
@@ -41,7 +40,7 @@ const TopBar: FC<Props> = ({
         alignContent: 'center',
         display: 'flex',
         justifyContent: 'space-between',
-        padding: '4px 12px',
+        padding: '4px 20px',
       }}
     >
       <Flex align="center" gap="md">
@@ -127,11 +126,7 @@ const TopBar: FC<Props> = ({
             }}
             size={isMobile ? 'sm' : 'lg'}
           >
-            {isLightTheme ? (
-              <LightModeIcon fontSize={isMobile ? 'medium' : 'large'} />
-            ) : (
-              <DarkModeIcon fontSize={isMobile ? 'medium' : 'large'} />
-            )}
+            {isLightTheme ? <IconSun /> : <IconMoonStars />}
           </ActionIcon>
         </Tooltip>
       </Box>

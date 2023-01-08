@@ -12,9 +12,7 @@ import type { MRT_TableInstance } from '..';
 export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   alignItems: 'flex-start',
   backgroundColor:
-    theme.colorScheme === 'dark'
-      ? theme.fn.lighten(theme.colors.dark[7], 0.04)
-      : theme.white,
+    theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   backgroundImage: 'none',
   display: 'grid',
   flexWrap: 'wrap-reverse',

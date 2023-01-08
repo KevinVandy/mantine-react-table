@@ -1,10 +1,9 @@
-import { Box } from '@mui/material';
+import { Flex } from '@mantine/core';
 
 export const StatBadges = () => {
   return (
-    <Box
+    <Flex
       sx={{
-        display: 'flex',
         gap: '1rem',
         justifyContent: 'center',
         flexWrap: 'wrap',
@@ -67,6 +66,6 @@ export const StatBadges = () => {
           src="https://badgen.net/github/license/KevinVandy/mantine-react-table?color=blue"
         />
       </a>
-    </Box>
+    </Flex>
   );
 };

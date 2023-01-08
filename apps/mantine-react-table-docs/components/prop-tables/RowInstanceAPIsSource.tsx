@@ -1,14 +1,13 @@
-import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Text } from '@mantine/core';
 import { SourceCodeSnippet } from '../mdx/SourceCodeSnippet';
 const TS = require('!!raw-loader!./RowInstanceAPIsTable.tsx').default;
 
 const ExampleTable = () => {
   return (
     <Box sx={{ marginTop: '20rem' }}>
-      <Typography>
+      <Text>
         Wanna see the source code for this table? Check it out down below!
-      </Typography>
+      </Text>
       <SourceCodeSnippet tableId="row-instance-apis" typeScriptCode={TS} />
     </Box>
   );

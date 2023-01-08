@@ -126,7 +126,7 @@ function App({ Component, pageProps }: AppProps) {
           toggleColorScheme={() => {}}
         >
           <MantineProvider
-            theme={{ colorScheme: isLightTheme ? 'light' : 'dark', }}
+            theme={{ colorScheme: isLightTheme ? 'light' : 'dark' }}
             withGlobalStyles
             withNormalizeCSS
           >

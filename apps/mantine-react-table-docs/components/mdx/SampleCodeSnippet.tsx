@@ -1,15 +1,20 @@
 import { FC } from 'react';
-import { Prism } from '@mantine/prism';
+import { Prism, PrismProps } from '@mantine/prism';
 import { Paper, useMantineTheme } from '@mantine/core';
+import { Language } from 'prism-react-renderer';
 
-export const SampleCodeSnippet: FC<any> = (props) => {
+interface Props extends Partial<PrismProps> {
+  children: string;
+}
+
+export const SampleCodeSnippet: FC<Props> = (props) => {
   const theme = useMantineTheme();
 
-  if (!props.className) {
+  if (!props.language && !props.className) {
     return (
       <code
         style={{
-          backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.2),
+          backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.1),
           padding: '4px',
           margin: '0 0.5ch',
         }}
@@ -18,11 +23,33 @@ export const SampleCodeSnippet: FC<any> = (props) => {
     );
   }
 
+  if (props.noCopy) {
+    return (
+      <Prism
+        {...props}
+        language={
+          props.language ??
+          (props?.className?.replace(/language-/, '') as Language)
+        }
+        styles={{
+          code: {
+            backgroundColor: 'transparent !important',
+            padding: 0,
+          },
+        }}
+      />
+    );
+  }
+
   return (
-    <Paper radius="sm" shadow="md">
-      <Prism {...props} language={props.className.replace(/language-/, '')}>
-        {props.children}
-      </Prism>
+    <Paper radius="sm" shadow="sm" withBorder={!props.noCopy}>
+      <Prism
+        {...props}
+        language={
+          props.language ??
+          (props?.className?.replace(/language-/, '') as Language)
+        }
+      />
     </Paper>
   );
 };

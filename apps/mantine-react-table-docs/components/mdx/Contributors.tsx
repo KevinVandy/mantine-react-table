@@ -23,8 +23,6 @@ const cardData = [
 ];
 
 export const Contributors = () => {
-
-
   return (
     <Box
       sx={{
@@ -83,7 +81,7 @@ export const Contributors = () => {
                 height={170}
                 style={{ borderRadius: '4px' }}
               />
-              <Text >{cd.name}</Text>
+              <Text>{cd.name}</Text>
               <Text size="xs">{cd.role}</Text>
             </Card>
           </Anchor>
