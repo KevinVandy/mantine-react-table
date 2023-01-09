@@ -35,17 +35,23 @@ const TopBar: FC<Props> = ({
 
   return (
     <Header
+      fixed
       height={55}
-      sx={{
+      sx={(theme) => ({
         alignContent: 'center',
+        backgroundColor:
+          theme.colorScheme === 'dark'
+            ? theme.colors.dark[7]
+            : theme.colors.blue[8],
         display: 'flex',
         justifyContent: 'space-between',
         padding: '4px 20px',
-      }}
+      })}
     >
       <Flex align="center" gap="md">
         {!isDesktop && (
           <Burger
+          color='white'
             opened={navOpen}
             onClick={() => setNavOpen(!navOpen)}
             title="Open nav menu"
@@ -55,6 +61,7 @@ const TopBar: FC<Props> = ({
           <Text
             sx={{
               alignItems: 'center',
+              color: '#fff',
               cursor: 'pointer',
               display: 'flex',
               fontSize: '1.5rem',
@@ -101,7 +108,14 @@ const TopBar: FC<Props> = ({
             rel="noreferrer"
             target="_blank"
           >
-            <ActionIcon aria-label="Github" size={isMobile ? 'sm' : 'lg'}>
+            <ActionIcon
+              aria-label="Github"
+              size={isMobile ? 'sm' : 'lg'}
+              sx={{
+                color: 'white',
+                '&:hover': { backgroundColor: 'transparent' },
+              }}
+            >
               <IconBrandGithub />
             </ActionIcon>
           </a>
@@ -112,7 +126,14 @@ const TopBar: FC<Props> = ({
             rel="noreferrer"
             target="_blank"
           >
-            <ActionIcon aria-label="Discord" size={isMobile ? 'sm' : 'lg'}>
+            <ActionIcon
+              aria-label="Discord"
+              size={isMobile ? 'sm' : 'lg'}
+              sx={{
+                color: 'white',
+                '&:hover': { backgroundColor: 'transparent' },
+              }}
+            >
               <IconBrandDiscord />
             </ActionIcon>
           </a>
@@ -125,6 +146,10 @@ const TopBar: FC<Props> = ({
               plausible(`toggle-theme-${isLightTheme ? 'dark' : 'light'}-mode`);
             }}
             size={isMobile ? 'sm' : 'lg'}
+            sx={{
+              color: 'white',
+              '&:hover': { backgroundColor: 'transparent' },
+            }}
           >
             {isLightTheme ? <IconSun /> : <IconMoonStars />}
           </ActionIcon>

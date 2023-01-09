@@ -132,50 +132,44 @@ function App({ Component, pageProps }: AppProps) {
           >
             <ThemeProvider theme={theme(isLightTheme)}>
               <MDXProvider components={mdxComponents}>
-                <AppShell
-                  header={
-                    <TopBar
-                      isLightTheme={isLightTheme}
-                      navOpen={navOpen || isDesktop}
-                      setIsLightTheme={setIsLightTheme}
-                      setNavOpen={setNavOpen}
-                    />
-                  }
-                  footer={<Footer />}
-                  navbar={
-                    <SideBar
-                      navOpen={navOpen || isDesktop}
-                      setNavOpen={setNavOpen}
-                    />
-                  }
+                <TopBar
+                  isLightTheme={isLightTheme}
+                  navOpen={navOpen || isDesktop}
+                  setIsLightTheme={setIsLightTheme}
+                  setNavOpen={setNavOpen}
+                />
+                <SideBar
+                  navOpen={navOpen || isDesktop}
+                  setNavOpen={setNavOpen}
+                />
+                <Box
+                  component="main"
+                  sx={{
+                    maxWidth: '1800px',
+                    margin: 'auto',
+                    minHeight: '100vh',
+                    padding: `64px ${
+                      showMiniNav && isXLDesktop ? '300px' : '32px'
+                    } 0 ${
+                      (navOpen || isDesktop) && !isMobile ? '300px' : '32px'
+                    }`,
+                    transition: 'all 100ms ease-in-out',
+                    width: '100%',
+                  }}
                 >
-                  <Box
-                    sx={{
-                      maxWidth: '1600px',
-                      margin: 'auto',
-                      minHeight: '100vh',
-                      padding: `16px ${
-                        showMiniNav && isXLDesktop ? '250px' : '32px'
-                      } 0 ${
-                        (navOpen || isDesktop) && !isMobile ? '300px' : '32px'
-                      }`,
-                      transition: 'all 100ms ease-in-out',
-                      width: '100%',
-                    }}
-                  >
-                    {showBreadCrumbs && <BreadCrumbs />}
-                    {showMiniNav && !isXLDesktop && <MiniNav />}
-                    {pathname === '/' ? (
+                  {showBreadCrumbs && <BreadCrumbs />}
+                  {showMiniNav && !isXLDesktop && <MiniNav />}
+                  {pathname === '/' ? (
+                    <Component {...pageProps} />
+                  ) : (
+                    <article>
                       <Component {...pageProps} />
-                    ) : (
-                      <article>
-                        <Component {...pageProps} />
-                      </article>
-                    )}
-                    <SuggestsEditsButton />
-                  </Box>
-                  {showMiniNav && isXLDesktop && <MiniNav />}
-                </AppShell>
+                    </article>
+                  )}
+                  <SuggestsEditsButton />
+                  <Footer />
+                </Box>
+                {showMiniNav && isXLDesktop && <MiniNav />}
               </MDXProvider>
             </ThemeProvider>
           </MantineProvider>

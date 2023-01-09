@@ -10,7 +10,7 @@ const MiniNav: FC = () => {
 
   useEffect(() => {
     setHeadings(
-      document.querySelectorAll(isXLDesktop ? 'h2, h3, h4, h5' : 'h3, h4, h5'),
+      document.querySelectorAll(isXLDesktop ? 'h2, h3, h4, h5' : 'h3'),
     );
   }, [isXLDesktop, pathname]);
 

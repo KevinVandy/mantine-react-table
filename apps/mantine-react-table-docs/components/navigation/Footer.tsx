@@ -7,6 +7,8 @@ const Footer: FC = () => {
   return (
     <Paper
       component="footer"
+      shadow="sm"
+      withBorder
       sx={{
         borderRadius: '8px',
         borderBottomLeftRadius: '0',
