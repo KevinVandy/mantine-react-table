@@ -1,58 +1,43 @@
 import Link from 'next/link';
-import {
-  alpha,
-  Box,
-  Button,
-  darken,
-  Stack,
-  Typography,
-  Link as MuiLink,
-} from '@mui/material';
-import { ArrowForwardIos } from '@mui/icons-material';
+import { Anchor, Box, Button, Stack, Text, Title } from '@mantine/core';
+import { IconChevronRight } from '@tabler/icons';
 import { HomeCards } from '../components/mdx/HomeCards';
 import { LinkCards } from '../components/mdx/LinkCards';
 import { StatBadges } from '../components/mdx/StatBadges';
-import ComparisonTable from '../components/mdx/ComparisonTable';
+import { ComparisonTable } from '../components/mdx/ComparisonTable';
 import { LinkHeading } from '../components/mdx/LinkHeading';
-import FeatureTable from '../components/mdx/FeatureTable';
+import { FeatureTable } from '../components/mdx/FeatureTable';
 import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
 
 const HomePage = () => {
   return (
     <>
       <Stack sx={{ maxWidth: '95ch', margin: 'auto' }}>
-        <Typography
+        <Title
           sx={{
             textAlign: 'center',
-            fontSize: {
-              xs: '1.8rem',
-              sm: '3rem',
-              md: '4rem',
-              lg: '4.5rem',
-              xl: '5rem',
-            },
+            fontSize: '5rem',
             fontWeight: 'bold',
             marginTop: '5rem',
-            mb: {
-              xs: '1rem',
-              md: '1.5rem',
-              lg: '2rem',
+            marginBottom: '2rem',
+            lineHeight: '6rem',
+            '@media (max-width: 1024px)': {
+              fontSize: '3rem',
+              lineHeight: '4rem',
+              marginBottom: '1rem',
             },
-            lineHeight: {
-              xs: '2.5rem',
-              sm: '3.5rem',
-              md: '5rem',
-              lg: '5.5rem',
-              xl: '6rem',
+            '@media (max-width: 768px)': {
+              fontSize: '2.5rem',
+              lineHeight: '3rem',
             },
           }}
-          variant="h1"
+          order={1}
         >
           Welcome To
           <br />
           <Box
             sx={(theme) => ({
-              background: `-webkit-linear-gradient(left, ${theme.palette.primary.dark}, ${theme.palette.secondary.main})`,
+              background: `-webkit-linear-gradient(left, ${theme.colors.blue[7]}, ${theme.colors.teal[7]})`,
               display: 'inline',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -61,53 +46,53 @@ const HomePage = () => {
             Mantine&nbsp;React&nbsp;Table
             <Box
               component="sup"
-              sx={{
-                fontSize: {
-                  xs: '1rem',
-                  sm: '1.2rem',
-                  md: '1.5rem',
-                  lg: '2.5rem',
+              sx={(theme) => ({
+                background: `-webkit-linear-gradient(left, ${theme.colors.teal[7]}, ${theme.colors.teal[7]})`,
+                display: 'inline',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontSize: '2.5rem',
+                '@media (max-width: 768px)': {
+                  fontSize: '1.5rem',
                 },
-              }}
+              })}
             >
               V1
             </Box>
           </Box>
-        </Typography>
-        <Typography
-          color="text.secondary"
+        </Title>
+        <Title
+          color="dimmed"
           sx={{
-            fontSize: {
-              xs: '1.2rem',
-              sm: '1.5rem',
-              md: '2.2rem',
-              lg: '2.25rem',
-            },
-            marginBottom: '3rem',
+            fontSize: '2.25rem',
+            marginBottom: '2rem',
             textAlign: 'center',
             lineHeight: '2.25rem',
             fontWeight: 'normal',
+            '@media (max-width: 768px)': {
+              fontSize: '1.5rem',
+            },
           }}
-          variant="h2"
+          order={2}
         >
           Built with{' '}
           <Link href="https://mantine.dev/" passHref legacyBehavior>
-            <MuiLink
-              sx={{
-                color: (theme) => theme.palette.primary.dark,
+            <Anchor
+              sx={(theme) => ({
+                color: theme.colors.blue[7],
                 textDecoration: 'none',
                 '&:hover': { textDecoration: 'underline' },
-              }}
+              })}
               target="_blank"
               rel="noreferrer"
             >
               Mantine<sup>V5</sup>
-            </MuiLink>
+            </Anchor>
           </Link>{' '}
           and&nbsp;
           <Link href="https://tanstack.com/table/v8" passHref legacyBehavior>
-            <MuiLink
-              color="secondary.main"
+            <Anchor
+              color="teal"
               sx={{
                 textDecoration: 'none',
                 '&:hover': { textDecoration: 'underline' },
@@ -116,33 +101,28 @@ const HomePage = () => {
               rel="noreferrer"
             >
               TanStack&nbsp;Table<sup>V8</sup>
-            </MuiLink>
+            </Anchor>
           </Link>
-        </Typography>
+        </Title>
         <StatBadges />
-        <Typography
-          color="text.secondary"
+        <Title
+          color="dimmed"
           sx={{
-            fontSize: {
-              xs: '1.1rem',
-              md: '1.4rem',
-              lg: '1.5rem',
-            },
+            fontSize: '1.5rem',
             marginTop: '2rem',
             textAlign: 'center',
-            lineHeight: {
-              xs: '1.8rem',
-              md: '2rem',
-              lg: '2.5rem',
-            },
+            lineHeight: '2.5rem',
             fontWeight: 'normal',
             textTransform: 'capitalize',
+            '@media (max-width: 768px)': {
+              fontSize: '1.2rem',
+            },
           }}
-          variant="h3"
+          order={3}
         >
           Quickly create high-quality React data tables with
           Material&nbsp;Design
-        </Typography>
+        </Title>
         <Box
           sx={{
             margin: '3rem auto',
@@ -151,12 +131,12 @@ const HomePage = () => {
             gap: '1.5rem',
             width: '100%',
             justifyContent: 'center',
-            gridTemplateColumns: {
-              xs: '15rem',
-              sm: '14rem 14rem',
-              md: '16rem 16rem',
-              lg: '12rem 11rem 11rem 11rem',
-              xl: '1fr 1fr 1fr 1fr',
+            gridTemplateColumns: '1fr 1fr 1fr 1fr',
+            '@media (max-width: 1024px)': {
+              gridTemplateColumns: '16rem 16rem',
+            },
+            '@media (max-width: 768px)': {
+              gridTemplateColumns: '16rem',
             },
             '> a': {
               display: 'block',
@@ -165,70 +145,70 @@ const HomePage = () => {
         >
           <Link href="/docs/getting-started/install" passHref>
             <Button
-              endIcon={<ArrowForwardIos />}
+              rightIcon={<IconChevronRight />}
               fullWidth
-              size="large"
-              variant="contained"
+              size="lg"
+              variant="gradient"
             >
               Get Started
             </Button>
           </Link>
           <Link href="/docs/api" passHref>
             <Button
-              endIcon={<ArrowForwardIos />}
+              rightIcon={<IconChevronRight />}
               fullWidth
-              size="large"
+              size="lg"
               sx={(theme) => ({
-                backgroundColor: alpha(theme.palette.primary.main, 0.1),
-                color: theme.palette.primary.dark,
+                backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.1),
+                color: theme.colors.blue[8],
                 '&:hover': {
-                  backgroundColor: alpha(
-                    darken(theme.palette.primary.main, 0.1),
+                  backgroundColor: theme.fn.rgba(
+                    theme.fn.darken(theme.colors.blue[7], 0.1),
                     0.2,
                   ),
                 },
               })}
-              variant="contained"
+              variant="filled"
             >
               API
             </Button>
           </Link>
           <Link href="/docs/examples" passHref>
             <Button
-              endIcon={<ArrowForwardIos />}
+              rightIcon={<IconChevronRight />}
               fullWidth
-              size="large"
+              size="lg"
               sx={(theme) => ({
-                backgroundColor: alpha(theme.palette.primary.main, 0.1),
-                color: theme.palette.primary.dark,
+                backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.1),
+                color: theme.colors.blue[8],
                 '&:hover': {
-                  backgroundColor: alpha(
-                    darken(theme.palette.primary.main, 0.1),
+                  backgroundColor: theme.fn.rgba(
+                    theme.fn.darken(theme.colors.blue[7], 0.1),
                     0.2,
                   ),
                 },
               })}
-              variant="contained"
+              variant="filled"
             >
               Examples
             </Button>
           </Link>
           <Link href="/docs/guides" passHref>
             <Button
-              endIcon={<ArrowForwardIos />}
+              rightIcon={<IconChevronRight />}
               fullWidth
-              size="large"
+              size="lg"
               sx={(theme) => ({
-                backgroundColor: alpha(theme.palette.primary.main, 0.1),
-                color: theme.palette.primary.dark,
+                backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.1),
+                color: theme.colors.blue[8],
                 '&:hover': {
-                  backgroundColor: alpha(
-                    darken(theme.palette.primary.main, 0.1),
+                  backgroundColor: theme.fn.rgba(
+                    theme.fn.darken(theme.colors.blue[7], 0.1),
                     0.2,
                   ),
                 },
               })}
-              variant="contained"
+              variant="filled"
             >
               Guides
             </Button>
@@ -242,18 +222,18 @@ const HomePage = () => {
         </Box>
         <HomeCards />
       </Stack>
-      <Typography
+      <Title
         sx={{
           textAlign: 'center',
           marginTop: '5rem',
-          fontSize: { xs: '1.5rem', md: '2rem', xl: '2.5rem' },
+          fontSize: '2.5rem',
         }}
-        variant="h3"
+        order={3}
       >
         Is{' '}
         <Box
           sx={(theme) => ({
-            background: `-webkit-linear-gradient(left, ${theme.palette.primary.dark}, ${theme.palette.secondary.main})`,
+            background: `-webkit-linear-gradient(left, ${theme.colors.blue[8]}, ${theme.colors.teal[7]})`,
             display: 'inline',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -262,9 +242,9 @@ const HomePage = () => {
           &lt;MantineReactTable&nbsp;/&gt;
         </Box>{' '}
         Right For Your Project?
-      </Typography>
+      </Title>
       <LinkHeading
-        color="text.secondary"
+        color="dimmed"
         sx={{
           textAlign: 'center',
           margin: '2rem',
@@ -275,7 +255,7 @@ const HomePage = () => {
       </LinkHeading>
       <ComparisonTable />
       <LinkHeading
-        color="text.secondary"
+        color="dimmed"
         sx={{
           textAlign: 'center',
           margin: '2rem',
@@ -285,9 +265,9 @@ const HomePage = () => {
         Feature Comparison
       </LinkHeading>
       <FeatureTable />
-      <Typography component="p" variant="subtitle2" sx={{ marginTop: '1rem' }}>
+      <Text component="p" size="sm" sx={{ marginTop: '1rem' }}>
         *If you see any inaccuracies in this table, PRs are welcome!
-      </Typography>
+      </Text>
       <LinkCards />
     </>
   );

@@ -243,7 +243,7 @@ const data = [
   },
 ];
 
-const FeatureTable = () => {
+export const FeatureTable = () => {
   return (
     <MantineReactTable
       columns={columns}
@@ -261,5 +261,3 @@ const FeatureTable = () => {
     />
   );
 };
-
-export default FeatureTable;

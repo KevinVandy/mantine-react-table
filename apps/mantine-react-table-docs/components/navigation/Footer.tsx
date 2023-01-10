@@ -17,7 +17,7 @@ const Footer: FC = () => {
         padding: '1.5rem',
       }}
     >
-      <Text color="gray.5" ta="center">
+      <Text color="dimmed" ta="center" mb="1rem">
         © {new Date().getFullYear()} Kevin&nbsp;Van&nbsp;Cott
       </Text>
       <Box
@@ -29,7 +29,7 @@ const Footer: FC = () => {
         }}
       >
         <Anchor
-          color="text.secondary"
+          color="dimmed"
           href="https://www.npmjs.com/package/mantine-react-table"
           target="_blank"
           rel="noopener"
@@ -37,7 +37,7 @@ const Footer: FC = () => {
           NPM
         </Anchor>
         <Anchor
-          color="text.secondary"
+          color="dimmed"
           href="https://github.com/KevinVandy/mantine-react-table"
           target="_blank"
           rel="noopener"
@@ -45,7 +45,7 @@ const Footer: FC = () => {
           Source Code
         </Anchor>
         <Anchor
-          color="text.secondary"
+          color="dimmed"
           href="https://github.com/KevinVandy/mantine-react-table/issues"
           target="_blank"
           rel="noopener"
@@ -53,7 +53,7 @@ const Footer: FC = () => {
           Submit a Bug Report
         </Anchor>
         <Anchor
-          color="text.secondary"
+          color="dimmed"
           href="https://discord.gg/5wqyRx6fnm"
           target="_blank"
           rel="noopener"
@@ -61,7 +61,7 @@ const Footer: FC = () => {
           Join&nbsp;the&nbsp;Discord!
         </Anchor>
         <Anchor
-          color="text.secondary"
+          color="dimmed"
           href="https://twitter.com/ThomasVanCott"
           target="_blank"
           rel="noopener"

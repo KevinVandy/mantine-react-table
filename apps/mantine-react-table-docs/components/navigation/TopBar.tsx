@@ -46,12 +46,13 @@ const TopBar: FC<Props> = ({
         display: 'flex',
         justifyContent: 'space-between',
         padding: '4px 20px',
+        zIndex: 5,
       })}
     >
       <Flex align="center" gap="md">
         {!isDesktop && (
           <Burger
-          color='white'
+            color="white"
             opened={navOpen}
             onClick={() => setNavOpen(!navOpen)}
             title="Open nav menu"

@@ -1,6 +1,5 @@
 import { Box, Anchor } from '@mantine/core';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
-import React from 'react';
 
 const columns: MRT_ColumnDef<typeof data[0]>[] = [
   {
@@ -139,7 +138,7 @@ const data = [
   },
 ];
 
-const ComparisonTable = () => {
+export const ComparisonTable = () => {
   return (
     <MantineReactTable
       columns={columns}
@@ -151,5 +150,3 @@ const ComparisonTable = () => {
     />
   );
 };
-
-export default ComparisonTable;

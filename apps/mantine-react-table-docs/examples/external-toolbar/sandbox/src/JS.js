@@ -61,7 +61,7 @@ const Example = () => {
       {tableInstanceRef.current && (
         <Toolbar
           sx={(theme) => ({
-            backgroundColor: alpha(theme.palette.secondary.light, 0.2),
+            backgroundColor: alpha(theme.colors.teal[3], 0.2),
             borderRadius: '4px',
             display: 'flex',
             flexDirection: {

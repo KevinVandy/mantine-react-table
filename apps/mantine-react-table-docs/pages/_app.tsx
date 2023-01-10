@@ -148,10 +148,18 @@ function App({ Component, pageProps }: AppProps) {
                     maxWidth: '1800px',
                     margin: 'auto',
                     minHeight: '100vh',
-                    padding: `64px ${
-                      showMiniNav && isXLDesktop ? '300px' : '32px'
+                    padding: `75px ${
+                      isMobile
+                        ? '1rem'
+                        : showMiniNav && isXLDesktop
+                        ? '300px'
+                        : '36px'
                     } 0 ${
-                      (navOpen || isDesktop) && !isMobile ? '300px' : '32px'
+                      isMobile
+                        ? '1rem'
+                        : navOpen || isDesktop
+                        ? '300px'
+                        : '36px'
                     }`,
                     transition: 'all 100ms ease-in-out',
                     width: '100%',
