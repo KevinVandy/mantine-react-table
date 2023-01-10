@@ -111,7 +111,7 @@ export const MRT_TableBodyCell: FC<Props> = ({
       draggingColumn?.id === column.id
         ? `1px dashed ${theme.colors.gray[7]}`
         : hoveredColumn?.id === column.id
-        ? `2px dashed ${theme.primaryColor}`
+        ? `2px dashed ${theme.colors[theme.primaryColor][7]}`
         : undefined,
     [draggingColumn, hoveredColumn],
   );

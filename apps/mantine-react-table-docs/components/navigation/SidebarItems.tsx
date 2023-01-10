@@ -42,12 +42,12 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                 sx={(theme) => ({
                   backgroundColor:
                     pathname === href
-                      ? theme.fn.rgba(theme.colors.blue[7], 0.2)
+                      ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.2)
                       : 'transparent',
                   color: !items
                     ? theme.colorScheme === 'dark'
-                      ? theme.colors.blue[3]
-                      : theme.colors.blue[8]
+                      ? theme.colors[theme.primaryColor][3]
+                      : theme.colors[theme.primaryColor][8]
                     : depth === 1
                     ? theme.colorScheme === 'dark'
                       ? theme.white
@@ -67,7 +67,7 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                   whiteSpace: 'nowrap',
                   transition: 'background-color 0.1s ease',
                   '&:hover': {
-                    backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.1),
+                    backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1),
                   },
                 })}
               >

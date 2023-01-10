@@ -42,7 +42,7 @@ const TopBar: FC<Props> = ({
         backgroundColor:
           theme.colorScheme === 'dark'
             ? theme.colors.dark[7]
-            : theme.colors.blue[8],
+            : theme.colors[theme.primaryColor][8],
         display: 'flex',
         justifyContent: 'space-between',
         padding: '4px 20px',

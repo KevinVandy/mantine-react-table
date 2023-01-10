@@ -31,7 +31,7 @@ const RootPropTable: FC<Props> = ({ onlyProps }) => {
             row.original?.required ? (
               <Text
                 component="strong"
-                sx={(theme) => ({ color: theme.colors.blue[7] })}
+                sx={(theme) => ({ color: theme.colors[theme.primaryColor][7] })}
               >
                 {cell.getValue<string>()}*
               </Text>

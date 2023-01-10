@@ -69,7 +69,7 @@ export const StyleTableHeadCellsIndividually: Story<
         header: 'Last Name',
         accessorKey: 'lastName',
         mantineTableHeadCellProps: {
-          sx: (theme) => ({ color: theme.primaryColor }),
+          sx: (theme) => ({ color: theme.colors[theme.primaryColor][7] }),
         },
       },
       {

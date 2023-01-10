@@ -30,7 +30,7 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
         paddingLeft: '4px',
         paddingRight: '4px',
         '&:active > .mantine-Divider-vertical': {
-          backgroundColor: theme.colors.blue[7],
+          backgroundColor: theme.colors[theme.primaryColor][7],
           opacity: 1,
         },
       })}

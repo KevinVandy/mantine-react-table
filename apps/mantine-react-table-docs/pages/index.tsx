@@ -37,7 +37,7 @@ const HomePage = () => {
           <br />
           <Box
             sx={(theme) => ({
-              background: `-webkit-linear-gradient(left, ${theme.colors.blue[7]}, ${theme.colors.teal[7]})`,
+              background: `-webkit-linear-gradient(left, ${theme.colors[theme.primaryColor][7]}, ${theme.colors.teal[7]})`,
               display: 'inline',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -79,7 +79,7 @@ const HomePage = () => {
           <Link href="https://mantine.dev/" passHref legacyBehavior>
             <Anchor
               sx={(theme) => ({
-                color: theme.colors.blue[7],
+                color: theme.colors[theme.primaryColor][7],
                 textDecoration: 'none',
                 '&:hover': { textDecoration: 'underline' },
               })}
@@ -148,7 +148,7 @@ const HomePage = () => {
               rightIcon={<IconChevronRight />}
               fullWidth
               size="lg"
-              variant="gradient"
+              variant="filled"
             >
               Get Started
             </Button>
@@ -159,11 +159,11 @@ const HomePage = () => {
               fullWidth
               size="lg"
               sx={(theme) => ({
-                backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.1),
-                color: theme.colors.blue[8],
+                backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1),
+                color: theme.colors[theme.primaryColor][8],
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
-                    theme.fn.darken(theme.colors.blue[7], 0.1),
+                    theme.fn.darken(theme.colors[theme.primaryColor][7], 0.1),
                     0.2,
                   ),
                 },
@@ -179,11 +179,11 @@ const HomePage = () => {
               fullWidth
               size="lg"
               sx={(theme) => ({
-                backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.1),
-                color: theme.colors.blue[8],
+                backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1),
+                color: theme.colors[theme.primaryColor][8],
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
-                    theme.fn.darken(theme.colors.blue[7], 0.1),
+                    theme.fn.darken(theme.colors[theme.primaryColor][7], 0.1),
                     0.2,
                   ),
                 },
@@ -199,11 +199,11 @@ const HomePage = () => {
               fullWidth
               size="lg"
               sx={(theme) => ({
-                backgroundColor: theme.fn.rgba(theme.colors.blue[7], 0.1),
-                color: theme.colors.blue[8],
+                backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1),
+                color: theme.colors[theme.primaryColor][8],
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
-                    theme.fn.darken(theme.colors.blue[7], 0.1),
+                    theme.fn.darken(theme.colors[theme.primaryColor][7], 0.1),
                     0.2,
                   ),
                 },
@@ -233,7 +233,7 @@ const HomePage = () => {
         Is{' '}
         <Box
           sx={(theme) => ({
-            background: `-webkit-linear-gradient(left, ${theme.colors.blue[8]}, ${theme.colors.teal[7]})`,
+            background: `-webkit-linear-gradient(left, ${theme.colors[theme.primaryColor][8]}, ${theme.colors.teal[7]})`,
             display: 'inline',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',

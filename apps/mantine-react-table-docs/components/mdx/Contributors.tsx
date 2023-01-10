@@ -54,7 +54,7 @@ export const Contributors = () => {
               sx={(theme) => ({
                 alignItems: 'center',
                 borderRadius: '0.5rem',
-                color: theme.colors.blue[7],
+                color: theme.colors[theme.primaryColor][7],
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',

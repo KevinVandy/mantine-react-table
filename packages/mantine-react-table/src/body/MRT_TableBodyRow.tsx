@@ -66,7 +66,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
       draggingRow?.id === row.id
         ? `1px dashed ${theme.colors.gray[7]}`
         : hoveredRow?.id === row.id
-        ? `2px dashed ${theme.primaryColor}`
+        ? `2px dashed ${theme.colors[theme.primaryColor][7]}`
         : undefined,
     [draggingRow, hoveredRow],
   );
@@ -94,10 +94,10 @@ export const MRT_TableBodyRow: FC<Props> = ({
           backgroundColor:
             theme.colorScheme === 'dark'
               ? row.getIsSelected()
-                ? theme.fn.rgba(theme.colors.blue[7], 0.1)
+                ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1)
                 : theme.colors.dark[7]
               : row.getIsSelected()
-              ? theme.fn.rgba(theme.colors.blue[7], 0.1)
+              ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1)
               : theme.white,
           display: layoutMode === 'grid' ? 'flex' : 'table-row',
           opacity:

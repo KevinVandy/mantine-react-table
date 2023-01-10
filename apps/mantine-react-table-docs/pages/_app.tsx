@@ -5,12 +5,7 @@ import PlausibleProvider from 'next-plausible';
 import { useRouter } from 'next/router';
 import { MDXProvider } from '@mdx-js/react';
 import { ThemeProvider } from '@mui/material';
-import {
-  AppShell,
-  ColorSchemeProvider,
-  MantineProvider,
-  Box,
-} from '@mantine/core';
+import { ColorSchemeProvider, MantineProvider, Box } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { mdxComponents } from '../components/mdx/mdxComponents';
 import TopBar from '../components/navigation/TopBar';
@@ -18,11 +13,11 @@ import SideBar from '../components/navigation/Sidebar';
 import BreadCrumbs from '../components/navigation/BreadCrumbs';
 import MiniNav from '../components/navigation/MiniNav';
 import Footer from '../components/navigation/Footer';
+import { SuggestsEditsButton } from '../components/mdx/SuggestsEditsButton';
 import { theme } from '../styles/MuiTheme';
 import docsearch from '@docsearch/js';
 import '../styles/globals.css';
 import '@docsearch/css';
-import { SuggestsEditsButton } from '../components/mdx/SuggestsEditsButton';
 
 function App({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
@@ -126,7 +121,10 @@ function App({ Component, pageProps }: AppProps) {
           toggleColorScheme={() => {}}
         >
           <MantineProvider
-            theme={{ colorScheme: isLightTheme ? 'light' : 'dark' }}
+            theme={{
+              colorScheme: isLightTheme ? 'light' : 'dark',
+              primaryColor: 'yellow',
+            }}
             withGlobalStyles
             withNormalizeCSS
           >

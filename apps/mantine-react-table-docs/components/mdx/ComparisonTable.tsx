@@ -14,7 +14,7 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
         sx={(theme) => ({
           color:
             cell.getValue() === 'Mantine React Table'
-              ? theme.colors.blue[7]
+              ? theme.colors[theme.primaryColor][7]
               : cell.getValue() === 'TanStack Table (React Table)'
               ? theme.colors.teal[7]
               : theme.colorScheme === 'dark'

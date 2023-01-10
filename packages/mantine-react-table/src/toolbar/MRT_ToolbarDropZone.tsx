@@ -41,14 +41,14 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
           sx={(theme) => ({
             alignItems: 'center',
             backgroundColor: theme.fn.rgba(
-              theme.colors.blue[7],
+              theme.colors[theme.primaryColor][7],
               hoveredColumn?.id === 'drop-zone' ? 0.2 : 0.1,
             ),
-            border: `dashed ${theme.colors.blue[7]} 2px`,
+            border: `dashed ${theme.colors[theme.primaryColor][7]} 2px`,
             justifyContent: 'center',
-            height: 'calc(100% - 2px)',
+            height: 'calc(100%)',
             position: 'absolute',
-            width: 'calc(100% - 2px)',
+            width: 'calc(100%)',
             zIndex: 2,
           })}
           onDragEnter={handleDragEnter}

@@ -13,7 +13,7 @@ const columns: MRT_ColumnDef<typeof data[0]>[] = [
     mantineTableHeadCellProps: {
       align: 'center',
       sx: (theme) => ({
-        color: theme.primaryColor,
+        color: theme.colors[theme.primaryColor][7],
       }),
     },
     mantineTableBodyCellProps: {
