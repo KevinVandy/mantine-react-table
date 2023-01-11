@@ -93,9 +93,11 @@ function App({ Component, pageProps }: AppProps) {
       <style global jsx>
         {`
           :root {
-            --docsearch-primary-color: #1565c0;
-            --docsearch-highlight-color: #1565c0;
-            --docsearch-logo-color: #1565c0;
+            --docsearch-primary-color: ${isLightTheme ? '#1565c0' : '#f08c00'};
+            --docsearch-highlight-color: ${isLightTheme
+              ? '#1565c0'
+              : '#f08c00'};
+            --docsearch-logo-color: ${isLightTheme ? '#1565c0' : '#f08c00'};
             ${!isLightTheme
               ? `--docsearch-container-background: rgba(11, 11, 11, 0.8);
             --docsearch-footer-background: #222;
@@ -123,7 +125,7 @@ function App({ Component, pageProps }: AppProps) {
           <MantineProvider
             theme={{
               colorScheme: isLightTheme ? 'light' : 'dark',
-              primaryColor: 'yellow',
+              primaryColor: isLightTheme ? 'orange' : 'yellow',
             }}
             withGlobalStyles
             withNormalizeCSS

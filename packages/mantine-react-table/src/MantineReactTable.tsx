@@ -19,6 +19,7 @@ import type {
   SkeletonProps,
   TableProps,
   TextInputProps,
+  MantineSize,
 } from '@mantine/core';
 import type {
   AggregationFn,
@@ -64,7 +65,7 @@ export interface MRT_PaginationProps {
   showRowsPerPage?: boolean;
 }
 
-export type DensityState = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type DensityState = MantineSize;
 
 type LiteralUnion<T extends U, U = string> = T | (U & Record<never, never>);
 

@@ -39,12 +39,12 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
   return (
     <Box
       {...toolbarProps}
-      ref={(ref: HTMLDivElement) => {
-        bottomToolbarRef.current = ref;
-        // @ts-ignore
-        if (toolbarProps?.ref) {
-          // @ts-ignore
-          toolbarProps.ref.current = ref;
+      ref={(node: HTMLDivElement) => {
+        if (node) {
+          bottomToolbarRef.current = node;
+          if (toolbarProps?.ref) {
+            toolbarProps.ref.current = node;
+          }
         }
       }}
       sx={(theme) =>
