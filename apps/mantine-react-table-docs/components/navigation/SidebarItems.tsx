@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { UnstyledButton, Flex } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import LaunchIcon from '@mui/icons-material/Launch';
+import { IconExternalLink } from '@tabler/icons';
 import { RouteItem } from './routes';
 
 interface Props {
@@ -67,7 +67,10 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                   whiteSpace: 'nowrap',
                   transition: 'background-color 0.1s ease',
                   '&:hover': {
-                    backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1),
+                    backgroundColor: theme.fn.rgba(
+                      theme.colors[theme.primaryColor][7],
+                      0.1,
+                    ),
                   },
                 })}
               >
@@ -78,7 +81,7 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                 >
                   {label}
                   {external && (
-                    <LaunchIcon fontSize="small" sx={{ m: '-0.25rem 4px' }} />
+                    <IconExternalLink style={{ margin: '-6px 4px', transform: 'scale(0.7)' }} />
                   )}
                 </Flex>
               </UnstyledButton>

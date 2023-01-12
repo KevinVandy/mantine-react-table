@@ -41,7 +41,13 @@ export const HomeCards = () => {
             padding: '1rem',
           })}
         >
-          <Image src={cd.image} alt={cd.text} height={50} width={50} />
+          <Image
+            src={cd.image}
+            alt={cd.text}
+            height={50}
+            width={50}
+            style={{ filter: 'hue-rotate(175deg) brightness(1.5)' }}
+          />
           <Title order={5}>{cd.text}</Title>
         </Card>
       ))}

@@ -37,7 +37,9 @@ const HomePage = () => {
           <br />
           <Box
             sx={(theme) => ({
-              background: `-webkit-linear-gradient(left, ${theme.colors[theme.primaryColor][7]}, ${theme.colors.teal[7]})`,
+              background: `-webkit-linear-gradient(left, ${
+                theme.colors[theme.primaryColor][7]
+              }, ${theme.colors.teal[7]})`,
               display: 'inline',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -159,7 +161,10 @@ const HomePage = () => {
               fullWidth
               size="lg"
               sx={(theme) => ({
-                backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1),
+                backgroundColor: theme.fn.rgba(
+                  theme.colors[theme.primaryColor][7],
+                  0.1,
+                ),
                 color: theme.colors[theme.primaryColor][8],
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
@@ -179,7 +184,10 @@ const HomePage = () => {
               fullWidth
               size="lg"
               sx={(theme) => ({
-                backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1),
+                backgroundColor: theme.fn.rgba(
+                  theme.colors[theme.primaryColor][7],
+                  0.1,
+                ),
                 color: theme.colors[theme.primaryColor][8],
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
@@ -199,7 +207,10 @@ const HomePage = () => {
               fullWidth
               size="lg"
               sx={(theme) => ({
-                backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1),
+                backgroundColor: theme.fn.rgba(
+                  theme.colors[theme.primaryColor][7],
+                  0.1,
+                ),
                 color: theme.colors[theme.primaryColor][8],
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
@@ -233,7 +244,9 @@ const HomePage = () => {
         Is{' '}
         <Box
           sx={(theme) => ({
-            background: `-webkit-linear-gradient(left, ${theme.colors[theme.primaryColor][8]}, ${theme.colors.teal[7]})`,
+            background: `-webkit-linear-gradient(left, ${
+              theme.colors[theme.primaryColor][8]
+            }, ${theme.colors.teal[7]})`,
             display: 'inline',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -246,8 +259,8 @@ const HomePage = () => {
       <LinkHeading
         color="dimmed"
         sx={{
-          textAlign: 'center',
-          margin: '2rem',
+          margin: '2rem auto',
+          justifyContent: 'center',
         }}
         order={4}
       >
@@ -257,8 +270,8 @@ const HomePage = () => {
       <LinkHeading
         color="dimmed"
         sx={{
-          textAlign: 'center',
-          margin: '2rem',
+          justifyContent: 'center',
+          margin: '2rem auto',
         }}
         order={4}
       >

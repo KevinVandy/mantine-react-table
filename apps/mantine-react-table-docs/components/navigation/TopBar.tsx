@@ -10,6 +10,7 @@ import {
   ActionIcon,
   Flex,
   Burger,
+  useMantineTheme,
 } from '@mantine/core';
 import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons';
 import { useMediaQuery } from '@mantine/hooks';
@@ -29,6 +30,7 @@ const TopBar: FC<Props> = ({
   setNavOpen,
 }) => {
   const plausible = usePlausible();
+  const theme = useMantineTheme();
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 900px)');
   const isDesktop = useMediaQuery('(min-width: 1500px)');
@@ -76,7 +78,7 @@ const TopBar: FC<Props> = ({
           >
             <Image
               alt="MRT logo"
-              src="/mrt_logo.svg"
+              src={`/mrt_logo-2.svg`}
               height={isTablet ? 35 : 45}
               width={isTablet ? 35 : 45}
             />

@@ -1,6 +1,6 @@
 import { Suspense, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Box, Skeleton, Tab, Tabs } from '@mui/material';
+import { Tabs, Skeleton, Box } from '@mantine/core';
 
 //Locale Examples
 const CS_Table = dynamic(() => import('../examples/localization-i18n-cs'), {
@@ -89,33 +89,23 @@ const supportedLocales = [
 ];
 
 const LocaleExamples = () => {
-  const [currentLocale, setCurrentLocale] = useState('es');
+  const [currentLocale, setCurrentLocale] = useState<string | null>('es');
 
   return (
     <>
       <Box sx={{ width: '100%' }}>
-        <Tabs
-          textColor="secondary"
-          indicatorColor="secondary"
-          onChange={(_event, newValue: string) => setCurrentLocale(newValue)}
-          scrollButtons="auto"
-          value={currentLocale}
-          variant="scrollable"
-        >
-          {supportedLocales.map((locale) => (
-            <Tab
-              label={locale}
-              key={locale}
-              value={locale}
-              sx={{ width: '2rem' }}
-            />
-          ))}
+        <Tabs onTabChange={setCurrentLocale} value={currentLocale}>
+          <Tabs.List>
+            {supportedLocales.map((locale) => (
+              <Tabs.Tab key={locale} value={locale}>
+                {locale}
+              </Tabs.Tab>
+            ))}
+          </Tabs.List>
         </Tabs>
       </Box>
-      <div style={{ minHeight: '1500px' }} lang={currentLocale}>
-        <Suspense
-          fallback={<Skeleton animation="wave" height="600px" width="100%" />}
-        >
+      <div style={{ minHeight: '1500px' }} lang={currentLocale ?? 'en'}>
+        <Suspense fallback={<Skeleton height="600px" width="100%" />}>
           {currentLocale === 'cs' && <CS_Table />}
           {currentLocale === 'de' && <DE_Table />}
           {currentLocale === 'en' && <EN_Table />}

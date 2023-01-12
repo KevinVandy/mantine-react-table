@@ -80,7 +80,13 @@ export const LinkCards = () => {
                 },
               })}
             >
-              <Image src={cd.image} alt={cd.text} width={60} height={60} />
+              <Image
+                src={cd.image}
+                alt={cd.text}
+                width={60}
+                height={60}
+                style={{ filter: 'hue-rotate(175deg) brightness(1.5)' }}
+              />
               <Text>{cd.text}</Text>
             </Card>
           </Anchor>
