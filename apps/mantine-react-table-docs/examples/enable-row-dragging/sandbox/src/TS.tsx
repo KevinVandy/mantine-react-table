@@ -4,7 +4,7 @@ import MantineReactTable, {
   MRT_ColumnDef,
   MRT_Row,
 } from 'mantine-react-table';
-import { Box, Typography } from '@mui/material';
+import { Box, Title } from '@mantine/core';
 import { data, Person } from './makeData';
 
 const Example: FC = () => {
@@ -81,9 +81,9 @@ const Example: FC = () => {
           },
         }}
         renderTopToolbarCustomActions={() => (
-          <Typography color="success.main" component="span" variant="h4">
+          <Title color="green" order={4}>
             Nice List
-          </Typography>
+          </Title>
         )}
       />
       <MantineReactTable
@@ -111,9 +111,9 @@ const Example: FC = () => {
           },
         }}
         renderTopToolbarCustomActions={() => (
-          <Typography color="error.main" component="span" variant="h4">
+          <Title color="red" order={4}>
             Naughty List
-          </Typography>
+          </Title>
         )}
       />
     </Box>

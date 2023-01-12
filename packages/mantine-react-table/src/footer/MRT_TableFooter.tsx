@@ -37,7 +37,10 @@ export const MRT_TableFooter: FC<Props> = ({
       component="tfoot"
       {...tableFooterProps}
       sx={(theme) => ({
-        backgroundColor: theme.fn.lighten(theme.colors.dark[7], 0.06),
+        backgroundColor: theme.fn.lighten(
+          theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+          0.06,
+        ),
         bottom: stickFooter ? 0 : undefined,
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
         opacity: stickFooter ? 0.97 : undefined,

@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { Box } from '@mui/material';
+import { Box } from '@mantine/core';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import { data, Person } from './makeData';
 
@@ -37,29 +37,29 @@ const Example: FC = () => {
         AggregatedCell: ({ cell }) => (
           <>
             Count:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue<Array<number>>()?.[0]}
             </Box>
             Average:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue<Array<number>>()?.[1]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
             </Box>
             Median:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue<Array<number>>()?.[2]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
             </Box>
             Min:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue<Array<number>>()?.[3]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
             </Box>
             Max:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue<Array<number>>()?.[4]
                 ?.toLocaleString?.('en-US', localeStringOptions)}

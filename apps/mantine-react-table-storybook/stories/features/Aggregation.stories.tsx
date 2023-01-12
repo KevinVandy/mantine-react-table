@@ -47,7 +47,7 @@ const columns = [
       <>
         Max by{' '}
         {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
-        <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+        <Box sx={{ color: 'green', fontWeight: 'bold' }}>
           {cell.getValue<number>()}
         </Box>
       </>
@@ -55,7 +55,7 @@ const columns = [
     Footer: () => (
       <Stack>
         Average Age:
-        <Box color="warning.main">{Math.round(averageAge)}</Box>
+        <Box color="orange">{Math.round(averageAge)}</Box>
       </Stack>
     ),
   },
@@ -79,7 +79,7 @@ const columns = [
       <>
         Average by{' '}
         {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
-        <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+        <Box sx={{ color: 'green', fontWeight: 'bold' }}>
           {cell.getValue<number>()?.toLocaleString?.('en-US', {
             style: 'currency',
             currency: 'USD',
@@ -102,7 +102,7 @@ const columns = [
     Footer: () => (
       <Stack>
         Average Salary:
-        <Box color="warning.main">
+        <Box color="orange">
           {averageSalary?.toLocaleString?.('en-US', {
             style: 'currency',
             currency: 'USD',
@@ -169,7 +169,7 @@ export const MultiAggregationPerColumn: Story<MantineReactTableProps> = () => (
           <>
             Min by{' '}
             {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue<[number, number]>()[0]}
             </Box>
             <br />
@@ -177,7 +177,7 @@ export const MultiAggregationPerColumn: Story<MantineReactTableProps> = () => (
             {
               table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header
             }:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue<[number, number]>()[1]}
             </Box>
           </>
@@ -185,7 +185,7 @@ export const MultiAggregationPerColumn: Story<MantineReactTableProps> = () => (
         Footer: () => (
           <Stack>
             Average Age:
-            <Box color="warning.main">{Math.round(averageAge)}</Box>
+            <Box color="orange">{Math.round(averageAge)}</Box>
           </Stack>
         ),
       },
@@ -208,7 +208,7 @@ export const MultiAggregationPerColumn: Story<MantineReactTableProps> = () => (
         AggregatedCell: ({ cell, table }) => (
           <>
             Count:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue<[number, number]>()?.[0]}
             </Box>
             <br />
@@ -216,7 +216,7 @@ export const MultiAggregationPerColumn: Story<MantineReactTableProps> = () => (
             {
               table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header
             }:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue<[number, number]>()?.[1]
                 ?.toLocaleString?.('en-US', {
@@ -241,7 +241,7 @@ export const MultiAggregationPerColumn: Story<MantineReactTableProps> = () => (
         Footer: () => (
           <Stack>
             Average Salary:
-            <Box color="warning.main">
+            <Box color="orange">
               {averageSalary?.toLocaleString?.('en-US', {
                 style: 'currency',
                 currency: 'USD',

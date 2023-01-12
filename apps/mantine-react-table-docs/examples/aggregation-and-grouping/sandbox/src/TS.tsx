@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack } from '@mantine/core';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import { data, Person } from './makeData';
 
@@ -35,7 +35,7 @@ const Example: FC = () => {
             Oldest by{' '}
             {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
             <Box
-              sx={{ color: 'info.main', display: 'inline', fontWeight: 'bold' }}
+              sx={{ color: 'skyblue', display: 'inline', fontWeight: 'bold' }}
             >
               {cell.getValue<number>()}
             </Box>
@@ -44,7 +44,7 @@ const Example: FC = () => {
         Footer: () => (
           <Stack>
             Max Age:
-            <Box color="warning.main">{Math.round(maxAge)}</Box>
+            <Box color="orange">{Math.round(maxAge)}</Box>
           </Stack>
         ),
       },
@@ -53,7 +53,7 @@ const Example: FC = () => {
         accessorKey: 'gender',
         //optionally, customize the cell render when this column is grouped. Make the text blue and pluralize the word
         GroupedCell: ({ cell, row }) => (
-          <Box sx={{ color: 'primary.main' }}>
+          <Box sx={{ color: 'blue' }}>
             <strong>{cell.getValue<string>()}s </strong> ({row.subRows?.length})
           </Box>
         ),
@@ -71,7 +71,7 @@ const Example: FC = () => {
           <>
             Average by{' '}
             {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue<number>()?.toLocaleString?.('en-US', {
                 style: 'currency',
                 currency: 'USD',
@@ -95,7 +95,7 @@ const Example: FC = () => {
         Footer: () => (
           <Stack>
             Average Salary:
-            <Box color="warning.main">
+            <Box color="orange">
               {averageSalary?.toLocaleString?.('en-US', {
                 style: 'currency',
                 currency: 'USD',
@@ -124,7 +124,7 @@ const Example: FC = () => {
         pagination: { pageIndex: 0, pageSize: 20 },
         sorting: [{ id: 'state', desc: false }], //sort by state by default
       }}
-      mantineToolbarAlertBannerChipProps={{ color: 'primary' }}
+      mantineToolbarAlertBannerChipProps={{ color: 'blue', variant: 'outline' }}
       mantineTableContainerProps={{ sx: { maxHeight: 700 } }}
     />
   );

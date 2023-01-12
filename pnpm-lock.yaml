@@ -20,6 +20,7 @@ importers:
       '@fortawesome/free-solid-svg-icons': ^6.2.1
       '@fortawesome/react-fontawesome': ^0.2.0
       '@mantine/core': ^5.10.0
+      '@mantine/dates': ^5.10.0
       '@mantine/hooks': ^5.10.0
       '@mantine/prism': 5.10.0
       '@mdx-js/loader': ^2.2.1
@@ -57,6 +58,7 @@ importers:
       '@fortawesome/free-solid-svg-icons': 6.2.1
       '@fortawesome/react-fontawesome': 0.2.0_z27bm67dtmuyyvss23ckjdrcuy
       '@mantine/core': 5.10.0_lbfixegkxal6rwioqxubxet6s4
+      '@mantine/dates': 5.10.0_afutlozjtr4cmm2smwl7mxxxdy
       '@mantine/hooks': 5.10.0_react@18.2.0
       '@mantine/prism': 5.10.0_3m53ouna3laykmqkiimzgz4i2m
       '@mdx-js/loader': 2.2.1
@@ -2428,6 +2430,21 @@ packages:
     transitivePeerDependencies:
       - '@emotion/react'
       - '@types/react'
+
+  /@mantine/dates/5.10.0_afutlozjtr4cmm2smwl7mxxxdy:
+    resolution: {integrity: sha512-gK+BiXaTY9X1ESjRPNI7CASYx/QseDolNUJBqvXw6YB19QQ/PFCnyoj3xGiJUqiYfzKbFDKfTVSkP5cR6SHljA==}
+    peerDependencies:
+      '@mantine/core': 5.10.0
+      '@mantine/hooks': 5.10.0
+      dayjs: '>=1.0.0'
+      react: '>=16.8.0'
+    dependencies:
+      '@mantine/core': 5.10.0_lbfixegkxal6rwioqxubxet6s4
+      '@mantine/hooks': 5.10.0_react@18.2.0
+      '@mantine/utils': 5.10.0_react@18.2.0
+      dayjs: 1.11.7
+      react: 18.2.0
+    dev: false
 
   /@mantine/hooks/5.10.0_react@18.2.0:
     resolution: {integrity: sha512-dAefxpvqjFtXNeKse+awkIa4U1XGnMMOqWg1+07Y2Ino2G6EiT8AEnYqQyTXgcPoNaWwG9533Q/DDadmyweqaQ==}

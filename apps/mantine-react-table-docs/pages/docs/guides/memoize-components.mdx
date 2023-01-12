@@ -26,13 +26,13 @@ Memoizing table cells can make a small but positive impact on render performance
 
 #### Cell Memoization Breaks the Following Features:
 
-<Box color="warning.main">`density toggle, column resizing`</Box>
+<Box color="orange">`density toggle, column resizing`</Box>
 
 These features are incompatible with cell memoization because they depend on table cells being re-rendered.
 
 #### Features That Should Still Work with Cell Memoization:
 
-<Box color="success.main">
+<Box color="green">
   `column hiding, column reordering, column pinning, editing, filtering,
   pagination, searching, sorting, row expanding, row selection, row
   virtualization,`
@@ -55,7 +55,7 @@ Memoizing entire table rows can make an even more positive impact on render perf
 
 #### Row Memoization Breaks the Following Features:
 
-<Box color="warning.main">
+<Box color="orange">
   `density toggle, column hiding, column resizing, column reordering, column
   pinning, row expanding, row selection`
 </Box>
@@ -64,7 +64,7 @@ These features are incompatible with row memoization because they require the en
 
 #### Features That Should Still Work with Row Memoization:
 
-<Box color="success.main">
+<Box color="green">
   `filtering, pagination, searching, sorting, row virtualization,`
 </Box>
 
@@ -86,7 +86,7 @@ If your table never needs to re-render and you do not use any of the dynamic fea
 
 #### Table Body Memoization Breaks the Following Features:
 
-<Box color="warning.main">
+<Box color="orange">
   `density toggle, column hiding, column resizing, column reordering, column
   pinning, row expanding, row selection, filtering (internal client-side),
   pagination (internal client-side), searching (internal client-side), sorting
@@ -97,7 +97,7 @@ None of these features will work with table body memoization because the entire 
 
 #### Features That Should Still Work with Table Body Memoization:
 
-<Box color="success.main">
+<Box color="green">
   `manual server side sorting, pagination, filtering`
 </Box>
 

@@ -3,23 +3,14 @@ import React, { FC, useMemo } from 'react';
 //MRT Imports
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 
-//Material-UI Imports
-import {
-  Box,
-  Button,
-  ListItemIcon,
-  MenuItem,
-  Typography,
-  TextField,
-} from '@mui/material';
+//Mantine Imports
+import { Box, Button, Menu, Text, Title } from '@mantine/core';
 
 //Date Picker Imports
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DatePicker } from '@mantine/dates';
 
 //Icons Imports
-import { AccountCircle, Send } from '@mui/icons-material';
+import { IconUserCircle, IconSend } from '@tabler/icons';
 
 //Mock Data
 import { data } from './makeData';
@@ -62,7 +53,7 @@ const Example: FC = () => {
                   loading="lazy"
                   style={{ borderRadius: '50%' }}
                 />
-                <Typography>{cell.getValue<string>()}</Typography>
+                <Box>{cell.getValue<string>()}</Box>
               </Box>
             ),
           },
@@ -89,11 +80,11 @@ const Example: FC = () => {
                 sx={(theme) => ({
                   backgroundColor:
                     cell.getValue<number>() < 50_000
-                      ? theme.palette.error.dark
+                      ? theme.colors.red[8]
                       : cell.getValue<number>() >= 50_000 &&
                         cell.getValue<number>() < 75_000
-                      ? theme.palette.warning.dark
-                      : theme.palette.success.dark,
+                      ? theme.colors.yellow[8]
+                      : theme.colors.green[8],
                   borderRadius: '0.25rem',
                   color: '#fff',
                   maxWidth: '9ch',
@@ -122,24 +113,16 @@ const Example: FC = () => {
             sortingFn: 'datetime',
             Cell: ({ cell }) => cell.getValue<Date>()?.toLocaleDateString(), //render Date as a string
             Header: ({ column }) => <em>{column.columnDef.header}</em>, //custom header markup
-            //Custom Date Picker Filter from @mui/x-date-pickers
+            //Custom Date Picker Filter from @mantine/dates
             Filter: ({ column }) => (
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                  onChange={(newValue) => {
-                    column.setFilterValue(newValue);
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      helperText={'Filter Mode: Lesss Than'}
-                      sx={{ minWidth: '120px' }}
-                      variant="standard"
-                    />
-                  )}
-                  value={column.getFilterValue()}
-                />
-              </LocalizationProvider>
+              <DatePicker
+                placeholder="Filter by Start Date"
+                onChange={(newValue: Date) => {
+                  column.setFilterValue(newValue);
+                }}
+                value={column.getFilterValue() as Date}
+                withinPortal //don't be constrained by overflow hidden
+              />
             ),
           },
         ],
@@ -176,41 +159,17 @@ const Example: FC = () => {
             style={{ borderRadius: '50%' }}
           />
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="h4">Signature Catch Phrase:</Typography>
-            <Typography variant="h1">
-              &quot;{row.original.signatureCatchPhrase}&quot;
-            </Typography>
+            <Title>Signature Catch Phrase:</Title>
+            <Text>&quot;{row.original.signatureCatchPhrase}&quot;</Text>
           </Box>
         </Box>
       )}
-      renderRowActionMenuItems={({ closeMenu }) => [
-        <MenuItem
-          key={0}
-          onClick={() => {
-            // View profile logic...
-            closeMenu();
-          }}
-          sx={{ m: 0 }}
-        >
-          <ListItemIcon>
-            <AccountCircle />
-          </ListItemIcon>
-          View Profile
-        </MenuItem>,
-        <MenuItem
-          key={1}
-          onClick={() => {
-            // Send email logic...
-            closeMenu();
-          }}
-          sx={{ m: 0 }}
-        >
-          <ListItemIcon>
-            <Send />
-          </ListItemIcon>
-          Send Email
-        </MenuItem>,
-      ]}
+      renderRowActionMenuItems={() => (
+        <>
+          <Menu.Item icon={<IconUserCircle />}>View Profile</Menu.Item>
+          <Menu.Item icon={<IconSend />}>Send Email</Menu.Item>
+        </>
+      )}
       renderTopToolbarCustomActions={({ table }) => {
         const handleDeactivate = () => {
           table.getSelectedRowModel().flatRows.map((row) => {
@@ -233,26 +192,26 @@ const Example: FC = () => {
         return (
           <div style={{ display: 'flex', gap: '0.5rem' }}>
             <Button
-              color="error"
-              disabled={table.getSelectedRowModel().flatRows.length === 0}
+              color="red"
+              disabled={!table.getIsSomeRowsSelected()}
               onClick={handleDeactivate}
-              variant="contained"
+              variant="filled"
             >
               Deactivate
             </Button>
             <Button
-              color="success"
-              disabled={table.getSelectedRowModel().flatRows.length === 0}
+              color="green"
+              disabled={!table.getIsSomeRowsSelected()}
               onClick={handleActivate}
-              variant="contained"
+              variant="filled"
             >
               Activate
             </Button>
             <Button
-              color="info"
-              disabled={table.getSelectedRowModel().flatRows.length === 0}
+              color="blue"
+              disabled={!table.getIsSomeRowsSelected()}
               onClick={handleContact}
-              variant="contained"
+              variant="filled"
             >
               Contact
             </Button>

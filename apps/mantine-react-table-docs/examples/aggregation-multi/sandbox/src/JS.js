@@ -37,29 +37,29 @@ const Example = () => {
         AggregatedCell: ({ cell }) => (
           <>
             Count:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue()?.[0]}
             </Box>
             Average:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue()?.[1]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
             </Box>
             Median:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue()?.[2]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
             </Box>
             Min:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue()?.[3]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
             </Box>
             Max:{' '}
-            <Box sx={{ color: 'success.main', fontWeight: 'bold' }}>
+            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue()?.[4]
                 ?.toLocaleString?.('en-US', localeStringOptions)}

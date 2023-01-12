@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import MantineReactTable from 'mantine-react-table';
-import { Box, Typography } from '@mui/material';
+import { Box, Title } from '@mantine/core';
 import { data } from './makeData';
 
 const Example = () => {
@@ -78,9 +78,9 @@ const Example = () => {
           },
         }}
         renderTopToolbarCustomActions={() => (
-          <Typography color="success.main" variant="h4">
+          <Title color="green" order={4}>
             Nice List
-          </Typography>
+          </Title>
         )}
       />
       <MantineReactTable
@@ -105,9 +105,9 @@ const Example = () => {
           },
         }}
         renderTopToolbarCustomActions={() => (
-          <Typography color="error.main" variant="h4">
+          <Title color="red" order={4}>
             Naughty List
-          </Typography>
+          </Title>
         )}
       />
     </Box>

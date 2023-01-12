@@ -506,7 +506,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   }: {
     column: MRT_Column<TData>;
     table: MRT_TableInstance<TData>;
-  }) => ReactNode[];
+  }) => ReactNode;
   renderColumnFilterModeMenuItems?: ({
     column,
     internalFilterOptions,
@@ -517,7 +517,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
     internalFilterOptions: MRT_InternalFilterOption[];
     onSelectFilterMode: (filterMode: MRT_FilterOption) => void;
     table: MRT_TableInstance<TData>;
-  }) => ReactNode[];
+  }) => ReactNode;
   sortingFn?: MRT_SortingFn<TData>;
 };
 
@@ -988,12 +988,12 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           table: MRT_TableInstance<TData>;
         }) => TableProps & HTMLPropsRef<HTMLTableElement>);
     mantineToolbarAlertBannerChipProps?:
-      | (ChipProps & HTMLPropsRef<HTMLDivElement>)
+      | (Partial<ChipProps> & HTMLPropsRef<HTMLDivElement>)
       | (({
           table,
         }: {
           table: MRT_TableInstance<TData>;
-        }) => ChipProps & HTMLPropsRef<HTMLDivElement>);
+        }) => Partial<ChipProps> & HTMLPropsRef<HTMLDivElement>);
     mantineToolbarAlertBannerProps?:
       | (AlertProps & HTMLPropsRef<HTMLDivElement>)
       | (({
@@ -1067,7 +1067,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     }: {
       column: MRT_Column<TData>;
       table: MRT_TableInstance<TData>;
-    }) => ReactNode[];
+    }) => ReactNode;
     renderColumnFilterModeMenuItems?: ({
       column,
       internalFilterOptions,
@@ -1078,7 +1078,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
       internalFilterOptions: MRT_InternalFilterOption[];
       onSelectFilterMode: (filterMode: MRT_FilterOption) => void;
       table: MRT_TableInstance<TData>;
-    }) => ReactNode[];
+    }) => ReactNode;
     renderDetailPanel?: ({
       row,
       table,
@@ -1094,14 +1094,14 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
       internalFilterOptions: MRT_InternalFilterOption[];
       onSelectFilterMode: (filterMode: MRT_FilterOption) => void;
       table: MRT_TableInstance<TData>;
-    }) => ReactNode[];
+    }) => ReactNode;
     renderRowActionMenuItems?: ({
       row,
       table,
     }: {
       row: MRT_Row<TData>;
       table: MRT_TableInstance<TData>;
-    }) => ReactNode[];
+    }) => ReactNode;
     renderRowActions?: ({
       cell,
       row,
