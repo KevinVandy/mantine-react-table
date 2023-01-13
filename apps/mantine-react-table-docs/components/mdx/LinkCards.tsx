@@ -37,7 +37,7 @@ export const LinkCards = () => {
         textAlign: 'center',
       }}
     >
-      <Title sx={{ padding: '1rem' }} order={3}>
+      <Title sx={{ padding: '16px' }} order={3}>
         Important Links
       </Title>
       <Box
@@ -45,7 +45,7 @@ export const LinkCards = () => {
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          gap: '1.5rem',
+          gap: '24px',
         }}
       >
         {cardData.map((cd, index) => (
@@ -61,15 +61,15 @@ export const LinkCards = () => {
               withBorder
               sx={(theme) => ({
                 alignItems: 'center',
-                borderRadius: '0.5rem',
+                borderRadius: '8px',
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
                 minHeight: '100px',
                 fontWeight: 'bold',
-                gap: '1rem',
+                gap: '16px',
                 justifyContent: 'center',
-                padding: '1rem',
+                padding: '16px',
                 width: '10rem',
                 '&:hover': {
                   boxShadow: `1px 4px 8px gray`,

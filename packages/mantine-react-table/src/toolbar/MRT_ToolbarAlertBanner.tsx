@@ -79,15 +79,15 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
         {...alertProps}
         sx={(theme) => ({
           borderRadius: 0,
-          fontSize: '1rem',
+          fontSize: '16px',
           left: 0,
           position: 'relative',
           marginBottom: stackAlertBanner
             ? 0
             : positionToolbarAlertBanner === 'bottom'
-            ? '-1rem'
+            ? '-16px'
             : undefined,
-          padding: '0.5rem',
+          padding: '8px',
           right: 0,
           top: 0,
           width: '100%',
@@ -98,7 +98,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
         })}
       >
         {alertProps?.title && <Box>{alertProps.title}</Box>}
-        <Flex sx={{ padding: '0.5rem 1rem' }}>
+        <Flex sx={{ padding: '8px 16px' }}>
           {alertProps?.children}
           {alertProps?.children && (selectMessage || groupedByMessage) && (
             <br />

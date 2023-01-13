@@ -66,7 +66,7 @@ const withThemeProvider = (Story, context) => {
           <Stack>
             <Text
               sx={{
-                paddingBottom: '0.5rem',
+                paddingBottom: '8px',
                 color: useDarkMode() ? '#fff' : '#666',
               }}
             >
@@ -82,7 +82,7 @@ const withThemeProvider = (Story, context) => {
             </Text>
             <Text
               sx={{
-                paddingBottom: '1rem',
+                paddingBottom: '16px',
                 color: useDarkMode() ? '#fff' : '#666',
               }}
             >

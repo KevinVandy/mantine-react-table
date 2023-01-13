@@ -1,5 +1,5 @@
-import React, { MouseEvent, ReactNode, useState } from 'react';
-import { Button, Tooltip } from '@mantine/core';
+import React, { ReactNode } from 'react';
+import { UnstyledButton, CopyButton, Tooltip } from '@mantine/core';
 import { MRT_Cell, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -18,15 +18,6 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
   } = table;
   const { column, row } = cell;
   const { columnDef } = column;
-
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = (event: MouseEvent, text: unknown) => {
-    event.stopPropagation();
-    navigator.clipboard.writeText(text as string);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 4000);
-  };
 
   const mTableBodyCellCopyButtonProps =
     mantineCopyButtonProps instanceof Function
@@ -49,43 +40,56 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
   };
 
   return (
-    <Tooltip
-      withinPortal
-      withArrow
-      openDelay={1000}
-      position="top"
-      label={
-        buttonProps?.title ??
-        (copied ? localization.copiedToClipboard : localization.clickToCopy)
-      }
-    >
-      <Button
-        onClick={(e) => handleCopy(e, cell.getValue())}
-        size="sm"
-        type="button"
-        variant="default"
-        {...buttonProps}
-        sx={(theme) => ({
-          backgroundColor: 'transparent',
-          border: 'none',
-          color: 'inherit',
-          cursor: 'copy',
-          fontFamily: 'inherit',
-          fontSize: 'inherit',
-          fontWeight: 'inherit',
-          letterSpacing: 'inherit',
-          margin: '-0.25rem',
-          minWidth: 'unset',
-          textAlign: 'inherit',
-          textTransform: 'inherit',
-          ...(buttonProps?.sx instanceof Function
-            ? buttonProps.sx(theme)
-            : (buttonProps?.sx as any)),
-        })}
-        title={undefined}
-      >
-        {children}
-      </Button>
-    </Tooltip>
+    <CopyButton value={cell.getValue<string>()}>
+      {({ copied, copy }) => (
+        <Tooltip
+          withinPortal
+          withArrow
+          openDelay={1000}
+          position="top"
+          label={
+            buttonProps?.title ??
+            (copied ? localization.copiedToClipboard : localization.clickToCopy)
+          }
+        >
+          <UnstyledButton
+            {...buttonProps}
+            onClick={copy}
+            sx={(theme) => ({
+              backgroundColor: 'transparent',
+              border: 'none',
+              borderRadius: '4px',
+              color: 'inherit',
+              cursor: 'copy',
+              fontFamily: 'inherit',
+              fontSize: 'inherit',
+              fontWeight: 'inherit',
+              justifyContent: 'inherit',
+              letterSpacing: 'inherit',
+              margin: '-4px',
+              minWidth: 'unset',
+              padding: '4px',
+              textAlign: 'inherit',
+              textTransform: 'inherit',
+              '&:active': {
+                transform: 'translateY(1px)',
+              },
+              '&:hover': {
+                backgroundColor: theme.fn.rgba(
+                  theme.colors[theme.primaryColor][7],
+                  0.1,
+                ),
+              },
+              ...(buttonProps?.sx instanceof Function
+                ? buttonProps.sx(theme)
+                : (buttonProps?.sx as any)),
+            })}
+            title={undefined}
+          >
+            {children}
+          </UnstyledButton>
+        </Tooltip>
+      )}
+    </CopyButton>
   );
 };

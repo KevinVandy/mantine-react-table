@@ -125,6 +125,7 @@ export const MRT_Table: FC<Props> = ({ table }) => {
   return (
     <Table
       highlightOnHover
+      horizontalSpacing={density}
       verticalSpacing={density}
       {...tableProps}
       sx={(theme) => ({

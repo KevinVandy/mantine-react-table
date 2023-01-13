@@ -56,7 +56,7 @@ const Example = () => {
   const [showColumnFilters, setShowColumnFilters] = useState(false);
 
   return (
-    <Box sx={{ border: 'gray 2px dashed', padding: '1rem' }}>
+    <Box sx={{ border: 'gray 2px dashed', padding: '16px' }}>
       {/* Our Custom External Top Toolbar */}
       {tableInstanceRef.current && (
         <Toolbar
@@ -68,9 +68,9 @@ const Example = () => {
               xs: 'column',
               lg: 'row',
             },
-            gap: '1rem',
+            gap: '16px',
             justifyContent: 'space-between',
-            padding: '1.5rem 0',
+            padding: '24px 0',
           })}
         >
           <Box>
@@ -98,7 +98,7 @@ const Example = () => {
           </Box>
         </Toolbar>
       )}
-      <Typography padding="1rem 4px">
+      <Typography padding="16px 4px">
         {
           "Hey I'm some page content. I'm just one of your normal components between your custom toolbar and the MRT Table below"
         }

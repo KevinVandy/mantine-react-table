@@ -11,7 +11,6 @@ import type {
   BoxProps,
   ProgressProps,
   AlertProps,
-  ButtonProps,
   CheckboxProps,
   ChipProps,
   PaperProps,
@@ -20,6 +19,7 @@ import type {
   TableProps,
   TextInputProps,
   MantineSize,
+  UnstyledButtonProps,
 } from '@mantine/core';
 import type {
   AggregationFn,
@@ -424,7 +424,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         column: MRT_Column<TData>;
       }) => ActionIconProps & HTMLPropsRef<HTMLButtonElement>);
   mantineCopyButtonProps?:
-    | (ButtonProps & HTMLPropsRef<HTMLButtonElement>)
+    | (UnstyledButtonProps & HTMLPropsRef<HTMLButtonElement>)
     | (({
         cell,
         column,
@@ -435,7 +435,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => ButtonProps & HTMLPropsRef<HTMLButtonElement>);
+      }) => UnstyledButtonProps & HTMLPropsRef<HTMLButtonElement>);
   mantineEditTextInputProps?:
     | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
     | (({
@@ -752,7 +752,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           column: MRT_Column<TData>;
         }) => ActionIconProps & HTMLPropsRef<HTMLButtonElement>);
     mantineCopyButtonProps?:
-      | (ButtonProps & HTMLPropsRef<HTMLButtonElement>)
+      | (UnstyledButtonProps & HTMLPropsRef<HTMLButtonElement>)
       | (({
           cell,
           column,
@@ -763,7 +763,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           column: MRT_Column<TData>;
           row: MRT_Row<TData>;
           table: MRT_TableInstance<TData>;
-        }) => ButtonProps & HTMLPropsRef<HTMLButtonElement>);
+        }) => UnstyledButtonProps & HTMLPropsRef<HTMLButtonElement>);
     mantineDetailPanelProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableCellElement>)
       | (({

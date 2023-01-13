@@ -10,12 +10,12 @@ export const Blockquote: FC<any> = (props) => {
           theme.fn.darken(theme.colors[theme.primaryColor][7], 0.2),
           0.6,
         )}`,
-        padding: '0.5rem 1rem',
+        padding: '8px 16px',
         backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.05),
         borderRadius: '4px',
         margin: '3rem',
         '@media (max-width: 720px)': {
-          margin: '1rem',
+          margin: '16px',
         },
       })}
       {...props}

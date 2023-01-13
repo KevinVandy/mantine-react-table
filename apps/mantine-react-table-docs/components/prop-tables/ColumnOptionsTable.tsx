@@ -148,7 +148,7 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
         variant: 'filled',
       }}
       mantinePaperProps={{
-        sx: { marginBottom: '1.5rem' },
+        sx: { marginBottom: '24px' },
         id: onlyProps
           ? 'relevant-column-options-table'
           : 'column-options-table',

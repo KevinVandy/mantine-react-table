@@ -32,7 +32,7 @@ const Example = () => {
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '1rem',
+                  gap: '16px',
                 }}
               >
                 <img
@@ -73,10 +73,10 @@ const Example = () => {
                       : cell.getValue() >= 50_000 && cell.getValue() < 75_000
                       ? theme.colors.yellow[8]
                       : theme.colors.green[8],
-                  borderRadius: '0.25rem',
+                  borderRadius: '4px',
                   color: '#fff',
                   maxWidth: '9ch',
-                  padding: '0.25rem',
+                  padding: '4px',
                 })}
               >
                 {cell.getValue()?.toLocaleString?.('en-US', {
@@ -178,7 +178,7 @@ const Example = () => {
         };
 
         return (
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', gap: '8px' }}>
             <Button
               color="red"
               disabled={!table.getIsSomeRowsSelected()}

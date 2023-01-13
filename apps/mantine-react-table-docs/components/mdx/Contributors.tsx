@@ -32,13 +32,13 @@ export const Contributors = () => {
     >
       <Box
         sx={{
-          padding: '1rem 150px 3rem 150px',
+          padding: '16px 150px 3rem 150px',
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          gap: '1.5rem',
+          gap: '24px',
           '@media(max-width: 900px)': {
-            padding: '1rem 16px 2rem 16px',
+            padding: '16px 16px 2rem 16px',
           },
         }}
       >
@@ -53,16 +53,16 @@ export const Contributors = () => {
             <Card
               sx={(theme) => ({
                 alignItems: 'center',
-                borderRadius: '0.5rem',
+                borderRadius: '8px',
                 color: theme.colors[theme.primaryColor][7],
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
                 minWidth: '200px',
                 minHeight: '200px',
-                gap: '1rem',
+                gap: '16px',
                 justifyContent: 'center',
-                padding: '1rem',
+                padding: '16px',
                 textAlign: 'center',
                 width: '10rem',
                 '&:hover': {

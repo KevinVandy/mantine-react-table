@@ -396,7 +396,7 @@ export const columnOptions: ColumnOption[] = [
     linkText: 'Material UI TableCell API',
     source: 'Material UI',
     required: false,
-    type: 'TableCellProps | ({ cell, table }) => TableCellProps',
+    type: 'BoxProps | ({ cell, table }) => BoxProps',
   },
   {
     columnOption: 'mantineTableFooterCellProps',
@@ -406,7 +406,7 @@ export const columnOptions: ColumnOption[] = [
     linkText: 'Material UI TableCell API',
     source: 'Material UI',
     required: false,
-    type: 'TableCellProps | ({ column, table }) => TableCellProps',
+    type: 'BoxProps | ({ column, table }) => BoxProps',
   },
   {
     columnOption: 'mantineColumnActionsButtonProps',
@@ -416,7 +416,7 @@ export const columnOptions: ColumnOption[] = [
     linkText: 'Material UI IconButton API',
     source: 'Material UI',
     required: false,
-    type: 'IconButtonProps | ({ column, table }) => IconButtonProps',
+    type: 'ActionIconProps | ({ column, table }) => ActionIconProps',
   },
   {
     columnOption: 'mantineColumnDragHandleProps',
@@ -426,7 +426,7 @@ export const columnOptions: ColumnOption[] = [
     linkText: 'Material UI IconButton API',
     source: 'Material UI',
     required: false,
-    type: 'IconButtonProps | ({ column, table }) => IconButtonProps',
+    type: 'ActionIconProps | ({ column, table }) => ActionIconProps',
   },
   {
     columnOption: 'mantineFilterCheckboxProps',
@@ -456,7 +456,7 @@ export const columnOptions: ColumnOption[] = [
     linkText: 'Material UI TableCell API',
     source: 'Material UI',
     required: false,
-    type: 'TableCellProps | ({ column, table }) => TableCellProps',
+    type: 'BoxProps | ({ column, table }) => BoxProps',
   },
   {
     columnOption: 'size',

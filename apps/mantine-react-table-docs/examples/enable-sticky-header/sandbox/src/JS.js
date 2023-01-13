@@ -20,7 +20,7 @@ const Example = () => {
         enableClickToCopy: true,
         mantineCopyButtonProps: {
           fullWidth: true,
-          startIcon: <ContentCopy />,
+          leftIcon: <ContentCopy />,
           sx: { justifyContent: 'flex-start' },
         },
       },

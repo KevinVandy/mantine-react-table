@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import MantineReactTable from 'mantine-react-table';
-import { ContentCopy } from '@mui/icons-material';
 import { data } from './makeData';
 
 const Example = () => {
@@ -18,15 +17,11 @@ const Example = () => {
         accessorKey: 'email',
         header: 'Email',
         enableClickToCopy: true,
-        mantineCopyButtonProps: {
-          fullWidth: true,
-          startIcon: <ContentCopy />,
-          sx: { justifyContent: 'flex-start' },
-        },
       },
       {
         accessorKey: 'city',
         header: 'City',
+        enableClickToCopy: true,
       },
     ],
     [],

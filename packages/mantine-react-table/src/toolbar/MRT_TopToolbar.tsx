@@ -90,7 +90,7 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
           alignItems: 'flex-start',
           boxSizing: 'border-box',
           justifyContent: 'space-between',
-          padding: '0.5rem',
+          padding: '8px',
           position: stackAlertBanner ? 'relative' : 'absolute',
           right: 0,
           top: 0,

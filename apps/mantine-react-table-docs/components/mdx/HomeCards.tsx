@@ -26,7 +26,7 @@ const cardData = [
 
 export const HomeCards = () => {
   return (
-    <Stack sx={{ marginTop: '1rem', gap: '1rem' }}>
+    <Stack sx={{ marginTop: '16px', gap: '16px' }}>
       {cardData.map((cd, index) => (
         <Card
           key={index}
@@ -37,8 +37,8 @@ export const HomeCards = () => {
                 ? theme.colors.dark[7]
                 : theme.colors.gray[0],
             display: 'flex',
-            gap: '1.5rem',
-            padding: '1rem',
+            gap: '24px',
+            padding: '16px',
           })}
         >
           <Image

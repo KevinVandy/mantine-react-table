@@ -218,7 +218,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
               >
                 <Flex
                   sx={{
-                    fontSize: '1.25rem',
+                    fontSize: '20px',
                     transform: 'translateY(-2px)',
                     width: '2ch',
                   }}

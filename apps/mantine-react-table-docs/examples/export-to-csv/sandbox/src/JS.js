@@ -69,8 +69,8 @@ const Example = () => {
         <Box
           sx={{
             display: 'flex',
-            gap: '1rem',
-            padding: '0.5rem',
+            gap: '16px',
+            padding: '8px',
             flexWrap: 'wrap',
           }}
         >
@@ -78,7 +78,7 @@ const Example = () => {
             color="lightblue"
             //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
             onClick={handleExportData}
-            startIcon={<FileDownloadIcon />}
+            leftIcon={<FileDownloadIcon />}
             variant="contained"
           >
             Export All Data
@@ -89,7 +89,7 @@ const Example = () => {
             onClick={() =>
               handleExportRows(table.getPrePaginationRowModel().rows)
             }
-            startIcon={<FileDownloadIcon />}
+            leftIcon={<FileDownloadIcon />}
             variant="contained"
           >
             Export All Rows
@@ -98,7 +98,7 @@ const Example = () => {
             disabled={table.getRowModel().rows.length === 0}
             //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
             onClick={() => handleExportRows(table.getRowModel().rows)}
-            startIcon={<FileDownloadIcon />}
+            leftIcon={<FileDownloadIcon />}
             variant="contained"
           >
             Export Page Rows
@@ -109,7 +109,7 @@ const Example = () => {
             }
             //only export selected rows
             onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
-            startIcon={<FileDownloadIcon />}
+            leftIcon={<FileDownloadIcon />}
             variant="contained"
           >
             Export Selected Rows

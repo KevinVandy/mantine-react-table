@@ -74,8 +74,8 @@ export const MRT_ShowHideColumnsMenu = <
       <Flex
         sx={{
           justifyContent: isSubMenu ? 'center' : 'space-between',
-          padding: '0.5rem',
-          gap: '0.5rem',
+          padding: '8px',
+          gap: '8px',
         }}
       >
         {!isSubMenu && enableHiding && (

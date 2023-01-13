@@ -150,13 +150,13 @@ function App({ Component, pageProps }: AppProps) {
                     minHeight: '100vh',
                     padding: `75px ${
                       isMobile
-                        ? '1rem'
+                        ? '16px'
                         : showMiniNav && isXLDesktop
                         ? '300px'
                         : '36px'
                     } 0 ${
                       isMobile
-                        ? '1rem'
+                        ? '16px'
                         : navOpen || isDesktop
                         ? '300px'
                         : '36px'

@@ -42,7 +42,7 @@ const MiniNav: FC = () => {
                 listStyle: 'none',
                 paddingLeft:
                   heading.localName === 'h3'
-                    ? '1rem'
+                    ? '16px'
                     : heading.localName === 'h4'
                     ? '2rem'
                     : heading.localName === 'h5'

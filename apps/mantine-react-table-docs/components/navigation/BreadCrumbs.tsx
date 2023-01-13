@@ -41,7 +41,7 @@ const BreadCrumbs: FC = () => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ paddingBottom: '1rem' }}>
+      <Breadcrumbs aria-label="breadcrumb" sx={{ paddingBottom: '16px' }}>
         {breadCrumbLinks.map((link, index) => (
           <Link key={index} href={link} passHref legacyBehavior>
             <Anchor

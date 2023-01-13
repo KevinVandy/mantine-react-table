@@ -46,7 +46,7 @@ export const CustomizeDisplayColumns: Story<MantineReactTableProps> = () => (
       'mrt-row-actions': {
         mantineTableHeadCellProps: {
           sx: {
-            fontSize: '1.25rem',
+            fontSize: '20px',
             fontStyle: 'italic',
           },
         },
@@ -62,7 +62,7 @@ export const CustomizeDisplayColumns: Story<MantineReactTableProps> = () => (
         mantineTableBodyCellProps: {
           sx: {
             color: 'red',
-            fontSize: '1.5rem',
+            fontSize: '24px',
           },
         },
       },
@@ -74,7 +74,7 @@ export const CustomizeDisplayColumns: Story<MantineReactTableProps> = () => (
     enableRowActions
     renderDetailPanel={() => <div>Detail Panel</div>}
     renderRowActions={({ row }) => (
-      <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '0.5rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '8px' }}>
         <Button
           variant="filled"
           color="lightblue"

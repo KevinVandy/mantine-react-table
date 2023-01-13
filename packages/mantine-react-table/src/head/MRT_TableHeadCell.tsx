@@ -30,7 +30,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
     refs: { tableHeadCellRefs },
     setHoveredColumn,
   } = table;
-  const { draggingColumn, grouping, hoveredColumn } = getState();
+  const { density, draggingColumn, grouping, hoveredColumn } = getState();
   const { column } = header;
   const { columnDef } = column;
   const { columnDefType } = columnDef;
@@ -125,7 +125,16 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
         flexDirection: layoutMode === 'grid' ? 'column' : undefined,
         fontWeight: 'bold',
         overflow: 'visible',
-        padding: '10px',
+        padding:
+          density === 'xl'
+            ? '23px'
+            : density === 'lg'
+            ? '20px'
+            : density === 'md'
+            ? '16px'
+            : density === 'sm'
+            ? '12px'
+            : '10px',
         userSelect: enableMultiSort && column.getCanSort() ? 'none' : undefined,
         verticalAlign: 'top',
         zIndex:

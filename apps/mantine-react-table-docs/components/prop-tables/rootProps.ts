@@ -995,7 +995,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI IconButton Props',
     required: false,
     source: 'Material UI',
-    type: 'IconButtonProps | ({ table }) => IconButtonProps',
+    type: 'ActionIconProps | ({ table }) => ActionIconProps',
   },
   {
     propName: 'mantineExpandButtonProps',
@@ -1005,7 +1005,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI IconButton Props',
     required: false,
     source: 'Material UI',
-    type: 'IconButtonProps | ({ row, table }) => IconButtonProps',
+    type: 'ActionIconProps | ({ row, table }) => ActionIconProps',
   },
   {
     propName: 'mantineLinearProgressProps',
@@ -1075,7 +1075,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI TableCell Props',
     required: false,
     source: 'Material UI',
-    type: 'TableCellProps | ({ cell, column, row, table }) => TableCellProps',
+    type: 'BoxProps | ({ cell, column, row, table }) => BoxProps',
   },
   {
     propName: 'mantineSkeletonProps',
@@ -1095,7 +1095,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI TableBody Props',
     required: false,
     source: 'Material UI',
-    type: 'TableBodyProps | ({ table }) => TableBodyProps',
+    type: 'BoxProps | ({ table }) => BoxProps',
   },
   {
     propName: 'mantineRowDragHandleProps',
@@ -1105,7 +1105,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI IconButton Props',
     required: false,
     source: 'Material UI',
-    type: 'IconButtonProps | ({ row, table }) => IconButtonProps',
+    type: 'ActionIconProps | ({ row, table }) => ActionIconProps',
   },
   {
     propName: 'mantineTableBodyRowProps',
@@ -1115,7 +1115,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI TableRow Props',
     required: false,
     source: 'Material UI',
-    type: 'TableRowProps | ({ isDetailPanel, row, table }) => TableRowProps',
+    type: 'BoxProps | ({ isDetailPanel, row, table }) => BoxProps',
   },
   {
     propName: 'mantineTableContainerProps',
@@ -1135,7 +1135,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI TableCell Props',
     required: false,
     source: 'Material UI',
-    type: 'TableCellProps | ({ row, table }) => TableCellProps',
+    type: 'BoxProps | ({ row, table }) => BoxProps',
   },
   {
     propName: 'mantineTableFooterCellProps',
@@ -1145,7 +1145,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI TableCell Props',
     required: false,
     source: 'Material UI',
-    type: 'TableCellProps| ({table, column}) => TableCellProps',
+    type: 'BoxProps| ({table, column}) => BoxProps',
   },
   {
     propName: 'mantineTableFooterProps',
@@ -1165,7 +1165,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI TableRow Props',
     required: false,
     source: 'Material UI',
-    type: 'TableRowProps | ({table, footerGroup}) => TableRowProps',
+    type: 'BoxProps | ({table, footerGroup}) => BoxProps',
   },
   {
     propName: 'mantineColumnActionsButtonProps',
@@ -1175,7 +1175,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI IconButton Props',
     required: false,
     source: 'Material UI',
-    type: 'IconButtonProps | (({table, column}) => IconButtonProps);',
+    type: 'ActionIconProps | (({table, column}) => ActionIconProps);',
   },
   {
     propName: 'mantineColumnDragHandleProps',
@@ -1185,7 +1185,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI IconButton Props',
     required: false,
     source: 'Material UI',
-    type: 'IconButtonProps | ({table, column}) => IconButtonProps',
+    type: 'ActionIconProps | ({table, column}) => ActionIconProps',
   },
   {
     propName: 'mantineFilterCheckboxProps',
@@ -1215,7 +1215,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI TableCell Props',
     required: false,
     source: 'Material UI',
-    type: 'TableCellProps | ({ table, column}) => TableCellProps',
+    type: 'BoxProps | ({ table, column}) => BoxProps',
   },
   {
     propName: 'mantineTableHeadProps',
@@ -1235,7 +1235,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Material UI TableRow Props',
     required: false,
     source: 'Material UI',
-    type: 'TableRowProps | ({ table, headerGroup}) => TableRowProps',
+    type: 'BoxProps | ({ table, headerGroup}) => BoxProps',
   },
   {
     propName: 'mantinePaginationProps',

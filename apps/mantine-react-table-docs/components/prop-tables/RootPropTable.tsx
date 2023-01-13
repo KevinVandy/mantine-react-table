@@ -158,7 +158,7 @@ const RootPropTable: FC<Props> = ({ onlyProps }) => {
         variant: 'filled',
       }}
       mantinePaperProps={{
-        sx: { marginBottom: '1.5rem' },
+        sx: { marginBottom: '24px' },
         id: onlyProps ? 'relevant-props-table' : 'props-table',
       }}
       positionGlobalFilter="left"

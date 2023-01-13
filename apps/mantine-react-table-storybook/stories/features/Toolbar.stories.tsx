@@ -189,7 +189,7 @@ export const CustomTopToolbarSelectionActions: Story<
       };
 
       return (
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '8px' }}>
           <Button
             color="error"
             disabled={table.getSelectedRowModel().flatRows.length === 0}
@@ -247,7 +247,7 @@ export const CustomBottomToolbarSelectionActions: Story<
       };
 
       return (
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '8px' }}>
           <Button
             color="error"
             disabled={table.getSelectedRowModel().flatRows.length === 0}

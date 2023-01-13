@@ -24,7 +24,7 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
       onTouchStart={header.getResizeHandler()}
       sx={(theme) => ({
         cursor: 'col-resize',
-        marginRight: '-0.5rem',
+        marginRight: '-8px',
         position: 'absolute',
         right: '1px',
         paddingLeft: '4px',
@@ -50,7 +50,7 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
           borderRadius: '2px',
           borderWidth: '2px',
           height:
-            showColumnFilters && columnDefType === 'data' ? '3.5rem' : '1.5rem',
+            showColumnFilters && columnDefType === 'data' ? '3.5rem' : '24px',
           touchAction: 'none',
           transition: column.getIsResizing()
             ? undefined

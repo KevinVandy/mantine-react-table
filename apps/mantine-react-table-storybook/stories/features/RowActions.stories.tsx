@@ -167,7 +167,7 @@ export const CustomRowActionButtons: Story<MantineReactTableProps> = () => (
     data={data}
     enableRowActions
     renderRowActions={({ row }) => (
-      <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '0.5rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '8px' }}>
         <Button
           variant="filled"
           color="lightblue"
@@ -200,7 +200,7 @@ export const CustomRowActionButtonsLastColumn: Story<
     enableRowActions
     positionActionsColumn="last"
     renderRowActions={({ row }) => (
-      <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '0.5rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '8px' }}>
         <Button
           variant="filled"
           color="lightblue"

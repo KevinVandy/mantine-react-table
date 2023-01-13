@@ -64,7 +64,7 @@ const Example = () => {
       enableRowSelection
       enableRowActions
       renderRowActions={({ row }) => (
-        <Box sx={{ display: 'flex', gap: '1rem' }}>
+        <Box sx={{ display: 'flex', gap: '16px' }}>
           <Button>Button 1</Button>
           <Button>Button 2</Button>
           <Button>Button 3</Button>

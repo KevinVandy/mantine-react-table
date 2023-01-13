@@ -55,7 +55,7 @@ const Example = () => {
       })}
       renderBottomToolbarCustomActions={() => (
         <Typography
-          sx={{ fontStyle: 'italic', padding: '0 1rem' }}
+          sx={{ fontStyle: 'italic', padding: '0 16px' }}
           variant="body2"
         >
           Double-Click a Cell to Edit

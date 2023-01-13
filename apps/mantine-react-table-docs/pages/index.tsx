@@ -24,10 +24,10 @@ const HomePage = () => {
             '@media (max-width: 1024px)': {
               fontSize: '3rem',
               lineHeight: '4rem',
-              marginBottom: '1rem',
+              marginBottom: '16px',
             },
             '@media (max-width: 768px)': {
-              fontSize: '2.5rem',
+              fontSize: '32px',
               lineHeight: '3rem',
             },
           }}
@@ -53,9 +53,9 @@ const HomePage = () => {
                 display: 'inline',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                fontSize: '2.5rem',
+                fontSize: '32px',
                 '@media (max-width: 768px)': {
-                  fontSize: '1.5rem',
+                  fontSize: '24px',
                 },
               })}
             >
@@ -72,7 +72,7 @@ const HomePage = () => {
             lineHeight: '2.25rem',
             fontWeight: 'normal',
             '@media (max-width: 768px)': {
-              fontSize: '1.5rem',
+              fontSize: '24px',
             },
           }}
           order={2}
@@ -110,10 +110,10 @@ const HomePage = () => {
         <Title
           color="dimmed"
           sx={{
-            fontSize: '1.5rem',
+            fontSize: '24px',
             marginTop: '2rem',
             textAlign: 'center',
-            lineHeight: '2.5rem',
+            lineHeight: '32px',
             fontWeight: 'normal',
             textTransform: 'capitalize',
             '@media (max-width: 768px)': {
@@ -128,9 +128,9 @@ const HomePage = () => {
         <Box
           sx={{
             margin: '3rem auto',
-            marginBottom: '1rem',
+            marginBottom: '16px',
             display: 'grid',
-            gap: '1.5rem',
+            gap: '24px',
             width: '100%',
             justifyContent: 'center',
             gridTemplateColumns: '1fr 1fr 1fr 1fr',
@@ -225,7 +225,7 @@ const HomePage = () => {
             </Button>
           </Link>
         </Box>
-        <Box py="1rem">
+        <Box py="16px">
           <SampleCodeSnippet className="language-bash">
             npm i mantine-react-table @mantine/core @mantine/hooks
             @emotion/react @tabler/icons
@@ -237,7 +237,7 @@ const HomePage = () => {
         sx={{
           textAlign: 'center',
           marginTop: '5rem',
-          fontSize: '2.5rem',
+          fontSize: '32px',
         }}
         order={3}
       >
@@ -278,7 +278,7 @@ const HomePage = () => {
         Feature Comparison
       </LinkHeading>
       <FeatureTable />
-      <Text component="p" size="sm" sx={{ marginTop: '1rem' }}>
+      <Text component="p" size="sm" sx={{ marginTop: '16px' }}>
         *If you see any inaccuracies in this table, PRs are welcome!
       </Text>
       <LinkCards />

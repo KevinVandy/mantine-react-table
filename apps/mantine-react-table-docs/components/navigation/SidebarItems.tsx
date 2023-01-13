@@ -59,10 +59,10 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                   fontSize: !items
                     ? '0.9rem'
                     : depth === 1
-                    ? '1.25rem'
-                    : '1rem',
-                  height: items ? '2.5rem' : '2rem',
-                  lineHeight: depth === 0 && !items ? '1.25rem' : '0.75rem',
+                    ? '20px'
+                    : '16px',
+                  height: items ? '32px' : '2rem',
+                  lineHeight: depth === 0 && !items ? '20px' : '12px',
                   padding: '0',
                   whiteSpace: 'nowrap',
                   transition: 'background-color 0.1s ease',

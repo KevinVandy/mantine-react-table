@@ -48,7 +48,7 @@ const Example = () => {
       sx={{
         display: 'grid',
         gridTemplateColumns: { xs: 'auto', lg: '1fr 1fr' },
-        gap: '1rem',
+        gap: '16px',
         overflow: 'auto',
         padding: '4px',
       }}

@@ -116,7 +116,7 @@ export const CustomCellRender: Story<MantineReactTableProps> = () => (
           <span
             style={{
               fontStyle: 'italic',
-              padding: '0.5rem',
+              padding: '8px',
               backgroundColor:
                 cell.column.id === 'age' && cell.getValue<number>() > 40
                   ? 'rgba(22, 184, 44, 0.5)'

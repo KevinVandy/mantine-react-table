@@ -53,7 +53,7 @@ export const LinkHeading: FC<Props> = ({ children, tableId, ...rest }) => {
           id={id}
           {...rest}
           sx={[
-            { display: 'flex', gap: '1rem', alignItems: 'center' },
+            { display: 'flex', gap: '16px', alignItems: 'center' },
             ...packSx(rest.sx),
           ]}
         >

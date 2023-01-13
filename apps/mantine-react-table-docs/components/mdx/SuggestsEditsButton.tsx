@@ -52,7 +52,7 @@ export const SuggestsEditsButton: FC = () => {
           href="http://makeapullrequest.com"
           target="_blank"
           rel="noreferrer"
-          style={{ marginLeft: '0.5rem' }}
+          style={{ marginLeft: '8px' }}
         >
           <img
             alt="PRs are Welcome"

@@ -96,7 +96,7 @@ const Example = () => {
           MuiTooltip: {
             styleOverrides: {
               tooltip: {
-                fontSize: '1.1rem', //override to make tooltip font size larger
+                fontSize: '1.16px', //override to make tooltip font size larger
               },
             },
           },

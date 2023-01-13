@@ -41,7 +41,7 @@ export const MRT_TableFooterCell: FC<Props> = ({ footer, table }) => {
         display: layoutMode === 'grid' ? 'grid' : 'table-cell',
         fontWeight: 'bold',
         justifyContent: columnDefType === 'group' ? 'center' : undefined,
-        padding: '0.5rem',
+        padding: '8px',
         verticalAlign: 'top',
         zIndex: column.getIsPinned() && columnDefType !== 'group' ? 2 : 1,
         ...getCommonCellStyles({

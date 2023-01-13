@@ -118,7 +118,7 @@ const ColumnInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
         variant: 'filled',
       }}
       mantinePaperProps={{
-        sx: { marginBottom: '1.5rem' },
+        sx: { marginBottom: '24px' },
         id: onlyProps
           ? 'relevant-column-instance-apis-table'
           : 'column-instance-apis-table',

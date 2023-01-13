@@ -12,37 +12,37 @@ export const theme = (isLightTheme: boolean) =>
       h1: {
         fontSize: '2rem',
         lineHeight: '3rem',
-        paddingLeft: '1rem',
+        paddingLeft: '16px',
       },
       h2: {
-        fontSize: '2.5rem',
+        fontSize: '32px',
         lineHeight: '5rem',
         fontWeight: 'bold',
       },
       h3: {
         fontSize: '2rem',
         lineHeight: '3rem',
-        marginBottom: '1rem',
+        marginBottom: '16px',
       },
       h4: {
-        fontSize: '1.5rem',
+        fontSize: '24px',
         lineHeight: '2rem',
       },
       h5: {
-        fontSize: '1.25rem',
+        fontSize: '20px',
         lineHeight: '3rem',
       },
       h6: {
-        fontSize: '1.1rem',
+        fontSize: '1.16px',
         lineHeight: '3rem',
       },
       subtitle1: {
-        marginBottom: '1rem',
+        marginBottom: '16px',
       },
       body1: {
-        fontSize: '1rem',
+        fontSize: '16px',
         lineHeight: '2rem',
-        marginBottom: '0.5rem',
+        marginBottom: '8px',
       },
     },
   });

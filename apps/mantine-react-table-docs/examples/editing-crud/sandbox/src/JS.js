@@ -160,7 +160,7 @@ const Example = () => {
         onEditingRowSave={handleSaveRowEdits}
         onEditingRowCancel={handleCancelRowEdits}
         renderRowActions={({ row, table }) => (
-          <Box sx={{ display: 'flex', gap: '1rem' }}>
+          <Box sx={{ display: 'flex', gap: '16px' }}>
             <Tooltip withArrow position="left" label="Edit">
               <ActionIcon onClick={() => table.setEditingRow(row)}>
                 <IconEdit />
@@ -217,7 +217,7 @@ export const CreateNewAccountModal = ({ open, columns, onClose, onSubmit }) => {
         <Stack
           sx={{
             width: '100%',
-            gap: '1.5rem',
+            gap: '24px',
           }}
         >
           {columns.map((column) => (
@@ -234,10 +234,10 @@ export const CreateNewAccountModal = ({ open, columns, onClose, onSubmit }) => {
       </form>
       <Flex
         sx={{
-          padding: '1.25rem',
+          padding: '20px',
           width: '100%',
           justifyContent: 'flex-end',
-          gap: '1rem',
+          gap: '16px',
         }}
       >
         <Button onClick={onClose} variant="subtle">

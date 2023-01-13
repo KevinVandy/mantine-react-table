@@ -118,7 +118,7 @@ const TableInstanceAPIsTable: FC<Props> = ({ onlyProps }) => {
         variant: 'filled',
       }}
       mantinePaperProps={{
-        sx: { marginBottom: '1.5rem' },
+        sx: { marginBottom: '24px' },
         id: onlyProps
           ? 'relevant-table-instance-apis-table'
           : 'table-instance-apis-table',

@@ -67,8 +67,8 @@ const TopBar: FC<Props> = ({
               color: '#fff',
               cursor: 'pointer',
               display: 'flex',
-              fontSize: '1.5rem',
-              gap: '1rem',
+              fontSize: '24px',
+              gap: '16px',
               transition: 'color 0.2s ease',
               '&:hover': {
                 color: '#fff',
@@ -99,9 +99,9 @@ const TopBar: FC<Props> = ({
         sx={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.5rem',
+          gap: '8px',
           '@media (max-width: 480px)': {
-            gap: '0.25rem',
+            gap: '4px',
           },
         }}
       >

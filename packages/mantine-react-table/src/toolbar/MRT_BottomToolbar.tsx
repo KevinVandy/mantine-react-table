@@ -77,7 +77,7 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
           boxSizing: 'border-box',
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '0.5rem',
+          padding: '8px',
           width: '100%',
         }}
       >

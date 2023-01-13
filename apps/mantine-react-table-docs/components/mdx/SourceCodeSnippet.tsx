@@ -51,7 +51,7 @@ export const SourceCodeSnippet: FC<Props> = ({
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        gap: '1rem',
+        gap: '16px',
         margin: '2rem auto',
       }}
     >
@@ -62,7 +62,7 @@ export const SourceCodeSnippet: FC<Props> = ({
             sx={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '1rem',
+              gap: '16px',
             }}
           >
             <LinkHeading tableId={tableId} order={4}>
@@ -72,7 +72,7 @@ export const SourceCodeSnippet: FC<Props> = ({
               <Flex
                 sx={{
                   flexWrap: 'wrap',
-                  gap: '1rem',
+                  gap: '16px',
                   '@media (max-width: 720px)': {
                     justifyContent: 'center',
                   },
@@ -131,7 +131,7 @@ export const SourceCodeSnippet: FC<Props> = ({
           <Component />
         </>
       )}
-      <Flex sx={{ gap: '1rem', flexWrap: 'wrap', flexDirection: 'column' }}>
+      <Flex sx={{ gap: '16px', flexWrap: 'wrap', flexDirection: 'column' }}>
         <LinkHeading tableId={tableId} order={4}>
           Source Code
         </LinkHeading>

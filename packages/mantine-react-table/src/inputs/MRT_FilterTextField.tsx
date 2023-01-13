@@ -235,7 +235,7 @@ export const MRT_FilterTextField: FC<Props> = ({
         // }
         // FormHelperTextProps={{
         //   sx: {
-        //     fontSize: '0.75rem',
+        //     fontSize: '12px',
         //     lineHeight: '0.8rem',
         //     whiteSpace: 'nowrap',
         //   },
@@ -354,7 +354,7 @@ export const MRT_FilterTextField: FC<Props> = ({
                   display: 'flex',
                   m: 0,
                   alignItems: 'center',
-                  gap: '0.5rem',
+                  gap: '8px',
                 }}
                 value={value}
               >
@@ -363,7 +363,7 @@ export const MRT_FilterTextField: FC<Props> = ({
                     checked={(
                       (column.getFilterValue() ?? []) as string[]
                     ).includes(value)}
-                    sx={{ mr: '0.5rem' }}
+                    sx={{ mr: '8px' }}
                   />
                 )}
                 {text}

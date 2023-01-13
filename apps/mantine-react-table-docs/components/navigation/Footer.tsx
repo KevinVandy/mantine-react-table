@@ -14,17 +14,17 @@ const Footer: FC = () => {
         borderBottomLeftRadius: '0',
         borderBottomRightRadius: '0',
         marginTop: '100px',
-        padding: '1.5rem',
+        padding: '24px',
       }}
     >
-      <Text color="dimmed" ta="center" mb="1rem">
+      <Text color="dimmed" ta="center" mb="16px">
         © {new Date().getFullYear()} Kevin&nbsp;Van&nbsp;Cott
       </Text>
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          gap: '1rem',
+          gap: '16px',
           flexWrap: 'wrap',
         }}
       >
@@ -74,8 +74,8 @@ const Footer: FC = () => {
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          marginTop: '1rem',
-          gap: '0.5rem',
+          marginTop: '16px',
+          gap: '8px',
           justifyContent: 'space-between',
           '@media (max-width: 800px)': {
             flexDirection: 'column',

@@ -40,7 +40,7 @@ const Example = () => {
       positionToolbarAlertBanner="bottom" //show selected rows count on bottom toolbar
       //add custom action buttons to top-left of top toolbar
       renderTopToolbarCustomActions={({ table }) => (
-        <Box sx={{ display: 'flex', gap: '1rem', padding: '4px' }}>
+        <Box sx={{ display: 'flex', gap: '16px', padding: '4px' }}>
           <Button
             color="teal"
             onClick={() => {

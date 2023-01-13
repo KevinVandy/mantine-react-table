@@ -70,8 +70,6 @@ export const MRT_FilterCheckbox: FC<Props> = ({ column, table }) => {
           checkboxProps?.onChange?.(e);
         }}
         sx={(theme) => ({
-          height: '2.5rem',
-          width: '2.5rem',
           ...(checkboxProps?.sx instanceof Function
             ? checkboxProps.sx(theme)
             : (checkboxProps?.sx as any)),

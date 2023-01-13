@@ -4,12 +4,12 @@ export const StatBadges = () => {
   return (
     <Flex
       sx={{
-        gap: '1rem',
+        gap: '16px',
         justifyContent: 'center',
         flexWrap: 'wrap',
         m: {
           xs: 0,
-          md: '1rem',
+          md: '16px',
         },
         '& img': {
           imageRendering: 'pixelated',
