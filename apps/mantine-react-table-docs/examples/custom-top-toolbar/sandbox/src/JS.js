@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import MantineReactTable, {
   MRT_ToggleDensePaddingButton,
-  MRT_FullScreenToggleButton,
+  MRT_ToggleFullScreenButton,
 } from 'mantine-react-table';
-import { Box, Button, IconButton } from '@mui/material';
-import PrintIcon from '@mui/icons-material/Print';
+import { Box, Button, ActionIcon } from '@mantine/core';
+import { IconPrinter } from '@tabler/icons';
 import { data } from './makeData';
 
 const Example = () => {
@@ -42,21 +42,21 @@ const Example = () => {
       renderTopToolbarCustomActions={({ table }) => (
         <Box sx={{ display: 'flex', gap: '1rem', padding: '4px' }}>
           <Button
-            color="secondary"
+            color="teal"
             onClick={() => {
               alert('Create New Account');
             }}
-            variant="contained"
+            variant="filled"
           >
             Create Account
           </Button>
           <Button
-            color="error"
+            color="red"
             disabled={!table.getIsSomeRowsSelected()}
             onClick={() => {
               alert('Delete Selected Accounts');
             }}
-            variant="contained"
+            variant="filled"
           >
             Delete Selected Accounts
           </Button>
@@ -66,16 +66,16 @@ const Example = () => {
       renderToolbarInternalActions={({ table }) => (
         <Box>
           {/* add custom button to print table  */}
-          <IconButton
+          <ActionIcon
             onClick={() => {
               window.print();
             }}
           >
-            <PrintIcon />
-          </IconButton>
+            <IconPrinter />
+          </ActionIcon>
           {/* along-side built-in buttons in whatever order you want them */}
           <MRT_ToggleDensePaddingButton table={table} />
-          <MRT_FullScreenToggleButton table={table} />
+          <MRT_ToggleFullScreenButton table={table} />
         </Box>
       )}
     />

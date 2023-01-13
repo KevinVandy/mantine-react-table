@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import MantineReactTable from 'mantine-react-table';
-import { MenuItem } from '@mui/material';
+import { Menu } from '@mantine/core';
 import { data } from './makeData';
 
 const Example = () => {
@@ -26,17 +26,19 @@ const Example = () => {
         accessorKey: 'lastName',
         header: 'Last Name',
         //if you do not want to use the default filter modes, you can provide your own and render your own menu
-        renderColumnFilterModeMenuItems: ({ onSelectFilterMode }) => [
-          <MenuItem key="0" onClick={() => onSelectFilterMode('contains')}>
-            <div>Contains</div>
-          </MenuItem>,
-          <MenuItem
-            key="1"
-            onClick={() => onSelectFilterMode('customFilterFn')}
-          >
-            <div>Custom Filter Fn</div>
-          </MenuItem>,
-        ],
+        renderColumnFilterModeMenuItems: ({ onSelectFilterMode }) => (
+          <>
+            <Menu.Item onClick={() => onSelectFilterMode('contains')}>
+              <div>Contains</div>
+            </Menu.Item>
+            <Menu.Item
+              key="1"
+              onClick={() => onSelectFilterMode('customFilterFn')}
+            >
+              <div>Custom Filter Fn</div>
+            </Menu.Item>
+          </>
+        ),
       },
       {
         accessorKey: 'age',
@@ -59,9 +61,11 @@ const Example = () => {
           return row.getValue(id) === filterValue;
         },
       }}
-      localization={{
-        filterCustomFilterFn: 'Custom Filter Fn',
-      }}
+      localization={
+        {
+          filterCustomFilterFn: 'Custom Filter Fn',
+        }
+      }
     />
   );
 };

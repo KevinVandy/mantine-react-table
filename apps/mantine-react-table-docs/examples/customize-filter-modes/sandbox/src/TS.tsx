@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
-import { MenuItem } from '@mui/material';
+import { Menu } from '@mantine/core';
 import { data, Person } from './makeData';
 
 const Example: FC = () => {
@@ -26,17 +26,19 @@ const Example: FC = () => {
         accessorKey: 'lastName',
         header: 'Last Name',
         //if you do not want to use the default filter modes, you can provide your own and render your own menu
-        renderColumnFilterModeMenuItems: ({ onSelectFilterMode }) => [
-          <MenuItem key="0" onClick={() => onSelectFilterMode('contains')}>
-            <div>Contains</div>
-          </MenuItem>,
-          <MenuItem
-            key="1"
-            onClick={() => onSelectFilterMode('customFilterFn')}
-          >
-            <div>Custom Filter Fn</div>
-          </MenuItem>,
-        ],
+        renderColumnFilterModeMenuItems: ({ onSelectFilterMode }) => (
+          <>
+            <Menu.Item onClick={() => onSelectFilterMode('contains')}>
+              <div>Contains</div>
+            </Menu.Item>
+            <Menu.Item
+              key="1"
+              onClick={() => onSelectFilterMode('customFilterFn')}
+            >
+              <div>Custom Filter Fn</div>
+            </Menu.Item>
+          </>
+        ),
       },
       {
         accessorKey: 'age',

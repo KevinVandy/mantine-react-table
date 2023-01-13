@@ -25,7 +25,7 @@ export const SuggestsEditsButton: FC = () => {
         style={{ margin: '3rem auto' }}
       >
         <Button
-          color="secondary"
+          color="teal"
           rightIcon={<IconBrandGithub />}
           leftIcon={<IconEdit />}
           onClick={() => plausible('edit-on-github')}

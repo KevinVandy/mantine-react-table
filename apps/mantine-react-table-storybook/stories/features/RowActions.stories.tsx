@@ -170,7 +170,7 @@ export const CustomRowActionButtons: Story<MantineReactTableProps> = () => (
       <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '0.5rem' }}>
         <Button
           variant="filled"
-          color="primary"
+          color="lightblue"
           onClick={() => {
             console.info('View Profile', row);
           }}
@@ -203,7 +203,7 @@ export const CustomRowActionButtonsLastColumn: Story<
       <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '0.5rem' }}>
         <Button
           variant="filled"
-          color="primary"
+          color="lightblue"
           onClick={() => {
             console.info('View Profile', row);
           }}

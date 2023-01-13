@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button } from '@mantine/core';
 import MantineReactTable from 'mantine-react-table';
 import { data } from './makeData';
 

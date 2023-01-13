@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button } from '@mantine/core';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import { data, Person } from './makeData';
 

@@ -75,7 +75,7 @@ const Example: FC = () => {
           }}
         >
           <Button
-            color="primary"
+            color="lightblue"
             //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
             onClick={handleExportData}
             startIcon={<FileDownloadIcon />}

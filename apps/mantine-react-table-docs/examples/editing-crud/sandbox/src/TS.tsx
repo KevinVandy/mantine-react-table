@@ -9,16 +9,15 @@ import {
   Box,
   Button,
   Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  MenuItem,
+  Flex,
+  Title,
+  ActionIcon,
+  Menu,
   Stack,
-  TextField,
+  TextInput,
   Tooltip,
-} from '@mui/material';
-import { Delete, Edit } from '@mui/icons-material';
+} from '@mantine/core';
+import { IconTrash, IconEdit } from '@tabler/icons';
 import { data, states } from './makeData';
 
 export type Person = {
@@ -75,8 +74,7 @@ const Example: FC = () => {
       cell: MRT_Cell<Person>,
     ): MRT_ColumnDef<Person>['mantineEditTextInputProps'] => {
       return {
-        error: !!validationErrors[cell.id],
-        helperText: validationErrors[cell.id],
+        error: validationErrors[cell.id],
         onBlur: (event) => {
           const isValid =
             cell.column.id === 'email'
@@ -149,14 +147,14 @@ const Example: FC = () => {
       {
         accessorKey: 'state',
         header: 'State',
-        mantineEditTextInputProps: {
-          select: true, //change to select for a dropdown
-          children: states.map((state) => (
-            <MenuItem key={state} value={state}>
-              {state}
-            </MenuItem>
-          )),
-        },
+        // mantineEditTextInputProps: {
+        //   select: true, //change to select for a dropdown
+        //   children: states.map((state) => (
+        //     <Menu.Item key={state} value={state}>
+        //       {state}
+        //     </Menu.Item>
+        //   )),
+        // },
       },
     ],
     [getCommonEditTextInputProps],
@@ -182,23 +180,23 @@ const Example: FC = () => {
         onEditingRowCancel={handleCancelRowEdits}
         renderRowActions={({ row, table }) => (
           <Box sx={{ display: 'flex', gap: '1rem' }}>
-            <Tooltip arrow placement="left" title="Edit">
-              <IconButton onClick={() => table.setEditingRow(row)}>
-                <Edit />
-              </IconButton>
+            <Tooltip withArrow position="left" label="Edit">
+              <ActionIcon onClick={() => table.setEditingRow(row)}>
+                <IconEdit />
+              </ActionIcon>
             </Tooltip>
-            <Tooltip arrow placement="right" title="Delete">
-              <IconButton color="error" onClick={() => handleDeleteRow(row)}>
-                <Delete />
-              </IconButton>
+            <Tooltip withArrow position="right" label="Delete">
+              <ActionIcon color="red" onClick={() => handleDeleteRow(row)}>
+                <IconTrash />
+              </ActionIcon>
             </Tooltip>
           </Box>
         )}
         renderTopToolbarCustomActions={() => (
           <Button
-            color="secondary"
+            color="teal"
             onClick={() => setCreateModalOpen(true)}
-            variant="contained"
+            variant="filled"
           >
             Create New Account
           </Button>
@@ -235,36 +233,42 @@ export const CreateNewAccountModal: FC<{
   };
 
   return (
-    <Dialog open={open}>
-      <DialogTitle textAlign="center">Create New Account</DialogTitle>
-      <DialogContent>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <Stack
-            sx={{
-              width: '100%',
-              minWidth: { xs: '300px', sm: '360px', md: '400px' },
-              gap: '1.5rem',
-            }}
-          >
-            {columns.map((column) => (
-              <TextField
-                key={column.accessorKey}
-                label={column.header}
-                name={column.accessorKey}
-                onChange={(e) =>
-                  setValues({ ...values, [e.target.name]: e.target.value })
-                }
-              />
-            ))}
-          </Stack>
-        </form>
-      </DialogContent>
-      <DialogActions sx={{ padding: '1.25rem' }}>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button color="secondary" onClick={handleSubmit} variant="contained">
+    <Dialog opened={open}>
+      <Title ta="center">Create New Account</Title>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <Stack
+          sx={{
+            width: '100%',
+            gap: '1.5rem',
+          }}
+        >
+          {columns.map((column) => (
+            <TextInput
+              key={column.accessorKey}
+              label={column.header}
+              name={column.accessorKey}
+              onChange={(e) =>
+                setValues({ ...values, [e.target.name]: e.target.value })
+              }
+            />
+          ))}
+        </Stack>
+      </form>
+      <Flex
+        sx={{
+          padding: '1.25rem',
+          width: '100%',
+          justifyContent: 'flex-end',
+          gap: '1rem',
+        }}
+      >
+        <Button onClick={onClose} variant="subtle">
+          Cancel
+        </Button>
+        <Button color="teal" onClick={handleSubmit} variant="filled">
           Create New Account
         </Button>
-      </DialogActions>
+      </Flex>
     </Dialog>
   );
 };

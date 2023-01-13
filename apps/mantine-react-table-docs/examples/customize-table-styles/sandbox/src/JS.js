@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
-import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import MantineReactTable from 'mantine-react-table';
 import { data } from './makeData';
 
 const Example = () => {
   const columns = useMemo(
+    //column definitions...
     () => [
       {
         accessorKey: 'id',
-        enablePinning: false, //disable column pinning for this column
         header: 'ID',
         size: 50,
       },
@@ -29,24 +29,33 @@ const Example = () => {
         size: 300,
       },
       {
-        accessorKey: 'city', //this column gets pinned to the right by default because of the initial state,
+        accessorKey: 'city',
         header: 'City',
       },
 
       {
-        accessorKey: 'state', //this column gets pinned left by default because of the the initial state,
+        accessorKey: 'state',
         header: 'State',
       },
     ],
     [],
+    //end
   );
 
   return (
     <MantineReactTable
       columns={columns}
       data={data}
-      enablePinning
-      initialState={{ columnPinning: { left: ['state'], right: ['city'] } }}
+      mantinePaperProps={{
+        shadow: 'none',
+        sx: {
+          borderRadius: '0',
+          border: '1px dashed #e0e0e0',
+        },
+      }}
+      mantineTableProps={{
+        striped: true,
+      }}
     />
   );
 };

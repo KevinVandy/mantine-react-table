@@ -86,7 +86,7 @@ const Example: FC = () => {
         >
           <Box>
             <Button
-              color="primary"
+              color="lightblue"
               onClick={() => {
                 alert('Add User');
               }}
