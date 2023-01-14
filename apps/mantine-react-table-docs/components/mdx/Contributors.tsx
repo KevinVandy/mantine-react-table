@@ -69,7 +69,7 @@ export const Contributors = () => {
                   boxShadow: `1px 4px 8px black`,
                   '& img': {
                     transform: 'scale(1.01)',
-                    transition: 'transform 150ms ease-in-out',
+                    transition: 'transform 100ms ease-in-out',
                   },
                 },
               })}

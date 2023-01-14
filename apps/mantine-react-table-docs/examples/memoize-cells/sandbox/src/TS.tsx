@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
-import { Typography } from '@mui/material';
+import { Title } from '@mantine/core';
 import { data, Person } from './makeData';
 
 export const Example: FC = () => {
@@ -56,9 +56,7 @@ export const Example: FC = () => {
       mantineTableContainerProps={{ sx: { maxHeight: '500px' } }}
       renderDetailPanel={({ row }) => <div>{row.original.firstName}</div>}
       renderTopToolbarCustomActions={() => (
-        <Typography component="span" variant="h4">
-          Memoized Cells
-        </Typography>
+        <Title order={4}>Memoized Cells</Title>
       )}
     />
   );

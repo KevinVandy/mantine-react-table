@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
 import { data, Person } from './makeData';
-import { Button } from '@mui/material';
+import { Button } from '@mantine/core';
 
 const Example: FC = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
@@ -54,7 +54,7 @@ const Example: FC = () => {
         },
       })}
       renderTopToolbarCustomActions={() => (
-        <Button onClick={() => setProgress(0)} variant="contained">
+        <Button onClick={() => setProgress(0)} variant="filled">
           Reset
         </Button>
       )}

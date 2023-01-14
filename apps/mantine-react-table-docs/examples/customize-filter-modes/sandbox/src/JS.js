@@ -61,11 +61,9 @@ const Example = () => {
           return row.getValue(id) === filterValue;
         },
       }}
-      localization={
-        {
-          filterCustomFilterFn: 'Custom Filter Fn',
-        }
-      }
+      localization={{
+        filterCustomFilterFn: 'Custom Filter Fn',
+      }}
     />
   );
 };

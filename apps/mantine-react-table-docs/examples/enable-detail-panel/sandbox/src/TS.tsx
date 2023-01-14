@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
-import { Box, Typography } from '@mui/material';
+import { Box, Text } from '@mantine/core';
 import { data, Person } from './makeData';
 
 const Example: FC = () => {
@@ -41,10 +41,10 @@ const Example: FC = () => {
             width: '100%',
           }}
         >
-          <Typography>Address: {row.original.address}</Typography>
-          <Typography>City: {row.original.city}</Typography>
-          <Typography>State: {row.original.state}</Typography>
-          <Typography>Country: {row.original.country}</Typography>
+          <Text>Address: {row.original.address}</Text>
+          <Text>City: {row.original.city}</Text>
+          <Text>State: {row.original.state}</Text>
+          <Text>Country: {row.original.country}</Text>
         </Box>
       )}
     />

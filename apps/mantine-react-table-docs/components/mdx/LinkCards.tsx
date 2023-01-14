@@ -75,7 +75,7 @@ export const LinkCards = () => {
                   boxShadow: `1px 4px 8px gray`,
                   '& img': {
                     transform: 'scale(1.01)',
-                    transition: 'transform 150ms ease-in-out',
+                    transition: 'transform 100ms ease-in-out',
                   },
                 },
               })}

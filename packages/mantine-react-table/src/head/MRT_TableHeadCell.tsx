@@ -122,6 +122,12 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
       }}
       {...tableCellProps}
       sx={(theme: MantineTheme) => ({
+        borderBottom:
+          columnDefType !== 'group'
+            ? `1px solid ${
+                theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
+              }`
+            : undefined,
         flexDirection: layoutMode === 'grid' ? 'column' : undefined,
         fontWeight: 'bold',
         overflow: 'visible',

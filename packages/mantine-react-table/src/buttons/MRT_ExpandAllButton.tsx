@@ -20,7 +20,7 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
     },
     toggleAllRowsExpanded,
   } = table;
-  const { isLoading } = getState();
+  const { density, isLoading } = getState();
 
   const actionIconProps =
     mantineExpandAllButtonProps instanceof Function
@@ -46,7 +46,16 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
         onClick={() => toggleAllRowsExpanded(!isAllRowsExpanded)}
         {...actionIconProps}
         sx={(theme) => ({
-          marginLeft: '6px',
+          marginLeft:
+            density === 'xl'
+              ? '-6px'
+              : density === 'lg'
+              ? '-3px'
+              : density === 'md'
+              ? '0'
+              : density === 'sm'
+              ? '3px'
+              : '6px',
           '&:disabled': {
             backgroundColor: 'transparent',
             border: 'none',
@@ -62,7 +71,7 @@ export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
             transform: `rotate(${
               isAllRowsExpanded ? -180 : getIsSomeRowsExpanded() ? -90 : 0
             }deg)`,
-            transition: 'transform 150ms',
+            transition: 'transform 100ms',
           }}
         />
       </ActionIcon>

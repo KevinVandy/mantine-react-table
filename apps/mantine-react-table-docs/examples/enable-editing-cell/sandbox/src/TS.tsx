@@ -3,7 +3,7 @@ import MantineReactTable, {
   MRT_Cell,
   MRT_ColumnDef,
 } from 'mantine-react-table';
-import { Typography } from '@mui/material';
+import { Text } from '@mantine/core';
 import { data, Person } from './makeData';
 
 const Example: FC = () => {
@@ -57,12 +57,9 @@ const Example: FC = () => {
         },
       })}
       renderBottomToolbarCustomActions={() => (
-        <Typography
-          sx={{ fontStyle: 'italic', padding: '0 16px' }}
-          variant="body2"
-        >
+        <Text sx={{ fontStyle: 'italic', padding: '0 16px' }}>
           Double-Click a Cell to Edit
-        </Typography>
+        </Text>
       )}
     />
   );

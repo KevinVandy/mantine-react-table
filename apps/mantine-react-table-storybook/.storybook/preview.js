@@ -56,7 +56,7 @@ const withThemeProvider = (Story, context) => {
   ];
 
   return (
-    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={() => { }}>
+    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={() => {}}>
       <MantineProvider
         theme={{ colorScheme, primaryColor }}
         withGlobalStyles

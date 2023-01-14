@@ -52,9 +52,9 @@ import { MRT_Localization_EN } from './_locales/en';
 
 export type HTMLPropsRef<T extends HTMLElement> = Omit<
   HTMLProps<T>,
-  'color' | 'size' | 'type'
+  'color' | 'size' | 'type' | 'ref'
 > & {
-  ref?: MutableRefObject<T>;
+  ref?: MutableRefObject<T | null> | null;
 };
 
 export type ColumnAlignment = { align?: 'left' | 'center' | 'right' };

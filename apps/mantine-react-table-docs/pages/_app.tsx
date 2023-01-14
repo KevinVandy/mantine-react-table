@@ -4,7 +4,6 @@ import Head from 'next/head';
 import PlausibleProvider from 'next-plausible';
 import { useRouter } from 'next/router';
 import { MDXProvider } from '@mdx-js/react';
-import { ThemeProvider } from '@mui/material';
 import { ColorSchemeProvider, MantineProvider, Box } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { mdxComponents } from '../components/mdx/mdxComponents';
@@ -14,7 +13,6 @@ import BreadCrumbs from '../components/navigation/BreadCrumbs';
 import MiniNav from '../components/navigation/MiniNav';
 import Footer from '../components/navigation/Footer';
 import { SuggestsEditsButton } from '../components/mdx/SuggestsEditsButton';
-import { theme } from '../styles/MuiTheme';
 import docsearch from '@docsearch/js';
 import '../styles/globals.css';
 import '@docsearch/css';
@@ -130,56 +128,47 @@ function App({ Component, pageProps }: AppProps) {
             withGlobalStyles
             withNormalizeCSS
           >
-            <ThemeProvider theme={theme(isLightTheme)}>
-              <MDXProvider components={mdxComponents}>
-                <TopBar
-                  isLightTheme={isLightTheme}
-                  navOpen={navOpen || isDesktop}
-                  setIsLightTheme={setIsLightTheme}
-                  setNavOpen={setNavOpen}
-                />
-                <SideBar
-                  navOpen={navOpen || isDesktop}
-                  setNavOpen={setNavOpen}
-                />
-                <Box
-                  component="main"
-                  sx={{
-                    maxWidth: '1800px',
-                    margin: 'auto',
-                    minHeight: '100vh',
-                    padding: `75px ${
-                      isMobile
-                        ? '16px'
-                        : showMiniNav && isXLDesktop
-                        ? '300px'
-                        : '36px'
-                    } 0 ${
-                      isMobile
-                        ? '16px'
-                        : navOpen || isDesktop
-                        ? '300px'
-                        : '36px'
-                    }`,
-                    transition: 'all 100ms ease-in-out',
-                    width: '100%',
-                  }}
-                >
-                  {showBreadCrumbs && <BreadCrumbs />}
-                  {showMiniNav && !isXLDesktop && <MiniNav />}
-                  {pathname === '/' ? (
+            <MDXProvider components={mdxComponents}>
+              <TopBar
+                isLightTheme={isLightTheme}
+                navOpen={navOpen || isDesktop}
+                setIsLightTheme={setIsLightTheme}
+                setNavOpen={setNavOpen}
+              />
+              <SideBar navOpen={navOpen || isDesktop} setNavOpen={setNavOpen} />
+              <Box
+                component="main"
+                sx={{
+                  maxWidth: '1800px',
+                  margin: 'auto',
+                  minHeight: '100vh',
+                  padding: `75px ${
+                    isMobile
+                      ? '16px'
+                      : showMiniNav && isXLDesktop
+                      ? '300px'
+                      : '36px'
+                  } 0 ${
+                    isMobile ? '16px' : navOpen || isDesktop ? '300px' : '36px'
+                  }`,
+                  transition: 'all 100ms ease-in-out',
+                  width: '100%',
+                }}
+              >
+                {showBreadCrumbs && <BreadCrumbs />}
+                {showMiniNav && !isXLDesktop && <MiniNav />}
+                {pathname === '/' ? (
+                  <Component {...pageProps} />
+                ) : (
+                  <article>
                     <Component {...pageProps} />
-                  ) : (
-                    <article>
-                      <Component {...pageProps} />
-                    </article>
-                  )}
-                  <SuggestsEditsButton />
-                  <Footer />
-                </Box>
-                {showMiniNav && isXLDesktop && <MiniNav />}
-              </MDXProvider>
-            </ThemeProvider>
+                  </article>
+                )}
+                <SuggestsEditsButton />
+                <Footer />
+              </Box>
+              {showMiniNav && isXLDesktop && <MiniNav />}
+            </MDXProvider>
           </MantineProvider>
         </ColorSchemeProvider>
       </PlausibleProvider>

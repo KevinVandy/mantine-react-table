@@ -319,7 +319,9 @@ export const MRT_FilterTextField: FC<Props> = ({
           }
         }}
         sx={(theme) => ({
-          borderBottom: `2px solid ${theme.colors.gray[7]}`,
+          borderBottom: `2px solid ${
+            theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
+          }`,
           minWidth: isRangeFilter
             ? '100px'
             : !filterChipLabel

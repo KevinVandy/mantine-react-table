@@ -45,18 +45,4 @@ const Example = () => {
   );
 };
 
-//App.tsx or similar
-import { createTheme, ThemeProvider, useTheme } from '@mui/material';
-import { faIR } from '@mui/material/locale';
-
-const ExampleWithThemeProvider = () => {
-  const theme = useTheme(); //replace with your theme/createTheme
-  return (
-    //Setting Material UI locale as best practice to result in better accessibility
-    <ThemeProvider theme={createTheme({ ...theme, direction: 'rtl' }, faIR)}>
-      <Example />
-    </ThemeProvider>
-  );
-};
-
-export default ExampleWithThemeProvider;
+export default Example;

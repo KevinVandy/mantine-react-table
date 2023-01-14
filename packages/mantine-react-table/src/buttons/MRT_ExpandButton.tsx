@@ -64,7 +64,7 @@ export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
             transform: `rotate(${
               !canExpand && !renderDetailPanel ? -90 : isExpanded ? -180 : 0
             }deg)`,
-            transition: 'transform 150ms',
+            transition: 'transform 100ms',
           }}
         />
       </ActionIcon>

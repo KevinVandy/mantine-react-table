@@ -63,7 +63,7 @@ export const LinkHeading: FC<Props> = ({ children, tableId, ...rest }) => {
             onClick={handleCopy}
             sx={{
               opacity: 0.2,
-              transition: 'all 150ms ease',
+              transition: 'all 100ms ease',
               '&:hover': {
                 opacity: 1,
               },

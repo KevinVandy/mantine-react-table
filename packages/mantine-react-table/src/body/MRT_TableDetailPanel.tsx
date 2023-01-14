@@ -74,7 +74,7 @@ export const MRT_TableDetailPanel: FC<Props> = ({
             ? '16px !important'
             : '0 !important',
           paddingTop: row.getIsExpanded() ? '16px !important' : '0 !important',
-          transition: 'all 150ms ease-in-out',
+          transition: 'all 100ms ease-in-out',
           width: `${table.getTotalSize()}px`,
           ...(tableCellProps?.sx instanceof Function
             ? tableCellProps.sx(theme)

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import MantineReactTable from 'mantine-react-table';
-import { Typography } from '@mui/material';
+import { Title } from '@mantine/core';
 import { data } from './makeData';
 
 export const Example = () => {
@@ -56,9 +56,7 @@ export const Example = () => {
       mantineTableContainerProps={{ sx: { maxHeight: '500px' } }}
       renderDetailPanel={({ row }) => <div>{row.original.firstName}</div>}
       renderTopToolbarCustomActions={() => (
-        <Typography component="span" variant="h4">
-          Memoized Cells
-        </Typography>
+        <Title order={4}>Memoized Cells</Title>
       )}
     />
   );

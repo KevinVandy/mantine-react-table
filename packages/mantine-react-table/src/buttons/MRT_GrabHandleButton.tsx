@@ -45,7 +45,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
           margin: '0 -0.16px',
           opacity: 0.5,
           padding: '2px',
-          transition: 'opacity 150ms ease-in-out',
+          transition: 'opacity 100ms ease-in-out',
           '&:hover': {
             backgroundColor: 'transparent',
             opacity: 1,

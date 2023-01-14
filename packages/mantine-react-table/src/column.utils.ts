@@ -287,7 +287,7 @@ export const getCommonCellStyles = ({
   transition:
     table.options.enableColumnVirtualization || column.getIsResizing()
       ? 'none'
-      : `all 150ms ease-in-out`,
+      : `all 100ms ease-in-out`,
   ...(tableCellProps?.sx instanceof Function
     ? tableCellProps.sx(theme)
     : (tableCellProps?.sx as any)),

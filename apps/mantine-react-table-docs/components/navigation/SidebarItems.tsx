@@ -56,11 +56,7 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                     ? theme.colors.gray[3]
                     : theme.colors.gray[7],
                   display: 'block',
-                  fontSize: !items
-                    ? '0.9rem'
-                    : depth === 1
-                    ? '20px'
-                    : '16px',
+                  fontSize: !items ? '0.9rem' : depth === 1 ? '20px' : '16px',
                   height: items ? '32px' : '2rem',
                   lineHeight: depth === 0 && !items ? '20px' : '12px',
                   padding: '0',
@@ -81,7 +77,9 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                 >
                   {label}
                   {external && (
-                    <IconExternalLink style={{ margin: '-6px 4px', transform: 'scale(0.7)' }} />
+                    <IconExternalLink
+                      style={{ margin: '-6px 4px', transform: 'scale(0.7)' }}
+                    />
                   )}
                 </Flex>
               </UnstyledButton>

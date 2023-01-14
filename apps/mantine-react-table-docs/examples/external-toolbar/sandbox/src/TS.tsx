@@ -2,7 +2,7 @@ import React, { FC, useReducer, useRef, useState } from 'react';
 import MantineReactTable, {
   DensityState,
   MRT_ColumnDef,
-  MRT_FullScreenToggleButton,
+  MRT_ToggleFullScreenButton,
   MRT_GlobalFilterTextField,
   MRT_ShowHideColumnsButton,
   MRT_TableInstance,
@@ -16,16 +16,8 @@ import type {
   RowSelectionState,
   VisibilityState,
 } from '@tanstack/react-table';
-import {
-  alpha,
-  Box,
-  Button,
-  IconButton,
-  Toolbar,
-  Tooltip,
-  Typography,
-} from '@mui/material';
-import PrintIcon from '@mui/icons-material/Print';
+import { ActionIcon, Box, Button, Flex, Text, Tooltip } from '@mantine/core';
+import { IconPrinter } from '@tabler/icons';
 import { data, Person } from './makeData';
 
 //column definitions...
@@ -70,18 +62,17 @@ const Example: FC = () => {
     <Box sx={{ border: 'gray 2px dashed', padding: '16px' }}>
       {/* Our Custom External Top Toolbar */}
       {tableInstanceRef.current && (
-        <Toolbar
+        <Flex
           sx={(theme) => ({
-            backgroundColor: alpha(theme.colors.teal[3], 0.2),
+            backgroundColor: theme.fn.rgba(theme.colors.teal[3], 0.2),
             borderRadius: '4px',
-            display: 'flex',
-            flexDirection: {
-              xs: 'column',
-              lg: 'row',
-            },
+            flexDirection: 'row',
             gap: '16px',
             justifyContent: 'space-between',
             padding: '24px 0',
+            '@media max-width: 768px': {
+              flexDirection: 'column',
+            },
           })}
         >
           <Box>
@@ -90,7 +81,7 @@ const Example: FC = () => {
               onClick={() => {
                 alert('Add User');
               }}
-              variant="contained"
+              variant="filled"
             >
               Crete New Account
             </Button>
@@ -100,20 +91,20 @@ const Example: FC = () => {
             <MRT_ToggleFiltersButton table={tableInstanceRef.current} />
             <MRT_ShowHideColumnsButton table={tableInstanceRef.current} />
             <MRT_ToggleDensePaddingButton table={tableInstanceRef.current} />
-            <Tooltip arrow title="Print">
-              <IconButton onClick={() => window.print()}>
-                <PrintIcon />
-              </IconButton>
+            <Tooltip withArrow label="Print">
+              <ActionIcon onClick={() => window.print()}>
+                <IconPrinter />
+              </ActionIcon>
             </Tooltip>
-            <MRT_FullScreenToggleButton table={tableInstanceRef.current} />
+            <MRT_ToggleFullScreenButton table={tableInstanceRef.current} />
           </Box>
-        </Toolbar>
+        </Flex>
       )}
-      <Typography padding="16px 4px">
+      <Text p="16px 4px">
         {
           "Hey I'm some page content. I'm just one of your normal components between your custom toolbar and the MRT Table below"
         }
-      </Typography>
+      </Text>
       {/* The MRT Table */}
       <MantineReactTable
         columns={columns}
@@ -164,9 +155,8 @@ const Example: FC = () => {
       />
       {/* Our Custom Bottom Toolbar */}
       {tableInstanceRef.current && (
-        <Toolbar
+        <Flex
           sx={{
-            display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
           }}
@@ -178,7 +168,7 @@ const Example: FC = () => {
               table={tableInstanceRef.current}
             />
           </Box>
-        </Toolbar>
+        </Flex>
       )}
     </Box>
   );

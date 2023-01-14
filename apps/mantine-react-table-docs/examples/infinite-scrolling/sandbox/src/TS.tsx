@@ -8,7 +8,7 @@ import React, {
   useState,
 } from 'react';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
-import { Typography } from '@mui/material';
+import { Text } from '@mantine/core';
 import type { ColumnFiltersState, SortingState } from '@tanstack/react-table';
 import type { Virtualizer } from '@tanstack/react-virtual';
 import {
@@ -159,9 +159,9 @@ const Example: FC = () => {
       onGlobalFilterChange={setGlobalFilter}
       onSortingChange={setSorting}
       renderBottomToolbarCustomActions={() => (
-        <Typography>
+        <Text>
           Fetched {totalFetched} of {totalDBRowCount} total rows.
-        </Typography>
+        </Text>
       )}
       state={{
         columnFilters,

@@ -19,7 +19,7 @@ export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   minHeight: '3.5rem',
   overflow: 'visible',
   padding: '0 !important',
-  transition: 'all 150ms ease-in-out',
+  transition: 'all 100ms ease-in-out',
   zIndex: 1,
 });
 
@@ -59,10 +59,12 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
   return (
     <Box
       {...toolbarProps}
-      ref={(ref: HTMLDivElement) => {
-        topToolbarRef.current = ref;
-        if (toolbarProps?.ref) {
-          toolbarProps.ref.current = ref;
+      ref={(node: HTMLDivElement) => {
+        if (node) {
+          topToolbarRef.current = node;
+          if (toolbarProps?.ref) {
+            toolbarProps.ref.current = node;
+          }
         }
       }}
       sx={(theme) =>

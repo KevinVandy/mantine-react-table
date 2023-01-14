@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import MantineReactTable, { MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
-import { Box, Button } from '@mui/material';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { Box, Button } from '@mantine/core';
+import { IconDownload } from '@tabler/icons';
 import { ExportToCsv } from 'export-to-csv'; //or use your library of choice here
 import { data, Person } from './makeData';
 
@@ -78,8 +78,8 @@ const Example: FC = () => {
             color="lightblue"
             //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
             onClick={handleExportData}
-            leftIcon={<FileDownloadIcon />}
-            variant="contained"
+            leftIcon={<IconDownload />}
+            variant="filled"
           >
             Export All Data
           </Button>
@@ -89,8 +89,8 @@ const Example: FC = () => {
             onClick={() =>
               handleExportRows(table.getPrePaginationRowModel().rows)
             }
-            leftIcon={<FileDownloadIcon />}
-            variant="contained"
+            leftIcon={<IconDownload />}
+            variant="filled"
           >
             Export All Rows
           </Button>
@@ -98,8 +98,8 @@ const Example: FC = () => {
             disabled={table.getRowModel().rows.length === 0}
             //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
             onClick={() => handleExportRows(table.getRowModel().rows)}
-            leftIcon={<FileDownloadIcon />}
-            variant="contained"
+            leftIcon={<IconDownload />}
+            variant="filled"
           >
             Export Page Rows
           </Button>
@@ -109,8 +109,8 @@ const Example: FC = () => {
             }
             //only export selected rows
             onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
-            leftIcon={<FileDownloadIcon />}
-            variant="contained"
+            leftIcon={<IconDownload />}
+            variant="filled"
           >
             Export Selected Rows
           </Button>

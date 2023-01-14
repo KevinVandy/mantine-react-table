@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import MantineReactTable from 'mantine-react-table';
-import { ContentCopy } from '@mui/icons-material';
-import { data } from './makeData';
+import { data, Person } from './makeData';
 
 const Example = () => {
   const columns = useMemo(
@@ -9,30 +8,36 @@ const Example = () => {
       {
         accessorKey: 'firstName',
         header: 'First Name',
+        footer: 'First Name',
       },
       {
         accessorKey: 'lastName',
         header: 'Last Name',
+        footer: 'Last Name',
       },
       {
         accessorKey: 'email',
         header: 'Email',
-        enableClickToCopy: true,
-        mantineCopyButtonProps: {
-          fullWidth: true,
-          leftIcon: <ContentCopy />,
-          sx: { justifyContent: 'flex-start' },
-        },
+        footer: 'Email',
       },
       {
         accessorKey: 'city',
         header: 'City',
+        footer: 'City',
       },
     ],
     [],
   );
 
-  return <MantineReactTable columns={columns} data={data} />;
+  return (
+    <MantineReactTable
+      columns={columns}
+      data={data}
+      enableStickyHeader
+      enableStickyFooter
+      mantineTableContainerProps={{ sx: { maxHeight: '300px' } }}
+    />
+  );
 };
 
 export default Example;

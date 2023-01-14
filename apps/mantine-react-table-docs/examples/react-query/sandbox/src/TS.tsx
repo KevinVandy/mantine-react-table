@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useState } from 'react';
 import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
-import { IconButton, Tooltip } from '@mui/material';
-import RefreshIcon from '@mui/icons-material/Refresh';
+import { ActionIcon, Tooltip } from '@mantine/core';
+import { IconRefresh } from '@tabler/icons';
 import type {
   ColumnFiltersState,
   PaginationState,
@@ -117,10 +117,10 @@ const Example: FC = () => {
       onPaginationChange={setPagination}
       onSortingChange={setSorting}
       renderTopToolbarCustomActions={() => (
-        <Tooltip arrow title="Refresh Data">
-          <IconButton onClick={() => refetch()}>
-            <RefreshIcon />
-          </IconButton>
+        <Tooltip withArrow label="Refresh Data">
+          <ActionIcon onClick={() => refetch()}>
+            <IconRefresh />
+          </ActionIcon>
         </Tooltip>
       )}
       rowCount={data?.meta?.totalRowCount ?? 0}

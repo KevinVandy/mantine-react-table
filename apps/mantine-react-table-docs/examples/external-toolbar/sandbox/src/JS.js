@@ -1,6 +1,6 @@
 import React, { useReducer, useRef, useState } from 'react';
 import MantineReactTable, {
-  MRT_FullScreenToggleButton,
+  MRT_ToggleFullScreenButton,
   MRT_GlobalFilterTextField,
   MRT_ShowHideColumnsButton,
   MRT_TablePagination,
@@ -8,16 +8,8 @@ import MantineReactTable, {
   MRT_ToggleFiltersButton,
   MRT_ToolbarAlertBanner,
 } from 'mantine-react-table';
-import {
-  alpha,
-  Box,
-  Button,
-  IconButton,
-  Toolbar,
-  Tooltip,
-  Typography,
-} from '@mui/material';
-import PrintIcon from '@mui/icons-material/Print';
+import { ActionIcon, Box, Button, Flex, Text, Tooltip } from '@mantine/core';
+import { IconPrinter } from '@tabler/icons';
 import { data } from './makeData';
 
 //column definitions...
@@ -43,15 +35,22 @@ const columns = [
 
 const Example = () => {
   //we need a table instance ref to pass as a prop to the MRT Toolbar buttons
-  const tableInstanceRef = useRef(null);
+  const tableInstanceRef = useRef < MRT_TableInstance < Person >> null;
 
   //we will also need some weird re-render hacks to force the MRT_ components to re-render since ref changes do not trigger a re-render
   const rerender = useReducer(() => ({}), {})[1];
 
   //we need to manage the state that should trigger the MRT_ components in our custom toolbar to re-render
-  const [columnVisibility, setColumnVisibility] = useState({});
-  const [density, setDensity] = useState('md');
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 });
+  const [columnVisibility, setColumnVisibility] =
+    useState < VisibilityState > {};
+  const [density, setDensity] = useState < DensityState > 'md';
+  const [pagination, setPagination] =
+    useState <
+    PaginationState >
+    {
+      pageIndex: 0,
+      pageSize: 5,
+    };
   const [rowSelection, setRowSelection] = useState({});
   const [showColumnFilters, setShowColumnFilters] = useState(false);
 
@@ -59,18 +58,17 @@ const Example = () => {
     <Box sx={{ border: 'gray 2px dashed', padding: '16px' }}>
       {/* Our Custom External Top Toolbar */}
       {tableInstanceRef.current && (
-        <Toolbar
+        <Flex
           sx={(theme) => ({
-            backgroundColor: alpha(theme.colors.teal[3], 0.2),
+            backgroundColor: theme.fn.rgba(theme.colors.teal[3], 0.2),
             borderRadius: '4px',
-            display: 'flex',
-            flexDirection: {
-              xs: 'column',
-              lg: 'row',
-            },
+            flexDirection: 'row',
             gap: '16px',
             justifyContent: 'space-between',
             padding: '24px 0',
+            '@media max-width: 768px': {
+              flexDirection: 'column',
+            },
           })}
         >
           <Box>
@@ -79,7 +77,7 @@ const Example = () => {
               onClick={() => {
                 alert('Add User');
               }}
-              variant="contained"
+              variant="filled"
             >
               Crete New Account
             </Button>
@@ -89,20 +87,20 @@ const Example = () => {
             <MRT_ToggleFiltersButton table={tableInstanceRef.current} />
             <MRT_ShowHideColumnsButton table={tableInstanceRef.current} />
             <MRT_ToggleDensePaddingButton table={tableInstanceRef.current} />
-            <Tooltip arrow title="Print">
-              <IconButton onClick={() => window.print()}>
-                <PrintIcon />
-              </IconButton>
+            <Tooltip withArrow label="Print">
+              <ActionIcon onClick={() => window.print()}>
+                <IconPrinter />
+              </ActionIcon>
             </Tooltip>
-            <MRT_FullScreenToggleButton table={tableInstanceRef.current} />
+            <MRT_ToggleFullScreenButton table={tableInstanceRef.current} />
           </Box>
-        </Toolbar>
+        </Flex>
       )}
-      <Typography padding="16px 4px">
+      <Text p="16px 4px">
         {
           "Hey I'm some page content. I'm just one of your normal components between your custom toolbar and the MRT Table below"
         }
-      </Typography>
+      </Text>
       {/* The MRT Table */}
       <MantineReactTable
         columns={columns}
@@ -153,9 +151,8 @@ const Example = () => {
       />
       {/* Our Custom Bottom Toolbar */}
       {tableInstanceRef.current && (
-        <Toolbar
+        <Flex
           sx={{
-            display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
           }}
@@ -167,7 +164,7 @@ const Example = () => {
               table={tableInstanceRef.current}
             />
           </Box>
-        </Toolbar>
+        </Flex>
       )}
     </Box>
   );

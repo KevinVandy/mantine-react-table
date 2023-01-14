@@ -30,7 +30,7 @@ export const MRT_TableHeadCellSortLabel: FC<Props> = ({ header, table }) => {
         size="xs"
         sx={{
           opacity: column.getIsSorted() ? 1 : 0,
-          transition: 'opacity 150ms ease-in-out',
+          transition: 'opacity 100ms ease-in-out',
           '&:hover': {
             opacity: 1,
           },

@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import MantineReactTable from 'mantine-react-table';
-import { Typography } from '@mui/material';
+import { Text } from '@mantine/core';
 import {
   QueryClient,
   QueryClientProvider,
@@ -139,9 +139,9 @@ const Example = () => {
       onGlobalFilterChange={setGlobalFilter}
       onSortingChange={setSorting}
       renderBottomToolbarCustomActions={() => (
-        <Typography>
+        <Text>
           Fetched {totalFetched} of {totalDBRowCount} total rows.
-        </Typography>
+        </Text>
       )}
       state={{
         columnFilters,

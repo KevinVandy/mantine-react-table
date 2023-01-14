@@ -125,7 +125,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
             {...actionIconProps}
             sx={(theme) => ({
               opacity: 0.5,
-              transition: 'opacity 150ms',
+              transition: 'opacity 100ms',
               '&:hover': {
                 opacity: 1,
               },

@@ -14,7 +14,10 @@ export const SampleCodeSnippet: FC<Props> = (props) => {
     return (
       <code
         style={{
-          backgroundColor: theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.1),
+          backgroundColor: theme.fn.rgba(
+            theme.colors[theme.primaryColor][7],
+            0.1,
+          ),
           padding: '4px',
           margin: '0 0.5ch',
         }}
