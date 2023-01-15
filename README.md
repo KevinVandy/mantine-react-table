@@ -2,6 +2,8 @@
 
 A work in progress fork of [Material React Table](https://www.material-react-table.com)
 
+Coming soon in early 2023, but you can try out the beta now.
+
 <a href="https://npmjs.com/package/mantine-react-table" target="_blank">
   <img alt="" src="https://badgen.net/npm/v/mantine-react-table?color=blue" />
 </a>
@@ -97,12 +99,12 @@ _**Fully Fleshed out [Docs](https://www.mantine-react-table.com/docs/guides#guid
 
 View the full [Installation Docs](https://www.mantine-react-table.com/docs/getting-started/install)
 
-1. Ensure that you have React 17 or later installed (MUI V5 requires React 17 or 18)
+1. Ensure that you have React 17 or later installed
 
-2. Install Peer Dependencies (Material UI V5)
+2. Install Peer Dependencies (Mantine V5 and Tabler Icons)
 
 ```bash
-npm install @mui/material @mui/icons-material @emotion/react @emotion/styled
+npm install @mantine/core @mantine/hooks @emotion/react @tabler/icons
 ```
 
 3. Install mantine-react-table
@@ -114,6 +116,8 @@ npm install mantine-react-table
 > _`@tanstack/react-table`, `@tanstack/react-virtual`, and `@tanstack/match-sorter-utils`_ are internal dependencies, so you do NOT need to install them yourself.
 
 ### Usage
+
+> Docs coming soon
 
 > Read the full usage docs [here](https://www.mantine-react-table.com/docs/getting-started/usage/)
 

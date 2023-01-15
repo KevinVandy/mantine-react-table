@@ -34,7 +34,7 @@ pnpm i
 pnpm storybook
 ```
 
-The Storybook site will open on `port 6006` by default.
+The Storybook site will open on `port 6007` by default.
 
 #### Run the Docs for Local Development
 
@@ -42,7 +42,7 @@ The Storybook site will open on `port 6006` by default.
 pnpm docs:dev
 ```
 
-The Docs site will open on `port 3000` by default.
+The Docs site will open on `port 3001` by default.
 
 > Note: If you are contributing a new locale and are trying to test it in the docs site, you will need to run `pnpm lib:build` and then `pnpm docs:dev` before it can be imported.
 
