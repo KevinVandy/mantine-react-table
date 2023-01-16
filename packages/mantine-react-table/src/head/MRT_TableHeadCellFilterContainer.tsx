@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Collapse } from '@mantine/core';
 import { MRT_FilterRangeFields } from '../inputs/MRT_FilterRangeFields';
-import { MRT_FilterTextField } from '../inputs/MRT_FilterTextField';
+import { MRT_FilterTextInput } from '../inputs/MRT_FilterTextInput';
 import { MRT_Header, MRT_TableInstance } from '..';
 import { MRT_FilterCheckbox } from '../inputs/MRT_FilterCheckbox';
 
@@ -29,7 +29,7 @@ export const MRT_TableHeadCellFilterContainer: FC<Props> = ({
         ) ? (
         <MRT_FilterRangeFields header={header} table={table} />
       ) : (
-        <MRT_FilterTextField header={header} table={table} />
+        <MRT_FilterTextInput header={header} table={table} />
       )}
     </Collapse>
   );

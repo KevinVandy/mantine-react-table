@@ -288,16 +288,6 @@ export const columnOptions: ColumnOption[] = [
     type: 'MRT_FilterFn',
   },
   {
-    columnOption: 'filterSelectOptions',
-    defaultValue: '',
-    description: '',
-    link: '',
-    linkText: '',
-    source: 'MRT',
-    required: false,
-    type: 'Array<{ text: string; value: string }>',
-  },
-  {
     columnOption: 'filterVariant',
     defaultValue: 'text',
     description:
@@ -306,7 +296,7 @@ export const columnOptions: ColumnOption[] = [
     linkText: '',
     source: 'MRT',
     required: false,
-    type: "'text' | 'select' | 'multi-select' | 'range'",
+    type: "'text' | 'select' | 'multi-select' | 'range' | 'checkbox'",
   },
   {
     columnOption: 'header',

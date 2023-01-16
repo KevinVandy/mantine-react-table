@@ -114,7 +114,7 @@ export const FilterFnAndFilterVariants: Story<MantineReactTableProps> = () => (
       {
         header: 'Gender',
         accessorKey: 'gender',
-        filterSelectOptions: ['Male', 'Female', 'Other'],
+        mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
         filterVariant: 'select',
       },
       {
@@ -125,16 +125,18 @@ export const FilterFnAndFilterVariants: Story<MantineReactTableProps> = () => (
       {
         header: 'State',
         accessorKey: 'state',
-        filterSelectOptions: [
-          { text: 'AL', value: 'Alabama' },
-          { text: 'AZ', value: 'Arizona' },
-          { text: 'CA', value: 'California' },
-          { text: 'FL', value: 'Florida' },
-          { text: 'GA', value: 'Georgia' },
-          { text: 'NY', value: 'New York' },
-          { text: 'TX', value: 'Texas' },
-        ],
-        filterVariant: 'multi-select',
+        // mantineFilterSelectProps: {
+        //   data: [
+        //     { value: 'AL', label: 'Alabama' },
+        //     { value: 'AZ', label: 'Arizona' },
+        //     { value: 'CA', label: 'California' },
+        //     { value: 'FL', label: 'Florida' },
+        //     { value: 'GA', label: 'Georgia' },
+        //     { value: 'NY', label: 'New York' },
+        //     { value: 'TX', label: 'Texas' },
+        //   ],
+        // },
+        // filterVariant: 'multi-select',
       },
     ]}
     data={data}
@@ -161,7 +163,7 @@ export const FilteringChangeModeEnabled: Story<MantineReactTableProps> = () => (
       {
         header: 'Gender',
         accessorKey: 'gender',
-        filterSelectOptions: ['Male', 'Female', 'Other'],
+        mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
       },
       {
         header: 'Address',

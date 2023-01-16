@@ -8,7 +8,7 @@ interface Props<TData extends Record<string, any> = {}> {
   showLabel?: boolean;
 }
 
-export const MRT_EditCellTextField = <TData extends Record<string, any> = {}>({
+export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
   cell,
   showLabel,
   table,

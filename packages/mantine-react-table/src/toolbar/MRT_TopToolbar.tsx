@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Box, Flex, MantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { MRT_GlobalFilterTextField } from '../inputs/MRT_GlobalFilterTextField';
+import { MRT_GlobalFilterTextInput } from '../inputs/MRT_GlobalFilterTextInput';
 import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
@@ -100,7 +100,7 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
         }}
       >
         {enableGlobalFilter && positionGlobalFilter === 'left' && (
-          <MRT_GlobalFilterTextField table={table} />
+          <MRT_GlobalFilterTextInput table={table} />
         )}
         {renderTopToolbarCustomActions?.({ table }) ?? <span />}
         {enableToolbarInternalActions ? (
@@ -111,14 +111,14 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
             }}
           >
             {enableGlobalFilter && positionGlobalFilter === 'right' && (
-              <MRT_GlobalFilterTextField table={table} />
+              <MRT_GlobalFilterTextInput table={table} />
             )}
             <MRT_ToolbarInternalButtons table={table} />
           </Flex>
         ) : (
           enableGlobalFilter &&
           positionGlobalFilter === 'right' && (
-            <MRT_GlobalFilterTextField table={table} />
+            <MRT_GlobalFilterTextInput table={table} />
           )
         )}
       </Flex>

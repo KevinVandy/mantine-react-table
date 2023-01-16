@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Modal, Stack, Text } from '@mantine/core';
 import { MRT_EditActionButtons } from '../buttons/MRT_EditActionButtons';
-import { MRT_EditCellTextField } from '../inputs/MRT_EditCellTextField';
+import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -43,7 +43,7 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
             .getAllCells()
             .filter((cell) => cell.column.columnDef.columnDefType === 'data')
             .map((cell) => (
-              <MRT_EditCellTextField
+              <MRT_EditCellTextInput
                 cell={cell as any}
                 key={cell.id}
                 showLabel

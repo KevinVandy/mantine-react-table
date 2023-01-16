@@ -9,7 +9,7 @@ import React, {
   useState,
 } from 'react';
 import { Box, Skeleton, useMantineTheme } from '@mantine/core';
-import { MRT_EditCellTextField } from '../inputs/MRT_EditCellTextField';
+import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyRowGrabHandle } from './MRT_TableBodyRowGrabHandle';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
@@ -233,7 +233,7 @@ export const MRT_TableBodyCell: FC<Props> = ({
             !row.getIsGrouped()) ? (
           columnDef.Cell?.({ cell, column, row, table })
         ) : isEditing ? (
-          <MRT_EditCellTextField cell={cell} table={table} />
+          <MRT_EditCellTextInput cell={cell} table={table} />
         ) : (enableClickToCopy || columnDef.enableClickToCopy) &&
           columnDef.enableClickToCopy !== false ? (
           <MRT_CopyButton cell={cell} table={table}>

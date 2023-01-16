@@ -8,7 +8,7 @@ interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_GlobalFilterTextField = <
+export const MRT_GlobalFilterTextInput = <
   TData extends Record<string, any> = {},
 >({
   table,

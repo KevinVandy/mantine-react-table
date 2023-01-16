@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react';
-import { Box, Flex, Divider, Button } from '@mantine/core';
+import { Box, Flex, Divider, Button, Select } from '@mantine/core';
 import { Prism } from '@mantine/prism';
 import {
   IconBrandTypescript,
@@ -12,12 +12,29 @@ import {
 } from '@tabler/icons';
 import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
+import { useThemeContext } from '../../styles/ThemeContext';
+
+const mantineColors = [
+  'dark',
+  'gray',
+  'red',
+  'pink',
+  'grape',
+  'violet',
+  'indigo',
+  'blue',
+  'cyan',
+  'teal',
+  'green',
+  'lime',
+  'yellow',
+  'orange',
+];
 
 export interface Props {
   Component?: FC;
   apiCode?: string;
   javaScriptCode?: string;
-  showCodeSandboxLink?: boolean;
   tableId: string;
   typeScriptCode: string;
 }
@@ -26,11 +43,12 @@ export const SourceCodeSnippet: FC<Props> = ({
   Component,
   apiCode,
   javaScriptCode,
-  showCodeSandboxLink = true,
   tableId,
   typeScriptCode,
 }) => {
   const plausible = usePlausible();
+  const { primaryColor, setPrimaryColor, isLightTheme, setIsLightTheme } =
+    useThemeContext();
   const [defaultTS, setDefaultTS] = useState(true);
 
   useEffect(
@@ -68,7 +86,14 @@ export const SourceCodeSnippet: FC<Props> = ({
             <LinkHeading tableId={tableId} order={4}>
               Demo
             </LinkHeading>
-            {showCodeSandboxLink && (
+            <Flex
+              sx={{
+                justifyContent: 'space-between',
+                flexGrow: 1,
+                flexWrap: 'wrap',
+                gap: '1rem',
+              }}
+            >
               <Flex
                 sx={{
                   flexWrap: 'wrap',
@@ -126,7 +151,23 @@ export const SourceCodeSnippet: FC<Props> = ({
                   </Button>
                 </a>
               </Flex>
-            )}
+              <Flex gap="1rem">
+                <Select
+                  aria-label='Select theme color'
+                  data={mantineColors}
+                  value={primaryColor}
+                  onChange={setPrimaryColor}
+                  sx={{ width: '100px' }}
+                />
+                <Select
+                  aria-label='Select light/dark theme'
+                  data={['light', 'dark']}
+                  value={isLightTheme ? 'light' : 'dark'}
+                  onChange={(value) => setIsLightTheme(value === 'light')}
+                  sx={{ width: '80px' }}
+                />
+              </Flex>
+            </Flex>
           </Box>
           <Component />
         </>

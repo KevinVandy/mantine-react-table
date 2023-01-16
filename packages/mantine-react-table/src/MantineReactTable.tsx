@@ -20,6 +20,8 @@ import type {
   TextInputProps,
   MantineSize,
   UnstyledButtonProps,
+  SelectProps,
+  MultiSelectProps,
 } from '@mantine/core';
 import type {
   AggregationFn,
@@ -385,7 +387,6 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   enableColumnOrdering?: boolean;
   enableEditing?: boolean;
   filterFn?: MRT_FilterFn<TData>;
-  filterSelectOptions?: (string | { text: string; value: any })[];
   filterVariant?: 'text' | 'select' | 'multi-select' | 'range' | 'checkbox';
   /**
    * footer must be a string. If you want custom JSX to render the footer, you can also specify a `Footer` option. (Capital F)
@@ -458,6 +459,28 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         column: MRT_Column<TData>;
         table: MRT_TableInstance<TData>;
       }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
+  mantineFilterMultiSelectProps?:
+    | (Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>)
+    | (({
+        table,
+        column,
+        rangeFilterIndex,
+      }: {
+        table: MRT_TableInstance<TData>;
+        column: MRT_Column<TData>;
+        rangeFilterIndex?: number;
+      }) => Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>);
+  mantineFilterSelectProps?:
+    | (Partial<SelectProps> & HTMLPropsRef<HTMLInputElement>)
+    | (({
+        table,
+        column,
+        rangeFilterIndex,
+      }: {
+        table: MRT_TableInstance<TData>;
+        column: MRT_Column<TData>;
+        rangeFilterIndex?: number;
+      }) => Partial<SelectProps> & HTMLPropsRef<HTMLInputElement>);
   mantineFilterTextInputProps?:
     | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
     | (({
@@ -811,6 +834,28 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           column: MRT_Column<TData>;
           table: MRT_TableInstance<TData>;
         }) => CheckboxProps & HTMLPropsRef<HTMLInputElement>);
+    mantineFilterMultiSelectProps?:
+      | (Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>)
+      | (({
+          table,
+          column,
+          rangeFilterIndex,
+        }: {
+          table: MRT_TableInstance<TData>;
+          column: MRT_Column<TData>;
+          rangeFilterIndex?: number;
+        }) => Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>);
+    mantineFilterSelectProps?:
+      | (Partial<SelectProps> & HTMLPropsRef<HTMLInputElement>)
+      | (({
+          table,
+          column,
+          rangeFilterIndex,
+        }: {
+          table: MRT_TableInstance<TData>;
+          column: MRT_Column<TData>;
+          rangeFilterIndex?: number;
+        }) => Partial<SelectProps> & HTMLPropsRef<HTMLInputElement>);
     mantineFilterTextInputProps?:
       | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
       | (({
