@@ -216,7 +216,7 @@ return (
 - `theme.palette.background.default` - used as the background color for most table components by default
 - `theme.palette.divider` - used in dividers in menus and for the column resizing handle
 - `theme.palette.info.main` - used in the Toolbar Alert Banner and the Toolbar DropZone component
-- `theme.colors[theme.primaryColor][7]` - used as the primary color for anything colorful in the table (input fields, checkboxes, dragging borders, etc.)
+- `theme.colors[theme.primaryColor][getPrimaryShade(theme)]` - used as the primary color for anything colorful in the table (input fields, checkboxes, dragging borders, etc.)
 
 Notice that by default, the <Box component="span" sx={{color: "teal", display: 'inline'}}>secondary color</Box> isn't used at all. Remember though that you can always override which color a component uses by passing in a `mantine...Props` prop, like how we changed checkboxes to use the secondary color in the [example above](#static-prop-objects).
 

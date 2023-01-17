@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Box, Collapse } from '@mantine/core';
+import { getPrimaryShade } from '../column.utils';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Row, MRT_TableInstance } from '..';
 

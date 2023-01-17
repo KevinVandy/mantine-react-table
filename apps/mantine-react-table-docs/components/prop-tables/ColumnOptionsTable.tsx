@@ -5,6 +5,7 @@ import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { ColumnOption, columnOptions } from './columnOptions';
+import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
 
 interface Props {
   onlyProps?: Set<keyof MRT_ColumnDef>;
@@ -28,7 +29,10 @@ const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
             row.original?.required ? (
               <Text
                 component="strong"
-                sx={(theme) => ({ color: theme.colors[theme.primaryColor][7] })}
+                sx={(theme) => ({
+                  color:
+                    theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                })}
               >
                 {cell.getValue<string>()}*
               </Text>

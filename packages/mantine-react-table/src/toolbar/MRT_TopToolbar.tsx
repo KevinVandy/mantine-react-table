@@ -7,6 +7,7 @@ import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
+import { getPrimaryShade } from '../column.utils';
 import type { MRT_TableInstance } from '..';
 
 export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({

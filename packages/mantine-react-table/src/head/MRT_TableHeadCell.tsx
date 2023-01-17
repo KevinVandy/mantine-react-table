@@ -6,7 +6,7 @@ import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
 import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
 import { MRT_TableHeadCellResizeHandle } from './MRT_TableHeadCellResizeHandle';
 import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
-import { getCommonCellStyles } from '../column.utils';
+import { getCommonCellStyles, getPrimaryShade } from '../column.utils';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {
@@ -76,7 +76,9 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
       draggingColumn?.id === column.id
         ? `1px dashed ${theme.colors.gray[7]}`
         : hoveredColumn?.id === column.id
-        ? `2px dashed ${theme.colors[theme.primaryColor][7]}`
+        ? `2px dashed ${
+            theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+          }`
         : undefined,
     [draggingColumn, hoveredColumn],
   );
@@ -111,7 +113,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
 
   return (
     <Box
-      component="td"
+      component="th"
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={header.colSpan}
       onDragEnter={handleDragEnter}
@@ -122,12 +124,6 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
       }}
       {...tableCellProps}
       sx={(theme: MantineTheme) => ({
-        borderBottom:
-          columnDefType !== 'group'
-            ? `1px solid ${
-                theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
-              }`
-            : undefined,
         flexDirection: layoutMode === 'grid' ? 'column' : undefined,
         fontWeight: 'bold',
         overflow: 'visible',

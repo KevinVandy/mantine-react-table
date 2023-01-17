@@ -1,16 +1,21 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { MantineColor, MantineProvider } from '@mantine/core';
 
+export type MantineShade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 const ThemeContext = createContext<{
   isLightTheme: boolean;
   setIsLightTheme: (isLightTheme: boolean) => void;
   primaryColor: MantineColor;
   setPrimaryColor: (primaryColor: MantineColor) => void;
+  primaryShade: MantineShade;
+  setPrimaryShade: (primaryShade: MantineShade) => void;
 }>({} as any);
 
 export const ThemeContextProvider = ({ children }) => {
   const [isLightTheme, setIsLightTheme] = useState(false);
   const [primaryColor, setPrimaryColor] = useState<MantineColor>('yellow');
+  const [primaryShade, setPrimaryShade] = useState<MantineShade>(7);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -28,6 +33,7 @@ export const ThemeContextProvider = ({ children }) => {
     } else if (!isLightTheme && primaryColor === 'orange') {
       setPrimaryColor('yellow');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLightTheme]);
 
   return (
@@ -37,10 +43,16 @@ export const ThemeContextProvider = ({ children }) => {
         setIsLightTheme,
         primaryColor,
         setPrimaryColor,
+        primaryShade,
+        setPrimaryShade,
       }}
     >
       <MantineProvider
-        theme={{ colorScheme: isLightTheme ? 'light' : 'dark', primaryColor }}
+        theme={{
+          colorScheme: isLightTheme ? 'light' : 'dark',
+          primaryColor,
+          primaryShade,
+        }}
         withGlobalStyles
         withNormalizeCSS
       >

@@ -68,10 +68,7 @@ function App({ Component, pageProps }: AppProps) {
       >
         <ThemeContextProvider>
           <MDXProvider components={mdxComponents}>
-            <TopBar
-              navOpen={navOpen || isDesktop}
-              setNavOpen={setNavOpen}
-            />
+            <TopBar navOpen={navOpen || isDesktop} setNavOpen={setNavOpen} />
             <SideBar navOpen={navOpen || isDesktop} setNavOpen={setNavOpen} />
             <Box
               component="main"

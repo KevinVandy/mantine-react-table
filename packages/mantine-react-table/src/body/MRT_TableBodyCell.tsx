@@ -13,7 +13,7 @@ import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyRowGrabHandle } from './MRT_TableBodyRowGrabHandle';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
-import { getCommonCellStyles } from '../column.utils';
+import { getCommonCellStyles, getPrimaryShade } from '../column.utils';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Cell, MRT_TableInstance } from '..';
 
@@ -111,7 +111,9 @@ export const MRT_TableBodyCell: FC<Props> = ({
       draggingColumn?.id === column.id
         ? `1px dashed ${theme.colors.gray[7]}`
         : hoveredColumn?.id === column.id
-        ? `2px dashed ${theme.colors[theme.primaryColor][7]}`
+        ? `2px dashed ${
+            theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+          }`
         : undefined,
     [draggingColumn, hoveredColumn],
   );

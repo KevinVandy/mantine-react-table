@@ -17,6 +17,7 @@ import { IconSun, IconMoonStars } from '@tabler/icons';
 import { useThemeContext } from '../../styles/ThemeContext';
 import docsearch from '@docsearch/js';
 import '@docsearch/css';
+import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
 
 interface Props {
   navOpen: boolean;
@@ -75,7 +76,7 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
           backgroundColor:
             theme.colorScheme === 'dark'
               ? theme.colors.dark[7]
-              : theme.colors[theme.primaryColor][8],
+              : theme.colors[theme.primaryColor][getPrimaryShade(theme)],
           display: 'flex',
           justifyContent: 'space-between',
           padding: '4px 20px',

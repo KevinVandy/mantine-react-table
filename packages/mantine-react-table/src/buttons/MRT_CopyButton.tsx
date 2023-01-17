@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { UnstyledButton, CopyButton, Tooltip } from '@mantine/core';
 import { MRT_Cell, MRT_TableInstance } from '..';
+import { getPrimaryShade } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
@@ -76,7 +77,7 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
               },
               '&:hover': {
                 backgroundColor: theme.fn.rgba(
-                  theme.colors[theme.primaryColor][7],
+                  theme.colors[theme.primaryColor][getPrimaryShade(theme)],
                   0.1,
                 ),
               },

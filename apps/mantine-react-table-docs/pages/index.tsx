@@ -8,6 +8,7 @@ import { ComparisonTable } from '../components/mdx/ComparisonTable';
 import { LinkHeading } from '../components/mdx/LinkHeading';
 import { FeatureTable } from '../components/mdx/FeatureTable';
 import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
+import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
 
 const HomePage = () => {
   return (
@@ -38,7 +39,7 @@ const HomePage = () => {
           <Box
             sx={(theme) => ({
               background: `-webkit-linear-gradient(left, ${
-                theme.colors[theme.primaryColor][7]
+                theme.colors[theme.primaryColor][getPrimaryShade(theme)]
               }, ${theme.colors.teal[7]})`,
               display: 'inline',
               WebkitBackgroundClip: 'text',
@@ -81,7 +82,7 @@ const HomePage = () => {
           <Link href="https://mantine.dev/" passHref legacyBehavior>
             <Anchor
               sx={(theme) => ({
-                color: theme.colors[theme.primaryColor][7],
+                color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
                 textDecoration: 'none',
                 '&:hover': { textDecoration: 'underline' },
               })}
@@ -162,13 +163,16 @@ const HomePage = () => {
               size="lg"
               sx={(theme) => ({
                 backgroundColor: theme.fn.rgba(
-                  theme.colors[theme.primaryColor][7],
+                  theme.colors[theme.primaryColor][getPrimaryShade(theme)],
                   0.1,
                 ),
-                color: theme.colors[theme.primaryColor][8],
+                color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
-                    theme.fn.darken(theme.colors[theme.primaryColor][7], 0.1),
+                    theme.fn.darken(
+                      theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                      0.1,
+                    ),
                     0.2,
                   ),
                 },
@@ -185,13 +189,16 @@ const HomePage = () => {
               size="lg"
               sx={(theme) => ({
                 backgroundColor: theme.fn.rgba(
-                  theme.colors[theme.primaryColor][7],
+                  theme.colors[theme.primaryColor][getPrimaryShade(theme)],
                   0.1,
                 ),
-                color: theme.colors[theme.primaryColor][8],
+                color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
-                    theme.fn.darken(theme.colors[theme.primaryColor][7], 0.1),
+                    theme.fn.darken(
+                      theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                      0.1,
+                    ),
                     0.2,
                   ),
                 },
@@ -208,13 +215,16 @@ const HomePage = () => {
               size="lg"
               sx={(theme) => ({
                 backgroundColor: theme.fn.rgba(
-                  theme.colors[theme.primaryColor][7],
+                  theme.colors[theme.primaryColor][getPrimaryShade(theme)],
                   0.1,
                 ),
-                color: theme.colors[theme.primaryColor][8],
+                color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
-                    theme.fn.darken(theme.colors[theme.primaryColor][7], 0.1),
+                    theme.fn.darken(
+                      theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                      0.1,
+                    ),
                     0.2,
                   ),
                 },
@@ -245,7 +255,7 @@ const HomePage = () => {
         <Box
           sx={(theme) => ({
             background: `-webkit-linear-gradient(left, ${
-              theme.colors[theme.primaryColor][8]
+              theme.colors[theme.primaryColor][getPrimaryShade(theme)]
             }, ${theme.colors.teal[7]})`,
             display: 'inline',
             WebkitBackgroundClip: 'text',

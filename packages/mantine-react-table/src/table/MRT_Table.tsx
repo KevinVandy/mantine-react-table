@@ -132,6 +132,16 @@ export const MRT_Table: FC<Props> = ({ table }) => {
         display: layoutMode === 'grid' ? 'grid' : 'table',
         tableLayout:
           layoutMode !== 'grid' && enableColumnResizing ? 'fixed' : undefined,
+        '& tr:first-of-type td': {
+          borderTop: `1px solid ${
+            theme.colors.gray[theme.colorScheme === 'dark' ? 8 : 3]
+          } !important`,
+        },
+        '& tr:last-of-type td': {
+          borderBottom: `1px solid ${
+            theme.colors.gray[theme.colorScheme === 'dark' ? 8 : 3]
+          } !important`,
+        },
         ...(tableProps?.sx instanceof Function
           ? tableProps.sx(theme)
           : (tableProps?.sx as any)),

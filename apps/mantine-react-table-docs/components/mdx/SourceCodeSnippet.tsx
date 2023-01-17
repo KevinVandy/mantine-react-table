@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react';
-import { Box, Flex, Divider, Button, Select } from '@mantine/core';
+import { Box, Flex, Divider, Button, Select, Tooltip } from '@mantine/core';
 import { Prism } from '@mantine/prism';
 import {
   IconBrandTypescript,
@@ -12,7 +12,7 @@ import {
 } from '@tabler/icons';
 import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
-import { useThemeContext } from '../../styles/ThemeContext';
+import { MantineShade, useThemeContext } from '../../styles/ThemeContext';
 
 const mantineColors = [
   'dark',
@@ -47,8 +47,14 @@ export const SourceCodeSnippet: FC<Props> = ({
   typeScriptCode,
 }) => {
   const plausible = usePlausible();
-  const { primaryColor, setPrimaryColor, isLightTheme, setIsLightTheme } =
-    useThemeContext();
+  const {
+    primaryColor,
+    setPrimaryColor,
+    isLightTheme,
+    setIsLightTheme,
+    primaryShade,
+    setPrimaryShade,
+  } = useThemeContext();
   const [defaultTS, setDefaultTS] = useState(true);
 
   useEffect(
@@ -152,20 +158,35 @@ export const SourceCodeSnippet: FC<Props> = ({
                 </a>
               </Flex>
               <Flex gap="1rem">
-                <Select
-                  aria-label='Select theme color'
-                  data={mantineColors}
-                  value={primaryColor}
-                  onChange={setPrimaryColor}
-                  sx={{ width: '100px' }}
-                />
-                <Select
-                  aria-label='Select light/dark theme'
-                  data={['light', 'dark']}
-                  value={isLightTheme ? 'light' : 'dark'}
-                  onChange={(value) => setIsLightTheme(value === 'light')}
-                  sx={{ width: '80px' }}
-                />
+                <Tooltip label="Select Theme Primary Shade">
+                  <Select
+                    aria-label="Select theme shade"
+                    data={['1', '2', '3', '4', '5', '6', '7', '8', '9']}
+                    value={primaryShade.toString()}
+                    onChange={(value) =>
+                      setPrimaryShade(+(value as string) as MantineShade)
+                    }
+                    sx={{ width: '60px' }}
+                  />
+                </Tooltip>
+                <Tooltip label="Select Theme Primary Color">
+                  <Select
+                    aria-label="Select theme color"
+                    data={mantineColors}
+                    value={primaryColor}
+                    onChange={setPrimaryColor}
+                    sx={{ width: '100px' }}
+                  />
+                </Tooltip>
+                <Tooltip label="Select Theme Color Scheme">
+                  <Select
+                    aria-label="Select light/dark theme"
+                    data={['light', 'dark']}
+                    value={isLightTheme ? 'light' : 'dark'}
+                    onChange={(value) => setIsLightTheme(value === 'light')}
+                    sx={{ width: '80px' }}
+                  />
+                </Tooltip>
               </Flex>
             </Flex>
           </Box>

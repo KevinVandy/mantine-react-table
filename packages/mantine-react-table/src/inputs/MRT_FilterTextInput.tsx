@@ -224,7 +224,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
 
   const props = {
     disabled: !!filterChipLabel,
-    placeholder:filterPlaceholder,
+    placeholder: filterPlaceholder,
     title: filterPlaceholder,
     onClick: (event: MouseEvent<HTMLInputElement>) => event.stopPropagation(),
   };

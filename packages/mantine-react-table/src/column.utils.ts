@@ -239,7 +239,9 @@ export const getCommonCellStyles = ({
   backgroundColor:
     column.getIsPinned() && column.columnDef.columnDefType !== 'group'
       ? theme.fn.rgba(
-          theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+          theme.colorScheme === 'dark'
+            ? theme.fn.darken(theme.colors.dark[7], 0.02)
+            : theme.white,
           0.97,
         )
       : 'inherit',
@@ -319,3 +321,10 @@ export const MRT_DefaultDisplayColumn: Partial<MRT_ColumnDef> = {
   enableResizing: false,
   enableSorting: false,
 };
+
+export const getPrimaryShade = (theme: MantineTheme): number =>
+  (theme.colorScheme === 'dark'
+    ? // @ts-ignore
+      theme.primaryShade?.dark ?? theme.primaryShade
+    : // @ts-ignore
+      theme.primaryShade?.light ?? theme.primaryShade) ?? 7;
