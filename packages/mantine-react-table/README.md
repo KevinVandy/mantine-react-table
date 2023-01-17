@@ -197,4 +197,4 @@ PRs are Welcome, but please discuss in [GitHub Discussions](https://github.com/K
 
 Read the [Contributing Guide](https://github.com/KevinVandy/mantine-react-table/blob/main/CONTRIBUTING.md) to learn how to run this project locally.
 
-<!-- Use the FORCE, Luke! -->
+<!-- Use the FORCE Luke! -->

@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Box } from '@mantine/core';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
-import { getPrimaryShade } from '../column.utils';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Header, MRT_HeaderGroup, MRT_TableInstance } from '..';
 
