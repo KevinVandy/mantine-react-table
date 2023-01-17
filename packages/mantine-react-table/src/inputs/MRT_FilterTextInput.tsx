@@ -230,7 +230,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
   };
 
   return (
-    <Flex direction="column">
+    <Flex direction="column" sx={{overflow: 'visible'}}>
       <Flex align="flex-end">
         {showChangeModeButton && (
           <Menu withinPortal>
@@ -243,8 +243,8 @@ export const MRT_FilterTextInput: FC<Props> = ({
               <Menu.Target>
                 <ActionIcon
                   aria-label={localization.changeFilterMode}
-                  size="sm"
-                  sx={{ height: '1.75rem', width: '1.75rem' }}
+                  size="md"
+                  sx={{ transform: 'translateY(-2px)' }}
                 >
                   <IconFilter />
                 </ActionIcon>
@@ -346,7 +346,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
         )}
       </Flex>
       {showChangeModeButton ? (
-        <Text component="label" color="dimmed" size="xs" pl="1.6rem">
+        <Text component="label" color="dimmed" size="xs" pl="1.6rem" sx={{whiteSpace: 'nowrap', marginTop: '4px'}}>
           {localization.filterMode.replace(
             '{filterType}',
             // @ts-ignore

@@ -71,13 +71,37 @@ const data = [
     library: 'Mantine React Table',
     libraryLink: '#',
     freeOrLicensed: 'Free MIT',
-    bundleSize: 41,
+    bundleSize: 40,
     bundlePhobiaImg:
       'https://badgen.net/bundlephobia/minzip/mantine-react-table@latest?color=blue',
     bundlePhobiaLink:
       'https://bundlephobia.com/package/mantine-react-table@latest',
     description:
-      'Built on top of TanStack Table V8 and Material UI V5, Mantine React Table (MRT) is a batteries-included React table library that attempts to provide all the table features you need while trying to stay as highly performant and lightweight as possible. Customization is treated as a top priority to let you override any styles you need to change. Initially built in 2022, so it is still somewhat new.',
+      'Built on top of TanStack Table V8 and Mantine UI V5, Mantine React Table (MRT) is a batteries-included React table library that attempts to provide all the table features you need while trying to stay highly performant and relatively lightweight. Customization is treated as a top priority to let you override any styles you need to change. Mantine React Table was forked from Material React Table and is being built in 2023.',
+  },
+  {
+    library: 'Mantine DataTable',
+    libraryLink: 'https://icflorescu.github.io/mantine-datatable',
+    freeOrLicensed: 'Free MIT',
+    bundleSize: 8,
+    bundlePhobiaImg:
+      'https://badgen.net/bundlephobia/minzip/mantine-datatable?color=green',
+    bundlePhobiaLink:
+      'https://bundlephobia.com/package/mantine-datatable@latest',
+    description:
+      "A very close to stock feeling Mantine Data Table component. It is a pretty lightweight library and is more so an extra wrapper for Mantine's built-in Table component, but with way more props, features, and styles built-in. Even though it is so lightweight, the filtering, pagination, sorting, and selection features that come with it might be enough for a lot of projects.",
+  },
+  {
+    library: 'Mantine Data Grid',
+    libraryLink: 'https://kuechlin.github.io/mantine-data-grid/#/',
+    freeOrLicensed: 'Free MIT',
+    bundleSize: 23,
+    bundlePhobiaImg:
+      'https://badgen.net/bundlephobia/minzip/mantine-data-grid?color=orange',
+    bundlePhobiaLink:
+      'https://bundlephobia.com/package/mantine-data-grid@latest',
+    description:
+      'Mantine Data Grid is another project that is being built on top of both Mantine and TanStack Table. It seems to be a smaller project, and it is unclear if it will be as feature-rich or viable as other options on this list, but it is worth keeping an eye on.',
   },
   {
     library: 'TanStack Table (React Table)',
@@ -92,40 +116,6 @@ const data = [
       'TanStack Table (formerly React Table) is a lightweight Headless UI library for building powerful tables and datagrids. No CSS or components included. You use logic from the useReactTable hook to build your own table components. No batteries included, but you get total control of your markup and styles (Mantine React Table is built on top of TanStack Table).',
   },
   {
-    library: 'Material Table',
-    libraryLink: 'https://material-table.com',
-    freeOrLicensed: 'Free MIT',
-    bundleSize: 185,
-    bundlePhobiaImg:
-      'https://badgen.net/bundlephobia/minzip/material-table?color=red',
-    bundlePhobiaLink: 'https://bundlephobia.com/package/material-table@latest',
-    description:
-      'Material Table is a once-popular Material UI table library originally built in 2018 for creating MUI tables that includes tons of features. However, it has a very large bundle size and contains outdated and insecure dependencies. It is mostly unmaintained now but did recently release a version that was somewhat compatible with Material UI V5.',
-  },
-  {
-    library: 'MUI Datatables',
-    libraryLink: 'https://github.com/gregnb/mui-datatables',
-    freeOrLicensed: 'Free MIT',
-    bundleSize: 95,
-    bundlePhobiaImg:
-      'https://badgen.net/bundlephobia/minzip/mui-datatables?color=orange',
-    bundlePhobiaLink: 'https://bundlephobia.com/package/mui-datatables@latest',
-    description:
-      'MUI Datatables is a solid Material UI-based table library that was originally built in 2017. It has a lot of features and is very customizable. However, it is not as lightweight as MRT and has a lot of dependencies. The library appears to still be kept up to date occasionally. Some of the UI layouts in MUI Datatables served as inspiration for Mantine React Table.',
-  },
-  {
-    library: 'MUI X Data Grid MIT/Pro/Premium',
-    libraryLink: 'https://mui.com/store/items/mui-x-premium/',
-    freeOrLicensed: 'MIT or Paid License',
-    bundleSize: 112,
-    bundlePhobiaImg:
-      'https://badgen.net/bundlephobia/minzip/@mui/x-data-grid-pro?color=orange',
-    bundlePhobiaLink:
-      'https://bundlephobia.com/package/@mui/x-data-grid-pro@latest',
-    description:
-      'MUI X Data Grid MIT/Pro/Premium is one of the best Material UI Data Grid options available and it comes directly from MUI. It includes the full suite of features you may need but requires a paid license for many of the advanced features.',
-  },
-  {
     library: 'AG Grid Community/Enterprise',
     libraryLink: 'https://www.ag-grid.com/license-pricing',
     freeOrLicensed: 'MIT or Paid License',
@@ -135,7 +125,7 @@ const data = [
     bundlePhobiaLink:
       'https://bundlephobia.com/package/ag-grid-enterprise@latest',
     description:
-      'AG Grid Community/Enterprise is arguably the best table library of all time, but many of the advanced features require an expensive paid license. It appears to have a very large bundle size, although this is a bit misleading because it is tree-shakable and includes a lot of the UI components in the bundle. It is not built on top of Material UI, but it does follow Material Design, so it is definitely relevant to this comparison.',
+      'If you are looking for the best data grid/table library possible, look no further than AG Grid. It may not exactly be lightweight or made from Mantine components, but it is the best of the best. It does have some drawbacks, as it has a very large bundle size and depending on your feature needs, it may require a paid license.',
   },
 ];
 
