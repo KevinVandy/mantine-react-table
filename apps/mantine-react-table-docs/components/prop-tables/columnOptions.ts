@@ -140,7 +140,7 @@ export const columnOptions: ColumnOption[] = [
     columnOption: 'enableColumnActions',
     defaultValue: '',
     description: 'Enable or disable column actions for this column.',
-    link: '/docs/guides/column-actions#disable-or-hide-column-actions-buttons',
+    link: '/docs/guides/column-actions-menu#disable-or-hide-column-actions-buttons',
     linkText: 'MRT Column Actions Docs',
     source: 'MRT',
     required: false,

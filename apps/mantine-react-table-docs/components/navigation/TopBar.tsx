@@ -10,6 +10,7 @@ import {
   ActionIcon,
   Flex,
   Burger,
+  useMantineTheme,
 } from '@mantine/core';
 import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons';
 import { useMediaQuery } from '@mantine/hooks';
@@ -26,6 +27,7 @@ interface Props {
 
 const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
   const plausible = usePlausible();
+  const theme = useMantineTheme();
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 900px)');
   const isDesktop = useMediaQuery('(min-width: 1500px)');
@@ -47,13 +49,18 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
       <style global jsx>
         {`
           :root {
-            --docsearch-primary-color: ${isLightTheme ? '#1565c0' : '#f08c00'};
-            --docsearch-highlight-color: ${isLightTheme
-              ? '#1565c0'
-              : '#f08c00'};
-            --docsearch-logo-color: ${isLightTheme ? '#1565c0' : '#f08c00'};
-            ${!isLightTheme
-              ? `--docsearch-container-background: rgba(11, 11, 11, 0.8);
+            --docsearch-primary-color: ${
+              theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+            };
+            --docsearch-highlight-color: ${
+              theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+            };
+            --docsearch-logo-color: ${
+              theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+            };
+            ${
+              !isLightTheme
+                ? `--docsearch-container-background: rgba(11, 11, 11, 0.8);
             --docsearch-footer-background: #222;
             --docsearch-hit-background: #333;
             --docsearch-hit-color: #fff;
@@ -64,7 +71,8 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
             --docsearch-searchbox-focus-background: #000;
             --docsearch-text-color: #fff;
            `
-              : ''}
+                : ''
+            }
           }
         `}
       </style>

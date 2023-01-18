@@ -50,9 +50,7 @@ const HomePage = () => {
             <Box
               component="sup"
               sx={(theme) => ({
-                background: `-webkit-linear-gradient(left, ${
-                  theme.colors.blue[7]
-                }, ${theme.colors.blue[7]})`,
+                background: `-webkit-linear-gradient(left, ${theme.colors.blue[7]}, ${theme.colors.blue[7]})`,
                 display: 'inline',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -70,12 +68,12 @@ const HomePage = () => {
           color="dimmed"
           sx={{
             fontSize: '2.25rem',
-            marginBottom: '2rem',
+            marginBottom: '1rem',
             textAlign: 'center',
             lineHeight: '2.25rem',
             fontWeight: 'normal',
             '@media (max-width: 768px)': {
-              fontSize: '24px',
+              fontSize: '1.5rem',
             },
           }}
           order={2}
@@ -109,6 +107,44 @@ const HomePage = () => {
             </Anchor>
           </Link>
         </Title>
+        <Title
+          color="dimmed"
+          sx={{
+            fontSize: '2.25rem',
+            marginBottom: '2rem',
+            textAlign: 'center',
+            lineHeight: '2.25rem',
+            fontWeight: 'normal',
+            '@media (max-width: 768px)': {
+              fontSize: '1.5rem',
+            },
+          }}
+          order={3}
+        >
+          An Official Fork of{' '}
+          <Link href="https://material-react-table.com" passHref legacyBehavior>
+            <Anchor
+              sx={(theme) => ({
+                background: `-webkit-linear-gradient(left, ${
+                  theme.colors.blue[7]
+                }, ${
+                  theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+                })`,
+                display: 'inline',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                '&:hover': {
+                  textDecoration: 'underline',
+                  textDecorationColor: theme.colors.blue[7],
+                },
+              })}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Material React Table
+            </Anchor>
+          </Link>
+        </Title>
         <StatBadges />
         <Title
           color="dimmed"
@@ -125,8 +161,7 @@ const HomePage = () => {
           }}
           order={3}
         >
-          Quickly create high-quality React data tables with
-          Material&nbsp;Design
+          Quickly create high-quality React data tables with Mantine
         </Title>
         <Box
           sx={{
@@ -239,8 +274,8 @@ const HomePage = () => {
         </Box>
         <Box py="16px">
           <SampleCodeSnippet className="language-bash">
-            npm i mantine-react-table @mantine/core @mantine/hooks
-            @emotion/react @tabler/icons
+            npm install mantine-react-table @mantine/core @mantine/hooks
+            @mantine/dates @emotion/react @tabler/icons dayjs
           </SampleCodeSnippet>
         </Box>
         <HomeCards />

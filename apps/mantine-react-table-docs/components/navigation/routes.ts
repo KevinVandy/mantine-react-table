@@ -151,7 +151,7 @@ export const routes: Array<RouteItem> = [
             label: 'Customize (Style) Components',
           },
           {
-            href: '/docs/guides/customize-icons',
+            href: '/docs/guides/custom-icons',
             label: 'Custom Icons',
           },
           {
@@ -163,11 +163,11 @@ export const routes: Array<RouteItem> = [
             label: 'Memoize Components',
           },
           {
-            href: '/docs/guides/table-event-listeners',
+            href: '/docs/guides/event-listeners',
             label: 'Event Listeners',
           },
           {
-            href: '/docs/guides/table-state-management',
+            href: '/docs/guides/state-management',
             label: 'State Management',
           },
           {
@@ -193,7 +193,7 @@ export const routes: Array<RouteItem> = [
             label: 'Click to Copy',
           },
           {
-            href: '/docs/guides/column-actions',
+            href: '/docs/guides/column-actions-menu',
             label: 'Column Actions (Menu)',
           },
           {
@@ -265,7 +265,7 @@ export const routes: Array<RouteItem> = [
             label: 'Sorting',
           },
           {
-            href: '/docs/guides/sticky-header',
+            href: '/docs/guides/sticky-header-footer',
             label: 'Sticky Header/Footer',
           },
           {

@@ -30,14 +30,14 @@
 <url><loc>https://www.mantine-react-table.com/docs/guides/aggregation-and-grouping</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/async-loading</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/click-to-copy</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
-<url><loc>https://www.mantine-react-table.com/docs/guides/column-actions</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
+<url><loc>https://www.mantine-react-table.com/docs/guides/column-actions-menu</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/column-filtering</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/column-hiding</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/column-ordering-dnd</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/column-pinning</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/column-resizing</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/customize-components</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
-<url><loc>https://www.mantine-react-table.com/docs/guides/customize-icons</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
+<url><loc>https://www.mantine-react-table.com/docs/guides/custom-icons</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/customize-toolbars</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/data-columns</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/density-toggle</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
@@ -56,7 +56,7 @@
 <url><loc>https://www.mantine-react-table.com/docs/guides/row-selection</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/sorting</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/sticky-header</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
-<url><loc>https://www.mantine-react-table.com/docs/guides/table-event-listeners</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
-<url><loc>https://www.mantine-react-table.com/docs/guides/table-state-management</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
+<url><loc>https://www.mantine-react-table.com/docs/guides/event-listeners</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
+<url><loc>https://www.mantine-react-table.com/docs/guides/state-management</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 <url><loc>https://www.mantine-react-table.com/docs/guides/virtualization</loc><lastmod>2022-12-21T06:03:35.656Z</lastmod></url>
 </urlset>
