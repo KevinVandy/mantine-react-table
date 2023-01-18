@@ -9,15 +9,15 @@ interface Props {
 
 export const MRT_LinearProgressBar: FC<Props> = ({ isTopToolbar, table }) => {
   const {
-    options: { mantineLinearProgressProps },
+    options: { mantineProgressProps },
     getState,
   } = table;
   const { isLoading, showProgressBars } = getState();
 
   const linearProgressProps =
-    mantineLinearProgressProps instanceof Function
-      ? mantineLinearProgressProps({ isTopToolbar, table })
-      : mantineLinearProgressProps;
+    mantineProgressProps instanceof Function
+      ? mantineProgressProps({ isTopToolbar, table })
+      : mantineProgressProps;
 
   return (
     <Collapse

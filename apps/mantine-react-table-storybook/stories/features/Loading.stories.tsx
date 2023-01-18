@@ -100,7 +100,7 @@ export const OnlyTopProgressBar: Story<MantineReactTableProps> = () => (
     columns={columns}
     data={data}
     state={{ showProgressBars: true }}
-    mantineLinearProgressProps={({ isTopToolbar }) => ({
+    mantineProgressProps={({ isTopToolbar }) => ({
       sx: { display: isTopToolbar ? 'block' : 'none' },
     })}
   />

@@ -7,21 +7,27 @@ import { FAQs } from '../components/mdx/FAQs';
   <title>About - Mantine React Table</title>
   <meta
     name="description"
-    content="About Mantine React Table. A fully-featured table component library for React based on TanStack Table V8 and Material Design."
+    content="About Mantine React Table. A fully-featured table component library for React based on TanStack Table V8 and Mantine UI, forked from Material React Table."
   />
 </Head>
 
 ## About Mantine React Table
 
-Want to join the development discussion? Join the [Discord server](https://discord.gg/5wqyRx6fnm) to ask questions, or talk about the general direction of the project.
+Mantine React Table is a fully featured Mantine implementation of TanStack React Table V8, forked from Material React Table.
+
+### What is Mantine React Table?
+
+Mantine React Table (MRT) is a fully-feature data grid/table component library for React built on [TanStack Table V8's](https://react-table.tanstack.com/) powerful API. MRT is meant to work best in projects already using [Mantine UI](https://mantine.dev/) components, but it is not necessarily required. However, be aware that [Mantine UI](https://material-ui.com/) and [Emotion](https://emotion.sh/) are required as peer dependencies for MRT to work.
+
+MRT is built from the ground up in TypeScript, and is designed to have a great type-safe dev experience with generics that react to the data structures you pass in. TypeScript is not at all required to use MRT, but it is recommended for the best and fasted developer experience, especially when defining columns.
+
+### Motivation
+
+Mantine React Table started as a fork of [Material React Table](https://material-react-table.com) after it became successful. I have used Material UI for years, and consider it a workhorse. But Material Design itself is starting to look dated, and some of the quality of the MUI components are starting to suffer. [Mantine](https://mantine.dev/) is a relatively new React UI library that is easy to fall in love with. As soon I found Mantine and discovered that it is built with some of the same tech and patterns as MUI already is, I knew I could easily port the Material React Table codebase to Mantine. Mantine has been a joy to work with, and I hope you enjoy using it as much as I do. A powerful data grid component seemed to be missing from the Mantine ecosystem, so I decided to create Mantine React Table.
 
 ### License
 
 Mantine React Table is licensed under the [MIT License](https://github.com/KevinVandy/mantine-react-table/blob/main/LICENSE) and is free to use in both personal and commercial projects.
-
-### Motivation
-
-[`mantine-react-table`](https://www.npmjs.com/package/mantine-react-table) started out as an attempt to upgrade the once popular [material-table](https://material-table.com/) library to Material UI v5 and TypeScript, since that project seemed to have become abandoned. However, after a few frustrating weeks, it was discovered that it would be easier and more fun to write a new advanced Material UI table library from scratch. [React Table](https://react-table.tanstack.com/) naturally seemed like a great basis for the underlying API and therefore was chosen as the foundation for the project.
 
 ### Features
 
@@ -115,7 +121,7 @@ Mantine React Table is licensed under the [MIT License](https://github.com/Kevin
         name: 'Is Mantine React Table free to use?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '<p><b>Yes</b>, <a href="https://www.mantine-react-table.com/about#faqs">as stated above</a>, this library uses the <b>MIT</b> License and is free to use for either personal or enterprise projects.</p>',
+          text: '<p><b>Yes</b>, <a href="https://www.mantine-react-table.com/about#faqs">as stated above</a>, Mantine React Table uses the <b>MIT</b> License and is free to use for either personal or enterprise projects.</p>',
         },
       },
       {
@@ -131,7 +137,7 @@ Mantine React Table is licensed under the [MIT License](https://github.com/Kevin
         name: 'Should I use Mantine React Table?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '<p>It depends. If you are already using <b>MUI</b> for other components in your project, and are looking for a efficient and fully featured data grid component to drop in, this may be the perfect library for you. MRT is not necessarily the lightest weight table library out there, but it has a much <b>smaller bundle size</b> than similar libraries like material-table. If you are looking for the most powerful data grid possible, <a href="https://www.ag-grid.com/" target="_blank"><b>AG Grid</b></a> is still recommended above MRT as long as you do not care about bundle size.</p>',
+          text: '<p>It depends. If you are already using <b>Mantine</b> for other components in your project, and are looking for a efficient and fully featured data grid component to drop in, this may be the perfect library for you. MRT is not necessarily the lightest weight table library out there, but it has a much <b>smaller bundle size</b> than large data grid libraries like AG Grid. Though, if you are looking for the most powerful data grid possible, <a href="https://www.ag-grid.com/" target="_blank"><b>AG Grid</b></a> is still recommended above MRT as long as you do not care about bundle size.</p>',
         },
       },
     ],

@@ -26,7 +26,7 @@ This guide shows you how to [hide](#hide-or-disable-toolbars), [customize](#cust
       'enableToolbarInternalActions',
       'enableTopToolbar',
       'mantineBottomToolbarProps',
-      'mantineLinearProgressProps',
+      'mantineProgressProps',
       'mantineToolbarAlertBannerChipProps',
       'mantineToolbarAlertBannerProps',
       'mantineTopToolbarProps',
@@ -154,13 +154,13 @@ The `mantineTopToolbarProps`, `mantineBottomToolbarProps`, `mantineToolbarAlertB
 
 ### Customize Linear Progress Bars
 
-The progress bars that display in both the top and bottom toolbars become visible when either the `isLoading` or `showProgressBars` state options are set to `true`. You can customize the progress bars by passing in props to the `mantineLinearProgressProps` prop. By default, the progress bars have an indeterminate state, but you can set the `value` prop to a number between 0 and 100 to show real progress values if your table is doing some complicated long running tasks that you want to show progress for. Visit the [MUI Linear Progress docs](https://mui.com/material-ui/react-progress/#linear) to learn more.
+The progress bars that display in both the top and bottom toolbars become visible when either the `isLoading` or `showProgressBars` state options are set to `true`. You can customize the progress bars by passing in props to the `mantineProgressProps` prop. By default, the progress bars have an indeterminate state, but you can set the `value` prop to a number between 0 and 100 to show real progress values if your table is doing some complicated long running tasks that you want to show progress for. Visit the [MUI Linear Progress docs](https://mui.com/material-ui/react-progress/#linear) to learn more.
 
 ```tsx
 <MantineReactTable
   data={data}
   columns={columns}
-  mantineLinearProgressProps={({ isTopToolbar }) => ({
+  mantineProgressProps={({ isTopToolbar }) => ({
     color: 'secondary',
     sx: { display: isTopToolbar ? 'block' : 'none' }, //only show top toolbar progress bar
     value: fetchProgress, //show precise real progress value if you so desire

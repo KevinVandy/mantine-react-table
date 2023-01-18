@@ -22,6 +22,7 @@ import type {
   UnstyledButtonProps,
   SelectProps,
   MultiSelectProps,
+  FlexProps,
 } from '@mantine/core';
 import type {
   AggregationFn,
@@ -874,7 +875,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           column: MRT_Column<TData>;
           rangeFilterIndex?: number;
         }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
-    mantineLinearProgressProps?:
+    mantineProgressProps?:
       | (ProgressProps & HTMLPropsRef<HTMLDivElement>)
       | (({
           isTopToolbar,
@@ -884,13 +885,13 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           table: MRT_TableInstance<TData>;
         }) => ProgressProps & HTMLPropsRef<HTMLDivElement>);
     mantinePaginationProps?:
-      | Partial<MRT_PaginationProps & BoxProps & HTMLPropsRef<HTMLDivElement>>
+      | Partial<MRT_PaginationProps & FlexProps & HTMLPropsRef<HTMLDivElement>>
       | (({
           table,
         }: {
           table: MRT_TableInstance<TData>;
         }) => Partial<
-          MRT_PaginationProps & BoxProps & HTMLPropsRef<HTMLDivElement>
+          MRT_PaginationProps & FlexProps & HTMLPropsRef<HTMLDivElement>
         >);
     mantinePaperProps?:
       | (PaperProps & HTMLPropsRef<HTMLDivElement>)

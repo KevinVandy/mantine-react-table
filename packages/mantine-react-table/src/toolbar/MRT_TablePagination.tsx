@@ -61,6 +61,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           ? '3rem'
           : undefined
       }
+      {...paginationProps}
     >
       {paginationProps?.showRowsPerPage !== false && (
         <Select
