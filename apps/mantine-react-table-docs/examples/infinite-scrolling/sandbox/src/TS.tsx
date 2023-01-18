@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { Text } from '@mantine/core';
 import type { ColumnFiltersState, SortingState } from '@tanstack/react-table';
 import type { Virtualizer } from '@tanstack/react-virtual';

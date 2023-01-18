@@ -123,7 +123,7 @@ npm install mantine-react-table
 
 ```jsx
 import React, { useMemo, useRef, useState, useEffect } from 'react';
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 
 const data = [
   {

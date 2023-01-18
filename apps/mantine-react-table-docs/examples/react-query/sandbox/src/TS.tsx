@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useState } from 'react';
-import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { IconRefresh } from '@tabler/icons';
 import type {

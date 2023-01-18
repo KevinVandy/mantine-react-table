@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 import { Title } from '@mantine/core';
 import { data } from './makeData';
 

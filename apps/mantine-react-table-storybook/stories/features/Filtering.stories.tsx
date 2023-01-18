@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-import MantineReactTable, {
+import {
+  MantineReactTable,
   MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';
@@ -39,9 +40,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
     accessorFn: (row) => new Date(row.birthDate), //transform data before processing so sorting works
     accessorKey: 'birthDate',
     header: 'Birth Date',
-    mantineFilterTextInputProps: {
-      type: 'date',
-    },
+    filterVariant: 'date',
     sortingFn: 'datetime',
   },
   {

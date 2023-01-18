@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 import { fakeColumns, fakeData } from './makeData';
 
 const Example = () => {

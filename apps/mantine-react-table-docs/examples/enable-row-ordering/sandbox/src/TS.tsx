@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useState } from 'react';
-import MantineReactTable, { MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { data as initData, Person } from './makeData';
 
 const Example: FC = () => {

@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
-import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { data, Person } from './makeData';
 import { Button } from '@mantine/core';
 

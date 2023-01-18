@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
-import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import type { SortingState } from '@tanstack/react-table';
 import type { Virtualizer } from '@tanstack/react-virtual';
 import { makeData, Person } from './makeData';

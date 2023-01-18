@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MantineReactTable, {
+import {
+  MantineReactTable,
   MantineReactTableProps,
   MRT_ColumnDef,
 } from 'mantine-react-table';

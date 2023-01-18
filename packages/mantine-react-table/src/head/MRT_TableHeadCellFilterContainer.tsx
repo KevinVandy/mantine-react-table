@@ -24,6 +24,7 @@ export const MRT_TableHeadCellFilterContainer: FC<Props> = ({
       {columnDef.filterVariant === 'checkbox' ? (
         <MRT_FilterCheckbox column={column} table={table} />
       ) : columnDef.filterVariant === 'range' ||
+        columnDef.filterVariant === 'date-range' ||
         ['between', 'betweenInclusive', 'inNumberRange'].includes(
           columnDef._filterFn,
         ) ? (

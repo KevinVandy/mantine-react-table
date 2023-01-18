@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 
 //MRT Imports
-import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 
 //Mantine Imports
 import { Box, Button, Menu, Text, Title } from '@mantine/core';

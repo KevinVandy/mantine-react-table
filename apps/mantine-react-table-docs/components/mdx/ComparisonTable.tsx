@@ -1,5 +1,5 @@
 import { Box, Anchor } from '@mantine/core';
-import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [

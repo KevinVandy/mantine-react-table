@@ -1,5 +1,6 @@
 import React, { FC, useCallback, useMemo, useState } from 'react';
-import MantineReactTable, {
+import {
+  MantineReactTable,
   MantineReactTableProps,
   MRT_Cell,
   MRT_ColumnDef,

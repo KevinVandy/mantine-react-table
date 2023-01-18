@@ -1,5 +1,6 @@
 import React, { FC, useReducer, useRef, useState } from 'react';
-import MantineReactTable, {
+import {
+  MantineReactTable,
   DensityState,
   MRT_ColumnDef,
   MRT_ToggleFullScreenButton,

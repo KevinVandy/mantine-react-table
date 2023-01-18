@@ -75,7 +75,7 @@ Everything in the toolbars is customizable. You can add your own buttons or chan
 The `renderToolbarInternalActions` prop allows you to redefine the built-in buttons that usually reside in the top right of the top toolbar. You can reorder the icon buttons or even insert your own custom buttons. All of the built-in buttons are available to be imported from 'mantine-react-table'.
 
 ```tsx
-import MantineReactTable, {
+import { MantineReactTable,
   MRT_ShowHideColumnsButton,
   MRT_ToggleFullScreenButton,
 } from 'mantine-react-table';
@@ -219,7 +219,7 @@ The drawback to this approach is that you will not get all the automatic feature
 If you are using a custom toolbar, you can still import some of the built-in MRT components to use in your custom toolbar. For example, you can import all of the built-in internal toolbar icon buttons components and use them in your custom toolbar.
 
 ```jsx
-import MantineReactTable, {
+import { MantineReactTable,
   MRT_ShowHideColumnsButton, // import the built-in show/hide columns button
   MRT_ToggleFullScreenButton, // import the built-in full screen toggle button
 } from 'mantine-react-table';

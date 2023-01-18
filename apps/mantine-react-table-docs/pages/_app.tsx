@@ -28,17 +28,10 @@ function App({ Component, pageProps }: AppProps) {
     pathname === '/changelog';
 
   const isMobile = useMediaQuery('(max-width: 900px)');
-  const isTablet = useMediaQuery('(min-width: 900px)');
   const isDesktop = useMediaQuery('(min-width: 1500px)');
   const isXLDesktop = useMediaQuery('(min-width: 1800px)');
 
-  const [navOpen, setNavOpen] = useState(pathname === '/');
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && isTablet) {
-      setNavOpen(true);
-    }
-  }, [isTablet]);
+  const [navOpen, setNavOpen] = useState(false);
 
   return (
     <>
@@ -46,7 +39,7 @@ function App({ Component, pageProps }: AppProps) {
         <title>Mantine React Table</title>
         <meta
           name="description"
-          content="Mantine React Table, a fully featured Material UI V5 implementation of TanStack React Table V8. Written from the ground up in TypeScript."
+          content="Mantine React Table, a fully featured Mantine UI implementation of TanStack React Table V8. Written from the ground up in TypeScript."
         />
         <link rel="icon" href="/mrt_logo-2.png" />
         <meta property="og:image" content="/mrt_logo-2.png" />
@@ -73,7 +66,7 @@ function App({ Component, pageProps }: AppProps) {
             <Box
               component="main"
               sx={{
-                maxWidth: '1800px',
+                maxWidth: showMiniNav ? '1800px' : '1600px',
                 margin: 'auto',
                 minHeight: '100vh',
                 padding: `75px ${

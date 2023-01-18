@@ -387,7 +387,14 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   enableColumnOrdering?: boolean;
   enableEditing?: boolean;
   filterFn?: MRT_FilterFn<TData>;
-  filterVariant?: 'text' | 'select' | 'multi-select' | 'range' | 'checkbox';
+  filterVariant?:
+    | 'checkbox'
+    | 'date'
+    | 'date-range'
+    | 'multi-select'
+    | 'range'
+    | 'select'
+    | 'text';
   /**
    * footer must be a string. If you want custom JSX to render the footer, you can also specify a `Footer` option. (Capital F)
    */
@@ -1187,7 +1194,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     tableInstanceRef?: MutableRefObject<MRT_TableInstance<TData> | null>;
   };
 
-const MantineReactTable = <TData extends Record<string, any> = {}>({
+export const MantineReactTable = <TData extends Record<string, any> = {}>({
   aggregationFns,
   autoResetExpanded = false,
   columnResizeMode = 'onEnd',
@@ -1337,5 +1344,3 @@ const MantineReactTable = <TData extends Record<string, any> = {}>({
     />
   );
 };
-
-export default MantineReactTable;

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import MantineReactTable, {
+import {
+  MantineReactTable,
   MRT_ToggleDensePaddingButton,
   MRT_ToggleFullScreenButton,
 } from 'mantine-react-table';

@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 import type { Virtualizer } from '@tanstack/react-virtual';
 import { fakeColumns, fakeData } from './makeData';
 

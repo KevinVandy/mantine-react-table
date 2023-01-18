@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 
 const Example = () => {
   //data and fetching state

@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 import { Text } from '@mantine/core';
 import {
   QueryClient,

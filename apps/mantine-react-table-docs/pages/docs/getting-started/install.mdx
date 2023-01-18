@@ -8,16 +8,18 @@ import { FAQs } from '../../../components/mdx/FAQs';
 
 ## Installation
 
-> `mantine-react-table` requires **Material UI V5** packages as dependencies in your project.
+> `mantine-react-table` requires **Mantine UI V5** packages as dependencies in your project.
 >
-> If you are already using Material UI, you probably already have most of these peer dependencies installed.
+> If you are already using Mantine UI, you probably already have most of these peer dependencies installed.
 >
 > Just double-check that you have the following in your package.json, or use the [full install commands](<#install-with-required-peer-dependencies-(recommended)>) below.
 >
 > 1.  `@mantine/core` (v5)
 > 2.  `@mantine/hooks` (v5)
-> 3.  `@tabler/icons` (> v1.118)
-> 4.  `@emotion/react` (v11)
+> 3.  `@mantine/dates` (v5)
+> 4.  `@tabler/icons` (> v1.118)
+> 5.  `@emotion/react` (v11)
+> 6.  `dayjs` (v1.11)
 > 5.  `react` and `react-dom` (v17 or v18)
 
 ### Quick Install
@@ -45,19 +47,19 @@ yarn add mantine-react-table
 NPM
 
 ```bash
-npm install mantine-react-table @mantine/core @mantine/hooks @emotion/react @tabler/icons
+npm install mantine-react-table @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/icons dayjs
 ```
 
 PNPM
 
 ```bash
-pnpm add mantine-react-table @mantine/core @mantine/hooks @emotion/react @tabler/icons
+pnpm add mantine-react-table @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/icons dayjs
 ```
 
 Yarn
 
 ```bash
-yarn add mantine-react-table @mantine/core @mantine/hooks @emotion/react @tabler/icons
+yarn add mantine-react-table @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/icons dayjs
 ```
 
 > You do NOT need to install `@tanstack/react-table`, as it is already an internal dependency of `mantine-react-table`.
@@ -73,10 +75,10 @@ yarn add mantine-react-table @mantine/core @mantine/hooks @emotion/react @tabler
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'Why is React 17 or 18 required for Mantine React Table?',
+        name: 'What is the difference between Mantine React Table and Material React Table?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '<p>React 17 or later is required by Material UI v5 itself. Some event listeners on MUI TextField components will not work with React 16.x.</p>',
+          text: 'Mantine React Table and Material React Table are sister libraries. Mantine React Table was forked from Material React Table after its initial success. Mantine React Table uses Mantine UI instead of Material UI.',
         },
       },
       {

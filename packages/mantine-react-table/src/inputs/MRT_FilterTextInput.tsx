@@ -107,9 +107,12 @@ export const MRT_FilterTextInput: FC<Props> = ({
   };
 
   const isRangeFilter =
-    columnDef.filterVariant === 'range' || rangeFilterIndex !== undefined;
+    columnDef.filterVariant === 'range' ||
+    columnDef.filterVariant === 'date-range' ||
+    rangeFilterIndex !== undefined;
   const isSelectFilter = columnDef.filterVariant === 'select';
   const isMultiSelectFilter = columnDef.filterVariant === 'multi-select';
+  const isDateFilter = columnDef.filterVariant === 'date';
 
   const currentFilterOption = columnDef._filterFn;
   const filterChipLabel = ['empty', 'notEmpty'].includes(currentFilterOption)
@@ -230,7 +233,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
   };
 
   return (
-    <Flex direction="column" sx={{overflow: 'visible'}}>
+    <Flex direction="column" sx={{ overflow: 'visible' }}>
       <Flex align="flex-end">
         {showChangeModeButton && (
           <Menu withinPortal>
@@ -293,7 +296,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
                 : (selectProps?.sx as any)),
             })}
           />
-        ) : (
+        ) : isDateFilter ? null : (
           <TextInput
             {...props}
             variant="unstyled"
@@ -346,7 +349,13 @@ export const MRT_FilterTextInput: FC<Props> = ({
         )}
       </Flex>
       {showChangeModeButton ? (
-        <Text component="label" color="dimmed" size="xs" pl="1.6rem" sx={{whiteSpace: 'nowrap', marginTop: '4px'}}>
+        <Text
+          component="label"
+          color="dimmed"
+          size="xs"
+          pl="1.6rem"
+          sx={{ whiteSpace: 'nowrap', marginTop: '4px' }}
+        >
           {localization.filterMode.replace(
             '{filterType}',
             // @ts-ignore

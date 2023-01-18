@@ -1,5 +1,6 @@
 import React, { useReducer, useRef, useState } from 'react';
-import MantineReactTable, {
+import {
+  MantineReactTable,
   MRT_ToggleFullScreenButton,
   MRT_GlobalFilterTextField,
   MRT_ShowHideColumnsButton,

@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useState } from 'react';
-import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { RowSelectionState } from '@tanstack/react-table';
 
 const data = [

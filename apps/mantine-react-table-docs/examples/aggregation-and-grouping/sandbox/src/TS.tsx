@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import { Box, Stack } from '@mantine/core';
-import MantineReactTable, { MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { data, Person } from './makeData';
 
 const Example: FC = () => {

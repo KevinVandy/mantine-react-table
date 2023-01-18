@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 import { citiesList, data, usStateList } from './makeData';
 
 const Example = () => {

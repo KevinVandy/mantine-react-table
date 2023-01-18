@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import MantineReactTable, { MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
+import { MantineReactTable, MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { Box, Button } from '@mantine/core';
 import { IconDownload } from '@tabler/icons';
 import { ExportToCsv } from 'export-to-csv'; //or use your library of choice here

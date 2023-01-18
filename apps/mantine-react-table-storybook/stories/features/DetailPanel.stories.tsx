@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MantineReactTable, { MantineReactTableProps } from 'mantine-react-table';
+import { MantineReactTable, MantineReactTableProps } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {

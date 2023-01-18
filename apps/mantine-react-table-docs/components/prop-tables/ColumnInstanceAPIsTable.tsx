@@ -1,6 +1,7 @@
 import { FC, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import MantineReactTable, {
+import {
+  MantineReactTable,
   MRT_ColumnDef,
   MRT_Column,
 } from 'mantine-react-table';

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 
 const data = [
   //data definitions...

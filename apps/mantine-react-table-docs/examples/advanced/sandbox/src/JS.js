@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 //MRT Imports
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 
 //Mantine Imports
 import { Box, Button, Menu, Text, Title } from '@mantine/core';
