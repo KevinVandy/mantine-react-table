@@ -47,7 +47,7 @@ export const HomeCards = () => {
             alt={cd.text}
             height={50}
             width={50}
-            style={{ filter: 'hue-rotate(175deg) brightness(1.5)' }}
+            style={{ filter: 'hue-rotate(295deg) brightness(1.25)' }}
           />
           <Title order={5}>{cd.text}</Title>
         </Card>

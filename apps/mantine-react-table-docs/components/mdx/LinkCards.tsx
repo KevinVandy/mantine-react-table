@@ -85,7 +85,7 @@ export const LinkCards = () => {
                 alt={cd.text}
                 width={60}
                 height={60}
-                style={{ filter: 'hue-rotate(175deg) brightness(1.5)' }}
+                style={{ filter: 'hue-rotate(295deg) brightness(1.25)' }}
               />
               <Text>{cd.text}</Text>
             </Card>

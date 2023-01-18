@@ -110,7 +110,7 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
             >
               <Image
                 alt="MRT logo"
-                src={`/mrt_logo-2.svg`}
+                src={`/mrt_logo.svg`}
                 height={isTablet ? 35 : 45}
                 width={isTablet ? 35 : 45}
               />

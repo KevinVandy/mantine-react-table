@@ -41,7 +41,10 @@ export const Example: FC = () => {
       enableSorting={false}
       enableBottomToolbar={false}
       enableTopToolbar={false}
-      mantineTableBodyRowProps={{ hover: false }}
+      mantineTableProps={{
+        highlightOnHover: false,
+        withColumnBorders: true,
+      }}
     />
   );
 };

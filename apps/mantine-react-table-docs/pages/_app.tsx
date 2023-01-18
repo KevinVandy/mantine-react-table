@@ -41,8 +41,8 @@ function App({ Component, pageProps }: AppProps) {
           name="description"
           content="Mantine React Table, a fully featured Mantine UI implementation of TanStack React Table V8. Written from the ground up in TypeScript."
         />
-        <link rel="icon" href="/mrt_logo-2.png" />
-        <meta property="og:image" content="/mrt_logo-2.png" />
+        <link rel="icon" href="/mrt_logo.png" />
+        <meta property="og:image" content="/mrt_logo.png" />
         <meta
           property="og:url"
           content={`https://www.mantine-react-table.com${pathname}`}

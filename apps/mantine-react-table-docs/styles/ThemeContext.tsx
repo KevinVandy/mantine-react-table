@@ -14,8 +14,8 @@ const ThemeContext = createContext<{
 
 export const ThemeContextProvider = ({ children }) => {
   const [isLightTheme, setIsLightTheme] = useState(false);
-  const [primaryColor, setPrimaryColor] = useState<MantineColor>('yellow');
-  const [primaryShade, setPrimaryShade] = useState<MantineShade>(7);
+  const [primaryColor, setPrimaryColor] = useState<MantineColor>('teal');
+  const [primaryShade, setPrimaryShade] = useState<MantineShade>(8);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -28,12 +28,7 @@ export const ThemeContextProvider = ({ children }) => {
       document.body.style.backgroundColor = isLightTheme ? '#fff' : '#111';
       localStorage.setItem('isLightTheme', isLightTheme.toString());
     }
-    if (isLightTheme && primaryColor === 'yellow') {
-      setPrimaryColor('orange');
-    } else if (!isLightTheme && primaryColor === 'orange') {
-      setPrimaryColor('yellow');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setPrimaryShade(isLightTheme ? 8 : 6);
   }, [isLightTheme]);
 
   return (

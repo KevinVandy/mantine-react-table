@@ -61,7 +61,7 @@ const Example = () => {
       {tableInstanceRef.current && (
         <Flex
           sx={(theme) => ({
-            backgroundColor: theme.fn.rgba(theme.colors.teal[3], 0.2),
+            backgroundColor: theme.fn.rgba(theme.colors.blue[3], 0.2),
             borderRadius: '4px',
             flexDirection: 'row',
             gap: '16px',

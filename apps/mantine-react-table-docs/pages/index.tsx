@@ -40,7 +40,7 @@ const HomePage = () => {
             sx={(theme) => ({
               background: `-webkit-linear-gradient(left, ${
                 theme.colors[theme.primaryColor][getPrimaryShade(theme)]
-              }, ${theme.colors.teal[7]})`,
+              }, ${theme.colors.blue[7]})`,
               display: 'inline',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -50,7 +50,9 @@ const HomePage = () => {
             <Box
               component="sup"
               sx={(theme) => ({
-                background: `-webkit-linear-gradient(left, ${theme.colors.teal[7]}, ${theme.colors.teal[7]})`,
+                background: `-webkit-linear-gradient(left, ${
+                  theme.colors.blue[7]
+                }, ${theme.colors.blue[7]})`,
                 display: 'inline',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -95,11 +97,11 @@ const HomePage = () => {
           and&nbsp;
           <Link href="https://tanstack.com/table/v8" passHref legacyBehavior>
             <Anchor
-              color="teal"
-              sx={{
+              sx={(theme) => ({
+                color: theme.colors.blue[getPrimaryShade(theme)],
                 textDecoration: 'none',
                 '&:hover': { textDecoration: 'underline' },
-              }}
+              })}
               target="_blank"
               rel="noreferrer"
             >
@@ -256,7 +258,7 @@ const HomePage = () => {
           sx={(theme) => ({
             background: `-webkit-linear-gradient(left, ${
               theme.colors[theme.primaryColor][getPrimaryShade(theme)]
-            }, ${theme.colors.teal[7]})`,
+            }, ${theme.colors.blue[7]})`,
             display: 'inline',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',

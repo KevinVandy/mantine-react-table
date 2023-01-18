@@ -23,7 +23,7 @@ export const StatBadges = () => {
       >
         <img
           alt="NPM Version"
-          src="https://badgen.net/npm/v/mantine-react-table?color=orange"
+          src="https://badgen.net/npm/v/mantine-react-table?color=blue"
         />
       </a>
       <a
@@ -33,7 +33,7 @@ export const StatBadges = () => {
       >
         <img
           alt="Downloads"
-          src="https://badgen.net/npm/dt/mantine-react-table?label=installs&icon=npm&color=orange"
+          src="https://badgen.net/npm/dt/mantine-react-table?label=installs&icon=npm&color=blue"
         />
       </a>
       <a
@@ -43,7 +43,7 @@ export const StatBadges = () => {
       >
         <img
           alt="Bundle Size"
-          src="https://badgen.net/bundlephobia/minzip/mantine-react-table@latest?color=orange"
+          src="https://badgen.net/bundlephobia/minzip/mantine-react-table@latest?color=blue"
         />
       </a>
       <a
@@ -53,7 +53,7 @@ export const StatBadges = () => {
       >
         <img
           alt="GitHub Stars"
-          src="https://badgen.net/github/stars/KevinVandy/mantine-react-table?color=orange"
+          src="https://badgen.net/github/stars/KevinVandy/mantine-react-table?color=blue"
         />
       </a>
       <a
@@ -63,7 +63,7 @@ export const StatBadges = () => {
       >
         <img
           alt=""
-          src="https://badgen.net/github/license/KevinVandy/mantine-react-table?color=orange"
+          src="https://badgen.net/github/license/KevinVandy/mantine-react-table?color=blue"
         />
       </a>
     </Flex>
