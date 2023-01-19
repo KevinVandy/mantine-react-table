@@ -85,7 +85,7 @@ const RootPropTable: FC<Props> = ({ onlyProps }) => {
                 color={
                   row.original.source === 'MRT'
                     ? 'text.primary'
-                    : row.original.source === 'Material UI'
+                    : row.original.source === 'Mantine'
                     ? 'primary.main'
                     : row.original.source === 'TanStack Table'
                     ? 'secondary.main'

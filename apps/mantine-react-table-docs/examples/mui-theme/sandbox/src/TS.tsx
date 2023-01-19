@@ -1,6 +1,6 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
-import { createTheme, ThemeProvider, useTheme } from '@mui/material';
+import { MantineProvider, useMantineTheme } from '@mantine/core';
 
 type Person = {
   firstName: string;
@@ -76,52 +76,13 @@ const data = [
 //end
 
 const Example: FC = () => {
-  const globalTheme = useTheme(); //(optional) if you already have a theme defined in your app root, you can import here
-
-  const tableTheme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: globalTheme.palette.mode, //let's use the same dark/light mode as the global theme
-          primary: globalTheme.palette.secondary, //swap in the secondary color as the primary for the table
-          info: {
-            main: 'rgb(255,122,0)', //add in a custom color for the toolbar alert background stuff
-          },
-          background: {
-            default:
-              globalTheme.palette.mode === 'light'
-                ? 'rgb(254,255,244)' //random light yellow color for the background in light mode
-                : '#000', //pure black table in dark mode for fun
-          },
-        },
-        typography: {
-          button: {
-            textTransform: 'none', //customize typography styles for all buttons in table by default
-            fontSize: '1.2rem',
-          },
-        },
-        components: {
-          MuiTooltip: {
-            styleOverrides: {
-              tooltip: {
-                fontSize: '1.16px', //override to make tooltip font size larger
-              },
-            },
-          },
-          MuiSwitch: {
-            styleOverrides: {
-              thumb: {
-                color: 'pink', //change the color of the switch thumb in the columns show/hide menu to pink
-              },
-            },
-          },
-        },
-      }),
-    [globalTheme],
-  );
+  const globalTheme = useMantineTheme(); //(optional) if you already have a theme defined in your app root, you can import here
 
   return (
-    <ThemeProvider theme={tableTheme}>
+    //Override theme just for this table
+    <MantineProvider
+      theme={{ ...globalTheme, primaryColor: 'red', primaryShade: 5 }}
+    >
       <MantineReactTable
         columns={columns}
         data={data}
@@ -129,7 +90,7 @@ const Example: FC = () => {
         enableColumnOrdering
         enablePinning
       />
-    </ThemeProvider>
+    </MantineProvider>
   );
 };
 

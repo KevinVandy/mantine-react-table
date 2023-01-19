@@ -43,7 +43,7 @@ const Example = () => {
       mantineSearchTextInputProps={{
         placeholder: `Search ${data.length} rows`,
         sx: { minWidth: '300px' },
-        variant: 'outlined',
+        variant: 'filled',
       }}
     />
   );

@@ -171,7 +171,7 @@ export const stateOptions: StateRow[] = [
     linkText: '',
     source: 'TanStack Table',
     stateOption: 'density',
-    type: "'md' | 'xs' | 'xl'",
+    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
   },
   {
     defaultValue: 'false',

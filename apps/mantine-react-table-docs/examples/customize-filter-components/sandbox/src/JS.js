@@ -80,7 +80,7 @@ const Example = () => {
       initialState={{ showColumnFilters: true }} //show filters by default
       mantineFilterTextInputProps={{
         sx: { margin: '8px 0', width: '100%' },
-        variant: 'outlined',
+        variant: 'filled',
       }}
     />
   );

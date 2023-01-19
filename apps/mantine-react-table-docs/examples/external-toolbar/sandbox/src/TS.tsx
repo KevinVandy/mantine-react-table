@@ -4,7 +4,7 @@ import {
   DensityState,
   MRT_ColumnDef,
   MRT_ToggleFullScreenButton,
-  MRT_GlobalFilterTextField,
+  MRT_GlobalFilterTextInput,
   MRT_ShowHideColumnsButton,
   MRT_TableInstance,
   MRT_TablePagination,
@@ -87,7 +87,7 @@ const Example: FC = () => {
               Crete New Account
             </Button>
           </Box>
-          <MRT_GlobalFilterTextField table={tableInstanceRef.current} />
+          <MRT_GlobalFilterTextInput table={tableInstanceRef.current} />
           <Box>
             <MRT_ToggleFiltersButton table={tableInstanceRef.current} />
             <MRT_ShowHideColumnsButton table={tableInstanceRef.current} />

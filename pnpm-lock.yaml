@@ -28,7 +28,7 @@ importers:
       '@tabler/icons': 1.119.0
       '@tanstack/react-query': ^4.22.0
       '@tanstack/react-table': ^8.7.6
-      '@tanstack/react-virtual': 3.0.0-alpha.0
+      '@tanstack/react-virtual': 3.0.0-beta.30
       '@types/mdx': ^2.0.3
       '@types/node': ^18.11.18
       '@types/react': ^18.0.26
@@ -62,7 +62,7 @@ importers:
       '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query': 4.22.0_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-table': 8.7.6_biqbaboplfbrettd7655fr4n2y
-      '@tanstack/react-virtual': 3.0.0-alpha.0_react@18.2.0
+      '@tanstack/react-virtual': 3.0.0-beta.30_react@18.2.0
       '@types/mdx': 2.0.3
       dayjs: 1.11.7
       export-to-csv: 0.2.1
@@ -2990,10 +2990,6 @@ packages:
       '@babel/runtime': 7.20.7
       react: 18.2.0
 
-  /@reach/observe-rect/1.2.0:
-    resolution: {integrity: sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==}
-    dev: false
-
   /@reach/router/1.3.4_yicqvriqha7ppr6zyvk5y4bjya:
     resolution: {integrity: sha512-+mtn9wjlB9NN2CNnnC/BRYtwdKBfSyyasPYraNAyvaV1occr/5NnB4CVzjEZipNHwYebQwcndGUmpFzxAUoqSA==}
     peerDependencies:
@@ -4781,17 +4777,6 @@ packages:
       '@tanstack/table-core': 8.7.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-    dev: false
-
-  /@tanstack/react-virtual/3.0.0-alpha.0_react@18.2.0:
-    resolution: {integrity: sha512-WpHU/dt34NwZZ8qtiE05TF+nX/b1W6qrWZarO+s8jJFpPVicrTbJKp5Bjt4eSJuk7aYw272oEfsH3ABBRgj+3A==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      react: '>=16'
-    dependencies:
-      '@babel/runtime': 7.20.7
-      '@reach/observe-rect': 1.2.0
-      react: 18.2.0
     dev: false
 
   /@tanstack/react-virtual/3.0.0-beta.30_react@18.2.0:

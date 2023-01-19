@@ -18,7 +18,6 @@ import {
   faEyeSlash,
   faFilter,
   faFilterCircleXmark,
-  faGripLines,
   faSearch,
   faSearchMinus,
   faSortDown,
@@ -37,10 +36,11 @@ const fontAwesomeIcons: Partial<MRT_Icons> = {
     <FontAwesomeIcon icon={faSortDown} {...props} />
   ),
   IconClearAll: () => <FontAwesomeIcon icon={faBarsStaggered} />,
-  IconMenu: () => <FontAwesomeIcon icon={faGripLines} />,
-  IconMenu2: () => <FontAwesomeIcon icon={faBars} />,
-  IconMenu2: () => <FontAwesomeIcon icon={faBars} />,
-  IconMenu: () => <FontAwesomeIcon icon={faGripLines} />,
+  IconTallymark1: () => <FontAwesomeIcon icon={faBars} />,
+  IconTallymark2: () => <FontAwesomeIcon icon={faBars} />,
+  IconTallymark3: () => <FontAwesomeIcon icon={faBars} />,
+  IconTallymark4: () => <FontAwesomeIcon icon={faBars} />,
+  IconTallymarks: () => <FontAwesomeIcon icon={faBars} />,
   IconFilter: (props: any) => <FontAwesomeIcon icon={faFilter} {...props} />,
   IconFilterOff: () => <FontAwesomeIcon icon={faFilterCircleXmark} />,
   IconMinimize: () => <FontAwesomeIcon icon={faCompress} />,
@@ -53,7 +53,7 @@ const fontAwesomeIcons: Partial<MRT_Icons> = {
   IconArrowsSort: (props: any) => (
     <FontAwesomeIcon icon={faArrowDownWideShort} {...props} /> //props so that style rotation transforms are applied
   ),
-  IconPin: (props: any) => (
+  IconPinned: (props: any) => (
     <FontAwesomeIcon icon={faThumbTack} {...props} /> //props so that style rotation transforms are applied
   ),
   IconEyeOff: () => <FontAwesomeIcon icon={faEyeSlash} />,

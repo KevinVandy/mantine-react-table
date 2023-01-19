@@ -2,7 +2,7 @@ import React, { useReducer, useRef, useState } from 'react';
 import {
   MantineReactTable,
   MRT_ToggleFullScreenButton,
-  MRT_GlobalFilterTextField,
+  MRT_GlobalFilterTextInput,
   MRT_ShowHideColumnsButton,
   MRT_TablePagination,
   MRT_ToggleDensePaddingButton,
@@ -83,7 +83,7 @@ const Example = () => {
               Crete New Account
             </Button>
           </Box>
-          <MRT_GlobalFilterTextField table={tableInstanceRef.current} />
+          <MRT_GlobalFilterTextInput table={tableInstanceRef.current} />
           <Box>
             <MRT_ToggleFiltersButton table={tableInstanceRef.current} />
             <MRT_ShowHideColumnsButton table={tableInstanceRef.current} />

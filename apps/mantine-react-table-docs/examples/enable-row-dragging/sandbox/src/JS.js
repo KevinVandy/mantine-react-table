@@ -47,10 +47,13 @@ const Example = () => {
     <Box
       sx={{
         display: 'grid',
-        gridTemplateColumns: { xs: 'auto', lg: '1fr 1fr' },
+        gridTemplateColumns: '1fr 1fr',
         gap: '16px',
         overflow: 'auto',
         padding: '4px',
+        '@media (max-width: 960px)': {
+          gridTemplateColumns: 'auto',
+        },
       }}
     >
       <MantineReactTable
