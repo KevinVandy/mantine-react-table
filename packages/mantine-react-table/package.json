@@ -2,12 +2,11 @@
   "version": "0.3.0",
   "license": "MIT",
   "name": "mantine-react-table",
-  "description": "A fully featured Material UI V5 implementation of TanStack React Table V8, written from the ground up in TypeScript.",
+  "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",
   "author": "Kevin Vandy",
   "keywords": [
     "react-table",
-    "material-ui",
-    "material-table",
+    "mantine",
     "tanstack table",
     "data table"
   ],
