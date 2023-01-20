@@ -20,7 +20,7 @@ const HomePage = () => {
             fontSize: '5rem',
             fontWeight: 'bold',
             marginTop: '5rem',
-            marginBottom: '2rem',
+            marginBottom: '1rem',
             lineHeight: '6rem',
             '@media (max-width: 1024px)': {
               fontSize: '3rem',
@@ -64,6 +64,21 @@ const HomePage = () => {
             </Box>
           </Box>
         </Title>
+        <Text
+          sx={(theme) => ({
+            margin: 'auto',
+            display: 'inline-block',
+            background: `-webkit-linear-gradient(left, ${theme.colors.yellow[7]}, ${theme.colors.red[7]})`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            '&:hover': {
+              textDecoration: 'underline',
+              textDecorationColor: theme.colors.orange[7],
+            },
+          })}
+        >
+          Still in Alpha. Coming soon by February 2023!
+        </Text>
         <Title
           color="dimmed"
           sx={{

@@ -33,16 +33,16 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
   const isDesktop = useMediaQuery('(min-width: 1500px)');
   const { isLightTheme, setIsLightTheme } = useThemeContext();
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      docsearch({
-        appId: '1W9SWN5ZAH',
-        apiKey: '680b219eaef484622046bf76cef8544a',
-        indexName: 'mantine-react-table',
-        container: '#docsearch',
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     docsearch({
+  //       appId: '1W9SWN5ZAH',
+  //       apiKey: '680b219eaef484622046bf76cef8544a',
+  //       indexName: 'mantine-react-table',
+  //       container: '#docsearch',
+  //     });
+  //   }
+  // }, []);
 
   return (
     <>
@@ -126,7 +126,7 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
             </Text>
           </Link>
         </Flex>
-        <Box
+        {/* <Box
           onClick={() => plausible('open-search')}
           id="docsearch"
           sx={{
@@ -134,7 +134,22 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
             width: isDesktop ? '400px' : !isTablet ? '250px' : undefined,
             alignItems: 'center',
           }}
-        />
+        /> */}
+        <Text
+          sx={(theme) => ({
+            margin: 'auto',
+            display: 'inline-block',
+            background: `-webkit-linear-gradient(left, ${theme.colors.yellow[7]}, ${theme.colors.red[7]})`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            '&:hover': {
+              textDecoration: 'underline',
+              textDecorationColor: theme.colors.orange[7],
+            },
+          })}
+        >
+          Still in Alpha. Coming soon by February 2023!
+        </Text>
         <Box
           sx={{
             display: 'flex',
