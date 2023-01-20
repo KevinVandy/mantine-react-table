@@ -29,12 +29,12 @@ const Example: FC = () => {
         accessorKey: 'gender',
         header: 'Gender',
         filterFn: 'equals',
-        filterSelectOptions: [
-          { text: 'Male', value: 'Male' },
-          { text: 'Female', value: 'Female' },
-          { text: 'Other', value: 'Other' },
-        ],
-        filterVariant: 'select',
+        // filterSelectOptions: [
+        //   { text: 'Male', value: 'Male' },
+        //   { text: 'Female', value: 'Female' },
+        //   { text: 'Other', value: 'Other' },
+        // ],
+        // filterVariant: 'select',
       },
       {
         accessorKey: 'age',

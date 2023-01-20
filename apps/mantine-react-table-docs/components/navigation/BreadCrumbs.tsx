@@ -22,6 +22,10 @@ const BreadCrumbs: FC = () => {
     return null;
   }
 
+  if (breadCrumbLinks.length === 1) {
+    breadCrumbLinks.unshift('/');
+  }
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -53,13 +57,15 @@ const BreadCrumbs: FC = () => {
                 '&:hover': { textDecoration: 'hover' },
               }}
             >
-              {link
-                .split('/')
-                .pop()
-                ?.replaceAll('-', ' ')
-                ?.replaceAll('css', 'CSS')
-                ?.replaceAll(' ui', ' UI')
-                ?.replaceAll('api', 'API')}
+              {link === '/'
+                ? 'Home'
+                : link
+                    .split('/')
+                    .pop()
+                    ?.replaceAll('-', ' ')
+                    ?.replaceAll('css', 'CSS')
+                    ?.replaceAll(' ui', ' UI')
+                    ?.replaceAll('api', 'API')}
             </Anchor>
           </Link>
         ))}

@@ -47,6 +47,16 @@ export const ThemeContextProvider = ({ children }) => {
           colorScheme: isLightTheme ? 'light' : 'dark',
           primaryColor,
           primaryShade,
+          headings: {
+            sizes: {
+              h1: { fontWeight: 100, fontSize: 32, lineHeight: 1.4 },
+              h2: { fontSize: 30, lineHeight: 1.5 },
+              h3: { fontSize: 26, lineHeight: 1.5 },
+              h4: { fontSize: 22, lineHeight: 1.5 },
+              h5: { fontSize: 20, lineHeight: 1.5 },
+              h6: { fontWeight: 900 },
+            },
+          },
         }}
         withGlobalStyles
         withNormalizeCSS

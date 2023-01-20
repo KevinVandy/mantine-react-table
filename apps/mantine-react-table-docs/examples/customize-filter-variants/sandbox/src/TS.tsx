@@ -28,14 +28,14 @@ const Example: FC = () => {
       {
         accessorKey: 'city',
         header: 'City',
-        filterVariant: 'select',
-        filterSelectOptions: citiesList,
+        // filterVariant: 'select',
+        // filterSelectOptions: citiesList,
       },
       {
         accessorKey: 'state',
         header: 'State',
-        filterVariant: 'multi-select',
-        filterSelectOptions: usStateList,
+        // filterVariant: 'multi-select',
+        // filterSelectOptions: usStateList,
       },
     ],
     [],
