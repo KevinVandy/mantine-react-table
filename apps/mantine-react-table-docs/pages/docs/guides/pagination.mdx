@@ -45,7 +45,7 @@ If you simply want to disable pagination, you can set the `enablePagination` pro
 If you only want to disable the pagination logic, but still want to show and use the pagination controls, take a look down below at the [Manual Pagination](##manual-or-server-side-pagination) docs.
 
 ```tsx
-<MaterialTable columns={columns} data={data} enablePagination={false} />
+<MantineReactTable columns={columns} data={data} enablePagination={false} />
 ```
 
 ### Customize Pagination
@@ -71,8 +71,6 @@ You can customize the pagination component with the `mantinePaginationProps` pro
 />
 ```
 
-View all table pagination options that you can tweak in the [Material UI Table Pagination API Docs](https://mui.com/material-ui/api/table-pagination/#props).
-
 ### Manual or Server-Side Pagination
 
 #### Manual Pagination
@@ -83,10 +81,10 @@ When the `manualPagination` prop is set to `true`, Mantine React Table will assu
 
 #### Override Page Count and Row Count
 
-If you are using manual pagination, the default page count and row count in the Material UI pagination component will be incorrect, as it is only derived from the number of rows provided in the client-side `data` prop. Luckily, you can override these values and set your own page count or row count in the `pageCount` and `rowCount` props.
+If you are using manual pagination, the default page count and row count in the MRT Pagination component will be incorrect, as it is only derived from the number of rows provided in the client-side `data` prop. Luckily, you can override these values and set your own page count or row count in the `pageCount` and `rowCount` props.
 
 ```tsx
-<MaterialTable
+<MantineReactTable
   columns={columns}
   data={data}
   manualPagination
@@ -110,7 +108,7 @@ useEffect(() => {
 }, [pagination.pageIndex, pagination.pageSize]);
 
 return (
-  <MaterialTable
+  <MantineReactTable
     columns={columns}
     data={data}
     onPaginationChange={setPagination} //hoist pagination state to your state when it changes internally
@@ -122,7 +120,7 @@ return (
 Alternatively, if all you care about is customizing the initial pagination state and do not need to react to its changes, like customizing the default page size or the page index, you can do that like so with `initialState`:
 
 ```tsx
-<MaterialTable
+<MantineReactTable
   columns={columns}
   data={data}
   initialState={{ pagination: { pageSize: 25, pageIndex: 2 } }}

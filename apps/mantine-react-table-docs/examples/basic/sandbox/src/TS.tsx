@@ -15,47 +15,47 @@ type Person = {
 const data: Person[] = [
   {
     name: {
-      firstName: 'John',
-      lastName: 'Doe',
+      firstName: 'Zachary',
+      lastName: 'Davis',
     },
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky',
-  },
-  {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe',
-    },
-    address: '769 Dominic Grove',
+    address: '261 Battle Ford',
     city: 'Columbus',
     state: 'Ohio',
   },
   {
     name: {
-      firstName: 'Joe',
-      lastName: 'Doe',
+      firstName: 'Robert',
+      lastName: 'Smith',
     },
     address: '566 Brakus Inlet',
-    city: 'South Linda',
+    city: 'Westerville',
     state: 'West Virginia',
   },
   {
     name: {
       firstName: 'Kevin',
-      lastName: 'Vandy',
+      lastName: 'Yan',
     },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska',
+    address: '7777 Kuhic Knoll',
+    city: 'South Linda',
+    state: 'West Virginia',
   },
   {
     name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs',
+      firstName: 'John',
+      lastName: 'Upton',
     },
-    address: '32188 Larkin Turnpike',
-    city: 'Omaha',
+    address: '722 Emie Stream',
+    city: 'Huntington',
+    state: 'Washington',
+  },
+  {
+    name: {
+      firstName: 'Nathan',
+      lastName: 'Harris',
+    },
+    address: '1 Kuhic Knoll',
+    city: 'Ohiowa',
     state: 'Nebraska',
   },
 ];

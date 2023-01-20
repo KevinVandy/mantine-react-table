@@ -53,3 +53,22 @@ Default.args = {
     address: faker.address.streetAddress(),
   })),
 } as MantineReactTableProps<Person>;
+
+// const mockData = [...Array(7)].map(() => ({
+//   firstName: faker.name.firstName(),
+//   lastName: faker.name.lastName(),
+//   address: faker.address.streetAddress(),
+//   city: faker.address.city(),
+//   state: faker.address.state(),
+// }));
+
+// const mockData = [...Array(250)].map(() => ({
+//   firstName: faker.name.firstName(),
+//   lastName: faker.name.lastName(),
+//   age: faker.datatype.number(80),
+//   gender: faker.name.gender(true),
+//   state: faker.address.state(),
+//   salary: +faker.finance.amount(10000, 100000, 0),
+// }));
+
+// console.log(mockData, null, 2);

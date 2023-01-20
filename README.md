@@ -88,7 +88,7 @@ _**Fully Fleshed out [Docs](https://www.mantine-react-table.com/docs/guides#guid
 - [x] Row Selection (Checkboxes)
 - [x] SSR compatible
 - [x] Sorting (supports client-side and server-side)
-- [x] Theming (Respects your Material UI Theme)
+- [x] Theming (Respects your Mantine Theme)
 - [x] Toolbars (Add your own action buttons)
 - [x] Tree Data / Expanding Sub-rows
 - [x] Virtualization (@tanstack/react-virtual)
