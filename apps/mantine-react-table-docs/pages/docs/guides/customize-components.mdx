@@ -9,19 +9,19 @@ import { Box } from '@mantine/core';
   <title>{'Customize (Style) Components Guide - Mantine React Table Docs'}</title>
   <meta
     name="description"
-    content="How to customize and pass props to Material UI components and set up a MUI Theme in Mantine React Table"
+    content="How to customize and pass props to Mantine components and set up a MUI Theme in Mantine React Table"
   />
 </Head>
 
 ## Customize (Style) Components Guide
 
-One of the strengths of Mantine React Table is that it exposes a majority of all the underlying Material UI component props used to build the table.
+One of the strengths of Mantine React Table is that it exposes a majority of all the underlying Mantine component props used to build the table.
 
-Additionally, in one of the sections below, you will learn [how to customize and use a MUI Theme](#material-ui-theme) to customize colors, typography, or any other default CSS that is used by Mantine React Table.
+Additionally, in one of the sections below, you will learn [how to customize and use the Mantine Theme](#mantine-theme) to customize colors, typography, or any other default CSS that is used by Mantine React Table.
 
 ### Relevant Props
 
-All props labeled `mantine...Props` get forwarded to Material UI components. Here is a list of all the props that are exposed in both the root props and column options.
+All props labeled `mantine...Props` get forwarded to Mantine components. Here is a list of all the props that are exposed in both the root props and column options.
 
 <RootPropTable
   onlyProps={
@@ -179,7 +179,7 @@ There are many more advantages to using the `sx` prop, but that is all we will d
 
 ### Mantine Theme
 
-Mantine React Table respects your MUI Theme. If you have already set up Material UI and a global MUI Theme, you should already be set. But if you have not, you should visit the offical [Material UI Theming Docs](https://mui.com/material-ui/customization/theming/) to learn how to set that up.
+Mantine React Table respects your Mantine Theme. If you have already set up Mantine and a global Mantine Theme, you should already be set. But if you have not, you should visit the official [Mantine Theming Docs](https://mantine.dev/theming/theme-object/) to learn how to set that up.
 
 ```jsx
 function App() {
