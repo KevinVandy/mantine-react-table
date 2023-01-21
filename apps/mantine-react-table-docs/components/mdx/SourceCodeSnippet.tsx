@@ -163,9 +163,10 @@ export const SourceCodeSnippet: FC<Props> = ({
                     aria-label="Select theme shade"
                     data={['1', '2', '3', '4', '5', '6', '7', '8', '9']}
                     value={primaryShade.toString()}
-                    onChange={(value) =>
-                      setPrimaryShade(+(value as string) as MantineShade)
-                    }
+                    onChange={(value) => {
+                      setPrimaryShade(+(value as string) as MantineShade);
+                      plausible('change-shade');
+                    }}
                     sx={{ width: '60px' }}
                   />
                 </Tooltip>
@@ -174,7 +175,10 @@ export const SourceCodeSnippet: FC<Props> = ({
                     aria-label="Select theme color"
                     data={mantineColors}
                     value={primaryColor}
-                    onChange={setPrimaryColor}
+                    onChange={(value) => {
+                      setPrimaryColor(value as string);
+                      plausible('change-primary-color');
+                    }}
                     sx={{ width: '100px' }}
                   />
                 </Tooltip>
@@ -183,7 +187,10 @@ export const SourceCodeSnippet: FC<Props> = ({
                     aria-label="Select light/dark theme"
                     data={['light', 'dark']}
                     value={isLightTheme ? 'light' : 'dark'}
-                    onChange={(value) => setIsLightTheme(value === 'light')}
+                    onChange={(value) => {
+                      setIsLightTheme(value === 'light');
+                      plausible(`toggle-theme-${value}-mode`);
+                    }}
                     sx={{ width: '80px' }}
                   />
                 </Tooltip>
