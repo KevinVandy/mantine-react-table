@@ -47,9 +47,9 @@ const Example = () => {
   const [sorting, setSorting] = useState([]);
 
   const { data, fetchNextPage, isError, isFetching, isLoading } =
-    useInfiniteQuery(
-      ['table-data', columnFilters, globalFilter, sorting],
-      async ({ pageParam = 0 }) => {
+    useInfiniteQuery({
+      queryKey: ['table-data', columnFilters, globalFilter, sorting],
+      queryFn: async ({ pageParam = 0 }) => {
         const url = new URL(
           '/api/data',
           process.env.NODE_ENV === 'production'
@@ -66,12 +66,10 @@ const Example = () => {
         const json = await response.json();
         return json;
       },
-      {
-        getNextPageParam: (_lastGroup, groups) => groups.length,
-        keepPreviousData: true,
-        refetchOnWindowFocus: false,
-      },
-    );
+      getNextPageParam: (_lastGroup, groups) => groups.length,
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    });
 
   const flatData = useMemo(
     () => data?.pages.flatMap((page) => page.data) ?? [],

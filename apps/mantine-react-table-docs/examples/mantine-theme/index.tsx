@@ -10,7 +10,7 @@ const ExampleTable = () => {
       Component={Example}
       javaScriptCode={JS}
       typeScriptCode={TS}
-      tableId="mui-theme"
+      tableId="mantine-theme"
     />
   );
 };
