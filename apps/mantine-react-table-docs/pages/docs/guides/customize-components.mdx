@@ -6,7 +6,9 @@ import CustomizeStylesExample from '../../../examples/customize-table-styles';
 import { Box } from '@mantine/core';
 
 <Head>
-  <title>{'Customize (Style) Components Guide - Mantine React Table Docs'}</title>
+  <title>
+    {'Customize (Style) Components Guide - Mantine React Table Docs'}
+  </title>
   <meta
     name="description"
     content="How to customize and pass props to Mantine components and set up a MUI Theme in Mantine React Table"
@@ -149,7 +151,7 @@ Don't worry, `className` and `style` props will still work, but let's show off s
   columns={columns}
   data={data}
   mantineTableHeadCellProps={{
-    //no useTheme hook needed, just use the `sx` prop with the theme callback
+    //no useMantineTheme hook needed, just use the `sx` prop with the theme callback
     sx: (theme) => ({
       color: theme.colors.red[5],
     }),
@@ -220,14 +222,13 @@ return (
 
 `<MantineReactTable />` will primarily use the following values internally from your MUI Theme by default:
 
-- `theme.colors[primaryColor[theme.primaryShade]]` - used as the primary color for anything colorful in the table (primary buttons, text inputs, checkboxes, dragging borders, etc.)
+- `theme.colors[theme.primaryColor[theme.primaryShade]]` - used as the primary color for anything colorful in the table (primary buttons, text inputs, checkboxes, dragging borders, etc.)
 - `theme.colors.gray[3, 7, 8]` - used for some borders
 - `theme.colors.dark[7, 8]` - used as the default backgroundColor for the entire table in dark mode
 - `theme.white` - used as the default backgroundColor for the entire table in light mode
 - `theme.black` - used for some box shadows
 
 If you want to change some of the colors used by specific components within the table, remember that you can use the `sx` prop in any of the `mantine...Props` to override the default styles.
-
 
 #### Custom Mantine Theme Example
 
@@ -260,14 +261,14 @@ Here are a few examples of how you can customize the table body, rows, columns, 
 
 #### Stripe Rows Example
 
-Mantine's Table component has a `striped` prop that you can use to stripe the rows. 
+Mantine's Table component has a `striped` prop that you can use to stripe the rows.
 
 ```jsx
 <MantineReactTable
   columns={columns}
   data={data}
   mantineTableProps={{
-    striped: true
+    striped: true,
   }}
 />
 ```

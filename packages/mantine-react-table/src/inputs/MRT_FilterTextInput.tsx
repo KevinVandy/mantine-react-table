@@ -219,7 +219,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
         theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
       }`,
       minWidth: isRangeFilter ? '100px' : !filterChipLabel ? '120px' : 'auto',
-      width: 'calc(100% + 4px)',
+      width: '100%',
       ...(packSx(
         isMultiSelectFilter
           ? multiSelectProps.sx
@@ -273,6 +273,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
           </ActionIcon>
         ) : null
       }
+      onChange={(e) => setFilterValue(e.target.value)}
       {...textInputProps}
       ref={(node) => {
         if (node) {

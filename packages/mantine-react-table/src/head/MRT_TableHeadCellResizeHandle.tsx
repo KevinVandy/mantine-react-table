@@ -25,24 +25,22 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
       onTouchStart={header.getResizeHandler()}
       sx={(theme) => ({
         cursor: 'col-resize',
-        marginRight: '-8px',
+        marginRight: '-20px',
         position: 'absolute',
         right: '1px',
         paddingLeft: '4px',
         paddingRight: '4px',
         '&:active > .mantine-Divider-vertical': {
-          backgroundColor:
+          borderLeftColor:
             theme.colors[theme.primaryColor][getPrimaryShade(theme)],
           opacity: 1,
         },
       })}
       style={{
-        transform: column.getIsResizing()
-          ? `translateX(${
-              (getState().columnSizingInfo.deltaOffset ?? 0) /
-              (columnResizeMode === 'onChange' ? 16 : 1)
-            }px)`
-          : undefined,
+        transform:
+          column.getIsResizing() && columnResizeMode === 'onEnd'
+            ? `translateX(${getState().columnSizingInfo.deltaOffset ?? 0}px)`
+            : undefined,
       }}
     >
       <Divider
@@ -52,7 +50,7 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
           borderRadius: '2px',
           borderWidth: '2px',
           height:
-            showColumnFilters && columnDefType === 'data' ? '3.5rem' : '24px',
+            showColumnFilters && columnDefType === 'data' ? '60px' : '24px',
           touchAction: 'none',
           transition: column.getIsResizing()
             ? undefined

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
+import { data } from './makeData';
 
 const Example = () => {
   const columns = useMemo(
@@ -21,11 +22,9 @@ const Example = () => {
         accessorKey: 'gender',
         header: 'Gender',
         filterFn: 'equals',
-        filterSelectOptions: [
-          { text: 'Male', value: 'Male' },
-          { text: 'Female', value: 'Female' },
-          { text: 'Other', value: 'Other' },
-        ],
+        mantineFilterSelectProps: {
+          data: ['Male', 'Female', 'Other'],
+        },
         filterVariant: 'select',
       },
       {
@@ -37,49 +36,12 @@ const Example = () => {
     [],
   );
 
-  const data = useMemo(
-    //data definitions...
-    () => [
-      {
-        id: 1,
-        firstName: 'Hugh',
-        lastName: 'Mungus',
-        gender: 'Male',
-        age: 42,
-      },
-      {
-        id: 2,
-        firstName: 'Leroy',
-        lastName: 'Jenkins',
-        gender: 'Male',
-        age: 51,
-      },
-      {
-        id: 3,
-        firstName: 'Candice',
-        lastName: 'Nutella',
-        gender: 'Female',
-        age: 27,
-      },
-      {
-        id: 4,
-        firstName: 'Micah',
-        lastName: 'Johnson',
-        gender: 'Other',
-        age: 32,
-      },
-    ],
-    [],
-    //end
-  );
-
   return (
     <MantineReactTable
       columns={columns}
       data={data}
       initialState={{ showColumnFilters: true }} //show filters by default
       mantineFilterTextInputProps={{
-        sx: { margin: '8px 0', width: '100%' },
         variant: 'filled',
       }}
     />

@@ -1,20 +1,6 @@
 import React, { useMemo } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
-
-const data =
-  //data definitions...
-  [
-    {
-      id: 1,
-      firstName: 'Dillon',
-      lastName: 'Howler',
-    },
-    {
-      id: 2,
-      firstName: 'Ross',
-      lastName: 'Everest',
-    },
-  ]; //end
+import { data } from './makeData';
 
 const Example = () => {
   const columns = useMemo(
