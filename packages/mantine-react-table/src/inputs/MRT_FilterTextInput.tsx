@@ -1,24 +1,16 @@
-import React, {
-  ChangeEvent,
-  FC,
-  MouseEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import {
   ActionIcon,
-  Flex,
-  Menu,
+  Box,
+  Chip,
+  MantineTheme,
   MultiSelect,
+  packSx,
   Select,
   SelectItem,
-  Text,
   TextInput,
-  Tooltip,
 } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
-import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {
@@ -34,9 +26,8 @@ export const MRT_FilterTextInput: FC<Props> = ({
 }) => {
   const {
     options: {
-      enableColumnFilterModes,
       columnFilterModeOptions,
-      icons: { IconFilter, IconX },
+      icons: { IconX },
       localization,
       manualFiltering,
       mantineFilterTextInputProps,
@@ -44,7 +35,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
       mantineFilterMultiSelectProps,
     },
     refs: { filterInputRefs },
-    // setColumnFilterFns,
+    setColumnFilterFns,
   } = table;
   const { column } = header;
   const { columnDef } = column;
@@ -67,7 +58,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
         })
       : columnDef.mantineFilterTextInputProps;
 
-  const textFieldProps = {
+  const textInputProps = {
     ...mFilterTextInputProps,
     ...mcFilterTextInputProps,
   };
@@ -113,6 +104,8 @@ export const MRT_FilterTextInput: FC<Props> = ({
   const isSelectFilter = columnDef.filterVariant === 'select';
   const isMultiSelectFilter = columnDef.filterVariant === 'multi-select';
   const isDateFilter = columnDef.filterVariant === 'date';
+  const allowedColumnFilterOptions =
+    columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
 
   const currentFilterOption = columnDef._filterFn;
   const filterChipLabel = ['empty', 'notEmpty'].includes(currentFilterOption)
@@ -125,27 +118,17 @@ export const MRT_FilterTextInput: FC<Props> = ({
       ]
     : '';
   const filterPlaceholder = !isRangeFilter
-    ? textFieldProps?.placeholder ??
+    ? textInputProps?.placeholder ??
       localization.filterByColumn?.replace('{column}', String(columnDef.header))
     : rangeFilterIndex === 0
     ? localization.min
     : rangeFilterIndex === 1
     ? localization.max
     : '';
-  const allowedColumnFilterOptions =
-    columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
-  const showChangeModeButton =
-    enableColumnFilterModes &&
-    columnDef.enableColumnFilterModes !== false &&
-    !rangeFilterIndex &&
-    (allowedColumnFilterOptions === undefined ||
-      !!allowedColumnFilterOptions?.length);
 
   const isMounted = useRef(false);
 
-  const [filterValue, setFilterValue] = useState<
-    string | number | Date | null | string[]
-  >(() =>
+  const [filterValue, setFilterValue] = useState<any>(() =>
     isMultiSelectFilter
       ? (column.getFilterValue() as string[]) || []
       : isRangeFilter
@@ -177,30 +160,19 @@ export const MRT_FilterTextInput: FC<Props> = ({
 
   //receive table filter value and set it to local state
   useEffect(() => {
-    if (isMounted.current) {
-      const tableFilterValue = column.getFilterValue();
-      if (tableFilterValue === undefined) {
-        handleClear();
-      } else if (isRangeFilter && rangeFilterIndex !== undefined) {
-        setFilterValue(
-          (tableFilterValue as [string, string])[rangeFilterIndex],
-        );
-      } else {
-        setFilterValue(tableFilterValue as string);
-      }
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
     }
-    isMounted.current = true;
+    const tableFilterValue = column.getFilterValue();
+    if (tableFilterValue === undefined) {
+      handleClear();
+    } else if (isRangeFilter && rangeFilterIndex !== undefined) {
+      setFilterValue((tableFilterValue as [string, string])[rangeFilterIndex]);
+    } else {
+      setFilterValue(tableFilterValue as string);
+    }
   }, [column.getFilterValue()]);
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFilterValue(
-      textFieldProps.type === 'date'
-        ? event.target.valueAsDate
-        : textFieldProps.type === 'number'
-        ? event.target.valueAsNumber
-        : event.target.value,
-    );
-  };
 
   const handleClear = () => {
     if (isMultiSelectFilter) {
@@ -225,149 +197,92 @@ export const MRT_FilterTextInput: FC<Props> = ({
     );
   }
 
-  const props = {
+  const handleClearEmptyFilterChip = () => {
+    setFilterValue('');
+    column.setFilterValue(undefined);
+    setColumnFilterFns((prev) => ({
+      ...prev,
+      [header.id]: allowedColumnFilterOptions?.[0] ?? 'fuzzy',
+    }));
+  };
+
+  const commonProps = {
     disabled: !!filterChipLabel,
     placeholder: filterPlaceholder,
     title: filterPlaceholder,
     onClick: (event: MouseEvent<HTMLInputElement>) => event.stopPropagation(),
-  };
+    onChange: setFilterValue,
+    value: filterValue,
+    variant: 'unstyled',
+    sx: (theme: MantineTheme) => ({
+      borderBottom: `2px solid ${
+        theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
+      }`,
+      minWidth: isRangeFilter ? '100px' : !filterChipLabel ? '120px' : 'auto',
+      width: 'calc(100% + 4px)',
+      ...(packSx(
+        isMultiSelectFilter
+          ? multiSelectProps.sx
+          : isSelectFilter
+          ? selectProps.sx
+          : textInputProps?.sx,
+      ) as any),
+    }),
+  } as const;
 
-  return (
-    <Flex direction="column" sx={{ overflow: 'visible' }}>
-      <Flex align="flex-end">
-        {showChangeModeButton && (
-          <Menu withinPortal>
-            <Tooltip
-              label={localization.changeFilterMode}
-              position="bottom-start"
-              withArrow
-              withinPortal
-            >
-              <Menu.Target>
-                <ActionIcon
-                  aria-label={localization.changeFilterMode}
-                  size="md"
-                  sx={{ transform: 'translateY(-2px)' }}
-                >
-                  <IconFilter />
-                </ActionIcon>
-              </Menu.Target>
-            </Tooltip>
-            <MRT_FilterOptionMenu
-              header={header}
-              table={table}
-              setFilterValue={setFilterValue}
-            />
-          </Menu>
-        )}
-        {isMultiSelectFilter ? (
-          <MultiSelect
-            {...props}
-            clearable
-            data={multiSelectProps.data as SelectItem[]}
-            onChange={setFilterValue}
-            value={filterValue as string[]}
-            variant="unstyled"
-            withinPortal
-            {...multiSelectProps}
-          />
-        ) : isSelectFilter ? (
-          <Select
-            {...props}
-            clearable
-            data={selectProps.data as SelectItem[]}
-            onChange={setFilterValue}
-            value={filterValue as any}
-            variant="unstyled"
-            withinPortal
-            {...selectProps}
-            sx={(theme) => ({
-              borderBottom: `2px solid ${
-                theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
-              }`,
-              minWidth: isRangeFilter
-                ? '100px'
-                : !filterChipLabel
-                ? '120px'
-                : 'auto',
-              width: 'calc(100% + 4px)',
-              ...(selectProps?.sx instanceof Function
-                ? selectProps.sx(theme)
-                : (selectProps?.sx as any)),
-            })}
-          />
-        ) : isDateFilter ? null : (
-          <TextInput
-            {...props}
-            variant="unstyled"
-            rightSection={
-              !filterChipLabel && filterValue?.toString()?.length ? (
-                <ActionIcon
-                  aria-label={localization.clearFilter}
-                  onClick={handleClear}
-                  size="sm"
-                  sx={{
-                    '&:disabled': {
-                      backgroundColor: 'transparent',
-                      border: 'none',
-                    },
-                  }}
-                  title={localization.clearFilter ?? ''}
-                >
-                  <IconX />
-                </ActionIcon>
-              ) : null
-            }
-            onChange={handleChange}
-            value={filterValue?.toString() ?? ''}
-            {...textFieldProps}
-            ref={(node) => {
-              if (node) {
-                filterInputRefs.current[
-                  `${column.id}-${rangeFilterIndex ?? 0}`
-                ] = node;
-                if (textFieldProps.ref) {
-                  textFieldProps.ref.current = node;
-                }
-              }
+  return filterChipLabel ? (
+    <Box sx={commonProps.sx}>
+      <Chip onClick={handleClearEmptyFilterChip} sx={{ margin: '4px' }}>
+        {filterChipLabel}{' '}
+        <IconX size="12pt" style={{ transform: 'translate(6px, 3px)' }} />
+      </Chip>
+    </Box>
+  ) : isMultiSelectFilter ? (
+    <MultiSelect
+      {...commonProps}
+      data={multiSelectProps.data as SelectItem[]}
+      withinPortal
+      {...multiSelectProps}
+    />
+  ) : isSelectFilter ? (
+    <Select
+      {...commonProps}
+      clearable
+      data={selectProps.data as SelectItem[]}
+      withinPortal
+      {...selectProps}
+    />
+  ) : isDateFilter ? null : (
+    <TextInput
+      {...commonProps}
+      rightSection={
+        !filterChipLabel && filterValue?.toString()?.length ? (
+          <ActionIcon
+            aria-label={localization.clearFilter}
+            onClick={handleClear}
+            size="sm"
+            sx={{
+              '&:disabled': {
+                backgroundColor: 'transparent',
+                border: 'none',
+              },
             }}
-            sx={(theme) => ({
-              borderBottom: `2px solid ${
-                theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
-              }`,
-              minWidth: isRangeFilter
-                ? '100px'
-                : !filterChipLabel
-                ? '120px'
-                : 'auto',
-              width: 'calc(100% + 4px)',
-              ...(textFieldProps?.sx instanceof Function
-                ? textFieldProps.sx(theme)
-                : (textFieldProps?.sx as any)),
-            })}
-          />
-        )}
-      </Flex>
-      {showChangeModeButton ? (
-        <Text
-          component="label"
-          color="dimmed"
-          size="xs"
-          pl="1.6rem"
-          sx={{ whiteSpace: 'nowrap', marginTop: '4px' }}
-        >
-          {localization.filterMode.replace(
-            '{filterType}',
-            // @ts-ignore
-            localization[
-              `filter${
-                currentFilterOption?.charAt(0)?.toUpperCase() +
-                currentFilterOption?.slice(1)
-              }`
-            ],
-          )}
-        </Text>
-      ) : null}
-    </Flex>
+            title={localization.clearFilter ?? ''}
+          >
+            <IconX />
+          </ActionIcon>
+        ) : null
+      }
+      {...textInputProps}
+      ref={(node) => {
+        if (node) {
+          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+            node;
+          if (textInputProps.ref) {
+            textInputProps.ref.current = node;
+          }
+        }
+      }}
+    />
   );
 };

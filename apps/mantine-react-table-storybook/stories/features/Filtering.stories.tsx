@@ -124,18 +124,18 @@ export const FilterFnAndFilterVariants: Story<MantineReactTableProps> = () => (
       {
         header: 'State',
         accessorKey: 'state',
-        // mantineFilterSelectProps: {
-        //   data: [
-        //     { value: 'AL', label: 'Alabama' },
-        //     { value: 'AZ', label: 'Arizona' },
-        //     { value: 'CA', label: 'California' },
-        //     { value: 'FL', label: 'Florida' },
-        //     { value: 'GA', label: 'Georgia' },
-        //     { value: 'NY', label: 'New York' },
-        //     { value: 'TX', label: 'Texas' },
-        //   ],
-        // },
-        // filterVariant: 'multi-select',
+        mantineFilterMultiSelectProps: {
+          data: [
+            'Alabama',
+            'Arizona',
+            'California',
+            'Florida',
+            'Georgia',
+            'New York',
+            'Texas',
+          ] as any,
+        },
+        filterVariant: 'multi-select',
       },
     ]}
     data={data}

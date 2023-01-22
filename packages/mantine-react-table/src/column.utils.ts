@@ -250,6 +250,7 @@ export const getCommonCellStyles = ({
     : getIsFirstRightPinnedColumn(column)
     ? `4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
     : undefined,
+  boxSizing: 'content-box',
   display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
   left:
     column.getIsPinned() === 'left'
@@ -281,7 +282,7 @@ export const getCommonCellStyles = ({
   position:
     column.getIsPinned() && column.columnDef.columnDefType !== 'group'
       ? 'sticky'
-      : undefined,
+      : 'relative',
   right:
     column.getIsPinned() === 'right'
       ? `${getTotalRight(table, column)}px`

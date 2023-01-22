@@ -74,11 +74,11 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
   const draggingBorder = useMemo(
     () =>
       draggingColumn?.id === column.id
-        ? `1px dashed ${theme.colors.gray[7]}`
+        ? `1px dashed ${theme.colors.gray[7]} !important`
         : hoveredColumn?.id === column.id
         ? `2px dashed ${
             theme.colors[theme.primaryColor][getPrimaryShade(theme)]
-          }`
+          } !important`
         : undefined,
     [draggingColumn, hoveredColumn],
   );
