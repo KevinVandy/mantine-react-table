@@ -32,7 +32,10 @@ const BreadCrumbs: FC = () => {
     itemListElement: breadCrumbLinks.map((link, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      name: link.split('/').pop()?.replaceAll('-', ' ') || '',
+      name:
+        link === '/'
+          ? 'Home'
+          : link.split('/').pop()?.replaceAll('-', ' ') || '',
       item: `https://www.mantine-react-table.com${link}`,
     })),
   };

@@ -157,41 +157,10 @@ const HomePage = () => {
               rel="noreferrer"
             >
               Material React Table
-              <Box
-                component="sup"
-                sx={(theme) => ({
-                  background: `-webkit-linear-gradient(left, ${theme.colors.teal[7]}, ${theme.colors.teal[7]})`,
-                  display: 'inline',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  '@media (max-width: 768px)': {
-                    fontSize: '24px',
-                  },
-                })}
-              >
-                V1
-              </Box>
             </Anchor>
           </Link>
         </Title>
         <StatBadges />
-        <Title
-          color="dimmed"
-          sx={{
-            fontSize: '24px',
-            marginTop: '2rem',
-            textAlign: 'center',
-            lineHeight: '32px',
-            fontWeight: 'normal',
-            textTransform: 'capitalize',
-            '@media (max-width: 768px)': {
-              fontSize: '1.2rem',
-            },
-          }}
-          order={3}
-        >
-          Quickly create high-quality React data tables with Mantine
-        </Title>
         <Box
           sx={{
             margin: '3rem auto',
