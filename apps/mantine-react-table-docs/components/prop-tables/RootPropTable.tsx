@@ -84,11 +84,11 @@ const RootPropTable: FC<Props> = ({ onlyProps }) => {
               <Anchor
                 color={
                   row.original.source === 'MRT'
-                    ? 'text.primary'
+                    ? 'dimmed'
                     : row.original.source === 'Mantine'
-                    ? 'primary.main'
+                    ? 'teal'
                     : row.original.source === 'TanStack Table'
-                    ? 'secondary.main'
+                    ? 'blue'
                     : undefined
                 }
                 target={
