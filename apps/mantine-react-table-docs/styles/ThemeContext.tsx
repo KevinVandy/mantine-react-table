@@ -15,7 +15,7 @@ const ThemeContext = createContext<{
 export const ThemeContextProvider = ({ children }) => {
   const [isLightTheme, setIsLightTheme] = useState(false);
   const [primaryColor, setPrimaryColor] = useState<MantineColor>('teal');
-  const [primaryShade, setPrimaryShade] = useState<MantineShade>(8);
+  const [primaryShade, setPrimaryShade] = useState<MantineShade>(7);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -28,7 +28,6 @@ export const ThemeContextProvider = ({ children }) => {
       document.body.style.backgroundColor = isLightTheme ? '#fff' : '#111';
       localStorage.setItem('isLightTheme', isLightTheme.toString());
     }
-    setPrimaryShade(isLightTheme ? 8 : 6);
   }, [isLightTheme]);
 
   return (

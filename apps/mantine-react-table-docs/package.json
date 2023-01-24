@@ -14,6 +14,7 @@
   "dependencies": {
     "@docsearch/js": "3.3.2",
     "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
     "@faker-js/faker": "^7.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
@@ -21,6 +22,7 @@
     "@mantine/core": "^5.10.1",
     "@mantine/dates": "^5.10.1",
     "@mantine/hooks": "^5.10.1",
+    "@mantine/next": "^5.10.1",
     "@mantine/prism": "5.10.1",
     "@mdx-js/loader": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
