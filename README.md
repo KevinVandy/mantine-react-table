@@ -1,5 +1,7 @@
 # Mantine React Table
 
+View the [Docs Site](https://www.mantine-react-table.com/)
+
 A work in progress fork of [Material React Table](https://www.material-react-table.com)
 
 Coming soon in early 2023, but you can try out the beta now.
@@ -104,7 +106,7 @@ View the full [Installation Docs](https://www.mantine-react-table.com/docs/getti
 2. Install Peer Dependencies (Mantine V5 and Tabler Icons)
 
 ```bash
-npm install @mantine/core @mantine/hooks @emotion/react @tabler/icons
+npm install @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/icons dayjs
 ```
 
 3. Install mantine-react-table
@@ -116,8 +118,6 @@ npm install mantine-react-table
 > _`@tanstack/react-table`, `@tanstack/react-virtual`, and `@tanstack/match-sorter-utils`_ are internal dependencies, so you do NOT need to install them yourself.
 
 ### Usage
-
-> Docs coming soon
 
 > Read the full usage docs [here](https://www.mantine-react-table.com/docs/getting-started/usage/)
 

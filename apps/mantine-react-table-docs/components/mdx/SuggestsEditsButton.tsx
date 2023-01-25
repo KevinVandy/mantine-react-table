@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button, Stack, Text } from '@mantine/core';
+import { Anchor, Button, Stack, Text } from '@mantine/core';
 import { IconBrandGithub, IconEdit } from '@tabler/icons';
 import { useRouter } from 'next/router';
 import { usePlausible } from 'next-plausible';
@@ -59,6 +59,43 @@ export const SuggestsEditsButton: FC = () => {
             src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
           />
         </a>
+      </Text>
+      <Text
+        sx={{
+          marginTop: '2rem',
+          textAlign: 'center',
+        }}
+      >
+        Using{' '}
+        <Anchor
+          color="blue.6"
+          href="https://mui.com/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Material-UI
+        </Anchor>{' '}
+        instead of Mantine?
+        <br />
+        Check out{' '}
+        <Anchor
+          href="https://material-react-table.com"
+          target="_blank"
+          rel="noreferrer"
+          sx={(theme) => ({
+            background: `-webkit-linear-gradient(left, ${theme.colors.blue[6]}, ${theme.colors.teal[7]})`,
+            display: 'inline',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            textDecoration: 'none',
+            '&:hover': {
+              textDecoration: 'underline',
+              textDecorationColor: theme.colors.blue[6],
+            },
+          })}
+        >
+          Material&nbsp;React&nbsp;Table
+        </Anchor>
       </Text>
     </Stack>
   );

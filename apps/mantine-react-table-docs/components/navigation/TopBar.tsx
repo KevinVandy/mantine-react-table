@@ -50,13 +50,13 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
         {`
           :root {
             --docsearch-primary-color: ${
-              theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+              theme.colors[theme.primaryColor][8]
             };
             --docsearch-highlight-color: ${
-              theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+              theme.colors[theme.primaryColor][8]
             };
             --docsearch-logo-color: ${
-              theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+              theme.colors[theme.primaryColor][8]
             };
             ${
               !isLightTheme

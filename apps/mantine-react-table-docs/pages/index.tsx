@@ -9,6 +9,7 @@ import { LinkHeading } from '../components/mdx/LinkHeading';
 import { FeatureTable } from '../components/mdx/FeatureTable';
 import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
 import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { GuideCard } from '../components/mdx/GuideCard';
 
 const HomePage = () => {
   return (
@@ -277,6 +278,35 @@ const HomePage = () => {
           </SampleCodeSnippet>
         </Box>
         <HomeCards />
+        <Title my="2rem" ta="center" order={3}>
+          Popular Docs
+        </Title>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr 1fr',
+            gap: '1rem',
+            '@media (max-width: 1024px)': {
+              gridTemplateColumns: '1fr 1fr',
+            },
+          }}
+        >
+          <GuideCard title="Props" href="/docs/api/props" />
+          <GuideCard title="Basic Example" href="docs/examples/basic" />
+          <GuideCard title="Advanced Example" href="docs/examples/advanced" />
+          <GuideCard
+            title="Fetching Example"
+            href="docs/examples/react-query"
+          />
+          <GuideCard title="Localization" href="docs/guides/localization" />
+          <GuideCard title="Create Columns" href="docs/guides/data-columns" />
+          <GuideCard
+            title="Column Filtering"
+            href="docs/guides/column-filtering"
+          />
+          <GuideCard title="Selection" href="docs/guides/row-selection" />
+        </Box>
+        <LinkCards />
       </Stack>
       <Title
         sx={{
@@ -326,7 +356,6 @@ const HomePage = () => {
       <Text component="p" size="sm" sx={{ marginTop: '16px' }}>
         *If you see any inaccuracies in this table, PRs are welcome!
       </Text>
-      <LinkCards />
     </>
   );
 };
