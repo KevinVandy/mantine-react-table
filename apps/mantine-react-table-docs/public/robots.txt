@@ -2,6 +2,8 @@
 User-agent: *
 Allow: /
 Disallow: /api/data
+Disallow: /_next/*
+Disallow: /proxy
 
 # Host
 Host: https://www.mantine-react-table.com
