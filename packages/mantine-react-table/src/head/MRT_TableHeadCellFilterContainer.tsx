@@ -74,8 +74,7 @@ export const MRT_TableHeadCellFilterContainer: FC<Props> = ({
           <Text
             component="label"
             color="dimmed"
-            size="xs"
-            sx={{ whiteSpace: 'nowrap', marginTop: '4px' }}
+            sx={{ whiteSpace: 'nowrap', marginTop: '4px', fontSize: '10px' }}
           >
             {localization.filterMode.replace(
               '{filterType}',

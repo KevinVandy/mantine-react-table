@@ -8,7 +8,7 @@ import { ComparisonTable } from '../components/mdx/ComparisonTable';
 import { LinkHeading } from '../components/mdx/LinkHeading';
 import { FeatureTable } from '../components/mdx/FeatureTable';
 import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import { GuideCard } from '../components/mdx/GuideCard';
 
 const HomePage = () => {
@@ -39,9 +39,9 @@ const HomePage = () => {
           <br />
           <Box
             sx={(theme) => ({
-              background: `-webkit-linear-gradient(left, ${
-                theme.colors[theme.primaryColor][getPrimaryShade(theme)]
-              }, ${theme.colors.blue[7]})`,
+              background: `-webkit-linear-gradient(left, ${getPrimaryColor(
+                theme,
+              )}, ${theme.colors.blue[7]})`,
               display: 'inline',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -98,7 +98,7 @@ const HomePage = () => {
           <Link href="https://mantine.dev/" passHref legacyBehavior>
             <Anchor
               sx={(theme) => ({
-                color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                color: getPrimaryColor(theme),
                 textDecoration: 'none',
                 '&:hover': { textDecoration: 'underline' },
               })}
@@ -112,7 +112,7 @@ const HomePage = () => {
           <Link href="https://tanstack.com/table/v8" passHref legacyBehavior>
             <Anchor
               sx={(theme) => ({
-                color: theme.colors.blue[getPrimaryShade(theme)],
+                color: theme.colors.blue[8],
                 textDecoration: 'none',
                 '&:hover': { textDecoration: 'underline' },
               })}
@@ -143,9 +143,7 @@ const HomePage = () => {
               sx={(theme) => ({
                 background: `-webkit-linear-gradient(left, ${
                   theme.colors.blue[7]
-                }, ${
-                  theme.colors[theme.primaryColor][getPrimaryShade(theme)]
-                })`,
+                }, ${getPrimaryColor(theme)})`,
                 display: 'inline',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -198,17 +196,11 @@ const HomePage = () => {
               fullWidth
               size="lg"
               sx={(theme) => ({
-                backgroundColor: theme.fn.rgba(
-                  theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-                  0.1,
-                ),
-                color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.1),
+                color: getPrimaryColor(theme),
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
-                    theme.fn.darken(
-                      theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-                      0.1,
-                    ),
+                    theme.fn.darken(getPrimaryColor(theme), 0.1),
                     0.2,
                   ),
                 },
@@ -224,17 +216,11 @@ const HomePage = () => {
               fullWidth
               size="lg"
               sx={(theme) => ({
-                backgroundColor: theme.fn.rgba(
-                  theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-                  0.1,
-                ),
-                color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.1),
+                color: getPrimaryColor(theme),
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
-                    theme.fn.darken(
-                      theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-                      0.1,
-                    ),
+                    theme.fn.darken(getPrimaryColor(theme), 0.1),
                     0.2,
                   ),
                 },
@@ -250,17 +236,11 @@ const HomePage = () => {
               fullWidth
               size="lg"
               sx={(theme) => ({
-                backgroundColor: theme.fn.rgba(
-                  theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-                  0.1,
-                ),
-                color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.1),
+                color: getPrimaryColor(theme),
                 '&:hover': {
                   backgroundColor: theme.fn.rgba(
-                    theme.fn.darken(
-                      theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-                      0.1,
-                    ),
+                    theme.fn.darken(getPrimaryColor(theme), 0.1),
                     0.2,
                   ),
                 },
@@ -319,9 +299,9 @@ const HomePage = () => {
         Is{' '}
         <Box
           sx={(theme) => ({
-            background: `-webkit-linear-gradient(left, ${
-              theme.colors[theme.primaryColor][getPrimaryShade(theme)]
-            }, ${theme.colors.blue[7]})`,
+            background: `-webkit-linear-gradient(left, ${getPrimaryColor(
+              theme,
+            )}, ${theme.colors.blue[7]})`,
             display: 'inline',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',

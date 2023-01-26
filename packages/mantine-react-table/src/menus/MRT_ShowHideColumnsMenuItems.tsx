@@ -8,7 +8,7 @@ import React, {
 import { Box, Menu, Switch, Tooltip, Text } from '@mantine/core';
 import { MRT_ColumnPinningButtons } from '../buttons/MRT_ColumnPinningButtons';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
-import { getPrimaryShade, reorderColumn } from '../column.utils';
+import { getPrimaryColor, reorderColumn } from '../column.utils';
 import type { MRT_Column, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -94,9 +94,7 @@ export const MRT_ShowHideColumnsMenuItems = <
           outline: isDragging
             ? `1px dashed ${theme.colors.gray[7]}`
             : hoveredColumn?.id === column.id
-            ? `2px dashed ${
-                theme.colors[theme.primaryColor][getPrimaryShade(theme)]
-              }`
+            ? `2px dashed ${getPrimaryColor(theme)}`
             : 'none',
           paddingLeft: `${(column.depth + 0.5) * 2}rem`,
           paddingTop: '6px',

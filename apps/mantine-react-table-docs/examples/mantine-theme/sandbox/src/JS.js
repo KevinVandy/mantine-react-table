@@ -2,8 +2,6 @@ import React from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 import { MantineProvider, useMantineTheme } from '@mantine/core';
 
-
-
 //column definitions...
 const columns = [
   {

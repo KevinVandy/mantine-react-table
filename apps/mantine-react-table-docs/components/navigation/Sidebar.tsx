@@ -26,10 +26,9 @@ const SideBar: FC<Props> = ({ navOpen, setNavOpen }) => {
         hidden={!navOpen}
         width={{ xl: 275, xs: 275 }}
         withBorder
-        // @ts-ignore
         sx={{
           display: navOpen ? 'flex' : 'none',
-          overflowY: 'overlay',
+          overflowY: 'auto',
           paddingBottom: '20rem',
           zIndex: 4,
           left: 0,

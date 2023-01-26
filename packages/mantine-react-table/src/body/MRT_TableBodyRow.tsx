@@ -4,7 +4,7 @@ import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import type { MRT_Cell, MRT_Row, MRT_TableInstance } from '..';
-import { getPrimaryShade } from '../column.utils';
+import { getPrimaryColor } from '../column.utils';
 
 interface Props {
   columnVirtualizer?: Virtualizer<HTMLDivElement, HTMLTableCellElement>;
@@ -67,9 +67,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
       draggingRow?.id === row.id
         ? `1px dashed ${theme.colors.gray[7]}`
         : hoveredRow?.id === row.id
-        ? `2px dashed ${
-            theme.colors[theme.primaryColor][getPrimaryShade(theme)]
-          }`
+        ? `2px dashed ${getPrimaryColor(theme)}`
         : undefined,
     [draggingRow, hoveredRow],
   );
@@ -95,10 +93,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
         {...tableRowProps}
         sx={(theme) => ({
           backgroundColor: row.getIsSelected()
-            ? theme.fn.rgba(
-                theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-                0.1,
-              )
+            ? theme.fn.rgba(getPrimaryColor(theme), 0.1)
             : theme.colorScheme === 'dark'
             ? theme.fn.lighten(theme.colors.dark[7], 0.02)
             : theme.white,
@@ -119,10 +114,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
                   ? `${theme.fn.lighten(theme.colors.dark[7], 0.12)}`
                   : `${theme.fn.darken(theme.white, 0.05)}`
                 : row.getIsSelected()
-                ? theme.fn.rgba(
-                    theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-                    0.2,
-                  )
+                ? theme.fn.rgba(getPrimaryColor(theme), 0.2)
                 : undefined,
           },
           ...(tableRowProps?.sx instanceof Function

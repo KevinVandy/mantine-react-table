@@ -6,7 +6,7 @@ import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
 import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
 import { MRT_TableHeadCellResizeHandle } from './MRT_TableHeadCellResizeHandle';
 import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
-import { getCommonCellStyles, getPrimaryShade } from '../column.utils';
+import { getCommonCellStyles, getPrimaryColor } from '../column.utils';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {
@@ -76,9 +76,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
       draggingColumn?.id === column.id
         ? `1px dashed ${theme.colors.gray[7]} !important`
         : hoveredColumn?.id === column.id
-        ? `2px dashed ${
-            theme.colors[theme.primaryColor][getPrimaryShade(theme)]
-          } !important`
+        ? `2px dashed ${getPrimaryColor(theme)} !important`
         : undefined,
     [draggingColumn, hoveredColumn],
   );

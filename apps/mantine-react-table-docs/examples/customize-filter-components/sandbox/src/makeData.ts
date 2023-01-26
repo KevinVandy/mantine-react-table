@@ -27,4 +27,4 @@ export const data = [
     gender: 'Other',
     age: 32,
   },
-]
+];

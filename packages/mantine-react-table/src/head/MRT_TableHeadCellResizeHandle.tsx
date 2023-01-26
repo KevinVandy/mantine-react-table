@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Box, Divider } from '@mantine/core';
 import { MRT_Header, MRT_TableInstance } from '..';
-import { getPrimaryShade } from '../column.utils';
+import { getPrimaryColor } from '../column.utils';
 
 interface Props {
   header: MRT_Header;
@@ -40,8 +40,7 @@ export const MRT_TableHeadCellResizeHandle: FC<Props> = ({ header, table }) => {
         paddingLeft: '4px',
         paddingRight: '4px',
         '&:active > .mantine-Divider-vertical': {
-          borderLeftColor:
-            theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+          borderLeftColor: getPrimaryColor(theme),
           opacity: 1,
         },
       })}

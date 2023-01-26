@@ -1,5 +1,5 @@
 import { Box, Card, Text, Anchor } from '@mantine/core';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import Image from 'next/image';
 
 const cardData = [
@@ -55,7 +55,7 @@ export const Contributors = () => {
               sx={(theme) => ({
                 alignItems: 'center',
                 borderRadius: '8px',
-                color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                color: getPrimaryColor(theme),
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',

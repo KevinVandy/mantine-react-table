@@ -9,7 +9,7 @@ import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { PropRow, rootProps } from './rootProps';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {
   onlyProps?: Set<keyof MantineReactTableProps>;
@@ -34,8 +34,7 @@ const RootPropTable: FC<Props> = ({ onlyProps }) => {
               <Text
                 component="strong"
                 sx={(theme) => ({
-                  color:
-                    theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+                  color: getPrimaryColor(theme),
                 })}
               >
                 {cell.getValue<string>()}*

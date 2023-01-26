@@ -5,7 +5,7 @@ import { UnstyledButton, Flex } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconExternalLink } from '@tabler/icons';
 import { RouteItem } from './routes';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {
   depth?: number;
@@ -43,17 +43,12 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                 sx={(theme) => ({
                   backgroundColor:
                     pathname === href
-                      ? theme.fn.rgba(
-                          theme.colors[theme.primaryColor][
-                            getPrimaryShade(theme)
-                          ],
-                          0.2,
-                        )
+                      ? theme.fn.rgba(getPrimaryColor(theme), 0.2)
                       : 'transparent',
                   color: !items
                     ? theme.colorScheme === 'dark'
                       ? theme.colors[theme.primaryColor][3]
-                      : theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+                      : getPrimaryColor(theme)
                     : depth === 1
                     ? theme.colorScheme === 'dark'
                       ? theme.white
@@ -69,10 +64,7 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                   whiteSpace: 'nowrap',
                   transition: 'background-color 0.1s ease',
                   '&:hover': {
-                    backgroundColor: theme.fn.rgba(
-                      theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-                      0.1,
-                    ),
+                    backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.1),
                   },
                 })}
               >

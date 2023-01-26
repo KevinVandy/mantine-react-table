@@ -148,7 +148,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
     if (!isMounted.current) return;
     if (isRangeFilter) {
       column.setFilterValue((old: [string, string]) => {
-        const newFilterValues = old ?? ['', ''];
+        const newFilterValues = Array.isArray(old) ? old : ['', ''];
         newFilterValues[rangeFilterIndex as number] =
           debouncedFilterValue as string;
         return newFilterValues;
@@ -218,7 +218,7 @@ export const MRT_FilterTextInput: FC<Props> = ({
       borderBottom: `2px solid ${
         theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
       }`,
-      minWidth: isRangeFilter ? '100px' : !filterChipLabel ? '120px' : 'auto',
+      minWidth: isRangeFilter ? '80px' : !filterChipLabel ? '100px' : 'auto',
       width: '100%',
       ...(packSx(
         isMultiSelectFilter

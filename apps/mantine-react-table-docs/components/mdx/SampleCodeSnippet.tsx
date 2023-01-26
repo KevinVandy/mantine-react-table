@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Prism, PrismProps } from '@mantine/prism';
 import { Paper, useMantineTheme } from '@mantine/core';
 import { Language } from 'prism-react-renderer';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props extends Partial<PrismProps> {
   children: string;
@@ -15,10 +15,7 @@ export const SampleCodeSnippet: FC<Props> = (props) => {
     return (
       <code
         style={{
-          backgroundColor: theme.fn.rgba(
-            theme.colors[theme.primaryColor][getPrimaryShade(theme)],
-            0.1,
-          ),
+          backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.1),
           padding: '4px',
           margin: '0 0.5ch',
         }}

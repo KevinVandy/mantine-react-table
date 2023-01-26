@@ -245,12 +245,12 @@ export const getCommonCellStyles = ({
           0.97,
         )
       : 'inherit',
+  backgroundClip: 'padding-box',
   boxShadow: getIsLastLeftPinnedColumn(table, column)
     ? `-4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
     : getIsFirstRightPinnedColumn(column)
     ? `4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
     : undefined,
-  boxSizing: 'content-box',
   display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
   left:
     column.getIsPinned() === 'left'
@@ -282,7 +282,7 @@ export const getCommonCellStyles = ({
   position:
     column.getIsPinned() && column.columnDef.columnDefType !== 'group'
       ? 'sticky'
-      : 'relative',
+      : 'static',
   right:
     column.getIsPinned() === 'right'
       ? `${getTotalRight(table, column)}px`
@@ -329,3 +329,6 @@ export const getPrimaryShade = (theme: MantineTheme): number =>
       theme.primaryShade?.dark ?? theme.primaryShade
     : // @ts-ignore
       theme.primaryShade?.light ?? theme.primaryShade) ?? 7;
+
+export const getPrimaryColor = (theme: MantineTheme): string =>
+  theme.colors[theme.primaryColor][getPrimaryShade(theme)];

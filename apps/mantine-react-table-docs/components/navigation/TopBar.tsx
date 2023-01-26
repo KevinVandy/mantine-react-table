@@ -18,7 +18,7 @@ import { IconSun, IconMoonStars } from '@tabler/icons';
 import { useThemeContext } from '../../styles/ThemeContext';
 import docsearch from '@docsearch/js';
 import '@docsearch/css';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {
   navOpen: boolean;
@@ -49,18 +49,11 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
       <style global jsx>
         {`
           :root {
-            --docsearch-primary-color: ${
-              theme.colors[theme.primaryColor][8]
-            };
-            --docsearch-highlight-color: ${
-              theme.colors[theme.primaryColor][8]
-            };
-            --docsearch-logo-color: ${
-              theme.colors[theme.primaryColor][8]
-            };
-            ${
-              !isLightTheme
-                ? `--docsearch-container-background: rgba(11, 11, 11, 0.8);
+            --docsearch-primary-color: ${theme.colors[theme.primaryColor][8]};
+            --docsearch-highlight-color: ${theme.colors[theme.primaryColor][8]};
+            --docsearch-logo-color: ${theme.colors[theme.primaryColor][8]};
+            ${!isLightTheme
+              ? `--docsearch-container-background: rgba(11, 11, 11, 0.8);
             --docsearch-footer-background: #222;
             --docsearch-hit-background: #333;
             --docsearch-hit-color: #fff;
@@ -71,8 +64,7 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
             --docsearch-searchbox-focus-background: #000;
             --docsearch-text-color: #fff;
            `
-                : ''
-            }
+              : ''}
           }
         `}
       </style>
@@ -84,7 +76,7 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
           backgroundColor:
             theme.colorScheme === 'dark'
               ? theme.colors.dark[7]
-              : theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+              : getPrimaryColor(theme),
           display: 'flex',
           justifyContent: 'space-between',
           padding: '4px 20px',

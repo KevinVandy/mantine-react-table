@@ -7,7 +7,7 @@ import {
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { Box } from '@mantine/core';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 const meta: Meta = {
   title: 'Styling/Style Table Head Cells',
@@ -72,7 +72,7 @@ export const StyleTableHeadCellsIndividually: Story<
         accessorKey: 'lastName',
         mantineTableHeadCellProps: {
           sx: (theme) => ({
-            color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+            color: getPrimaryColor(theme),
           }),
         },
       },

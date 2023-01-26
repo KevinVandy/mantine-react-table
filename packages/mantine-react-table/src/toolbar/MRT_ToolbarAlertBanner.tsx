@@ -75,6 +75,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
       transitionDuration={stackAlertBanner ? 200 : 0}
     >
       <Alert
+        color="blue"
         icon={false}
         {...alertProps}
         sx={(theme) => ({

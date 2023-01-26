@@ -1,5 +1,5 @@
 import { Card, Stack, Title } from '@mantine/core';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import Image from 'next/image';
 
 const cardData = [

@@ -1,5 +1,5 @@
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import React from 'react';
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
@@ -14,7 +14,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
     mantineTableHeadCellProps: {
       align: 'center',
       sx: (theme) => ({
-        color: theme.colors[theme.primaryColor][getPrimaryShade(theme)],
+        color: getPrimaryColor(theme),
       }),
     },
     mantineTableBodyCellProps: {

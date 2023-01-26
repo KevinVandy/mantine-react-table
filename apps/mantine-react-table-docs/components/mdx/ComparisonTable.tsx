@@ -1,6 +1,6 @@
 import { Box, Anchor } from '@mantine/core';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
-import { getPrimaryShade } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
@@ -15,7 +15,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
         sx={(theme) => ({
           color:
             cell.getValue() === 'Mantine React Table'
-              ? theme.colors[theme.primaryColor][getPrimaryShade(theme)]
+              ? getPrimaryColor(theme)
               : cell.getValue() === 'TanStack Table (React Table)'
               ? theme.colors.blue[7]
               : theme.colorScheme === 'dark'
