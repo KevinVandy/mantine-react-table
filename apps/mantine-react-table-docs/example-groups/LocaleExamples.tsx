@@ -6,6 +6,9 @@ import { Tabs, Skeleton, Box } from '@mantine/core';
 const CS_Table = dynamic(() => import('../examples/localization-i18n-cs'), {
   suspense: true,
 });
+const DA_Table = dynamic(() => import('../examples/localization-i18n-da'), {
+  suspense: true,
+});
 const DE_Table = dynamic(() => import('../examples/localization-i18n-de'), {
   suspense: true,
 });
@@ -69,6 +72,7 @@ const ZH_HANT_Table = dynamic(
 
 const supportedLocales = [
   'cs',
+  'da',
   'de',
   'en',
   'es',
@@ -107,6 +111,7 @@ const LocaleExamples = () => {
       <div style={{ minHeight: '1500px' }} lang={currentLocale ?? 'en'}>
         <Suspense fallback={<Skeleton height="600px" width="100%" />}>
           {currentLocale === 'cs' && <CS_Table />}
+          {currentLocale === 'da' && <DA_Table />}
           {currentLocale === 'de' && <DE_Table />}
           {currentLocale === 'en' && <EN_Table />}
           {currentLocale === 'es' && <ES_Table />}

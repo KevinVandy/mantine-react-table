@@ -185,6 +185,8 @@ export const MRT_TableBodyCell: FC<Props> = ({
       sx={(theme) => ({
         alignItems: layoutMode === 'grid' ? 'center' : undefined,
         cursor: isEditable && editingMode === 'cell' ? 'pointer' : 'inherit',
+        justifyContent:
+          layoutMode === 'grid' ? tableCellProps.align : undefined,
         overflow: 'hidden',
         paddingLeft:
           column.id === 'mrt-row-expand'

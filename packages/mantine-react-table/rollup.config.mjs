@@ -7,6 +7,7 @@ import { babel } from '@rollup/plugin-babel';
 
 const supportedLocales = [
   'cs',
+  'da',
   'de',
   'en',
   'es',
@@ -30,11 +31,14 @@ export default [
   {
     external: [
       '@mantine/core',
+      '@mantine/dates',
       '@mantine/hooks',
       '@tabler/icons',
       '@tanstack/match-sorter-utils',
       '@tanstack/react-table',
       '@tanstack/react-virtual',
+      'dayjs',
+      'highlight-words',
       'react',
     ],
     input: './src/index.tsx',
