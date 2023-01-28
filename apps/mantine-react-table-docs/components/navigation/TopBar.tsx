@@ -76,7 +76,7 @@ const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
           backgroundColor:
             theme.colorScheme === 'dark'
               ? theme.colors.dark[7]
-              : getPrimaryColor(theme),
+              : getPrimaryColor(theme, 8),
           display: 'flex',
           justifyContent: 'space-between',
           padding: '4px 20px',

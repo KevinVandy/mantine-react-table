@@ -60,6 +60,8 @@ export type HTMLPropsRef<T extends HTMLElement> = Omit<
   ref?: MutableRefObject<T | null> | null;
 };
 
+export type MantineShade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 export type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
 
 export interface MRT_PaginationProps {
@@ -719,6 +721,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     enableDensityToggle?: boolean;
     enableEditing?: boolean;
     enableExpandAll?: boolean;
+    enableFilterMatchHighlighting?: boolean;
     enableFullScreenToggle?: boolean;
     enableGlobalFilterModes?: boolean;
     enableGlobalFilterRankedResults?: boolean;
@@ -1209,6 +1212,7 @@ export const MantineReactTable = <TData extends Record<string, any> = {}>({
   enableColumnResizing = false,
   enableDensityToggle = true,
   enableExpandAll = true,
+  enableFilterMatchHighlighting = true,
   enableFilters = true,
   enableFullScreenToggle = true,
   enableGlobalFilter = true,
@@ -1260,13 +1264,13 @@ export const MantineReactTable = <TData extends Record<string, any> = {}>({
   );
   const _filterFns = useMemo(() => ({ ...MRT_FilterFns, ...filterFns }), []);
   const _sortingFns = useMemo(() => ({ ...MRT_SortingFns, ...sortingFns }), []);
-  const _defaultColumn = useMemo<Partial<MRT_ColumnDef<TData>>>(
+  const _defaultColumn = useMemo(
     () => ({ ...MRT_DefaultColumn, ...defaultColumn }),
     [defaultColumn],
   );
-  const _defaultDisplayColumn = useMemo<Partial<MRT_ColumnDef<TData>>>(
+  const _defaultDisplayColumn = useMemo(
     () => ({
-      ...(MRT_DefaultDisplayColumn as Partial<MRT_ColumnDef<TData>>),
+      ...MRT_DefaultDisplayColumn,
       ...defaultDisplayColumn,
     }),
     [defaultDisplayColumn],
@@ -1306,6 +1310,7 @@ export const MantineReactTable = <TData extends Record<string, any> = {}>({
       enableColumnResizing={enableColumnResizing}
       enableDensityToggle={enableDensityToggle}
       enableExpandAll={enableExpandAll}
+      enableFilterMatchHighlighting={enableFilterMatchHighlighting}
       enableFilters={enableFilters}
       enableFullScreenToggle={enableFullScreenToggle}
       enableGlobalFilter={enableGlobalFilter}

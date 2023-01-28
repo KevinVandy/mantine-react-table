@@ -46,9 +46,10 @@ const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
                       ? theme.fn.rgba(getPrimaryColor(theme), 0.2)
                       : 'transparent',
                   color: !items
-                    ? theme.colorScheme === 'dark'
-                      ? theme.colors[theme.primaryColor][3]
-                      : getPrimaryColor(theme)
+                    ? getPrimaryColor(
+                        theme,
+                        theme.colorScheme === 'dark' ? 3 : 8,
+                      )
                     : depth === 1
                     ? theme.colorScheme === 'dark'
                       ? theme.white

@@ -28,7 +28,7 @@ export const MRT_ToggleGlobalFilterButton = <
 
   const handleToggleSearch = () => {
     setShowGlobalFilter(!showGlobalFilter);
-    queueMicrotask(() => searchInputRef.current?.focus());
+    setTimeout(() => searchInputRef.current?.focus(), 100);
   };
 
   return (
@@ -38,6 +38,7 @@ export const MRT_ToggleGlobalFilterButton = <
       label={rest?.title ?? localization.showHideSearch}
     >
       <ActionIcon
+        aria-label={rest?.title ?? localization.showHideSearch}
         disabled={!!globalFilter}
         onClick={handleToggleSearch}
         size="lg"

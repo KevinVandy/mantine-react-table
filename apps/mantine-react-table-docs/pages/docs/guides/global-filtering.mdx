@@ -85,6 +85,18 @@ You can disable the global filtering feature and hide the search icon by setting
 />
 ```
 
+#### Disable Filter Match Highlighting
+
+Filter Match Highlighting is a new featured enabled by default that will highlight text in the table body cells that matches the current search query with a shade of the `theme.colors.yellow` color.
+
+Filter Match Highlighting will only work on columns with no `Cell` render override.
+
+This feature can be disabled by setting the `enableFilterMatchHighlighting` prop to `false`.
+
+```jsx
+<MantineReactTable columns={columns} data={data} enableFilterMatchHighlighting={false} />
+```
+
 ### Client-Side Global Filtering
 
 Client-side filtering (and global filtering) is enabled by default. This means that the search box will scan through all columns and try to find matches for the search term.

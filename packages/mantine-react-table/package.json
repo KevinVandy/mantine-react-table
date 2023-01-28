@@ -1,5 +1,5 @@
 {
-  "version": "0.5.2",
+  "version": "0.6.0",
   "license": "MIT",
   "name": "mantine-react-table",
   "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",
@@ -8,7 +8,8 @@
     "react-table",
     "mantine",
     "tanstack table",
-    "data table"
+    "data table",
+    "data grid"
   ],
   "repository": {
     "type": "git",
@@ -93,6 +94,7 @@
   "dependencies": {
     "@tanstack/match-sorter-utils": "8.7.6",
     "@tanstack/react-table": "8.7.6",
-    "@tanstack/react-virtual": "3.0.0-beta.30"
+    "@tanstack/react-virtual": "3.0.0-beta.30",
+    "highlight-words": "1.2.1"
   }
 }

@@ -102,7 +102,7 @@ export const MRT_ColumnActionMenu: FC<Props> = ({ header, table }) => {
 
   const handleFilterByColumn = () => {
     setShowFilters(true);
-    queueMicrotask(() => filterInputRefs.current[`${column.id}-0`]?.focus());
+    setTimeout(() => filterInputRefs.current[`${column.id}-0`]?.focus(), 100);
   };
 
   const handleShowAllColumns = () => {

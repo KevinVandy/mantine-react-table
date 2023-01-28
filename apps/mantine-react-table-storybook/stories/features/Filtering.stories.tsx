@@ -84,6 +84,14 @@ export const FilteringDisabled: Story<MantineReactTableProps> = () => (
   <MantineReactTable columns={columns} data={data} enableFilters={false} />
 );
 
+export const FilterHighlightingDisabled: Story<MantineReactTableProps> = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableFilterMatchHighlighting={false}
+  />
+);
+
 export const FilterFnAndFilterVariants: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={[

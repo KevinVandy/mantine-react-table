@@ -9,6 +9,7 @@ import { MRT_SortingFns } from './sortingFns';
 import { BoxProps, MantineTheme } from '@mantine/core';
 import type {
   MantineReactTableProps,
+  MantineShade,
   MRT_Column,
   MRT_ColumnDef,
   MRT_DefinedColumnDef,
@@ -282,7 +283,7 @@ export const getCommonCellStyles = ({
   position:
     column.getIsPinned() && column.columnDef.columnDefType !== 'group'
       ? 'sticky'
-      : 'static',
+      : undefined,
   right:
     column.getIsPinned() === 'right'
       ? `${getTotalRight(table, column)}px`
@@ -303,12 +304,13 @@ export const getCommonCellStyles = ({
 });
 
 export const MRT_DefaultColumn = {
+  filterVariant: 'text',
   minSize: 40,
   maxSize: 1000,
   size: 180,
-};
+} as const;
 
-export const MRT_DefaultDisplayColumn: Partial<MRT_ColumnDef> = {
+export const MRT_DefaultDisplayColumn = {
   columnDefType: 'display',
   enableClickToCopy: false,
   enableColumnActions: false,
@@ -321,7 +323,7 @@ export const MRT_DefaultDisplayColumn: Partial<MRT_ColumnDef> = {
   enableHiding: false,
   enableResizing: false,
   enableSorting: false,
-};
+} as const;
 
 export const getPrimaryShade = (theme: MantineTheme): number =>
   (theme.colorScheme === 'dark'
@@ -330,5 +332,7 @@ export const getPrimaryShade = (theme: MantineTheme): number =>
     : // @ts-ignore
       theme.primaryShade?.light ?? theme.primaryShade) ?? 7;
 
-export const getPrimaryColor = (theme: MantineTheme): string =>
-  theme.colors[theme.primaryColor][getPrimaryShade(theme)];
+export const getPrimaryColor = (
+  theme: MantineTheme,
+  shade?: MantineShade,
+): string => theme.colors[theme.primaryColor][shade ?? getPrimaryShade(theme)];

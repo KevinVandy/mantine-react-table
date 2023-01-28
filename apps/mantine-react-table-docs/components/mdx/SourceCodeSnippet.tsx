@@ -12,7 +12,8 @@ import {
 } from '@tabler/icons';
 import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
-import { MantineShade, useThemeContext } from '../../styles/ThemeContext';
+import { useThemeContext } from '../../styles/ThemeContext';
+import { MantineShade } from 'mantine-react-table';
 
 const mantineColors = [
   'dark',
@@ -115,7 +116,7 @@ export const SourceCodeSnippet: FC<Props> = ({
                   target="_blank"
                 >
                   <Button
-                    color="green"
+                    color="green.7"
                     leftIcon={<IconBolt />}
                     onClick={() => plausible('open-stackblitz')}
                     rightIcon={<IconExternalLink />}
@@ -130,7 +131,7 @@ export const SourceCodeSnippet: FC<Props> = ({
                   target="_blank"
                 >
                   <Button
-                    color="yellow"
+                    color="yellow.7"
                     leftIcon={<IconBrandCodesandbox />}
                     onClick={() => plausible('open-code-sandbox')}
                     rightIcon={<IconExternalLink />}
@@ -147,7 +148,7 @@ export const SourceCodeSnippet: FC<Props> = ({
                   target="_blank"
                 >
                   <Button
-                    color="blue"
+                    color="blue.7"
                     rightIcon={<IconExternalLink />}
                     onClick={() => plausible('open-on-github')}
                     leftIcon={<IconBrandGithub />}
@@ -220,7 +221,6 @@ export const SourceCodeSnippet: FC<Props> = ({
               </Prism.Tab>
             )}
           </Prism.TabsList>
-
           <Prism.Panel withLineNumbers language="tsx" value="ts">
             {typeScriptCode}
           </Prism.Panel>

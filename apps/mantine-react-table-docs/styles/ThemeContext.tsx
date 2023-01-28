@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { MantineColor, MantineProvider } from '@mantine/core';
-
-export type MantineShade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+import type { MantineShade } from 'mantine-react-table';
 
 const ThemeContext = createContext<{
   isLightTheme: boolean;

@@ -78,6 +78,7 @@ _**Fully Fleshed out [Docs](https://www.mantine-react-table.com/docs/guides#guid
 - [x] Density Toggle
 - [x] Detail Panels (Expansion)
 - [x] Filtering (supports client-side and server-side)
+- [x] Filter Match Highlighting
 - [x] Full Screen Mode
 - [x] Global Filtering (Search across all columns, rank by best match)
 - [x] Header Groups & Footers
@@ -115,7 +116,7 @@ npm install @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/i
 npm install mantine-react-table
 ```
 
-> _`@tanstack/react-table`, `@tanstack/react-virtual`, and `@tanstack/match-sorter-utils`_ are internal dependencies, so you do NOT need to install them yourself.
+> _`@tanstack/react-table`, `@tanstack/react-virtual`, `@tanstack/match-sorter-utils`, `highlight-words`_ are internal dependencies, so you do NOT need to install them yourself.
 
 ### Usage
 

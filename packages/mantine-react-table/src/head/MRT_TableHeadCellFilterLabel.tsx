@@ -64,10 +64,10 @@ export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
             <ActionIcon
               onClick={(event: MouseEvent<HTMLButtonElement>) => {
                 setShowFilters(true);
-                queueMicrotask(() => {
+                setTimeout(() => {
                   filterInputRefs.current[`${column.id}-0`]?.focus();
                   filterInputRefs.current[`${column.id}-0`]?.select();
-                });
+                }, 100);
                 event.stopPropagation();
               }}
               size="sm"

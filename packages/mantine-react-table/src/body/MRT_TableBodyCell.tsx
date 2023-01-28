@@ -148,13 +148,13 @@ export const MRT_TableBodyCell: FC<Props> = ({
       editingMode === 'cell'
     ) {
       setEditingCell(cell);
-      queueMicrotask(() => {
+      setTimeout(() => {
         const textField = editInputRefs.current[column.id];
         if (textField) {
           textField.focus();
           textField.select?.();
         }
-      });
+      }, 100);
     }
   };
 

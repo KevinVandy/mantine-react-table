@@ -77,6 +77,18 @@ Various subsets of filtering features can be disabled. If you want to disable fi
 
 <DisableExample />
 
+#### Filter Match Highlighting
+
+Filter Match Highlighting is a new featured enabled by default that will highlight text in the table body cells that matches the current filter query with a shade of the `theme.colors.yellow` color.
+
+Filter Match Highlighting will only work on columns with the default `text` filter variant, and on columns with no `Cell` render override.
+
+This feature can be disabled by setting the `enableFilterMatchHighlighting` prop to `false`.
+
+```jsx
+<MantineReactTable columns={columns} data={data} enableFilterMatchHighlighting={false} />
+```
+
 ### Filter Variants
 
 Mantine React Table has several built-in filter variants for advanced filtering. These can be specified on a per-column basis using the `filterVariant` option. The following variants are available:

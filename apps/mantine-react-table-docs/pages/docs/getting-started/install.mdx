@@ -8,9 +8,9 @@ import { FAQs } from '../../../components/mdx/FAQs';
 
 ## Installation
 
-> `mantine-react-table` requires **Mantine UI V5** packages as dependencies in your project.
+> `mantine-react-table` V1 requires **Mantine V5** packages as dependencies in your project.
 >
-> If you are already using Mantine UI, you probably already have most of these peer dependencies installed.
+> If you are already using Mantine, you probably already have most of these peer dependencies installed.
 >
 > Just double-check that you have the following in your package.json, or use the [full install commands](<#install-with-required-peer-dependencies-(recommended)>) below.
 >
@@ -20,7 +20,7 @@ import { FAQs } from '../../../components/mdx/FAQs';
 > 4.  `@tabler/icons` (> v1.118)
 > 5.  `@emotion/react` (v11)
 > 6.  `dayjs` (v1.11)
-> 5.  `react` and `react-dom` (v17 or v18)
+> 7.  `react` and `react-dom` (v17 or v18)
 
 ### Quick Install
 
@@ -62,9 +62,9 @@ Yarn
 yarn add mantine-react-table @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/icons dayjs
 ```
 
-> You do NOT need to install `@tanstack/react-table`, as it is already an internal dependency of `mantine-react-table`.
+> You do NOT need to install `@tanstack/react-table`, as it is already an internal dependency of `mantine-react-table`, and must use an exact version already specified internally.
 >
-> All internal dependencies: `@tanstack/match-sorter-utils`, `@tanstack/react-table`, `react-virtual`
+> All internal dependencies: `@tanstack/match-sorter-utils`, `@tanstack/react-table`, `@tanstack/react-virtual`, and `highlight-words`
 
 ### FAQs
 
