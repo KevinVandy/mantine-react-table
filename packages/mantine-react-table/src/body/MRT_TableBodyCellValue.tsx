@@ -18,8 +18,9 @@ export const MRT_TableBodyCellValue: FC<Props> = ({ cell, table }) => {
   const { column, row } = cell;
   const { columnDef } = column;
   const { globalFilter } = getState();
+  const filterValue = column.getFilterValue();
 
-  let cellValue = (
+  let renderedCellValue =
     cell.getIsAggregated() && columnDef.AggregatedCell
       ? columnDef.AggregatedCell({
           cell,
@@ -36,27 +37,30 @@ export const MRT_TableBodyCellValue: FC<Props> = ({ cell, table }) => {
           row,
           table,
         })
-      : columnDef?.Cell?.({ cell, column, row, table }) ?? cell.renderValue()
-  ) as number | string | ReactNode;
+      : undefined;
 
-  const filterValue = column.getFilterValue();
+  const isGroupedValue = renderedCellValue !== undefined;
+
+  if (!isGroupedValue) {
+    renderedCellValue = cell.renderValue() as number | string | ReactNode;
+  }
 
   if (
     enableFilterMatchHighlighting &&
-    cellValue &&
-    allowedTypes.includes(typeof cellValue) &&
+    renderedCellValue &&
+    allowedTypes.includes(typeof renderedCellValue) &&
     ((filterValue &&
       allowedTypes.includes(typeof filterValue) &&
       columnDef.filterVariant === 'text') ||
       (globalFilter && allowedTypes.includes(typeof globalFilter)))
   ) {
     const chunks = highlightWords?.({
-      text: cellValue?.toString() as string,
+      text: renderedCellValue?.toString() as string,
       query: (column.getFilterValue() ?? globalFilter ?? '').toString(),
     });
     if (chunks?.length > 1 || chunks?.[0]?.match) {
-      cellValue = (
-        <span aria-label={cellValue as string} role="note">
+      renderedCellValue = (
+        <span aria-label={renderedCellValue as string} role="note">
           {chunks?.map(({ key, match, text }) => (
             <Box
               aria-hidden="true"
@@ -81,11 +85,21 @@ export const MRT_TableBodyCellValue: FC<Props> = ({ cell, table }) => {
             >
               {text}
             </Box>
-          )) ?? cellValue}
+          )) ?? renderedCellValue}
         </span>
       );
     }
   }
 
-  return <>{cellValue}</>;
+  if (columnDef.Cell && !isGroupedValue) {
+    renderedCellValue = columnDef.Cell({
+      cell,
+      renderedCellValue,
+      column,
+      row,
+      table,
+    });
+  }
+
+  return <>{renderedCellValue}</>;
 };

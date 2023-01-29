@@ -28,6 +28,7 @@ Filtering is one of the most powerful features of Mantine React Table and is ena
       'columnFilterModeOptions',
       'enableColumnFilterModes',
       'enableColumnFilters',
+      'enableFilterMatchHighlighting',
       'enableFilters',
       'filterFns',
       'filterFromLeafRows',
@@ -35,9 +36,9 @@ Filtering is one of the most powerful features of Mantine React Table and is ena
       'getFacetedRowModel',
       'getFacetedUniqueValues',
       'getFilteredRowModel',
+      'mantineFilterTextInputProps',
       'manualFiltering',
       'maxLeafRowFilterDepth',
-      'mantineFilterTextInputProps',
       'onColumnFilterFnsChange',
       'onColumnFiltersChange',
       'onShowFiltersChange',
@@ -77,16 +78,32 @@ Various subsets of filtering features can be disabled. If you want to disable fi
 
 <DisableExample />
 
-#### Filter Match Highlighting
+### Filter Match Highlighting
 
 Filter Match Highlighting is a new featured enabled by default that will highlight text in the table body cells that matches the current filter query with a shade of the `theme.colors.yellow` color.
 
-Filter Match Highlighting will only work on columns with the default `text` filter variant, and on columns with no `Cell` render override.
+Filter Match Highlighting will only work on columns with the default `text` filter variant. Also, if you are using a custom `Cell` render override for a column, you will need to use the `renderedCellValue` prop instead of `cell.getValue()` in order to preserve the filter match highlighting.
+
+```jsx
+const columns = [
+  {
+    accessorKey: 'name',
+    header: 'Name',
+    Cell: ({ renderedCellValue }) => <span>{renderedCellValue}</span>, // use renderedCellValue instead of cell.getValue()
+  },
+];
+```
+
+#### Disable Filter Match Highlighting
 
 This feature can be disabled by setting the `enableFilterMatchHighlighting` prop to `false`.
 
 ```jsx
-<MantineReactTable columns={columns} data={data} enableFilterMatchHighlighting={false} />
+<MantineReactTable
+  columns={columns}
+  data={data}
+  enableFilterMatchHighlighting={false}
+/>
 ```
 
 ### Filter Variants
@@ -96,7 +113,7 @@ Mantine React Table has several built-in filter variants for advanced filtering.
 - `'text'` - shows the default text field
 - `'select'` - shows a select dropdown with the options specified in `mantineFilterSelectProps.data` array.
 - `'multi-select'` - shows a select dropdown with the options specified in `mantineFilterMultiSelectProps.data` and allows multiple selections with checkboxes
-- `'range` - shows min and max text fields for filtering a range of values
+- `'range'` - shows min and max text fields for filtering a range of values
 - `'checkbox'` - shows a checkbox for filtering by `'true'` or `'false'` values
 - `'date'` - shows a date picker for filtering by date values
 - `'date-range'` - shows a date range picker for filtering by date ranges
@@ -143,7 +160,7 @@ const columns = [
       row.getValue(id).startsWith(filterValue),
   },
 ];
-```
+````
 
 If you provide a custom filter function, it must have the following signature:
 

@@ -233,7 +233,13 @@ export const MRT_TableBodyCell: FC<Props> = ({
           (column.id === 'mrt-row-select' ||
             column.id === 'mrt-row-expand' ||
             !row.getIsGrouped()) ? (
-          columnDef.Cell?.({ cell, column, row, table })
+          columnDef.Cell?.({
+            cell,
+            column,
+            row,
+            renderedCellValue: cell.getValue() as any,
+            table,
+          })
         ) : isEditing ? (
           <MRT_EditCellTextInput cell={cell} table={table} />
         ) : (enableClickToCopy || columnDef.enableClickToCopy) &&

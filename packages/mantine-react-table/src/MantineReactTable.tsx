@@ -276,45 +276,26 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   | 'id'
   | 'sortingFn'
 > & {
-  AggregatedCell?: ({
-    cell,
-    column,
-    row,
-    table,
-  }: {
+  AggregatedCell?: (props: {
     cell: MRT_Cell<TData>;
     column: MRT_Column<TData>;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
-  Cell?: ({
-    cell,
-    column,
-    row,
-    table,
-  }: {
+  Cell?: (props: {
+    cell: MRT_Cell<TData>;
+    renderedCellValue: number | string | ReactNode;
+    column: MRT_Column<TData>;
+    row: MRT_Row<TData>;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
+  Edit?: (props: {
     cell: MRT_Cell<TData>;
     column: MRT_Column<TData>;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
-  Edit?: ({
-    cell,
-    column,
-    row,
-    table,
-  }: {
-    cell: MRT_Cell<TData>;
-    column: MRT_Column<TData>;
-    row: MRT_Row<TData>;
-    table: MRT_TableInstance<TData>;
-  }) => ReactNode;
-  Filter?: ({
-    column,
-    header,
-    rangeFilterIndex,
-    table,
-  }: {
+  Filter?: (props: {
     column: MRT_Column<TData>;
     header: MRT_Header<TData>;
     rangeFilterIndex?: number;
@@ -322,21 +303,12 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   }) => ReactNode;
   Footer?:
     | ReactNode
-    | (({
-        column,
-        footer,
-        table,
-      }: {
+    | ((props: {
         column: MRT_Column<TData>;
         footer: MRT_Header<TData>;
         table: MRT_TableInstance<TData>;
       }) => ReactNode);
-  GroupedCell?: ({
-    cell,
-    column,
-    row,
-    table,
-  }: {
+  GroupedCell?: (props: {
     cell: MRT_Cell<TData>;
     column: MRT_Column<TData>;
     row: MRT_Row<TData>;
@@ -344,11 +316,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   }) => ReactNode;
   Header?:
     | ReactNode
-    | (({
-        column,
-        header,
-        table,
-      }: {
+    | ((props: {
         column: MRT_Column<TData>;
         header: MRT_Header<TData>;
         table: MRT_TableInstance<TData>;
@@ -418,30 +386,19 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   id?: LiteralUnion<string & keyof TData>;
   mantineColumnActionsButtonProps?:
     | (ActionIconProps & HTMLPropsRef<HTMLButtonElement>)
-    | (({
-        table,
-        column,
-      }: {
+    | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
       }) => ActionIconProps & HTMLPropsRef<HTMLButtonElement>);
   mantineColumnDragHandleProps?:
     | (ActionIconProps & HTMLPropsRef<HTMLButtonElement>)
-    | (({
-        table,
-        column,
-      }: {
+    | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
       }) => ActionIconProps & HTMLPropsRef<HTMLButtonElement>);
   mantineCopyButtonProps?:
     | (UnstyledButtonProps & HTMLPropsRef<HTMLButtonElement>)
-    | (({
-        cell,
-        column,
-        row,
-        table,
-      }: {
+    | ((props: {
         cell: MRT_Cell<TData>;
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
@@ -449,12 +406,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
       }) => UnstyledButtonProps & HTMLPropsRef<HTMLButtonElement>);
   mantineEditTextInputProps?:
     | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
-    | (({
-        cell,
-        column,
-        row,
-        table,
-      }: {
+    | ((props: {
         cell: MRT_Cell<TData>;
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
@@ -462,54 +414,34 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
       }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
   mantineFilterCheckboxProps?:
     | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
-    | (({
-        column,
-        table,
-      }: {
+    | ((props: {
         column: MRT_Column<TData>;
         table: MRT_TableInstance<TData>;
       }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
   mantineFilterMultiSelectProps?:
     | (Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>)
-    | (({
-        table,
-        column,
-        rangeFilterIndex,
-      }: {
+    | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
         rangeFilterIndex?: number;
       }) => Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>);
   mantineFilterSelectProps?:
     | (Partial<SelectProps> & HTMLPropsRef<HTMLInputElement>)
-    | (({
-        table,
-        column,
-        rangeFilterIndex,
-      }: {
+    | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
         rangeFilterIndex?: number;
       }) => Partial<SelectProps> & HTMLPropsRef<HTMLInputElement>);
   mantineFilterTextInputProps?:
     | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
-    | (({
-        table,
-        column,
-        rangeFilterIndex,
-      }: {
+    | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
         rangeFilterIndex?: number;
       }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
   mantineTableBodyCellProps?:
     | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
-    | (({
-        cell,
-        column,
-        row,
-        table,
-      }: {
+    | ((props: {
         cell: MRT_Cell<TData>;
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
@@ -517,35 +449,21 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
       }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
   mantineTableFooterCellProps?:
     | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
-    | (({
-        table,
-        column,
-      }: {
+    | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
       }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
   mantineTableHeadCellProps?:
     | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
-    | (({
-        table,
-        column,
-      }: {
+    | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
       }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
-  renderColumnActionsMenuItems?: ({
-    column,
-    table,
-  }: {
+  renderColumnActionsMenuItems?: (props: {
     column: MRT_Column<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
-  renderColumnFilterModeMenuItems?: ({
-    column,
-    internalFilterOptions,
-    onSelectFilterMode,
-    table,
-  }: {
+  renderColumnFilterModeMenuItems?: (props: {
     column: MRT_Column<TData>;
     internalFilterOptions: MRT_InternalFilterOption[];
     onSelectFilterMode: (filterMode: MRT_FilterOption) => void;
@@ -691,9 +609,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     > | null>;
     columnVirtualizerProps?:
       | Partial<VirtualizerOptions<HTMLDivElement, HTMLTableCellElement>>
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => Partial<
           VirtualizerOptions<HTMLDivElement, HTMLTableCellElement>
@@ -762,37 +678,24 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     localization?: Partial<MRT_Localization>;
     mantineBottomToolbarProps?:
       | (BoxProps & HTMLPropsRef<HTMLDivElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLDivElement>);
     mantineColumnActionsButtonProps?:
       | (ActionIconProps & HTMLPropsRef<HTMLButtonElement>)
-      | (({
-          table,
-          column,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
         }) => ActionIconProps & HTMLPropsRef<HTMLButtonElement>);
     mantineColumnDragHandleProps?:
       | (ActionIconProps & HTMLPropsRef<HTMLButtonElement>)
-      | (({
-          table,
-          column,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
         }) => ActionIconProps & HTMLPropsRef<HTMLButtonElement>);
     mantineCopyButtonProps?:
       | (UnstyledButtonProps & HTMLPropsRef<HTMLButtonElement>)
-      | (({
-          cell,
-          column,
-          row,
-          table,
-        }: {
+      | ((props: {
           cell: MRT_Cell<TData>;
           column: MRT_Column<TData>;
           row: MRT_Row<TData>;
@@ -800,21 +703,13 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
         }) => UnstyledButtonProps & HTMLPropsRef<HTMLButtonElement>);
     mantineDetailPanelProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableCellElement>)
-      | (({
-          table,
-          row,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           row: MRT_Row<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>);
     mantineEditTextInputProps?:
       | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
-      | (({
-          cell,
-          column,
-          row,
-          table,
-        }: {
+      | ((props: {
           cell: MRT_Cell<TData>;
           column: MRT_Column<TData>;
           row: MRT_Row<TData>;
@@ -822,127 +717,85 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
         }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
     mantineExpandAllButtonProps?:
       | (ActionIconProps & HTMLPropsRef<HTMLButtonElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => ActionIconProps & HTMLPropsRef<HTMLButtonElement>);
     mantineExpandButtonProps?:
       | (ActionIconProps & HTMLPropsRef<HTMLButtonElement>)
-      | (({
-          row,
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           row: MRT_Row<TData>;
         }) => ActionIconProps & HTMLPropsRef<HTMLButtonElement>);
     mantineFilterCheckboxProps?:
       | (CheckboxProps & HTMLPropsRef<HTMLInputElement>)
-      | (({
-          column,
-          table,
-        }: {
+      | ((props: {
           column: MRT_Column<TData>;
           table: MRT_TableInstance<TData>;
         }) => CheckboxProps & HTMLPropsRef<HTMLInputElement>);
     mantineFilterMultiSelectProps?:
       | (Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>)
-      | (({
-          table,
-          column,
-          rangeFilterIndex,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
           rangeFilterIndex?: number;
         }) => Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>);
     mantineFilterSelectProps?:
       | (Partial<SelectProps> & HTMLPropsRef<HTMLInputElement>)
-      | (({
-          table,
-          column,
-          rangeFilterIndex,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
           rangeFilterIndex?: number;
         }) => Partial<SelectProps> & HTMLPropsRef<HTMLInputElement>);
     mantineFilterTextInputProps?:
       | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
-      | (({
-          table,
-          column,
-          rangeFilterIndex,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
           rangeFilterIndex?: number;
         }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
     mantineProgressProps?:
       | (ProgressProps & HTMLPropsRef<HTMLDivElement>)
-      | (({
-          isTopToolbar,
-          table,
-        }: {
+      | ((props: {
           isTopToolbar: boolean;
           table: MRT_TableInstance<TData>;
         }) => ProgressProps & HTMLPropsRef<HTMLDivElement>);
     mantinePaginationProps?:
       | Partial<MRT_PaginationProps & FlexProps & HTMLPropsRef<HTMLDivElement>>
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => Partial<
           MRT_PaginationProps & FlexProps & HTMLPropsRef<HTMLDivElement>
         >);
     mantinePaperProps?:
       | (PaperProps & HTMLPropsRef<HTMLDivElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => PaperProps & HTMLPropsRef<HTMLDivElement>);
     mantineRowDragHandleProps?:
       | (ActionIconProps & HTMLPropsRef<HTMLButtonElement>)
-      | (({
-          table,
-          row,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           row: MRT_Row<TData>;
         }) => ActionIconProps & HTMLPropsRef<HTMLButtonElement>);
     mantineSearchTextInputProps?:
       | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
     mantineSelectAllCheckboxProps?:
       | (CheckboxProps & HTMLPropsRef<HTMLInputElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => CheckboxProps & HTMLPropsRef<HTMLInputElement>);
     mantineSelectCheckboxProps?:
       | ((CheckboxProps | RadioProps) & HTMLPropsRef<HTMLInputElement>)
-      | (({
-          table,
-          row,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           row: MRT_Row<TData>;
         }) => (CheckboxProps | RadioProps) & HTMLPropsRef<HTMLInputElement>);
     mantineSkeletonProps?:
       | (SkeletonProps & HTMLPropsRef<HTMLDivElement>)
-      | (({
-          cell,
-          column,
-          row,
-          table,
-        }: {
+      | ((props: {
           cell: MRT_Cell<TData>;
           column: MRT_Column<TData>;
           row: MRT_Row<TData>;
@@ -950,12 +803,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
         }) => SkeletonProps & HTMLPropsRef<HTMLDivElement>);
     mantineTableBodyCellProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
-      | (({
-          cell,
-          column,
-          row,
-          table,
-        }: {
+      | ((props: {
           cell: MRT_Cell<TData>;
           column: MRT_Column<TData>;
           row: MRT_Row<TData>;
@@ -963,105 +811,73 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
         }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
     mantineTableBodyProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableSectionElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableSectionElement>);
     mantineTableBodyRowProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableRowElement>)
-      | (({
-          isDetailPanel = false,
-          row,
-          table,
-        }: {
+      | ((props: {
           isDetailPanel?: boolean;
           row: MRT_Row<TData>;
           table: MRT_TableInstance<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableRowElement>);
     mantineTableContainerProps?:
       | (BoxProps & HTMLPropsRef<HTMLDivElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLDivElement>);
     mantineTableFooterCellProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
-      | (({
-          table,
-          column,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
     mantineTableFooterProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableSectionElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableSectionElement>);
     mantineTableFooterRowProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableRowElement>)
-      | (({
-          table,
-          footerGroup,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           footerGroup: MRT_HeaderGroup<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableRowElement>);
     mantineTableHeadCellProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
-      | (({
-          table,
-          column,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           column: MRT_Column<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment);
     mantineTableHeadProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableSectionElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableSectionElement>);
     mantineTableHeadRowProps?:
       | (BoxProps & HTMLPropsRef<HTMLTableRowElement>)
-      | (({
-          table,
-          headerGroup,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
           headerGroup: MRT_HeaderGroup<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableRowElement>);
     mantineTableProps?:
       | (TableProps & HTMLPropsRef<HTMLTableElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => TableProps & HTMLPropsRef<HTMLTableElement>);
     mantineToolbarAlertBannerChipProps?:
       | (Partial<ChipProps> & HTMLPropsRef<HTMLDivElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => Partial<ChipProps> & HTMLPropsRef<HTMLDivElement>);
     mantineToolbarAlertBannerProps?:
       | (AlertProps & HTMLPropsRef<HTMLDivElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => AlertProps & HTMLPropsRef<HTMLDivElement>);
     mantineTopToolbarProps?:
       | (BoxProps & HTMLPropsRef<HTMLDivElement>)
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLDivElement>);
     /**
@@ -1076,20 +892,12 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     onDraggingColumnChange?: OnChangeFn<MRT_Column<TData> | null>;
     onDraggingRowChange?: OnChangeFn<MRT_Row<TData> | null>;
     onEditingCellChange?: OnChangeFn<MRT_Cell<TData> | null>;
-    onEditingRowCancel?: ({
-      row,
-      table,
-    }: {
+    onEditingRowCancel?: (props: {
       row: MRT_Row<TData>;
       table: MRT_TableInstance<TData>;
     }) => void;
     onEditingRowChange?: OnChangeFn<MRT_Row<TData> | null>;
-    onEditingRowSave?: ({
-      exitEditingMode,
-      row,
-      table,
-      values,
-    }: {
+    onEditingRowSave?: (props: {
       exitEditingMode: () => void;
       row: MRT_Row<TData>;
       table: MRT_TableInstance<TData>;
@@ -1111,73 +919,45 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     positionToolbarDropZone?: 'bottom' | 'top' | 'none' | 'both';
     renderBottomToolbar?:
       | ReactNode
-      | (({ table }: { table: MRT_TableInstance<TData> }) => ReactNode);
-    renderBottomToolbarCustomActions?: ({
-      table,
-    }: {
+      | ((props: { table: MRT_TableInstance<TData> }) => ReactNode);
+    renderBottomToolbarCustomActions?: (props: {
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
-    renderColumnActionsMenuItems?: ({
-      column,
-      table,
-    }: {
+    renderColumnActionsMenuItems?: (props: {
       column: MRT_Column<TData>;
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
-    renderColumnFilterModeMenuItems?: ({
-      column,
-      internalFilterOptions,
-      onSelectFilterMode,
-      table,
-    }: {
+    renderColumnFilterModeMenuItems?: (props: {
       column: MRT_Column<TData>;
       internalFilterOptions: MRT_InternalFilterOption[];
       onSelectFilterMode: (filterMode: MRT_FilterOption) => void;
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
-    renderDetailPanel?: ({
-      row,
-      table,
-    }: {
+    renderDetailPanel?: (props: {
       row: MRT_Row<TData>;
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
-    renderGlobalFilterModeMenuItems?: ({
-      internalFilterOptions,
-      onSelectFilterMode,
-      table,
-    }: {
+    renderGlobalFilterModeMenuItems?: (props: {
       internalFilterOptions: MRT_InternalFilterOption[];
       onSelectFilterMode: (filterMode: MRT_FilterOption) => void;
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
-    renderRowActionMenuItems?: ({
-      row,
-      table,
-    }: {
+    renderRowActionMenuItems?: (props: {
       row: MRT_Row<TData>;
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
-    renderRowActions?: ({
-      cell,
-      row,
-      table,
-    }: {
+    renderRowActions?: (props: {
       cell: MRT_Cell<TData>;
       row: MRT_Row<TData>;
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
-    renderToolbarInternalActions?: ({
-      table,
-    }: {
+    renderToolbarInternalActions?: (props: {
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
     renderTopToolbar?:
       | ReactNode
-      | (({ table }: { table: MRT_TableInstance<TData> }) => ReactNode);
-    renderTopToolbarCustomActions?: ({
-      table,
-    }: {
+      | ((props: { table: MRT_TableInstance<TData> }) => ReactNode);
+    renderTopToolbarCustomActions?: (props: {
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
     rowCount?: number;
@@ -1188,9 +968,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     > | null>;
     rowVirtualizerProps?:
       | Partial<VirtualizerOptions<HTMLDivElement, HTMLTableRowElement>>
-      | (({
-          table,
-        }: {
+      | ((props: {
           table: MRT_TableInstance<TData>;
         }) => Partial<VirtualizerOptions<HTMLDivElement, HTMLTableRowElement>>);
     selectAllMode?: 'all' | 'page';

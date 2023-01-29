@@ -27,7 +27,7 @@ const Example = () => {
             id: 'name', //id is still required when using accessorFn instead of accessorKey
             header: 'Name',
             size: 250,
-            Cell: ({ cell, row }) => (
+            Cell: ({ renderedCellValue, row }) => (
               <Box
                 sx={{
                   display: 'flex',
@@ -42,7 +42,7 @@ const Example = () => {
                   loading="lazy"
                   style={{ borderRadius: '50%' }}
                 />
-                <Box>{cell.getValue()}</Box>
+                <span>{renderedCellValue}</span>
               </Box>
             ),
           },
