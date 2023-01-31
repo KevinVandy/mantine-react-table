@@ -1011,7 +1011,7 @@ export const MantineReactTable = <TData extends Record<string, any> = {}>({
   enableTopToolbar = true,
   filterFns,
   icons,
-  layoutMode = 'grid',
+  layoutMode = 'semantic',
   localization,
   manualFiltering,
   manualGrouping,
