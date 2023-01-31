@@ -35,16 +35,18 @@ export const MRT_SelectCheckbox: FC<Props> = ({ row, selectAll, table }) => {
     ? mantineSelectCheckboxProps({ row, table })
     : mantineSelectCheckboxProps;
 
+  const allRowsSelected = selectAll
+    ? selectAllMode === 'page'
+      ? table.getIsAllPageRowsSelected()
+      : table.getIsAllRowsSelected()
+    : undefined;
+
   const commonProps = {
     'aria-label': selectAll
       ? localization.toggleSelectAll
       : localization.toggleSelectRow,
-    checked: selectAll
-      ? selectAllMode === 'page'
-        ? table.getIsAllPageRowsSelected()
-        : table.getIsAllRowsSelected()
-      : row?.getIsSelected(),
-    disabled: isLoading,
+    checked: selectAll ? allRowsSelected : row?.getIsSelected(),
+    disabled: isLoading || (row && !row.getCanSelect()),
     onChange: row
       ? row.getToggleSelectedHandler()
       : selectAllMode === 'all'
@@ -77,10 +79,7 @@ export const MRT_SelectCheckbox: FC<Props> = ({ row, selectAll, table }) => {
         <Checkbox
           indeterminate={
             selectAll
-              ? table.getIsSomeRowsSelected() &&
-                !(selectAllMode === 'page'
-                  ? table.getIsAllPageRowsSelected()
-                  : table.getIsAllRowsSelected())
+              ? table.getIsSomeRowsSelected() && !allRowsSelected
               : row?.getIsSomeSelected()
           }
           {...commonProps}

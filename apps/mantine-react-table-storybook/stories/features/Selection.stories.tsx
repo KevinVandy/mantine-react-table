@@ -44,6 +44,16 @@ export const SelectionEnabled: Story<MantineReactTableProps> = () => (
   <MantineReactTable columns={columns} data={data} enableRowSelection />
 );
 
+export const SelectionEnabledConditionally: Story<
+  MantineReactTableProps
+> = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowSelection={(row) => row.original.age >= 21}
+  />
+);
+
 export const SelectionEnabledWithRowClick: Story<
   MantineReactTableProps
 > = () => (
@@ -90,6 +100,17 @@ export const SelectAllModeAll: Story<MantineReactTableProps> = () => (
     columns={columns}
     data={data}
     enableRowSelection
+    selectAllMode="all"
+  />
+);
+
+export const SelectAllModeAllConditionally: Story<
+  MantineReactTableProps
+> = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowSelection={(row) => row.original.age >= 21}
     selectAllMode="all"
   />
 );
