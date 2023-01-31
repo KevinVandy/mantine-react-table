@@ -7,7 +7,7 @@ import {
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { Button, Menu } from '@mantine/core';
-import { IconShare, IconUser, IconTrash } from '@tabler/icons';
+import { IconShare, IconUser, IconTrash } from '@tabler/icons-react';
 
 const meta: Meta = {
   title: 'Features/Row Actions Examples',

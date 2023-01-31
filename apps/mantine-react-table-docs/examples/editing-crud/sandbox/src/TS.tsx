@@ -18,7 +18,7 @@ import {
   TextInput,
   Tooltip,
 } from '@mantine/core';
-import { IconTrash, IconEdit } from '@tabler/icons';
+import { IconTrash, IconEdit } from '@tabler/icons-react';
 import { data, states } from './makeData';
 
 export type Person = {

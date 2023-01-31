@@ -1,7 +1,7 @@
 import React from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 import { Box, Button } from '@mantine/core';
-import { IconDownload } from '@tabler/icons';
+import { IconDownload } from '@tabler/icons-react';
 import { ExportToCsv } from 'export-to-csv'; //or use your library of choice here
 import { data } from './makeData';
 

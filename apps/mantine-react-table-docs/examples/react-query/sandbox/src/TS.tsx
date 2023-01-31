@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useState } from 'react';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { ActionIcon, Tooltip } from '@mantine/core';
-import { IconRefresh } from '@tabler/icons';
+import { IconRefresh } from '@tabler/icons-react';
 import type {
   ColumnFiltersState,
   PaginationState,

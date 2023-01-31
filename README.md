@@ -107,7 +107,7 @@ View the full [Installation Docs](https://www.mantine-react-table.com/docs/getti
 2. Install Peer Dependencies (Mantine V5 and Tabler Icons)
 
 ```bash
-npm install @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/icons dayjs
+npm install @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/icons-react dayjs
 ```
 
 3. Install mantine-react-table

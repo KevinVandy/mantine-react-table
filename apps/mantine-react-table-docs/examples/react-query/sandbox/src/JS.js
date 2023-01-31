@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 import { ActionIcon, Tooltip } from '@mantine/core';
-import { IconRefresh } from '@tabler/icons';
+import { IconRefresh } from '@tabler/icons-react';
 import {
   QueryClient,
   QueryClientProvider,

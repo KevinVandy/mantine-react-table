@@ -10,7 +10,7 @@ import {
   MRT_ToolbarAlertBanner,
 } from 'mantine-react-table';
 import { ActionIcon, Box, Button, Flex, Text, Tooltip } from '@mantine/core';
-import { IconPrinter } from '@tabler/icons';
+import { IconPrinter } from '@tabler/icons-react';
 import { data } from './makeData';
 
 //column definitions...

@@ -18,7 +18,7 @@ import type {
   VisibilityState,
 } from '@tanstack/react-table';
 import { ActionIcon, Box, Button, Flex, Text, Tooltip } from '@mantine/core';
-import { IconPrinter } from '@tabler/icons';
+import { IconPrinter } from '@tabler/icons-react';
 import { data, Person } from './makeData';
 
 //column definitions...
