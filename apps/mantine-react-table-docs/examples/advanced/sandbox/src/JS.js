@@ -10,7 +10,7 @@ import { Box, Button, Menu, Text, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 
 //Icons Imports
-import { IconUserCircle, IconSend } from '@tabler/icons';
+import { IconUserCircle, IconSend } from '@tabler/icons-react';
 
 //Mock Data
 import { data } from './makeData';

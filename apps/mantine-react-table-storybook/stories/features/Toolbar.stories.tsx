@@ -8,7 +8,7 @@ import {
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { Box, Button, ActionIcon, Tooltip, Title } from '@mantine/core';
-import { IconPlus, IconTrash } from '@tabler/icons';
+import { IconPlus, IconTrash } from '@tabler/icons-react';
 
 const meta: Meta = {
   title: 'Features/Toolbar Examples',

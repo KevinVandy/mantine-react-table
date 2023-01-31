@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Anchor, Box, Button, Stack, Text, Title } from '@mantine/core';
-import { IconChevronRight } from '@tabler/icons';
+import { IconChevronRight } from '@tabler/icons-react';
 import { HomeCards } from '../components/mdx/HomeCards';
 import { LinkCards } from '../components/mdx/LinkCards';
 import { StatBadges } from '../components/mdx/StatBadges';
@@ -254,7 +254,7 @@ const HomePage = () => {
         <Box py="16px">
           <SampleCodeSnippet className="language-bash">
             npm install mantine-react-table @mantine/core @mantine/hooks
-            @mantine/dates @emotion/react @tabler/icons dayjs
+            @mantine/dates @emotion/react @tabler/icons-react dayjs
           </SampleCodeSnippet>
         </Box>
         <HomeCards />

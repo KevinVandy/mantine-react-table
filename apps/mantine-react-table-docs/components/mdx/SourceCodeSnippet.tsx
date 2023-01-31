@@ -9,7 +9,7 @@ import {
   IconBolt,
   IconBrandCodesandbox,
   IconExternalLink,
-} from '@tabler/icons';
+} from '@tabler/icons-react';
 import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
 import { useThemeContext } from '../../styles/ThemeContext';

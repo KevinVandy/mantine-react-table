@@ -10,7 +10,7 @@ import {
   TitleProps,
   Tooltip,
 } from '@mantine/core';
-import { IconLink } from '@tabler/icons';
+import { IconLink } from '@tabler/icons-react';
 
 interface Props extends TitleProps {
   children: ReactNode | string;

@@ -33,7 +33,7 @@ import {
   IconTallymark4,
   IconTallymarks,
   IconX,
-} from '@tabler/icons';
+} from '@tabler/icons-react';
 
 export interface MRT_Icons {
   IconArrowAutofitContent: any;

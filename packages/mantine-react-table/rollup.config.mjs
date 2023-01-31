@@ -33,7 +33,7 @@ export default [
       '@mantine/core',
       '@mantine/dates',
       '@mantine/hooks',
-      '@tabler/icons',
+      '@tabler/icons-react',
       '@tanstack/match-sorter-utils',
       '@tanstack/react-table',
       '@tanstack/react-virtual',

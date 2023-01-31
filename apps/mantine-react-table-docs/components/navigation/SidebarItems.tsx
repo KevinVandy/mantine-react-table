@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { UnstyledButton, Flex } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { IconExternalLink } from '@tabler/icons';
+import { IconExternalLink } from '@tabler/icons-react';
 import { RouteItem } from './routes';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 

@@ -6,7 +6,7 @@ import {
   MRT_ToggleFullScreenButton,
 } from 'mantine-react-table';
 import { Box, Button, ActionIcon } from '@mantine/core';
-import { IconPrinter } from '@tabler/icons';
+import { IconPrinter } from '@tabler/icons-react';
 import { data, Person } from './makeData';
 
 const Example: FC = () => {

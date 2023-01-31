@@ -12,9 +12,9 @@ import {
   Burger,
   useMantineTheme,
 } from '@mantine/core';
-import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons';
+import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
-import { IconSun, IconMoonStars } from '@tabler/icons';
+import { IconSun, IconMoonStars } from '@tabler/icons-react';
 import { useThemeContext } from '../../styles/ThemeContext';
 import docsearch from '@docsearch/js';
 import '@docsearch/css';
