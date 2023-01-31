@@ -42,7 +42,9 @@ export const DefaultTableBodyCellStyles: Story<MantineReactTableProps> = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const StyleAllMuiTableBodyCell: Story<MantineReactTableProps> = () => (
+export const StyleAllMantineTableBodyCell: Story<
+  MantineReactTableProps
+> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -55,7 +57,7 @@ export const StyleAllMuiTableBodyCell: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const StyleMuiTableBodyCellConditionallyIn1Column: Story<
+export const StyleMantineTableBodyCellConditionallyIn1Column: Story<
   MantineReactTableProps
 > = () => (
   <MantineReactTable

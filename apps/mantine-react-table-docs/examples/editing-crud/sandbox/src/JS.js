@@ -193,7 +193,7 @@ const Example = () => {
   );
 };
 
-//example of creating a mui dialog modal for creating new rows
+//example of creating a mantine dialog modal for creating new rows
 export const CreateNewAccountModal = ({ open, columns, onClose, onSubmit }) => {
   const [values, setValues] =
     useState <

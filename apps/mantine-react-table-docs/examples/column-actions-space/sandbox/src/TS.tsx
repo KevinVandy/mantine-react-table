@@ -28,7 +28,7 @@ const Example: FC = () => {
       data={data}
       mantineTableHeadCellProps={{
         sx: {
-          '& .Mui-TableHeadCell-Content': {
+          '& .Mantine-TableHeadCell-Content': {
             justifyContent: 'space-between',
           },
         },

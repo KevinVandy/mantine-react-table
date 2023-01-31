@@ -158,7 +158,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
     >
       {header.isPlaceholder ? null : (
         <Flex
-          className="Mui-TableHeadCell-Content"
+          className="Mantine-TableHeadCell-Content"
           sx={{
             alignItems: 'flex-start',
             flexDirection:
@@ -174,7 +174,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
           }}
         >
           <Flex
-            className="Mui-TableHeadCell-Content-Labels"
+            className="Mantine-TableHeadCell-Content-Labels"
             onClick={column.getToggleSortingHandler()}
             sx={{
               alignItems: 'center',
@@ -192,7 +192,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
             }}
           >
             <Flex
-              className="Mui-TableHeadCell-Content-Wrapper"
+              className="Mantine-TableHeadCell-Content-Wrapper"
               sx={{
                 overflow: columnDefType === 'data' ? 'hidden' : undefined,
                 textOverflow: 'ellipsis',
@@ -212,7 +212,7 @@ export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
           </Flex>
           {columnDefType !== 'group' && (
             <Flex
-              className="Mui-TableHeadCell-Content-Actions"
+              className="Mantine-TableHeadCell-Content-Actions"
               sx={{
                 alignItems: 'center',
                 alignSelf: 'center',
