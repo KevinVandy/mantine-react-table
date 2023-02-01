@@ -36,18 +36,27 @@ export const MRT_TableBody: FC<Props> = ({
       enableRowVirtualization,
       layoutMode,
       localization,
+      mantineTableBodyProps,
+      manualExpanding,
       manualFiltering,
+      manualGrouping,
       manualPagination,
       manualSorting,
       memoMode,
-      mantineTableBodyProps,
       rowVirtualizerInstanceRef,
       rowVirtualizerProps,
     },
     refs: { tableContainerRef, tablePaperRef },
   } = table;
-  const { columnFilters, density, globalFilter, pagination, sorting } =
-    getState();
+  const {
+    columnFilters,
+    density,
+    expanded,
+    globalFilter,
+    globalFilterFn,
+    pagination,
+    sorting,
+  } = getState();
 
   const tableBodyProps =
     mantineTableBodyProps instanceof Function
@@ -59,30 +68,43 @@ export const MRT_TableBody: FC<Props> = ({
       ? rowVirtualizerProps({ table })
       : rowVirtualizerProps;
 
-  const rows = useMemo(() => {
-    if (
+  const shouldRankResults = useMemo(
+    () =>
+      !manualExpanding &&
+      !manualFiltering &&
+      !manualGrouping &&
+      !manualSorting &&
       enableGlobalFilterRankedResults &&
       globalFilter &&
-      !manualFiltering &&
-      !manualSorting &&
-      !Object.values(sorting).some(Boolean)
-    ) {
-      const rankedRows = getPrePaginationRowModel().rows.sort((a, b) =>
-        rankGlobalFuzzy(a, b),
-      );
-      if (enablePagination && !manualPagination) {
-        const start = pagination.pageIndex * pagination.pageSize;
-        return rankedRows.slice(start, start + pagination.pageSize);
-      }
-      return rankedRows;
+      globalFilterFn === 'fuzzy' &&
+      expanded !== true &&
+      !Object.values(sorting).some(Boolean) &&
+      !Object.values(expanded).some(Boolean),
+    [
+      enableGlobalFilterRankedResults,
+      expanded,
+      globalFilter,
+      manualExpanding,
+      manualFiltering,
+      manualGrouping,
+      manualSorting,
+      sorting,
+    ],
+  );
+
+  const rows = useMemo(() => {
+    if (!shouldRankResults) return getRowModel().rows;
+    const rankedRows = getPrePaginationRowModel().rows.sort((a, b) =>
+      rankGlobalFuzzy(a, b),
+    );
+    if (enablePagination && !manualPagination) {
+      const start = pagination.pageIndex * pagination.pageSize;
+      return rankedRows.slice(start, start + pagination.pageSize);
     }
-    return getRowModel().rows;
+    return rankedRows;
   }, [
-    enableGlobalFilterRankedResults,
-    (enableGlobalFilterRankedResults && globalFilter) || !enablePagination
-      ? getPrePaginationRowModel().rows
-      : getRowModel().rows,
-    globalFilter,
+    shouldRankResults,
+    shouldRankResults ? getPrePaginationRowModel().rows : getRowModel().rows,
     pagination.pageIndex,
     pagination.pageSize,
   ]);
