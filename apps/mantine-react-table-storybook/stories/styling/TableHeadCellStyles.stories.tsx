@@ -44,7 +44,9 @@ export const DefaultTableHeadCellStyles: Story<MantineReactTableProps> = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const StyleAllMuiTableHeadCell: Story<MantineReactTableProps> = () => (
+export const StyleAllMantineTableHeadCell: Story<
+  MantineReactTableProps
+> = () => (
   <MantineReactTable
     columns={columns}
     data={data}

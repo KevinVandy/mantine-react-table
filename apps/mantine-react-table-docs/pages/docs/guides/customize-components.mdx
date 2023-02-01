@@ -11,7 +11,7 @@ import { Box } from '@mantine/core';
   </title>
   <meta
     name="description"
-    content="How to customize and pass props to Mantine components and set up a MUI Theme in Mantine React Table"
+    content="How to customize and pass props to Mantine components and set up a Mantine Theme in Mantine React Table"
   />
 </Head>
 
@@ -118,7 +118,7 @@ Each prop can either be passed as an object or as a callback function where you 
 
 ### Styling Mantine Components
 
-Each `mantine...Prop` has multiple options for you to add styling to the component. You could simply pass `className` or `style` props to any `mui...Props` prop, but there is also the `sx` prop...which totally rocks!
+Each `mantine...Prop` has multiple options for you to add styling to the component. You could simply pass `className` or `style` props to any `mantine...Props` prop, but there is also the `sx` prop...which totally rocks!
 
 > Hint: You should just use the `sx` prop for all styling instead of `className` or `style` props.
 
@@ -185,7 +185,7 @@ Mantine React Table respects your Mantine Theme. If you have already set up Mant
 
 ```jsx
 function App() {
-  //Have you setup your Mui Theme globally in your app root?
+  //Have you setup your Mantine Theme globally in your app root?
   return (
     <ThemeProvider theme={createTheme({...})}>
       ...rest of your application
@@ -220,7 +220,7 @@ return (
 
 #### Important Theme Values used by Mantine React Table
 
-`<MantineReactTable />` will primarily use the following values internally from your MUI Theme by default:
+`<MantineReactTable />` will primarily use the following values internally from your Mantine Theme by default:
 
 - `theme.colors[theme.primaryColor[theme.primaryShade]]` - used as the primary color for anything colorful in the table (primary buttons, text inputs, checkboxes, dragging borders, etc.)
 - `theme.colors.gray[3, 7, 8]` - used for some borders

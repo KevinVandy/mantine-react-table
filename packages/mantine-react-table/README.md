@@ -73,7 +73,7 @@ _**Fully Fleshed out [Docs](https://www.mantine-react-table.com/docs/guides#guid
 - [x] Column Pinning (Freeze Columns)
 - [x] Column Resizing
 - [x] Customize Icons
-- [x] Customize Styling of internal Mui Components
+- [x] Customize Styling of internal Mantine Components
 - [x] Data Editing (4 different editing modes)
 - [x] Density Toggle
 - [x] Detail Panels (Expansion)

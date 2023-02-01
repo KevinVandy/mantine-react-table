@@ -213,7 +213,7 @@ const Example: FC = () => {
   );
 };
 
-//example of creating a mui dialog modal for creating new rows
+//example of creating a mantine dialog modal for creating new rows
 export const CreateNewAccountModal: FC<{
   columns: MRT_ColumnDef<Person>[];
   onClose: () => void;

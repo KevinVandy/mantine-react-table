@@ -231,7 +231,7 @@ export const ColumnGroupingDropZoneAlwaysVisible: Story<
       }
       mantineTopToolbarProps={{
         sx: {
-          '& .Mui-ToolbarDropZone': {
+          '& .Mantine-ToolbarDropZone': {
             border: '1px solid red',
           },
         },

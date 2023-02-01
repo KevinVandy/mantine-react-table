@@ -52,7 +52,7 @@ export const DisableRowHoverEffect: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const StyleMuiTableBodyRow: Story<MantineReactTableProps> = () => (
+export const StyleMantineTableBodyRow: Story<MantineReactTableProps> = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -98,7 +98,7 @@ export const StyleCustomStripedRowsDetailPanel: Story<
   />
 );
 
-export const ConditionallyStyleMuiTableRow: Story<
+export const ConditionallyStyleMantineTableRow: Story<
   MantineReactTableProps
 > = () => (
   <MantineReactTable
