@@ -20,13 +20,17 @@ export const MRT_TableHeadRow: FC<Props> = ({
   virtualPaddingRight,
 }) => {
   const {
-    options: { layoutMode, mantineTableHeadRowProps },
+    getState,
+    options: { enableStickyHeader, layoutMode, mantineTableHeadRowProps },
   } = table;
+  const { isFullScreen } = getState();
 
   const tableRowProps =
     mantineTableHeadRowProps instanceof Function
       ? mantineTableHeadRowProps({ headerGroup, table })
       : mantineTableHeadRowProps;
+
+  const stickyHeader = enableStickyHeader || isFullScreen;
 
   return (
     <Box
@@ -37,10 +41,11 @@ export const MRT_TableHeadRow: FC<Props> = ({
           theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
         boxShadow: `4px 0 8px ${theme.fn.rgba(theme.black, 0.1)}`,
         display: layoutMode === 'grid' ? 'flex' : 'table-row',
-        top: 0,
+        top: stickyHeader ? 0 : undefined,
         ...(tableRowProps?.sx instanceof Function
           ? tableRowProps?.sx(theme)
           : (tableRowProps?.sx as any)),
+        position: stickyHeader ? 'sticky' : undefined,
       })}
     >
       {virtualPaddingLeft ? (

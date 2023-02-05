@@ -38,8 +38,8 @@ export const MRT_TableHead: FC<Props> = ({
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
         opacity: 0.97,
-        position: stickyHeader ? 'sticky' : 'relative',
-        top: stickyHeader && layoutMode === 'grid' ? 0 : undefined,
+        position: stickyHeader && layoutMode === 'grid' ? 'sticky' : 'relative',
+        top: stickyHeader ? 0 : undefined,
         zIndex: stickyHeader ? 2 : undefined,
         ...(tableHeadProps?.sx instanceof Function
           ? tableHeadProps?.sx(theme)
