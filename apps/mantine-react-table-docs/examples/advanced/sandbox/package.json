@@ -15,7 +15,7 @@
     "@mantine/hooks": "^5.10.0",
     "@tabler/icons-react": "2.1.2",
     "dayjs": "^1.11.7",
-    "mantine-react-table": "^0.7.0",
+    "mantine-react-table": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
