@@ -65,7 +65,7 @@ const Example = () => {
       )}
       //customize built-in buttons in the top-right of top toolbar
       renderToolbarInternalActions={({ table }) => (
-        <Box>
+        <Flex gap="xs" align="center">
           {/* add custom button to print table  */}
           <ActionIcon
             onClick={() => {
@@ -77,7 +77,7 @@ const Example = () => {
           {/* along-side built-in buttons in whatever order you want them */}
           <MRT_ToggleDensePaddingButton table={table} />
           <MRT_ToggleFullScreenButton table={table} />
-        </Box>
+        </Flex>
       )}
     />
   );

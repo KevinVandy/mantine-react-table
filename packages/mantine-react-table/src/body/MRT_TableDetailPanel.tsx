@@ -41,7 +41,7 @@ export const MRT_TableDetailPanel: FC<Props> = ({
   return (
     <Box
       component="tr"
-      className="Mantine-TableBodyCell-DetailPanel"
+      className="mantine-TableBodyCell-DetailPanel"
       {...tableRowProps}
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'flex' : 'table-row',
@@ -61,7 +61,7 @@ export const MRT_TableDetailPanel: FC<Props> = ({
     >
       <Box
         component="td"
-        className="Mantine-TableBodyCell-DetailPanel"
+        className="mantine-TableBodyCell-DetailPanel"
         colSpan={getVisibleLeafColumns().length}
         {...tableCellProps}
         sx={(theme) => ({

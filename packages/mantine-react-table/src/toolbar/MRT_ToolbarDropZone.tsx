@@ -38,7 +38,7 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
     <Transition mounted={showToolbarDropZone} transition="fade">
       {(styles) => (
         <Flex
-          className="Mantine-ToolbarDropZone"
+          className="mantine-ToolbarDropZone"
           sx={(theme) => ({
             alignItems: 'center',
             backgroundColor: theme.fn.rgba(

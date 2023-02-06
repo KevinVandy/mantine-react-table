@@ -66,7 +66,7 @@ const Example = () => {
             flexDirection: 'row',
             gap: '16px',
             justifyContent: 'space-between',
-            padding: '24px 0',
+            padding: '24px 16px',
             '@media max-width: 768px': {
               flexDirection: 'column',
             },
@@ -84,7 +84,7 @@ const Example = () => {
             </Button>
           </Box>
           <MRT_GlobalFilterTextInput table={tableInstanceRef.current} />
-          <Box>
+          <Flex gap="xs" align="center">
             <MRT_ToggleFiltersButton table={tableInstanceRef.current} />
             <MRT_ShowHideColumnsButton table={tableInstanceRef.current} />
             <MRT_ToggleDensePaddingButton table={tableInstanceRef.current} />
@@ -94,7 +94,7 @@ const Example = () => {
               </ActionIcon>
             </Tooltip>
             <MRT_ToggleFullScreenButton table={tableInstanceRef.current} />
-          </Box>
+          </Flex>
         </Flex>
       )}
       <Text p="16px 4px">

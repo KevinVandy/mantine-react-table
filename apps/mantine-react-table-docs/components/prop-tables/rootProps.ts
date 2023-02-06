@@ -209,7 +209,7 @@ export const rootProps: PropRow[] = [
     propName: 'enableBottomToolbar',
     defaultValue: 'true',
     description: '',
-    link: '/docs/guides/customize-toolbars#hide-disable-toolbars',
+    link: '/docs/guides/toolbar-customization#hide-disable-toolbars',
     linkText: 'MRT Customize Toolbars Docs',
     required: false,
     source: 'MRT',

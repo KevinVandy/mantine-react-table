@@ -5,7 +5,7 @@ import {
   MRT_ToggleDensePaddingButton,
   MRT_ToggleFullScreenButton,
 } from 'mantine-react-table';
-import { Box, Button, ActionIcon } from '@mantine/core';
+import { Box, Button, ActionIcon, Flex } from '@mantine/core';
 import { IconPrinter } from '@tabler/icons-react';
 import { data, Person } from './makeData';
 
@@ -66,7 +66,7 @@ const Example: FC = () => {
       )}
       //customize built-in buttons in the top-right of top toolbar
       renderToolbarInternalActions={({ table }) => (
-        <Box>
+        <Flex gap="xs" align="center">
           {/* add custom button to print table  */}
           <ActionIcon
             onClick={() => {
@@ -78,7 +78,7 @@ const Example: FC = () => {
           {/* along-side built-in buttons in whatever order you want them */}
           <MRT_ToggleDensePaddingButton table={table} />
           <MRT_ToggleFullScreenButton table={table} />
-        </Box>
+        </Flex>
       )}
     />
   );
