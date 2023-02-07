@@ -8,18 +8,18 @@ import { FAQs } from '../../../components/mdx/FAQs';
 
 ## Installation
 
-> `mantine-react-table` V1 requires **Mantine V5** packages as dependencies in your project.
+> `mantine-react-table` V1 requires **Mantine V5.7+** packages as dependencies in your project.
 >
 > If you are already using Mantine, you probably already have most of these peer dependencies installed.
 >
 > Just double-check that you have the following in your package.json, or use the [full install commands](<#install-with-required-peer-dependencies-(recommended)>) below.
 >
-> 1.  `@mantine/core` (v5)
-> 2.  `@mantine/hooks` (v5)
-> 3.  `@mantine/dates` (v5)
+> 1.  `@mantine/core` (v5.7+)
+> 2.  `@mantine/hooks` (v5.7+)
+> 3.  `@mantine/dates` (v5.7+)
 > 4.  `@tabler/icons-react` (v2)
 > 5.  `@emotion/react` (v11)
-> 6.  `dayjs` (v1.11)
+> 6.  `dayjs` (v1.11+)
 > 7.  `react` and `react-dom` (v17 or v18)
 
 ### Quick Install
@@ -65,6 +65,29 @@ yarn add mantine-react-table @mantine/core @mantine/hooks @mantine/dates @emotio
 > You do NOT need to install `@tanstack/react-table`, as it is already an internal dependency of `mantine-react-table`, and must use an exact version already specified internally.
 >
 > All internal dependencies: `@tanstack/match-sorter-utils`, `@tanstack/react-table`, `@tanstack/react-virtual`, and `highlight-words`
+
+### Common Errors
+
+If you get an error like this:
+
+```bash
+"Error: Element type is invalid: expected a string (for built-in components)
+or a class/function (for composite components) but got: undefined.
+You likely forgot to export your component from the file it's defined in,
+or you might have mixed up default and named imports.
+```
+
+You probably do not have the correct version of Mantine installed. Make sure all mantine packages are at least v5.7.0.
+
+If you are using an older version of `webpack` or `create-react-app` and get an error like this:
+
+```bash
+./node_modules/@tanstack/virtual-core/build/lib/index.esm.js 147:92
+Module parse failed: Unexpected token (147:92)
+File was processed with these loaders:
+```
+
+Then try upgrading either `webpack` or `react-scripts` to the latest versions.
 
 ### FAQs
 

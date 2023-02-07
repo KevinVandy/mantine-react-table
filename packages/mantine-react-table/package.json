@@ -84,9 +84,9 @@
   },
   "peerDependencies": {
     "@emotion/react": ">=11",
-    "@mantine/core": ">=5",
-    "@mantine/dates": ">=5",
-    "@mantine/hooks": ">=5",
+    "@mantine/core": ">=5.7",
+    "@mantine/dates": ">=5.7",
+    "@mantine/hooks": ">=5.7",
     "@tabler/icons-react": ">=2",
     "react": ">=17.0",
     "react-dom": ">=17.0"
