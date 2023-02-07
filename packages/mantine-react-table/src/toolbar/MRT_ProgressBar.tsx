@@ -1,13 +1,16 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Collapse, Progress } from '@mantine/core';
 import type { MRT_TableInstance } from '..';
 
-interface Props {
+interface Props<TData extends Record<string, any> = {}> {
   isTopToolbar: boolean;
-  table: MRT_TableInstance;
+  table: MRT_TableInstance<TData>;
 }
 
-export const MRT_LinearProgressBar: FC<Props> = ({ isTopToolbar, table }) => {
+export const MRT_ProgressBar = <TData extends Record<string, any> = {}>({
+  isTopToolbar,
+  table,
+}: Props<TData>) => {
   const {
     options: { mantineProgressProps },
     getState,

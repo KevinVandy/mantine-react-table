@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Box, Flex, MantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { MRT_GlobalFilterTextInput } from '../inputs/MRT_GlobalFilterTextInput';
-import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
+import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
@@ -23,11 +23,13 @@ export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   zIndex: 1,
 });
 
-interface Props {
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any> = {}> {
+  table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TopToolbar: FC<Props> = ({ table }) => {
+export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
+  table,
+}: Props<TData>) => {
   const {
     getState,
     options: {
@@ -128,7 +130,7 @@ export const MRT_TopToolbar: FC<Props> = ({ table }) => {
             <MRT_TablePagination table={table} position="top" />
           </Flex>
         )}
-      <MRT_LinearProgressBar isTopToolbar table={table} />
+      <MRT_ProgressBar isTopToolbar table={table} />
     </Box>
   );
 };

@@ -171,7 +171,7 @@ export const SelectCheckboxSecondaryColor: Story<
     columns={columns}
     data={data}
     enableRowSelection
-    mantineSelectCheckboxProps={{ color: 'secondary' }}
+    mantineSelectCheckboxProps={{ color: 'orange' }}
   />
 );
 

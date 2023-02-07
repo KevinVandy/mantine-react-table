@@ -1,18 +1,20 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Box } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
-import { MRT_LinearProgressBar } from './MRT_LinearProgressBar';
+import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { commonToolbarStyles } from './MRT_TopToolbar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import type { MRT_TableInstance } from '..';
 
-interface Props {
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any> = {}> {
+  table: MRT_TableInstance<TData>;
 }
 
-export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
+export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
+  table,
+}: Props<TData>) => {
   const {
     getState,
     options: {
@@ -61,7 +63,7 @@ export const MRT_BottomToolbar: FC<Props> = ({ table }) => {
         } as any)
       }
     >
-      <MRT_LinearProgressBar isTopToolbar={false} table={table} />
+      <MRT_ProgressBar isTopToolbar={false} table={table} />
       {positionToolbarAlertBanner === 'bottom' && (
         <MRT_ToolbarAlertBanner
           stackAlertBanner={stackAlertBanner}

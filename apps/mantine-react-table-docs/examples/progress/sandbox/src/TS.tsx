@@ -46,7 +46,7 @@ const Example: FC = () => {
       columns={columns}
       data={data}
       mantineProgressProps={({ isTopToolbar }) => ({
-        color: 'secondary',
+        color: 'orange',
         variant: 'determinate', //if you want to show exact progress value
         value: progress, //value between 0 and 100
         sx: {

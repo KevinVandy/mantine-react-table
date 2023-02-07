@@ -10,7 +10,7 @@ const ExampleTable = () => {
       Component={Example}
       javaScriptCode={JS}
       typeScriptCode={TS}
-      tableId="linear-progress"
+      tableId="progress"
     />
   );
 };
