@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
@@ -7,7 +7,7 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_TableHeadCellSortLabel: FC<Props> = ({ header, table }) => {
+export const MRT_TableHeadCellSortLabel = ({ header, table }: Props) => {
   const {
     options: {
       icons: { IconSortDescending, IconSortAscending, IconArrowsSort },

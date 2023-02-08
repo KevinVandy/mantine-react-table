@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Box } from '@mantine/core';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import type { VirtualItem } from '@tanstack/react-virtual';
@@ -12,13 +12,13 @@ interface Props {
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableHeadRow: FC<Props> = ({
+export const MRT_TableHeadRow = ({
   headerGroup,
   table,
   virtualColumns,
   virtualPaddingLeft,
   virtualPaddingRight,
-}) => {
+}: Props) => {
   const {
     getState,
     options: { enableStickyHeader, layoutMode, mantineTableHeadRowProps },

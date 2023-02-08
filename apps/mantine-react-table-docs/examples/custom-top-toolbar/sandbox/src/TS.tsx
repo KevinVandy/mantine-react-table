@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   MantineReactTable,
   MRT_ColumnDef,
@@ -9,7 +9,7 @@ import { Box, Button, ActionIcon, Flex } from '@mantine/core';
 import { IconPrinter } from '@tabler/icons-react';
 import { data, Person } from './makeData';
 
-const Example: FC = () => {
+const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     //column definitions...
     () => [

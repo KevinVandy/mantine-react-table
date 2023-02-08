@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   MantineReactTable,
@@ -15,7 +15,7 @@ interface Props {
   onlyProps?: Set<keyof MantineReactTableProps>;
 }
 
-const RootPropTable: FC<Props> = ({ onlyProps }) => {
+const RootPropTable = ({ onlyProps }: Props) => {
   const isDesktop = useMediaQuery('(min-width: 1200px)');
 
   const columns = useMemo(

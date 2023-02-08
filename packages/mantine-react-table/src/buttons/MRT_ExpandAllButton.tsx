@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import type { MRT_TableInstance } from '..';
 
@@ -6,7 +6,7 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_ExpandAllButton: FC<Props> = ({ table }) => {
+export const MRT_ExpandAllButton = ({ table }: Props) => {
   const {
     getIsAllRowsExpanded,
     getIsSomeRowsExpanded,

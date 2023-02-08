@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { MantineProvider, useMantineTheme } from '@mantine/core';
 
@@ -75,7 +75,7 @@ const data = [
 ];
 //end
 
-const Example: FC = () => {
+const Example = () => {
   const globalTheme = useMantineTheme(); //(optional) if you already have a theme defined in your app root, you can import here
 
   return (

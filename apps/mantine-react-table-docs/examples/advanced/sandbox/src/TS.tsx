@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 //MRT Imports
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
@@ -26,7 +26,7 @@ export type Employee = {
   avatar: string;
 };
 
-const Example: FC = () => {
+const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Employee>[]>(
     () => [
       {

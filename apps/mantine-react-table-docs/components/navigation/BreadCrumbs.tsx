@@ -1,10 +1,10 @@
-import { FC, useMemo } from 'react';
+import { useMemo } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Anchor, Breadcrumbs } from '@mantine/core';
 import { useRouter } from 'next/router';
 
-const BreadCrumbs: FC = () => {
+const BreadCrumbs = () => {
   const { route } = useRouter();
 
   const breadCrumbLinks = useMemo(() => {

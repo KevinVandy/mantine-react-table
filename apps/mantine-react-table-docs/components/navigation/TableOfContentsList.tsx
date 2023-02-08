@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import Link from 'next/link';
 import { Box, Anchor, Text } from '@mantine/core';
 import { LinkHeading } from '../mdx/LinkHeading';
@@ -9,11 +8,11 @@ interface Props {
   variant?: 'list' | 'heading';
 }
 
-const TableOfContentsList: FC<Props> = ({
+const TableOfContentsList = ({
   items,
   isFooter = false,
   variant = 'list',
-}) => {
+}: Props) => {
   if (variant === 'list') {
     return (
       <ul

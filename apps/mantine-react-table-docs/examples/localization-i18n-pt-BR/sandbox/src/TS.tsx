@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 //Import Mantine React Table and its Types
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
@@ -27,7 +27,7 @@ const columns: MRT_ColumnDef<Person>[] = [
   //end
 ];
 
-const Example: FC = () => {
+const Example = () => {
   return (
     <MantineReactTable
       columns={columns}

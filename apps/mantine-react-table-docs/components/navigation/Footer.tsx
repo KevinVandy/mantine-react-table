@@ -1,9 +1,8 @@
-import { FC } from 'react';
 import { Box, Divider, Anchor, Paper, Text } from '@mantine/core';
 import TableOfContentsList from './TableOfContentsList';
 import { routes } from './routes';
 
-const Footer: FC = () => {
+const Footer = () => {
   return (
     <Paper
       component="footer"

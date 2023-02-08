@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Box } from '@mantine/core';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
 import { VirtualItem } from '@tanstack/react-virtual';
@@ -12,13 +12,13 @@ interface Props {
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableFooterRow: FC<Props> = ({
+export const MRT_TableFooterRow = ({
   footerGroup,
   table,
   virtualColumns,
   virtualPaddingLeft,
   virtualPaddingRight,
-}) => {
+}: Props) => {
   const {
     options: { layoutMode, mantineTableFooterRowProps },
   } = table;

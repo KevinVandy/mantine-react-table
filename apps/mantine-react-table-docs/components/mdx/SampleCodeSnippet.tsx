@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Prism, PrismProps } from '@mantine/prism';
 import { Paper, useMantineTheme } from '@mantine/core';
 import { Language } from 'prism-react-renderer';
@@ -8,7 +7,7 @@ interface Props extends Partial<PrismProps> {
   children: string;
 }
 
-export const SampleCodeSnippet: FC<Props> = (props) => {
+export const SampleCodeSnippet = (props: Props) => {
   const theme = useMantineTheme();
 
   if (!props.language && !props.className) {

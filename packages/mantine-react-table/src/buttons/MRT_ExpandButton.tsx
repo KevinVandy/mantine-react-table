@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
@@ -7,7 +7,7 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_ExpandButton: FC<Props> = ({ row, table }) => {
+export const MRT_ExpandButton = ({ row, table }: Props) => {
   const {
     options: {
       icons: { IconChevronDown },

@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import {
   Checkbox,
   CheckboxProps,
@@ -14,7 +14,7 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_SelectCheckbox: FC<Props> = ({ row, selectAll, table }) => {
+export const MRT_SelectCheckbox = ({ row, selectAll, table }: Props) => {
   const {
     getState,
     options: {

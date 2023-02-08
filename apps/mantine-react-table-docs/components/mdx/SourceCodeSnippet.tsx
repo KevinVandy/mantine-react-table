@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Flex, Divider, Button, Select, Tooltip } from '@mantine/core';
 import { Prism } from '@mantine/prism';
 import {
@@ -33,20 +33,20 @@ const mantineColors = [
 ];
 
 export interface Props {
-  Component?: FC;
+  Component?;
   apiCode?: string;
   javaScriptCode?: string;
   tableId: string;
   typeScriptCode: string;
 }
 
-export const SourceCodeSnippet: FC<Props> = ({
+export const SourceCodeSnippet = ({
   Component,
   apiCode,
   javaScriptCode,
   tableId,
   typeScriptCode,
-}) => {
+}: Props) => {
   const plausible = usePlausible();
   const {
     primaryColor,

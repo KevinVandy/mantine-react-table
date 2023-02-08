@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { IconRefresh } from '@tabler/icons-react';
@@ -28,7 +28,7 @@ type User = {
   phoneNumber: string;
 };
 
-const Example: FC = () => {
+const Example = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState<SortingState>([]);

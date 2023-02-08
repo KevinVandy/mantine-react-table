@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { ActionIcon, Collapse, Flex, Menu, Text, Tooltip } from '@mantine/core';
 import { IconFilter } from '@tabler/icons-react';
 import { MRT_FilterRangeFields } from '../inputs/MRT_FilterRangeFields';
@@ -12,10 +12,7 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_TableHeadCellFilterContainer: FC<Props> = ({
-  header,
-  table,
-}) => {
+export const MRT_TableHeadCellFilterContainer = ({ header, table }: Props) => {
   const {
     getState,
     options: { enableColumnFilterModes, columnFilterModeOptions, localization },

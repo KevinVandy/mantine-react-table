@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
@@ -19,7 +19,7 @@ interface Props extends TitleProps {
   sx?: Sx | Sx[];
 }
 
-export const LinkHeading: FC<Props> = ({ children, tableId, ...rest }) => {
+export const LinkHeading = ({ children, tableId, ...rest }: Props) => {
   const { pathname } = useRouter();
 
   const [isCopied, setIsCopied] = useState(false);

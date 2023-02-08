@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import { Box } from '@mantine/core';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
-export const Blockquote: FC<any> = (props) => {
+export const Blockquote = (props) => {
   return (
     <Box
       component="blockquote"

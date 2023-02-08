@@ -1,4 +1,4 @@
-import React, { DragEvent, FC, memo, useMemo, useRef } from 'react';
+import React, { DragEvent, memo, useMemo, useRef } from 'react';
 import { Box, useMantineTheme } from '@mantine/core';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
@@ -20,7 +20,7 @@ interface Props {
   virtualRow?: VirtualItem;
 }
 
-export const MRT_TableBodyRow: FC<Props> = ({
+export const MRT_TableBodyRow = ({
   columnVirtualizer,
   enableHover,
   measureElement,
@@ -32,7 +32,7 @@ export const MRT_TableBodyRow: FC<Props> = ({
   virtualPaddingLeft,
   virtualPaddingRight,
   virtualRow,
-}) => {
+}: Props) => {
   const theme = useMantineTheme();
   const {
     getIsSomeColumnsPinned,

@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import { ActionIcon, Box, Transition, Tooltip } from '@mantine/core';
 import { MRT_Header, MRT_TableInstance } from '..';
 
@@ -7,7 +7,7 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_TableHeadCellFilterLabel: FC<Props> = ({ header, table }) => {
+export const MRT_TableHeadCellFilterLabel = ({ header, table }: Props) => {
   const {
     options: {
       icons: { IconFilter },

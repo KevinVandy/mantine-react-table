@@ -1,4 +1,4 @@
-import React, { DragEvent, FC, ReactNode, useMemo } from 'react';
+import React, { DragEvent, ReactNode, useMemo } from 'react';
 import { Box, Flex, MantineTheme, useMantineTheme } from '@mantine/core';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
@@ -14,7 +14,7 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_TableHeadCell: FC<Props> = ({ header, table }) => {
+export const MRT_TableHeadCell = ({ header, table }: Props) => {
   const theme = useMantineTheme();
   const {
     getState,

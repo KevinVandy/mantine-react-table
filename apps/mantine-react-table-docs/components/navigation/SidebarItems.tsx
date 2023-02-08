@@ -1,4 +1,4 @@
-import { FC, Fragment, useCallback } from 'react';
+import { Fragment, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { UnstyledButton, Flex } from '@mantine/core';
@@ -13,7 +13,7 @@ interface Props {
   setNavOpen: (navOpen: boolean) => void;
 }
 
-const SideBarItems: FC<Props> = ({ depth = 1, routes, setNavOpen }) => {
+const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
   const { pathname } = useRouter();
   const isMobile = useMediaQuery('(max-width: 900px)');
 

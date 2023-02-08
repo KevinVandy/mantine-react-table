@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   MantineReactTable,
   MRT_ColumnDef,
@@ -59,7 +59,7 @@ const fontAwesomeIcons: Partial<MRT_Icons> = {
   IconEyeOff: () => <FontAwesomeIcon icon={faEyeSlash} />,
 };
 
-const Example: FC = () => {
+const Example = () => {
   const columns = useMemo(
     //column definitions...
     () =>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Box, Collapse } from '@mantine/core';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Row, MRT_TableInstance } from '..';
@@ -10,12 +10,12 @@ interface Props {
   virtualRow?: VirtualItem;
 }
 
-export const MRT_TableDetailPanel: FC<Props> = ({
+export const MRT_TableDetailPanel = ({
   parentRowRef,
   row,
   table,
   virtualRow,
-}) => {
+}: Props) => {
   const {
     getVisibleLeafColumns,
     getState,

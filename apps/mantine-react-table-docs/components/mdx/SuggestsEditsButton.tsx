@@ -1,10 +1,9 @@
-import { FC } from 'react';
 import { Anchor, Button, Stack, Text } from '@mantine/core';
 import { IconBrandGithub, IconEdit } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
 import { usePlausible } from 'next-plausible';
 
-export const SuggestsEditsButton: FC = () => {
+export const SuggestsEditsButton = () => {
   const { pathname } = useRouter();
   const plausible = usePlausible();
 

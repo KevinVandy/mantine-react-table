@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   MantineReactTable,
   MantineReactTableProps,
@@ -30,7 +30,7 @@ export type Person = {
   state: string;
 };
 
-const Example: FC = () => {
+const Example = () => {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [tableData, setTableData] = useState<Person[]>(() => data);
   const [validationErrors, setValidationErrors] = useState<{
@@ -213,13 +213,20 @@ const Example: FC = () => {
   );
 };
 
-//example of creating a mantine dialog modal for creating new rows
-export const CreateNewAccountModal: FC<{
+interface Props {
   columns: MRT_ColumnDef<Person>[];
   onClose: () => void;
   onSubmit: (values: Person) => void;
   open: boolean;
-}> = ({ open, columns, onClose, onSubmit }) => {
+}
+
+//example of creating a mantine dialog modal for creating new rows
+export const CreateNewAccountModal = ({
+  open,
+  columns,
+  onClose,
+  onSubmit,
+}: Props) => {
   const [values, setValues] = useState<any>(() =>
     columns.reduce((acc, column) => {
       acc[column.accessorKey ?? ''] = '';

@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import Head from 'next/head';
 import { Accordion, Box, Title } from '@mantine/core';
 
@@ -19,7 +18,7 @@ interface Props {
   faqStructuredData: FAQStructuredData;
 }
 
-export const FAQs: FC<Props> = ({ faqStructuredData }) => {
+export const FAQs = ({ faqStructuredData }: Props) => {
   return (
     <>
       <Head>

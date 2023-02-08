@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useEffect, useRef, useState } from 'react';
+import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import {
   ActionIcon,
   Box,
@@ -19,11 +19,11 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_FilterTextInput: FC<Props> = ({
+export const MRT_FilterTextInput = ({
   header,
   rangeFilterIndex,
   table,
-}) => {
+}: Props) => {
   const {
     options: {
       columnFilterModeOptions,

@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Navbar, Overlay } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import SideBarItems from './SidebarItems';
@@ -9,7 +8,7 @@ interface Props {
   setNavOpen: (navOpen: boolean) => void;
 }
 
-const SideBar: FC<Props> = ({ navOpen, setNavOpen }) => {
+const SideBar = ({ navOpen, setNavOpen }: Props) => {
   const isMobile = useMediaQuery('(max-width: 900px)');
 
   return (

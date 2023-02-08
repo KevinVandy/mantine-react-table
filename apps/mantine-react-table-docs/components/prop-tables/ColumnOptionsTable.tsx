@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { Anchor, Text } from '@mantine/core';
@@ -11,7 +11,7 @@ interface Props {
   onlyProps?: Set<keyof MRT_ColumnDef>;
 }
 
-const ColumnOptionsTable: FC<Props> = ({ onlyProps }) => {
+const ColumnOptionsTable = ({ onlyProps }: Props) => {
   const isDesktop = useMediaQuery('(min-width: 1200px)');
 
   const columns = useMemo(

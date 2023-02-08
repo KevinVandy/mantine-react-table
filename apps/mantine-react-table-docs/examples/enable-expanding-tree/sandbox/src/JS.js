@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 
 export const data = [

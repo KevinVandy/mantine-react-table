@@ -1,6 +1,5 @@
 import React, {
   DragEvent,
-  FC,
   memo,
   MouseEvent,
   RefObject,
@@ -28,7 +27,7 @@ interface Props {
   virtualCell?: VirtualItem;
 }
 
-export const MRT_TableBodyCell: FC<Props> = ({
+export const MRT_TableBodyCell = ({
   cell,
   enableHover,
   measureElement,
@@ -37,7 +36,7 @@ export const MRT_TableBodyCell: FC<Props> = ({
   rowRef,
   table,
   virtualCell,
-}) => {
+}: Props) => {
   const theme = useMantineTheme();
   const {
     getState,

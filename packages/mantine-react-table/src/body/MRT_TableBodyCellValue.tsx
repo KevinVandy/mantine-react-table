@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { Box } from '@mantine/core';
 import highlightWords from 'highlight-words';
 import type { MRT_Cell, MRT_TableInstance } from '..';
@@ -10,7 +10,7 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_TableBodyCellValue: FC<Props> = ({ cell, table }) => {
+export const MRT_TableBodyCellValue = ({ cell, table }: Props) => {
   const {
     getState,
     options: { enableFilterMatchHighlighting },

@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePlausible } from 'next-plausible';
@@ -25,7 +25,7 @@ interface Props {
   setNavOpen: (navOpen: boolean) => void;
 }
 
-const TopBar: FC<Props> = ({ navOpen, setNavOpen }) => {
+const TopBar = ({ navOpen, setNavOpen }: Props) => {
   const plausible = usePlausible();
   const theme = useMantineTheme();
   const isMobile = useMediaQuery('(max-width: 600px)');
