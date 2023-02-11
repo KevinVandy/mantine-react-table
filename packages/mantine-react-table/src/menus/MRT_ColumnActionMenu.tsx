@@ -43,6 +43,7 @@ export const MRT_ColumnActionMenu = ({ header, table }: Props) => {
       renderColumnActionsMenuItems,
     },
     refs: { filterInputRefs },
+    setColumnSizingInfo,
     setShowFilters,
   } = table;
   const { column } = header;
@@ -80,6 +81,7 @@ export const MRT_ColumnActionMenu = ({ header, table }: Props) => {
   };
 
   const handleResetColumnSize = () => {
+    setColumnSizingInfo((old) => ({ ...old, isResizingColumn: false }));
     column.resetSize();
   };
 

@@ -9,6 +9,7 @@ import { Table } from '@mantine/core';
 import { MRT_TableHead } from '../head/MRT_TableHead';
 import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
+import { parseCSSVarId } from '../column.utils';
 import type { MRT_TableInstance } from '..';
 
 interface Props {
@@ -17,8 +18,10 @@ interface Props {
 
 export const MRT_Table = ({ table }: Props) => {
   const {
+    getFlatHeaders,
     getState,
     options: {
+      columns,
       columnVirtualizerInstanceRef,
       columnVirtualizerProps,
       enableColumnResizing,
@@ -32,7 +35,13 @@ export const MRT_Table = ({ table }: Props) => {
     },
     refs: { tableContainerRef },
   } = table;
-  const { columnPinning, columnVisibility, density } = getState();
+  const {
+    columnSizing,
+    columnSizingInfo,
+    columnPinning,
+    columnVisibility,
+    density,
+  } = getState();
 
   const tableProps =
     mantineTableProps instanceof Function
@@ -43,6 +52,16 @@ export const MRT_Table = ({ table }: Props) => {
     columnVirtualizerProps instanceof Function
       ? columnVirtualizerProps({ table })
       : columnVirtualizerProps;
+
+  const columnSizeVars = useMemo(() => {
+    const headers = getFlatHeaders();
+    const colSizes: { [key: string]: number } = {};
+    for (let i = 0; i < headers.length; i++) {
+      const h = headers[i];
+      colSizes[`--col-${parseCSSVarId(h.column.id)}-size`] = h.getSize();
+    }
+    return colSizes;
+  }, [columns, columnSizing, columnSizingInfo]);
 
   //get first 16 column widths and average them
   const averageColumnWidth = useMemo(() => {
@@ -146,9 +165,10 @@ export const MRT_Table = ({ table }: Props) => {
           ? tableProps.sx(theme)
           : (tableProps?.sx as any)),
       })}
+      style={{ ...columnSizeVars, ...tableProps?.style }}
     >
       {enableTableHead && <MRT_TableHead {...props} />}
-      {memoMode === 'table-body' ? (
+      {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (
         <Memo_MRT_TableBody columnVirtualizer={columnVirtualizer} {...props} />
       ) : (
         <MRT_TableBody columnVirtualizer={columnVirtualizer} {...props} />

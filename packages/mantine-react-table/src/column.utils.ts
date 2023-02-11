@@ -15,7 +15,6 @@ import type {
   MRT_DefinedColumnDef,
   MRT_DisplayColumnIds,
   MRT_FilterOption,
-  MRT_Header,
   MRT_TableInstance,
 } from '.';
 
@@ -26,7 +25,7 @@ export const getColumnId = <TData extends Record<string, any> = {}>(
 
 export const getAllLeafColumnDefs = <TData extends Record<string, any> = {}>(
   columns: MRT_ColumnDef<TData>[],
-): MRT_ColumnDef<TData>[] => {
+) => {
   const allLeafColumnDefs: MRT_ColumnDef<TData>[] = [];
   const getLeafColumns = (cols: MRT_ColumnDef<TData>[]) => {
     cols.forEach((col) => {
@@ -226,13 +225,11 @@ export const getTotalRight = (table: MRT_TableInstance, column: MRT_Column) => {
 
 export const getCommonCellStyles = ({
   column,
-  header,
   table,
   tableCellProps,
   theme,
 }: {
   column: MRT_Column;
-  header?: MRT_Header;
   table: MRT_TableInstance;
   tableCellProps: BoxProps;
   theme: MantineTheme;
@@ -253,6 +250,10 @@ export const getCommonCellStyles = ({
     ? `4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
     : undefined,
   display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
+  flex:
+    table.options.layoutMode === 'grid'
+      ? `var(--col-${parseCSSVarId(column.id)}-size) 0 auto`
+      : undefined,
   left:
     column.getIsPinned() === 'left'
       ? `${column.getStart('left')}px`
@@ -288,19 +289,16 @@ export const getCommonCellStyles = ({
     column.getIsPinned() === 'right'
       ? `${getTotalRight(table, column)}px`
       : undefined,
-  transition:
-    table.options.enableColumnVirtualization || column.getIsResizing()
-      ? 'none'
-      : `all 100ms ease-in-out`,
+  transition: table.options.enableColumnVirtualization
+    ? 'none'
+    : `padding 100ms ease-in-out`,
   ...(tableCellProps?.sx instanceof Function
     ? tableCellProps.sx(theme)
     : (tableCellProps?.sx as any)),
-  flex:
-    table.options.layoutMode === 'grid'
-      ? `${column.getSize()} 0 auto`
-      : undefined,
-  minWidth: `max(${column.getSize()}px, ${column.columnDef.minSize ?? 30}px)`,
-  width: header?.getSize() ?? column.getSize(),
+  minWidth: `max(calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px), ${
+    column.columnDef.minSize ?? 30
+  }px)`,
+  width: `calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px)`,
 });
 
 export const MRT_DefaultColumn = {
@@ -336,3 +334,6 @@ export const getPrimaryColor = (
   theme: MantineTheme,
   shade?: MantineShade,
 ): string => theme.colors[theme.primaryColor][shade ?? getPrimaryShade(theme)];
+
+export const parseCSSVarId = (id: string) =>
+  id.replaceAll('.', '_').replaceAll(' ', '_').replaceAll('+', '_');

@@ -3,6 +3,7 @@ import RootPropTable from '../../../components/prop-tables/RootPropTable';
 import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
 import Example from '../../../examples/enable-column-resizing';
+import NoGrowExample from '../../../examples/enable-column-resizing-no-grow';
 
 <Head>
   <title>Column Resizing Feature Guide - Mantine React Table Docs</title>
@@ -88,6 +89,8 @@ The columns will still try to increase their width to take up the full width of 
 
 For further reading on how table-layout `fixed` vs `auto` works, we recommend reading this [blog post](https://css-tricks.com/almanac/properties/t/table-layout/) by CSS-Tricks.
 
+If you are using either virtualization features or have the layoutMode set to `"grid"`, another option is to turn off flex grow for both the table head and body cells. [You can see this down below at the bottom of this page](#disable-column-growing)
+
 #### Default Column
 
 By default, columns will have the following size properties defined:
@@ -124,17 +127,42 @@ You can disable specific columns from being resizable by setting the `enableResi
 
 #### Column Resize Mode
 
-The default `columnResizeMode` is `onEnd`, which means that the column resizing will only occur after the user has finished dragging the column resize handle and released their mouse. You can change the `columnResizeMode` to `onChange` to make the column resizing occur immediately as the user drags the column resize handle.
+The default `columnResizeMode` is `onChange`, which means that column resizing will occur immediately as the user drags the column resize handle. If you are running into performance issues because of many other enabled features, you might want to set the `columnResizeMode` to `onEnd` instead. This will make the column resizing only occur after the user has finished dragging the column resize handle and released their mouse.
 
 ```tsx
 <MantineReactTable
   columns={columns}
   data={data}
   enableColumnResizing
-  columnResizeMode="onChange"
+  columnResizeMode="onEnd" //instead of the default "onChange" mode
 />
 ```
 
-### Column Resizing Example
-
 <Example />
+
+#### Disable Column Growing
+
+If you want to prevent the columns from growing to fill the width of the table, use this flexbox trick when the layoutMode is `"grid"`:
+
+```tsx
+<MaterialReactTable
+  columns={columns}
+  data={data}
+  enableColumnResizing
+  layoutMode="grid" //instead of the default "semantic" layout mode
+  mantineTableHeadCellProps={{
+    sx: {
+      flex: '0 0 auto',
+    },
+  }}
+  mantineTableBodyCellProps={{
+    sx: {
+      flex: '0 0 auto',
+    },
+  }}
+/>
+```
+
+<NoGrowExample />
+
+View Extra Storybook **[Examples](https://www.mantine-react-table.dev/?path=/story/features-column-resizing-examples)**

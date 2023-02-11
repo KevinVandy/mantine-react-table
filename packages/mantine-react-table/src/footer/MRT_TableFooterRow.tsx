@@ -44,6 +44,10 @@ export const MRT_TableFooterRow = ({
       component="tr"
       {...tableRowProps}
       sx={(theme) => ({
+        backgroundColor: theme.fn.lighten(
+          theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+          0.06,
+        ),
         display: layoutMode === 'grid' ? 'flex' : 'table-row',
         width: '100%',
         ...(tableRowProps?.sx instanceof Function

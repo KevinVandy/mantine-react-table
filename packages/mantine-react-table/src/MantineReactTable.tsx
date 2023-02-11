@@ -979,7 +979,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
 export const MantineReactTable = <TData extends Record<string, any> = {}>({
   aggregationFns,
   autoResetExpanded = false,
-  columnResizeMode = 'onEnd',
+  columnResizeMode = 'onChange',
   defaultColumn,
   defaultDisplayColumn,
   editingMode = 'modal',

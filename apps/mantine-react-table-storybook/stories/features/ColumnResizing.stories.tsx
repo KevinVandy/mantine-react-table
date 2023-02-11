@@ -40,7 +40,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   },
 ];
 
-const data = [...Array(8)].map(() => ({
+const data = [...Array(88)].map(() => ({
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   address: faker.address.streetAddress(),
@@ -49,7 +49,7 @@ const data = [...Array(8)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const ColumnResizingEnabledDefaultOnEnd: Story<
+export const ColumnResizingEnabledDefaultOnChange: Story<
   MantineReactTableProps
 > = () => (
   <MantineReactTable columns={columns} data={data} enableColumnResizing />
@@ -102,25 +102,11 @@ export const ColumnResizingDisabledSomeColumns: Story<
   />
 );
 
-export const ColumnResizingEnabledOnChange: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnResizingEnabledOnEnd: Story<MantineReactTableProps> = () => (
   <MantineReactTable
-    columnResizeMode="onChange"
+    columnResizeMode="onEnd"
     columns={columns}
     data={data}
-    enableColumnResizing
-  />
-);
-
-export const ColumnResizingEnabledOnChangeNoActions: Story<
-  MantineReactTableProps
-> = () => (
-  <MantineReactTable
-    columnResizeMode="onChange"
-    columns={columns}
-    data={data}
-    enableColumnActions={false}
     enableColumnResizing
   />
 );
@@ -193,5 +179,78 @@ export const ColumnResizingWithHeaderGroups: Story<
     }))}
     enableColumnResizing
     enableRowSelection
+  />
+);
+
+export const ColumnResizingWithHeaderGroupsGrid: Story<
+  MantineReactTableProps
+> = () => (
+  <MantineReactTable
+    columns={[
+      {
+        header: 'Name',
+        footer: 'Name',
+        columns: [
+          {
+            header: 'First Name',
+            footer: 'First Name',
+            accessorKey: 'firstName',
+          },
+
+          {
+            header: 'Last Name',
+            footer: 'Last Name',
+            accessorKey: 'lastName',
+          },
+        ],
+      },
+      {
+        header: 'Info',
+        footer: 'Info',
+        columns: [
+          {
+            header: 'Age',
+            footer: 'Age',
+            accessorKey: 'age',
+          },
+          {
+            header: 'Address',
+            footer: 'Address',
+            accessorKey: 'address',
+          },
+        ],
+      },
+    ]}
+    data={[...Array(5)].map(() => ({
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      age: faker.datatype.number(80),
+      address: faker.address.streetAddress(),
+    }))}
+    enableColumnResizing
+    enableRowSelection
+    layoutMode="grid"
+  />
+);
+
+export const ColumnResizingLayoutGridNoFlexGrow: Story<
+  MantineReactTableProps
+> = () => (
+  <MantineReactTable
+    columns={columns.slice(0, 3)}
+    data={data}
+    layoutMode="grid"
+    enableRowSelection
+    enableColumnResizing
+    mantineTableHeadCellProps={{
+      sx: {
+        flex: '0 0 auto',
+      },
+    }}
+    mantineTableBodyCellProps={{
+      sx: {
+        flex: '0 0 auto',
+      },
+    }}
   />
 );

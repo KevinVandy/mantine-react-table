@@ -12,15 +12,20 @@ export const MRT_TableHeadCellResizeHandle = ({ header, table }: Props) => {
   const {
     getState,
     options: { columnResizeMode },
+    setColumnSizingInfo,
   } = table;
-  const { density, showColumnFilters } = getState();
+  const { density } = getState();
   const { column } = header;
-  const { columnDef } = column;
-  const { columnDefType } = columnDef;
 
   return (
     <Box
-      onDoubleClick={() => column.resetSize()}
+      onDoubleClick={() => {
+        setColumnSizingInfo((old) => ({
+          ...old,
+          isResizingColumn: false,
+        }));
+        column.resetSize();
+      }}
       onMouseDown={header.getResizeHandler()}
       onTouchStart={header.getResizeHandler()}
       sx={(theme) => ({
@@ -56,9 +61,8 @@ export const MRT_TableHeadCellResizeHandle = ({ header, table }: Props) => {
         size="lg"
         sx={{
           borderRadius: '2px',
-          borderWidth: '2px',
-          height:
-            showColumnFilters && columnDefType === 'data' ? '60px' : '24px',
+          borderWidth: '4px',
+          height: '24px',
           touchAction: 'none',
           transition: column.getIsResizing()
             ? undefined

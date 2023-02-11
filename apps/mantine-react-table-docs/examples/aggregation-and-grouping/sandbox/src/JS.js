@@ -114,6 +114,7 @@ const Example = () => {
     <MantineReactTable
       columns={columns}
       data={data}
+      enableColumnResizing
       enableGrouping
       enableStickyHeader
       enableStickyFooter

@@ -57,7 +57,7 @@ If you want to add row action buttons, then you can use the `renderRowActions` p
 ```jsx
 <MantineReactTable
   enableRowActions
-  renderRowActions={(row, index) => (
+  renderRowActions={({ row }) => (
     <Box>
       <IconButton onClick={() => console.info('Edit')}>
         <IconEdit />

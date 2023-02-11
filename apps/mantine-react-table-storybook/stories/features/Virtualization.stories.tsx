@@ -377,6 +377,7 @@ export const MaxVirtualization: Story<MantineReactTableProps> = () => (
     columns={fakeColumns}
     data={fakeData}
     enableBottomToolbar={false}
+    enableColumnResizing
     enableColumnVirtualization
     enablePagination={false}
     enablePinning
