@@ -8,7 +8,7 @@ interface Props {
   variant?: 'list' | 'heading';
 }
 
-const TableOfContentsList = ({
+export const TableOfContentsList = ({
   items,
   isFooter = false,
   variant = 'list',
@@ -65,5 +65,3 @@ const TableOfContentsList = ({
   }
   return <></>;
 };
-
-export default TableOfContentsList;

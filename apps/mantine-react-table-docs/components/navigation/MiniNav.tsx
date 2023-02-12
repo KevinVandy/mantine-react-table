@@ -3,7 +3,7 @@ import { Box, Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 
-const MiniNav = () => {
+export const MiniNav = () => {
   const { pathname } = useRouter();
   const isXLDesktop = useMediaQuery('(min-width: 1800px)');
   const [headings, setHeadings] = useState<NodeListOf<HTMLElement>>();
@@ -70,5 +70,3 @@ const MiniNav = () => {
     </Box>
   );
 };
-
-export default MiniNav;

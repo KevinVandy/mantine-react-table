@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Anchor, Breadcrumbs } from '@mantine/core';
 import { useRouter } from 'next/router';
 
-const BreadCrumbs = () => {
+export const BreadCrumbs = () => {
   const { route } = useRouter();
 
   const breadCrumbLinks = useMemo(() => {
@@ -76,5 +76,3 @@ const BreadCrumbs = () => {
     </>
   );
 };
-
-export default BreadCrumbs;

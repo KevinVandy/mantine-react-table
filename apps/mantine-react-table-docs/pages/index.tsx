@@ -9,7 +9,7 @@ import { LinkHeading } from '../components/mdx/LinkHeading';
 import { FeatureTable } from '../components/mdx/FeatureTable';
 import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
-import { GuideCard } from '../components/mdx/GuideCard';
+import { PopularDocs } from '../components/mdx/PopularDocs';
 
 const HomePage = () => {
   return (
@@ -48,21 +48,6 @@ const HomePage = () => {
             })}
           >
             Mantine&nbsp;React&nbsp;Table
-            <Box
-              component="sup"
-              sx={(theme) => ({
-                background: `-webkit-linear-gradient(left, ${theme.colors.blue[7]}, ${theme.colors.blue[7]})`,
-                display: 'inline',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontSize: '32px',
-                '@media (max-width: 768px)': {
-                  fontSize: '24px',
-                },
-              })}
-            >
-              V1
-            </Box>
           </Box>
         </Title>
         <Text
@@ -253,7 +238,7 @@ const HomePage = () => {
         </Box>
         <Box py="16px">
           <SampleCodeSnippet className="language-bash">
-            npm install mantine-react-table @mantine/core @mantine/hooks
+            npm i mantine-react-table @mantine/core @mantine/hooks
             @mantine/dates @emotion/react @tabler/icons-react dayjs
           </SampleCodeSnippet>
         </Box>
@@ -261,31 +246,7 @@ const HomePage = () => {
         <Title my="2rem" ta="center" order={3}>
           Popular Docs
         </Title>
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr',
-            gap: '1rem',
-            '@media (max-width: 1024px)': {
-              gridTemplateColumns: '1fr 1fr',
-            },
-          }}
-        >
-          <GuideCard title="Props" href="/docs/api/props" />
-          <GuideCard title="Basic Example" href="docs/examples/basic" />
-          <GuideCard title="Advanced Example" href="docs/examples/advanced" />
-          <GuideCard
-            title="Fetching Example"
-            href="docs/examples/react-query"
-          />
-          <GuideCard title="Localization" href="docs/guides/localization" />
-          <GuideCard title="Create Columns" href="docs/guides/data-columns" />
-          <GuideCard
-            title="Column Filtering"
-            href="docs/guides/column-filtering"
-          />
-          <GuideCard title="Selection" href="docs/guides/row-selection" />
-        </Box>
+        <PopularDocs />
         <LinkCards />
       </Stack>
       <Title

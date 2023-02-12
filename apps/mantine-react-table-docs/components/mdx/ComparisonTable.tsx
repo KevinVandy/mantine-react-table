@@ -50,7 +50,6 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
         >
           <img
             alt={cell.getValue<string>()}
-            loading="lazy"
             src={row.original.bundlePhobiaImg}
           />
         </a>

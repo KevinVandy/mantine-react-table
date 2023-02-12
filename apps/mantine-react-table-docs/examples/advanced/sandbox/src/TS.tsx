@@ -50,7 +50,6 @@ const Example = () => {
                   alt="avatar"
                   height={30}
                   src={row.original.avatar}
-                  loading="lazy"
                   style={{ borderRadius: '50%' }}
                 />
                 <span>{renderedCellValue}</span>
@@ -155,7 +154,6 @@ const Example = () => {
             alt="avatar"
             height={200}
             src={row.original.avatar}
-            loading="lazy"
             style={{ borderRadius: '50%' }}
           />
           <Box sx={{ textAlign: 'center' }}>

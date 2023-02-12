@@ -25,7 +25,7 @@ interface Props {
   setNavOpen: (navOpen: boolean) => void;
 }
 
-const TopBar = ({ navOpen, setNavOpen }: Props) => {
+export const TopBar = ({ navOpen, setNavOpen }: Props) => {
   const plausible = usePlausible();
   const theme = useMantineTheme();
   const isMobile = useMediaQuery('(max-width: 600px)');
@@ -196,5 +196,3 @@ const TopBar = ({ navOpen, setNavOpen }: Props) => {
     </>
   );
 };
-
-export default TopBar;

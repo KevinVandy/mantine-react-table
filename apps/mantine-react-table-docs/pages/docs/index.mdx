@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import TableOfContentsList from '../../components/navigation/TableOfContentsList';
+import {TableOfContentsList} from '../../components/navigation/TableOfContentsList';
+import { PopularDocs } from '../../components/mdx/PopularDocs';
 import { routes } from '../../components/navigation/routes';
 
 <Head>
@@ -13,3 +14,9 @@ import { routes } from '../../components/navigation/routes';
 ## Docs
 
 <TableOfContentsList items={routes} />
+
+### Popular Doc Pages
+
+If you are exploring or just getting starting with Mantine React Table, these pages are a great place to start.
+
+<PopularDocs />

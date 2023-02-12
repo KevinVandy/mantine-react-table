@@ -22,7 +22,7 @@ export const GuideCard = ({ href, title }: Props) => {
         <Title
           ta="center"
           sx={(theme) => ({
-            fontSize: '1.25rem',
+            fontSize: '1.15rem',
           })}
           order={4}
         >

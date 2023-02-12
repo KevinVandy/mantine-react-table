@@ -8,11 +8,11 @@ import { Box } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { mdxComponents } from '../components/mdx/mdxComponents';
 import { ThemeContextProvider } from '../styles/ThemeContext';
-import TopBar from '../components/navigation/TopBar';
-import SideBar from '../components/navigation/Sidebar';
-import BreadCrumbs from '../components/navigation/BreadCrumbs';
-import MiniNav from '../components/navigation/MiniNav';
-import Footer from '../components/navigation/Footer';
+import { TopBar } from '../components/navigation/TopBar';
+import { SideBar } from '../components/navigation/Sidebar';
+import { BreadCrumbs } from '../components/navigation/BreadCrumbs';
+import { MiniNav } from '../components/navigation/MiniNav';
+import { Footer } from '../components/navigation/Footer';
 import { SuggestsEditsButton } from '../components/mdx/SuggestsEditsButton';
 import '../styles/globals.css';
 
@@ -54,7 +54,8 @@ function App({ Component, pageProps }: AppProps) {
         {process.env.NODE_ENV === 'production' && (
           <link
             rel="preconnect"
-            href="https://1W9SWN5ZAH-dsn.algolia.net"
+            href="https://GA9W0E15I8-dsn.algolia.net"
+            // @ts-ignore
             crossOrigin="true"
           />
         )}

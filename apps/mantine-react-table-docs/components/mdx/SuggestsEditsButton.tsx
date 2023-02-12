@@ -8,7 +8,7 @@ export const SuggestsEditsButton = () => {
   const plausible = usePlausible();
 
   return (
-    <Stack justify="center">
+    <Stack mt="2rem" justify="center">
       <a
         href={`https://github.com/KevinVandy/mantine-react-table/edit/main/apps/mantine-react-table-docs/pages${pathname}${
           ['/'].includes(pathname)

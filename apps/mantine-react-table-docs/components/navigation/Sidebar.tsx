@@ -1,6 +1,6 @@
 import { Navbar, Overlay } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import SideBarItems from './SidebarItems';
+import {SideBarItems} from './SidebarItems';
 import { routes } from './routes';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   setNavOpen: (navOpen: boolean) => void;
 }
 
-const SideBar = ({ navOpen, setNavOpen }: Props) => {
+export const SideBar = ({ navOpen, setNavOpen }: Props) => {
   const isMobile = useMediaQuery('(max-width: 900px)');
 
   return (
@@ -40,5 +40,3 @@ const SideBar = ({ navOpen, setNavOpen }: Props) => {
     </>
   );
 };
-
-export default SideBar;
