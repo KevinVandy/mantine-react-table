@@ -1,10 +1,10 @@
-import React, { DragEvent, memo, useMemo, useRef } from 'react';
-import { Box, useMantineTheme } from '@mantine/core';
+import React, { DragEvent, memo, useRef } from 'react';
+import { Box } from '@mantine/core';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
+import { getPrimaryColor } from '../column.utils';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import type { MRT_Cell, MRT_Row, MRT_TableInstance } from '..';
-import { getPrimaryColor } from '../column.utils';
 
 interface Props {
   columnVirtualizer?: Virtualizer<HTMLDivElement, HTMLTableCellElement>;
@@ -33,7 +33,6 @@ export const MRT_TableBodyRow = ({
   virtualPaddingRight,
   virtualRow,
 }: Props) => {
-  const theme = useMantineTheme();
   const {
     getIsSomeColumnsPinned,
     getState,
@@ -61,22 +60,6 @@ export const MRT_TableBodyRow = ({
   };
 
   const rowRef = useRef<HTMLTableRowElement | null>(null);
-
-  const draggingBorder = useMemo(
-    () =>
-      draggingRow?.id === row.id
-        ? `1px dashed ${theme.colors.gray[7]}`
-        : hoveredRow?.id === row.id
-        ? `2px dashed ${getPrimaryColor(theme)}`
-        : undefined,
-    [draggingRow, hoveredRow],
-  );
-
-  const draggingBorders = draggingBorder
-    ? {
-        border: draggingBorder,
-      }
-    : undefined;
 
   return (
     <>
@@ -120,7 +103,6 @@ export const MRT_TableBodyRow = ({
           ...(tableRowProps?.sx instanceof Function
             ? tableRowProps.sx(theme)
             : (tableRowProps?.sx as any)),
-          ...draggingBorders,
         })}
       >
         {virtualPaddingLeft ? (

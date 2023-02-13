@@ -170,7 +170,8 @@ const HomePage = () => {
               rightIcon={<IconChevronRight />}
               fullWidth
               size="lg"
-              variant="filled"
+              variant="gradient"
+              gradient={{ from: 'teal', to: 'blue' }}
             >
               Get Started
             </Button>

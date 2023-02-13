@@ -66,14 +66,16 @@ export const MRT_ExpandAllButton = ({ table }: Props) => {
         })}
         title={undefined}
       >
-        <IconChevronsDown
-          style={{
-            transform: `rotate(${
-              isAllRowsExpanded ? -180 : getIsSomeRowsExpanded() ? -90 : 0
-            }deg)`,
-            transition: 'transform 100ms',
-          }}
-        />
+        {actionIconProps?.children ?? (
+          <IconChevronsDown
+            style={{
+              transform: `rotate(${
+                isAllRowsExpanded ? -180 : getIsSomeRowsExpanded() ? -90 : 0
+              }deg)`,
+              transition: 'transform 100ms',
+            }}
+          />
+        )}
       </ActionIcon>
     </Tooltip>
   );

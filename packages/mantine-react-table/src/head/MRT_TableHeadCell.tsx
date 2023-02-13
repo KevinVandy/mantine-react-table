@@ -148,6 +148,7 @@ export const MRT_TableHeadCell = ({ header, table }: Props) => {
         },
         ...getCommonCellStyles({
           column,
+          header,
           table,
           tableCellProps,
           theme,

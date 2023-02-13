@@ -12,7 +12,12 @@ import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyRowGrabHandle } from './MRT_TableBodyRowGrabHandle';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
-import { getCommonCellStyles, getPrimaryColor } from '../column.utils';
+import {
+  getCommonCellStyles,
+  getIsFirstColumn,
+  getIsLastColumn,
+  getPrimaryColor,
+} from '../column.utils';
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { MRT_Cell, MRT_TableInstance } from '..';
 
@@ -58,6 +63,8 @@ export const MRT_TableBodyCell = ({
   } = table;
   const {
     draggingColumn,
+    draggingRow,
+    hoveredRow,
     editingCell,
     editingRow,
     hoveredColumn,
@@ -105,27 +112,44 @@ export const MRT_TableBodyCell = ({
     [],
   );
 
-  const draggingBorder = useMemo(
-    () =>
-      draggingColumn?.id === column.id
-        ? `1px dashed ${theme.colors.gray[7]} !important`
-        : hoveredColumn?.id === column.id
-        ? `2px dashed ${getPrimaryColor(theme)} !important`
-        : undefined,
-    [draggingColumn, hoveredColumn],
-  );
+  const draggingBorders = useMemo(() => {
+    const isDraggingColumn = draggingColumn?.id === column.id;
+    const isHoveredColumn = hoveredColumn?.id === column.id;
+    const isDraggingRow = draggingRow?.id === row.id;
+    const isHoveredRow = hoveredRow?.id === row.id;
+    const isFirstColumn = getIsFirstColumn(column, table);
+    const isLastColumn = getIsLastColumn(column, table);
+    const isLastRow = rowIndex === numRows - 1;
 
-  const draggingBorders = useMemo(
-    () =>
-      draggingBorder
-        ? {
-            borderLeft: draggingBorder,
-            borderRight: draggingBorder,
-            borderBottom: rowIndex === numRows - 1 ? draggingBorder : undefined,
-          }
-        : undefined,
-    [draggingBorder, numRows],
-  );
+    const borderStyle =
+      isDraggingColumn || isDraggingRow
+        ? `1px dashed ${theme.colors.gray[7]} !important`
+        : isHoveredColumn || isHoveredRow
+        ? `2px dashed ${getPrimaryColor(theme)} !important`
+        : undefined;
+
+    return borderStyle
+      ? {
+          borderLeft:
+            isDraggingColumn ||
+            isHoveredColumn ||
+            ((isDraggingRow || isHoveredRow) && isFirstColumn)
+              ? borderStyle
+              : undefined,
+          borderRight:
+            isDraggingColumn ||
+            isHoveredColumn ||
+            ((isDraggingRow || isHoveredRow) && isLastColumn)
+              ? borderStyle
+              : undefined,
+          borderBottom:
+            isDraggingRow || isHoveredRow || isLastRow
+              ? borderStyle
+              : undefined,
+          borderTop: isDraggingRow || isHoveredRow ? borderStyle : undefined,
+        }
+      : undefined;
+  }, [draggingColumn, draggingRow, hoveredColumn, hoveredRow, rowIndex]);
 
   const isEditable =
     (enableEditing || columnDef.enableEditing) &&
@@ -216,7 +240,9 @@ export const MRT_TableBodyCell = ({
       })}
     >
       <>
-        {cell.getIsPlaceholder() ? null : isLoading || showSkeletons ? (
+        {cell.getIsPlaceholder() ? (
+          columnDef.PlaceholderCell?.({ cell, column, row, table }) ?? null
+        ) : isLoading || showSkeletons ? (
           <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />
         ) : enableRowNumbers &&
           rowNumberMode === 'static' &&

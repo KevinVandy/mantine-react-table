@@ -11,7 +11,8 @@ export const GuideCard = ({ href, title }: Props) => {
   return (
     <Link href={href}>
       <Card
-        shadow="xl"
+        withBorder
+        shadow="xs"
         sx={() => ({
           transition: 'box-shadow 100ms ease-in-out',
           '&:hover': {

@@ -15,6 +15,7 @@ import type {
   MRT_DefinedColumnDef,
   MRT_DisplayColumnIds,
   MRT_FilterOption,
+  MRT_Header,
   MRT_TableInstance,
 } from '.';
 
@@ -203,6 +204,21 @@ export const getDefaultColumnFilterFn = <
   return 'fuzzy';
 };
 
+export const getIsFirstColumn = (
+  column: MRT_Column,
+  table: MRT_TableInstance,
+) => {
+  return table.getVisibleLeafColumns()[0].id === column.id;
+};
+
+export const getIsLastColumn = (
+  column: MRT_Column,
+  table: MRT_TableInstance,
+) => {
+  const columns = table.getVisibleLeafColumns();
+  return columns[columns.length - 1].id === column.id;
+};
+
 export const getIsLastLeftPinnedColumn = (
   table: MRT_TableInstance,
   column: MRT_Column,
@@ -225,11 +241,13 @@ export const getTotalRight = (table: MRT_TableInstance, column: MRT_Column) => {
 
 export const getCommonCellStyles = ({
   column,
+  header,
   table,
   tableCellProps,
   theme,
 }: {
   column: MRT_Column;
+  header?: MRT_Header;
   table: MRT_TableInstance;
   tableCellProps: BoxProps;
   theme: MantineTheme;
@@ -252,7 +270,7 @@ export const getCommonCellStyles = ({
   display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
   flex:
     table.options.layoutMode === 'grid'
-      ? `var(--col-${parseCSSVarId(column.id)}-size) 0 auto`
+      ? `var(--col-${parseCSSVarId(header?.id ?? column.id)}-size) 0 auto`
       : undefined,
   left:
     column.getIsPinned() === 'left'
@@ -295,10 +313,10 @@ export const getCommonCellStyles = ({
   ...(tableCellProps?.sx instanceof Function
     ? tableCellProps.sx(theme)
     : (tableCellProps?.sx as any)),
-  minWidth: `max(calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px), ${
-    column.columnDef.minSize ?? 30
-  }px)`,
-  width: `calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px)`,
+  minWidth: `max(calc(var(--col-${parseCSSVarId(
+    header?.id ?? column.id,
+  )}-size) * 1px), ${column.columnDef.minSize ?? 30}px)`,
+  width: `calc(var(--col-${parseCSSVarId(header?.id ?? column.id)}-size) * 1px)`,
 });
 
 export const MRT_DefaultColumn = {

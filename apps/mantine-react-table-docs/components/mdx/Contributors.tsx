@@ -52,6 +52,8 @@ export const Contributors = () => {
             sx={{ textDecoration: 'none' }}
           >
             <Card
+              withBorder
+              shadow="xs"
               sx={(theme) => ({
                 alignItems: 'center',
                 borderRadius: '8px',
