@@ -100,14 +100,12 @@ export const mrtFilterOptions = (
 interface Props<TData extends Record<string, any> = {}> {
   header?: MRT_Header<TData>;
   onSelect?: () => void;
-  setFilterValue?: (filterValue: any) => void;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
   header,
   onSelect,
-  setFilterValue,
   table,
 }: Props<TData>) => {
   const {
@@ -125,6 +123,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
   const { globalFilterFn } = getState();
   const { column } = header ?? {};
   const { columnDef } = column ?? {};
+  const currentFilterValue = column?.getFilterValue();
 
   const allowedColumnFilterOptions =
     columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
@@ -149,15 +148,18 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
         [header.id]: option,
       }));
       if (['empty', 'notEmpty'].includes(option as string)) {
-        column.setFilterValue(' ');
+        if (currentFilterValue !== ' ') {
+          column.setFilterValue(' ');
+        }
       } else if (
         columnDef?.filterVariant === 'multi-select' ||
         ['arrIncludesSome', 'arrIncludesAll', 'arrIncludes'].includes(
           option as string,
         )
       ) {
-        column.setFilterValue([]);
-        setFilterValue?.([]);
+        if ((currentFilterValue as Array<any>)?.length) {
+          column.setFilterValue([]);
+        }
       } else if (
         columnDef?.filterVariant === 'range' ||
         ['between', 'betweenInclusive', 'inNumberRange'].includes(
@@ -165,10 +167,12 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
         )
       ) {
         column.setFilterValue(['', '']);
-        setFilterValue?.('');
       } else {
-        column.setFilterValue('');
-        setFilterValue?.('');
+        if (
+          !['', undefined].includes(currentFilterValue as string | undefined)
+        ) {
+          column.setFilterValue('');
+        }
       }
     } else {
       setGlobalFilterFn(option);

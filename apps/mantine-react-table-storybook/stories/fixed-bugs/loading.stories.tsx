@@ -27,7 +27,6 @@ export const NestedLoadingDataWithInitialExpanded: Story<
 > = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
-      //column definitions...
       {
         accessorKey: 'name.firstName',
         header: 'First Name',
@@ -48,7 +47,6 @@ export const NestedLoadingDataWithInitialExpanded: Story<
         accessorKey: 'state',
         header: 'State',
       },
-      //end
     ],
     [],
   );
