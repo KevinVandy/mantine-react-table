@@ -52,12 +52,18 @@ function App({ Component, pageProps }: AppProps) {
           content={`https://www.mantine-react-table.com${pathname}`}
         />
         {process.env.NODE_ENV === 'production' && (
-          <link
-            rel="preconnect"
-            href="https://GA9W0E15I8-dsn.algolia.net"
-            // @ts-ignore
-            crossOrigin="true"
-          />
+          <>
+            <link
+              rel="preconnect"
+              href="https://GA9W0E15I8-dsn.algolia.net"
+              crossOrigin="anonymous"
+            />
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1076638783489959"
+              crossOrigin="anonymous"
+            />
+          </>
         )}
       </Head>
       <PlausibleProvider
