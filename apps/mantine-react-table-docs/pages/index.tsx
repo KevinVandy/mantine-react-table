@@ -10,17 +10,33 @@ import { FeatureTable } from '../components/mdx/FeatureTable';
 import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import { PopularDocs } from '../components/mdx/PopularDocs';
+import Image from 'next/image';
 
 const HomePage = () => {
   return (
     <>
       <Stack sx={{ maxWidth: '95ch', margin: 'auto' }}>
+        <Text
+          sx={(theme) => ({
+            margin: 'auto',
+            display: 'inline-block',
+            background: `-webkit-linear-gradient(left, ${theme.colors.yellow[7]}, ${theme.colors.red[7]})`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            '&:hover': {
+              textDecoration: 'underline',
+              textDecorationColor: theme.colors.orange[7],
+            },
+          })}
+        >
+          Still in Alpha. Coming soon by February 2023!
+        </Text>
         <Title
           sx={{
             textAlign: 'center',
             fontSize: '5rem',
             fontWeight: 'bold',
-            marginTop: '5rem',
+            marginTop: '3rem',
             marginBottom: '1rem',
             lineHeight: '6rem',
             '@media (max-width: 1024px)': {
@@ -50,26 +66,10 @@ const HomePage = () => {
             Mantine&nbsp;React&nbsp;Table
           </Box>
         </Title>
-        <Text
-          sx={(theme) => ({
-            margin: 'auto',
-            display: 'inline-block',
-            background: `-webkit-linear-gradient(left, ${theme.colors.yellow[7]}, ${theme.colors.red[7]})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            '&:hover': {
-              textDecoration: 'underline',
-              textDecorationColor: theme.colors.orange[7],
-            },
-          })}
-        >
-          Still in Alpha. Coming soon by February 2023!
-        </Text>
         <Title
           color="dimmed"
           sx={{
-            fontSize: '2.25rem',
-            marginBottom: '1rem',
+            fontSize: '2.3rem',
             textAlign: 'center',
             lineHeight: '2.25rem',
             fontWeight: 'normal',
@@ -88,7 +88,7 @@ const HomePage = () => {
                 '&:hover': { textDecoration: 'underline' },
               })}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener"
             >
               Mantine<sup>V5</sup>
             </Anchor>
@@ -102,48 +102,20 @@ const HomePage = () => {
                 '&:hover': { textDecoration: 'underline' },
               })}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener"
             >
               TanStack&nbsp;Table<sup>V8</sup>
             </Anchor>
           </Link>
         </Title>
-        <Title
-          color="dimmed"
-          sx={{
-            fontSize: '2.25rem',
-            marginBottom: '2rem',
-            textAlign: 'center',
-            lineHeight: '2.25rem',
-            fontWeight: 'normal',
-            '@media (max-width: 768px)': {
-              fontSize: '1.5rem',
-            },
-          }}
-          order={3}
-        >
-          An Official Fork of{' '}
-          <Link href="https://material-react-table.com" passHref legacyBehavior>
-            <Anchor
-              sx={(theme) => ({
-                background: `-webkit-linear-gradient(left, ${
-                  theme.colors.blue[7]
-                }, ${getPrimaryColor(theme)})`,
-                display: 'inline',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                '&:hover': {
-                  textDecoration: 'underline',
-                  textDecorationColor: theme.colors.blue[7],
-                },
-              })}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Material React Table
-            </Anchor>
-          </Link>
-        </Title>
+        <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem auto' }}>
+          <Image
+            alt="Mui + React Table"
+            src={`/banner.png`}
+            height={60}
+            width={305}
+          />
+        </Box>
         <StatBadges />
         <Box
           sx={{

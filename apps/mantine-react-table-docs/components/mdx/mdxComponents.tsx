@@ -9,7 +9,7 @@ export const mdxComponents = {
     <Link href={props.href} passHref legacyBehavior>
       <Anchor
         target={props.href.startsWith('http') ? '_blank' : undefined}
-        rel="noreferrer"
+        rel="noopener"
       >
         {props.children}
       </Anchor>

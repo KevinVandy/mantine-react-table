@@ -7,10 +7,7 @@ export const StatBadges = () => {
         gap: '16px',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        m: {
-          xs: 0,
-          md: '16px',
-        },
+        margin: '16px',
         '& img': {
           imageRendering: 'pixelated',
         },
@@ -59,7 +56,7 @@ export const StatBadges = () => {
       <a
         href="https://github.com/KevinVandy/mantine-react-table/blob/main/LICENSE"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener"
       >
         <img
           alt=""

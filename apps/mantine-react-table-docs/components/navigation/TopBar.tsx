@@ -140,7 +140,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
           <Tooltip withArrow label="Github">
             <a
               href="https://github.com/KevinVandy/mantine-react-table"
-              rel="noreferrer"
+              rel="noopener"
               target="_blank"
             >
               <ActionIcon
@@ -158,7 +158,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
           <Tooltip withArrow label="Discord">
             <a
               href="https://discord.gg/5wqyRx6fnm"
-              rel="noreferrer"
+              rel="noopener"
               target="_blank"
             >
               <ActionIcon

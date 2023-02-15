@@ -11,7 +11,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
       <Anchor
         href={row.original.libraryLink}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener"
         sx={(theme) => ({
           color:
             cell.getValue() === 'Mantine React Table'
@@ -46,7 +46,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
         <a
           href={row.original.bundlePhobiaLink}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener"
         >
           <img
             alt={cell.getValue<string>()}

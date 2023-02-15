@@ -19,7 +19,7 @@ export const SuggestsEditsButton = () => {
             ? '/index.mdx'
             : '.mdx'
         }`}
-        rel="noreferrer"
+        rel="noopener"
         target="_blank"
         style={{ margin: '3rem auto' }}
       >
@@ -50,7 +50,7 @@ export const SuggestsEditsButton = () => {
           aria-label="Learn how to contribute"
           href="http://makeapullrequest.com"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener"
           style={{ marginLeft: '8px' }}
         >
           <img
@@ -70,7 +70,7 @@ export const SuggestsEditsButton = () => {
           color="blue.6"
           href="https://mui.com/"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener"
         >
           Material-UI
         </Anchor>{' '}
@@ -80,7 +80,6 @@ export const SuggestsEditsButton = () => {
         <Anchor
           href="https://material-react-table.com"
           target="_blank"
-          rel="noreferrer"
           sx={(theme) => ({
             background: `-webkit-linear-gradient(left, ${theme.colors.blue[6]}, ${theme.colors.teal[7]})`,
             display: 'inline',
