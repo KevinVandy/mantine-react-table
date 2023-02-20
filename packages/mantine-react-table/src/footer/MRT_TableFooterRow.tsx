@@ -1,13 +1,17 @@
 import React from 'react';
 import { Box } from '@mantine/core';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
-import { VirtualItem } from '@tanstack/react-virtual';
-import type { MRT_Header, MRT_HeaderGroup, MRT_TableInstance } from '..';
+import type {
+  MRT_Header,
+  MRT_HeaderGroup,
+  MRT_TableInstance,
+  MRT_VirtualItem,
+} from '..';
 
 interface Props {
   footerGroup: MRT_HeaderGroup;
   table: MRT_TableInstance;
-  virtualColumns?: VirtualItem[];
+  virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
 }

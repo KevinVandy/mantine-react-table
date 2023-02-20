@@ -44,7 +44,7 @@ const Example = () => {
   //we need to manage the state that should trigger the MRT_ components in our custom toolbar to re-render
   const [columnVisibility, setColumnVisibility] =
     useState < VisibilityState > {};
-  const [density, setDensity] = useState < DensityState > 'md';
+  const [density, setDensity] = useState < MRT_DensityState > 'md';
   const [pagination, setPagination] =
     useState <
     PaginationState >

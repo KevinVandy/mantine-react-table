@@ -1,5 +1,5 @@
 import { Box, Divider, Anchor, Paper, Text } from '@mantine/core';
-import {TableOfContentsList} from './TableOfContentsList';
+import { TableOfContentsList } from './TableOfContentsList';
 import { routes } from './routes';
 
 export const Footer = () => {

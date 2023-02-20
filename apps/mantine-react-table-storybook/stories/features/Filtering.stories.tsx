@@ -4,10 +4,10 @@ import {
   MantineReactTable,
   MantineReactTableProps,
   MRT_ColumnDef,
+  MRT_ColumnFiltersState,
 } from 'mantine-react-table';
 import { Button, Flex } from '@mantine/core';
 import { faker } from '@faker-js/faker';
-import { ColumnFiltersState } from '@tanstack/react-table';
 
 const meta: Meta = {
   title: 'Features/Filtering Examples',
@@ -410,7 +410,9 @@ export const CustomFilterComponent: Story<MantineReactTableProps> = () => (
 
 export const ManualFiltering: Story<MantineReactTableProps> = () => {
   const [rows, setRows] = useState(() => [...data]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>(
+    [],
+  );
 
   //this kind of logic would actually live on a server, not client-side
   useEffect(() => {

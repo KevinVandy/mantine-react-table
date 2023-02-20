@@ -108,7 +108,13 @@ const HomePage = () => {
             </Anchor>
           </Link>
         </Title>
-        <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem auto' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            margin: '1rem auto',
+          }}
+        >
           <Image
             alt="Mui + React Table"
             src={`/banner.png`}

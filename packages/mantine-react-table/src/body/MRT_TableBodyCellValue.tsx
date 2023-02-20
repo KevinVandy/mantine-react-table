@@ -47,6 +47,7 @@ export const MRT_TableBodyCellValue = ({ cell, table }: Props) => {
 
   if (
     enableFilterMatchHighlighting &&
+    columnDef.enableFilterMatchHighlighting !== false &&
     renderedCellValue &&
     allowedTypes.includes(typeof renderedCellValue) &&
     ((filterValue &&

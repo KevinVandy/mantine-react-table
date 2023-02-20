@@ -1,6 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
-import { RowSelectionState } from '@tanstack/react-table';
+import {
+  MantineReactTable,
+  MRT_ColumnDef,
+  MRT_RowSelectionState,
+} from 'mantine-react-table';
 
 const data = [
   //data definitions...
@@ -59,7 +62,7 @@ const Example = () => {
   );
 
   //optionally, you can manage the row selection state yourself
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  const [rowSelection, setRowSelection] = useState<MRT_RowSelectionState>({});
 
   return (
     <MantineReactTable

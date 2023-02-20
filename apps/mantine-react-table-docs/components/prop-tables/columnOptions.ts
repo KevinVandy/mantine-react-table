@@ -195,6 +195,16 @@ export const columnOptions: ColumnOption[] = [
     linkText: '',
     source: 'MRT',
     required: false,
+    type: 'boolean | (row: MRT_Row<TData>) => boolean',
+  },
+  {
+    columnOption: 'enableFilterMatchHighlighting',
+    defaultValue: '',
+    description: '',
+    link: '',
+    linkText: '',
+    source: 'MRT',
+    required: false,
     type: 'boolean',
   },
   {

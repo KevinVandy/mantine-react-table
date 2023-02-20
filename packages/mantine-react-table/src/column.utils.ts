@@ -1,8 +1,4 @@
-import type {
-  ColumnOrderState,
-  GroupingState,
-  Row,
-} from '@tanstack/react-table';
+import type { Row } from '@tanstack/react-table';
 import { MRT_AggregationFns } from './aggregationFns';
 import { MRT_FilterFns } from './filterFns';
 import { MRT_SortingFns } from './sortingFns';
@@ -12,9 +8,11 @@ import type {
   MantineShade,
   MRT_Column,
   MRT_ColumnDef,
+  MRT_ColumnOrderState,
   MRT_DefinedColumnDef,
   MRT_DisplayColumnIds,
   MRT_FilterOption,
+  MRT_GroupingState,
   MRT_Header,
   MRT_TableInstance,
 } from '.';
@@ -119,8 +117,8 @@ export const prepareColumns = <TData extends Record<string, any> = {}>({
 export const reorderColumn = <TData extends Record<string, any> = {}>(
   draggedColumn: MRT_Column<TData>,
   targetColumn: MRT_Column<TData>,
-  columnOrder: ColumnOrderState,
-): ColumnOrderState => {
+  columnOrder: MRT_ColumnOrderState,
+): MRT_ColumnOrderState => {
   if (draggedColumn.getCanPin()) {
     draggedColumn.pin(targetColumn.getIsPinned());
   }
@@ -134,7 +132,7 @@ export const reorderColumn = <TData extends Record<string, any> = {}>(
 
 export const showExpandColumn = <TData extends Record<string, any> = {}>(
   props: MantineReactTableProps<TData>,
-  grouping?: GroupingState,
+  grouping?: MRT_GroupingState,
 ) =>
   !!(
     props.enableExpanding ||
@@ -316,7 +314,9 @@ export const getCommonCellStyles = ({
   minWidth: `max(calc(var(--col-${parseCSSVarId(
     header?.id ?? column.id,
   )}-size) * 1px), ${column.columnDef.minSize ?? 30}px)`,
-  width: `calc(var(--col-${parseCSSVarId(header?.id ?? column.id)}-size) * 1px)`,
+  width: `calc(var(--col-${parseCSSVarId(
+    header?.id ?? column.id,
+  )}-size) * 1px)`,
 });
 
 export const MRT_DefaultColumn = {
@@ -354,4 +354,9 @@ export const getPrimaryColor = (
 ): string => theme.colors[theme.primaryColor][shade ?? getPrimaryShade(theme)];
 
 export const parseCSSVarId = (id: string) =>
-  id.replaceAll('.', '_').replaceAll(' ', '_').replaceAll('+', '_');
+  id
+    .replaceAll('.', '_')
+    .replaceAll(' ', '_')
+    .replaceAll('+', '_')
+    .replaceAll('(', '_')
+    .replaceAll(')', '_');

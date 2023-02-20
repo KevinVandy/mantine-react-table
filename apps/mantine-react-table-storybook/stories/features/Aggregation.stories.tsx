@@ -3,11 +3,11 @@ import { Meta, Story } from '@storybook/react';
 import {
   MantineReactTable,
   MantineReactTableProps,
+  MRT_AggregationFns,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { Box, Stack } from '@mantine/core';
-import { aggregationFns } from '@tanstack/react-table';
 
 const meta: Meta = {
   title: 'Features/Aggregation Examples',
@@ -163,8 +163,8 @@ export const MultiAggregationPerColumn: Story<MantineReactTableProps> = () => (
         accessorKey: 'age',
         //manually set multiple aggregation functions
         aggregationFn: (columnId, leafRows: any, childRows: any) => [
-          aggregationFns.min(columnId, leafRows, childRows),
-          aggregationFns.max(columnId, leafRows, childRows),
+          MRT_AggregationFns.min(columnId, leafRows, childRows),
+          MRT_AggregationFns.max(columnId, leafRows, childRows),
         ],
         AggregatedCell: ({ cell, table }) => (
           <>

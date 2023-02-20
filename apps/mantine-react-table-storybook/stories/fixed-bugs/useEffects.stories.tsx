@@ -4,9 +4,9 @@ import {
   MantineReactTable,
   MantineReactTableProps,
   MRT_ColumnDef,
+  MRT_ColumnFiltersState,
 } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
-import { ColumnFiltersState } from '@tanstack/react-table';
 
 const meta: Meta = {
   title: 'Fixed Bugs/useEffects',
@@ -46,7 +46,9 @@ const data = [...Array(100)].map(() => ({
 }));
 
 export const FilterModesRefetch: Story<MantineReactTableProps> = () => {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>(
+    [],
+  );
 
   useEffect(() => {
     console.log('refetch', columnFilters);

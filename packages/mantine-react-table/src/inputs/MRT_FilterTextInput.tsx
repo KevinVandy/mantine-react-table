@@ -7,7 +7,6 @@ import {
   MultiSelect,
   packSx,
   Select,
-  SelectItem,
   TextInput,
 } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
@@ -240,7 +239,7 @@ export const MRT_FilterTextInput = ({
   ) : isMultiSelectFilter ? (
     <MultiSelect
       {...commonProps}
-      data={multiSelectProps.data as SelectItem[]}
+      data={multiSelectProps.data as any}
       withinPortal
       {...multiSelectProps}
     />
@@ -248,7 +247,7 @@ export const MRT_FilterTextInput = ({
     <Select
       {...commonProps}
       clearable
-      data={selectProps.data as SelectItem[]}
+      data={selectProps.data as any}
       withinPortal
       {...selectProps}
     />

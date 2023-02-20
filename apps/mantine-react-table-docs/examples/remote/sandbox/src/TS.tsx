@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
-import type {
+import {
   ColumnFiltersState,
   PaginationState,
   SortingState,

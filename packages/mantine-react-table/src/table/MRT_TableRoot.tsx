@@ -24,7 +24,6 @@ import {
   showExpandColumn,
   getColumnId,
 } from '../column.utils';
-import type { GroupingState, TableState } from '@tanstack/react-table';
 import type {
   MRT_Cell,
   MRT_Column,
@@ -35,9 +34,10 @@ import type {
   MRT_TableState,
   MantineReactTableProps,
   MRT_Localization,
+  MRT_GroupingState,
 } from '..';
 
-export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
+export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
   props: MantineReactTableProps<TData> & { localization: MRT_Localization },
 ) => {
   const bottomToolbarRef = useRef<HTMLDivElement>(null);
@@ -92,7 +92,7 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
   const [globalFilterFn, setGlobalFilterFn] = useState<MRT_FilterOption>(
     initialState.globalFilterFn ?? 'fuzzy',
   );
-  const [grouping, setGrouping] = useState<GroupingState>(
+  const [grouping, setGrouping] = useState<MRT_GroupingState>(
     initialState.grouping ?? [],
   );
   const [hoveredColumn, setHoveredColumn] = useState<
@@ -121,14 +121,18 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
     () =>
       (
         [
-          columnOrder.includes('mrt-row-drag') && {
+          (props.state?.columnOrder ?? columnOrder).includes(
+            'mrt-row-drag',
+          ) && {
             header: props.localization.move,
             size: 60,
             ...props.defaultDisplayColumn,
             ...props.displayColumnDefOptions?.['mrt-row-drag'],
             id: 'mrt-row-drag',
           },
-          columnOrder.includes('mrt-row-actions') && {
+          (props.state?.columnOrder ?? columnOrder).includes(
+            'mrt-row-actions',
+          ) && {
             Cell: ({ cell, row }) => (
               <MRT_ToggleRowActionMenuButton
                 cell={cell as any}
@@ -142,8 +146,10 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
             ...props.displayColumnDefOptions?.['mrt-row-actions'],
             id: 'mrt-row-actions',
           },
-          columnOrder.includes('mrt-row-expand') &&
-            showExpandColumn(props, grouping) && {
+          (props.state?.columnOrder ?? columnOrder).includes(
+            'mrt-row-expand',
+          ) &&
+            showExpandColumn(props, props.state?.grouping ?? grouping) && {
               Cell: ({ row }) => (
                 <MRT_ExpandButton row={row as any} table={table as any} />
               ),
@@ -156,7 +162,9 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
               ...props.displayColumnDefOptions?.['mrt-row-expand'],
               id: 'mrt-row-expand',
             },
-          columnOrder.includes('mrt-row-select') && {
+          (props.state?.columnOrder ?? columnOrder).includes(
+            'mrt-row-select',
+          ) && {
             Cell: ({ row }) => (
               <MRT_SelectCheckbox row={row as any} table={table as any} />
             ),
@@ -170,7 +178,9 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
             ...props.displayColumnDefOptions?.['mrt-row-select'],
             id: 'mrt-row-select',
           },
-          columnOrder.includes('mrt-row-numbers') && {
+          (props.state?.columnOrder ?? columnOrder).includes(
+            'mrt-row-numbers',
+          ) && {
             Cell: ({ row }) => row.index + 1,
             Header: () => props.localization.rowNumber,
             header: props.localization.rowNumbers,
@@ -184,6 +194,8 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
     [
       columnOrder,
       grouping,
+      props.state?.columnOrder,
+      props.state?.grouping,
       props.displayColumnDefOptions,
       props.editingMode,
       props.enableColumnDragging,
@@ -285,7 +297,7 @@ export const MRT_TableRoot = <TData extends Record<string, any> = {}>(
         showGlobalFilter,
         showToolbarDropZone,
         ...props.state,
-      } as TableState,
+      } as MRT_TableState,
     }),
     refs: {
       bottomToolbarRef,

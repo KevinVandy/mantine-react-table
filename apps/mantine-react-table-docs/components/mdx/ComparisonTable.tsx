@@ -43,11 +43,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
     Cell: ({ cell, row }) => (
       <Box sx={{ display: 'flex', alignContent: 'center', gap: '1ch' }}>
         {`${cell.getValue<string>()} KB`}
-        <a
-          href={row.original.bundlePhobiaLink}
-          target="_blank"
-          rel="noopener"
-        >
+        <a href={row.original.bundlePhobiaLink} target="_blank" rel="noopener">
           <img
             alt={cell.getValue<string>()}
             src={row.original.bundlePhobiaImg}
@@ -76,7 +72,7 @@ const data = [
     bundlePhobiaLink:
       'https://bundlephobia.com/package/mantine-react-table@latest',
     description:
-      'Built on top of TanStack Table V8 and Mantine UI V5, Mantine React Table (MRT) is a batteries-included React table library that attempts to provide all the table features you need while trying to stay highly performant and relatively lightweight. Customization is treated as a top priority to let you override any styles you need to change. Mantine React Table was forked from Material React Table and is being built in 2023.',
+      'Built on top of TanStack Table V8 and Mantine V5, Mantine React Table (MRT) is a batteries-included React table library that attempts to provide all the table features you need while trying to stay highly performant and relatively lightweight. Customization is treated as a top priority to let you override any styles you need to change. Mantine React Table was forked from Material React Table and is being built in 2023.',
   },
   {
     library: 'Mantine DataTable',

@@ -37,7 +37,6 @@
     "@mantine/dates": "^5.10.3",
     "@mantine/hooks": "^5.10.3",
     "@tabler/icons-react": "2.3.0",
-    "@tanstack/react-table": "8.7.9",
     "dayjs": "^1.11.7",
     "mantine-react-table": "workspace:*",
     "react": "^18.2.0",

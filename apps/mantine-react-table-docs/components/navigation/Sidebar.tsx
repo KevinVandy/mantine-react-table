@@ -1,6 +1,6 @@
 import { Navbar, Overlay } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import {SideBarItems} from './SidebarItems';
+import { SideBarItems } from './SidebarItems';
 import { routes } from './routes';
 
 interface Props {

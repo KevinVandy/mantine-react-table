@@ -29,18 +29,33 @@ import type {
   Cell,
   Column,
   ColumnDef,
+  ColumnFiltersState,
+  ColumnOrderState,
+  ColumnPinningState,
+  ColumnSizingInfoState,
+  ColumnSizingState,
   DeepKeys,
+  ExpandedState,
   FilterFn,
+  GroupingState,
   Header,
   HeaderGroup,
   OnChangeFn,
+  PaginationState,
   Row,
+  RowSelectionState,
   SortingFn,
+  SortingState,
   Table,
   TableOptions,
   TableState,
+  VisibilityState,
 } from '@tanstack/react-table';
-import type { VirtualizerOptions, Virtualizer } from '@tanstack/react-virtual';
+import type {
+  VirtualizerOptions,
+  Virtualizer,
+  VirtualItem,
+} from '@tanstack/react-virtual';
 import { MRT_AggregationFns } from './aggregationFns';
 import { MRT_DefaultColumn, MRT_DefaultDisplayColumn } from './column.utils';
 import { MRT_FilterFns } from './filterFns';
@@ -48,6 +63,8 @@ import { MRT_Default_Icons, MRT_Icons } from './icons';
 import { MRT_SortingFns } from './sortingFns';
 import { MRT_TableRoot } from './table/MRT_TableRoot';
 import { MRT_Localization_EN } from './_locales/en';
+
+export { MRT_AggregationFns, MRT_FilterFns, MRT_SortingFns };
 
 /**
  * Most of this file is just TypeScript types
@@ -70,7 +87,24 @@ export interface MRT_PaginationProps {
   showRowsPerPage?: boolean;
 }
 
-export type DensityState = MantineSize;
+export type MRT_DensityState = MantineSize;
+
+export type {
+  ColumnFiltersState as MRT_ColumnFiltersState,
+  ColumnOrderState as MRT_ColumnOrderState,
+  ColumnPinningState as MRT_ColumnPinningState,
+  ColumnSizingInfoState as MRT_ColumnSizingInfoState,
+  ColumnSizingState as MRT_ColumnSizingState,
+  ExpandedState as MRT_ExpandedState,
+  GroupingState as MRT_GroupingState,
+  PaginationState as MRT_PaginationState,
+  RowSelectionState as MRT_RowSelectionState,
+  SortingState as MRT_SortingState,
+  VirtualItem as MRT_VirtualItem,
+  Virtualizer as MRT_Virtualizer,
+  VirtualizerOptions as MRT_VirtualizerOptions,
+  VisibilityState as MRT_VisibilityState,
+};
 
 type LiteralUnion<T extends U, U = string> = T | (U & Record<never, never>);
 
@@ -223,7 +257,7 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> = Omit<
   setColumnFilterFns: Dispatch<
     SetStateAction<{ [key: string]: MRT_FilterOption }>
   >;
-  setDensity: Dispatch<SetStateAction<DensityState>>;
+  setDensity: Dispatch<SetStateAction<MRT_DensityState>>;
   setDraggingColumn: Dispatch<SetStateAction<MRT_Column<TData> | null>>;
   setDraggingRow: Dispatch<SetStateAction<MRT_Row<TData> | null>>;
   setEditingCell: Dispatch<SetStateAction<MRT_Cell<TData> | null>>;
@@ -245,7 +279,7 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> = Omit<
 export type MRT_TableState<TData extends Record<string, any> = {}> =
   TableState & {
     columnFilterFns: Record<string, MRT_FilterOption>;
-    density: DensityState;
+    density: MRT_DensityState;
     draggingColumn: MRT_Column<TData> | null;
     draggingRow: MRT_Row<TData> | null;
     editingCell: MRT_Cell<TData> | null;
@@ -362,7 +396,8 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   enableColumnDragging?: boolean;
   enableColumnFilterModes?: boolean;
   enableColumnOrdering?: boolean;
-  enableEditing?: boolean;
+  enableEditing?: boolean | ((row: MRT_Row<TData>) => boolean);
+  enableFilterMatchHighlighting?: boolean;
   filterFn?: MRT_FilterFn<TData>;
   filterVariant?:
     | 'checkbox'
@@ -641,7 +676,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     enableColumnOrdering?: boolean;
     enableColumnVirtualization?: boolean;
     enableDensityToggle?: boolean;
-    enableEditing?: boolean;
+    enableEditing?: boolean | ((row: MRT_Row<TData>) => boolean);
     enableExpandAll?: boolean;
     enableFilterMatchHighlighting?: boolean;
     enableFullScreenToggle?: boolean;
@@ -894,7 +929,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
      */
     memoMode?: 'cells' | 'rows' | 'table-body';
     onColumnFilterFnsChange?: OnChangeFn<{ [key: string]: MRT_FilterOption }>;
-    onDensityChange?: OnChangeFn<DensityState>;
+    onDensityChange?: OnChangeFn<MRT_DensityState>;
     onDraggingColumnChange?: OnChangeFn<MRT_Column<TData> | null>;
     onDraggingRowChange?: OnChangeFn<MRT_Row<TData> | null>;
     onEditingCellChange?: OnChangeFn<MRT_Cell<TData> | null>;

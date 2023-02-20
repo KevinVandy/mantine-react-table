@@ -39,7 +39,7 @@ function App({ Component, pageProps }: AppProps) {
         <title>Mantine React Table</title>
         <meta
           name="description"
-          content="Mantine React Table, a fully featured Mantine UI implementation of TanStack React Table V8. Written from the ground up in TypeScript."
+          content="Mantine React Table, a fully featured Mantine implementation of TanStack React Table V8. Written from the ground up in TypeScript."
         />
         <link
           rel="canonical"

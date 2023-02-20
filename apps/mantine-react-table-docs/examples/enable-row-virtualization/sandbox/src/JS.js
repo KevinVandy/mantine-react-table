@@ -88,7 +88,4 @@ const Example = () => {
   );
 };
 
-//virtualizerInstanceRef was renamed to rowVirtualizerInstanceRef in v1.5.0
-//virtualizerProps was renamed to rowVirtualizerProps in v1.5.0
-
 export default Example;

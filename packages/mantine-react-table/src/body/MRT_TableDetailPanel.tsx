@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box, Collapse } from '@mantine/core';
-import type { VirtualItem } from '@tanstack/react-virtual';
-import type { MRT_Row, MRT_TableInstance } from '..';
+import type { MRT_Row, MRT_TableInstance, MRT_VirtualItem } from '..';
 
 interface Props {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
   row: MRT_Row;
   table: MRT_TableInstance;
-  virtualRow?: VirtualItem;
+  virtualRow?: MRT_VirtualItem;
 }
 
 export const MRT_TableDetailPanel = ({

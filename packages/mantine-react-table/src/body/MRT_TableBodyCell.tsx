@@ -18,8 +18,7 @@ import {
   getIsLastColumn,
   getPrimaryColor,
 } from '../column.utils';
-import type { VirtualItem } from '@tanstack/react-virtual';
-import type { MRT_Cell, MRT_TableInstance } from '..';
+import type { MRT_Cell, MRT_TableInstance, MRT_VirtualItem } from '..';
 
 interface Props {
   cell: MRT_Cell;
@@ -29,7 +28,7 @@ interface Props {
   rowIndex: number;
   rowRef: RefObject<HTMLTableRowElement>;
   table: MRT_TableInstance;
-  virtualCell?: VirtualItem;
+  virtualCell?: MRT_VirtualItem;
 }
 
 export const MRT_TableBodyCell = ({
@@ -152,8 +151,10 @@ export const MRT_TableBodyCell = ({
   }, [draggingColumn, draggingRow, hoveredColumn, hoveredRow, rowIndex]);
 
   const isEditable =
-    (enableEditing || columnDef.enableEditing) &&
-    columnDef.enableEditing !== false;
+    (enableEditing instanceof Function ? enableEditing(row) : enableEditing) &&
+    (columnDef.enableEditing instanceof Function
+      ? columnDef.enableEditing(row)
+      : columnDef.enableEditing) !== false;
 
   const isEditing =
     isEditable &&
@@ -165,11 +166,7 @@ export const MRT_TableBodyCell = ({
 
   const handleDoubleClick = (event: MouseEvent<HTMLTableCellElement>) => {
     tableCellProps?.onDoubleClick?.(event);
-    if (
-      (enableEditing || columnDef.enableEditing) &&
-      columnDef.enableEditing !== false &&
-      editingMode === 'cell'
-    ) {
+    if (isEditable && editingMode === 'cell') {
       setEditingCell(cell);
       setTimeout(() => {
         const textField = editInputRefs.current[column.id];
@@ -222,8 +219,7 @@ export const MRT_TableBodyCell = ({
         '&:hover': {
           backgroundColor:
             enableHover &&
-            enableEditing &&
-            columnDef.enableEditing !== false &&
+            isEditable &&
             ['table', 'cell'].includes(editingMode ?? '')
               ? theme.colorScheme === 'dark'
                 ? `${theme.fn.lighten(theme.colors.dark[7], 0.2)} !important`
