@@ -1,10 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
-import {
-  ColumnFiltersState,
-  PaginationState,
-  SortingState,
-} from '@tanstack/react-table';
+import { MantineReactTable, MRT_ColumnDef, MRT_ColumnFiltersState, MRT_PaginationState, MRT_SortingState } from 'mantine-react-table';
 
 type UserApiResponse = {
   data: Array<User>;
@@ -30,10 +25,10 @@ const Example = () => {
   const [rowCount, setRowCount] = useState(0);
 
   //table state
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [pagination, setPagination] = useState<PaginationState>({
+  const [sorting, setSorting] = useState<MRT_SortingState>([]);
+  const [pagination, setPagination] = useState<MRT_PaginationState>({
     pageIndex: 0,
     pageSize: 10,
   });

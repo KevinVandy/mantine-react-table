@@ -90,6 +90,18 @@ export const Contributors = () => {
           </Anchor>
         ))}
       </Box>
+      <div style={{ textAlign: 'center' }}>
+        <a
+          href="https://github.com/kevinvandy/mantine-react-table/graphs/contributors"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            alt="GitHub Contributors"
+            src="https://contrib.rocks/image?repo=kevinvandy/mantine-react-table"
+          />
+        </a>
+      </div>
     </Box>
   );
 };

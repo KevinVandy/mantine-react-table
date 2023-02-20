@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Anchor, Box, Button, Stack, Text, Title } from '@mantine/core';
 import { IconChevronRight } from '@tabler/icons-react';
 import { HomeCards } from '../components/mdx/HomeCards';
@@ -10,7 +11,7 @@ import { FeatureTable } from '../components/mdx/FeatureTable';
 import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import { PopularDocs } from '../components/mdx/PopularDocs';
-import Image from 'next/image';
+import { Contributors } from '../components/mdx/Contributors';
 
 const HomePage = () => {
   return (
@@ -119,7 +120,7 @@ const HomePage = () => {
             alt="Mui + React Table"
             src={`/banner.png`}
             height={60}
-            width={305}
+            width={308}
           />
         </Box>
         <StatBadges />
@@ -276,6 +277,10 @@ const HomePage = () => {
       <Text component="p" size="sm" sx={{ marginTop: '16px' }}>
         *If you see any inaccuracies in this table, PRs are welcome!
       </Text>
+      <LinkHeading sx={{ marginTop: '3rem' }} order={3}>
+        Maintainers and Contributors
+      </LinkHeading>
+      <Contributors />
     </>
   );
 };
