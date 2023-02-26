@@ -77,6 +77,7 @@ export const MRT_GlobalFilterTextInput = <
             withinPortal
             withArrow
             label={localization.clearSearch ?? ''}
+            opened={!!searchValue?.length}
           >
             <ActionIcon
               aria-label={localization.clearSearch}
