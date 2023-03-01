@@ -61,7 +61,7 @@ export const Footer = () => {
         </Anchor>
         <Anchor
           color="dimmed"
-          href="https://twitter.com/ThomasVanCott"
+          href="https://twitter.com/kevinvancott"
           target="_blank"
           rel="noopener"
         >
