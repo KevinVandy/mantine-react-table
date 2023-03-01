@@ -62,7 +62,7 @@ export const MRT_Table = ({ table }: Props) => {
       colSizes[`--col-${parseCSSVarId(header.column.id)}-size`] = colSize;
     }
     return colSizes;
-  }, [columns, columnSizing, columnSizingInfo]);
+  }, [columns, columnSizing, columnSizingInfo, columnVisibility]);
 
   //get first 16 column widths and average them
   const averageColumnWidth = useMemo(() => {
