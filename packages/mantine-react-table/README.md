@@ -27,17 +27,11 @@ Coming soon in early 2023, but you can try out the beta now.
 
 ## About
 
-### __Built with [Mantine <sup>V5</sup>](https://mantine.dev/) and [TanStack Table <sup>V8</sup>](https://tanstack.com/table/v8)__
-
-<br />
-<img src="https://mantine-react-table.com/mrt_banner.png" alt="MRT" height="30"/>
-<br />
-
 ### _Quickly Create React Data Tables with Mantine_
 
-A good table library should offer you powerful features, with an easy way to customize them, or even opt out and turn them off. It should also offer a bunch of advanced features to take your tables to the next level, but without sacrificing too bundle size bloat. MRT attempts to find that happy balance.
+### __Built with [Mantine <sup>V5</sup>](https://mantine.dev/) and [TanStack Table <sup>V8</sup>](https://tanstack.com/table/v8)__
 
-MRT is built on top of [TanStack Table's](https://tanstack.com/table/v8) react hooks to build upon it's high performance and flexibility.
+<img src="https://mantine-react-table.com/banner.png" alt="MRT" height="50"/>
 
 ## Learn More
 
@@ -148,7 +142,7 @@ export default function App() {
         accessorKey: 'name', //simple recommended way to define a column
         header: 'Name',
         mantineTableHeadCellProps: { sx: { color: 'green' } }, //optional custom props
-        Cell: ({ cell}) => <span>{cell.getValue()}</span>, //optional custom cell render
+        Cell: ({ cell }) => <span>{cell.getValue()}</span>, //optional custom cell render
       },
       {
         accessorFn: (row) => row.age, //alternate way

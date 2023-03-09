@@ -268,7 +268,9 @@ export const getCommonCellStyles = ({
   display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
   flex:
     table.options.layoutMode === 'grid'
-      ? `var(--col-${parseCSSVarId(header?.id ?? column.id)}-size) 0 auto`
+      ? `var(--${header ? 'header' : 'col'}-${parseCSSVarId(
+          header?.id ?? column.id,
+        )}-size) 0 auto`
       : undefined,
   left:
     column.getIsPinned() === 'left'
@@ -311,10 +313,10 @@ export const getCommonCellStyles = ({
   ...(tableCellProps?.sx instanceof Function
     ? tableCellProps.sx(theme)
     : (tableCellProps?.sx as any)),
-  minWidth: `max(calc(var(--col-${parseCSSVarId(
+  minWidth: `max(calc(var(--${header ? 'header' : 'col'}-${parseCSSVarId(
     header?.id ?? column.id,
   )}-size) * 1px), ${column.columnDef.minSize ?? 30}px)`,
-  width: `calc(var(--col-${parseCSSVarId(
+  width: `calc(var(--${header ? 'header' : 'col'}-${parseCSSVarId(
     header?.id ?? column.id,
   )}-size) * 1px)`,
 });
@@ -353,10 +355,4 @@ export const getPrimaryColor = (
   shade?: MantineShade,
 ): string => theme.colors[theme.primaryColor][shade ?? getPrimaryShade(theme)];
 
-export const parseCSSVarId = (id: string) =>
-  id
-    .replaceAll('.', '_')
-    .replaceAll(' ', '_')
-    .replaceAll('+', '_')
-    .replaceAll('(', '_')
-    .replaceAll(')', '_');
+export const parseCSSVarId = (id: string) => id.replace(/[^a-zA-Z0-9]/g, '_');
