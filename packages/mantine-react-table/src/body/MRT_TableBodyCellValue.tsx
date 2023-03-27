@@ -17,7 +17,7 @@ export const MRT_TableBodyCellValue = ({ cell, table }: Props) => {
   } = table;
   const { column, row } = cell;
   const { columnDef } = column;
-  const { globalFilter } = getState();
+  const { globalFilter, globalFilterFn } = getState();
   const filterValue = column.getFilterValue();
 
   let renderedCellValue =
@@ -53,11 +53,15 @@ export const MRT_TableBodyCellValue = ({ cell, table }: Props) => {
     ((filterValue &&
       allowedTypes.includes(typeof filterValue) &&
       columnDef.filterVariant === 'text') ||
-      (globalFilter && allowedTypes.includes(typeof globalFilter)))
+      (globalFilter &&
+        allowedTypes.includes(typeof globalFilter) &&
+        column.getCanGlobalFilter()))
   ) {
     const chunks = highlightWords?.({
       text: renderedCellValue?.toString() as string,
       query: (column.getFilterValue() ?? globalFilter ?? '').toString(),
+      matchExactly:
+        (filterValue ? columnDef._filterFn : globalFilterFn) !== 'fuzzy',
     });
     if (chunks?.length > 1 || chunks?.[0]?.match) {
       renderedCellValue = (

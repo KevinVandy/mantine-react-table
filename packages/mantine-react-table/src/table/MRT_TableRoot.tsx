@@ -9,7 +9,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { Modal } from '@mantine/core';
+import { Box, Modal } from '@mantine/core';
 import { MRT_ExpandAllButton } from '../buttons/MRT_ExpandAllButton';
 import { MRT_ExpandButton } from '../buttons/MRT_ExpandButton';
 import { MRT_ToggleRowActionMenuButton } from '../buttons/MRT_ToggleRowActionMenuButton';
@@ -194,8 +194,6 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
     [
       columnOrder,
       grouping,
-      props.state?.columnOrder,
-      props.state?.grouping,
       props.displayColumnDefOptions,
       props.editingMode,
       props.enableColumnDragging,
@@ -214,6 +212,8 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
       props.localization,
       props.positionActionsColumn,
       props.renderDetailPanel,
+      props.state?.columnOrder,
+      props.state?.grouping,
     ],
   );
 
@@ -326,6 +326,12 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
       props.onShowToolbarDropZoneChange ?? setShowToolbarDropZone,
   } as MRT_TableInstance<TData>;
 
+  if (props.tableFeatures) {
+    props.tableFeatures.forEach((feature) => {
+      Object.assign(table, feature(table));
+    });
+  }
+
   if (props.tableInstanceRef) {
     props.tableInstanceRef.current = table;
   }
@@ -350,21 +356,29 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
 
   return (
     <>
-      <Modal
-        fullScreen
-        onClose={() => table.setIsFullScreen(false)}
-        opened={table.getState().isFullScreen}
-        transitionDuration={400}
-        withCloseButton={false}
-        withinPortal={false}
+      <Box
         sx={{
-          '& .mantine-Modal-modal': {
-            padding: 0,
+          '& .mantine-Modal-inner': {
+            left: 0,
+            right: 0,
           },
+          '& .mantine-Modal-body': {
+            padding: 0,
+          }
         }}
       >
-        <MRT_TablePaper table={table as any} />
-      </Modal>
+        <Modal
+          fullScreen
+          onClose={() => table.setIsFullScreen(false)}
+          opened={table.getState().isFullScreen}
+          transitionProps={{ duration: 400, transition: 'pop' }}
+          withCloseButton={false}
+          withinPortal={false}
+          withOverlay={false}
+        >
+          <MRT_TablePaper table={table as any} />
+        </Modal>
+      </Box>
       {!table.getState().isFullScreen && (
         <MRT_TablePaper table={table as any} />
       )}

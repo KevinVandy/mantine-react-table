@@ -30,7 +30,22 @@ const HomePage = () => {
             },
           })}
         >
-          Still in Alpha. Coming soon by February 2023!
+          1.0 Now in Beta for Mantine V6
+        </Text>
+        <Text
+          sx={(theme) => ({
+            margin: 'auto',
+            display: 'inline-block',
+            background: `-webkit-linear-gradient(left, ${theme.colors.orange[7]}, ${theme.colors.yellow[7]})`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            '&:hover': {
+              textDecoration: 'underline',
+              textDecorationColor: theme.colors.yellow[7],
+            },
+          })}
+        >
+          v0.9.5 is the last version for Mantine V5
         </Text>
         <Title
           sx={{

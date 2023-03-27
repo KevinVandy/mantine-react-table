@@ -7,7 +7,7 @@ import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { Box, Button, Menu, Text, Title } from '@mantine/core';
 
 //Date Picker Imports
-import { DatePicker } from '@mantine/dates';
+import { DatePickerInput } from '@mantine/dates';
 
 //Icons Imports
 import { IconUserCircle, IconSend } from '@tabler/icons-react';
@@ -114,13 +114,13 @@ const Example = () => {
             Header: ({ column }) => <em>{column.columnDef.header}</em>, //custom header markup
             //Custom Date Picker Filter from @mantine/dates
             Filter: ({ column }) => (
-              <DatePicker
+              <DatePickerInput
                 placeholder="Filter by Start Date"
                 onChange={(newValue: Date) => {
                   column.setFilterValue(newValue);
                 }}
                 value={column.getFilterValue() as Date}
-                withinPortal //don't be constrained by overflow hidden
+                modalProps={{ withinPortal: true }}
               />
             ),
           },
