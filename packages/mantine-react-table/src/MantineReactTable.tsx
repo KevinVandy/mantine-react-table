@@ -680,7 +680,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
      */
     defaultDisplayColumn?: Partial<MRT_ColumnDef<TData>>;
     displayColumnDefOptions?: Partial<{
-      [key in MRT_DisplayColumnIds]: Partial<MRT_ColumnDef>;
+      [key in MRT_DisplayColumnIds]: Partial<MRT_ColumnDef<TData>>;
     }>;
     editingMode?: 'table' | 'modal' | 'row' | 'cell';
     enableBottomToolbar?: boolean;
