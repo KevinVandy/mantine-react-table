@@ -23,7 +23,7 @@ export const MRT_RowActionMenu = <TData extends Record<string, any> = {}>({
   } = table;
 
   return (
-    <Menu closeOnItemClick>
+    <Menu closeOnItemClick withinPortal>
       <Tooltip
         withinPortal
         withArrow
