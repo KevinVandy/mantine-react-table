@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@mantine/core';
-import MantineReactTable, {
+import {
+  MantineReactTable,
   type MRT_ColumnDef,
   type MRT_ColumnFiltersState,
   type MRT_DensityState,

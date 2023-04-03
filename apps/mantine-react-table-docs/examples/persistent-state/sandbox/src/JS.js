@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@mantine/core';
-import MantineReactTable from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 import { data } from './makeData';
 
 //column definitions...
@@ -31,16 +31,10 @@ const columns = [
 const Example = () => {
   const isFirstRender = useRef(true);
 
-  const [columnFilters, setColumnFilters] = useState(
-    [],
-  );
-  const [columnVisibility, setColumnVisibility] = useState(
-    {},
-  );
+  const [columnFilters, setColumnFilters] = useState([]);
+  const [columnVisibility, setColumnVisibility] = useState({});
   const [density, setDensity] = useState('md');
-  const [globalFilter, setGlobalFilter] = useState(
-    undefined,
-  );
+  const [globalFilter, setGlobalFilter] = useState(undefined);
   const [showGlobalFilter, setShowGlobalFilter] = useState(false);
   const [showColumnFilters, setShowColumnFilters] = useState(false);
   const [sorting, setSorting] = useState([]);
