@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
@@ -32,6 +32,7 @@ export const MRT_GlobalFilterTextInput = <
       ? mantineSearchTextInputProps({ table })
       : mantineSearchTextInputProps;
 
+  const isMounted = useRef(false);
   const [searchValue, setSearchValue] = useState(globalFilter ?? '');
 
   const [debouncedSearchValue] = useDebouncedValue(
@@ -43,16 +44,21 @@ export const MRT_GlobalFilterTextInput = <
     setGlobalFilter(debouncedSearchValue || undefined);
   }, [debouncedSearchValue]);
 
-  useEffect(() => {
-    if (globalFilter === undefined) {
-      handleClear();
-    }
-  }, [globalFilter]);
-
   const handleClear = () => {
     setSearchValue('');
     setGlobalFilter(undefined);
   };
+
+  useEffect(() => {
+    if (isMounted.current) {
+      if (globalFilter === undefined) {
+        handleClear();
+      } else {
+        setSearchValue(globalFilter);
+      }
+    }
+    isMounted.current = true;
+  }, [globalFilter]);
 
   return (
     <Collapse in={showGlobalFilter} sx={{ '& > div': { display: 'flex' } }}>

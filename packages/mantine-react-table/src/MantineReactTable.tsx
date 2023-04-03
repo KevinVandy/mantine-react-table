@@ -278,7 +278,7 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> =
       >;
       setIsFullScreen: Dispatch<SetStateAction<boolean>>;
       setShowAlertBanner: Dispatch<SetStateAction<boolean>>;
-      setShowFilters: Dispatch<SetStateAction<boolean>>;
+      setShowColumnFilters: Dispatch<SetStateAction<boolean>>;
       setShowGlobalFilter: Dispatch<SetStateAction<boolean>>;
       setShowToolbarDropZone: Dispatch<SetStateAction<boolean>>;
     }
@@ -964,7 +964,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     onHoveredRowChange?: OnChangeFn<MRT_Row<TData> | null>;
     onIsFullScreenChange?: OnChangeFn<boolean>;
     onShowAlertBannerChange?: OnChangeFn<boolean>;
-    onShowFiltersChange?: OnChangeFn<boolean>;
+    onShowColumnFiltersChange?: OnChangeFn<boolean>;
     onShowGlobalFilterChange?: OnChangeFn<boolean>;
     onShowToolbarDropZoneChange?: OnChangeFn<boolean>;
     positionActionsColumn?: 'first' | 'last';

@@ -44,7 +44,7 @@ export const MRT_ColumnActionMenu = ({ header, table }: Props) => {
     },
     refs: { filterInputRefs },
     setColumnSizingInfo,
-    setShowFilters,
+    setShowColumnFilters,
   } = table;
   const { column } = header;
   const { columnDef } = column;
@@ -103,7 +103,7 @@ export const MRT_ColumnActionMenu = ({ header, table }: Props) => {
   };
 
   const handleFilterByColumn = () => {
-    setShowFilters(true);
+    setShowColumnFilters(true);
     setTimeout(() => filterInputRefs.current[`${column.id}-0`]?.focus(), 100);
   };
 

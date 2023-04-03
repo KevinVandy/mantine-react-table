@@ -25,7 +25,7 @@ const ColumnOptionsTable = ({ onlyProps }: Props) => {
             className: 'column-option',
             id: `${cell.getValue<string>()}-column-option`,
           }),
-          Cell: ({ cell, row }) =>
+          Cell: ({ renderedCellValue, row }) =>
             row.original?.required ? (
               <Text
                 component="strong"
@@ -33,10 +33,10 @@ const ColumnOptionsTable = ({ onlyProps }: Props) => {
                   color: getPrimaryColor(theme),
                 })}
               >
-                {cell.getValue<string>()}*
+                {renderedCellValue}*
               </Text>
             ) : (
-              cell.getValue<string>()
+              renderedCellValue
             ),
         },
         {

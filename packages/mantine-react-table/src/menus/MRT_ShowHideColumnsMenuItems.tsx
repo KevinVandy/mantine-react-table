@@ -121,7 +121,7 @@ export const MRT_ShowHideColumnsMenuItems = <
                 table={table}
               />
             ) : (
-              <Box sx={{ width: '28px' }} />
+              <Box sx={{ width: '22px' }} />
             ))}
           {!isSubMenu &&
             enablePinning &&

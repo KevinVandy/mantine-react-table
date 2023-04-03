@@ -164,7 +164,7 @@ export const routes: Array<RouteItem> = [
           },
           {
             href: '/docs/guides/event-listeners',
-            label: 'Event Listeners',
+            label: 'Event Listeners (onClicks)',
           },
           {
             href: '/docs/guides/state-management',

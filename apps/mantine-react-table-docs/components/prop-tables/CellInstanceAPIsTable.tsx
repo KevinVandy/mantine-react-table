@@ -28,7 +28,6 @@ const CellInstanceAPIsTable = ({ onlyProps }: Props) => {
             className: 'cell-instance-api',
             id: `${cell.getValue<string>()}-cell-instance-api`,
           }),
-          Cell: ({ cell }) => cell.getValue<string>(),
         },
         {
           accessorKey: 'type',

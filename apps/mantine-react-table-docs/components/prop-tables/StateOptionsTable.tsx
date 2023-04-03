@@ -28,7 +28,6 @@ const StateOptionsTable = ({ onlyProps }: Props) => {
             className: 'state-option',
             id: `${cell.getValue<string>()}-state-option`,
           }),
-          Cell: ({ cell }) => cell.getValue<string>(),
         },
         {
           accessorKey: 'type',

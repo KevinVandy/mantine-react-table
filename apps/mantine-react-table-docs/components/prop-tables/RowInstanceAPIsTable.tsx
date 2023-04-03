@@ -24,7 +24,6 @@ const RowInstanceAPIsTable = ({ onlyProps }: Props) => {
             className: 'row-instance-api',
             id: `${cell.getValue<string>()}-row-instance-api`,
           }),
-          Cell: ({ cell }) => cell.getValue<string>(),
         },
         {
           accessorKey: 'type',

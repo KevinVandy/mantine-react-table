@@ -20,12 +20,12 @@ export const MRT_ToggleFiltersButton = <
       icons: { IconFilter, IconFilterOff },
       localization,
     },
-    setShowFilters,
+    setShowColumnFilters,
   } = table;
   const { showColumnFilters } = getState();
 
   const handleToggleShowFilters = () => {
-    setShowFilters(!showColumnFilters);
+    setShowColumnFilters(!showColumnFilters);
   };
 
   return (

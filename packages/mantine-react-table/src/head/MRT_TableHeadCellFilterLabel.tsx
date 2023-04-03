@@ -14,7 +14,7 @@ export const MRT_TableHeadCellFilterLabel = ({ header, table }: Props) => {
       localization,
     },
     refs: { filterInputRefs },
-    setShowFilters,
+    setShowColumnFilters,
   } = table;
   const { column } = header;
   const { columnDef } = column;
@@ -63,7 +63,7 @@ export const MRT_TableHeadCellFilterLabel = ({ header, table }: Props) => {
           <Tooltip withinPortal withArrow position="top" label={filterTooltip}>
             <ActionIcon
               onClick={(event: MouseEvent<HTMLButtonElement>) => {
-                setShowFilters(true);
+                setShowColumnFilters(true);
                 setTimeout(() => {
                   filterInputRefs.current[`${column.id}-0`]?.focus();
                   filterInputRefs.current[`${column.id}-0`]?.select();

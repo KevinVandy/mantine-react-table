@@ -29,7 +29,7 @@ const RootPropTable = ({ onlyProps }: Props) => {
             className: 'prop',
             id: `${cell.getValue<string>()}-prop`,
           }),
-          Cell: ({ cell, row }) =>
+          Cell: ({ renderedCellValue, row }) =>
             row.original?.required ? (
               <Text
                 component="strong"
@@ -37,10 +37,10 @@ const RootPropTable = ({ onlyProps }: Props) => {
                   color: getPrimaryColor(theme),
                 })}
               >
-                {cell.getValue<string>()}*
+                {renderedCellValue}*
               </Text>
             ) : (
-              cell.getValue<string>()
+              renderedCellValue
             ),
         },
         {

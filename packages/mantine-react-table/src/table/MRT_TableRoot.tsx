@@ -9,7 +9,6 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { Box, Modal } from '@mantine/core';
 import { MRT_ExpandAllButton } from '../buttons/MRT_ExpandAllButton';
 import { MRT_ExpandButton } from '../buttons/MRT_ExpandButton';
 import { MRT_ToggleRowActionMenuButton } from '../buttons/MRT_ToggleRowActionMenuButton';
@@ -107,7 +106,7 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
   const [showAlertBanner, setShowAlertBanner] = useState(
     props.initialState?.showAlertBanner ?? false,
   );
-  const [showColumnFilters, setShowFilters] = useState(
+  const [showColumnFilters, setShowColumnFilters] = useState(
     initialState?.showColumnFilters ?? false,
   );
   const [showGlobalFilter, setShowGlobalFilter] = useState(
@@ -320,7 +319,7 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
     setHoveredRow: props.onHoveredRowChange ?? setHoveredRow,
     setIsFullScreen: props.onIsFullScreenChange ?? setIsFullScreen,
     setShowAlertBanner: props.onShowAlertBannerChange ?? setShowAlertBanner,
-    setShowFilters: props.onShowFiltersChange ?? setShowFilters,
+    setShowColumnFilters: props.onShowColumnFiltersChange ?? setShowColumnFilters,
     setShowGlobalFilter: props.onShowGlobalFilterChange ?? setShowGlobalFilter,
     setShowToolbarDropZone:
       props.onShowToolbarDropZoneChange ?? setShowToolbarDropZone,
@@ -354,36 +353,22 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
     }
   }, [table.getState().isFullScreen]);
 
+  //if page index is out of bounds, set it to the last page
+  useEffect(() => {
+    const { pageIndex, pageSize } = table.getState().pagination;
+    const totalRowCount =
+      props.rowCount ?? table.getPrePaginationRowModel().rows.length;
+    const firstVisibleRowIndex = pageIndex * pageSize;
+    if (firstVisibleRowIndex > totalRowCount) {
+      table.setPageIndex(Math.floor(totalRowCount / pageSize));
+    }
+  }, [props.rowCount, table.getPrePaginationRowModel().rows.length]);
+
   return (
     <>
-      <Box
-        sx={{
-          '& .mantine-Modal-inner': {
-            left: 0,
-            right: 0,
-          },
-          '& .mantine-Modal-body': {
-            padding: 0,
-          }
-        }}
-      >
-        <Modal
-          fullScreen
-          onClose={() => table.setIsFullScreen(false)}
-          opened={table.getState().isFullScreen}
-          transitionProps={{ duration: 400, transition: 'pop' }}
-          withCloseButton={false}
-          withinPortal={false}
-          withOverlay={false}
-        >
-          <MRT_TablePaper table={table as any} />
-        </Modal>
-      </Box>
-      {!table.getState().isFullScreen && (
-        <MRT_TablePaper table={table as any} />
-      )}
+      <MRT_TablePaper table={table as any} />
       {editingRow && props.editingMode === 'modal' && (
-        <MRT_EditRowModal row={editingRow as any} table={table} open />
+        <MRT_EditRowModal row={editingRow as any} table={table} open  />
       )}
     </>
   );
