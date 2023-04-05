@@ -38,7 +38,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   },
 ];
 
-const data = [...Array(10)].map(() => ({
+const data = [...Array(100)].map(() => ({
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   address: faker.address.streetAddress(),
@@ -222,5 +222,45 @@ export const CustomRowActionButtonsLastColumn: Story<
         </Button>
       </div>
     )}
+  />
+);
+
+export const RowActionsWithVirtualization: Story<
+  MantineReactTableProps
+> = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowActions
+    enableRowVirtualization
+    renderRowActionMenuItems={({ row }) => [
+      <Menu.Item
+        icon={<IconUser />}
+        key={1}
+        onClick={() => {
+          console.info('View Profile', row);
+        }}
+      >
+        View Profile
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconTrash />}
+        key={2}
+        onClick={() => {
+          console.info('Remove', row);
+        }}
+      >
+        Remove
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconShare />}
+        key={3}
+        onClick={() => {
+          console.info('Share', row);
+        }}
+      >
+        Share
+      </Menu.Item>,
+    ]}
   />
 );

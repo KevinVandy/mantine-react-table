@@ -219,6 +219,10 @@ export const MRT_FilterTextInput = ({
       }`,
       minWidth: isRangeFilter ? '80px' : !filterChipLabel ? '100px' : 'auto',
       width: '100%',
+      '& .mantine-TextInput-input': {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+      },
       ...(packSx(
         isMultiSelectFilter
           ? multiSelectProps.sx

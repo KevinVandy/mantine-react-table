@@ -1,13 +1,14 @@
 import React from 'react';
 
 //Import Mantine React Table and its Types
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 
 //Import Mantine React Table Translations
 import { MRT_Localization_FA } from 'mantine-react-table/locales/fa';
 
 //mock data
-import { data, Person } from './makeData';
+import { data } from './makeData';
+import { MantineProvider, useMantineTheme } from '@mantine/core';
 
 const columns = [
   //column definitions...
@@ -28,20 +29,30 @@ const columns = [
 ];
 
 const Example = () => {
+  const theme = useMantineTheme();
   return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableColumnFilterModes
-      enableColumnOrdering
-      enableEditing
-      enablePinning
-      enableRowActions
-      enableRowSelection
-      enableSelectAll={false}
-      initialState={{ showColumnFilters: true, showGlobalFilter: true }}
-      localization={MRT_Localization_FA}
-    />
+    <MantineProvider
+      theme={{
+        ...theme,
+        dir: 'rtl',
+      }}
+    >
+      <div style={{ direction: 'rtl' }}>
+        <MantineReactTable
+          columns={columns}
+          data={data}
+          enableColumnFilterModes
+          enableColumnOrdering
+          enableEditing
+          enablePinning
+          enableRowActions
+          enableRowSelection
+          enableSelectAll={false}
+          initialState={{ showColumnFilters: true, showGlobalFilter: true }}
+          localization={MRT_Localization_FA}
+        />
+      </div>
+    </MantineProvider>
   );
 };
 

@@ -55,7 +55,10 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
         >
           <UnstyledButton
             {...buttonProps}
-            onClick={copy}
+            onClick={(e) => {
+              e.stopPropagation();
+              copy();
+            }}
             sx={(theme) => ({
               backgroundColor: 'transparent',
               border: 'none',
