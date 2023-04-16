@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -49,13 +45,11 @@ const data = [...Array(100)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const ColumnOrderingEnabled: Story<MantineReactTableProps> = () => (
+export const ColumnOrderingEnabled = () => (
   <MantineReactTable columns={columns} data={data} enableColumnOrdering />
 );
 
-export const ColumnOrderingDisabledPerColumn: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnOrderingDisabledPerColumn = () => (
   <MantineReactTable
     columns={[
       {
@@ -89,7 +83,7 @@ export const ColumnOrderingDisabledPerColumn: Story<
   />
 );
 
-export const ColumnOrderingWithSelect: Story<MantineReactTableProps> = () => (
+export const ColumnOrderingWithSelect = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -98,7 +92,7 @@ export const ColumnOrderingWithSelect: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ColumnOrderingWithPinning: Story<MantineReactTableProps> = () => (
+export const ColumnOrderingWithPinning = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -107,9 +101,7 @@ export const ColumnOrderingWithPinning: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ColumnOrderingNoDragHandles: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnOrderingNoDragHandles = () => (
   <MantineReactTable
     columns={columns}
     data={data}

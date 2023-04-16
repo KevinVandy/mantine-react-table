@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { Button } from '@mantine/core';
 
@@ -39,7 +35,7 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const CustomizeDisplayColumns: Story<MantineReactTableProps> = () => (
+export const CustomizeDisplayColumns = () => (
   <MantineReactTable
     columns={columns}
     data={data}

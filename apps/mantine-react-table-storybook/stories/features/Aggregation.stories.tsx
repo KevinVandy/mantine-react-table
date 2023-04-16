@@ -1,8 +1,7 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import {
   MantineReactTable,
-  MantineReactTableProps,
   MRT_AggregationFns,
   MRT_ColumnDef,
 } from 'mantine-react-table';
@@ -116,11 +115,11 @@ const columns = [
   },
 ] as MRT_ColumnDef<(typeof data)[0]>[];
 
-export const Aggregation: Story<MantineReactTableProps> = () => (
+export const Aggregation = () => (
   <MantineReactTable columns={columns} data={data} enableGrouping />
 );
 
-export const AggregationExpandedDefault: Story<MantineReactTableProps> = () => (
+export const AggregationExpandedDefault = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -129,9 +128,7 @@ export const AggregationExpandedDefault: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const AggregationGroupedAndExpandedDefault: Story<
-  MantineReactTableProps
-> = () => (
+export const AggregationGroupedAndExpandedDefault = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -145,7 +142,7 @@ export const AggregationGroupedAndExpandedDefault: Story<
   />
 );
 
-export const MultiAggregationPerColumn: Story<MantineReactTableProps> = () => (
+export const MultiAggregationPerColumn = () => (
   <MantineReactTable
     columns={[
       {

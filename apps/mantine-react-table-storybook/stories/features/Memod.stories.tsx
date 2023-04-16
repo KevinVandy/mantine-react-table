@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { Button } from '@mantine/core';
 
@@ -72,7 +68,7 @@ const generateData = () =>
     zipCode: faker.address.zipCode(),
   }));
 
-export const NoMemos: Story<MantineReactTableProps> = () => {
+export const NoMemos = () => {
   const [tableData, setTableData] = React.useState([...generateData()]);
 
   const handleRegenerateData = () => setTableData([...generateData()]);
@@ -100,7 +96,7 @@ export const NoMemos: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const MemoCells: Story<MantineReactTableProps> = () => {
+export const MemoCells = () => {
   const [tableData, setTableData] = React.useState([...generateData()]);
 
   const handleRegenerateData = () => setTableData([...generateData()]);
@@ -129,7 +125,7 @@ export const MemoCells: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const MemoRows: Story<MantineReactTableProps> = () => {
+export const MemoRows = () => {
   const [tableData, setTableData] = React.useState([...generateData()]);
 
   const handleRegenerateData = () => setTableData([...generateData()]);
@@ -158,7 +154,7 @@ export const MemoRows: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const MemoTableBody: Story<MantineReactTableProps> = () => {
+export const MemoTableBody = () => {
   const [tableData, setTableData] = React.useState([...generateData()]);
 
   const handleRegenerateData = () => setTableData([...generateData()]);

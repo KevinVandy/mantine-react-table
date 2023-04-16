@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -52,11 +48,11 @@ const data: Row[] = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const ColumnActionsEnabledDefault: Story<
-  MantineReactTableProps
-> = () => <MantineReactTable columns={columns} data={data} />;
+export const ColumnActionsEnabledDefault = () => (
+  <MantineReactTable columns={columns} data={data} />
+);
 
-export const ColumnActionsDisabled: Story<MantineReactTableProps> = () => (
+export const ColumnActionsDisabled = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -64,9 +60,7 @@ export const ColumnActionsDisabled: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ColumnActionsDisabledPerColumn: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnActionsDisabledPerColumn = () => (
   <MantineReactTable
     columns={[
       {
@@ -97,9 +91,7 @@ export const ColumnActionsDisabledPerColumn: Story<
   />
 );
 
-export const ColumnActionsEnabledPerColumn: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnActionsEnabledPerColumn = () => (
   <MantineReactTable
     columns={[
       {

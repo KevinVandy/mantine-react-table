@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -49,11 +45,11 @@ const data = [...Array(25)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const DefaultLeft: Story<MantineReactTableProps> = () => (
+export const DefaultLeft = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const CenterCells: Story<MantineReactTableProps> = () => (
+export const CenterCells = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -66,7 +62,7 @@ export const CenterCells: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CenterCellsWithGrabHandle: Story<MantineReactTableProps> = () => (
+export const CenterCellsWithGrabHandle = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -80,9 +76,7 @@ export const CenterCellsWithGrabHandle: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CenterCellsWithGrabHandleNoSorting: Story<
-  MantineReactTableProps
-> = () => (
+export const CenterCellsWithGrabHandleNoSorting = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -97,7 +91,7 @@ export const CenterCellsWithGrabHandleNoSorting: Story<
   />
 );
 
-export const CenterCellsNoColumnActions: Story<MantineReactTableProps> = () => (
+export const CenterCellsNoColumnActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -111,7 +105,7 @@ export const CenterCellsNoColumnActions: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const RightAlignNumberColumn: Story<MantineReactTableProps> = () => (
+export const RightAlignNumberColumn = () => (
   <MantineReactTable
     columns={[
       {

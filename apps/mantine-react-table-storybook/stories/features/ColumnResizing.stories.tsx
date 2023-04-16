@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -49,15 +45,11 @@ const data = [...Array(88)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const ColumnResizingEnabledDefaultOnChange: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnResizingEnabledDefaultOnChange = () => (
   <MantineReactTable columns={columns} data={data} enableColumnResizing />
 );
 
-export const ColumnResizingEnabledNoColumnActions: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnResizingEnabledNoColumnActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -66,9 +58,7 @@ export const ColumnResizingEnabledNoColumnActions: Story<
   />
 );
 
-export const ColumnResizingDisabledSomeColumns: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnResizingDisabledSomeColumns = () => (
   <MantineReactTable
     columns={[
       {
@@ -102,7 +92,7 @@ export const ColumnResizingDisabledSomeColumns: Story<
   />
 );
 
-export const ColumnResizingEnabledOnEnd: Story<MantineReactTableProps> = () => (
+export const ColumnResizingEnabledOnEnd = () => (
   <MantineReactTable
     columnResizeMode="onEnd"
     columns={columns}
@@ -111,9 +101,7 @@ export const ColumnResizingEnabledOnEnd: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ColumnResizingCustomDefaultWidths: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnResizingCustomDefaultWidths = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -122,7 +110,7 @@ export const ColumnResizingCustomDefaultWidths: Story<
   />
 );
 
-export const ColumnResizingWithPinning: Story<MantineReactTableProps> = () => (
+export const ColumnResizingWithPinning = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -132,9 +120,7 @@ export const ColumnResizingWithPinning: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ColumnResizingWithHeaderGroups: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnResizingWithHeaderGroups = () => (
   <MantineReactTable
     columns={[
       {
@@ -182,9 +168,7 @@ export const ColumnResizingWithHeaderGroups: Story<
   />
 );
 
-export const ColumnResizingWithHeaderGroupsGrid: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnResizingWithHeaderGroupsGrid = () => (
   <MantineReactTable
     columns={[
       {
@@ -233,9 +217,7 @@ export const ColumnResizingWithHeaderGroupsGrid: Story<
   />
 );
 
-export const ColumnResizingLayoutGridNoFlexGrow: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnResizingLayoutGridNoFlexGrow = () => (
   <MantineReactTable
     columns={columns.slice(0, 3)}
     data={data}

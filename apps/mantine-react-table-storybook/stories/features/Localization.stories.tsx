@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -44,9 +40,7 @@ const data = [...Array(100)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const CustomSpanishLocalizationExample: Story<
-  MantineReactTableProps
-> = () => (
+export const CustomSpanishLocalizationExample = () => (
   <MantineReactTable
     columns={columns}
     data={data}

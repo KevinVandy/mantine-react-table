@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -49,9 +45,7 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const StickyHeaderDisabledDefault: Story<
-  MantineReactTableProps
-> = () => (
+export const StickyHeaderDisabledDefault = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -59,7 +53,7 @@ export const StickyHeaderDisabledDefault: Story<
   />
 );
 
-export const EnableStickyHeader: Story<MantineReactTableProps> = () => (
+export const EnableStickyHeader = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -68,7 +62,7 @@ export const EnableStickyHeader: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const StickyHeaderShorterTable: Story<MantineReactTableProps> = () => (
+export const StickyHeaderShorterTable = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -108,7 +102,7 @@ const columnsWithFooters: MRT_ColumnDef<(typeof data)[0]>[] = [
   },
 ];
 
-export const disableStickyFooter: Story<MantineReactTableProps> = () => (
+export const disableStickyFooter = () => (
   <MantineReactTable
     columns={columnsWithFooters}
     data={data}
@@ -120,7 +114,7 @@ export const disableStickyFooter: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const enableStickyFooter: Story<MantineReactTableProps> = () => (
+export const enableStickyFooter = () => (
   <MantineReactTable
     columns={columnsWithFooters}
     data={data}

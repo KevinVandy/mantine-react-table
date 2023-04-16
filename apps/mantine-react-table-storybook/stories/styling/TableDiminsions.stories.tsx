@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -44,7 +40,7 @@ const data = [...Array(25)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const MaxWidthAndCentered: Story<MantineReactTableProps> = () => (
+export const MaxWidthAndCentered = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -57,7 +53,7 @@ export const MaxWidthAndCentered: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const maxHeight: Story<MantineReactTableProps> = () => (
+export const maxHeight = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -69,7 +65,7 @@ export const maxHeight: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const minHeight: Story<MantineReactTableProps> = () => (
+export const minHeight = () => (
   <MantineReactTable
     columns={columns}
     data={data.slice(0, 5)}
@@ -81,7 +77,7 @@ export const minHeight: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const minHeightParent: Story<MantineReactTableProps> = () => (
+export const minHeightParent = () => (
   <div style={{ height: '700px' }}>
     <MantineReactTable
       columns={columns}

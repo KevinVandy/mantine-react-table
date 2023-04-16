@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-  MRT_Row,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -59,7 +54,7 @@ const initData = [...Array(100)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const RowOrderingEnabled: Story<MantineReactTableProps> = () => {
+export const RowOrderingEnabled = () => {
   const [data, setData] = useState(() => initData);
 
   return (
@@ -86,7 +81,7 @@ export const RowOrderingEnabled: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const RowOrderingWithSelect: Story<MantineReactTableProps> = () => {
+export const RowOrderingWithSelect = () => {
   const [data, setData] = useState(() => initData);
   const [draggingRow, setDraggingRow] = useState<MRT_Row<Person> | null>(null);
   const [hoveredRow, setHoveredRow] = useState<MRT_Row<Person> | null>(null);
@@ -122,7 +117,7 @@ export const RowOrderingWithSelect: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const RowOrderingWithPinning: Story<MantineReactTableProps> = () => {
+export const RowOrderingWithPinning = () => {
   const [data, setData] = useState(() => initData);
   const [draggingRow, setDraggingRow] = useState<MRT_Row<Person> | null>(null);
   const [hoveredRow, setHoveredRow] = useState<MRT_Row<Person> | null>(null);
@@ -157,7 +152,7 @@ export const RowOrderingWithPinning: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const RowAndColumnOrdering: Story<MantineReactTableProps> = () => {
+export const RowAndColumnOrdering = () => {
   const [data, setData] = useState(() => initData);
   const [draggingRow, setDraggingRow] = useState<MRT_Row<Person> | null>(null);
   const [hoveredRow, setHoveredRow] = useState<MRT_Row<Person> | null>(null);

@@ -1,10 +1,6 @@
 import React, { useMemo } from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 
 const meta: Meta = {
   title: 'Fixed Bugs/Loading Data',
@@ -22,9 +18,7 @@ type Person = {
   state: string;
 };
 
-export const NestedLoadingDataWithInitialExpanded: Story<
-  MantineReactTableProps
-> = () => {
+export const NestedLoadingDataWithInitialExpanded = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
       {
@@ -63,9 +57,7 @@ export const NestedLoadingDataWithInitialExpanded: Story<
   );
 };
 
-export const NestedLoadingDataWithInitialFilter: Story<
-  MantineReactTableProps
-> = () => {
+export const NestedLoadingDataWithInitialFilter = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
       //column definitions...
@@ -106,9 +98,7 @@ export const NestedLoadingDataWithInitialFilter: Story<
   );
 };
 
-export const NestedLoadingDataWithInitialGroup: Story<
-  MantineReactTableProps
-> = () => {
+export const NestedLoadingDataWithInitialGroup = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
       //column definitions...
@@ -149,9 +139,7 @@ export const NestedLoadingDataWithInitialGroup: Story<
   );
 };
 
-export const NestedLoadingDataWithInitialPage: Story<
-  MantineReactTableProps
-> = () => {
+export const NestedLoadingDataWithInitialPage = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
       //column definitions...
@@ -192,9 +180,7 @@ export const NestedLoadingDataWithInitialPage: Story<
   );
 };
 
-export const NestedLoadingDataWithInitialSort: Story<
-  MantineReactTableProps
-> = () => {
+export const NestedLoadingDataWithInitialSort = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
       //column definitions...

@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -44,11 +40,11 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const Loading: Story<MantineReactTableProps> = () => (
+export const Loading = () => (
   <MantineReactTable columns={columns} data={[]} state={{ isLoading: true }} />
 );
 
-export const LoadingWithSelection: Story<MantineReactTableProps> = () => (
+export const LoadingWithSelection = () => (
   <MantineReactTable
     columns={columns}
     data={[]}
@@ -57,9 +53,7 @@ export const LoadingWithSelection: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const LoadingWithDetailPanelExample: Story<
-  MantineReactTableProps
-> = () => (
+export const LoadingWithDetailPanelExample = () => (
   <MantineReactTable
     columns={columns}
     data={[]}
@@ -75,7 +69,7 @@ export const LoadingWithDetailPanelExample: Story<
   />
 );
 
-export const SkeletonDisplayColumns: Story<MantineReactTableProps> = () => (
+export const SkeletonDisplayColumns = () => (
   <MantineReactTable
     columns={columns}
     data={[]}
@@ -87,7 +81,7 @@ export const SkeletonDisplayColumns: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ReloadingExample: Story<MantineReactTableProps> = () => (
+export const ReloadingExample = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -95,7 +89,7 @@ export const ReloadingExample: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const OnlyTopProgressBar: Story<MantineReactTableProps> = () => (
+export const OnlyTopProgressBar = () => (
   <MantineReactTable
     columns={columns}
     data={data}

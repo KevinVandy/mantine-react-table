@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -14,9 +10,9 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<MantineReactTableProps<Person>> = (
-  args: MantineReactTableProps<Person>,
-) => <MantineReactTable {...args} />;
+const Template = (args: MantineReactTableProps<Person>) => (
+  <MantineReactTable {...args} />
+);
 
 export const Default = Template.bind({});
 
@@ -53,22 +49,3 @@ Default.args = {
     address: faker.address.streetAddress(),
   })),
 } as MantineReactTableProps<Person>;
-
-// const mockData = [...Array(7)].map(() => ({
-//   firstName: faker.name.firstName(),
-//   lastName: faker.name.lastName(),
-//   address: faker.address.streetAddress(),
-//   city: faker.address.city(),
-//   state: faker.address.state(),
-// }));
-
-// const mockData = [...Array(250)].map(() => ({
-//   firstName: faker.name.firstName(),
-//   lastName: faker.name.lastName(),
-//   age: faker.datatype.number(80),
-//   gender: faker.name.gender(true),
-//   state: faker.address.state(),
-//   salary: +faker.finance.amount(10000, 100000, 0),
-// }));
-
-// console.log(mockData, null, 2);

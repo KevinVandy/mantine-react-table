@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -54,17 +50,15 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const ColumnHidingEnabledDefault: Story<MantineReactTableProps> = () => (
+export const ColumnHidingEnabledDefault = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const ColumnHidingDisabled: Story<MantineReactTableProps> = () => (
+export const ColumnHidingDisabled = () => (
   <MantineReactTable columns={columns} data={data} enableHiding={false} />
 );
 
-export const ColumnHidingDisabledButWithOrdering: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnHidingDisabledButWithOrdering = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -73,9 +67,7 @@ export const ColumnHidingDisabledButWithOrdering: Story<
   />
 );
 
-export const ColumnHidingDisabledButWithPinning: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnHidingDisabledButWithPinning = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -84,9 +76,7 @@ export const ColumnHidingDisabledButWithPinning: Story<
   />
 );
 
-export const ColumnHidingDisabledPerColumn: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnHidingDisabledPerColumn = () => (
   <MantineReactTable
     columns={[
       {
@@ -124,9 +114,7 @@ export const ColumnHidingDisabledPerColumn: Story<
   />
 );
 
-export const ColumnHidingWithHeaderGroups: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnHidingWithHeaderGroups = () => (
   <MantineReactTable
     columns={[
       {

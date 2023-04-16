@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -92,9 +88,7 @@ const longData = [...Array(500)].map(() => ({
   petType: faker.animal.type(),
 }));
 
-export const EnableRowVirtualizationDense: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableRowVirtualizationDense = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData}
@@ -106,9 +100,7 @@ export const EnableRowVirtualizationDense: Story<
   />
 );
 
-export const EnableRowVirtualizationComfortable: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableRowVirtualizationComfortable = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData}
@@ -119,9 +111,7 @@ export const EnableRowVirtualizationComfortable: Story<
   />
 );
 
-export const EnableRowVirtualizationSpacious: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableRowVirtualizationSpacious = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData}
@@ -133,9 +123,7 @@ export const EnableRowVirtualizationSpacious: Story<
   />
 );
 
-export const EnableRowVirtualizationTallContent: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableRowVirtualizationTallContent = () => (
   <MantineReactTable
     columns={[
       ...longColumns,
@@ -152,9 +140,7 @@ export const EnableRowVirtualizationTallContent: Story<
   />
 );
 
-export const EnableRowVirtualizationWithColumnResizing: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableRowVirtualizationWithColumnResizing = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData}
@@ -166,9 +152,7 @@ export const EnableRowVirtualizationWithColumnResizing: Story<
   />
 );
 
-export const EnableRowVirtualizationWithDetailPanel: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableRowVirtualizationWithDetailPanel = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData.slice(0, 100)}
@@ -180,9 +164,7 @@ export const EnableRowVirtualizationWithDetailPanel: Story<
   />
 );
 
-export const EnableRowVirtualizationWithMemoizedCells: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableRowVirtualizationWithMemoizedCells = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData}
@@ -196,9 +178,7 @@ export const EnableRowVirtualizationWithMemoizedCells: Story<
   />
 );
 
-export const EnableRowVirtualizationWithMemoizedRows: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableRowVirtualizationWithMemoizedRows = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData}
@@ -212,9 +192,7 @@ export const EnableRowVirtualizationWithMemoizedRows: Story<
   />
 );
 
-export const EnableRowVirtualizationStickyFooter: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableRowVirtualizationStickyFooter = () => (
   <MantineReactTable
     columns={[
       {
@@ -242,7 +220,7 @@ export const EnableRowVirtualizationStickyFooter: Story<
   />
 );
 
-export const EnableColumnVirtualization: Story<MantineReactTableProps> = () => (
+export const EnableColumnVirtualization = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData.slice(0, 10)}
@@ -251,9 +229,7 @@ export const EnableColumnVirtualization: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const EnableColumnVirtualizationWithPinning: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableColumnVirtualizationWithPinning = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData.slice(0, 10)}
@@ -263,9 +239,7 @@ export const EnableColumnVirtualizationWithPinning: Story<
   />
 );
 
-export const EnableColumnVirtualizationShortColumns: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableColumnVirtualizationShortColumns = () => (
   <MantineReactTable
     columns={longColumns.slice(0, 3)}
     data={longData.slice(0, 10)}
@@ -274,9 +248,7 @@ export const EnableColumnVirtualizationShortColumns: Story<
   />
 );
 
-export const EnableColumnVirtualizationWithFooter: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableColumnVirtualizationWithFooter = () => (
   <MantineReactTable
     columns={[
       {
@@ -301,9 +273,7 @@ export const EnableColumnVirtualizationWithFooter: Story<
   />
 );
 
-export const EnableColumnVirtualizationStickyFooter: Story<
-  MantineReactTableProps
-> = () => (
+export const EnableColumnVirtualizationStickyFooter = () => (
   <MantineReactTable
     columns={[
       {
@@ -329,7 +299,7 @@ export const EnableColumnVirtualizationStickyFooter: Story<
   />
 );
 
-export const RowAndColumnVirtualization: Story<MantineReactTableProps> = () => (
+export const RowAndColumnVirtualization = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData}
@@ -341,9 +311,7 @@ export const RowAndColumnVirtualization: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const RowAndColumnVirtualizationWithFeatures: Story<
-  MantineReactTableProps
-> = () => (
+export const RowAndColumnVirtualizationWithFeatures = () => (
   <MantineReactTable
     columns={longColumns}
     data={longData}
@@ -372,7 +340,7 @@ const fakeData = [...Array(500)].map(() => ({
   ),
 }));
 
-export const MaxVirtualization: Story<MantineReactTableProps> = () => (
+export const MaxVirtualization = () => (
   <MantineReactTable
     columns={fakeColumns}
     data={fakeData}

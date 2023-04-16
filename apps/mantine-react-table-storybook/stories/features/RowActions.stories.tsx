@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { Button, Menu } from '@mantine/core';
 import { IconShare, IconUser, IconTrash } from '@tabler/icons-react';
@@ -46,7 +42,7 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const RowActionsEnabled: Story<MantineReactTableProps> = () => (
+export const RowActionsEnabled = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -83,9 +79,7 @@ export const RowActionsEnabled: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const RowActionsAndEditingEnabled: Story<
-  MantineReactTableProps
-> = () => (
+export const RowActionsAndEditingEnabled = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -123,7 +117,7 @@ export const RowActionsAndEditingEnabled: Story<
   />
 );
 
-export const RowActionsLastColumn: Story<MantineReactTableProps> = () => (
+export const RowActionsLastColumn = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -162,7 +156,7 @@ export const RowActionsLastColumn: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CustomRowActionButtons: Story<MantineReactTableProps> = () => (
+export const CustomRowActionButtons = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -192,9 +186,7 @@ export const CustomRowActionButtons: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CustomRowActionButtonsLastColumn: Story<
-  MantineReactTableProps
-> = () => (
+export const CustomRowActionButtonsLastColumn = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -225,9 +217,7 @@ export const CustomRowActionButtonsLastColumn: Story<
   />
 );
 
-export const RowActionsWithVirtualization: Story<
-  MantineReactTableProps
-> = () => (
+export const RowActionsWithVirtualization = () => (
   <MantineReactTable
     columns={columns}
     data={data}

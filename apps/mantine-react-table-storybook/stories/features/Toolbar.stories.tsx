@@ -1,8 +1,7 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import {
   MantineReactTable,
-  MantineReactTableProps,
   MRT_ColumnDef,
   MRT_ToggleFullScreenButton,
 } from 'mantine-react-table';
@@ -47,11 +46,11 @@ const data = [...Array(5)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const ToolbarEnabledDefault: Story<MantineReactTableProps> = () => (
+export const ToolbarEnabledDefault = () => (
   <MantineReactTable columns={columns} data={data} enableRowSelection />
 );
 
-export const TopToolbarHidden: Story<MantineReactTableProps> = () => (
+export const TopToolbarHidden = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -60,7 +59,7 @@ export const TopToolbarHidden: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const BottomToolbarHidden: Story<MantineReactTableProps> = () => (
+export const BottomToolbarHidden = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -69,7 +68,7 @@ export const BottomToolbarHidden: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const NoToolbars: Story<MantineReactTableProps> = () => (
+export const NoToolbars = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -79,7 +78,7 @@ export const NoToolbars: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const HideToolbarInternalActions: Story<MantineReactTableProps> = () => (
+export const HideToolbarInternalActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -88,9 +87,7 @@ export const HideToolbarInternalActions: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CustomToolbarInternalActions: Story<
-  MantineReactTableProps
-> = () => (
+export const CustomToolbarInternalActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -106,7 +103,7 @@ export const CustomToolbarInternalActions: Story<
   />
 );
 
-export const TableTitle: Story<MantineReactTableProps> = () => (
+export const TableTitle = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -117,7 +114,7 @@ export const TableTitle: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CustomTopToolbarActions: Story<MantineReactTableProps> = () => (
+export const CustomTopToolbarActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -140,7 +137,7 @@ export const CustomTopToolbarActions: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CustomBottomToolbarActions: Story<MantineReactTableProps> = () => (
+export const CustomBottomToolbarActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -163,9 +160,7 @@ export const CustomBottomToolbarActions: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CustomTopToolbarSelectionActions: Story<
-  MantineReactTableProps
-> = () => (
+export const CustomTopToolbarSelectionActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -221,9 +216,7 @@ export const CustomTopToolbarSelectionActions: Story<
   />
 );
 
-export const CustomBottomToolbarSelectionActions: Story<
-  MantineReactTableProps
-> = () => (
+export const CustomBottomToolbarSelectionActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -279,7 +272,7 @@ export const CustomBottomToolbarSelectionActions: Story<
   />
 );
 
-export const ToolbarAlertBannerBottom: Story<MantineReactTableProps> = () => (
+export const ToolbarAlertBannerBottom = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -316,9 +309,7 @@ export const ToolbarAlertBannerBottom: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ToolbarAlertBannerBottomWithActionsAlsoBottom: Story<
-  MantineReactTableProps
-> = () => (
+export const ToolbarAlertBannerBottomWithActionsAlsoBottom = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -355,7 +346,7 @@ export const ToolbarAlertBannerBottomWithActionsAlsoBottom: Story<
   />
 );
 
-export const renderCustomTopToolbar: Story<MantineReactTableProps> = () => (
+export const renderCustomTopToolbar = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -365,7 +356,7 @@ export const renderCustomTopToolbar: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const renderCustomBottomToolbar: Story<MantineReactTableProps> = () => (
+export const renderCustomBottomToolbar = () => (
   <MantineReactTable
     columns={columns}
     data={data}

@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -65,11 +61,11 @@ const data = [...Array(5)].map(() => ({
   })),
 }));
 
-export const SubRowTreeEnabledDefault: Story<MantineReactTableProps> = () => (
+export const SubRowTreeEnabledDefault = () => (
   <MantineReactTable columns={columns} data={data} enableExpanding />
 );
 
-export const SubRowTreeDisableExpandAll: Story<MantineReactTableProps> = () => (
+export const SubRowTreeDisableExpandAll = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -78,9 +74,7 @@ export const SubRowTreeDisableExpandAll: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const SubRowTreeFilterFromLeafRows: Story<
-  MantineReactTableProps
-> = () => (
+export const SubRowTreeFilterFromLeafRows = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -91,9 +85,7 @@ export const SubRowTreeFilterFromLeafRows: Story<
   />
 );
 
-export const SubRowTreeMaxLeafRowFilterDepth0: Story<
-  MantineReactTableProps
-> = () => (
+export const SubRowTreeMaxLeafRowFilterDepth0 = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -104,9 +96,7 @@ export const SubRowTreeMaxLeafRowFilterDepth0: Story<
   />
 );
 
-export const SubRowTreeMaxLeafRowFilterDepth1: Story<
-  MantineReactTableProps
-> = () => (
+export const SubRowTreeMaxLeafRowFilterDepth1 = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -117,9 +107,7 @@ export const SubRowTreeMaxLeafRowFilterDepth1: Story<
   />
 );
 
-export const SubRowTreeMaxLeafRowFilterDepthAndFilterFromLeafRows: Story<
-  MantineReactTableProps
-> = () => (
+export const SubRowTreeMaxLeafRowFilterDepthAndFilterFromLeafRows = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -131,7 +119,7 @@ export const SubRowTreeMaxLeafRowFilterDepthAndFilterFromLeafRows: Story<
   />
 );
 
-export const SubRowTreeWithSelection: Story<MantineReactTableProps> = () => (
+export const SubRowTreeWithSelection = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -141,9 +129,7 @@ export const SubRowTreeWithSelection: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const SubRowTreeWithSelectionNoSubRowSelection: Story<
-  MantineReactTableProps
-> = () => (
+export const SubRowTreeWithSelectionNoSubRowSelection = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -154,9 +140,7 @@ export const SubRowTreeWithSelectionNoSubRowSelection: Story<
   />
 );
 
-export const SubRowTreeWithSingleSelection: Story<
-  MantineReactTableProps
-> = () => (
+export const SubRowTreeWithSingleSelection = () => (
   <MantineReactTable
     columns={columns}
     data={data}

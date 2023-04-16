@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -63,11 +59,11 @@ const data = [...Array(128)].map(() => ({
   avatar: faker.image.avatar(),
 }));
 
-export const FullScreenToggleEnabledDefault: Story<
-  MantineReactTableProps
-> = () => <MantineReactTable columns={columns} data={data} />;
+export const FullScreenToggleEnabledDefault = () => (
+  <MantineReactTable columns={columns} data={data} />
+);
 
-export const DisableFullScreenToggle: Story<MantineReactTableProps> = () => (
+export const DisableFullScreenToggle = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -75,7 +71,7 @@ export const DisableFullScreenToggle: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const DefaultFullScreenOn: Story<MantineReactTableProps> = () => (
+export const DefaultFullScreenOn = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -83,7 +79,7 @@ export const DefaultFullScreenOn: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ControlledFullScreen: Story<MantineReactTableProps> = () => {
+export const ControlledFullScreen = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   return (

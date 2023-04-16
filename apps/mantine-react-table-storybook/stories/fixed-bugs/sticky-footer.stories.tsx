@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { MantineReactTable, MantineReactTableProps } from 'mantine-react-table';
 
 const meta: Meta = {
@@ -130,9 +130,7 @@ const mockColumns: any = [
   },
 ];
 
-export const PinnedColumnsWithStickyFooter: Story<
-  MantineReactTableProps
-> = () => {
+export const PinnedColumnsWithStickyFooter = () => {
   return (
     <MantineReactTable
       columns={mockColumns}

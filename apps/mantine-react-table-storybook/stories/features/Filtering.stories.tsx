@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import {
   MantineReactTable,
-  MantineReactTableProps,
   MRT_ColumnDef,
   MRT_ColumnFiltersState,
 } from 'mantine-react-table';
@@ -68,11 +67,11 @@ const data = [...Array(120)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const FilteringEnabledDefault: Story<MantineReactTableProps> = () => (
+export const FilteringEnabledDefault = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const ColumnFilteringDisabled: Story<MantineReactTableProps> = () => (
+export const ColumnFilteringDisabled = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -80,11 +79,11 @@ export const ColumnFilteringDisabled: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const FilteringDisabled: Story<MantineReactTableProps> = () => (
+export const FilteringDisabled = () => (
   <MantineReactTable columns={columns} data={data} enableFilters={false} />
 );
 
-export const FilterHighlightingDisabled: Story<MantineReactTableProps> = () => (
+export const FilterHighlightingDisabled = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -92,7 +91,7 @@ export const FilterHighlightingDisabled: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const FilterFnAndFilterVariants: Story<MantineReactTableProps> = () => (
+export const FilterFnAndFilterVariants = () => (
   <MantineReactTable
     columns={[
       {
@@ -151,7 +150,7 @@ export const FilterFnAndFilterVariants: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const EnableFilterModes: Story<MantineReactTableProps> = () => (
+export const EnableFilterModes = () => (
   <MantineReactTable
     columns={[
       {
@@ -187,9 +186,7 @@ export const EnableFilterModes: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const DisableSomeFilterTypesForCertainColumns: Story<
-  MantineReactTableProps
-> = () => (
+export const DisableSomeFilterTypesForCertainColumns = () => (
   <MantineReactTable
     columns={[
       {
@@ -227,9 +224,7 @@ export const DisableSomeFilterTypesForCertainColumns: Story<
   />
 );
 
-export const FilteringDisabledForCertainColumns: Story<
-  MantineReactTableProps
-> = () => (
+export const FilteringDisabledForCertainColumns = () => (
   <MantineReactTable
     columns={[
       {
@@ -264,9 +259,7 @@ export const FilteringDisabledForCertainColumns: Story<
   />
 );
 
-export const CustomFilterFunctionPerColumn: Story<
-  MantineReactTableProps
-> = () => (
+export const CustomFilterFunctionPerColumn = () => (
   <MantineReactTable
     columns={[
       {
@@ -309,7 +302,7 @@ export const CustomFilterFunctionPerColumn: Story<
   />
 );
 
-export const CustomFilterFns: Story<MantineReactTableProps> = () => (
+export const CustomFilterFns = () => (
   <MantineReactTable
     columns={[
       {
@@ -353,7 +346,7 @@ export const CustomFilterFns: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const CustomFilterComponent: Story<MantineReactTableProps> = () => (
+export const CustomFilterComponent = () => (
   <MantineReactTable
     columns={[
       {
@@ -408,7 +401,7 @@ export const CustomFilterComponent: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ManualFiltering: Story<MantineReactTableProps> = () => {
+export const ManualFiltering = () => {
   const [rows, setRows] = useState(() => [...data]);
   const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>(
     [],
@@ -445,7 +438,7 @@ export const ManualFiltering: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const ExternalSetFilterValue: Story<MantineReactTableProps> = () => (
+export const ExternalSetFilterValue = () => (
   <MantineReactTable
     columns={columns}
     data={data}

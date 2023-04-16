@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { Box } from '@mantine/core';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
@@ -40,13 +36,11 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const DefaultTableHeadCellStyles: Story<MantineReactTableProps> = () => (
+export const DefaultTableHeadCellStyles = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const StyleAllMantineTableHeadCell: Story<
-  MantineReactTableProps
-> = () => (
+export const StyleAllMantineTableHeadCell = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -60,9 +54,7 @@ export const StyleAllMantineTableHeadCell: Story<
   />
 );
 
-export const StyleTableHeadCellsIndividually: Story<
-  MantineReactTableProps
-> = () => (
+export const StyleTableHeadCellsIndividually = () => (
   <MantineReactTable
     columns={[
       {
@@ -96,7 +88,7 @@ export const StyleTableHeadCellsIndividually: Story<
   />
 );
 
-export const CustomHeadCellRenders: Story<MantineReactTableProps> = () => (
+export const CustomHeadCellRenders = () => (
   <MantineReactTable
     columns={[
       {

@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import {
   MantineReactTable,
-  MantineReactTableProps,
   MRT_ColumnDef,
   MRT_TableInstance,
 } from 'mantine-react-table';
@@ -40,13 +39,11 @@ const data = [...Array(15)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const SelectionEnabled: Story<MantineReactTableProps> = () => (
+export const SelectionEnabled = () => (
   <MantineReactTable columns={columns} data={data} enableRowSelection />
 );
 
-export const SelectionEnabledConditionally: Story<
-  MantineReactTableProps
-> = () => (
+export const SelectionEnabledConditionally = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -54,9 +51,7 @@ export const SelectionEnabledConditionally: Story<
   />
 );
 
-export const SelectionEnabledWithRowClick: Story<
-  MantineReactTableProps
-> = () => (
+export const SelectionEnabledWithRowClick = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -70,7 +65,7 @@ export const SelectionEnabledWithRowClick: Story<
   />
 );
 
-export const ManualSelection: Story<MantineReactTableProps> = () => {
+export const ManualSelection = () => {
   const [rowSelection, setRowSelection] = useState<Record<string, boolean>>({});
 
   console.info(rowSelection);
@@ -95,7 +90,7 @@ export const ManualSelection: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const SelectAllModeAll: Story<MantineReactTableProps> = () => (
+export const SelectAllModeAll = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -104,9 +99,7 @@ export const SelectAllModeAll: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const SelectAllModeAllConditionally: Story<
-  MantineReactTableProps
-> = () => (
+export const SelectAllModeAllConditionally = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -115,7 +108,7 @@ export const SelectAllModeAllConditionally: Story<
   />
 );
 
-export const SelectAllModePage: Story<MantineReactTableProps> = () => (
+export const SelectAllModePage = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -124,9 +117,7 @@ export const SelectAllModePage: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const SelectAllDisabledCustomHeader: Story<
-  MantineReactTableProps
-> = () => (
+export const SelectAllDisabledCustomHeader = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -138,7 +129,7 @@ export const SelectAllDisabledCustomHeader: Story<
   />
 );
 
-export const SingleSelectionRadio: Story<MantineReactTableProps> = () => (
+export const SingleSelectionRadio = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -147,9 +138,7 @@ export const SingleSelectionRadio: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const SingleSelectionRadioWithRowClick: Story<
-  MantineReactTableProps
-> = () => (
+export const SingleSelectionRadioWithRowClick = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -164,9 +153,7 @@ export const SingleSelectionRadioWithRowClick: Story<
   />
 );
 
-export const SelectCheckboxSecondaryColor: Story<
-  MantineReactTableProps
-> = () => (
+export const SelectCheckboxSecondaryColor = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -175,7 +162,7 @@ export const SelectCheckboxSecondaryColor: Story<
   />
 );
 
-export const SelectionWithInstanceRef: Story<MantineReactTableProps> = () => {
+export const SelectionWithInstanceRef = () => {
   const tableInstanceRef = useRef<MRT_TableInstance<(typeof data)[0]>>(null);
 
   return (

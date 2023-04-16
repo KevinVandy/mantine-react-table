@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { MantineReactTable, MantineReactTableProps } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 // import { Menu } from '@mantine/core';
@@ -18,9 +18,7 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const EditingEnabledEditModeModalDefault: Story<
-  MantineReactTableProps
-> = () => {
+export const EditingEnabledEditModeModalDefault = () => {
   const [tableData, setTableData] = useState(data);
 
   const handleSaveRow = ({ exitEditingMode, row, values }) => {
@@ -61,7 +59,7 @@ export const EditingEnabledEditModeModalDefault: Story<
   );
 };
 
-export const EditingEnabledEditModeRow: Story<MantineReactTableProps> = () => {
+export const EditingEnabledEditModeRow = () => {
   const [tableData, setTableData] = useState(data);
 
   const handleSaveRow = ({ exitEditingMode, row, values }) => {
@@ -103,7 +101,7 @@ export const EditingEnabledEditModeRow: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const EditingEnabledEditModeCell: Story<MantineReactTableProps> = () => {
+export const EditingEnabledEditModeCell = () => {
   const [tableData, setTableData] = useState(data);
 
   const handleSaveCell = (cell, value) => {
@@ -148,9 +146,7 @@ export const EditingEnabledEditModeCell: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const EditingEnabledEditModeTable: Story<
-  MantineReactTableProps
-> = () => {
+export const EditingEnabledEditModeTable = () => {
   const [tableData, setTableData] = useState(data);
 
   const handleSaveCell = (cell, value) => {
@@ -195,7 +191,7 @@ export const EditingEnabledEditModeTable: Story<
   );
 };
 
-export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
+export const EditingCustomizeInput = () => {
   const [tableData, setTableData] = useState(data);
 
   const handleSaveRow = ({ row, values }) => {
@@ -301,7 +297,7 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
   );
 };
 
-// export const EditingWithValidation: Story<MantineReactTableProps> = () => {
+// export const EditingWithValidation = () => {
 //   const [tableData, setTableData] = useState(data);
 //   const [firstNameError, setFirstNameError] = useState<string | boolean>(false);
 //   const [lastNameError, setLastNameError] = useState<string | boolean>(false);
@@ -376,7 +372,7 @@ export const EditingCustomizeInput: Story<MantineReactTableProps> = () => {
 //   );
 // };
 
-export const EditingEnabledAsync: Story<MantineReactTableProps> = () => {
+export const EditingEnabledAsync = () => {
   const [tableData, setTableData] = useState(data);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -434,7 +430,7 @@ const nestedData = [...Array(10)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const EditingNestedData: Story<MantineReactTableProps> = () => {
+export const EditingNestedData = () => {
   const [tableData, setTableData] = useState(() => nestedData);
 
   return (
@@ -481,9 +477,7 @@ export const EditingNestedData: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const EditingEnabledEditModeTableWithGroupedRows: Story<
-  MantineReactTableProps
-> = () => {
+export const EditingEnabledEditModeTableWithGroupedRows = () => {
   const [tableData, setTableData] = useState(data);
 
   const handleSaveRow = ({ exitEditingMode, row, values }) => {

@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 import { MantineProvider } from '@mantine/core';
 
@@ -40,11 +36,11 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const DefaultTheme: Story<MantineReactTableProps> = () => (
+export const DefaultTheme = () => (
   <MantineReactTable columns={columns} data={data} enableRowSelection />
 );
 
-export const CustomLightTheme: Story<MantineReactTableProps> = () => {
+export const CustomLightTheme = () => {
   // const theme = createTheme({
   //   palette: {
   //     primary: {
@@ -65,7 +61,7 @@ export const CustomLightTheme: Story<MantineReactTableProps> = () => {
   );
 };
 
-export const CustomDarkTheme: Story<MantineReactTableProps> = () => {
+export const CustomDarkTheme = () => {
   // const theme = createTheme({
   //   palette: {
   //     mode: 'dark',

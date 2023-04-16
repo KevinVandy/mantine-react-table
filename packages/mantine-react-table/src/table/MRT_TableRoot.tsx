@@ -319,7 +319,8 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
     setHoveredRow: props.onHoveredRowChange ?? setHoveredRow,
     setIsFullScreen: props.onIsFullScreenChange ?? setIsFullScreen,
     setShowAlertBanner: props.onShowAlertBannerChange ?? setShowAlertBanner,
-    setShowColumnFilters: props.onShowColumnFiltersChange ?? setShowColumnFilters,
+    setShowColumnFilters:
+      props.onShowColumnFiltersChange ?? setShowColumnFilters,
     setShowGlobalFilter: props.onShowGlobalFilterChange ?? setShowGlobalFilter,
     setShowToolbarDropZone:
       props.onShowToolbarDropZoneChange ?? setShowToolbarDropZone,
@@ -368,7 +369,7 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
     <>
       <MRT_TablePaper table={table as any} />
       {editingRow && props.editingMode === 'modal' && (
-        <MRT_EditRowModal row={editingRow as any} table={table} open  />
+        <MRT_EditRowModal row={editingRow as any} table={table} open />
       )}
     </>
   );

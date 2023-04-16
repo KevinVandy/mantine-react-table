@@ -82,11 +82,11 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
 
   return (
     <TextInput
-    disabled={
-      (columnDef.enableEditing instanceof Function
-        ? columnDef.enableEditing(row)
-        : columnDef.enableEditing) === false
-    }
+      disabled={
+        (columnDef.enableEditing instanceof Function
+          ? columnDef.enableEditing(row)
+          : columnDef.enableEditing) === false
+      }
       // inputRef={(inputRef) => {
       //   if (inputRef) {
       //     editInputRefs.current[column.id] = inputRef;

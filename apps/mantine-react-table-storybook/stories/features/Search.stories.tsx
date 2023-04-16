@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -49,15 +45,15 @@ const data = [...Array(200)].map(() => ({
   age: +faker.datatype.float({ min: 0, max: 100 }),
 }));
 
-export const SearchEnabledDefault: Story<MantineReactTableProps> = () => (
+export const SearchEnabledDefault = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const SearchContains: Story<MantineReactTableProps> = () => (
+export const SearchContains = () => (
   <MantineReactTable columns={columns} data={data} globalFilterFn="contains" />
 );
 
-export const CustomGlobalFilterFn: Story<MantineReactTableProps> = () => (
+export const CustomGlobalFilterFn = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -69,13 +65,11 @@ export const CustomGlobalFilterFn: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const SearchGlobalFilterModes: Story<MantineReactTableProps> = () => (
+export const SearchGlobalFilterModes = () => (
   <MantineReactTable columns={columns} data={data} enableGlobalFilterModes />
 );
 
-export const SearchGlobalFilterModeOptions: Story<
-  MantineReactTableProps
-> = () => (
+export const SearchGlobalFilterModeOptions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -84,11 +78,11 @@ export const SearchGlobalFilterModeOptions: Story<
   />
 );
 
-export const SearchRankedResultsEnabledByDefault: Story<
-  MantineReactTableProps
-> = () => <MantineReactTable columns={columns} data={data} enableRowNumbers />;
+export const SearchRankedResultsEnabledByDefault = () => (
+  <MantineReactTable columns={columns} data={data} enableRowNumbers />
+);
 
-export const SearchDisableRankedResults: Story<MantineReactTableProps> = () => (
+export const SearchDisableRankedResults = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -97,9 +91,7 @@ export const SearchDisableRankedResults: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ShowSearchRightBoxByDefault: Story<
-  MantineReactTableProps
-> = () => (
+export const ShowSearchRightBoxByDefault = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -107,7 +99,7 @@ export const ShowSearchRightBoxByDefault: Story<
   />
 );
 
-export const ShowSearchBoxLeftByDefault: Story<MantineReactTableProps> = () => (
+export const ShowSearchBoxLeftByDefault = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -116,9 +108,7 @@ export const ShowSearchBoxLeftByDefault: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ShowSearchBoxLeftByDefaultWithSelection: Story<
-  MantineReactTableProps
-> = () => (
+export const ShowSearchBoxLeftByDefaultWithSelection = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -128,7 +118,7 @@ export const ShowSearchBoxLeftByDefaultWithSelection: Story<
   />
 );
 
-export const JustASearchBox: Story<MantineReactTableProps> = () => (
+export const JustASearchBox = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -137,11 +127,11 @@ export const JustASearchBox: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const SearchDisabled: Story<MantineReactTableProps> = () => (
+export const SearchDisabled = () => (
   <MantineReactTable columns={columns} data={data} enableGlobalFilter={false} />
 );
 
-export const CustomizeSearchTextBox: Story<MantineReactTableProps> = () => (
+export const CustomizeSearchTextBox = () => (
   <MantineReactTable
     columns={columns}
     data={data}

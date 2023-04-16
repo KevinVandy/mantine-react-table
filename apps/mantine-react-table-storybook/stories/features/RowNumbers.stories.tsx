@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -44,7 +40,7 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const enableRowNumbersOriginal: Story<MantineReactTableProps> = () => (
+export const enableRowNumbersOriginal = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -53,7 +49,7 @@ export const enableRowNumbersOriginal: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const enableRowNumbersStatic: Story<MantineReactTableProps> = () => (
+export const enableRowNumbersStatic = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -63,9 +59,7 @@ export const enableRowNumbersStatic: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const enableRowNumbersOriginalVirtual: Story<
-  MantineReactTableProps
-> = () => (
+export const enableRowNumbersOriginalVirtual = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -76,9 +70,7 @@ export const enableRowNumbersOriginalVirtual: Story<
   />
 );
 
-export const enableRowNumbersStaticVirtual: Story<
-  MantineReactTableProps
-> = () => (
+export const enableRowNumbersStaticVirtual = () => (
   <MantineReactTable
     columns={columns}
     data={data}

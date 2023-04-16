@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -44,17 +40,15 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const SortingEnabledDefault: Story<MantineReactTableProps> = () => (
+export const SortingEnabledDefault = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const DisableSorting: Story<MantineReactTableProps> = () => (
+export const DisableSorting = () => (
   <MantineReactTable columns={columns} data={data} enableSorting={false} />
 );
 
-export const DisableSortingForSpecificColumns: Story<
-  MantineReactTableProps
-> = () => (
+export const DisableSortingForSpecificColumns = () => (
   <MantineReactTable
     columns={[
       {
@@ -84,11 +78,11 @@ export const DisableSortingForSpecificColumns: Story<
   />
 );
 
-export const DisableMultiSorting: Story<MantineReactTableProps> = () => (
+export const DisableMultiSorting = () => (
   <MantineReactTable columns={columns} data={data} enableMultiSort={false} />
 );
 
-export const SortRanking: Story<MantineReactTableProps> = () => (
+export const SortRanking = () => (
   <MantineReactTable
     columns={[
       {

@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -38,13 +34,11 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const DefaultTableBodyCellStyles: Story<MantineReactTableProps> = () => (
+export const DefaultTableBodyCellStyles = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const StyleAllMantineTableBodyCell: Story<
-  MantineReactTableProps
-> = () => (
+export const StyleAllMantineTableBodyCell = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -57,9 +51,7 @@ export const StyleAllMantineTableBodyCell: Story<
   />
 );
 
-export const StyleMantineTableBodyCellConditionallyIn1Column: Story<
-  MantineReactTableProps
-> = () => (
+export const StyleMantineTableBodyCellConditionallyIn1Column = () => (
   <MantineReactTable
     columns={[
       {
@@ -95,7 +87,7 @@ export const StyleMantineTableBodyCellConditionallyIn1Column: Story<
   />
 );
 
-export const CustomCellRender: Story<MantineReactTableProps> = () => (
+export const CustomCellRender = () => (
   <MantineReactTable
     columns={[
       {

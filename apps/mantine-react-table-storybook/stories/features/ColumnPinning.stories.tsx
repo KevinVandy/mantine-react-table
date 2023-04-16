@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -49,11 +45,11 @@ const data = [...Array(100)].map(() => ({
   state: faker.address.state(),
 }));
 
-export const ColumnPinningEnabled: Story<MantineReactTableProps> = () => (
+export const ColumnPinningEnabled = () => (
   <MantineReactTable columns={columns} data={data} enablePinning />
 );
 
-export const ColumnPinningInitial: Story<MantineReactTableProps> = () => (
+export const ColumnPinningInitial = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -62,9 +58,7 @@ export const ColumnPinningInitial: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ColumnPinningDisabledPerColumn: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnPinningDisabledPerColumn = () => (
   <MantineReactTable
     columns={[
       {
@@ -98,7 +92,7 @@ export const ColumnPinningDisabledPerColumn: Story<
   />
 );
 
-export const ColumnPinningWithSelect: Story<MantineReactTableProps> = () => (
+export const ColumnPinningWithSelect = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -107,9 +101,7 @@ export const ColumnPinningWithSelect: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const ColumnPinningWithDetailPanel: Story<
-  MantineReactTableProps
-> = () => (
+export const ColumnPinningWithDetailPanel = () => (
   <MantineReactTable
     columns={columns}
     data={data}

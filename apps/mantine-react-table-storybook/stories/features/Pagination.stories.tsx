@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -38,17 +34,15 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const PaginationEnabledDefault: Story<MantineReactTableProps> = () => (
+export const PaginationEnabledDefault = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const PaginationDisabledOrOverriden: Story<
-  MantineReactTableProps
-> = () => (
+export const PaginationDisabledOrOverriden = () => (
   <MantineReactTable columns={columns} data={data} enablePagination={false} />
 );
 
-export const PaginationPositionBottom: Story<MantineReactTableProps> = () => (
+export const PaginationPositionBottom = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -56,19 +50,15 @@ export const PaginationPositionBottom: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const PaginationPositionTop: Story<MantineReactTableProps> = () => (
+export const PaginationPositionTop = () => (
   <MantineReactTable columns={columns} data={data} positionPagination="top" />
 );
 
-export const PaginationPositionTopAndBottom: Story<
-  MantineReactTableProps
-> = () => (
+export const PaginationPositionTopAndBottom = () => (
   <MantineReactTable columns={columns} data={data} positionPagination="both" />
 );
 
-export const PaginationPositionTopAndBottomNoInternalActions: Story<
-  MantineReactTableProps
-> = () => (
+export const PaginationPositionTopAndBottomNoInternalActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -77,9 +67,7 @@ export const PaginationPositionTopAndBottomNoInternalActions: Story<
   />
 );
 
-export const CustomizePaginationComponents: Story<
-  MantineReactTableProps
-> = () => (
+export const CustomizePaginationComponents = () => (
   <MantineReactTable
     columns={columns}
     data={data}

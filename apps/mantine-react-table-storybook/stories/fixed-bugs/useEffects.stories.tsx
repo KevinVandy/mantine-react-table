@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import {
   MantineReactTable,
-  MantineReactTableProps,
   MRT_ColumnDef,
   MRT_ColumnFiltersState,
 } from 'mantine-react-table';
@@ -45,7 +44,7 @@ const data = [...Array(100)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const FilterModesRefetch: Story<MantineReactTableProps> = () => {
+export const FilterModesRefetch = () => {
   const [columnFilters, setColumnFilters] = useState<MRT_ColumnFiltersState>(
     [],
   );

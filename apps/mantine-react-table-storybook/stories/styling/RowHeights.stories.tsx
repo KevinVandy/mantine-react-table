@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -49,7 +45,7 @@ const data = [...Array(25)].map(() => ({
   phoneNumber: faker.phone.number(),
 }));
 
-export const SetRowHeight: Story<MantineReactTableProps> = () => (
+export const SetRowHeight = () => (
   <MantineReactTable
     columns={columns}
     data={data}

@@ -1,10 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import {
-  MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
-} from 'mantine-react-table';
+import { Meta } from '@storybook/react';
+import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {
@@ -38,11 +34,11 @@ const data = [...Array(21)].map(() => ({
   address: faker.address.streetAddress(),
 }));
 
-export const DefaultTableBodyRowStyles: Story<MantineReactTableProps> = () => (
+export const DefaultTableBodyRowStyles = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
-export const DisableRowHoverEffect: Story<MantineReactTableProps> = () => (
+export const DisableRowHoverEffect = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -52,7 +48,7 @@ export const DisableRowHoverEffect: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const StyleMantineTableBodyRow: Story<MantineReactTableProps> = () => (
+export const StyleMantineTableBodyRow = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -65,7 +61,7 @@ export const StyleMantineTableBodyRow: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const StyleCustomStripedRows: Story<MantineReactTableProps> = () => (
+export const StyleCustomStripedRows = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -80,9 +76,7 @@ export const StyleCustomStripedRows: Story<MantineReactTableProps> = () => (
   />
 );
 
-export const StyleCustomStripedRowsDetailPanel: Story<
-  MantineReactTableProps
-> = () => (
+export const StyleCustomStripedRowsDetailPanel = () => (
   <MantineReactTable
     columns={columns}
     data={data}
@@ -98,9 +92,7 @@ export const StyleCustomStripedRowsDetailPanel: Story<
   />
 );
 
-export const ConditionallyStyleMantineTableRow: Story<
-  MantineReactTableProps
-> = () => (
+export const ConditionallyStyleMantineTableRow = () => (
   <MantineReactTable
     columns={columns}
     data={data}
