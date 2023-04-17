@@ -29,6 +29,7 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
       setShowToolbarDropZone(
         !!enableGrouping &&
           !!draggingColumn &&
+          draggingColumn.columnDef.enableGrouping !== false &&
           !grouping.includes(draggingColumn.id),
       );
     }

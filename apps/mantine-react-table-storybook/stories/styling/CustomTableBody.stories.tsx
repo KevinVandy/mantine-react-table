@@ -2,6 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { faker } from '@faker-js/faker';
+import { Text } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Styling/Custom Table Body Examples',
@@ -52,5 +53,13 @@ export const CustomTableBody = () => (
     mantineTableBodyProps={{
       children: 'Custom Table Body',
     }}
+  />
+);
+
+export const CustomEmptyRowsJSX = () => (
+  <MantineReactTable
+    columns={columns}
+    data={[]}
+    renderEmptyRowsFallback={() => <Text>OMG THERE ARE NO ROWS 😳</Text>}
   />
 );

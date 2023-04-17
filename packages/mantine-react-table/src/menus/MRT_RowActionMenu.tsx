@@ -31,12 +31,16 @@ export const MRT_RowActionMenu = <TData extends Record<string, any> = {}>({
         label={localization.rowActions}
       >
         <Menu.Target>
-          <ActionIcon aria-label={localization.rowActions} size="sm">
+          <ActionIcon
+            aria-label={localization.rowActions}
+            onClick={(event) => event.stopPropagation()}
+            size="sm"
+          >
             <IconDots />
           </ActionIcon>
         </Menu.Target>
       </Tooltip>
-      <Menu.Dropdown>
+      <Menu.Dropdown onClick={(event) => event.stopPropagation()}>
         {enableEditing && (
           <Menu.Item icon={<IconEdit />} onClick={handleEdit}>
             {localization.edit}

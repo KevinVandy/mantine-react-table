@@ -163,29 +163,34 @@ export const getTrailingDisplayColumnIds = <
   TData extends Record<string, any> = {},
 >(
   props: MantineReactTableProps<TData>,
-) => [
-  props.positionActionsColumn === 'last' &&
-    (props.enableRowActions ||
-      (props.enableEditing &&
-        ['row', 'modal'].includes(props.editingMode ?? ''))) &&
-    'mrt-row-actions',
-  props.positionExpandColumn === 'last' &&
-    showExpandColumn(props) &&
-    'mrt-row-expand',
-];
+) =>
+  [
+    props.positionActionsColumn === 'last' &&
+      (props.enableRowActions ||
+        (props.enableEditing &&
+          ['row', 'modal'].includes(props.editingMode ?? ''))) &&
+      'mrt-row-actions',
+    props.positionExpandColumn === 'last' &&
+      showExpandColumn(props) &&
+      'mrt-row-expand',
+  ].filter(Boolean) as MRT_DisplayColumnIds[];
 
 export const getDefaultColumnOrderIds = <
   TData extends Record<string, any> = {},
 >(
   props: MantineReactTableProps<TData>,
-) =>
-  [
-    ...getLeadingDisplayColumnIds(props),
-    ...getAllLeafColumnDefs(props.columns).map((columnDef) =>
-      getColumnId(columnDef),
-    ),
-    ...getTrailingDisplayColumnIds(props),
-  ].filter(Boolean) as string[];
+) => {
+  const leadingDisplayCols: string[] = getLeadingDisplayColumnIds(props);
+  const trailingDisplayCols: string[] = getTrailingDisplayColumnIds(props);
+  const allLeafColumnDefs = getAllLeafColumnDefs(props.columns)
+    .map((columnDef) => getColumnId(columnDef))
+    .filter(
+      (columnId) =>
+        !leadingDisplayCols.includes(columnId) &&
+        !trailingDisplayCols.includes(columnId),
+    );
+  return [...leadingDisplayCols, ...allLeafColumnDefs, ...trailingDisplayCols];
+};
 
 export const getDefaultColumnFilterFn = <
   TData extends Record<string, any> = {},
@@ -249,77 +254,84 @@ export const getCommonCellStyles = ({
   table: MRT_TableInstance;
   tableCellProps: BoxProps;
   theme: MantineTheme;
-}) => ({
-  backgroundColor:
-    column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-      ? theme.fn.rgba(
-          theme.colorScheme === 'dark'
-            ? theme.fn.darken(theme.colors.dark[7], 0.02)
-            : theme.white,
-          0.97,
-        )
-      : 'inherit',
-  backgroundClip: 'padding-box',
-  boxShadow: getIsLastLeftPinnedColumn(table, column)
-    ? `-4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
-    : getIsFirstRightPinnedColumn(column)
-    ? `4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
-    : undefined,
-  display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
-  flex:
-    table.options.layoutMode === 'grid'
-      ? `var(--${header ? 'header' : 'col'}-${parseCSSVarId(
-          header?.id ?? column.id,
-        )}-size) 0 auto`
+}) => {
+  const widthStyles = {
+    minWidth: `max(calc(var(--${header ? 'header' : 'col'}-${parseCSSVarId(
+      header?.id ?? column.id,
+    )}-size) * 1px), ${column.columnDef.minSize ?? 30}px)`,
+    width: `calc(var(--${header ? 'header' : 'col'}-${parseCSSVarId(
+      header?.id ?? column.id,
+    )}-size) * 1px)`,
+  };
+  return {
+    backgroundColor:
+      column.getIsPinned() && column.columnDef.columnDefType !== 'group'
+        ? theme.fn.rgba(
+            theme.colorScheme === 'dark'
+              ? theme.fn.darken(theme.colors.dark[7], 0.02)
+              : theme.white,
+            0.97,
+          )
+        : 'inherit',
+    backgroundClip: 'padding-box',
+    boxShadow: getIsLastLeftPinnedColumn(table, column)
+      ? `-4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
+      : getIsFirstRightPinnedColumn(column)
+      ? `4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
       : undefined,
-  left:
-    column.getIsPinned() === 'left'
-      ? `${column.getStart('left')}px`
-      : undefined,
-  ml:
-    table.options.enableColumnVirtualization &&
-    column.getIsPinned() === 'left' &&
-    column.getPinnedIndex() === 0
-      ? `-${
-          column.getSize() * (table.getState().columnPinning.left?.length ?? 1)
-        }px`
-      : undefined,
-  mr:
-    table.options.enableColumnVirtualization &&
-    column.getIsPinned() === 'right' &&
-    column.getPinnedIndex() === table.getVisibleLeafColumns().length - 1
-      ? `-${
-          column.getSize() *
-          (table.getState().columnPinning.right?.length ?? 1) *
-          1.2
-        }px`
-      : undefined,
-  opacity:
-    table.getState().draggingColumn?.id === column.id ||
-    table.getState().hoveredColumn?.id === column.id
-      ? 0.5
-      : 1,
-  position:
-    column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-      ? 'sticky'
-      : undefined,
-  right:
-    column.getIsPinned() === 'right'
-      ? `${getTotalRight(table, column)}px`
-      : undefined,
-  transition: table.options.enableColumnVirtualization
-    ? 'none'
-    : `padding 100ms ease-in-out`,
-  ...(tableCellProps?.sx instanceof Function
-    ? tableCellProps.sx(theme)
-    : (tableCellProps?.sx as any)),
-  minWidth: `max(calc(var(--${header ? 'header' : 'col'}-${parseCSSVarId(
-    header?.id ?? column.id,
-  )}-size) * 1px), ${column.columnDef.minSize ?? 30}px)`,
-  width: `calc(var(--${header ? 'header' : 'col'}-${parseCSSVarId(
-    header?.id ?? column.id,
-  )}-size) * 1px)`,
-});
+    display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
+    flex:
+      table.options.layoutMode === 'grid'
+        ? `var(--${header ? 'header' : 'col'}-${parseCSSVarId(
+            header?.id ?? column.id,
+          )}-size) 0 auto`
+        : undefined,
+    left:
+      column.getIsPinned() === 'left'
+        ? `${column.getStart('left')}px`
+        : undefined,
+    ml:
+      table.options.enableColumnVirtualization &&
+      column.getIsPinned() === 'left' &&
+      column.getPinnedIndex() === 0
+        ? `-${
+            column.getSize() *
+            (table.getState().columnPinning.left?.length ?? 1)
+          }px`
+        : undefined,
+    mr:
+      table.options.enableColumnVirtualization &&
+      column.getIsPinned() === 'right' &&
+      column.getPinnedIndex() === table.getVisibleLeafColumns().length - 1
+        ? `-${
+            column.getSize() *
+            (table.getState().columnPinning.right?.length ?? 1) *
+            1.2
+          }px`
+        : undefined,
+    opacity:
+      table.getState().draggingColumn?.id === column.id ||
+      table.getState().hoveredColumn?.id === column.id
+        ? 0.5
+        : 1,
+    position:
+      column.getIsPinned() && column.columnDef.columnDefType !== 'group'
+        ? 'sticky'
+        : undefined,
+    right:
+      column.getIsPinned() === 'right'
+        ? `${getTotalRight(table, column)}px`
+        : undefined,
+    transition: table.options.enableColumnVirtualization
+      ? 'none'
+      : `padding 100ms ease-in-out`,
+    ...(!table.options.enableColumnResizing && widthStyles), //let devs pass in width styles if column resizing is disabled
+    ...(tableCellProps?.sx instanceof Function
+      ? tableCellProps.sx(theme)
+      : (tableCellProps?.sx as any)),
+    ...(table.options.enableColumnResizing && widthStyles), //don't let devs pass in width styles if column resizing is enabled
+  };
+};
 
 export const MRT_DefaultColumn = {
   filterVariant: 'text',

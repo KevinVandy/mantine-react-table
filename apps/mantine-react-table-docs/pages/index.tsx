@@ -233,7 +233,7 @@ const HomePage = () => {
         </Box>
         <Box py="16px">
           <SampleCodeSnippet className="language-bash">
-            npm i mantine-react-table@beta @mantine/core @mantine/hooks
+            npm i mantine-react-table @mantine/core @mantine/hooks
             @mantine/dates @emotion/react @tabler/icons-react dayjs
           </SampleCodeSnippet>
         </Box>

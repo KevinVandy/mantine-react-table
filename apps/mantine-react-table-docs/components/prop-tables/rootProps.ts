@@ -1126,7 +1126,7 @@ export const rootProps: PropRow[] = [
     linkText: 'Mantine Box Docs',
     required: false,
     source: 'Mantine',
-    type: 'BoxProps | ({ isDetailPanel, row, table }) => BoxProps',
+    type: 'BoxProps | ({ isDetailPanel, row, staticRowIndex, table }) => BoxProps',
   },
   {
     propName: 'mantineTableContainerProps',
@@ -1742,6 +1742,16 @@ export const rootProps: PropRow[] = [
     required: false,
     source: '',
     type: '({ internalFilterOptions, onSelectFilterMode, table }) => ReactNode[]',
+  },
+  {
+    propName: 'renderEmptyRowsFallback',
+    defaultValue: '',
+    description: '',
+    link: '',
+    linkText: '',
+    required: false,
+    source: '',
+    type: '({ table }) => ReactNode',
   },
   {
     propName: 'renderRowActionMenuItems',

@@ -254,3 +254,42 @@ export const RowActionsWithVirtualization = () => (
     ]}
   />
 );
+
+export const RowActionsLastWithColumnOrdering = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableColumnOrdering
+    enableRowActions
+    positionActionsColumn='last'
+    renderRowActionMenuItems={({ row }) => [
+      <Menu.Item
+        icon={<IconUser />}
+        key={1}
+        onClick={() => {
+          console.info('View Profile', row);
+        }}
+      >
+        View Profile
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconTrash />}
+        key={2}
+        onClick={() => {
+          console.info('Remove', row);
+        }}
+      >
+        Remove
+      </Menu.Item>,
+      <Menu.Item
+        icon={<IconShare />}
+        key={3}
+        onClick={() => {
+          console.info('Share', row);
+        }}
+      >
+        Share
+      </Menu.Item>,
+    ]}
+  />
+);

@@ -41,9 +41,9 @@ export const MRT_TableHeadCellResizeHandle = ({ header, table }: Props) => {
             ? '-16px'
             : '-14px',
         position: 'absolute',
-        right: '1px',
-        paddingLeft: '4px',
-        paddingRight: '4px',
+        right: '4px',
+        paddingLeft: '1px',
+        paddingRight: '1px',
         '&:active > .mantine-Divider-vertical': {
           borderLeftColor: getPrimaryColor(theme),
           opacity: 1,

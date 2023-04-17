@@ -875,6 +875,7 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
       | ((props: {
           isDetailPanel?: boolean;
           row: MRT_Row<TData>;
+          staticRowIndex: number;
           table: MRT_TableInstance<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableRowElement>);
     mantineTableContainerProps?:
@@ -996,6 +997,9 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
     renderGlobalFilterModeMenuItems?: (props: {
       internalFilterOptions: MRT_InternalFilterOption[];
       onSelectFilterMode: (filterMode: MRT_FilterOption) => void;
+      table: MRT_TableInstance<TData>;
+    }) => ReactNode;
+    renderEmptyRowsFallback?: (props: {
       table: MRT_TableInstance<TData>;
     }) => ReactNode;
     renderRowActionMenuItems?: (props: {

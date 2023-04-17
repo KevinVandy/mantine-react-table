@@ -61,7 +61,17 @@ export const MRT_GlobalFilterTextInput = <
   }, [globalFilter]);
 
   return (
-    <Collapse in={showGlobalFilter} sx={{ '& > div': { display: 'flex' } }}>
+    <Collapse
+      in={showGlobalFilter}
+      sx={{
+        '& > div': {
+          display: 'flex',
+          alignItems: 'center',
+          gap: '16px',
+          flexWrap: 'nowrap',
+        },
+      }}
+    >
       {enableGlobalFilterModes && (
         <Menu withinPortal>
           <Menu.Target>

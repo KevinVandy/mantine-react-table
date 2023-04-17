@@ -5,6 +5,7 @@ import type { MRT_Row, MRT_TableInstance, MRT_VirtualItem } from '..';
 interface Props {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
   row: MRT_Row;
+  rowIndex: number;
   table: MRT_TableInstance;
   virtualRow?: MRT_VirtualItem;
 }
@@ -12,6 +13,7 @@ interface Props {
 export const MRT_TableDetailPanel = ({
   parentRowRef,
   row,
+  rowIndex,
   table,
   virtualRow,
 }: Props) => {
@@ -29,7 +31,7 @@ export const MRT_TableDetailPanel = ({
 
   const tableRowProps =
     mantineTableBodyRowProps instanceof Function
-      ? mantineTableBodyRowProps({ isDetailPanel: true, row, table })
+      ? mantineTableBodyRowProps({ isDetailPanel: true, row, staticRowIndex: rowIndex, table })
       : mantineTableBodyRowProps;
 
   const tableCellProps =

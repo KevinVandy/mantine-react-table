@@ -55,7 +55,7 @@ export const MRT_TableBodyRow = ({
 
   const tableRowProps =
     mantineTableBodyRowProps instanceof Function
-      ? mantineTableBodyRowProps({ row, table })
+      ? mantineTableBodyRowProps({ row, staticRowIndex: rowIndex, table })
       : mantineTableBodyRowProps;
 
   const handleDragEnter = (_e: DragEvent) => {
@@ -121,7 +121,6 @@ export const MRT_TableBodyRow = ({
             : (cellOrVirtualCell as MRT_Cell);
           const props = {
             cell,
-            enableHover,
             key: cell.id,
             measureElement: columnVirtualizer?.measureElement,
             numRows,
@@ -151,6 +150,7 @@ export const MRT_TableBodyRow = ({
         <MRT_TableDetailPanel
           parentRowRef={rowRef}
           row={row}
+          rowIndex={rowIndex}
           table={table}
           virtualRow={virtualRow}
         />

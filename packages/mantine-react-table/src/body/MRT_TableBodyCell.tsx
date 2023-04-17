@@ -22,7 +22,6 @@ import type { MRT_Cell, MRT_TableInstance, MRT_VirtualItem } from '..';
 
 interface Props {
   cell: MRT_Cell;
-  enableHover?: boolean;
   measureElement?: (element: HTMLTableCellElement) => void;
   numRows: number;
   rowIndex: number;
@@ -33,7 +32,6 @@ interface Props {
 
 export const MRT_TableBodyCell = ({
   cell,
-  enableHover,
   measureElement,
   numRows,
   rowIndex,
@@ -217,14 +215,11 @@ export const MRT_TableBodyCell = ({
         zIndex:
           draggingColumn?.id === column.id ? 2 : column.getIsPinned() ? 1 : 0,
         '&:hover': {
-          backgroundColor:
-            enableHover &&
-            isEditable &&
-            ['table', 'cell'].includes(editingMode ?? '')
-              ? theme.colorScheme === 'dark'
-                ? `${theme.fn.lighten(theme.colors.dark[7], 0.2)} !important`
-                : `${theme.fn.darken(theme.colors.dark[7], 0.1)} !important`
-              : undefined,
+          outline: ['table', 'cell'].includes(editingMode ?? '')
+            ? `1px solid ${theme.colors.gray[7]}`
+            : undefined,
+          outlineOffset: '-1px',
+          textOverflow: 'clip',
         },
         ...getCommonCellStyles({
           column,

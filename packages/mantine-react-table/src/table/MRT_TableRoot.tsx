@@ -211,6 +211,8 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
       props.localization,
       props.positionActionsColumn,
       props.renderDetailPanel,
+      props.renderRowActionMenuItems,
+      props.renderRowActions,
       props.state?.columnOrder,
       props.state?.grouping,
     ],

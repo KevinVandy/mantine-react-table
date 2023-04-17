@@ -44,6 +44,7 @@ export const MRT_TableBody = ({
       manualPagination,
       manualSorting,
       memoMode,
+      renderEmptyRowsFallback,
       rowVirtualizerInstanceRef,
       rowVirtualizerProps,
     },
@@ -154,23 +155,25 @@ export const MRT_TableBody = ({
             colSpan={table.getVisibleLeafColumns().length}
             style={{ display: layoutMode === 'grid' ? 'grid' : 'table-cell' }}
           >
-            <Text
-              sx={{
-                color: 'gray',
-                fontStyle: 'italic',
-                maxWidth: `min(100vw, ${
-                  tablePaperRef.current?.clientWidth ?? 360
-                }px)`,
-                paddingTop: '2rem',
-                paddingBottom: '2rem',
-                textAlign: 'center',
-                width: '100%',
-              }}
-            >
-              {globalFilter || columnFilters.length
-                ? localization.noResultsFound
-                : localization.noRecordsToDisplay}
-            </Text>
+            {renderEmptyRowsFallback?.({ table }) ?? (
+              <Text
+                sx={{
+                  color: 'gray',
+                  fontStyle: 'italic',
+                  maxWidth: `min(100vw, ${
+                    tablePaperRef.current?.clientWidth ?? 360
+                  }px)`,
+                  paddingTop: '2rem',
+                  paddingBottom: '2rem',
+                  textAlign: 'center',
+                  width: '100%',
+                }}
+              >
+                {globalFilter || columnFilters.length
+                  ? localization.noResultsFound
+                  : localization.noRecordsToDisplay}
+              </Text>
+            )}
           </td>
         </tr>
       ) : (

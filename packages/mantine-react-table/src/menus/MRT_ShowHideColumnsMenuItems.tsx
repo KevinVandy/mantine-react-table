@@ -85,10 +85,12 @@ export const MRT_ShowHideColumnsMenuItems = <
   return (
     <>
       <Menu.Item
+        component="span"
         ref={menuItemRef as any}
         onDragEnter={handleDragEnter}
         sx={(theme) => ({
           alignItems: 'center',
+          cursor: 'default',
           justifyContent: 'flex-start',
           opacity: isDragging ? 0.5 : 1,
           outline: isDragging
