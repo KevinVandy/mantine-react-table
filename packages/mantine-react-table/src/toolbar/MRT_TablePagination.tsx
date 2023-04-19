@@ -92,6 +92,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
               width: '90px',
             },
           }}
+          withinPortal
         />
       )}
       <Text>{`${firstRowIndex + 1}-${lastRowIndex} ${
