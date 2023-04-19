@@ -43,8 +43,8 @@ If you want to embed all of your row actions into a single menu, then you can us
 <MantineReactTable
   enableRowActions
   renderRowActionMenuItems={({row}) => [
-      <MenuItem onClick={() => console.info('Edit')}>Edit</MenuItem>,
-      <MenuItem onClick={() => console.info('Delete')}>Delete</MenuItem>
+      <Menu.Item onClick={() => console.info('Edit')}>Edit</Menu.Item>,
+      <Menu.Item onClick={() => console.info('Delete')}>Delete</Menu.Item>
     ]
   )}
 />
