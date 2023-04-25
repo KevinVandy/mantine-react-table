@@ -24,6 +24,9 @@ const FA_Table = dynamic(() => import('../examples/localization-i18n-fa'), {
 const FR_Table = dynamic(() => import('../examples/localization-i18n-fr'), {
   suspense: true,
 });
+const ID_Table = dynamic(() => import('../examples/localization-i18n-id'), {
+  suspense: true,
+});
 const IT_Table = dynamic(() => import('../examples/localization-i18n-it'), {
   suspense: true,
 });
@@ -96,6 +99,7 @@ const supportedLocales = [
   'es',
   'fa',
   'fr',
+  'id',
   'it',
   'ja',
   'nl',
@@ -139,6 +143,7 @@ const LocaleExamples = () => {
           {currentLocale === 'es' && <ES_Table />}
           {currentLocale === 'fa' && <FA_Table />}
           {currentLocale === 'fr' && <FR_Table />}
+          {currentLocale === 'id' && <ID_Table />}
           {currentLocale === 'it' && <IT_Table />}
           {currentLocale === 'ja' && <JA_Table />}
           {currentLocale === 'nl' && <NL_Table />}
