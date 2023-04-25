@@ -58,9 +58,6 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     textFieldProps.onChange?.(event);
     setValue(event.target.value);
-    // if (textFieldProps?.select) {
-    //   saveRow(event.target.value);
-    // }
   };
 
   const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
@@ -70,7 +67,6 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
   };
 
   const handleEnterKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    textFieldProps.onKeyDown?.(event);
     if (event.key === 'Enter') {
       editInputRefs.current[column.id]?.blur();
     }
@@ -97,6 +93,7 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
       // }}
       label={showLabel ? column.columnDef.header : undefined}
       name={column.id}
+      onKeyDown={handleEnterKeyDown}
       placeholder={columnDef.header}
       value={value}
       variant="default"
@@ -107,7 +104,6 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
       }}
       onBlur={handleBlur}
       onChange={handleChange}
-      onKeyDown={handleEnterKeyDown}
     />
   );
 };

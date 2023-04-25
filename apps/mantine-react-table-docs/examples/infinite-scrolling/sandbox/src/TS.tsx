@@ -153,7 +153,7 @@ const Example = () => {
       mantineToolbarAlertBannerProps={
         isError
           ? {
-              color: 'error',
+              color: 'red',
               children: 'Error loading data',
             }
           : undefined
