@@ -39,7 +39,6 @@ export const MRT_TableBodyRow = ({
   virtualRow,
 }: Props) => {
   const {
-    getIsSomeColumnsPinned,
     getState,
     options: {
       enableRowOrdering,
@@ -92,12 +91,12 @@ export const MRT_TableBodyRow = ({
           width: '100%',
           '&:hover td': {
             backgroundColor:
-              enableHover !== false && getIsSomeColumnsPinned()
-                ? theme.colorScheme === 'dark'
+              enableHover !== false
+                ? row.getIsSelected()
+                  ? theme.fn.rgba(getPrimaryColor(theme), 0.2)
+                  : theme.colorScheme === 'dark'
                   ? `${theme.fn.lighten(theme.colors.dark[7], 0.12)}`
                   : `${theme.fn.darken(theme.white, 0.05)}`
-                : row.getIsSelected()
-                ? theme.fn.rgba(getPrimaryColor(theme), 0.2)
                 : undefined,
           },
           ...(tableRowProps?.sx instanceof Function

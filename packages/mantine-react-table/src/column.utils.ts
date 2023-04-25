@@ -267,21 +267,20 @@ export const getCommonCellStyles = ({
     )}-size) * 1px)`,
   };
   return {
-    backgroundColor:
-      column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-        ? theme.fn.rgba(
-            theme.colorScheme === 'dark'
-              ? theme.fn.darken(theme.colors.dark[7], 0.02)
-              : theme.white,
-            0.97,
-          )
-        : row
-        ? row?.getIsSelected()
-          ? theme.fn.rgba(getPrimaryColor(theme), 0.1)
-          : theme.colorScheme === 'dark'
-          ? theme.fn.lighten(theme.colors.dark[7], 0.02)
-          : theme.white
-        : 'inherit',
+    backgroundColor: row
+      ? row?.getIsSelected()
+        ? theme.fn.rgba(getPrimaryColor(theme), 0.1)
+        : theme.colorScheme === 'dark'
+        ? theme.fn.lighten(theme.colors.dark[7], 0.02)
+        : theme.white
+      : column.getIsPinned() && column.columnDef.columnDefType !== 'group'
+      ? theme.fn.rgba(
+          theme.colorScheme === 'dark'
+            ? theme.fn.darken(theme.colors.dark[7], 0.02)
+            : theme.white,
+          0.97,
+        )
+      : 'inherit',
     backgroundClip: 'padding-box',
     boxShadow: getIsLastLeftPinnedColumn(table, column)
       ? `-4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
