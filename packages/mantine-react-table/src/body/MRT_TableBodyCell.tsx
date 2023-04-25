@@ -223,6 +223,7 @@ export const MRT_TableBodyCell = ({
         },
         ...getCommonCellStyles({
           column,
+          row,
           table,
           theme,
           tableCellProps,

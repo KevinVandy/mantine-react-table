@@ -1,95 +1,31 @@
 import { Suspense, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Tabs, Skeleton, Box } from '@mantine/core';
-
-//Locale Examples
-const CS_Table = dynamic(() => import('../examples/localization-i18n-cs'), {
-  suspense: true,
-});
-const DA_Table = dynamic(() => import('../examples/localization-i18n-da'), {
-  suspense: true,
-});
-const DE_Table = dynamic(() => import('../examples/localization-i18n-de'), {
-  suspense: true,
-});
-const EN_Table = dynamic(() => import('../examples/localization-i18n-en'), {
-  suspense: true,
-});
-const ES_Table = dynamic(() => import('../examples/localization-i18n-es'), {
-  suspense: true,
-});
-const FA_Table = dynamic(() => import('../examples/localization-i18n-fa'), {
-  suspense: true,
-});
-const FR_Table = dynamic(() => import('../examples/localization-i18n-fr'), {
-  suspense: true,
-});
-const ID_Table = dynamic(() => import('../examples/localization-i18n-id'), {
-  suspense: true,
-});
-const IT_Table = dynamic(() => import('../examples/localization-i18n-it'), {
-  suspense: true,
-});
-const NL_Table = dynamic(() => import('../examples/localization-i18n-nl'), {
-  suspense: true,
-});
-const JA_Table = dynamic(() => import('../examples/localization-i18n-ja'), {
-  suspense: true,
-});
-const PL_Table = dynamic(() => import('../examples/localization-i18n-pl'), {
-  suspense: true,
-});
-const PT_Table = dynamic(() => import('../examples/localization-i18n-pt'), {
-  suspense: true,
-});
-const PT_BR_Table = dynamic(
-  () => import('../examples/localization-i18n-pt-BR'),
-  {
-    suspense: true,
-  },
-);
-const RO_Table = dynamic(() => import('../examples/localization-i18n-ro'), {
-  suspense: true,
-});
-const RU_Table = dynamic(() => import('../examples/localization-i18n-ru'), {
-  suspense: true,
-});
-const SR_Cyrl_RS_Table = dynamic(
-  () => import('../examples/localization-i18n-sr-Cyrl-RS'),
-  {
-    suspense: true,
-  },
-);
-const SR_Latn_RS_Table = dynamic(
-  () => import('../examples/localization-i18n-sr-Latn-RS'),
-  {
-    suspense: true,
-  },
-);
-const SV_Table = dynamic(() => import('../examples/localization-i18n-sv'), {
-  suspense: true,
-});
-const TR_Table = dynamic(() => import('../examples/localization-i18n-tr'), {
-  suspense: true,
-});
-const UK_Table = dynamic(() => import('../examples/localization-i18n-uk'), {
-  suspense: true,
-});
-const VI_Table = dynamic(() => import('../examples/localization-i18n-vi'), {
-  suspense: true,
-});
-const ZH_HANS_Table = dynamic(
-  () => import('../examples/localization-i18n-zh-hans'),
-  {
-    suspense: true,
-  },
-);
-const ZH_HANT_Table = dynamic(
-  () => import('../examples/localization-i18n-zh-hant'),
-  {
-    suspense: true,
-  },
-);
+import CS_Table from '../examples/localization-i18n-cs';
+import DA_Table from '../examples/localization-i18n-da';
+import DE_Table from '../examples/localization-i18n-de';
+import EN_Table from '../examples/localization-i18n-en';
+import ES_Table from '../examples/localization-i18n-es';
+import FA_Table from '../examples/localization-i18n-fa';
+import FI_Table from '../examples/localization-i18n-fi';
+import FR_Table from '../examples/localization-i18n-fr';
+import ID_Table from '../examples/localization-i18n-id';
+import IT_Table from '../examples/localization-i18n-it';
+import JA_Table from '../examples/localization-i18n-ja';
+import NL_Table from '../examples/localization-i18n-nl';
+import PL_Table from '../examples/localization-i18n-pl';
+import PT_BR_Table from '../examples/localization-i18n-pt-BR';
+import PT_Table from '../examples/localization-i18n-pt';
+import RO_Table from '../examples/localization-i18n-ro';
+import RU_Table from '../examples/localization-i18n-ru';
+import SR_Cyrl_RS_Table from '../examples/localization-i18n-sr-Cyrl-RS';
+import SR_Latn_RS_Table from '../examples/localization-i18n-sr-Latn-RS';
+import SV_Table from '../examples/localization-i18n-sv';
+import TR_Table from '../examples/localization-i18n-tr';
+import UK_Table from '../examples/localization-i18n-uk';
+import VI_Table from '../examples/localization-i18n-vi';
+import ZH_HANS_Table from '../examples/localization-i18n-zh-hans';
+import ZH_HANT_Table from '../examples/localization-i18n-zh-hant';
 
 const supportedLocales = [
   'cs',
@@ -98,6 +34,7 @@ const supportedLocales = [
   'en',
   'es',
   'fa',
+  'fi',
   'fr',
   'id',
   'it',
@@ -142,6 +79,7 @@ const LocaleExamples = () => {
           {currentLocale === 'en' && <EN_Table />}
           {currentLocale === 'es' && <ES_Table />}
           {currentLocale === 'fa' && <FA_Table />}
+          {currentLocale === 'fi' && <FI_Table />}
           {currentLocale === 'fr' && <FR_Table />}
           {currentLocale === 'id' && <ID_Table />}
           {currentLocale === 'it' && <IT_Table />}

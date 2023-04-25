@@ -80,11 +80,6 @@ export const MRT_TableBodyRow = ({
         }}
         {...tableRowProps}
         sx={(theme) => ({
-          backgroundColor: row.getIsSelected()
-            ? theme.fn.rgba(getPrimaryColor(theme), 0.1)
-            : theme.colorScheme === 'dark'
-            ? theme.fn.lighten(theme.colors.dark[7], 0.02)
-            : theme.white,
           display: layoutMode === 'grid' ? 'flex' : 'table-row',
           opacity:
             draggingRow?.id === row.id || hoveredRow?.id === row.id ? 0.5 : 1,

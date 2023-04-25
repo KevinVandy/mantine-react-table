@@ -95,7 +95,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           withinPortal
         />
       )}
-      <Text>{`${firstRowIndex + 1}-${lastRowIndex} ${
+      <Text>{`${lastRowIndex === 0 ? 0 : firstRowIndex + 1}-${lastRowIndex} ${
         localization.of
       } ${totalRowCount}`}</Text>
       <Flex gap="xs">

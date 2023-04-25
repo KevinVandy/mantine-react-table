@@ -14,6 +14,7 @@ import type {
   MRT_FilterOption,
   MRT_GroupingState,
   MRT_Header,
+  MRT_Row,
   MRT_TableInstance,
 } from '.';
 
@@ -245,12 +246,14 @@ export const getTotalRight = (table: MRT_TableInstance, column: MRT_Column) => {
 export const getCommonCellStyles = ({
   column,
   header,
+  row,
   table,
   tableCellProps,
   theme,
 }: {
   column: MRT_Column;
   header?: MRT_Header;
+  row?: MRT_Row;
   table: MRT_TableInstance;
   tableCellProps: BoxProps;
   theme: MantineTheme;
@@ -272,6 +275,12 @@ export const getCommonCellStyles = ({
               : theme.white,
             0.97,
           )
+        : row
+        ? row?.getIsSelected()
+          ? theme.fn.rgba(getPrimaryColor(theme), 0.1)
+          : theme.colorScheme === 'dark'
+          ? theme.fn.lighten(theme.colors.dark[7], 0.02)
+          : theme.white
         : 'inherit',
     backgroundClip: 'padding-box',
     boxShadow: getIsLastLeftPinnedColumn(table, column)
