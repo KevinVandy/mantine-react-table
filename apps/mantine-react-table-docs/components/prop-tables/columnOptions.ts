@@ -289,7 +289,7 @@ export const columnOptions: ColumnOption[] = [
   },
   {
     columnOption: 'filterFn',
-    defaultValue: 'fuzzy',
+    defaultValue: "'fuzzy'",
     description: '',
     link: '',
     linkText: '',
@@ -299,7 +299,7 @@ export const columnOptions: ColumnOption[] = [
   },
   {
     columnOption: 'filterVariant',
-    defaultValue: 'text',
+    defaultValue: "'text'",
     description:
       'Specify whether the filter should be a text input or a select input, or other type of pre-built input.',
     link: '',
@@ -307,6 +307,17 @@ export const columnOptions: ColumnOption[] = [
     source: 'MRT',
     required: false,
     type: "'text' | 'select' | 'multi-select' | 'range' | 'checkbox' | 'date' | 'date-range'",
+  },
+  {
+    columnOption: 'getGroupingValue',
+    defaultValue: '',
+    description:
+      'Specify a value to be used for grouping rows on this column. If this option is not specified, the value derived from accessorKey / accessorFn will be used instead.',
+    link: 'https://tanstack.com/table/v8/docs/api/features/grouping#getgroupingvalue',
+    linkText: 'TanStack Table Grouping Docs',
+    source: 'TanStack Table',
+    required: false,
+    type: '(row: TData) => any)',
   },
   {
     columnOption: 'header',

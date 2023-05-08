@@ -14,6 +14,7 @@ import type {
 interface Props {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
+  isStriped?: boolean;
   measureElement?: (element: HTMLTableRowElement) => void;
   numRows: number;
   row: MRT_Row;
@@ -28,6 +29,7 @@ interface Props {
 export const MRT_TableBodyRow = ({
   columnVirtualizer,
   enableHover,
+  isStriped,
   measureElement,
   numRows,
   row,
@@ -79,14 +81,12 @@ export const MRT_TableBodyRow = ({
         }}
         {...tableRowProps}
         sx={(theme) => ({
+          boxSizing: 'border-box',
           display: layoutMode === 'grid' ? 'flex' : 'table-row',
           opacity:
             draggingRow?.id === row.id || hoveredRow?.id === row.id ? 0.5 : 1,
           position: virtualRow ? 'absolute' : undefined,
           top: virtualRow ? 0 : undefined,
-          transform: virtualRow
-            ? `translateY(${virtualRow?.start}px)`
-            : undefined,
           transition: virtualRow ? 'none' : 'all 100ms ease-in-out',
           width: '100%',
           '&:hover td': {
@@ -103,6 +103,12 @@ export const MRT_TableBodyRow = ({
             ? tableRowProps.sx(theme)
             : (tableRowProps?.sx as any)),
         })}
+        style={{
+          transform: virtualRow
+            ? `translateY(${virtualRow?.start}px)`
+            : undefined,
+          ...tableRowProps?.style,
+        }}
       >
         {virtualPaddingLeft ? (
           <td style={{ display: 'flex', width: virtualPaddingLeft }} />
@@ -115,6 +121,7 @@ export const MRT_TableBodyRow = ({
             : (cellOrVirtualCell as MRT_Cell);
           const props = {
             cell,
+            isStriped,
             key: cell.id,
             measureElement: columnVirtualizer?.measureElement,
             numRows,

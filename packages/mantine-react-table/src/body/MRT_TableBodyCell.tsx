@@ -22,6 +22,7 @@ import type { MRT_Cell, MRT_TableInstance, MRT_VirtualItem } from '..';
 
 interface Props {
   cell: MRT_Cell;
+  isStriped?: boolean;
   measureElement?: (element: HTMLTableCellElement) => void;
   numRows: number;
   rowIndex: number;
@@ -32,6 +33,7 @@ interface Props {
 
 export const MRT_TableBodyCell = ({
   cell,
+  isStriped,
   measureElement,
   numRows,
   rowIndex,
@@ -223,6 +225,7 @@ export const MRT_TableBodyCell = ({
         },
         ...getCommonCellStyles({
           column,
+          isStriped,
           row,
           table,
           theme,

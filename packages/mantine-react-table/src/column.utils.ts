@@ -246,6 +246,7 @@ export const getTotalRight = (table: MRT_TableInstance, column: MRT_Column) => {
 export const getCommonCellStyles = ({
   column,
   header,
+  isStriped,
   row,
   table,
   tableCellProps,
@@ -253,6 +254,7 @@ export const getCommonCellStyles = ({
 }: {
   column: MRT_Column;
   header?: MRT_Header;
+  isStriped?: boolean;
   row?: MRT_Row;
   table: MRT_TableInstance;
   tableCellProps: BoxProps;
@@ -266,20 +268,23 @@ export const getCommonCellStyles = ({
       header?.id ?? column.id,
     )}-size) * 1px)`,
   };
+
   return {
     backgroundColor: row
       ? row?.getIsSelected()
         ? theme.fn.rgba(getPrimaryColor(theme), 0.1)
+        : column.getIsPinned() && column.columnDef.columnDefType !== 'group'
+        ? theme.fn.rgba(
+            theme.colorScheme === 'dark'
+              ? theme.fn.darken(theme.colors.dark[7], 0.02)
+              : theme.white,
+            0.97,
+          )
+        : isStriped
+        ? 'inherit'
         : theme.colorScheme === 'dark'
         ? theme.fn.lighten(theme.colors.dark[7], 0.02)
         : theme.white
-      : column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-      ? theme.fn.rgba(
-          theme.colorScheme === 'dark'
-            ? theme.fn.darken(theme.colors.dark[7], 0.02)
-            : theme.white,
-          0.97,
-        )
       : 'inherit',
     backgroundClip: 'padding-box',
     boxShadow: getIsLastLeftPinnedColumn(table, column)

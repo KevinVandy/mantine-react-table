@@ -13,6 +13,7 @@ import type {
 interface Props {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
+  isStriped?: boolean;
   table: MRT_TableInstance;
   virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
@@ -22,6 +23,7 @@ interface Props {
 export const MRT_TableBody = ({
   columnVirtualizer,
   enableHover,
+  isStriped,
   table,
   virtualColumns,
   virtualPaddingLeft,
@@ -117,9 +119,16 @@ export const MRT_TableBody = ({
     ? useVirtualizer({
         count: rows.length,
         estimateSize: () =>
-          density === 'xs' ? 37 : density === 'md' ? 58 : 73,
+          density === 'xs'
+            ? 42.7
+            : density === 'sm'
+            ? 46.7
+            : density === 'md'
+            ? 54.7
+            : density === 'lg'
+            ? 62.7
+            : 70.7,
         getScrollElement: () => tableContainerRef.current,
-        measureElement: (element) => element?.getBoundingClientRect().height,
         overscan: 4,
         ...vProps,
       })
@@ -185,6 +194,7 @@ export const MRT_TableBody = ({
             const props = {
               columnVirtualizer,
               enableHover,
+              isStriped,
               key: row.id,
               measureElement: rowVirtualizer?.measureElement,
               numRows: rows.length,

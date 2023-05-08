@@ -135,7 +135,9 @@ export const MRT_Table = ({ table }: Props) => {
   }
 
   const props = {
+    columnVirtualizer,
     enableHover: tableProps?.highlightOnHover,
+    isStriped: tableProps?.striped,
     table,
     virtualColumns,
     virtualPaddingLeft,
@@ -170,9 +172,9 @@ export const MRT_Table = ({ table }: Props) => {
     >
       {enableTableHead && <MRT_TableHead {...props} />}
       {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (
-        <Memo_MRT_TableBody columnVirtualizer={columnVirtualizer} {...props} />
+        <Memo_MRT_TableBody {...props} />
       ) : (
-        <MRT_TableBody columnVirtualizer={columnVirtualizer} {...props} />
+        <MRT_TableBody {...props} />
       )}
       {enableTableFooter && <MRT_TableFooter {...props} />}
     </Table>

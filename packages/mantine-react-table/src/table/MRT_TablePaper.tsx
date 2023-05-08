@@ -41,6 +41,7 @@ export const MRT_TablePaper = ({ table }: Props) => {
         }
       }}
       sx={(theme) => ({
+        overflow: 'hidden',
         transition: 'all 100ms ease-in-out',
         ...(tablePaperProps?.sx instanceof Function
           ? tablePaperProps?.sx(theme)
