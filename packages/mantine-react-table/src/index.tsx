@@ -19,6 +19,7 @@ import { MRT_ToolbarInternalButtons } from './toolbar/MRT_ToolbarInternalButtons
 import { MRT_ProgressBar } from './toolbar/MRT_ProgressBar';
 import { MRT_TopToolbar } from './toolbar/MRT_TopToolbar';
 import { MRT_BottomToolbar } from './toolbar/MRT_BottomToolbar';
+import { MRT_FilterTextInput } from './inputs/MRT_FilterTextInput';
 
 export {
   MRT_CopyButton,
@@ -37,4 +38,5 @@ export {
   MRT_ProgressBar,
   MRT_TopToolbar,
   MRT_BottomToolbar,
+  MRT_FilterTextInput,
 };
