@@ -84,7 +84,7 @@ export const MRT_TableDetailPanel = ({
       >
         {renderDetailPanel && (
           <Collapse in={row.getIsExpanded()}>
-            {!isLoading && renderDetailPanel({ row, table })}
+            {!isLoading && row.getIsExpanded() && renderDetailPanel({ row, table })}
           </Collapse>
         )}
       </Box>
