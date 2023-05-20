@@ -93,6 +93,8 @@ export interface MRT_PaginationProps {
 
 export type MRT_DensityState = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+export type MRT_FilterFnsState = Record<string, MRT_FilterOption>;
+
 export type {
   ColumnFiltersState as MRT_ColumnFiltersState,
   ColumnOrderState as MRT_ColumnOrderState,
@@ -262,7 +264,7 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> =
         topToolbarRef: MutableRefObject<HTMLDivElement>;
       };
       setColumnFilterFns: Dispatch<
-        SetStateAction<{ [key: string]: MRT_FilterOption }>
+        SetStateAction<MRT_FilterFnsState>
       >;
       setDensity: Dispatch<SetStateAction<MRT_DensityState>>;
       setDraggingColumn: Dispatch<SetStateAction<MRT_Column<TData> | null>>;
@@ -286,7 +288,7 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> =
 
 export type MRT_TableState<TData extends Record<string, any> = {}> = Prettify<
   TableState & {
-    columnFilterFns: Record<string, MRT_FilterOption>;
+    columnFilterFns: MRT_FilterFnsState;
     density: MRT_DensityState;
     draggingColumn: MRT_Column<TData> | null;
     draggingRow: MRT_Row<TData> | null;
