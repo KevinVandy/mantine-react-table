@@ -95,6 +95,15 @@ export type MRT_DensityState = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type MRT_FilterFnsState = Record<string, MRT_FilterOption>;
 
+export type MRT_FIlterOptions = {
+  getOptions: (
+    localization: MRT_Localization,
+  ) => MRT_InternalFilterOption[]
+  rangeModes: string;
+  emptyModes: string;
+  arrModes: string;
+}
+
 export type {
   ColumnFiltersState as MRT_ColumnFiltersState,
   ColumnOrderState as MRT_ColumnOrderState,
@@ -283,6 +292,7 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> =
       setShowColumnFilters: Dispatch<SetStateAction<boolean>>;
       setShowGlobalFilter: Dispatch<SetStateAction<boolean>>;
       setShowToolbarDropZone: Dispatch<SetStateAction<boolean>>;
+      filterOptions: MRT_FIlterOptions,
     }
   >;
 
@@ -1046,6 +1056,10 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
      * Get access to the table instance via a ref to read state or call built-in methods
      */
     tableInstanceRef?: MutableRefObject<MRT_TableInstance<TData> | null>;
+    /**
+     * Filter options
+     */
+    filterOptions: MRT_FIlterOptions,
   };
 // >;
 
@@ -1099,6 +1113,7 @@ export const MantineReactTable = <TData extends Record<string, any> = {}>({
   rowNumberMode = 'original',
   selectAllMode = 'page',
   sortingFns,
+  filterOptions,
   ...rest
 }: MantineReactTableProps<TData>): JSX.Element => {
   const _icons = useMemo(() => ({ ...MRT_Default_Icons, ...icons }), [icons]);
@@ -1197,6 +1212,7 @@ export const MantineReactTable = <TData extends Record<string, any> = {}>({
       rowNumberMode={rowNumberMode}
       selectAllMode={selectAllMode}
       sortingFns={_sortingFns}
+      filterOptions={filterOptions}
       {...rest}
     />
   );

@@ -326,6 +326,7 @@ export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
     setShowGlobalFilter: props.onShowGlobalFilterChange ?? setShowGlobalFilter,
     setShowToolbarDropZone:
       props.onShowToolbarDropZoneChange ?? setShowToolbarDropZone,
+    filterOptions: props.filterOptions
   } as MRT_TableInstance<TData>;
 
   if (props.tableFeatures) {

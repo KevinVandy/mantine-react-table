@@ -97,9 +97,9 @@ export const mrtFilterOptions = (
   },
 ];
 
-const rangeModes = ['between', 'betweenInclusive', 'inNumberRange'];
-const emptyModes = ['empty', 'notEmpty'];
-const arrModes = ['arrIncludesSome', 'arrIncludesAll', 'arrIncludes'];
+const _rangeModes = ['between', 'betweenInclusive', 'inNumberRange'];
+const _emptyModes = ['empty', 'notEmpty'];
+const _arrModes = ['arrIncludesSome', 'arrIncludesAll', 'arrIncludes'];
 
 interface Props<TData extends Record<string, any> = {}> {
   header?: MRT_Header<TData>;
@@ -123,6 +123,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
     },
     setColumnFilterFns,
     setGlobalFilterFn,
+    filterOptions,
   } = table;
   const { globalFilterFn } = getState();
   const { column } = header ?? {};
@@ -132,9 +133,16 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
   const allowedColumnFilterOptions =
     columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
 
+  const { getOptions, rangeModes, arrModes, emptyModes } = filterOptions || {
+    getOptions: mrtFilterOptions,
+    rangeModes: _rangeModes,
+    arrModes: _arrModes,
+    emptyModes: _emptyModes,
+  };
+
   const internalFilterOptions = useMemo(
     () =>
-      mrtFilterOptions(localization).filter((filterOption) =>
+      getOptions(localization).filter((filterOption) =>
         columnDef
           ? allowedColumnFilterOptions === undefined ||
             allowedColumnFilterOptions?.includes(filterOption.option)
