@@ -60,6 +60,8 @@ import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
 import { type MRT_Icons } from './icons';
 
+export type { MRT_Icons };
+
 type Prettify<T> = { [K in keyof T]: T[K] } & {};
 
 type LiteralUnion<T extends U, U = string> = T | (U & Record<never, never>);
