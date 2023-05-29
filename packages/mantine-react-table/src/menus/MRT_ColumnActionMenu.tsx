@@ -23,6 +23,7 @@ export const MRT_ColumnActionMenu = ({ header, table }: Props) => {
       enableHiding,
       enablePinning,
       enableSorting,
+      enableSortingRemoval,
       icons: {
         IconArrowAutofitContent,
         IconBoxMultiple,
@@ -151,13 +152,15 @@ export const MRT_ColumnActionMenu = ({ header, table }: Props) => {
             <>
               {enableSorting && column.getCanSort() && (
                 <>
-                  <Menu.Item
-                    disabled={!column.getIsSorted()}
-                    icon={<IconClearAll />}
-                    onClick={handleClearSort}
-                  >
-                    {localization.clearSort}
-                  </Menu.Item>
+                  {enableSortingRemoval !== false && (
+                    <Menu.Item
+                      disabled={!column.getIsSorted()}
+                      icon={<IconClearAll />}
+                      onClick={handleClearSort}
+                    >
+                      {localization.clearSort}
+                    </Menu.Item>
+                  )}
                   <Menu.Item
                     disabled={column.getIsSorted() === 'asc'}
                     icon={<IconSortAscending />}

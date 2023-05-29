@@ -81,6 +81,14 @@ export const DisableMultiSorting = () => (
   <MantineReactTable columns={columns} data={data} enableMultiSort={false} />
 );
 
+export const DisableSortingRemoval = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableSortingRemoval={false}
+  />
+);
+
 export const SortRanking = () => (
   <MantineReactTable
     columns={[

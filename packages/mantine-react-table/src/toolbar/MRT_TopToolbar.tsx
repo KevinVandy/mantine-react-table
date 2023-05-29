@@ -19,7 +19,7 @@ export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   overflow: 'visible',
   padding: '0 !important',
   transition: 'all 100ms ease-in-out',
-  zIndex: 1,
+  zIndex: 3,
 });
 
 interface Props<TData extends Record<string, any> = {}> {

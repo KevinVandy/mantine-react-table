@@ -129,6 +129,11 @@ export const MRT_TableBody = ({
             ? 62.7
             : 70.7,
         getScrollElement: () => tableContainerRef.current,
+        measureElement:
+          typeof window !== 'undefined' &&
+          navigator.userAgent.indexOf('Firefox') === -1
+            ? (element) => element?.getBoundingClientRect().height
+            : undefined,
         overscan: 4,
         ...vProps,
       })
