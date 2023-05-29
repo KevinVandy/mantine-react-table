@@ -1,6 +1,11 @@
-import React, { ChangeEvent, FocusEvent, KeyboardEvent, useState } from 'react';
-import { TextInput, TextInputProps } from '@mantine/core';
-import type { MRT_Cell, MRT_TableInstance } from '..';
+import {
+  type ChangeEvent,
+  type FocusEvent,
+  type KeyboardEvent,
+  useState,
+} from 'react';
+import { TextInput, type TextInputProps } from '@mantine/core';
+import { type MRT_Cell, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;

@@ -1,11 +1,10 @@
-import React from 'react';
 import { ActionIcon, Collapse, Flex, Menu, Text, Tooltip } from '@mantine/core';
 import { IconFilter } from '@tabler/icons-react';
 import { MRT_FilterRangeFields } from '../inputs/MRT_FilterRangeFields';
 import { MRT_FilterTextInput } from '../inputs/MRT_FilterTextInput';
 import { MRT_FilterCheckbox } from '../inputs/MRT_FilterCheckbox';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
-import type { MRT_Header, MRT_TableInstance } from '..';
+import { type MRT_Header, type MRT_TableInstance } from '../types';
 
 interface Props {
   header: MRT_Header;

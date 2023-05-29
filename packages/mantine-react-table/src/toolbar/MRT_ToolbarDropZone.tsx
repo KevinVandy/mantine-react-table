@@ -1,6 +1,6 @@
-import React, { DragEvent, useEffect } from 'react';
+import { type DragEvent, useEffect } from 'react';
 import { Flex, Text, Transition } from '@mantine/core';
-import type { MRT_TableInstance } from '..';
+import { type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {

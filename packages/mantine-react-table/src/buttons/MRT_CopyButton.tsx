@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { UnstyledButton, CopyButton, Tooltip } from '@mantine/core';
-import { MRT_Cell, MRT_TableInstance } from '..';
+import { type MRT_Cell, type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {

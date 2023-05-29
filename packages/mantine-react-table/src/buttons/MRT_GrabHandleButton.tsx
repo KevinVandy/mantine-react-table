@@ -1,6 +1,6 @@
-import React, { DragEventHandler } from 'react';
-import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
-import type { HTMLPropsRef, MRT_TableInstance } from '..';
+import { type DragEventHandler } from 'react';
+import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
+import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   actionIconProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;

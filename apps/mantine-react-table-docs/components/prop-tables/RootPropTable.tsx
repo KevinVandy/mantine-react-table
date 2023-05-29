@@ -2,13 +2,13 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   MantineReactTable,
-  MantineReactTableProps,
-  MRT_ColumnDef,
+  type MantineReactTableProps,
+  type MRT_ColumnDef,
 } from 'mantine-react-table';
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
-import { PropRow, rootProps } from './rootProps';
+import { type PropRow, rootProps } from './rootProps';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {

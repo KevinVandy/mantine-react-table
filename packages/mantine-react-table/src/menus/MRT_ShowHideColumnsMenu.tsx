@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button, Divider, Flex, Menu } from '@mantine/core';
 import { MRT_ShowHideColumnsMenuItems } from './MRT_ShowHideColumnsMenuItems';
 import { getDefaultColumnOrderIds } from '../column.utils';
-import type { MRT_Column, MRT_TableInstance } from '..';
+import { type MRT_Column, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   isSubMenu?: boolean;

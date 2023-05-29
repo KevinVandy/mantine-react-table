@@ -2,13 +2,13 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   MantineReactTable,
-  MRT_ColumnDef,
-  MRT_Cell,
+  type MRT_ColumnDef,
+  type MRT_Cell,
 } from 'mantine-react-table';
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
-import { CellInstanceAPI, cellInstanceAPIs } from './cellInstanceAPIs';
+import { type CellInstanceAPI, cellInstanceAPIs } from './cellInstanceAPIs';
 
 interface Props {
   onlyProps?: Set<keyof MRT_Cell>;

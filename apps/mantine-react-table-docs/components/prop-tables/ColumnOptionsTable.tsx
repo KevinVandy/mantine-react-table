@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
-import { ColumnOption, columnOptions } from './columnOptions';
+import { type ColumnOption, columnOptions } from './columnOptions';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {

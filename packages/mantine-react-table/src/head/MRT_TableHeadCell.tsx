@@ -1,5 +1,5 @@
-import React, { DragEvent, ReactNode, useMemo } from 'react';
-import { Box, Flex, MantineTheme, useMantineTheme } from '@mantine/core';
+import { type DragEvent, type ReactNode, useMemo } from 'react';
+import { Box, Flex, type MantineTheme, useMantineTheme } from '@mantine/core';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
@@ -7,7 +7,7 @@ import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
 import { MRT_TableHeadCellResizeHandle } from './MRT_TableHeadCellResizeHandle';
 import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
 import { getCommonCellStyles, getPrimaryColor } from '../column.utils';
-import type { MRT_Header, MRT_TableInstance } from '..';
+import { type MRT_Header, type MRT_TableInstance } from '../types';
 
 interface Props {
   header: MRT_Header;

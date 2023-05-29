@@ -1,10 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { MantineReactTable, MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
+import {
+  MantineReactTable,
+  type MRT_ColumnDef,
+  type MRT_Row,
+} from 'mantine-react-table';
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
-import { RowInstanceAPI, rowInstanceAPIs } from './rowInstanceAPIs';
+import { type RowInstanceAPI, rowInstanceAPIs } from './rowInstanceAPIs';
 
 interface Props {
   onlyProps?: Set<keyof MRT_Row>;

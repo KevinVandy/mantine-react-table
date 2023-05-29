@@ -1,6 +1,5 @@
-import React from 'react';
 import { Box, Divider } from '@mantine/core';
-import { MRT_Header, MRT_TableInstance } from '..';
+import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
 
 interface Props {

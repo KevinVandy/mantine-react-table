@@ -1,6 +1,5 @@
-import React from 'react';
 import { ActionIcon, Box, Button, Tooltip } from '@mantine/core';
-import type { MRT_Row, MRT_TableInstance } from '..';
+import { type MRT_Row, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   row: MRT_Row<TData>;

@@ -2,13 +2,13 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   MantineReactTable,
-  MRT_ColumnDef,
-  MRT_TableState,
+  type MRT_ColumnDef,
+  type MRT_TableState,
 } from 'mantine-react-table';
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
-import { StateRow, stateOptions } from './stateOptions';
+import { type StateRow, stateOptions } from './stateOptions';
 
 interface Props {
   onlyProps?: Set<keyof MRT_TableState>;

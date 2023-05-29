@@ -1,4 +1,4 @@
-import { MRT_Row } from 'mantine-react-table';
+import { type MRT_Row } from 'mantine-react-table';
 
 export interface RowInstanceAPI {
   rowInstanceAPI: keyof MRT_Row;

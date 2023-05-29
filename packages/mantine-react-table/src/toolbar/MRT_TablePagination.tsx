@@ -1,6 +1,5 @@
-import React from 'react';
-import { ActionIcon, Flex, Select, Sx, Text } from '@mantine/core';
-import type { MRT_TableInstance } from '..';
+import { ActionIcon, Flex, Select, type Sx, Text } from '@mantine/core';
+import { type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   position?: 'top' | 'bottom';

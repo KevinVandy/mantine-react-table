@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Alert, Box, Chip, Collapse, Flex } from '@mantine/core';
-import type { MRT_TableInstance } from '..';
+import { type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   stackAlertBanner: boolean;

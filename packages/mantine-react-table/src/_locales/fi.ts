@@ -1,4 +1,4 @@
-import type { MRT_Localization } from '../MantineReactTable';
+import { type MRT_Localization } from '../types';
 
 export const MRT_Localization_FI: MRT_Localization = {
   actions: 'Toiminnot',

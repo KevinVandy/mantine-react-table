@@ -1,12 +1,11 @@
-import React from 'react';
 import { Box } from '@mantine/core';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
-import type {
-  MRT_Header,
-  MRT_HeaderGroup,
-  MRT_TableInstance,
-  MRT_VirtualItem,
-} from '..';
+import {
+  type MRT_Header,
+  type MRT_HeaderGroup,
+  type MRT_TableInstance,
+  type MRT_VirtualItem,
+} from '../types';
 
 interface Props {
   headerGroup: MRT_HeaderGroup;

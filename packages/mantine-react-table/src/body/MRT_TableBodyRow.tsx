@@ -1,15 +1,15 @@
-import React, { DragEvent, memo, useRef } from 'react';
+import { type DragEvent, memo, useRef } from 'react';
 import { Box } from '@mantine/core';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import { getPrimaryColor } from '../column.utils';
-import type {
-  MRT_Cell,
-  MRT_Row,
-  MRT_TableInstance,
-  MRT_VirtualItem,
-  MRT_Virtualizer,
-} from '..';
+import {
+  type MRT_Cell,
+  type MRT_Row,
+  type MRT_TableInstance,
+  type MRT_VirtualItem,
+  type MRT_Virtualizer,
+} from '../types';
 
 interface Props {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;

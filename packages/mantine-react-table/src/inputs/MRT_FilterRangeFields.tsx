@@ -1,7 +1,6 @@
-import React from 'react';
 import { Box } from '@mantine/core';
 import { MRT_FilterTextInput } from './MRT_FilterTextInput';
-import { MRT_Header, MRT_TableInstance } from '..';
+import { type MRT_Header, type MRT_TableInstance } from '../types';
 
 interface Props {
   header: MRT_Header;

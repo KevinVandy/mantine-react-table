@@ -1,16 +1,16 @@
-import React, { MouseEvent, useEffect, useRef, useState } from 'react';
+import { type MouseEvent, useEffect, useRef, useState } from 'react';
 import {
   ActionIcon,
   Box,
   Chip,
-  MantineTheme,
+  type MantineTheme,
   MultiSelect,
   packSx,
   Select,
   TextInput,
 } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
-import type { MRT_Header, MRT_TableInstance } from '..';
+import { type MRT_Header, type MRT_TableInstance } from '../types';
 
 interface Props {
   header: MRT_Header;

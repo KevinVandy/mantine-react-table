@@ -1,13 +1,13 @@
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
   ActionIcon,
   Anchor,
   packSx,
-  Sx,
+  type Sx,
   Title,
-  TitleProps,
+  type TitleProps,
   Tooltip,
 } from '@mantine/core';
 import { IconLink } from '@tabler/icons-react';

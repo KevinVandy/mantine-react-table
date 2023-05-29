@@ -13,7 +13,7 @@ import {
 import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
 import { useThemeContext } from '../../styles/ThemeContext';
-import { MantineShade } from 'mantine-react-table';
+import { type MantineShade } from 'mantine-react-table';
 
 const mantineColors = [
   'dark',

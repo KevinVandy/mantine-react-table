@@ -1,6 +1,6 @@
-import { Prism, PrismProps } from '@mantine/prism';
+import { Prism, type PrismProps } from '@mantine/prism';
 import { Paper, useMantineTheme } from '@mantine/core';
-import { Language } from 'prism-react-renderer';
+import { type Language } from 'prism-react-renderer';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props extends Partial<PrismProps> {

@@ -1,4 +1,4 @@
-import { MRT_ColumnDef } from 'mantine-react-table';
+import { type MRT_ColumnDef } from 'mantine-react-table';
 
 export type ColumnOption = {
   columnOption: keyof MRT_ColumnDef;

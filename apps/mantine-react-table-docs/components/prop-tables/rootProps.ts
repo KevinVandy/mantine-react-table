@@ -1,4 +1,4 @@
-import { MantineReactTableProps } from 'mantine-react-table';
+import { type MantineReactTableProps } from 'mantine-react-table';
 
 export type PropRow = {
   defaultValue?: string;

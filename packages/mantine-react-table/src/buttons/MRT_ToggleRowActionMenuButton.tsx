@@ -1,8 +1,8 @@
-import React, { MouseEvent } from 'react';
+import { type MouseEvent } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
 import { MRT_EditActionButtons } from './MRT_EditActionButtons';
-import type { MRT_Cell, MRT_Row, MRT_TableInstance } from '..';
+import { type MRT_Cell, type MRT_Row, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;

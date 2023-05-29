@@ -1,7 +1,5 @@
 export * from './MantineReactTable';
-
-import type { MRT_Icons } from './icons';
-export type { MRT_Icons };
+export * from './types';
 
 import { MRT_CopyButton } from './buttons/MRT_CopyButton';
 import { MRT_FilterOptionMenu } from './menus/MRT_FilterOptionMenu';

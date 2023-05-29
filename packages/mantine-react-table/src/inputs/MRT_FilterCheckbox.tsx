@@ -1,6 +1,5 @@
-import React from 'react';
-import { Checkbox, CheckboxProps, Tooltip } from '@mantine/core';
-import type { MRT_Column, MRT_TableInstance } from '..';
+import { Checkbox, type CheckboxProps, Tooltip } from '@mantine/core';
+import { type MRT_Column, type MRT_TableInstance } from '../types';
 
 interface Props {
   column: MRT_Column;

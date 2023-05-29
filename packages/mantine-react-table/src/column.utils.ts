@@ -1,22 +1,22 @@
-import type { Row } from '@tanstack/react-table';
-import { MRT_AggregationFns } from './aggregationFns';
-import { MRT_FilterFns } from './filterFns';
-import { MRT_SortingFns } from './sortingFns';
-import { BoxProps, MantineTheme } from '@mantine/core';
-import type {
-  MantineReactTableProps,
-  MantineShade,
-  MRT_Column,
-  MRT_ColumnDef,
-  MRT_ColumnOrderState,
-  MRT_DefinedColumnDef,
-  MRT_DisplayColumnIds,
-  MRT_FilterOption,
-  MRT_GroupingState,
-  MRT_Header,
-  MRT_Row,
-  MRT_TableInstance,
-} from '.';
+import { type Row } from '@tanstack/react-table';
+import { type MRT_AggregationFns } from './aggregationFns';
+import { type MRT_FilterFns } from './filterFns';
+import { type MRT_SortingFns } from './sortingFns';
+import { type BoxProps, type MantineTheme } from '@mantine/core';
+import {
+  type MantineReactTableProps,
+  type MantineShade,
+  type MRT_Column,
+  type MRT_ColumnDef,
+  type MRT_ColumnOrderState,
+  type MRT_DefinedColumnDef,
+  type MRT_DisplayColumnIds,
+  type MRT_FilterOption,
+  type MRT_GroupingState,
+  type MRT_Header,
+  type MRT_Row,
+  type MRT_TableInstance,
+} from './types';
 
 export const getColumnId = <TData extends Record<string, any> = {}>(
   columnDef: MRT_ColumnDef<TData>,

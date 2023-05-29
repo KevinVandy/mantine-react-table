@@ -1,14 +1,14 @@
-import React, { memo, useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { Box, Text } from '@mantine/core';
 import { Memo_MRT_TableBodyRow, MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { rankGlobalFuzzy } from '../sortingFns';
-import type {
-  MRT_Row,
-  MRT_TableInstance,
-  MRT_VirtualItem,
-  MRT_Virtualizer,
-} from '..';
+import {
+  type MRT_Row,
+  type MRT_TableInstance,
+  type MRT_VirtualItem,
+  type MRT_Virtualizer,
+} from '../types';
 
 interface Props {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;

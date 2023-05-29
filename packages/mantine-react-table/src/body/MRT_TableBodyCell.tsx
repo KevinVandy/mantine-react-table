@@ -1,8 +1,8 @@
-import React, {
-  DragEvent,
+import {
+  type DragEvent,
+  type MouseEvent,
+  type RefObject,
   memo,
-  MouseEvent,
-  RefObject,
   useEffect,
   useMemo,
   useState,
@@ -18,7 +18,11 @@ import {
   getIsLastColumn,
   getPrimaryColor,
 } from '../column.utils';
-import type { MRT_Cell, MRT_TableInstance, MRT_VirtualItem } from '..';
+import {
+  type MRT_Cell,
+  type MRT_TableInstance,
+  type MRT_VirtualItem,
+} from '../types';
 
 interface Props {
   cell: MRT_Cell;

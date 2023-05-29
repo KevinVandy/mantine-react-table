@@ -1,3 +1,2 @@
-import { MantineReactTable } from './src/MantineReactTable';
-export default MantineReactTable;
-export * from './src/index';
+// This just for docs real-time development when the `dist` folder is also deleted.
+export * from './src';

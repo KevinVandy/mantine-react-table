@@ -1,4 +1,4 @@
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import React from 'react';
 

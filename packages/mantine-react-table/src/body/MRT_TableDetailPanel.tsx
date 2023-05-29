@@ -1,6 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import { Box, Collapse } from '@mantine/core';
-import type { MRT_Row, MRT_TableInstance, MRT_VirtualItem } from '..';
+import {
+  type MRT_Row,
+  type MRT_TableInstance,
+  type MRT_VirtualItem,
+} from '../types';
 
 interface Props {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
@@ -31,7 +35,12 @@ export const MRT_TableDetailPanel = ({
 
   const tableRowProps =
     mantineTableBodyRowProps instanceof Function
-      ? mantineTableBodyRowProps({ isDetailPanel: true, row, staticRowIndex: rowIndex, table })
+      ? mantineTableBodyRowProps({
+          isDetailPanel: true,
+          row,
+          staticRowIndex: rowIndex,
+          table,
+        })
       : mantineTableBodyRowProps;
 
   const tableCellProps =

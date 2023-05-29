@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   getCoreRowModel,
   getExpandedRowModel,
@@ -23,18 +23,18 @@ import {
   showExpandColumn,
   getColumnId,
 } from '../column.utils';
-import type {
-  MRT_Cell,
-  MRT_Column,
-  MRT_ColumnDef,
-  MRT_FilterOption,
-  MRT_Row,
-  MRT_TableInstance,
-  MRT_TableState,
-  MantineReactTableProps,
-  MRT_Localization,
-  MRT_GroupingState,
-} from '..';
+import {
+  type MRT_Cell,
+  type MRT_Column,
+  type MRT_ColumnDef,
+  type MRT_FilterOption,
+  type MRT_Row,
+  type MRT_TableInstance,
+  type MRT_TableState,
+  type MantineReactTableProps,
+  type MRT_Localization,
+  type MRT_GroupingState,
+} from '../types';
 
 export const MRT_TableRoot: any = <TData extends Record<string, any> = {}>(
   props: MantineReactTableProps<TData> & { localization: MRT_Localization },

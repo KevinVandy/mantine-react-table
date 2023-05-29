@@ -1,6 +1,5 @@
-import React from 'react';
-import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
-import { HTMLPropsRef, MRT_TableInstance } from '..';
+import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
+import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}>
   extends ActionIconProps,

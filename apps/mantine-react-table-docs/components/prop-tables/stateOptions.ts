@@ -1,4 +1,4 @@
-import { MRT_TableState } from 'mantine-react-table';
+import { type MRT_TableState } from 'mantine-react-table';
 
 export type StateRow = {
   defaultValue?: string;

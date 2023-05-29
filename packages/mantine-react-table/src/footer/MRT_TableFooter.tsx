@@ -1,7 +1,6 @@
-import React from 'react';
 import { Box } from '@mantine/core';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
-import type { MRT_TableInstance, MRT_VirtualItem } from '..';
+import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
 
 interface Props {
   table: MRT_TableInstance;

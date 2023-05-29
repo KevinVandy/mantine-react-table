@@ -1,8 +1,7 @@
-import React from 'react';
 import { Flex, Modal, Stack, Text } from '@mantine/core';
 import { MRT_EditActionButtons } from '../buttons/MRT_EditActionButtons';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
-import type { MRT_Row, MRT_TableInstance } from '..';
+import { type MRT_Row, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   open: boolean;

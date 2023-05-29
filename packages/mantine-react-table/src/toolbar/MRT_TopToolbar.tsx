@@ -1,5 +1,4 @@
-import React from 'react';
-import { Box, Flex, MantineTheme } from '@mantine/core';
+import { Box, Flex, type MantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { MRT_GlobalFilterTextInput } from '../inputs/MRT_GlobalFilterTextInput';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
@@ -7,7 +6,7 @@ import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
-import type { MRT_TableInstance } from '..';
+import { type MRT_TableInstance } from '../types';
 
 export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   alignItems: 'flex-start',

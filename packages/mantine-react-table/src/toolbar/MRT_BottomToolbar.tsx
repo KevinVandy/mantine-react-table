@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { MRT_TablePagination } from './MRT_TablePagination';
@@ -6,7 +5,7 @@ import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { commonToolbarStyles } from './MRT_TopToolbar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
-import type { MRT_TableInstance } from '..';
+import { type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;

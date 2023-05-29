@@ -1,12 +1,12 @@
-import React, { Fragment, useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 import { Flex, Menu } from '@mantine/core';
-import type {
-  MRT_FilterOption,
-  MRT_Header,
-  MRT_InternalFilterOption,
-  MRT_Localization,
-  MRT_TableInstance,
-} from '..';
+import {
+  type MRT_FilterOption,
+  type MRT_Header,
+  type MRT_InternalFilterOption,
+  type MRT_Localization,
+  type MRT_TableInstance,
+} from '../types';
 
 export const mrtFilterOptions = (
   localization: MRT_Localization,

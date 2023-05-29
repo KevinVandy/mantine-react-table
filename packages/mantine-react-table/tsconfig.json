@@ -1,7 +1,8 @@
 {
   "include": [
     "src",
-    "@types/node"
+    "@types/node",
+    "stories"
   ],
   "compilerOptions": {
     "declaration": true,
@@ -10,10 +11,11 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": [
-      "dom",
-      "esnext"
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
     ],
     "module": "esnext",
     "moduleResolution": "node",
@@ -21,10 +23,14 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "rootDir": "./src",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES6"
-  }
+    "target": "ES6",
+  },
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
