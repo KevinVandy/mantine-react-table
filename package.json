@@ -21,12 +21,12 @@
     "lint": "turbo run lint",
     "start": "turbo run start --parallel",
     "storybook": "turbo run storybook",
-    "storybook:build": "turbo run lib:build-no-locales && turbo run storybook:build",
+    "storybook:build": "turbo run storybook:build",
     "storybook:dev": "turbo run storybook"
   },
   "devDependencies": {
     "prettier": "^2.8.8",
-    "turbo": "^1.9.9"
+    "turbo": "^1.10.3"
   },
   "engines": {
     "node": ">=14.0.0"

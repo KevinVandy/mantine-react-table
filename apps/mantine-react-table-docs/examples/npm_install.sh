@@ -19,8 +19,11 @@ for file in *; do
       # Change directory to the sandbox directory
       cd sandbox
 
+      ## Update dependency versions
+      ncu -u
+
       # Run npm install
-      npm install
+      npm install --package-lock-only
 
       echo "  - npm install completed"
       
