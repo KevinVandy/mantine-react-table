@@ -65,10 +65,12 @@ endsWith.autoRemove = (val: any) => !val;
 const equals = <TData extends Record<string, any> = {}>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number,
+  filterValue: string | number | null,
 ) =>
-  row.getValue<string | number>(id).toString().toLowerCase().trim() ===
-  filterValue.toString().toLowerCase().trim();
+  filterValue === null
+    ? true
+    : row.getValue<string | number>(id).toString().toLowerCase().trim() ===
+      filterValue.toString().toLowerCase().trim();
 
 equals.autoRemove = (val: any) => !val;
 
@@ -85,9 +87,11 @@ notEquals.autoRemove = (val: any) => !val;
 const greaterThan = <TData extends Record<string, any> = {}>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number,
+  filterValue: string | number | null,
 ) =>
-  !isNaN(+filterValue) && !isNaN(+row.getValue<string | number>(id))
+  filterValue === null
+    ? true
+    : !isNaN(+filterValue) && !isNaN(+row.getValue<string | number>(id))
     ? +row.getValue<string | number>(id) > +filterValue
     : row.getValue<string | number>(id).toString().toLowerCase().trim() >
       filterValue.toString().toLowerCase().trim();
@@ -105,9 +109,11 @@ greaterThanOrEqualTo.autoRemove = (val: any) => !val;
 const lessThan = <TData extends Record<string, any> = {}>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number,
+  filterValue: string | number | null,
 ) =>
-  !isNaN(+filterValue) && !isNaN(+row.getValue<string | number>(id))
+  filterValue === null
+    ? true
+    : !isNaN(+filterValue) && !isNaN(+row.getValue<string | number>(id))
     ? +row.getValue<string | number>(id) < +filterValue
     : row.getValue<string | number>(id).toString().toLowerCase().trim() <
       filterValue.toString().toLowerCase().trim();

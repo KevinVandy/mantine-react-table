@@ -72,8 +72,11 @@ export const MRT_TableHeadCellFilterLabel = ({ header, table }: Props) => {
               }}
               size="sm"
               sx={{
-                opacity: column.getFilterValue() ? 1 : 0.5,
+                opacity: 0.5,
                 padding: '2px',
+                '&:hover': {
+                  opacity: 1,
+                },
               }}
             >
               <IconFilter />

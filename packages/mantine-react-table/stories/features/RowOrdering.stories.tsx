@@ -46,12 +46,12 @@ const columns: MRT_ColumnDef<Person>[] = [
 ];
 
 const initData = [...Array(100)].map(() => ({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
   email: faker.internet.email(),
-  address: faker.address.streetAddress(),
-  city: faker.address.city(),
-  state: faker.address.state(),
+  address: faker.location.streetAddress(),
+  city: faker.location.city(),
+  state: faker.location.state(),
 }));
 
 export const RowOrderingEnabled = () => {

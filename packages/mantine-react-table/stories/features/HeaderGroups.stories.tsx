@@ -41,12 +41,12 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
 ];
 
 const data = [...Array(55)].map(() => ({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  age: faker.datatype.number(80),
-  address: faker.address.streetAddress(),
-  city: faker.address.city(),
-  state: faker.address.state(),
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  age: faker.number.int(80),
+  address: faker.location.streetAddress(),
+  city: faker.location.city(),
+  state: faker.location.state(),
 }));
 
 export const HeaderGroups = () => (

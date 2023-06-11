@@ -58,7 +58,7 @@ export const MRT_TableBodyCellValue = ({ cell, table }: Props) => {
         column.getCanGlobalFilter()))
   ) {
     const chunks = highlightWords?.({
-      text: renderedCellValue?.toString() as string,
+      text: renderedCellValue?.toString(),
       query: (column.getFilterValue() ?? globalFilter ?? '').toString(),
       matchExactly:
         (filterValue ? columnDef._filterFn : globalFilterFn) !== 'fuzzy',

@@ -6,9 +6,9 @@ const Example = () => {
   const columns = useMemo(
     () => [
       {
-        header: 'Account Status',
         accessorFn: (originalRow) => (originalRow.isActive ? 'true' : 'false'), //must be strings
         id: 'isActive',
+        header: 'Account Status',
         filterVariant: 'checkbox',
         Cell: ({ cell }) =>
           cell.getValue() === 'true' ? 'Active' : 'Inactive',
@@ -20,6 +20,13 @@ const Example = () => {
         filterVariant: 'text', // default
       },
       {
+        accessorFn: (originalRow) => new Date(originalRow.hireDate), //convert to date for sorting and filtering
+        id: 'hireDate',
+        header: 'Hire Date',
+        filterVariant: 'date-range',
+        Cell: ({ cell }) => cell.getValue().toLocaleDateString(), // convert back to string for display
+      },
+      {
         accessorKey: 'age',
         header: 'Age',
         filterVariant: 'range',
@@ -29,13 +36,17 @@ const Example = () => {
         accessorKey: 'city',
         header: 'City',
         filterVariant: 'select',
-        filterSelectOptions: citiesList,
+        mantineFilterSelectProps: {
+          data: citiesList,
+        },
       },
       {
         accessorKey: 'state',
         header: 'State',
         filterVariant: 'multi-select',
-        filterSelectOptions: usStateList,
+        mantineFilterMultiSelectProps: {
+          data: usStateList,
+        },
       },
     ],
     [],

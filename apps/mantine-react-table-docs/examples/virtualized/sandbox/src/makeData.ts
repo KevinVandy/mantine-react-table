@@ -21,19 +21,19 @@ export type Person = {
 
 export const makeData = (numberOfRows: number) =>
   [...Array(numberOfRows).fill(null)].map(() => ({
-    firstName: faker.name.firstName(),
-    middleName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    middleName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     email: faker.internet.email(),
     phoneNumber: faker.phone.number(),
-    address: faker.address.streetAddress(),
-    zipCode: faker.address.zipCode(),
-    city: faker.address.city(),
-    state: faker.address.state(),
-    country: faker.address.country(),
+    address: faker.location.streetAddress(),
+    zipCode: faker.location.zipCode(),
+    city: faker.location.city(),
+    state: faker.location.state(),
+    country: faker.location.country(),
     petName: faker.animal.cat(),
     age: faker.datatype.float({ min: 0, max: 100 }),
-    salary: faker.datatype
+    salary: faker.number
       .float({ min: 0, max: 1000000 })
       .toLocaleString('en-US', {
         style: 'currency',

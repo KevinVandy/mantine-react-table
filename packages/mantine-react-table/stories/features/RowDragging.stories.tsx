@@ -37,12 +37,12 @@ const columns: MRT_ColumnDef<(typeof initData)[0]>[] = [
 ];
 
 const initData = [...Array(25)].map(() => ({
-  id: faker.random.alphaNumeric(6),
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
+  id: faker.string.alphanumeric(6),
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
   email: faker.internet.email(),
-  age: faker.datatype.number(20) + 18,
-  state: faker.address.state(),
+  age: faker.number.int(20) + 18,
+  state: faker.location.state(),
 }));
 
 export const RowDraggingEnabled = () => {

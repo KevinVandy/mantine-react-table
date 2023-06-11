@@ -36,6 +36,7 @@ export const MRT_TableHead = ({
       sx={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
         position: stickyHeader && layoutMode === 'grid' ? 'sticky' : 'relative',
+        opacity: 0.97,
         top: stickyHeader ? 0 : undefined,
         zIndex: stickyHeader ? 2 : undefined,
         ...(tableHeadProps?.sx instanceof Function

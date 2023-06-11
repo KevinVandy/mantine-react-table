@@ -168,7 +168,7 @@ export const SourceCodeSnippet = ({
                       setPrimaryShade(+(value as string) as MantineShade);
                       plausible('change-shade');
                     }}
-                    sx={{ width: '60px' }}
+                    sx={{ width: '65px' }}
                   />
                 </Tooltip>
                 <Tooltip label="Select Theme Primary Color">
@@ -192,7 +192,7 @@ export const SourceCodeSnippet = ({
                       setIsLightTheme(value === 'light');
                       plausible(`toggle-theme-${value}-mode`);
                     }}
-                    sx={{ width: '80px' }}
+                    sx={{ width: '90px' }}
                   />
                 </Tooltip>
               </Flex>

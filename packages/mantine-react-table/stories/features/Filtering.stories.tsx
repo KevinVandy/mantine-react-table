@@ -58,13 +58,14 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
 
 const data = [...Array(120)].map(() => ({
   isActive: faker.datatype.boolean(),
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  age: faker.datatype.number(100),
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  age: faker.number.int(100),
   birthDate: faker.date.birthdate({ min: 1990, max: 2020 }),
-  gender: faker.name.sex(),
-  address: faker.address.streetAddress(),
-  state: faker.address.state(),
+  hireDate: faker.date.past(),
+  gender: faker.person.sex(),
+  address: faker.location.streetAddress(),
+  state: faker.location.state(),
 }));
 
 export const FilteringEnabledDefault = () => (
@@ -135,14 +136,45 @@ export const FilterFnAndFilterVariants = () => (
           data: [
             'Alabama',
             'Arizona',
+            'Arkansas',
             'California',
+            'Colorado',
+            'Connecticut',
+            'Delaware',
             'Florida',
             'Georgia',
             'New York',
             'Texas',
+            'Washington',
           ] as any,
         },
         filterVariant: 'multi-select',
+      },
+      {
+        accessorFn: (row) => {
+          const bDay = new Date(row.birthDate);
+          bDay.setHours(0, 0, 0, 0); // remove time from date
+          return bDay;
+        },
+        id: 'birthDate',
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
+        filterVariant: 'date',
+        header: 'Birth Date',
+        sortingFn: 'datetime',
+        size: 200,
+      },
+      {
+        accessorFn: (row) => {
+          const hDay = new Date(row.hireDate);
+          hDay.setHours(0, 0, 0, 0); // remove time from date
+          return hDay;
+        },
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
+        id: 'hireDate',
+        filterVariant: 'date-range',
+        header: 'Hire Date',
+        sortingFn: 'datetime',
+        size: 200,
       },
     ]}
     data={data}
@@ -414,7 +446,7 @@ export const ManualFiltering = () => {
       columnFilters.map((filter) => {
         const { id: columnId, value: filterValue } = filter;
         filteredRows = filteredRows.filter((row) => {
-          return row[columnId]
+          return row[columnId as keyof typeof row]
             ?.toString()
             ?.toLowerCase()
             ?.includes?.((filterValue as string).toLowerCase());

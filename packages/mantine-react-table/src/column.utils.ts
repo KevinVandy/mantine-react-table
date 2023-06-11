@@ -199,10 +199,15 @@ export const getDefaultColumnFilterFn = <
   columnDef: MRT_ColumnDef<TData>,
 ): MRT_FilterOption => {
   if (columnDef.filterVariant === 'multi-select') return 'arrIncludesSome';
-  if (columnDef.filterVariant === 'range') return 'betweenInclusive';
+  if (
+    columnDef.filterVariant === 'range' ||
+    columnDef.filterVariant === 'date-range'
+  )
+    return 'betweenInclusive';
   if (
     columnDef.filterVariant === 'select' ||
-    columnDef.filterVariant === 'checkbox'
+    columnDef.filterVariant === 'checkbox' ||
+    columnDef.filterVariant === 'date'
   )
     return 'equals';
   return 'fuzzy';

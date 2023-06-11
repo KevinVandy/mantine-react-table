@@ -39,7 +39,7 @@ export const MRT_TableHeadCellSortLabel = ({ header, table }: Props) => {
           aria-label={sortTooltip}
           size="xs"
           sx={{
-            opacity: column.getIsSorted() ? 1 : 0,
+            opacity: column.getIsSorted() ? 1 : 0.5,
             transform: showIndicator
               ? 'translate(-2px, 2px) scale(0.9)'
               : undefined,

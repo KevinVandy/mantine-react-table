@@ -3,12 +3,13 @@ import {
   ActionIcon,
   Box,
   Chip,
-  type MantineTheme,
   MultiSelect,
-  packSx,
   Select,
   TextInput,
+  packSx,
+  type MantineTheme,
 } from '@mantine/core';
+import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
@@ -28,10 +29,11 @@ export const MRT_FilterTextInput = ({
       columnFilterModeOptions,
       icons: { IconX },
       localization,
-      manualFiltering,
-      mantineFilterTextInputProps,
-      mantineFilterSelectProps,
+      mantineFilterDateInputProps,
       mantineFilterMultiSelectProps,
+      mantineFilterSelectProps,
+      mantineFilterTextInputProps,
+      manualFiltering,
     },
     refs: { filterInputRefs },
     setColumnFilterFns,
@@ -96,13 +98,34 @@ export const MRT_FilterTextInput = ({
     ...mcMultiSelectProps,
   };
 
+  const mDateInputProps =
+    mantineFilterDateInputProps instanceof Function
+      ? mantineFilterDateInputProps({ column, table, rangeFilterIndex })
+      : mantineFilterDateInputProps;
+
+  const mcDateInputProps =
+    columnDef.mantineFilterDateInputProps instanceof Function
+      ? columnDef.mantineFilterDateInputProps({
+          column,
+          table,
+          rangeFilterIndex,
+        })
+      : columnDef.mantineFilterDateInputProps;
+
+  const dateInputProps = {
+    ...mDateInputProps,
+    ...mcDateInputProps,
+  };
+
   const isRangeFilter =
     columnDef.filterVariant === 'range' ||
     columnDef.filterVariant === 'date-range' ||
     rangeFilterIndex !== undefined;
   const isSelectFilter = columnDef.filterVariant === 'select';
   const isMultiSelectFilter = columnDef.filterVariant === 'multi-select';
-  const isDateFilter = columnDef.filterVariant === 'date';
+  const isDateFilter =
+    columnDef.filterVariant === 'date' ||
+    columnDef.filterVariant === 'date-range';
   const allowedColumnFilterOptions =
     columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
 
@@ -133,7 +156,7 @@ export const MRT_FilterTextInput = ({
       : isRangeFilter
       ? (column.getFilterValue() as [string, string])?.[
           rangeFilterIndex as number
-        ] || []
+        ] || ''
       : (column.getFilterValue() as string) ?? '',
   );
 
@@ -167,9 +190,11 @@ export const MRT_FilterTextInput = ({
     if (tableFilterValue === undefined) {
       handleClear();
     } else if (isRangeFilter && rangeFilterIndex !== undefined) {
-      setFilterValue((tableFilterValue as [string, string])[rangeFilterIndex]);
+      setFilterValue(
+        ((tableFilterValue ?? ['', '']) as [string, string])[rangeFilterIndex],
+      );
     } else {
-      setFilterValue(tableFilterValue as string);
+      setFilterValue(tableFilterValue ?? '');
     }
   }, [column.getFilterValue()]);
 
@@ -217,17 +242,28 @@ export const MRT_FilterTextInput = ({
       borderBottom: `2px solid ${
         theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
       }`,
-      minWidth: isRangeFilter ? '80px' : !filterChipLabel ? '100px' : 'auto',
+      minWidth: isDateFilter
+        ? '125px'
+        : isRangeFilter
+        ? '80px'
+        : !filterChipLabel
+        ? '100px'
+        : 'auto',
       width: '100%',
       '& .mantine-TextInput-input': {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
+      },
+      '& .mantine-DateInput-input': {
+        height: '2.1rem',
       },
       ...(packSx(
         isMultiSelectFilter
           ? multiSelectProps.sx
           : isSelectFilter
           ? selectProps.sx
+          : isDateFilter
+          ? dateInputProps.sx
           : textInputProps?.sx,
       ) as any),
     }),
@@ -244,18 +280,31 @@ export const MRT_FilterTextInput = ({
     <MultiSelect
       {...commonProps}
       data={multiSelectProps.data as any}
+      searchable
       withinPortal
       {...multiSelectProps}
+      sx={commonProps.sx}
     />
   ) : isSelectFilter ? (
     <Select
       {...commonProps}
       clearable
       data={selectProps.data as any}
+      searchable
       withinPortal
       {...selectProps}
+      sx={commonProps.sx}
     />
-  ) : isDateFilter ? null : (
+  ) : isDateFilter ? (
+    <DateInput
+      {...commonProps}
+      allowDeselect
+      clearable
+      popoverProps={{ withinPortal: true }}
+      {...dateInputProps}
+      sx={commonProps.sx}
+    />
+  ) : (
     <TextInput
       {...commonProps}
       rightSection={
@@ -287,6 +336,7 @@ export const MRT_FilterTextInput = ({
           }
         }
       }}
+      sx={commonProps.sx}
     />
   );
 };

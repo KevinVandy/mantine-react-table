@@ -182,7 +182,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
           column.setFilterValue(currentFilterValue); // perform new filter render
         }
       } else if (
-        columnDef?.filterVariant === 'range' ||
+        ['range', 'date-range'].includes(columnDef?.filterVariant as string) ||
         rangeModes.includes(option as MRT_FilterOption)
       ) {
         // will now be range filter mode

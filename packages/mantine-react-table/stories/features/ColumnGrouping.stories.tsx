@@ -45,11 +45,11 @@ const columns = [
 ] as MRT_ColumnDef<Person>[];
 
 const data = [...Array(200)].map(() => ({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  gender: faker.name.sex(),
-  city: faker.address.city(),
-  state: faker.address.state(),
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  gender: faker.person.sex(),
+  city: faker.location.city(),
+  state: faker.location.state(),
 }));
 
 export const ColumnGroupingEnabled = () => (

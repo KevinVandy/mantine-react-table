@@ -22,6 +22,7 @@ import {
   type MultiSelectProps,
   type FlexProps,
 } from '@mantine/core';
+import { type DateInputProps } from '@mantine/dates';
 import {
   type AggregationFn,
   type Cell,
@@ -460,6 +461,13 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         column: MRT_Column<TData>;
         table: MRT_TableInstance<TData>;
       }) => TextInputProps & HTMLPropsRef<HTMLInputElement>);
+  mantineFilterDateInputProps?:
+    | (Partial<DateInputProps> & HTMLPropsRef<HTMLInputElement>)
+    | ((props: {
+        column: MRT_Column<TData>;
+        rangeFilterIndex?: number;
+        table: MRT_TableInstance<TData>;
+      }) => Partial<DateInputProps> & HTMLPropsRef<HTMLInputElement>);
   mantineFilterMultiSelectProps?:
     | (Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>)
     | ((props: {
@@ -780,6 +788,13 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           column: MRT_Column<TData>;
           table: MRT_TableInstance<TData>;
         }) => CheckboxProps & HTMLPropsRef<HTMLInputElement>);
+    mantineFilterDateInputProps?:
+      | (Partial<DateInputProps> & HTMLPropsRef<HTMLInputElement>)
+      | ((props: {
+          column: MRT_Column<TData>;
+          rangeFilterIndex?: number;
+          table: MRT_TableInstance<TData>;
+        }) => Partial<DateInputProps> & HTMLPropsRef<HTMLInputElement>);
     mantineFilterMultiSelectProps?:
       | (Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>)
       | ((props: {

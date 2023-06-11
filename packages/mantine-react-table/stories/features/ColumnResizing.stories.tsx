@@ -36,11 +36,11 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
 ];
 
 const data = [...Array(88)].map(() => ({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  address: faker.address.streetAddress(),
-  state: faker.address.state(),
-  zipCode: faker.address.zipCode(),
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  address: faker.location.streetAddress(),
+  state: faker.location.state(),
+  zipCode: faker.location.zipCode(),
   phoneNumber: faker.phone.number(),
 }));
 
@@ -157,10 +157,10 @@ export const ColumnResizingWithHeaderGroups = () => (
       },
     ]}
     data={[...Array(5)].map(() => ({
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      age: faker.datatype.number(80),
-      address: faker.address.streetAddress(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      age: faker.number.int(80),
+      address: faker.location.streetAddress(),
     }))}
     enableColumnResizing
     enableRowSelection
@@ -205,10 +205,10 @@ export const ColumnResizingWithHeaderGroupsGrid = () => (
       },
     ]}
     data={[...Array(5)].map(() => ({
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      age: faker.datatype.number(80),
-      address: faker.address.streetAddress(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      age: faker.number.int(80),
+      address: faker.location.streetAddress(),
     }))}
     enableColumnResizing
     enableRowSelection

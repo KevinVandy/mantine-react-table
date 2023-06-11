@@ -1,18 +1,7 @@
 import React, { useMemo } from 'react';
-
-//MRT Imports
 import { MantineReactTable } from 'mantine-react-table';
-
-//Mantine Imports
 import { Box, Button, Menu, Text, Title } from '@mantine/core';
-
-//Date Picker Imports
-import { DatePickerInput } from '@mantine/dates';
-
-//Icons Imports
 import { IconUserCircle, IconSend } from '@tabler/icons-react';
-
-//Mock Data
 import { data } from './makeData';
 
 const Example = () => {
@@ -59,7 +48,8 @@ const Example = () => {
         columns: [
           {
             accessorKey: 'salary',
-            filterVariant: 'range',
+            // filterVariant: 'range', //if not using filter modes feature, use this instead of filterFn
+            filterFn: 'between',
             header: 'Salary',
             size: 200,
             //custom conditional format and styling
@@ -93,25 +83,19 @@ const Example = () => {
             size: 350,
           },
           {
-            accessorFn: (row) => new Date(row.startDate), //convert to Date for sorting and filtering
+            accessorFn: (row) => {
+              //convert to Date for sorting and filtering
+              const sDay = new Date(row.startDate);
+              sDay.setHours(0, 0, 0, 0); // remove time from date (useful if filter by equals exact date)
+              return sDay;
+            },
             id: 'startDate',
             header: 'Start Date',
-            filterFn: 'lessThanOrEqualTo',
+            filterVariant: 'date-range',
             sortingFn: 'datetime',
+            enableColumnFilterModes: false,
             Cell: ({ cell }) => cell.getValue()?.toLocaleDateString(), //render Date as a string
             Header: ({ column }) => <em>{column.columnDef.header}</em>, //custom header markup
-            //Custom Date Picker Filter from @mantine/dates
-            //Custom Date Picker Filter from @mantine/dates
-            Filter: ({ column }) => (
-              <DatePickerInput
-                placeholder="Filter by Start Date"
-                onChange={(newValue) => {
-                  column.setFilterValue(newValue);
-                }}
-                value={column.getFilterValue()}
-                modalProps={{ withinPortal: true }}
-              />
-            ),
           },
         ],
       },
