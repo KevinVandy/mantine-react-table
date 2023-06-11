@@ -30,22 +30,13 @@ export const MRT_TableHeadCellResizeHandle = ({ header, table }: Props) => {
       sx={(theme) => ({
         cursor: 'col-resize',
         marginRight:
-          density === 'xl'
-            ? '-24px'
-            : density === 'lg'
-            ? '-22px'
-            : density === 'md'
-            ? '-20px'
-            : density === 'sm'
-            ? '-16px'
-            : '-14px',
+          density === 'xl' ? '-24px' : density === 'md' ? '-20px' : '-14px',
         position: 'absolute',
         right: '4px',
         paddingLeft: '1px',
         paddingRight: '1px',
         '&:active > .mantine-Divider-vertical': {
           borderLeftColor: getPrimaryColor(theme),
-          opacity: 1,
         },
       })}
       style={{

@@ -119,15 +119,7 @@ export const MRT_TableBody = ({
     ? useVirtualizer({
         count: rows.length,
         estimateSize: () =>
-          density === 'xs'
-            ? 42.7
-            : density === 'sm'
-            ? 46.7
-            : density === 'md'
-            ? 54.7
-            : density === 'lg'
-            ? 62.7
-            : 70.7,
+          density === 'xs' ? 42.7 : density === 'md' ? 54.7 : 70.7,
         getScrollElement: () => tableContainerRef.current,
         measureElement:
           typeof window !== 'undefined' &&

@@ -30,10 +30,13 @@ To replace a default icon, specify the icon in the `icons` prop. You should get 
   data={data}
   icons={{
     //change sort icon, connect internal props so that it gets styled correctly
-    IconArrowDown: (props) =>  <FontAwesomeIcon icon={faSortDown} {...props} />,
+    IconArrowDown: (props) => <FontAwesomeIcon icon={faSortDown} {...props} />,
     IconSearch: () => <FontAwesomeIcon icon={faSearch} />,
-    IconArrowsSort: (props) => (<FontAwesomeIcon icon={faArrowDownWideShort} {...props} />), //best practice
+    IconArrowsSort: (props) => (
+      <FontAwesomeIcon icon={faArrowDownWideShort} {...props} />
+    ),
   }}
+/>
 ```
 
 Some icons have `style` props that get applied to them internally. So, in order to preserve the ability of those Icons to be styled with the correct paddings, margins, or rotations, you should pass in `{...props}` to your custom icon component as a best practice.
@@ -41,5 +44,7 @@ Some icons have `style` props that get applied to them internally. So, in order 
 ### Font Awesome Example
 
 Here is an example where we use icons from a completely different library, [Font Awesome](https://fontawesome.com/).
+
+> Note: This example is only using the free solid icons from Font Awesome. If you want to use the pro icons, you will need to import the pro icons from Font Awesome and use those instead.
 
 <Example />

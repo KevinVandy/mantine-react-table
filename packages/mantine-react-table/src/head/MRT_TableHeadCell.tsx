@@ -125,16 +125,7 @@ export const MRT_TableHeadCell = ({ header, table }: Props) => {
         flexDirection: layoutMode === 'grid' ? 'column' : undefined,
         fontWeight: 'bold',
         overflow: 'visible',
-        padding:
-          density === 'xl'
-            ? '23px'
-            : density === 'lg'
-            ? '20px'
-            : density === 'md'
-            ? '16px'
-            : density === 'sm'
-            ? '12px'
-            : '10px',
+        padding: density === 'xl' ? '23px' : density === 'md' ? '16px' : '10px',
         userSelect: enableMultiSort && column.getCanSort() ? 'none' : undefined,
         verticalAlign: 'top',
         zIndex:

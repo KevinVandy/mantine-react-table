@@ -7,86 +7,146 @@ import {
 import { data, type Person } from './makeData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faArrowDownWideShort,
+  faAnglesDown,
   faBars,
   faBarsStaggered,
+  faChevronDown,
+  faChevronLeft,
+  faChevronRight,
+  faCircleXmark,
   faColumns,
   faCompress,
+  faEdit,
   faEllipsisH,
-  faEllipsisVertical,
+  faEllipsisV,
   faExpand,
   faEyeSlash,
   faFilter,
   faFilterCircleXmark,
+  faFloppyDisk,
+  faGrip,
+  faLayerGroup,
   faSearch,
   faSearchMinus,
+  faSort,
   faSortDown,
+  faSortUp,
+  faTextWidth,
   faThumbTack,
-} from '@fortawesome/free-solid-svg-icons';
+  faX,
+} from '@fortawesome/free-solid-svg-icons'; //replace free solid with your desired icon set
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
-/**
- * These are just some of the icons visible in this table's feature set.
- * If you skip customizing some icons, those particular icons will fallback the the default Tabler icons.
- */
 const fontAwesomeIcons: Partial<MRT_Icons> = {
-  IconArrowDown: (props: any) => (
+  IconArrowAutofitContent: (props: any) => (
+    <FontAwesomeIcon icon={faTextWidth} {...props} />
+  ),
+  IconArrowsSort: (props: any) => <FontAwesomeIcon icon={faSort} {...props} />,
+  IconBoxMultiple: (props: any) => (
+    <FontAwesomeIcon icon={faLayerGroup} {...props} />
+  ),
+  IconChevronDown: (props: any) => (
+    <FontAwesomeIcon icon={faChevronDown} {...props} />
+  ),
+  IconChevronLeft: (props: any) => (
+    <FontAwesomeIcon
+      icon={faChevronLeft}
+      style={{ transform: 'translateX(4px)' }} //adjust for icon size in pagination
+      {...props}
+    />
+  ),
+  IconChevronRight: (props: any) => (
+    <FontAwesomeIcon
+      icon={faChevronRight}
+      style={{ transform: 'translateX(-4px)' }} //adjust for icon size in pagination
+      {...props}
+    />
+  ),
+  IconChevronsDown: (props: any) => (
+    <FontAwesomeIcon icon={faAnglesDown} {...props} />
+  ),
+  IconCircleX: (props: any) => (
+    <FontAwesomeIcon icon={faCircleXmark} {...props} />
+  ),
+  IconClearAll: (props: any) => (
+    <FontAwesomeIcon icon={faBarsStaggered} {...props} />
+  ),
+  IconColumns: (props: any) => <FontAwesomeIcon icon={faColumns} {...props} />,
+  IconDeviceFloppy: (props: any) => (
+    <FontAwesomeIcon icon={faFloppyDisk} {...props} />
+  ),
+  IconDots: (props: any) => <FontAwesomeIcon icon={faEllipsisH} {...props} />,
+  IconDotsVertical: (props: any) => (
+    <FontAwesomeIcon icon={faEllipsisV} {...props} />
+  ),
+  IconEdit: (props: any) => <FontAwesomeIcon icon={faEdit} {...props} />,
+  IconEyeOff: (props: any) => <FontAwesomeIcon icon={faEyeSlash} {...props} />,
+  IconFilter: (props: any) => <FontAwesomeIcon icon={faFilter} {...props} />,
+  IconFilterOff: (props: any) => (
+    <FontAwesomeIcon icon={faFilterCircleXmark} {...props} />
+  ),
+  IconGripHorizontal: (props: any) => (
+    <FontAwesomeIcon icon={faGrip} {...props} />
+  ),
+  IconMaximize: (props: any) => <FontAwesomeIcon icon={faExpand} {...props} />,
+  IconMinimize: (props: any) => (
+    <FontAwesomeIcon icon={faCompress} {...props} />
+  ),
+  IconPinned: (props: any) => <FontAwesomeIcon icon={faThumbTack} {...props} />,
+  IconPinnedOff: (props: any) => (
+    <FontAwesomeIcon icon={faThumbTack} {...props} />
+  ),
+  IconSearch: (props: any) => <FontAwesomeIcon icon={faSearch} {...props} />,
+  IconSearchOff: (props: any) => (
+    <FontAwesomeIcon icon={faSearchMinus} {...props} />
+  ),
+  IconSortAscending: (props: any) => (
+    <FontAwesomeIcon icon={faSortUp} {...props} />
+  ),
+  IconSortDescending: (props: any) => (
     <FontAwesomeIcon icon={faSortDown} {...props} />
   ),
-  IconClearAll: () => <FontAwesomeIcon icon={faBarsStaggered} />,
-  IconTallymark1: () => <FontAwesomeIcon icon={faBars} />,
-  IconTallymark2: () => <FontAwesomeIcon icon={faBars} />,
-  IconTallymark3: () => <FontAwesomeIcon icon={faBars} />,
-  IconTallymark4: () => <FontAwesomeIcon icon={faBars} />,
-  IconTallymarks: () => <FontAwesomeIcon icon={faBars} />,
-  IconFilter: (props: any) => <FontAwesomeIcon icon={faFilter} {...props} />,
-  IconFilterOff: () => <FontAwesomeIcon icon={faFilterCircleXmark} />,
-  IconMinimize: () => <FontAwesomeIcon icon={faCompress} />,
-  IconMaximize: () => <FontAwesomeIcon icon={faExpand} />,
-  IconSearch: (props: any) => <FontAwesomeIcon icon={faSearch} {...props} />,
-  IconCircleOff: () => <FontAwesomeIcon icon={faSearchMinus} />,
-  IconColumns: () => <FontAwesomeIcon icon={faColumns} />,
-  IconDotsVertical: () => <FontAwesomeIcon icon={faEllipsisVertical} />,
-  IconDots: () => <FontAwesomeIcon icon={faEllipsisH} />,
-  IconArrowsSort: (props: any) => (
-    <FontAwesomeIcon icon={faArrowDownWideShort} {...props} /> //props so that style rotation transforms are applied
+  IconBaselineDensityLarge: (props: any) => (
+    <FontAwesomeIcon icon={faBars} {...props} />
   ),
-  IconPinned: (props: any) => (
-    <FontAwesomeIcon icon={faThumbTack} {...props} /> //props so that style rotation transforms are applied
+  IconBaselineDensityMedium: (props: any) => (
+    <FontAwesomeIcon icon={faBars} {...props} />
   ),
-  IconEyeOff: () => <FontAwesomeIcon icon={faEyeSlash} />,
+  IconBaselineDensitySmall: (props: any) => (
+    <FontAwesomeIcon icon={faBars} {...props} />
+  ),
+  IconX: (props: any) => <FontAwesomeIcon icon={faX} {...props} />,
 };
 
 const Example = () => {
-  const columns = useMemo(
+  const columns = useMemo<MRT_ColumnDef<Person>[]>(
     //column definitions...
-    () =>
-      [
-        {
-          accessorKey: 'firstName',
-          header: 'First Name',
-        },
-        {
-          accessorKey: 'lastName',
-          header: 'Last Name',
-        },
+    () => [
+      {
+        accessorKey: 'firstName',
+        header: 'First Name',
+      },
+      {
+        accessorKey: 'lastName',
+        header: 'Last Name',
+      },
 
-        {
-          accessorKey: 'address',
-          header: 'Address',
-        },
-        {
-          accessorKey: 'city',
-          header: 'City',
-        },
+      {
+        accessorKey: 'address',
+        header: 'Address',
+      },
+      {
+        accessorKey: 'city',
+        header: 'City',
+      },
 
-        {
-          accessorKey: 'state',
-          header: 'State',
-        },
-      ] as MRT_ColumnDef<Person>[],
+      {
+        accessorKey: 'state',
+        header: 'State',
+      },
+    ],
     [], //end
   );
 
@@ -94,9 +154,15 @@ const Example = () => {
     <MantineReactTable
       columns={columns}
       data={data}
+      editingMode="row"
+      enableColumnFilterModes
       enableColumnOrdering
+      enableColumnResizing
+      enableEditing
+      enableGrouping
       enablePinning
       icons={fontAwesomeIcons}
+      initialState={{ pagination: { pageSize: 5, pageIndex: 0 } }}
     />
   );
 };

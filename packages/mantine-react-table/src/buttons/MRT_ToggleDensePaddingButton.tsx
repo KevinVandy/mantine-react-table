@@ -7,11 +7,7 @@ interface Props<TData extends Record<string, any> = {}>
   table: MRT_TableInstance<TData>;
 }
 
-const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
-
-const commonStyles = {
-  transform: 'rotate(90deg)',
-};
+const sizes = ['xs', 'md', 'xl'] as const;
 
 export const MRT_ToggleDensePaddingButton = <
   TData extends Record<string, any> = {},
@@ -23,11 +19,9 @@ export const MRT_ToggleDensePaddingButton = <
     getState,
     options: {
       icons: {
-        IconTallymark1,
-        IconTallymark2,
-        IconTallymark3,
-        IconTallymark4,
-        IconTallymarks,
+        IconBaselineDensityLarge,
+        IconBaselineDensityMedium,
+        IconBaselineDensitySmall,
       },
       localization,
     },
@@ -53,15 +47,11 @@ export const MRT_ToggleDensePaddingButton = <
         title={undefined}
       >
         {density === 'xs' ? (
-          <IconTallymarks style={commonStyles} />
-        ) : density === 'sm' ? (
-          <IconTallymark4 style={commonStyles} />
+          <IconBaselineDensitySmall />
         ) : density === 'md' ? (
-          <IconTallymark3 style={commonStyles} />
-        ) : density === 'lg' ? (
-          <IconTallymark2 style={commonStyles} />
+          <IconBaselineDensityMedium />
         ) : (
-          <IconTallymark1 style={commonStyles} />
+          <IconBaselineDensityLarge />
         )}
       </ActionIcon>
     </Tooltip>

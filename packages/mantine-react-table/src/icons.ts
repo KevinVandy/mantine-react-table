@@ -1,14 +1,14 @@
 import {
   IconArrowAutofitContent,
-  IconArrowDown,
   IconArrowsSort,
+  IconBaselineDensityLarge,
+  IconBaselineDensityMedium,
+  IconBaselineDensitySmall,
   IconBoxMultiple,
   IconChevronDown,
   IconChevronLeft,
   IconChevronRight,
-  IconChevronUp,
   IconChevronsDown,
-  IconCircleOff,
   IconCircleX,
   IconClearAll,
   IconColumns,
@@ -25,27 +25,23 @@ import {
   IconPinned,
   IconPinnedOff,
   IconSearch,
+  IconSearchOff,
   IconSortAscending,
   IconSortDescending,
-  IconTallymark1,
-  IconTallymark2,
-  IconTallymark3,
-  IconTallymark4,
-  IconTallymarks,
   IconX,
 } from '@tabler/icons-react';
 
 export interface MRT_Icons {
   IconArrowAutofitContent: any;
-  IconArrowDown: any;
   IconArrowsSort: any;
+  IconBaselineDensityLarge: any;
+  IconBaselineDensityMedium: any;
+  IconBaselineDensitySmall: any;
   IconBoxMultiple: any;
   IconChevronDown: any;
   IconChevronLeft: any;
   IconChevronRight: any;
-  IconChevronUp: any;
   IconChevronsDown: any;
-  IconCircleOff: any;
   IconCircleX: any;
   IconClearAll: any;
   IconColumns: any;
@@ -62,27 +58,23 @@ export interface MRT_Icons {
   IconPinned: any;
   IconPinnedOff: any;
   IconSearch: any;
+  IconSearchOff: any;
   IconSortAscending: any;
   IconSortDescending: any;
-  IconTallymark1: any;
-  IconTallymark2: any;
-  IconTallymark3: any;
-  IconTallymark4: any;
-  IconTallymarks: any;
   IconX: any;
 }
 
 export const MRT_Default_Icons: MRT_Icons = {
   IconArrowAutofitContent,
-  IconArrowDown,
   IconArrowsSort,
+  IconBaselineDensityLarge,
+  IconBaselineDensityMedium,
+  IconBaselineDensitySmall,
   IconBoxMultiple,
   IconChevronDown,
   IconChevronLeft,
   IconChevronRight,
-  IconChevronUp,
   IconChevronsDown,
-  IconCircleOff,
   IconCircleX,
   IconClearAll,
   IconColumns,
@@ -99,12 +91,8 @@ export const MRT_Default_Icons: MRT_Icons = {
   IconPinned,
   IconPinnedOff,
   IconSearch,
+  IconSearchOff,
   IconSortAscending,
   IconSortDescending,
-  IconTallymark1,
-  IconTallymark2,
-  IconTallymark3,
-  IconTallymark4,
-  IconTallymarks,
   IconX,
 };

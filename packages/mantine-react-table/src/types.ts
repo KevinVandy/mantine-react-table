@@ -84,7 +84,7 @@ export interface MRT_PaginationProps {
   showRowsPerPage?: boolean;
 }
 
-export type MRT_DensityState = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type MRT_DensityState = 'xs' | 'md' | 'xl';
 
 export type MRT_FilterFnsState = Record<string, MRT_FilterOption>;
 

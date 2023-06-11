@@ -105,7 +105,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
             onClick={() => setPageIndex(0)}
             sx={commonActionButtonStyles}
           >
-            <b style={{ transform: 'translate(4px, -1.5px)' }}>|</b>
+            <b style={{ transform: 'translate(2px, -1.5px)' }}>|</b>
             <IconChevronLeft />
           </ActionIcon>
         )}
@@ -135,7 +135,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
             sx={commonActionButtonStyles}
           >
             <IconChevronRight />
-            <b style={{ transform: 'translate(-4px, -1.5px)' }}>|</b>
+            <b style={{ transform: 'translate(-2px, -1.5px)' }}>|</b>
           </ActionIcon>
         )}
       </Flex>

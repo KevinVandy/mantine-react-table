@@ -1,10 +1,10 @@
 import { type MouseEvent } from 'react';
 import {
   Checkbox,
-  type CheckboxProps,
   Radio,
-  type RadioProps,
   Tooltip,
+  type CheckboxProps,
+  type RadioProps,
 } from '@mantine/core';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
 
