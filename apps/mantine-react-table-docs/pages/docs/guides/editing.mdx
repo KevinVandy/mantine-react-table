@@ -26,13 +26,14 @@ There are 4 visually distinct editing modes to choose from, whether you want to 
 <RootPropTable
   onlyProps={
     new Set([
-      'enableEditing',
       'editingMode',
+      'enableEditing',
+      'mantineEditSelectProps',
       'mantineEditTextInputProps',
       'onEditingCellChange',
+      'onEditingRowCancel',
       'onEditingRowChange',
       'onEditingRowSave',
-      'onEditingRowCancel',
     ])
   }
 />
@@ -40,7 +41,14 @@ There are 4 visually distinct editing modes to choose from, whether you want to 
 ### Relevant Column Options
 
 <ColumnOptionsTable
-  onlyProps={new Set(['enableEditing', 'mantineEditTextInputProps'])}
+  onlyProps={
+    new Set([
+      'editVariant',
+      'enableEditing',
+      'mantineEditSelectProps',
+      'mantineEditTextInputProps',
+    ])
+  }
 />
 
 ### Relevant State Options

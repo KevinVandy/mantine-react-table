@@ -127,6 +127,16 @@ export const columnOptions: ColumnOption[] = [
     type: 'Array<MRT_ColumnDef<TData>>',
   },
   {
+    columnOption: 'editVariant',
+    defaultValue: "'text'",
+    description: 'Define which component should be used for editing.',
+    link: '/docs/guides/editing',
+    linkText: 'MRT Editing Docs',
+    source: 'MRT',
+    required: false,
+    type: "'select' | 'text'",
+  },
+  {
     columnOption: 'enableClickToCopy',
     defaultValue: '',
     description: 'Enable the click to copy feature for this column.',
@@ -388,6 +398,16 @@ export const columnOptions: ColumnOption[] = [
     source: 'Mantine',
     required: false,
     type: 'UnstyledButtonProps | ({ cell, column, row, table }) => UnstyledButtonProps',
+  },
+  {
+    columnOption: 'mantineEditSelectProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/select/?t=props',
+    linkText: 'Mantine Select Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'SelectProps | ({ cell, column, row, table }) => SelectProps',
   },
   {
     columnOption: 'mantineEditTextInputProps',

@@ -51,7 +51,7 @@ const Example = () => {
         onBlur: (event) => {
           handleSaveCell(cell, event.target.value);
         },
-        variant: 'filled',
+        variant: 'unstyled', //default for editingMode="table"
       })}
     />
   );

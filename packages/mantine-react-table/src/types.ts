@@ -69,7 +69,7 @@ type LiteralUnion<T extends U, U = string> = T | (U & Record<never, never>);
 
 export type HTMLPropsRef<T extends HTMLElement> = Omit<
   HTMLProps<T>,
-  'color' | 'size' | 'type' | 'ref'
+  'color' | 'size' | 'type' | 'ref' | 'data'
 > & {
   ref?: MutableRefObject<T | null> | null;
 };
@@ -393,6 +393,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
     LiteralUnion<string & MRT_FilterOption>
   > | null;
   columns?: MRT_ColumnDef<TData>[];
+  editVariant?: 'text' | 'select';
   enableClickToCopy?: boolean;
   enableColumnActions?: boolean;
   enableColumnDragging?: boolean;
@@ -447,6 +448,14 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => UnstyledButtonProps & HTMLPropsRef<HTMLButtonElement>);
+  mantineEditSelectProps?:
+    | (Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>)
+    | ((props: {
+        cell: MRT_Cell<TData>;
+        column: MRT_Column<TData>;
+        row: MRT_Row<TData>;
+        table: MRT_TableInstance<TData>;
+      }) => Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>);
   mantineEditTextInputProps?:
     | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
     | ((props: {
@@ -763,6 +772,14 @@ export type MantineReactTableProps<TData extends Record<string, any> = {}> =
           table: MRT_TableInstance<TData>;
           row: MRT_Row<TData>;
         }) => BoxProps & HTMLPropsRef<HTMLTableCellElement>);
+    mantineEditSelectProps?:
+      | (Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>)
+      | ((props: {
+          cell: MRT_Cell<TData>;
+          column: MRT_Column<TData>;
+          row: MRT_Row<TData>;
+          table: MRT_TableInstance<TData>;
+        }) => Partial<MultiSelectProps> & HTMLPropsRef<HTMLInputElement>);
     mantineEditTextInputProps?:
       | (TextInputProps & HTMLPropsRef<HTMLInputElement>)
       | ((props: {

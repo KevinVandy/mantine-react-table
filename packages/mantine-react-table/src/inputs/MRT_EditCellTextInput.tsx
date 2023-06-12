@@ -1,26 +1,19 @@
-import {
-  type ChangeEvent,
-  type FocusEvent,
-  type KeyboardEvent,
-  useState,
-} from 'react';
-import { TextInput, type TextInputProps } from '@mantine/core';
+import { type FocusEvent, type KeyboardEvent, useState } from 'react';
+import { Select, TextInput } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
   table: MRT_TableInstance<TData>;
-  showLabel?: boolean;
 }
 
 export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
   cell,
-  showLabel,
   table,
 }: Props<TData>) => {
   const {
     getState,
-    options: { mantineEditTextInputProps },
+    options: { editingMode, mantineEditTextInputProps, mantineEditSelectProps },
     refs: { editInputRefs },
     setEditingCell,
     setEditingRow,
@@ -29,7 +22,9 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
   const { columnDef } = column;
   const { editingRow } = getState();
 
-  const [value, setValue] = useState(() => cell.getValue<string>());
+  const isSelectEdit = columnDef.editVariant === 'select';
+
+  const [value, setValue] = useState(() => cell.getValue<any>());
 
   const mTableBodyCellEditTextInputProps =
     mantineEditTextInputProps instanceof Function
@@ -46,12 +41,32 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
         })
       : columnDef.mantineEditTextInputProps;
 
-  const textFieldProps: TextInputProps = {
+  const textInputProps = {
     ...mTableBodyCellEditTextInputProps,
     ...mcTableBodyCellEditTextInputProps,
   };
 
-  const saveRow = (newValue: string) => {
+  const mTableBodyCellEditSelectProps =
+    mantineEditSelectProps instanceof Function
+      ? mantineEditSelectProps({ cell, column, row, table })
+      : mantineEditSelectProps;
+
+  const mcTableBodyCellEditSelectProps =
+    columnDef.mantineEditSelectProps instanceof Function
+      ? columnDef.mantineEditSelectProps({
+          cell,
+          column,
+          row,
+          table,
+        })
+      : columnDef.mantineEditSelectProps;
+
+  const selectProps = {
+    ...mTableBodyCellEditSelectProps,
+    ...mcTableBodyCellEditSelectProps,
+  };
+
+  const saveRow = (newValue: string | null) => {
     if (editingRow) {
       setEditingRow({
         ...editingRow,
@@ -60,13 +75,8 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
     }
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    textFieldProps.onChange?.(event);
-    setValue(event.target.value);
-  };
-
   const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
-    textFieldProps.onBlur?.(event);
+    textInputProps.onBlur?.(event);
     saveRow(value);
     setEditingCell(null);
   };
@@ -81,34 +91,75 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
     return <>{columnDef.Edit?.({ cell, column, row, table })}</>;
   }
 
+  const commonProps = {
+    disabled:
+      (columnDef.enableEditing instanceof Function
+        ? columnDef.enableEditing(row)
+        : columnDef.enableEditing) === false,
+    label: editingMode === 'modal' ? column.columnDef.header : undefined,
+    name: column.id,
+    placeholder: columnDef.header,
+    value,
+    variant: editingMode === 'table' ? 'unstyled' : 'default',
+    onClick: (e: any) => {
+      e.stopPropagation();
+      textInputProps?.onClick?.(e);
+    },
+  } as const;
+
+  if (isSelectEdit) {
+    return (
+      // @ts-ignore
+      <Select
+        {...commonProps}
+        searchable
+        value={value}
+        withinPortal
+        {...selectProps}
+        onBlur={handleBlur}
+        onChange={(value) => {
+          selectProps.onChange?.(value as any);
+          setValue(value);
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+          selectProps?.onClick?.(e);
+        }}
+        ref={(node) => {
+          if (node) {
+            editInputRefs.current[column.id] = node;
+            if (selectProps.ref) {
+              selectProps.ref.current = node;
+            }
+          }
+        }}
+      />
+    );
+  }
+
   return (
     <TextInput
-      disabled={
-        (columnDef.enableEditing instanceof Function
-          ? columnDef.enableEditing(row)
-          : columnDef.enableEditing) === false
-      }
-      // inputRef={(inputRef) => {
-      //   if (inputRef) {
-      //     editInputRefs.current[column.id] = inputRef;
-      //     if (textFieldProps.inputRef) {
-      //       textFieldProps.inputRef = inputRef;
-      //     }
-      //   }
-      // }}
-      label={showLabel ? column.columnDef.header : undefined}
-      name={column.id}
+      {...commonProps}
       onKeyDown={handleEnterKeyDown}
-      placeholder={columnDef.header}
-      value={value}
-      variant="default"
-      {...textFieldProps}
-      onClick={(e) => {
-        e.stopPropagation();
-        textFieldProps?.onClick?.(e);
-      }}
+      value={value ?? ''}
+      {...textInputProps}
       onBlur={handleBlur}
-      onChange={handleChange}
+      onChange={(event) => {
+        textInputProps.onChange?.(event);
+        setValue(event.target.value);
+      }}
+      onClick={(event) => {
+        event.stopPropagation();
+        textInputProps?.onClick?.(event);
+      }}
+      ref={(node) => {
+        if (node) {
+          editInputRefs.current[column.id] = node;
+          if (textInputProps.ref) {
+            textInputProps.ref.current = node;
+          }
+        }
+      }}
     />
   );
 };

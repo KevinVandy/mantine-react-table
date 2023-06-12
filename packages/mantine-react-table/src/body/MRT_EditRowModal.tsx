@@ -45,7 +45,6 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
               <MRT_EditCellTextInput
                 cell={cell as any}
                 key={cell.id}
-                showLabel
                 table={table as any}
               />
             ))}

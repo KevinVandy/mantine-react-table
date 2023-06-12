@@ -15,8 +15,9 @@ export const MRT_RowActionMenu = <TData extends Record<string, any> = {}>({
 }: Props<TData>) => {
   const {
     options: {
-      icons: { IconEdit, IconDots },
+      editingMode,
       enableEditing,
+      icons: { IconEdit, IconDots },
       localization,
       renderRowActionMenuItems,
     },
@@ -41,7 +42,7 @@ export const MRT_RowActionMenu = <TData extends Record<string, any> = {}>({
         </Menu.Target>
       </Tooltip>
       <Menu.Dropdown onClick={(event) => event.stopPropagation()}>
-        {enableEditing && (
+        {enableEditing && editingMode !== "table" && (
           <Menu.Item icon={<IconEdit />} onClick={handleEdit}>
             {localization.edit}
           </Menu.Item>

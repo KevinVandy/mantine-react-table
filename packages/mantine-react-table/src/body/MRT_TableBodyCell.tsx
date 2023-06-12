@@ -221,9 +221,11 @@ export const MRT_TableBodyCell = ({
         zIndex:
           draggingColumn?.id === column.id ? 2 : column.getIsPinned() ? 1 : 0,
         '&:hover': {
-          outline: ['table', 'cell'].includes(editingMode ?? '')
-            ? `1px solid ${theme.colors.gray[7]}`
-            : undefined,
+          outline:
+            ['table', 'cell'].includes(editingMode ?? '') &&
+            columnDefType !== 'display'
+              ? `1px solid ${theme.colors.gray[7]}`
+              : undefined,
           outlineOffset: '-1px',
           textOverflow: 'clip',
         },

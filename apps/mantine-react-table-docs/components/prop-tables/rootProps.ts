@@ -1069,6 +1069,16 @@ export const rootProps: PropRow[] = [
     type: 'UnstyledButtonProps | ({ cell, column, row, table }) => UnstyledButtonProps',
   },
   {
+    propName: 'mantineEditSelectProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/select/?t=props',
+    linkText: 'Mantine Select Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'SelectProps | ({ cell, column, row, table }) => SelectProps',
+  },
+  {
     propName: 'mantineEditTextInputProps',
     defaultValue: '',
     description: '',

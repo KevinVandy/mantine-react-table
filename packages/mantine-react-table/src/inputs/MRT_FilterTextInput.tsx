@@ -283,6 +283,15 @@ export const MRT_FilterTextInput = ({
       searchable
       withinPortal
       {...multiSelectProps}
+      ref={(node) => {
+        if (node) {
+          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+            node;
+          if (multiSelectProps.ref) {
+            multiSelectProps.ref.current = node;
+          }
+        }
+      }}
       sx={commonProps.sx}
     />
   ) : isSelectFilter ? (
@@ -293,6 +302,15 @@ export const MRT_FilterTextInput = ({
       searchable
       withinPortal
       {...selectProps}
+      ref={(node) => {
+        if (node) {
+          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+            node;
+          if (selectProps.ref) {
+            selectProps.ref.current = node;
+          }
+        }
+      }}
       sx={commonProps.sx}
     />
   ) : isDateFilter ? (
@@ -302,6 +320,15 @@ export const MRT_FilterTextInput = ({
       clearable
       popoverProps={{ withinPortal: true }}
       {...dateInputProps}
+      ref={(node) => {
+        if (node) {
+          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+            node;
+          if (dateInputProps.ref) {
+            dateInputProps.ref.current = node;
+          }
+        }
+      }}
       sx={commonProps.sx}
     />
   ) : (
