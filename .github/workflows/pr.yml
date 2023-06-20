@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  prettier:
+  clean-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
