@@ -15,7 +15,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Setup PNPM
-        - uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v2
           with:
             version: 8.5.1
 
