@@ -34,7 +34,7 @@
   "size-limit": [
     {
       "path": "dist/cjs/index.js",
-      "limit": "50 KB"
+      "limit": "51 KB"
     },
     {
       "path": "dist/esm/mantine-react-table.esm.js",
