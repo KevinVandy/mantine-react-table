@@ -47,9 +47,13 @@ export const MRT_ExpandAllButton = ({ table }: Props) => {
         sx={(theme) => ({
           marginLeft:
             density === 'xl' ? '-6px' : density === 'md' ? '0' : '6px',
+          opacity: 0.8,
           '&:disabled': {
             backgroundColor: 'transparent',
             border: 'none',
+          },
+          '&:hover': {
+            opacity: 1,
           },
           ...(actionIconProps?.sx instanceof Function
             ? actionIconProps?.sx(theme)

@@ -3,7 +3,7 @@ import { type Meta } from '@storybook/react';
 import {
   MantineReactTable,
   type MRT_Cell,
-  type MantineReactTableProps,
+  type MRT_TableOptions,
 } from '../../src';
 import { faker } from '@faker-js/faker';
 
@@ -89,7 +89,7 @@ const data: Person[] = [...Array(100)].map(() => ({
 export const EditingEnabledEditModeModalDefault = () => {
   const [tableData, setTableData] = useState(data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     exitEditingMode,
     row,
     values,
@@ -134,7 +134,7 @@ export const EditingEnabledEditModeModalDefault = () => {
 export const EditingEnabledEditModeRow = () => {
   const [tableData, setTableData] = useState(data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     exitEditingMode,
     row,
     values,
@@ -272,7 +272,7 @@ export const EditingEnabledEditModeTable = () => {
 export const EditSelectVariant = () => {
   const [tableData, setTableData] = useState(data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     row,
     values,
     exitEditingMode,
@@ -322,7 +322,7 @@ export const EditSelectVariant = () => {
 export const EditSelectVariantAlternate = () => {
   const [tableData, setTableData] = useState(data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     row,
     values,
     exitEditingMode,
@@ -417,7 +417,7 @@ export const EditSelectVariantAlternate = () => {
 export const EditingCustomizeInput = () => {
   const [tableData, setTableData] = useState(data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     row,
     values,
     exitEditingMode,
@@ -604,7 +604,7 @@ export const EditingEnabledAsync = () => {
   const [tableData, setTableData] = useState(data);
   const [isSaving, setIsSaving] = useState(false);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     row,
     values,
     exitEditingMode,
@@ -714,7 +714,7 @@ export const EditingNestedData = () => {
 export const EditingEnabledEditModeTableWithGroupedRows = () => {
   const [tableData, setTableData] = useState(data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     exitEditingMode,
     row,
     values,
@@ -761,7 +761,7 @@ export const EditingEnabledEditModeTableWithGroupedRows = () => {
 export const EnableEditingConditionally = () => {
   const [tableData, setTableData] = useState(data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     exitEditingMode,
     row,
     values,
@@ -807,7 +807,7 @@ export const EnableEditingConditionally = () => {
 export const EnableEditingConditionallyCell = () => {
   const [tableData, setTableData] = useState(data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     exitEditingMode,
     row,
     values,
@@ -853,7 +853,7 @@ export const EnableEditingConditionallyCell = () => {
 export const EnableEditingConditionallyTable = () => {
   const [tableData, setTableData] = useState(data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] = ({
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     exitEditingMode,
     row,
     values,

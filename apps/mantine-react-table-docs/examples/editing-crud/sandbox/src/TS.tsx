@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import {
   MantineReactTable,
-  MantineReactTableProps,
+  MRT_TableOptions,
   MRT_Cell,
   MRT_ColumnDef,
   MRT_Row,
@@ -42,7 +42,7 @@ const Example = () => {
     setTableData([...tableData]);
   };
 
-  const handleSaveRowEdits: MantineReactTableProps<Person>['onEditingRowSave'] =
+  const handleSaveRowEdits: MRT_TableOptions<Person>['onEditingRowSave'] =
     async ({ exitEditingMode, row, values }) => {
       if (!Object.keys(validationErrors).length) {
         tableData[row.index] = values;

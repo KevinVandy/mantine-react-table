@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   MantineReactTable,
-  type MantineReactTableProps,
+  type MRT_TableOptions,
   type MRT_ColumnDef,
 } from 'mantine-react-table';
 import { Anchor, Text } from '@mantine/core';
@@ -12,7 +12,7 @@ import { type PropRow, rootProps } from './rootProps';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {
-  onlyProps?: Set<keyof MantineReactTableProps>;
+  onlyProps?: Set<keyof MRT_TableOptions>;
 }
 
 const RootPropTable = ({ onlyProps }: Props) => {

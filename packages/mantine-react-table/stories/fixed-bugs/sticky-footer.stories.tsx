@@ -1,5 +1,5 @@
 import { type Meta } from '@storybook/react';
-import { MantineReactTable, MantineReactTableProps } from '../../src';
+import { MantineReactTable, MRT_TableOptions } from '../../src';
 
 const meta: Meta = {
   title: 'Fixed Bugs/sticky-footer',

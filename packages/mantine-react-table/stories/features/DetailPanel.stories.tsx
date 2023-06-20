@@ -1,5 +1,5 @@
 import { type Meta } from '@storybook/react';
-import { MantineReactTable, MantineReactTableProps } from '../../src';
+import { MantineReactTable, MRT_TableOptions } from '../../src';
 import { faker } from '@faker-js/faker';
 
 const meta: Meta = {

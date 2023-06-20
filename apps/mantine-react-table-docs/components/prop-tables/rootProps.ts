@@ -1,11 +1,11 @@
-import { type MantineReactTableProps } from 'mantine-react-table';
+import { type MRT_TableOptions } from 'mantine-react-table';
 
 export type PropRow = {
   defaultValue?: string;
   description?: string;
   link?: string;
   linkText?: string;
-  propName: keyof MantineReactTableProps;
+  propName: keyof MRT_TableOptions;
   required?: boolean;
   source?: 'MRT' | 'TanStack Table' | 'TanStack Virtual' | 'Mantine' | '';
   type?: string;

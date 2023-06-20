@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import {
   MantineReactTable,
-  MantineReactTableProps,
+  MRT_TableOptions,
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { data, Person } from './makeData';
@@ -38,14 +38,17 @@ const Example = () => {
 
   const [tableData, setTableData] = useState<Person[]>(() => data);
 
-  const handleSaveRow: MantineReactTableProps<Person>['onEditingRowSave'] =
-    async ({ exitEditingMode, row, values }) => {
-      //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
-      tableData[row.index] = values;
-      //send/receive api updates here
-      setTableData([...tableData]);
-      exitEditingMode(); //required to exit editing mode
-    };
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = async ({
+    exitEditingMode,
+    row,
+    values,
+  }) => {
+    //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
+    tableData[row.index] = values;
+    //send/receive api updates here
+    setTableData([...tableData]);
+    exitEditingMode(); //required to exit editing mode
+  };
 
   return (
     <MantineReactTable

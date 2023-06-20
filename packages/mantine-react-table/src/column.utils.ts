@@ -4,7 +4,7 @@ import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
 import { type BoxProps, type MantineTheme } from '@mantine/core';
 import {
-  type MantineReactTableProps,
+  type MRT_TableOptions,
   type MantineShade,
   type MRT_Column,
   type MRT_ColumnDef,
@@ -49,13 +49,12 @@ export const prepareColumns = <TData extends Record<string, any> = {}>({
   sortingFns,
 }: {
   aggregationFns: typeof MRT_AggregationFns &
-    MantineReactTableProps<TData>['aggregationFns'];
+    MRT_TableOptions<TData>['aggregationFns'];
   columnDefs: MRT_ColumnDef<TData>[];
   columnFilterFns: { [key: string]: MRT_FilterOption };
   defaultDisplayColumn: Partial<MRT_ColumnDef<TData>>;
-  filterFns: typeof MRT_FilterFns & MantineReactTableProps<TData>['filterFns'];
-  sortingFns: typeof MRT_SortingFns &
-    MantineReactTableProps<TData>['sortingFns'];
+  filterFns: typeof MRT_FilterFns & MRT_TableOptions<TData>['filterFns'];
+  sortingFns: typeof MRT_SortingFns & MRT_TableOptions<TData>['sortingFns'];
 }): MRT_DefinedColumnDef<TData>[] =>
   columnDefs.map((columnDef) => {
     //assign columnId
@@ -132,7 +131,7 @@ export const reorderColumn = <TData extends Record<string, any> = {}>(
 };
 
 export const showExpandColumn = <TData extends Record<string, any> = {}>(
-  props: MantineReactTableProps<TData>,
+  props: MRT_TableOptions<TData>,
   grouping?: MRT_GroupingState,
 ) =>
   !!(
@@ -144,7 +143,7 @@ export const showExpandColumn = <TData extends Record<string, any> = {}>(
 export const getLeadingDisplayColumnIds = <
   TData extends Record<string, any> = {},
 >(
-  props: MantineReactTableProps<TData>,
+  props: MRT_TableOptions<TData>,
 ) =>
   [
     (props.enableRowDragging || props.enableRowOrdering) && 'mrt-row-drag',
@@ -163,7 +162,7 @@ export const getLeadingDisplayColumnIds = <
 export const getTrailingDisplayColumnIds = <
   TData extends Record<string, any> = {},
 >(
-  props: MantineReactTableProps<TData>,
+  props: MRT_TableOptions<TData>,
 ) =>
   [
     props.positionActionsColumn === 'last' &&
@@ -179,7 +178,7 @@ export const getTrailingDisplayColumnIds = <
 export const getDefaultColumnOrderIds = <
   TData extends Record<string, any> = {},
 >(
-  props: MantineReactTableProps<TData>,
+  props: MRT_TableOptions<TData>,
 ) => {
   const leadingDisplayCols: string[] = getLeadingDisplayColumnIds(props);
   const trailingDisplayCols: string[] = getTrailingDisplayColumnIds(props);

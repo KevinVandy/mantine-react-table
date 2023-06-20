@@ -42,7 +42,7 @@ export const MRT_RowActionMenu = <TData extends Record<string, any> = {}>({
         </Menu.Target>
       </Tooltip>
       <Menu.Dropdown onClick={(event) => event.stopPropagation()}>
-        {enableEditing && editingMode !== "table" && (
+        {enableEditing && editingMode !== 'table' && (
           <Menu.Item icon={<IconEdit />} onClick={handleEdit}>
             {localization.edit}
           </Menu.Item>

@@ -49,9 +49,13 @@ export const MRT_ExpandButton = ({ row, table }: Props) => {
         {...actionIconProps}
         onClick={handleToggleExpand}
         sx={(theme) => ({
+          opacity: 0.8,
           '&:disabled': {
             backgroundColor: 'transparent',
             border: 'none',
+          },
+          '&:hover': {
+            opacity: 1,
           },
           ...(actionIconProps?.sx instanceof Function
             ? actionIconProps.sx(theme)

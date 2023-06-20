@@ -56,6 +56,12 @@ export const MRT_ToggleRowActionMenuButton = <
           <ActionIcon
             aria-label={localization.edit}
             onClick={handleStartEditMode}
+            sx={{
+              opacity: 0.8,
+              '&:hover': {
+                opacity: 1,
+              },
+            }}
           >
             <IconEdit />
           </ActionIcon>
