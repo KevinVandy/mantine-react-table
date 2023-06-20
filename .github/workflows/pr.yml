@@ -16,8 +16,8 @@ jobs:
 
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
-          with:
-            version: 8.5.1
+        with:
+          version: 8.5.1
 
       - name: Install Dependencies
         run: pnpm i
