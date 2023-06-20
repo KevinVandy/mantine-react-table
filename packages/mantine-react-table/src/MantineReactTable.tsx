@@ -7,7 +7,7 @@ type TableInstanceProp<TData extends Record<string, any>> = {
   table: MRT_TableInstance<TData>;
 };
 
-    type Props<TData extends Record<string, any>> =
+type Props<TData extends Record<string, any>> =
   | TableInstanceProp<TData>
   | MRT_TableOptions<TData>;
 
