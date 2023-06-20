@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change directory to the example directory
-cd /path/to/example
+cd apps/mantine-react-table-docs/examples
 
 # Loop through each file in the example directory
 for file in *; do
@@ -23,7 +23,7 @@ for file in *; do
       ncu -u
 
       # Run npm install
-      npm install --package-lock-only
+      npm install --package-lock-only --force
 
       echo "  - npm install completed"
       

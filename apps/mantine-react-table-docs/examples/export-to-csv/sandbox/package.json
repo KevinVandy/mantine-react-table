@@ -10,18 +10,18 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@mantine/hooks": "^6.0.13",
+    "@mantine/hooks": "^6.0.14",
     "@tabler/icons-react": "2.22.0",
-    "@mantine/core": "^6.0.13",
+    "@mantine/core": "^6.0.14",
     "export-to-csv": "^0.2.1",
-    "mantine-react-table": "latest",
+    "mantine-react-table": "^1.0.0-beta.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.11",
-    "@types/react-dom": "^18.2.4",
-    "@vitejs/plugin-react": "^4.0.0",
+    "@types/react": "^18.2.13",
+    "@types/react-dom": "^18.2.6",
+    "@vitejs/plugin-react": "^4.0.1",
     "typescript": "^5.1.3",
     "vite": "^4.3.9"
   }
