@@ -20,7 +20,7 @@ for file in *; do
       cd sandbox
 
       ## Update dependency versions
-      ncu -u
+      npx npm-check-updates
 
       # Run npm install
       npm install --package-lock-only --force
