@@ -8,7 +8,7 @@ import { type ColumnOption, columnOptions } from './columnOptions';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_ColumnDef>;
+  onlyProps?: Set<keyof MRT_ColumnDef<any>>;
 }
 
 const ColumnOptionsTable = ({ onlyProps }: Props) => {

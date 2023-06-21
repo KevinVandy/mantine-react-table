@@ -14,7 +14,7 @@ import {
 } from './columnInstanceAPIs';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_Column>;
+  onlyProps?: Set<keyof MRT_Column<any>>;
 }
 
 const ColumnInstanceAPIsTable = ({ onlyProps }: Props) => {

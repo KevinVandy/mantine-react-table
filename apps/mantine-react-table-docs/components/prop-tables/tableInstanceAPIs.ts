@@ -1,7 +1,7 @@
 import { type MRT_TableInstance } from 'mantine-react-table';
 
 export interface TableInstanceAPI {
-  tableInstanceAPI: keyof MRT_TableInstance;
+  tableInstanceAPI: keyof MRT_TableInstance<any>;
   link: string;
   linkText: string;
   description: string;

@@ -12,7 +12,7 @@ import { type PropRow, rootProps } from './rootProps';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_TableOptions>;
+  onlyProps?: Set<keyof MRT_TableOptions<any>>;
 }
 
 const RootPropTable = ({ onlyProps }: Props) => {

@@ -11,7 +11,7 @@ import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type RowInstanceAPI, rowInstanceAPIs } from './rowInstanceAPIs';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_Row>;
+  onlyProps?: Set<keyof MRT_Row<any>>;
 }
 
 const RowInstanceAPIsTable = ({ onlyProps }: Props) => {

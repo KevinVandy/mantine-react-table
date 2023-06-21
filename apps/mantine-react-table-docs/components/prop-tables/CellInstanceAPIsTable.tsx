@@ -11,7 +11,7 @@ import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type CellInstanceAPI, cellInstanceAPIs } from './cellInstanceAPIs';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_Cell>;
+  onlyProps?: Set<keyof MRT_Cell<any>>;
 }
 
 const CellInstanceAPIsTable = ({ onlyProps }: Props) => {

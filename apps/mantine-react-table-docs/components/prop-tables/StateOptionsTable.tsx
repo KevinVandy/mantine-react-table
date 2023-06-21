@@ -11,7 +11,7 @@ import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type StateRow, stateOptions } from './stateOptions';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_TableState>;
+  onlyProps?: Set<keyof MRT_TableState<any>>;
 }
 
 const StateOptionsTable = ({ onlyProps }: Props) => {

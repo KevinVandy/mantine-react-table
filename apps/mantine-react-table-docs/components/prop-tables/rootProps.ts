@@ -5,7 +5,7 @@ export type PropRow = {
   description?: string;
   link?: string;
   linkText?: string;
-  propName: keyof MRT_TableOptions;
+  propName: keyof MRT_TableOptions<any>;
   required?: boolean;
   source?: 'MRT' | 'TanStack Table' | 'TanStack Virtual' | 'Mantine' | '';
   type?: string;

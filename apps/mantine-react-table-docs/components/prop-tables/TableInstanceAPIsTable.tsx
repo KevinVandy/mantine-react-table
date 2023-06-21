@@ -11,7 +11,7 @@ import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type TableInstanceAPI, tableInstanceAPIs } from './tableInstanceAPIs';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_TableInstance>;
+  onlyProps?: Set<keyof MRT_TableInstance<any>>;
 }
 
 const TableInstanceAPIsTable = ({ onlyProps }: Props) => {

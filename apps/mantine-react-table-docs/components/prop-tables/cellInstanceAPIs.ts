@@ -1,7 +1,7 @@
 import { type MRT_Cell } from 'mantine-react-table';
 
 export interface CellInstanceAPI {
-  cellInstanceAPI: keyof MRT_Cell;
+  cellInstanceAPI: keyof MRT_Cell<any>;
   link?: string;
   linkText?: string;
   description?: string;

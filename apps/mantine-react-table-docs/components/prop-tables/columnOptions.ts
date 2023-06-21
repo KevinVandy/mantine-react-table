@@ -1,7 +1,7 @@
 import { type MRT_ColumnDef } from 'mantine-react-table';
 
 export type ColumnOption = {
-  columnOption: keyof MRT_ColumnDef;
+  columnOption: keyof MRT_ColumnDef<any>;
   defaultValue?: string;
   description?: string;
   link?: string;
