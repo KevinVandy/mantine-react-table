@@ -11,22 +11,22 @@ import {
   type MRT_Virtualizer,
 } from '../types';
 
-interface Props {
+interface Props<TData extends Record<string, any>> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
   isStriped?: boolean;
   measureElement?: (element: HTMLTableRowElement) => void;
   numRows: number;
-  row: MRT_Row;
+  row: MRT_Row<TData>;
   rowIndex: number;
-  table: MRT_TableInstance;
+  table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
   virtualRow?: MRT_VirtualItem;
 }
 
-export const MRT_TableBodyRow = ({
+export const MRT_TableBodyRow = <TData extends Record<string, any>>({
   columnVirtualizer,
   enableHover,
   isStriped,
@@ -39,7 +39,7 @@ export const MRT_TableBodyRow = ({
   virtualPaddingLeft,
   virtualPaddingRight,
   virtualRow,
-}: Props) => {
+}: Props<TData>) => {
   const {
     getState,
     options: {
@@ -118,7 +118,7 @@ export const MRT_TableBodyRow = ({
             ? row.getVisibleCells()[
                 (cellOrVirtualCell as MRT_VirtualItem).index
               ]
-            : (cellOrVirtualCell as MRT_Cell);
+            : (cellOrVirtualCell as MRT_Cell<TData>);
           const props = {
             cell,
             isStriped,
@@ -162,4 +162,4 @@ export const MRT_TableBodyRow = ({
 export const Memo_MRT_TableBodyRow = memo(
   MRT_TableBodyRow,
   (prev, next) => prev.row === next.row && prev.rowIndex === next.rowIndex,
-);
+) as typeof MRT_TableBodyRow;

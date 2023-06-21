@@ -1,7 +1,7 @@
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
 import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any> = {}>
+interface Props<TData extends Record<string, any>>
   extends ActionIconProps,
     HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
@@ -10,7 +10,7 @@ interface Props<TData extends Record<string, any> = {}>
 const sizes = ['xs', 'md', 'xl'] as const;
 
 export const MRT_ToggleDensePaddingButton = <
-  TData extends Record<string, any> = {},
+  TData extends Record<string, any>,
 >({
   table,
   ...rest

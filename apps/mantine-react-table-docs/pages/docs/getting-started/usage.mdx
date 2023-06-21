@@ -11,6 +11,8 @@ import SimpleCodeSandbox from '../../../examples/SimpleCodeSandbox';
 
 ## Usage
 
+> NOTE: The Docs will be going through a refactor soon to encourage use of the `useMantineReactTable` hook. See the [Basic Example](/docs/examples/basic) for an idea of what is coming.
+
 Here is a brief overview of how to use Mantine React Table. This is a very simple example, and will not cover all features of the library, but it is a great starting point.
 
 ### Setup
@@ -33,7 +35,7 @@ If you are using TypeScript, you may also want to import some TypeScript types f
 
 ```tsx
 import { MantineReactTable } from 'mantine-react-table';
-import  { MRT_ColumnDef } from 'mantine-react-table'; // If using TypeScript (optional, but recommended)
+import { MRT_ColumnDef } from 'mantine-react-table'; // If using TypeScript (optional, but recommended)
 ```
 
 ### Creating Data/Rows
@@ -146,7 +148,7 @@ Put it all together, and you have a basic table! You can also play around and en
 ```tsx
 import React, { useMemo } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
-import  { MRT_ColumnDef } from 'mantine-react-table'; // If using TypeScript (optional, but recommended)
+import { MRT_ColumnDef } from 'mantine-react-table'; // If using TypeScript (optional, but recommended)
 
 //If using TypeScript, define the shape of your data (optional, but recommended)
 interface Person {

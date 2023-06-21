@@ -4,14 +4,14 @@ import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
 import { MRT_EditActionButtons } from './MRT_EditActionButtons';
 import { type MRT_Cell, type MRT_Row, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends Record<string, any>> {
   cell: MRT_Cell<TData>;
   row: MRT_Row<TData>;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_ToggleRowActionMenuButton = <
-  TData extends Record<string, any> = {},
+  TData extends Record<string, any>,
 >({
   cell,
   row,

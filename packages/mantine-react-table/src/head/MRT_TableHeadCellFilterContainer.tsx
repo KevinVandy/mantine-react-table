@@ -5,12 +5,17 @@ import { MRT_FilterCheckbox } from '../inputs/MRT_FilterCheckbox';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
-interface Props {
-  header: MRT_Header;
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any>> {
+  header: MRT_Header<TData>;
+  table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableHeadCellFilterContainer = ({ header, table }: Props) => {
+export const MRT_TableHeadCellFilterContainer = <
+  TData extends Record<string, any>,
+>({
+  header,
+  table,
+}: Props<TData>) => {
   const {
     getState,
     options: {

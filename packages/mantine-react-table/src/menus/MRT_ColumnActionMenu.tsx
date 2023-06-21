@@ -6,12 +6,15 @@ export const commonListItemStyles = {
   alignItems: 'center',
 };
 
-interface Props {
-  header: MRT_Header;
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any>> {
+  header: MRT_Header<TData>;
+  table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ColumnActionMenu = ({ header, table }: Props) => {
+export const MRT_ColumnActionMenu = <TData extends Record<string, any>>({
+  header,
+  table,
+}: Props<TData>) => {
   const {
     getState,
     toggleAllColumnsVisible,

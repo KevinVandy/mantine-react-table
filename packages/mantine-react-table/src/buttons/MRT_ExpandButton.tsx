@@ -2,12 +2,15 @@ import { type MouseEvent } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
 
-interface Props {
-  row: MRT_Row;
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any>> {
+  row: MRT_Row<TData>;
+  table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ExpandButton = ({ row, table }: Props) => {
+export const MRT_ExpandButton = <TData extends Record<string, any>>({
+  row,
+  table,
+}: Props<TData>) => {
   const {
     options: {
       icons: { IconChevronDown },

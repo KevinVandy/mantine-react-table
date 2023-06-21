@@ -6,21 +6,21 @@ import {
   type MRT_VirtualItem,
 } from '../types';
 
-interface Props {
+interface Props<TData extends Record<string, any>> {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
-  row: MRT_Row;
+  row: MRT_Row<TData>;
   rowIndex: number;
-  table: MRT_TableInstance;
+  table: MRT_TableInstance<TData>;
   virtualRow?: MRT_VirtualItem;
 }
 
-export const MRT_TableDetailPanel = ({
+export const MRT_TableDetailPanel = <TData extends Record<string, any>>({
   parentRowRef,
   row,
   rowIndex,
   table,
   virtualRow,
-}: Props) => {
+}: Props<TData>) => {
   const {
     getVisibleLeafColumns,
     getState,

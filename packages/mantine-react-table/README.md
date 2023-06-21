@@ -61,7 +61,7 @@ _All features can easily be enabled/disabled_
 
 _**Fully Fleshed out [Docs](https://www.mantine-react-table.com/docs/guides#guides) are available for all features**_
 
-- [x] < 41kb gzipped - [Bundlephobia](https://bundlephobia.com/package/mantine-react-table)
+- [x] < 44kb gzipped - [Bundlephobia](https://bundlephobia.com/package/mantine-react-table)
 - [x] Advanced TypeScript Generics Support (TypeScript Optional)
 - [x] Aggregation and Grouping (Sum, Average, Count, etc.)
 - [x] Click To Copy Cell Values
@@ -122,7 +122,7 @@ npm install mantine-react-table
 
 ```jsx
 import React, { useMemo, useRef, useState, useEffect } from 'react';
-import { MantineReactTable } from 'mantine-react-table';
+import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 
 const data = [
   {
@@ -161,26 +161,17 @@ export default function App() {
     //do something when the row selection changes
   }, [rowSelection]);
 
-  //Or, optionally, you can get a reference to the underlying table instance
-  const tableInstanceRef = useRef(null);
-
-  const someEventHandler = () => {
-    //read the table state during an event from the table instance ref
-    console.log(tableInstanceRef.current.getState().sorting);
-  }
-
-  return (
-    <MantineReactTable 
-      columns={columns} 
-      data={data} 
-      enableColumnOrdering //enable some features
-      enableRowSelection 
-      enablePagination={false} //disable a default feature
-      onRowSelectionChange={setRowSelection} //hoist internal state to your own state (optional)
-      state={{ rowSelection }} //manage your own state, pass it back to the table (optional)
-      tableInstanceRef={tableInstanceRef} //get a reference to the underlying table instance (optional)
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data,
+    enableColumnOrdering: true, //enable some features
+    enableRowSelection: true,
+    enablePagination: false, //disable a default feature
+    onRowSelectionChange: setRowSelection, //hoist row selection state to your state
+    state: { rowSelection },
+  });
+  
+  return <MantineReactTable table={table} />;
 }
 ```
 

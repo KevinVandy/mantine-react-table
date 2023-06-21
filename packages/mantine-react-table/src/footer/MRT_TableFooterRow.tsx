@@ -7,21 +7,21 @@ import {
   type MRT_VirtualItem,
 } from '../types';
 
-interface Props {
-  footerGroup: MRT_HeaderGroup;
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any>> {
+  footerGroup: MRT_HeaderGroup<TData>;
+  table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableFooterRow = ({
+export const MRT_TableFooterRow = <TData extends Record<string, any>>({
   footerGroup,
   table,
   virtualColumns,
   virtualPaddingLeft,
   virtualPaddingRight,
-}: Props) => {
+}: Props<TData>) => {
   const {
     options: { layoutMode, mantineTableFooterRowProps },
   } = table;
@@ -64,7 +64,7 @@ export const MRT_TableFooterRow = ({
       {(virtualColumns ?? footerGroup.headers).map((footerOrVirtualFooter) => {
         const footer = virtualColumns
           ? footerGroup.headers[footerOrVirtualFooter.index]
-          : (footerOrVirtualFooter as MRT_Header);
+          : (footerOrVirtualFooter as MRT_Header<TData>);
 
         return (
           <MRT_TableFooterCell footer={footer} key={footer.id} table={table} />

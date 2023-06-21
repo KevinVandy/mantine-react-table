@@ -10,17 +10,17 @@ import {
   type MRT_Virtualizer,
 } from '../types';
 
-interface Props {
+interface Props<TData extends Record<string, any>> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
   isStriped?: boolean;
-  table: MRT_TableInstance;
+  table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableBody = ({
+export const MRT_TableBody = <TData extends Record<string, any>>({
   columnVirtualizer,
   enableHover,
   isStriped,
@@ -28,7 +28,7 @@ export const MRT_TableBody = ({
   virtualColumns,
   virtualPaddingLeft,
   virtualPaddingRight,
-}: Props) => {
+}: Props<TData>) => {
   const {
     getRowModel,
     getPrePaginationRowModel,
@@ -187,7 +187,7 @@ export const MRT_TableBody = ({
           {(virtualRows ?? rows).map((rowOrVirtualRow, rowIndex) => {
             const row = rowVirtualizer
               ? rows[rowOrVirtualRow.index]
-              : (rowOrVirtualRow as MRT_Row);
+              : (rowOrVirtualRow as MRT_Row<TData>);
             const props = {
               columnVirtualizer,
               enableHover,
@@ -219,4 +219,4 @@ export const MRT_TableBody = ({
 export const Memo_MRT_TableBody = memo(
   MRT_TableBody,
   (prev, next) => prev.table.options.data === next.table.options.data,
-);
+) as typeof MRT_TableBody;

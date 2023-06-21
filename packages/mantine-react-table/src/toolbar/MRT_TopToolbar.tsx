@@ -22,11 +22,11 @@ export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   zIndex: 3,
 });
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends Record<string, any>> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
+export const MRT_TopToolbar = <TData extends Record<string, any>>({
   table,
 }: Props<TData>) => {
   const {

@@ -1,8 +1,14 @@
 import React, { useMemo } from 'react';
-import { MantineReactTable } from 'mantine-react-table';
+import {
+  MRT_Table, //import alternative sub-component if we don't want toolbars
+  useMantineReactTable,
+} from 'mantine-react-table';
+import { useMantineTheme } from '@mantine/core';
 import { data } from './makeData';
 
 export const Example = () => {
+  const { colorScheme } = useMantineTheme();
+
   const columns = useMemo(
     //column definitions...
     () => [
@@ -31,22 +37,21 @@ export const Example = () => {
     //end
   );
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableColumnActions={false}
-      enableColumnFilters={false}
-      enablePagination={false}
-      enableSorting={false}
-      enableBottomToolbar={false}
-      enableTopToolbar={false}
-      mantineTableProps={{
-        highlightOnHover: false,
-        withColumnBorders: true,
-      }}
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data,
+    enableColumnActions: false,
+    enableColumnFilters: false,
+    enablePagination: false,
+    enableSorting: false,
+    mantineTableProps: {
+      highlightOnHover: false,
+      withColumnBorders: true, //not working in '@mantine/core' 6.0.14 apparently
+      withBorder: colorScheme === 'light',
+    },
+  });
+
+  return <MRT_Table table={table} />;
 };
 
 export default Example;

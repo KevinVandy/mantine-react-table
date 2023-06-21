@@ -1,11 +1,13 @@
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 
-interface Props {
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any>> {
+  table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ExpandAllButton = ({ table }: Props) => {
+export const MRT_ExpandAllButton = <TData extends Record<string, any>>({
+  table,
+}: Props<TData>) => {
   const {
     getIsAllRowsExpanded,
     getIsSomeRowsExpanded,

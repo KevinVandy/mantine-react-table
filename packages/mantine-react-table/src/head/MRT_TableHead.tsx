@@ -2,19 +2,19 @@ import { Box } from '@mantine/core';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
 
-interface Props {
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any>> {
+  table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableHead = ({
+export const MRT_TableHead = <TData extends Record<string, any>>({
   table,
   virtualColumns,
   virtualPaddingLeft,
   virtualPaddingRight,
-}: Props) => {
+}: Props<TData>) => {
   const {
     getHeaderGroups,
     getState,

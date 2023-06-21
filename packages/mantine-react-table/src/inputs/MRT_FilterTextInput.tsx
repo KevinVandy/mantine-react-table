@@ -13,17 +13,17 @@ import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
-interface Props {
-  header: MRT_Header;
+interface Props<TData extends Record<string, any>> {
+  header: MRT_Header<TData>;
   rangeFilterIndex?: number;
-  table: MRT_TableInstance;
+  table: MRT_TableInstance<TData>;
 }
 
-export const MRT_FilterTextInput = ({
+export const MRT_FilterTextInput = <TData extends Record<string, any>>({
   header,
   rangeFilterIndex,
   table,
-}: Props) => {
+}: Props<TData>) => {
   const {
     options: {
       columnFilterModeOptions,

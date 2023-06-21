@@ -24,18 +24,18 @@ import {
   type MRT_VirtualItem,
 } from '../types';
 
-interface Props {
-  cell: MRT_Cell;
+interface Props<TData extends Record<string, any>> {
+  cell: MRT_Cell<TData>;
   isStriped?: boolean;
   measureElement?: (element: HTMLTableCellElement) => void;
   numRows: number;
   rowIndex: number;
   rowRef: RefObject<HTMLTableRowElement>;
-  table: MRT_TableInstance;
+  table: MRT_TableInstance<TData>;
   virtualCell?: MRT_VirtualItem;
 }
 
-export const MRT_TableBodyCell = ({
+export const MRT_TableBodyCell = <TData extends Record<string, any>>({
   cell,
   isStriped,
   measureElement,
@@ -44,7 +44,7 @@ export const MRT_TableBodyCell = ({
   rowRef,
   table,
   virtualCell,
-}: Props) => {
+}: Props<TData>) => {
   const theme = useMantineTheme();
   const {
     getState,
@@ -287,4 +287,4 @@ export const MRT_TableBodyCell = ({
 export const Memo_MRT_TableBodyCell = memo(
   MRT_TableBodyCell,
   (prev, next) => next.cell === prev.cell,
-);
+) as typeof MRT_TableBodyCell;

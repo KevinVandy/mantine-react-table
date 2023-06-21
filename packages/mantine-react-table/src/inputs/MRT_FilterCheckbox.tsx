@@ -1,12 +1,15 @@
 import { Checkbox, type CheckboxProps, Tooltip } from '@mantine/core';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
 
-interface Props {
-  column: MRT_Column;
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any>> {
+  column: MRT_Column<TData>;
+  table: MRT_TableInstance<TData>;
 }
 
-export const MRT_FilterCheckbox = ({ column, table }: Props) => {
+export const MRT_FilterCheckbox = <TData extends Record<string, any>>({
+  column,
+  table,
+}: Props<TData>) => {
   const {
     getState,
     options: { localization, mantineFilterCheckboxProps },

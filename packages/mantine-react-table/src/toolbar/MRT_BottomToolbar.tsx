@@ -7,11 +7,11 @@ import { commonToolbarStyles } from './MRT_TopToolbar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends Record<string, any>> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
+export const MRT_BottomToolbar = <TData extends Record<string, any>>({
   table,
 }: Props<TData>) => {
   const {

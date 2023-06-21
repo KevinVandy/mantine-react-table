@@ -1,7 +1,7 @@
 import { ActionIcon, Flex, Select, type Sx, Text } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends Record<string, any>> {
   position?: 'top' | 'bottom';
   table: MRT_TableInstance<TData>;
 }
@@ -14,7 +14,7 @@ const commonActionButtonStyles: Sx = {
   },
 };
 
-export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
+export const MRT_TablePagination = <TData extends Record<string, any>>({
   table,
   position = 'bottom',
 }: Props<TData>) => {

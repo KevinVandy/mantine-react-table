@@ -7,21 +7,21 @@ import {
   type MRT_VirtualItem,
 } from '../types';
 
-interface Props {
-  headerGroup: MRT_HeaderGroup;
-  table: MRT_TableInstance;
+interface Props<TData extends Record<string, any>> {
+  headerGroup: MRT_HeaderGroup<TData>;
+  table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableHeadRow = ({
+export const MRT_TableHeadRow = <TData extends Record<string, any>>({
   headerGroup,
   table,
   virtualColumns,
   virtualPaddingLeft,
   virtualPaddingRight,
-}: Props) => {
+}: Props<TData>) => {
   const {
     getState,
     options: { enableStickyHeader, layoutMode, mantineTableHeadRowProps },
@@ -42,7 +42,7 @@ export const MRT_TableHeadRow = ({
       sx={(theme) => ({
         backgroundColor:
           theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-        boxShadow: `4px 0 8px ${theme.fn.rgba(theme.black, 0.1)}`,
+        boxShadow: `0 4px 8px ${theme.fn.rgba(theme.black, 0.1)}`,
         display: layoutMode === 'grid' ? 'flex' : 'table-row',
         top: stickyHeader ? 0 : undefined,
         ...(tableRowProps?.sx instanceof Function
@@ -57,7 +57,7 @@ export const MRT_TableHeadRow = ({
       {(virtualColumns ?? headerGroup.headers).map((headerOrVirtualHeader) => {
         const header = virtualColumns
           ? headerGroup.headers[headerOrVirtualHeader.index]
-          : (headerOrVirtualHeader as MRT_Header);
+          : (headerOrVirtualHeader as MRT_Header<TData>);
 
         return (
           <MRT_TableHeadCell header={header} key={header.id} table={table} />
