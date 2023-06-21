@@ -9,6 +9,7 @@ import {
   IconBolt,
   IconBrandCodesandbox,
   IconExternalLink,
+  IconCode,
 } from '@tabler/icons-react';
 import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
@@ -36,6 +37,7 @@ export interface Props {
   Component?;
   apiCode?: string;
   javaScriptCode?: string;
+  legacyCode?: string;
   tableId: string;
   typeScriptCode: string;
 }
@@ -44,6 +46,7 @@ export const SourceCodeSnippet = ({
   Component,
   apiCode,
   javaScriptCode,
+  legacyCode,
   tableId,
   typeScriptCode,
 }: Props) => {
@@ -215,9 +218,14 @@ export const SourceCodeSnippet = ({
                 JavaScript
               </Prism.Tab>
             )}
+            {legacyCode && (
+              <Prism.Tab value="legacy" icon={<IconCode />}>
+                Legacy Props API
+              </Prism.Tab>
+            )}
             {apiCode && (
               <Prism.Tab value="api" icon={<IconApi />}>
-                API
+                Back-end API
               </Prism.Tab>
             )}
           </Prism.TabsList>
@@ -227,6 +235,11 @@ export const SourceCodeSnippet = ({
           {javaScriptCode && (
             <Prism.Panel withLineNumbers language="jsx" value="js">
               {javaScriptCode}
+            </Prism.Panel>
+          )}
+          {legacyCode && (
+            <Prism.Panel withLineNumbers language="tsx" value="legacy">
+              {legacyCode}
             </Prism.Panel>
           )}
           {apiCode && (

@@ -1,9 +1,5 @@
 import React, { useMemo } from 'react';
-import {
-  MantineReactTable,
-  useMantineReactTable,
-  type MRT_ColumnDef,
-} from 'mantine-react-table';
+import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 
 type Person = {
   name: {
@@ -92,12 +88,7 @@ const Example = () => {
     [],
   );
 
-  const table = useMantineReactTable({
-    columns,
-    data,
-  });
-
-  return <MantineReactTable table={table} />;
+  return <MantineReactTable columns={columns} data={data} />;
 };
 
 export default Example;
