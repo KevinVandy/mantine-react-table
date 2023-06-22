@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import TableOptionTable from '../../../components/prop-tables/TableOptionTable';
+import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
 import EnableRowExample from '../../../examples/enable-row-virtualization';
 import EnableColumnExample from '../../../examples/enable-column-virtualization';
 
@@ -17,9 +17,9 @@ Virtualization is useful when you have a lot of data you want to display client-
 
 > NOTE: You should only enable row virtualization if you have a large number of rows. Depending on the size of the table, if you are rendering less than a couple dozen rows at a time, you will actually just be adding extra overhead to the table renders. Virtualization only becomes necessary when you have over 50 rows or so at the same time with no pagination.
 
-### Relevant Props
+### Relevant Table Options
 
-<TableOptionTable
+<TableOptionsTable
   onlyOptions={
     new Set([
       'columnVirtualizerInstanceRef',

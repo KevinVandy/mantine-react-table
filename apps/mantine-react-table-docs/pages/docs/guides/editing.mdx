@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import TableOptionTable from '../../../components/prop-tables/TableOptionTable';
+import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
 import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
 import EditingCellExample from '../../../examples/enable-editing-cell';
@@ -21,9 +21,9 @@ If your tables need full CRUD functionality, you can enable editing features in 
 
 There are 4 visually distinct editing modes to choose from, whether you want to let users [edit data in a modal](#modal-editing-mode), [inline 1 row at a time](#row-editing-mode), [1 cell at a time](#cell-editing-mode), or just always have [editing enabled for every cell](#table-editing-mode).
 
-### Relevant Props
+### Relevant Table Options
 
-<TableOptionTable
+<TableOptionsTable
   onlyOptions={
     new Set([
       'editingMode',

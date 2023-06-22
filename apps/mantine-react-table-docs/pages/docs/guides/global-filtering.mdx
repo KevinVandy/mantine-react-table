@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import TableOptionTable from '../../../components/prop-tables/TableOptionTable';
+import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
 import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
 import CustomizeComponentExample from '../../../examples/customize-global-filter-component';
@@ -19,9 +19,9 @@ import RemoteExample from '../../../examples/remote';
 
 Mantine React Table has a powerful built-in global filtering (search) feature that uses a fuzzy matching algorithm and ranks/sorts the results based on how closely rows match the search query. In this guide we'll cover how to use, customize, or disable the global filter and search features to fit your needs.
 
-### Relevant Props
+### Relevant Table Options
 
-<TableOptionTable
+<TableOptionsTable
   onlyOptions={
     new Set([
       'enableFilterMatchHighlighting',

@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import TableOptionTable from '../../../components/prop-tables/TableOptionTable';
+import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
 import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
 import EnableExample from '../../../examples/enable-expanding-tree';
@@ -22,9 +22,9 @@ Mantine React Table has support for expanding sub-rows or tree data. This featur
 
 > NOTE: This feature is for expanding rows of the same data type. If you want to add expansion of more data for the same row, check out the [Detail Panel Feature Guide](/docs/guides/detail-panel).
 
-### Relevant Props
+### Relevant Table Options
 
-<TableOptionTable
+<TableOptionsTable
   onlyOptions={
     new Set([
       'autoResetExpanded',

@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import TableOptionTable from '../../../components/prop-tables/TableOptionTable';
+import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
 import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
 import Example from '../../../examples/enable-column-pinning';
@@ -16,9 +16,9 @@ import Example from '../../../examples/enable-column-pinning';
 
 Column pinning is a cool feature that lets users pin (freeze) columns to the left or right of the table. Pinned columns will not scroll horizontally with the rest of the columns so that they always stay visible to the user.
 
-### Relevant Props
+### Relevant Table Options
 
-<TableOptionTable
+<TableOptionsTable
   onlyOptions={new Set(['enablePinning', 'onColumnPinningChange'])}
 />
 

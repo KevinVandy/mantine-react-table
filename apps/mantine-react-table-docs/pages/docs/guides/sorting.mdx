@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import TableOptionTable from '../../../components/prop-tables/TableOptionTable';
+import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
 import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
 import MultiSortingExample from '../../../examples/multi-sorting';
@@ -17,9 +17,9 @@ import RemoteExample from '../../../examples/remote';
 
 Mantine React Table supports almost any sorting scenario you may have. Client-side sorting is enabled by default, but you can opt to implement your own server-side sorting logic, or even replace the default client-side sorting with your own implementation.
 
-### Relevant Props
+### Relevant Table Options
 
-<TableOptionTable
+<TableOptionsTable
   onlyOptions={
     new Set([
       'enableGlobalFilterRankedResults',
