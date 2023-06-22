@@ -8,7 +8,13 @@ const nextConfig = {
     defaultLocale: 'en',
   },
   async redirects() {
-    return [];
+    return [
+      {
+        source: '/docs/api/props',
+        destination: '/docs/api/table-options',
+        permanent: true,
+      },
+    ];
   },
 };
 

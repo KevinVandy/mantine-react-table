@@ -11,10 +11,10 @@ import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type StateRow, stateOptions } from './stateOptions';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_TableState<any>>;
+  onlyOptions?: Set<keyof MRT_TableState<StateRow>>;
 }
 
-const StateOptionsTable = ({ onlyProps }: Props) => {
+const StateOptionsTable = ({ onlyOptions }: Props) => {
   const isDesktop = useMediaQuery('(min-width: 1200px)');
 
   const columns = useMemo(
@@ -94,13 +94,13 @@ const StateOptionsTable = ({ onlyProps }: Props) => {
   }, [isDesktop]);
 
   const data = useMemo(() => {
-    if (onlyProps) {
+    if (onlyOptions) {
       return stateOptions.filter(({ stateOption }) =>
-        onlyProps.has(stateOption),
+        onlyOptions.has(stateOption),
       );
     }
     return stateOptions;
-  }, [onlyProps]);
+  }, [onlyOptions]);
 
   return (
     <MantineReactTable
@@ -114,13 +114,13 @@ const StateOptionsTable = ({ onlyProps }: Props) => {
           size: 10,
         },
       }}
-      enableColumnActions={!onlyProps}
+      enableColumnActions={!onlyOptions}
       enableColumnFilterModes
       enablePagination={false}
       enablePinning
       enableRowNumbers
       enableBottomToolbar={false}
-      enableTopToolbar={!onlyProps}
+      enableTopToolbar={!onlyOptions}
       initialState={{
         columnVisibility: { description: false },
         density: 'xs',
@@ -134,7 +134,9 @@ const StateOptionsTable = ({ onlyProps }: Props) => {
       }}
       mantinePaperProps={{
         sx: { marginBottom: '24px' },
-        id: onlyProps ? 'relevant-state-options-table' : 'state-options-table',
+        id: onlyOptions
+          ? 'relevant-state-options-table'
+          : 'state-options-table',
       }}
       positionGlobalFilter="left"
       renderDetailPanel={({ row }) => (

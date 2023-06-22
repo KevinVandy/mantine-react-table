@@ -1,7 +1,7 @@
 import { type MRT_Column } from 'mantine-react-table';
 
 export interface ColumnInstanceAPI {
-  columnInstanceAPI: keyof MRT_Column<any>;
+  columnInstanceAPI: keyof MRT_Column<ColumnInstanceAPI>;
   link?: string;
   linkText?: string;
   description?: string;

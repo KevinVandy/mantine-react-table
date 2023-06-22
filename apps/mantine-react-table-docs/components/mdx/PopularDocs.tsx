@@ -7,13 +7,13 @@ export const PopularDocs = () => {
       sx={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr 1fr',
-        gap: '1rem',
+        gap: '0.9rem',
         '@media (max-width: 1024px)': {
           gridTemplateColumns: '1fr 1fr',
         },
       }}
     >
-      <GuideCard title="Props" href="/docs/api/props" />
+      <GuideCard title="Table Options" href="/docs/api/table-options" />
       <GuideCard title="Basic Example" href="docs/examples/basic" />
       <GuideCard title="Advanced Example" href="docs/examples/advanced" />
       <GuideCard title="Fetching Example" href="docs/examples/react-query" />

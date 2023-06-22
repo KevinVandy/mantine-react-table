@@ -1,7 +1,7 @@
 import { type MRT_Row } from 'mantine-react-table';
 
 export interface RowInstanceAPI {
-  rowInstanceAPI: keyof MRT_Row<any>;
+  rowInstanceAPI: keyof MRT_Row<RowInstanceAPI>;
   link: string;
   linkText: string;
   description: string;

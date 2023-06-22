@@ -49,18 +49,15 @@ const columns = [
   },
 ];
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    //or in callback props like this
-    mantineTableBodyCellProps={({ column }) => ({
-      sx:
-        boxShadow: column.getIsPinned() ? '0 0 0 2px red' : 'none',
-      }),
-    }
-  />
-);
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantineTableBodyCellProps: ({ column }) => ({
+    sx: { boxShadow: column.getIsPinned() ? '0 0 0 2px red' : 'none' },
+  }),
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 > NOTE: These are NOT [column options](/docs/api/column-options) for Mantine React Table. These are just static methods on a column instance that you can use.

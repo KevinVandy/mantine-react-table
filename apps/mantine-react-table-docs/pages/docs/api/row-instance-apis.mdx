@@ -44,25 +44,22 @@ const columns = [
   },
 ];
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    //or a row instance in callback props like this
-    mantineSelectCheckboxProps={({ row }) => ({
-      disabled: row.original.isAccountActive === false,
-    })}
-    renderDetailPanel={({ row }) => (
-      <div>
-        <span>First Name: {row.original.firstName}</span>
-        <span>Last Name: {row.original.lastName}</span>
-      </div>
-    )}
-  />
-);
-```
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantineSelectCheckboxProps: ({ row }) => ({
+    disabled: row.original.isAccountActive === false,
+  }),
+  renderDetailPanel: ({ row }) => (
+    <div>
+      <span>First Name: {row.original.firstName}</span>
+      <span>Last Name: {row.original.lastName}</span>
+    </div>
+  ),
+});
 
-> NOTE: These are NOT [props](/docs/api/props) or [column options](/docs/api/column-options) for Mantine React Table. These are just static methods on a row instance that you can use.
+return <MantineReactTable table={table} />;
+```
 
 <RowInstanceAPIsTable />
 

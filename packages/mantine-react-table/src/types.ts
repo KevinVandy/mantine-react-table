@@ -622,7 +622,7 @@ export type MRT_CreateTableFeature<
  * @link https://www.mantine-react-table.com/docs/getting-started/usage
  *
  * See the full props list on the official docs site:
- * @link https://www.mantine-react-table.com/docs/api/props
+ * @link https://www.mantine-react-table.com/docs/api/table-options
  */
 export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
   Partial<TableOptions<TData>>,

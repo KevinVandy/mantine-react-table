@@ -1,6 +1,6 @@
 import { Box, Text } from '@mantine/core';
 import { SourceCodeSnippet } from '../mdx/SourceCodeSnippet';
-const TS = require('!!raw-loader!./RootPropTable.tsx').default;
+const TS = require('!!raw-loader!./TableOptionsTable.tsx').default;
 
 const ExampleTable = () => {
   return (
@@ -8,7 +8,7 @@ const ExampleTable = () => {
       <Text>
         Wanna see the source code for this table? Check it out down below!
       </Text>
-      <SourceCodeSnippet tableId="root-props" typeScriptCode={TS} />
+      <SourceCodeSnippet tableId="table-options" typeScriptCode={TS} />
     </Box>
   );
 };

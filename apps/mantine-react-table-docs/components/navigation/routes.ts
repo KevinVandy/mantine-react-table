@@ -38,12 +38,12 @@ export const routes: Array<RouteItem> = [
     href: '/docs/api',
     items: [
       {
-        label: 'Props and Options',
-        href: '/docs/api#props-and-options',
+        label: 'Options',
+        href: '/docs/api#options',
         items: [
           {
-            href: '/docs/api/props',
-            label: 'Props',
+            href: '/docs/api/table-options',
+            label: 'Table Options (Props)',
           },
           {
             href: '/docs/api/column-options',

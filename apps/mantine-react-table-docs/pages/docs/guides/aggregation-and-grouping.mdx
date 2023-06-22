@@ -22,7 +22,7 @@ Mantine React Table has built-in grouping and aggregation features. There are op
 ### Relevant Props
 
 <RootPropTable
-  onlyProps={
+  onlyOptions={
     new Set([
       'aggregationFns',
       'enableExpandAll',
@@ -41,14 +41,14 @@ Mantine React Table has built-in grouping and aggregation features. There are op
 ### Relevant Column Options
 
 <ColumnOptionsTable
-  onlyProps={
+  onlyOptions={
     new Set(['AggregatedCell', 'Footer', 'GroupedCell', 'enableGrouping'])
   }
 />
 
 ### Relevant State
 
-<StateOptionsTable onlyProps={new Set(['grouping', 'expanded'])} />
+<StateOptionsTable onlyOptions={new Set(['grouping', 'expanded'])} />
 
 ### Enable Grouping
 

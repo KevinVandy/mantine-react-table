@@ -6,7 +6,7 @@ export type StateRow = {
   link?: string;
   linkText?: string;
   source?: 'MRT' | 'TanStack Table' | 'Mantine' | '';
-  stateOption: keyof MRT_TableState<any>;
+  stateOption: keyof MRT_TableState<StateRow>;
   type?: string;
 };
 

@@ -11,10 +11,10 @@ import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type CellInstanceAPI, cellInstanceAPIs } from './cellInstanceAPIs';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_Cell<any>>;
+  onlyOptions?: Set<keyof MRT_Cell<CellInstanceAPI>>;
 }
 
-const CellInstanceAPIsTable = ({ onlyProps }: Props) => {
+const CellInstanceAPIsTable = ({ onlyOptions }: Props) => {
   const isDesktop = useMediaQuery('(min-width: 1200px)');
 
   const columns = useMemo(
@@ -79,13 +79,13 @@ const CellInstanceAPIsTable = ({ onlyProps }: Props) => {
   }, [isDesktop]);
 
   const data = useMemo(() => {
-    if (onlyProps) {
+    if (onlyOptions) {
       return cellInstanceAPIs.filter(({ cellInstanceAPI }) =>
-        onlyProps.has(cellInstanceAPI),
+        onlyOptions.has(cellInstanceAPI),
       );
     }
     return cellInstanceAPIs;
-  }, [onlyProps]);
+  }, [onlyOptions]);
 
   return (
     <MantineReactTable
@@ -99,13 +99,13 @@ const CellInstanceAPIsTable = ({ onlyProps }: Props) => {
           size: 10,
         },
       }}
-      enableColumnActions={!onlyProps}
+      enableColumnActions={!onlyOptions}
       enableColumnFilterModes
       enablePagination={false}
       enablePinning
       enableRowNumbers
       enableBottomToolbar={false}
-      enableTopToolbar={!onlyProps}
+      enableTopToolbar={!onlyOptions}
       initialState={{
         columnVisibility: { description: false },
         density: 'xs',
@@ -119,7 +119,7 @@ const CellInstanceAPIsTable = ({ onlyProps }: Props) => {
       }}
       mantinePaperProps={{
         sx: { marginBottom: '24px' },
-        id: onlyProps
+        id: onlyOptions
           ? 'relevant-cell-instance-apis-table'
           : 'cell-instance-apis-table',
       }}

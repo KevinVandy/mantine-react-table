@@ -8,10 +8,10 @@ import { type ColumnOption, columnOptions } from './columnOptions';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_ColumnDef<any>>;
+  onlyOptions?: Set<keyof MRT_ColumnDef<ColumnOption>>;
 }
 
-const ColumnOptionsTable = ({ onlyProps }: Props) => {
+const ColumnOptionsTable = ({ onlyOptions }: Props) => {
   const isDesktop = useMediaQuery('(min-width: 1200px)');
 
   const columns = useMemo(
@@ -109,13 +109,13 @@ const ColumnOptionsTable = ({ onlyProps }: Props) => {
   }, [isDesktop]);
 
   const data = useMemo(() => {
-    if (onlyProps) {
+    if (onlyOptions) {
       return columnOptions.filter(({ columnOption }) =>
-        onlyProps.has(columnOption),
+        onlyOptions.has(columnOption),
       );
     }
     return columnOptions;
-  }, [onlyProps]);
+  }, [onlyOptions]);
 
   return (
     <MantineReactTable
@@ -129,13 +129,13 @@ const ColumnOptionsTable = ({ onlyProps }: Props) => {
           size: 10,
         },
       }}
-      enableColumnActions={!onlyProps}
+      enableColumnActions={!onlyOptions}
       enableColumnFilterModes
       enablePagination={false}
       enablePinning
       enableRowNumbers
       enableBottomToolbar={false}
-      enableTopToolbar={!onlyProps}
+      enableTopToolbar={!onlyOptions}
       initialState={{
         columnVisibility: { required: false, description: false },
         density: 'xs',
@@ -152,7 +152,7 @@ const ColumnOptionsTable = ({ onlyProps }: Props) => {
       }}
       mantinePaperProps={{
         sx: { marginBottom: '24px' },
-        id: onlyProps
+        id: onlyOptions
           ? 'relevant-column-options-table'
           : 'column-options-table',
       }}

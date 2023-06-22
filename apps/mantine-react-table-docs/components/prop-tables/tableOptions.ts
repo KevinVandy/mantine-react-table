@@ -1,19 +1,19 @@
 import { type MRT_TableOptions } from 'mantine-react-table';
 
-export type PropRow = {
+export type TableOptionRow = {
   defaultValue?: string;
   description?: string;
   link?: string;
   linkText?: string;
-  propName: keyof MRT_TableOptions<any>;
+  tableOptionName: keyof MRT_TableOptions<TableOptionRow>;
   required?: boolean;
   source?: 'MRT' | 'TanStack Table' | 'TanStack Virtual' | 'Mantine' | '';
   type?: string;
 };
 
-export const rootProps: PropRow[] = [
+export const tableOptions: TableOptionRow[] = [
   {
-    propName: 'aggregationFns',
+    tableOptionName: 'aggregationFns',
     defaultValue: '',
     description: `This option allows you to define custom aggregation functions that can be referenced in a column's aggregationFn option by their key`,
     link: 'https://tanstack.com/table/v8/docs/api/features/grouping#aggregationfns',
@@ -23,7 +23,7 @@ export const rootProps: PropRow[] = [
     type: 'Record<string, AggregationFn>',
   },
   {
-    propName: 'autoResetAll',
+    tableOptionName: 'autoResetAll',
     defaultValue: '',
     description:
       'Set this option to override any of the autoReset... feature options.',
@@ -34,7 +34,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'autoResetExpanded',
+    tableOptionName: 'autoResetExpanded',
     defaultValue: '',
     description:
       'Enable this setting to automatically reset the expanded state of the table when grouping state changes.',
@@ -45,7 +45,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'autoResetPageIndex',
+    tableOptionName: 'autoResetPageIndex',
     defaultValue: '',
     description:
       'If set to true, pagination will be reset to the first page when page-altering state changes eg. data is updated, filters change, grouping changes, etc.',
@@ -56,7 +56,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'columnFilterModeOptions',
+    tableOptionName: 'columnFilterModeOptions',
     defaultValue: '',
     description:
       'Specify which filter modes are available for every column. Optionally specify this per column as a column option.',
@@ -67,7 +67,7 @@ export const rootProps: PropRow[] = [
     type: 'Array<MRT_FilterOption | string> | null',
   },
   {
-    propName: 'columnResizeMode',
+    tableOptionName: 'columnResizeMode',
     defaultValue: "'onChange'",
     description:
       'Determines when the columnSizing state is updated. onChange updates the state when the user is dragging the resize handle. onEnd updates the state when the user releases the resize handle.',
@@ -78,7 +78,7 @@ export const rootProps: PropRow[] = [
     type: "'onChange' | 'onEnd'",
   },
   {
-    propName: 'columns',
+    tableOptionName: 'columns',
     defaultValue: '',
     description: 'The array of column defs to use for the table.',
     link: '/docs/api/column-options',
@@ -88,7 +88,7 @@ export const rootProps: PropRow[] = [
     type: 'Array<MRT_ColumnDef<TData>>',
   },
   {
-    propName: 'columnVirtualizerProps',
+    tableOptionName: 'columnVirtualizerProps',
     defaultValue: '',
     description: '',
     link: '',
@@ -98,7 +98,7 @@ export const rootProps: PropRow[] = [
     type: 'Partial<VirtualizerOptions<HTMLDivElement, HTMLTableCellElement>>',
   },
   {
-    propName: 'columnVirtualizerInstanceRef',
+    tableOptionName: 'columnVirtualizerInstanceRef',
     defaultValue: '',
     description: '',
     link: '',
@@ -108,7 +108,7 @@ export const rootProps: PropRow[] = [
     type: 'MutableRefObject<Virtualizer | null>',
   },
   {
-    propName: 'data',
+    tableOptionName: 'data',
     defaultValue: '',
     description: `The data for the table to display. This can be an array of anything, but you will need to set up your column definitions to "access" the data. When the data option changes reference (compared via Object.is), the table will reprocess the data. Any other data processing that relies on the core data model (such as grouping, sorting, filtering, etc) will also be reprocessed.`,
     link: '/docs/getting-started/usage#creating-data-rows',
@@ -118,7 +118,7 @@ export const rootProps: PropRow[] = [
     type: 'Array<TData>',
   },
   {
-    propName: 'debugAll',
+    tableOptionName: 'debugAll',
     defaultValue: 'false',
     description:
       'Set this option to true to output all debugging information to the console.',
@@ -129,7 +129,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'debugColumns',
+    tableOptionName: 'debugColumns',
     defaultValue: 'false',
     description:
       'Set this option to true to output column debugging information to the console.',
@@ -140,7 +140,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'debugHeaders',
+    tableOptionName: 'debugHeaders',
     defaultValue: 'false',
     description:
       'Set this option to true to output header debugging information to the console.',
@@ -151,7 +151,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'debugRows',
+    tableOptionName: 'debugRows',
     defaultValue: 'false',
     description:
       'Set this option to true to output row debugging information to the console.',
@@ -162,7 +162,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'debugTable',
+    tableOptionName: 'debugTable',
     defaultValue: 'false',
     description:
       'Set this option to true to output table debugging information to the console.',
@@ -173,7 +173,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'defaultColumn',
+    tableOptionName: 'defaultColumn',
     defaultValue: '',
     description:
       'Default column options to use for all column defs supplied to the table. This is useful for providing default cell/header/footer renderers, sorting/filtering/grouping options, etc.',
@@ -184,7 +184,7 @@ export const rootProps: PropRow[] = [
     type: 'Partial<MRT_ColumnDef<TData>>',
   },
   {
-    propName: 'displayColumnDefOptions',
+    tableOptionName: 'displayColumnDefOptions',
     defaultValue: '',
     description:
       'Customize and override the column definition options for the built-in display columns. (Select, Expand, Row Actions, etc.)',
@@ -195,7 +195,7 @@ export const rootProps: PropRow[] = [
     type: '{ [key: string]: MRT_ColumnDef<TData> }',
   },
   {
-    propName: 'editingMode',
+    tableOptionName: 'editingMode',
     defaultValue: "'modal'",
     description:
       'You can choose between 4 different built-in editing modes. Edit a row in a modal, or a row inline, just 1 cell at a time, or always have all cells editable.',
@@ -206,7 +206,7 @@ export const rootProps: PropRow[] = [
     type: "'modal' | 'cell' | 'row' | 'table'",
   },
   {
-    propName: 'enableBottomToolbar',
+    tableOptionName: 'enableBottomToolbar',
     defaultValue: 'true',
     description: '',
     link: '/docs/guides/toolbar-customization#hide-disable-toolbars',
@@ -216,7 +216,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableClickToCopy',
+    tableOptionName: 'enableClickToCopy',
     defaultValue: 'false',
     description: '',
     link: '/docs/guides/click-to-copy',
@@ -226,7 +226,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableColumnActions',
+    tableOptionName: 'enableColumnActions',
     defaultValue: 'true',
     description: '',
     link: '/docs/guides/column-actions-menu',
@@ -236,7 +236,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableColumnDragging',
+    tableOptionName: 'enableColumnDragging',
     defaultValue: 'false',
     description: '',
     link: '/docs/guides/column-ordering-dnd',
@@ -246,7 +246,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableColumnFilterModes',
+    tableOptionName: 'enableColumnFilterModes',
     defaultValue: 'false',
     description: '',
     link: '/docs/guides/column-filtering#filter-modes',
@@ -256,7 +256,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableColumnFilters',
+    tableOptionName: 'enableColumnFilters',
     defaultValue: 'true',
     description: '',
     link: '/docs/guides/column-filtering#disable-filtering-features',
@@ -266,7 +266,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableColumnOrdering',
+    tableOptionName: 'enableColumnOrdering',
     defaultValue: '',
     description: '',
     link: '/docs/guides/column-ordering-dnd',
@@ -276,7 +276,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableColumnVirtualization',
+    tableOptionName: 'enableColumnVirtualization',
     defaultValue: '',
     description: '',
     link: '/docs/guides/virtualization#enable-column-virtualization',
@@ -286,7 +286,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableColumnResizing',
+    tableOptionName: 'enableColumnResizing',
     defaultValue: '',
     description: '',
     link: '/docs/guides/column-resizing',
@@ -296,7 +296,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableDensityToggle',
+    tableOptionName: 'enableDensityToggle',
     defaultValue: 'true',
     description: '',
     link: '/docs/guides/density-toggle',
@@ -306,7 +306,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableEditing',
+    tableOptionName: 'enableEditing',
     defaultValue: '',
     description: '',
     link: '/docs/guides/editing',
@@ -316,7 +316,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean | (row: MRT_Row<TData>) => boolean',
   },
   {
-    propName: 'enableExpandAll',
+    tableOptionName: 'enableExpandAll',
     defaultValue: 'true',
     description: '',
     link: '/docs/guides/expanding-sub-rows',
@@ -326,7 +326,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableExpanding',
+    tableOptionName: 'enableExpanding',
     defaultValue: '',
     description: '',
     link: '/docs/guides/expanding-sub-rows',
@@ -336,7 +336,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableFilterMatchHighlighting',
+    tableOptionName: 'enableFilterMatchHighlighting',
     defaultValue: 'true',
     description:
       'Enable or disable highlighting text that matches the filter in the table cells.',
@@ -347,7 +347,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableFilters',
+    tableOptionName: 'enableFilters',
     defaultValue: 'true',
     description: 'Enable or disable both the global and column filters.',
     link: 'https://tanstack.com/table/v8/docs/api/features/filters#enablefilters',
@@ -357,7 +357,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableFullScreenToggle',
+    tableOptionName: 'enableFullScreenToggle',
     defaultValue: 'true',
     description:
       'Enable or disable the full screen toggle feature. Disabling will also hide the full screen toggle button.',
@@ -368,7 +368,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableGlobalFilter',
+    tableOptionName: 'enableGlobalFilter',
     defaultValue: 'true',
     description: '',
     link: '/docs/guides/global-filtering#disable-global-filter-feature',
@@ -378,7 +378,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableGlobalFilterModes',
+    tableOptionName: 'enableGlobalFilterModes',
     defaultValue: 'true',
     description: '',
     link: '/docs/guides/global-filtering#global-filter-modes',
@@ -388,7 +388,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableGlobalFilterRankedResults',
+    tableOptionName: 'enableGlobalFilterRankedResults',
     defaultValue: 'true',
     description: '',
     link: '/docs/guides/global-filtering#ranked-results',
@@ -398,7 +398,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableGrouping',
+    tableOptionName: 'enableGrouping',
     defaultValue: '',
     description: '',
     link: '/docs/guides/aggregation-and-grouping#enable-grouping',
@@ -408,7 +408,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableHiding',
+    tableOptionName: 'enableHiding',
     defaultValue: 'true',
     description: '',
     link: '/docs/guides/column-hiding',
@@ -418,7 +418,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableMultiRemove',
+    tableOptionName: 'enableMultiRemove',
     defaultValue: '',
     description: '',
     link: 'https://tanstack.com/table/v8/docs/api/features/sorting#enablemultiremove',
@@ -428,7 +428,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableMultiRowSelection',
+    tableOptionName: 'enableMultiRowSelection',
     defaultValue: 'true',
     description:
       'If true, the user can select multiple rows at once with a checkbox. If false, the user can only select one row at a time with a radio button.',
@@ -439,7 +439,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableMultiSort',
+    tableOptionName: 'enableMultiSort',
     defaultValue: '',
     description: '',
     link: '',
@@ -449,7 +449,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enablePagination',
+    tableOptionName: 'enablePagination',
     defaultValue: 'true',
     description: '',
     link: '',
@@ -459,7 +459,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enablePinning',
+    tableOptionName: 'enablePinning',
     defaultValue: '',
     description: '',
     link: '',
@@ -469,7 +469,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableRowActions',
+    tableOptionName: 'enableRowActions',
     defaultValue: '',
     description: '',
     link: '',
@@ -479,7 +479,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableRowDragging',
+    tableOptionName: 'enableRowDragging',
     defaultValue: '',
     description: '',
     link: '',
@@ -489,7 +489,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableRowNumbers',
+    tableOptionName: 'enableRowNumbers',
     defaultValue: '',
     description: '',
     link: '/docs/guides/row-numbers',
@@ -499,7 +499,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableRowOrdering',
+    tableOptionName: 'enableRowOrdering',
     defaultValue: '',
     description: '',
     link: '',
@@ -509,7 +509,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableRowSelection',
+    tableOptionName: 'enableRowSelection',
     defaultValue: '',
     description: '',
     link: '',
@@ -519,7 +519,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean | (row: MRT_Row) => boolean',
   },
   {
-    propName: 'enableRowVirtualization',
+    tableOptionName: 'enableRowVirtualization',
     defaultValue: '',
     description: '',
     link: '/docs/guides/virtualization#enable-row-virtualization',
@@ -529,7 +529,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableSelectAll',
+    tableOptionName: 'enableSelectAll',
     defaultValue: 'true',
     description: '',
     link: '',
@@ -539,7 +539,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableSorting',
+    tableOptionName: 'enableSorting',
     defaultValue: 'true',
     description: '',
     link: '',
@@ -549,7 +549,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableSortingRemoval',
+    tableOptionName: 'enableSortingRemoval',
     defaultValue: 'true',
     description: '',
     link: '',
@@ -559,7 +559,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableStickyFooter',
+    tableOptionName: 'enableStickyFooter',
     defaultValue: '',
     description: '',
     link: '',
@@ -569,7 +569,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableStickyHeader',
+    tableOptionName: 'enableStickyHeader',
     defaultValue: '',
     description: '',
     link: '',
@@ -579,7 +579,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableSubRowSelection',
+    tableOptionName: 'enableSubRowSelection',
     defaultValue: 'true',
     description: '',
     link: '',
@@ -589,7 +589,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableTableFooter',
+    tableOptionName: 'enableTableFooter',
     defaultValue: 'true',
     description: '',
     link: '',
@@ -599,7 +599,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableTableHead',
+    tableOptionName: 'enableTableHead',
     defaultValue: 'true',
     description: '',
     link: '',
@@ -609,7 +609,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableToolbarInternalActions',
+    tableOptionName: 'enableToolbarInternalActions',
     defaultValue: 'true',
     description: '',
     link: '',
@@ -619,7 +619,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'enableTopToolbar',
+    tableOptionName: 'enableTopToolbar',
     defaultValue: 'true',
     description: '',
     link: '',
@@ -629,7 +629,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'globalFilterModeOptions',
+    tableOptionName: 'globalFilterModeOptions',
     defaultValue: '',
     description: '',
     link: '',
@@ -639,7 +639,7 @@ export const rootProps: PropRow[] = [
     type: 'Array<MRT_FilterOption | string> | null',
   },
   {
-    propName: 'expandRowsFn',
+    tableOptionName: 'expandRowsFn',
     defaultValue: '',
     description: '',
     link: '',
@@ -649,7 +649,7 @@ export const rootProps: PropRow[] = [
     type: '(dataRow: TData) => TData[]', //?
   },
   {
-    propName: 'filterFns',
+    tableOptionName: 'filterFns',
     defaultValue: '',
     description: `This option allows you to define custom filter functions that can be referenced in a column's filterFn option by their key`,
     link: 'https://tanstack.com/table/v8/docs/api/features/filters#filterfns',
@@ -659,7 +659,7 @@ export const rootProps: PropRow[] = [
     type: 'Record<string, FilterFn>',
   },
   {
-    propName: 'filterFromLeafRows',
+    tableOptionName: 'filterFromLeafRows',
     defaultValue: 'false',
     description: '',
     link: 'https://tanstack.com/table/v8/docs/api/features/filters#filterfromleafrows',
@@ -669,7 +669,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'getColumnCanGlobalFilter',
+    tableOptionName: 'getColumnCanGlobalFilter',
     defaultValue: '',
     description: '',
     link: '',
@@ -679,7 +679,7 @@ export const rootProps: PropRow[] = [
     type: '(column: Column<TData, unknown>) => boolean',
   },
   {
-    propName: 'getCoreRowModel',
+    tableOptionName: 'getCoreRowModel',
     defaultValue: '',
     description: `Mantine React Table uses the default core row model function from TanStack Table, but you can override its implementation here. It is called once per table and should return a new function which will calculate and return the row model for the table.`,
     link: 'https://tanstack.com/table/v8/docs/api/core/table#getcorerowmodel',
@@ -689,7 +689,7 @@ export const rootProps: PropRow[] = [
     type: '(table: Table<TData>) => () => RowModel<TData>',
   },
   {
-    propName: 'getExpandedRowModel',
+    tableOptionName: 'getExpandedRowModel',
     defaultValue: '',
     description: '',
     link: '',
@@ -699,7 +699,7 @@ export const rootProps: PropRow[] = [
     type: '() => MRT_RowModel<TData>',
   },
   {
-    propName: 'getFacetedMinMaxValues',
+    tableOptionName: 'getFacetedMinMaxValues',
     defaultValue: '',
     description:
       'A function that computes and returns a min/max tuple derived from column.getFacetedRowModel. Useful for displaying faceted result values.',
@@ -710,7 +710,7 @@ export const rootProps: PropRow[] = [
     type: '() => Map<any, number>',
   },
   {
-    propName: 'getFacetedRowModel',
+    tableOptionName: 'getFacetedRowModel',
     defaultValue: '',
     description:
       'Returns the row model with all other column filters applied, excluding its own filter. Useful for displaying faceted result counts.',
@@ -721,7 +721,7 @@ export const rootProps: PropRow[] = [
     type: '() => RowModel<TData>',
   },
   {
-    propName: 'getFacetedUniqueValues',
+    tableOptionName: 'getFacetedUniqueValues',
     defaultValue: '',
     description:
       'A function that computes and returns a Map of unique values and their occurrences derived from column.getFacetedRowModel. Useful for displaying faceted result values.',
@@ -732,7 +732,7 @@ export const rootProps: PropRow[] = [
     type: '() => Map<any, number>',
   },
   {
-    propName: 'getFilteredRowModel',
+    tableOptionName: 'getFilteredRowModel',
     defaultValue: '',
     description:
       'Returns the row model with all other column filters applied, excluding its own filter. Useful for displaying faceted result counts.',
@@ -743,7 +743,7 @@ export const rootProps: PropRow[] = [
     type: '() => RowModel<TData>',
   },
   {
-    propName: 'getGroupedRowModel',
+    tableOptionName: 'getGroupedRowModel',
     defaultValue: '',
     description:
       'Returns the row model after grouping has taken place, but no further.',
@@ -754,7 +754,7 @@ export const rootProps: PropRow[] = [
     type: '(table: Table<TData>) => () => RowModel<TData>',
   },
   {
-    propName: 'getIsRowExpanded',
+    tableOptionName: 'getIsRowExpanded',
     defaultValue: '',
     description:
       'If provided, allows you to override the default behavior of determining whether a row is currently expanded.',
@@ -765,7 +765,7 @@ export const rootProps: PropRow[] = [
     type: '(row: Row<TData>) => boolean',
   },
   {
-    propName: 'getPaginationRowModel',
+    tableOptionName: 'getPaginationRowModel',
     defaultValue: '',
     description: '',
     link: '',
@@ -775,7 +775,7 @@ export const rootProps: PropRow[] = [
     type: '() => MRT_RowModel<TData>',
   },
   {
-    propName: 'getRowCanExpand',
+    tableOptionName: 'getRowCanExpand',
     defaultValue: '',
     description:
       'If provided, allows you to override the default behavior of determining whether a row can be expanded.',
@@ -786,7 +786,7 @@ export const rootProps: PropRow[] = [
     type: '(row: Row<TData>) => boolean',
   },
   {
-    propName: 'getRowId',
+    tableOptionName: 'getRowId',
     defaultValue: '',
     description: `This optional function is used to derive a unique ID for any given row. If not provided the rows index is used (nested rows join together with . using their grandparents' index eg. index.index.index). If you need to identify individual rows that are originating from any server-side operations, it's suggested you use this function to return an ID that makes sense regardless of network IO/ambiguity eg. a userId, taskId, database ID field, etc.`,
     link: 'https://tanstack.com/table/v8/docs/api/core/table#getrowid',
@@ -796,7 +796,7 @@ export const rootProps: PropRow[] = [
     type: `(originalRow: TData, index: number, parent?: MRT_Row<TData>) => string`,
   },
   {
-    propName: 'getSortedRowModel',
+    tableOptionName: 'getSortedRowModel',
     defaultValue: '',
     description:
       'This function is used to retrieve the sorted row model. If using server-side sorting, this function is not required. To use client-side sorting, pass the exported getSortedRowModel() from your adapter to your table or implement your own.',
@@ -807,7 +807,7 @@ export const rootProps: PropRow[] = [
     type: '(table: Table<TData>) => () => RowModel<TData>',
   },
   {
-    propName: 'getSubRows',
+    tableOptionName: 'getSubRows',
     defaultValue: '',
     description:
       'This optional function is used to access the sub rows for any given row. If you are using nested rows, you will need to use this function to return the sub rows object (or undefined) from the row.',
@@ -818,7 +818,7 @@ export const rootProps: PropRow[] = [
     type: `(originalRow: TData, index: number) => undefined | TData[]`,
   },
   {
-    propName: 'globalFilterFn',
+    tableOptionName: 'globalFilterFn',
     defaultValue: '',
     description: 'The filter function to use for global filtering.',
     link: '',
@@ -828,7 +828,7 @@ export const rootProps: PropRow[] = [
     type: 'MRT_FilterOption',
   },
   {
-    propName: 'groupedColumnMode',
+    tableOptionName: 'groupedColumnMode',
     defaultValue: 'reorder',
     description:
       'Grouping columns are automatically reordered by default to the start of the columns list. If you would rather remove them or leave them as-is, set the appropriate mode here.',
@@ -839,7 +839,7 @@ export const rootProps: PropRow[] = [
     type: `false | 'reorder' | 'remove'`,
   },
   {
-    propName: 'icons',
+    tableOptionName: 'icons',
     defaultValue: '',
     description: '',
     link: '',
@@ -849,7 +849,7 @@ export const rootProps: PropRow[] = [
     type: 'Partial<MRT_Icons>;',
   },
   {
-    propName: 'initialState',
+    tableOptionName: 'initialState',
     defaultValue: '',
     description:
       'Use this option to optionally pass initial state to the table. This state will be used when resetting various table states either automatically by the table (eg. options.autoResetPagination) or via functions like table.resetRowSelection(). Most reset function allow you optionally pass a flag to reset to a blank/default state instead of the initial state. Table state will not be reset when this object changes, which also means that the initial state object does not need to be stable.',
@@ -860,7 +860,7 @@ export const rootProps: PropRow[] = [
     type: `Partial<MRT_TableState<TData>>`,
   },
   {
-    propName: 'isMultiSortEvent',
+    tableOptionName: 'isMultiSortEvent',
     defaultValue: '',
     description:
       'Pass a custom function that will be used to determine if a multi-sort event should be triggered. It is passed the event from the sort toggle handler and should return true if the event should trigger a multi-sort.',
@@ -871,7 +871,7 @@ export const rootProps: PropRow[] = [
     type: '(e: unknown) => boolean',
   },
   {
-    propName: 'layoutMode',
+    tableOptionName: 'layoutMode',
     defaultValue: "'semantic'",
     description: '',
     link: '/docs/guides/',
@@ -881,7 +881,7 @@ export const rootProps: PropRow[] = [
     type: "'semantic' | 'grid'",
   },
   {
-    propName: 'localization',
+    tableOptionName: 'localization',
     defaultValue: '',
     description: '',
     link: '/docs/guides/localization#localization-(i18n)-guide',
@@ -891,7 +891,7 @@ export const rootProps: PropRow[] = [
     type: 'MRT_Localization',
   },
   {
-    propName: 'manualExpanding',
+    tableOptionName: 'manualExpanding',
     defaultValue: '',
     description:
       'Enables manual row expansion. If this is set to true, getExpandedRowModel will not be used to expand rows and you would be expected to perform the expansion in your own data model. This is useful if you are doing server-side expansion.',
@@ -902,7 +902,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'manualFiltering',
+    tableOptionName: 'manualFiltering',
     defaultValue: '',
     description:
       'Disables the getFilteredRowModel from being used to filter data. This may be useful if your table needs to dynamically support both client-side and server-side filtering.',
@@ -913,7 +913,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'manualGrouping',
+    tableOptionName: 'manualGrouping',
     defaultValue: '',
     description:
       'Enables manual grouping. If this option is set to true, the table will not automatically group rows using getGroupedRowModel() and instead will expect you to manually group the rows before passing them to the table. This is useful if you are doing server-side grouping and aggregation.',
@@ -924,7 +924,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'manualPagination',
+    tableOptionName: 'manualPagination',
     defaultValue: '',
     description:
       'Enables manual pagination. If this option is set to true, the table will not automatically paginate rows using getPaginationRowModel() and instead will expect you to manually paginate the rows before passing them to the table. This is useful if you are doing server-side pagination and aggregation.',
@@ -935,7 +935,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'manualSorting',
+    tableOptionName: 'manualSorting',
     defaultValue: '',
     description:
       'Enables manual sorting for the table. If this is true, you will be expected to sort your data before it is passed to the table. This is useful if you are doing server-side sorting.',
@@ -946,7 +946,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'maxLeafRowFilterDepth',
+    tableOptionName: 'maxLeafRowFilterDepth',
     defaultValue: '100',
     description:
       'Set a maximum number leaf row depth that will be filtered. Preserve child rows of filtered rows by setting this to "0"',
@@ -957,7 +957,7 @@ export const rootProps: PropRow[] = [
     type: 'number',
   },
   {
-    propName: 'maxMultiSortColCount',
+    tableOptionName: 'maxMultiSortColCount',
     defaultValue: '',
     description: 'Set a maximum number of columns that can be multi-sorted.',
     link: 'https://tanstack.com/table/v8/docs/api/features/sorting#maxmultisortcolcount',
@@ -967,7 +967,7 @@ export const rootProps: PropRow[] = [
     type: 'number',
   },
   {
-    propName: 'memoMode',
+    tableOptionName: 'memoMode',
     defaultValue: '',
     description: '',
     link: '/docs/guides/memoize-components',
@@ -977,7 +977,7 @@ export const rootProps: PropRow[] = [
     type: `'cell' | 'row' | 'table-body'`,
   },
   {
-    propName: 'mergeOptions',
+    tableOptionName: 'mergeOptions',
     defaultValue: '',
     description:
       'This option is used to optionally implement the merging of table options. Some framework like solid-js use proxies to track reactivity and usage, so merging reactive objects needs to be handled carefully. This option inverts control of this process to the adapter.',
@@ -988,7 +988,7 @@ export const rootProps: PropRow[] = [
     type: ' <T>(defaultOptions: T, options: Partial<T>) => T',
   },
   {
-    propName: 'meta',
+    tableOptionName: 'meta',
     defaultValue: '',
     description:
       'You can pass any object to options.meta and access it anywhere the table is available via table.options.meta This type is global to all tables.',
@@ -999,7 +999,7 @@ export const rootProps: PropRow[] = [
     type: 'TableMeta ',
   },
   {
-    propName: 'mantineExpandAllButtonProps',
+    tableOptionName: 'mantineExpandAllButtonProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/action-icon/?t=props',
@@ -1009,7 +1009,7 @@ export const rootProps: PropRow[] = [
     type: 'ActionIconProps | ({ table }) => ActionIconProps',
   },
   {
-    propName: 'mantineExpandButtonProps',
+    tableOptionName: 'mantineExpandButtonProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/action-icon/?t=props',
@@ -1019,7 +1019,7 @@ export const rootProps: PropRow[] = [
     type: 'ActionIconProps | ({ row, table }) => ActionIconProps',
   },
   {
-    propName: 'mantineProgressProps',
+    tableOptionName: 'mantineProgressProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/progress/?t=props',
@@ -1029,7 +1029,7 @@ export const rootProps: PropRow[] = [
     type: 'ProgressProps | ({ isTopToolbar, table }) => ProgressProps',
   },
   {
-    propName: 'mantineSearchTextInputProps',
+    tableOptionName: 'mantineSearchTextInputProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/text-input/?t=props',
@@ -1039,7 +1039,7 @@ export const rootProps: PropRow[] = [
     type: 'TextInputProps | ({ table }) => TextInputProps',
   },
   {
-    propName: 'mantineSelectAllCheckboxProps',
+    tableOptionName: 'mantineSelectAllCheckboxProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/checkbox/?t=props',
@@ -1049,7 +1049,7 @@ export const rootProps: PropRow[] = [
     type: 'CheckboxProps | ({ table }) => CheckboxProps',
   },
   {
-    propName: 'mantineSelectCheckboxProps',
+    tableOptionName: 'mantineSelectCheckboxProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/checkbox/?t=props',
@@ -1059,7 +1059,7 @@ export const rootProps: PropRow[] = [
     type: 'CheckboxProps | ({ row, table }) => CheckboxProps',
   },
   {
-    propName: 'mantineCopyButtonProps',
+    tableOptionName: 'mantineCopyButtonProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/unstyled-button/?t=props',
@@ -1069,7 +1069,7 @@ export const rootProps: PropRow[] = [
     type: 'UnstyledButtonProps | ({ cell, column, row, table }) => UnstyledButtonProps',
   },
   {
-    propName: 'mantineEditSelectProps',
+    tableOptionName: 'mantineEditSelectProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/select/?t=props',
@@ -1079,7 +1079,7 @@ export const rootProps: PropRow[] = [
     type: 'SelectProps | ({ cell, column, row, table }) => SelectProps',
   },
   {
-    propName: 'mantineEditTextInputProps',
+    tableOptionName: 'mantineEditTextInputProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/text-input/?t=props',
@@ -1089,7 +1089,7 @@ export const rootProps: PropRow[] = [
     type: 'TextInputProps | ({ cell, column, row, table }) => TextInputProps',
   },
   {
-    propName: 'mantineTableBodyCellProps',
+    tableOptionName: 'mantineTableBodyCellProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1099,7 +1099,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ cell, column, row, table }) => BoxProps',
   },
   {
-    propName: 'mantineSkeletonProps',
+    tableOptionName: 'mantineSkeletonProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/skeleton/?t=props',
@@ -1109,7 +1109,7 @@ export const rootProps: PropRow[] = [
     type: 'SkeletonProps | ({ cell, column, row, table }) => SkeletonProps',
   },
   {
-    propName: 'mantineTableBodyProps',
+    tableOptionName: 'mantineTableBodyProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1119,7 +1119,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ table }) => BoxProps',
   },
   {
-    propName: 'mantineRowDragHandleProps',
+    tableOptionName: 'mantineRowDragHandleProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/action-icon/?t=props',
@@ -1129,7 +1129,7 @@ export const rootProps: PropRow[] = [
     type: 'ActionIconProps | ({ row, table }) => ActionIconProps',
   },
   {
-    propName: 'mantineTableBodyRowProps',
+    tableOptionName: 'mantineTableBodyRowProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1139,7 +1139,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ isDetailPanel, row, staticRowIndex, table }) => BoxProps',
   },
   {
-    propName: 'mantineTableContainerProps',
+    tableOptionName: 'mantineTableContainerProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1149,7 +1149,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ table }) => BoxProps',
   },
   {
-    propName: 'mantineDetailPanelProps',
+    tableOptionName: 'mantineDetailPanelProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1159,7 +1159,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ row, table }) => BoxProps',
   },
   {
-    propName: 'mantineTableFooterCellProps',
+    tableOptionName: 'mantineTableFooterCellProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1169,7 +1169,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps| ({table, column}) => BoxProps',
   },
   {
-    propName: 'mantineTableFooterProps',
+    tableOptionName: 'mantineTableFooterProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1179,7 +1179,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ table }) => BoxProps);',
   },
   {
-    propName: 'mantineTableFooterRowProps',
+    tableOptionName: 'mantineTableFooterRowProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1189,7 +1189,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({table, footerGroup}) => BoxProps',
   },
   {
-    propName: 'mantineColumnActionsButtonProps',
+    tableOptionName: 'mantineColumnActionsButtonProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/action-icon/?t=props',
@@ -1199,7 +1199,7 @@ export const rootProps: PropRow[] = [
     type: 'ActionIconProps | (({table, column}) => ActionIconProps);',
   },
   {
-    propName: 'mantineColumnDragHandleProps',
+    tableOptionName: 'mantineColumnDragHandleProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/action-icon/?t=props',
@@ -1209,7 +1209,7 @@ export const rootProps: PropRow[] = [
     type: 'ActionIconProps | ({table, column}) => ActionIconProps',
   },
   {
-    propName: 'mantineFilterCheckboxProps',
+    tableOptionName: 'mantineFilterCheckboxProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/checkbox/?t=props',
@@ -1219,7 +1219,7 @@ export const rootProps: PropRow[] = [
     type: 'CheckboxProps | ({ column, table}) => CheckboxProps',
   },
   {
-    propName: 'mantineFilterTextInputProps',
+    tableOptionName: 'mantineFilterTextInputProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/text-input/?t=props',
@@ -1229,7 +1229,7 @@ export const rootProps: PropRow[] = [
     type: 'TextInputProps | ({ table, column, rangeFilterIndex}) => TextInputProps',
   },
   {
-    propName: 'mantineTableHeadCellProps',
+    tableOptionName: 'mantineTableHeadCellProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1239,7 +1239,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ table, column}) => BoxProps',
   },
   {
-    propName: 'mantineTableHeadProps',
+    tableOptionName: 'mantineTableHeadProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1249,7 +1249,7 @@ export const rootProps: PropRow[] = [
     type: 'TableHeadProps | ({ table }) => TableHeadProps',
   },
   {
-    propName: 'mantineTableHeadRowProps',
+    tableOptionName: 'mantineTableHeadRowProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1259,7 +1259,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ table, headerGroup}) => BoxProps',
   },
   {
-    propName: 'mantinePaginationProps',
+    tableOptionName: 'mantinePaginationProps',
     defaultValue: '',
     description: '',
     link: '/docs/guides/pagination/',
@@ -1269,7 +1269,7 @@ export const rootProps: PropRow[] = [
     type: '{ rowsPerPageOptions?: string[], showFirstLastPageButtons?: boolean, showRowsPerPage?: boolean; }',
   },
   {
-    propName: 'mantinePaperProps',
+    tableOptionName: 'mantinePaperProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/paper/?t=props',
@@ -1279,7 +1279,7 @@ export const rootProps: PropRow[] = [
     type: 'PaperProps | ({ table }} => PaperProps',
   },
   {
-    propName: 'mantineTableProps',
+    tableOptionName: 'mantineTableProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/table/?t=props',
@@ -1289,7 +1289,7 @@ export const rootProps: PropRow[] = [
     type: 'TableProps',
   },
   {
-    propName: 'mantineToolbarAlertBannerChipProps',
+    tableOptionName: 'mantineToolbarAlertBannerChipProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/chip/?t=props',
@@ -1299,7 +1299,7 @@ export const rootProps: PropRow[] = [
     type: 'ChipProps| ({ table }} => ChipProps',
   },
   {
-    propName: 'mantineToolbarAlertBannerProps',
+    tableOptionName: 'mantineToolbarAlertBannerProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/alert/?t=props',
@@ -1309,7 +1309,7 @@ export const rootProps: PropRow[] = [
     type: 'AlertProps | ({ table }) => AlertProps',
   },
   {
-    propName: 'mantineBottomToolbarProps',
+    tableOptionName: 'mantineBottomToolbarProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1319,7 +1319,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ table }) => BoxProps',
   },
   {
-    propName: 'mantineTopToolbarProps',
+    tableOptionName: 'mantineTopToolbarProps',
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/box/?t=props',
@@ -1329,7 +1329,7 @@ export const rootProps: PropRow[] = [
     type: 'BoxProps | ({ table }) => BoxProps',
   },
   {
-    propName: 'onColumnFiltersChange',
+    tableOptionName: 'onColumnFiltersChange',
     defaultValue: '',
     description:
       'If provided, this function will be called with an updaterFn when state.columnFilters changes. This overrides the default internal state management, so you will need to persist the state change either fully or partially outside of the table.',
@@ -1340,7 +1340,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<ColumnFiltersState>',
   },
   {
-    propName: 'onColumnOrderChange',
+    tableOptionName: 'onColumnOrderChange',
     defaultValue: '',
     description:
       'If provided, this function will be called with an updaterFn when state.columnOrder changes. This overrides the default internal state management, so you will need to persist the state change either fully or partially outside of the table.',
@@ -1351,7 +1351,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<ColumnOrderState>',
   },
   {
-    propName: 'onColumnPinningChange',
+    tableOptionName: 'onColumnPinningChange',
     defaultValue: '',
     description:
       'If provided, this function will be called with an updaterFn when state.columnPinning changes. This overrides the default internal state management, so you will need to persist the state change either fully or partially outside of the table.',
@@ -1362,7 +1362,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<ColumnPinningState>',
   },
   {
-    propName: 'onColumnSizingChange',
+    tableOptionName: 'onColumnSizingChange',
     defaultValue: '',
     description:
       'This optional function will be called when the columnSizing state changes. If you provide this function, you will be responsible for maintaining its state yourself. You can pass this state back to the table via the state.columnSizing table option.',
@@ -1373,7 +1373,7 @@ export const rootProps: PropRow[] = [
     type: ' OnChangeFn<ColumnSizingState>',
   },
   {
-    propName: 'onColumnSizingInfoChange',
+    tableOptionName: 'onColumnSizingInfoChange',
     defaultValue: '',
     description:
       'This optional function will be called when the columnSizingInfo state changes. If you provide this function, you will be responsible for maintaining its state yourself. You can pass this state back to the table via the state.columnSizingInfo table option.',
@@ -1384,7 +1384,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<ColumnSizingInfoState>',
   },
   {
-    propName: 'onColumnVisibilityChange',
+    tableOptionName: 'onColumnVisibilityChange',
     defaultValue: '',
     description:
       'If provided, this function will be called with an updaterFn when state.columnVisibility changes. This overrides the default internal state management, so you will need to persist the state change either fully or partially outside of the table.',
@@ -1395,7 +1395,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<ColumnVisibilityState>',
   },
   {
-    propName: 'onDraggingColumnChange',
+    tableOptionName: 'onDraggingColumnChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1405,7 +1405,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<MRT_Column<TData> | null>',
   },
   {
-    propName: 'onDraggingRowChange',
+    tableOptionName: 'onDraggingRowChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1415,7 +1415,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<MRT_Row<TData> | null>',
   },
   {
-    propName: 'onEditingCellChange',
+    tableOptionName: 'onEditingCellChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1425,7 +1425,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<MRT_Cell<TData> | null>',
   },
   {
-    propName: 'onEditingRowChange',
+    tableOptionName: 'onEditingRowChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1435,7 +1435,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<MRT_Row<TData> | null>',
   },
   {
-    propName: 'onColumnFilterFnsChange',
+    tableOptionName: 'onColumnFilterFnsChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1445,7 +1445,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<{ [key: string]: MRT_FilterOption }>',
   },
   {
-    propName: 'onGlobalFilterFnChange',
+    tableOptionName: 'onGlobalFilterFnChange',
     defaultValue: '',
     description:
       'If provided, this function will be called with an updaterFn when state.globalFilter changes. This overrides the default internal state management, so you will need to persist the state change either fully or partially outside of the table.',
@@ -1456,7 +1456,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<GlobalFilterState>',
   },
   {
-    propName: 'onHoveredColumnChange',
+    tableOptionName: 'onHoveredColumnChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1466,7 +1466,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<MRT_Column<TData> | null>',
   },
   {
-    propName: 'onHoveredRowChange',
+    tableOptionName: 'onHoveredRowChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1476,7 +1476,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<MRT_Row<TData> | null>',
   },
   {
-    propName: 'onExpandedChange',
+    tableOptionName: 'onExpandedChange',
     defaultValue: '',
     description:
       'This function is called when the expanded table state changes. If a function is provided, you will be responsible for managing this state on your own. To pass the managed state back to the table, use the tableOptions.state.expanded option.',
@@ -1487,7 +1487,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<ExpandedState>',
   },
   {
-    propName: 'onGlobalFilterChange',
+    tableOptionName: 'onGlobalFilterChange',
     defaultValue: '',
     description:
       'If provided, this function will be called with an updaterFn when state.globalFilter changes. This overrides the default internal state management, so you will need to persist the state change either fully or partially outside of the table.',
@@ -1498,7 +1498,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<GlobalFilterState>',
   },
   {
-    propName: 'onGroupingChange',
+    tableOptionName: 'onGroupingChange',
     defaultValue: '',
     description:
       'If this function is provided, it will be called when the grouping state changes and you will be expected to manage the state yourself. You can pass the managed state back to the table via the tableOptions.state.grouping option.',
@@ -1509,7 +1509,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<GroupingState>',
   },
   {
-    propName: 'onDensityChange',
+    tableOptionName: 'onDensityChange',
     defaultValue: '',
     description: '',
     link: '/docs/guides/density-toggle',
@@ -1519,7 +1519,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<MRT_DensityState>',
   },
   {
-    propName: 'onIsFullScreenChange',
+    tableOptionName: 'onIsFullScreenChange',
     defaultValue: '',
     description: '',
     link: '/docs/guides/full-screen-toggle',
@@ -1529,7 +1529,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<boolean>',
   },
   {
-    propName: 'onEditingRowSave',
+    tableOptionName: 'onEditingRowSave',
     defaultValue: '',
     description: '',
     link: '/docs/guides/editing',
@@ -1539,7 +1539,7 @@ export const rootProps: PropRow[] = [
     type: '({ exitEditingMode, row, table, values}) => Promise<void> | void',
   },
   {
-    propName: 'onEditingRowCancel',
+    tableOptionName: 'onEditingRowCancel',
     defaultValue: '',
     description: '',
     link: '/docs/guides/editing#add-validation-to-editing-components',
@@ -1549,7 +1549,7 @@ export const rootProps: PropRow[] = [
     type: '({ row, table }) => void',
   },
   {
-    propName: 'onPaginationChange',
+    tableOptionName: 'onPaginationChange',
     defaultValue: '',
     description:
       'If this function is provided, it will be called when the pagination state changes and you will be expected to manage the state yourself. You can pass the managed state back to the table via the tableOptions.state.pagination option.',
@@ -1560,7 +1560,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<PaginationState>',
   },
   {
-    propName: 'onRowSelectionChange',
+    tableOptionName: 'onRowSelectionChange',
     defaultValue: '',
     description:
       'If provided, this function will be called with an updaterFn when state.rowSelection changes. This overrides the default internal state management, so you will need to persist the state change either fully or partially outside of the table.',
@@ -1571,7 +1571,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<RowSelectionState>',
   },
   {
-    propName: 'onShowAlertBannerChange',
+    tableOptionName: 'onShowAlertBannerChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1581,7 +1581,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<boolean>',
   },
   {
-    propName: 'onShowColumnFiltersChange',
+    tableOptionName: 'onShowColumnFiltersChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1591,7 +1591,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<boolean>',
   },
   {
-    propName: 'onShowGlobalFilterChange',
+    tableOptionName: 'onShowGlobalFilterChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1601,7 +1601,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<boolean>',
   },
   {
-    propName: 'onShowToolbarDropZoneChange',
+    tableOptionName: 'onShowToolbarDropZoneChange',
     defaultValue: '',
     description: '',
     link: '',
@@ -1611,7 +1611,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<boolean>',
   },
   {
-    propName: 'onSortingChange',
+    tableOptionName: 'onSortingChange',
     defaultValue: '',
     description:
       'If provided, this function will be called with an updaterFn when state.sorting changes. This overrides the default internal state management, so you will need to persist the state change either fully or partially outside of the table.',
@@ -1622,7 +1622,7 @@ export const rootProps: PropRow[] = [
     type: 'OnChangeFn<SortingState>',
   },
   {
-    propName: 'pageCount',
+    tableOptionName: 'pageCount',
     defaultValue: '',
     description:
       'When manually controlling pagination, you should supply a total pageCount value to the table if you know it. If you do not know how many pages there are, you can set this to -1.',
@@ -1633,7 +1633,7 @@ export const rootProps: PropRow[] = [
     type: 'number',
   },
   {
-    propName: 'paginateExpandedRows',
+    tableOptionName: 'paginateExpandedRows',
     defaultValue: '',
     description:
       'If true expanded rows will be paginated along with the rest of the table (which means expanded rows may span multiple pages). If false expanded rows will not be considered for pagination (which means expanded rows will always render on their parents page. This also means more rows will be rendered than the set page size)',
@@ -1644,7 +1644,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'positionActionsColumn',
+    tableOptionName: 'positionActionsColumn',
     defaultValue: '',
     description: '',
     link: '',
@@ -1654,7 +1654,7 @@ export const rootProps: PropRow[] = [
     type: "'first' | 'last'",
   },
   {
-    propName: 'positionExpandColumn',
+    tableOptionName: 'positionExpandColumn',
     defaultValue: '',
     description: '',
     link: '',
@@ -1664,7 +1664,7 @@ export const rootProps: PropRow[] = [
     type: "'first' | 'last'",
   },
   {
-    propName: 'positionGlobalFilter',
+    tableOptionName: 'positionGlobalFilter',
     defaultValue: '',
     description: '',
     link: '',
@@ -1674,7 +1674,7 @@ export const rootProps: PropRow[] = [
     type: "'left' | 'right'",
   },
   {
-    propName: 'positionPagination',
+    tableOptionName: 'positionPagination',
     defaultValue: '',
     description: '',
     link: '',
@@ -1684,7 +1684,7 @@ export const rootProps: PropRow[] = [
     type: "'bottom' | 'top' | 'both'",
   },
   {
-    propName: 'positionToolbarAlertBanner',
+    tableOptionName: 'positionToolbarAlertBanner',
     defaultValue: '',
     description: '',
     link: '',
@@ -1694,7 +1694,7 @@ export const rootProps: PropRow[] = [
     type: "'bottom' | 'top' | 'none'",
   },
   {
-    propName: 'positionToolbarDropZone',
+    tableOptionName: 'positionToolbarDropZone',
     defaultValue: '',
     description: '',
     link: '',
@@ -1704,7 +1704,7 @@ export const rootProps: PropRow[] = [
     type: "'bottom' | 'top' | 'both' | 'none'",
   },
   {
-    propName: 'renderBottomToolbar',
+    tableOptionName: 'renderBottomToolbar',
     defaultValue: '',
     description: '',
     link: '',
@@ -1714,7 +1714,7 @@ export const rootProps: PropRow[] = [
     type: 'ReactNode | ({ table }) => ReactNode',
   },
   {
-    propName: 'renderColumnActionsMenuItems',
+    tableOptionName: 'renderColumnActionsMenuItems',
     defaultValue: '',
     description: '',
     link: '',
@@ -1724,7 +1724,7 @@ export const rootProps: PropRow[] = [
     type: '({ closeMenu, column, table }) => ReactNode[]',
   },
   {
-    propName: 'renderColumnFilterModeMenuItems',
+    tableOptionName: 'renderColumnFilterModeMenuItems',
     defaultValue: '',
     description: '',
     link: '',
@@ -1734,7 +1734,7 @@ export const rootProps: PropRow[] = [
     type: '({ column, internalFilterOptions, onSelectFilterMode, table }) => ReactNode[]',
   },
   {
-    propName: 'renderDetailPanel',
+    tableOptionName: 'renderDetailPanel',
     defaultValue: '',
     description: '',
     link: '',
@@ -1744,7 +1744,7 @@ export const rootProps: PropRow[] = [
     type: '({ row, table }) => ReactNode',
   },
   {
-    propName: 'renderGlobalFilterModeMenuItems',
+    tableOptionName: 'renderGlobalFilterModeMenuItems',
     defaultValue: '',
     description: '',
     link: '',
@@ -1754,7 +1754,7 @@ export const rootProps: PropRow[] = [
     type: '({ internalFilterOptions, onSelectFilterMode, table }) => ReactNode[]',
   },
   {
-    propName: 'renderEmptyRowsFallback',
+    tableOptionName: 'renderEmptyRowsFallback',
     defaultValue: '',
     description: '',
     link: '',
@@ -1764,7 +1764,7 @@ export const rootProps: PropRow[] = [
     type: '({ table }) => ReactNode',
   },
   {
-    propName: 'renderRowActionMenuItems',
+    tableOptionName: 'renderRowActionMenuItems',
     defaultValue: '',
     description: '',
     link: '',
@@ -1774,7 +1774,7 @@ export const rootProps: PropRow[] = [
     type: '({ closeMenu, row, table }) => ReactNode[]',
   },
   {
-    propName: 'renderRowActions',
+    tableOptionName: 'renderRowActions',
     defaultValue: '',
     description: '',
     link: '',
@@ -1784,7 +1784,7 @@ export const rootProps: PropRow[] = [
     type: '({ cell, row, table }) => ReactNode',
   },
   {
-    propName: 'renderBottomToolbarCustomActions',
+    tableOptionName: 'renderBottomToolbarCustomActions',
     defaultValue: '',
     description: '',
     link: '',
@@ -1794,7 +1794,7 @@ export const rootProps: PropRow[] = [
     type: '({ table }) => ReactNode',
   },
   {
-    propName: 'renderTopToolbar',
+    tableOptionName: 'renderTopToolbar',
     defaultValue: '',
     description: '',
     link: '',
@@ -1804,7 +1804,7 @@ export const rootProps: PropRow[] = [
     type: 'ReactNode | ({ table }) => ReactNode',
   },
   {
-    propName: 'renderTopToolbarCustomActions',
+    tableOptionName: 'renderTopToolbarCustomActions',
     defaultValue: '',
     description: '',
     link: '',
@@ -1814,7 +1814,7 @@ export const rootProps: PropRow[] = [
     type: '({ table }) => ReactNode',
   },
   {
-    propName: 'renderToolbarInternalActions',
+    tableOptionName: 'renderToolbarInternalActions',
     defaultValue: '',
     description: '',
     link: '',
@@ -1824,7 +1824,7 @@ export const rootProps: PropRow[] = [
     type: '({ table}) => ReactNode',
   },
   {
-    propName: 'rowCount',
+    tableOptionName: 'rowCount',
     defaultValue: '',
     description: '',
     link: '',
@@ -1834,7 +1834,7 @@ export const rootProps: PropRow[] = [
     type: 'number',
   },
   {
-    propName: 'rowNumberMode',
+    tableOptionName: 'rowNumberMode',
     defaultValue: "'original'",
     description: '',
     link: '',
@@ -1844,7 +1844,7 @@ export const rootProps: PropRow[] = [
     type: "'original' | 'static'",
   },
   {
-    propName: 'selectAllMode',
+    tableOptionName: 'selectAllMode',
     defaultValue: "'page'",
     description: '',
     link: '',
@@ -1854,7 +1854,7 @@ export const rootProps: PropRow[] = [
     type: `'all' | 'page'`,
   },
   {
-    propName: 'sortDescFirst',
+    tableOptionName: 'sortDescFirst',
     defaultValue: '',
     description:
       'Set to true for sorting toggles on this column to start in the descending direction.',
@@ -1865,7 +1865,7 @@ export const rootProps: PropRow[] = [
     type: 'boolean',
   },
   {
-    propName: 'sortingFns',
+    tableOptionName: 'sortingFns',
     defaultValue: '',
     description:
       "This option allows you to define custom sorting functions that can be referenced in a column's sortingFn option by their key. Example:",
@@ -1876,7 +1876,7 @@ export const rootProps: PropRow[] = [
     type: 'Record<string, SortingFn>',
   },
   {
-    propName: 'state',
+    tableOptionName: 'state',
     defaultValue: '',
     description: '',
     link: '/docs/guides/state-management#manage-individual-states-as-needed',
@@ -1886,7 +1886,7 @@ export const rootProps: PropRow[] = [
     type: 'Partial<MRT_TableState<TData>>',
   },
   {
-    propName: 'tableInstanceRef',
+    tableOptionName: 'tableInstanceRef',
     defaultValue: '',
     description: '',
     link: '',
@@ -1896,7 +1896,7 @@ export const rootProps: PropRow[] = [
     type: 'MutableRefObject<MRT_TableInstance<TData> | null>',
   },
   {
-    propName: 'rowVirtualizerProps',
+    tableOptionName: 'rowVirtualizerProps',
     defaultValue: '',
     description: '',
     link: '',
@@ -1906,7 +1906,7 @@ export const rootProps: PropRow[] = [
     type: 'Partial<VirtualizerOptions<HTMLDivElement, HTMLTableRowElement>>',
   },
   {
-    propName: 'rowVirtualizerInstanceRef',
+    tableOptionName: 'rowVirtualizerInstanceRef',
     defaultValue: '',
     description: '',
     link: '/docs/guides/virtualization',

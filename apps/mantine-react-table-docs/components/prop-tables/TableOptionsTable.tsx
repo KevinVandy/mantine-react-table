@@ -8,14 +8,14 @@ import {
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
-import { type PropRow, rootProps } from './rootProps';
+import { type TableOptionRow, tableOptions } from './tableOptions';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {
-  onlyProps?: Set<keyof MRT_TableOptions<any>>;
+  onlyOptions?: Set<keyof MRT_TableOptions<TableOptionRow>>;
 }
 
-const RootPropTable = ({ onlyProps }: Props) => {
+const TableOptionsTable = ({ onlyOptions }: Props) => {
   const isDesktop = useMediaQuery('(min-width: 1200px)');
 
   const columns = useMemo(
@@ -24,7 +24,7 @@ const RootPropTable = ({ onlyProps }: Props) => {
         {
           enableClickToCopy: true,
           header: 'Prop Name',
-          accessorKey: 'propName',
+          accessorKey: 'tableOptionName',
           mantineCopyButtonProps: ({ cell }) => ({
             className: 'prop',
             id: `${cell.getValue<string>()}-prop`,
@@ -102,7 +102,7 @@ const RootPropTable = ({ onlyProps }: Props) => {
             </Link>
           ),
         },
-      ] as MRT_ColumnDef<PropRow>[],
+      ] as MRT_ColumnDef<TableOptionRow>[],
     [],
   );
 
@@ -112,7 +112,7 @@ const RootPropTable = ({ onlyProps }: Props) => {
     if (typeof window !== 'undefined') {
       if (isDesktop) {
         setColumnPinning({
-          left: ['mrt-row-expand', 'mrt-row-numbers', 'propName'],
+          left: ['mrt-row-expand', 'mrt-row-numbers', 'tableOptionName'],
           right: ['link'],
         });
       } else {
@@ -122,11 +122,11 @@ const RootPropTable = ({ onlyProps }: Props) => {
   }, [isDesktop]);
 
   const data = useMemo(() => {
-    if (onlyProps) {
-      return rootProps.filter(({ propName }) => onlyProps.has(propName));
+    if (onlyOptions) {
+      return tableOptions.filter(({ tableOptionName }) => onlyOptions.has(tableOptionName));
     }
-    return rootProps;
-  }, [onlyProps]);
+    return tableOptions;
+  }, [onlyOptions]);
 
   return (
     <MantineReactTable
@@ -140,20 +140,20 @@ const RootPropTable = ({ onlyProps }: Props) => {
           size: 10,
         },
       }}
-      enableColumnActions={!onlyProps}
+      enableColumnActions={!onlyOptions}
       enableColumnFilterModes
       enablePagination={false}
       enablePinning
       enableRowNumbers
       enableBottomToolbar={false}
-      enableTopToolbar={!onlyProps}
+      enableTopToolbar={!onlyOptions}
       initialState={{
         columnVisibility: { required: false, description: false },
         density: 'xs',
         showGlobalFilter: true,
         sorting: [
           { id: 'required', desc: true },
-          { id: 'propName', desc: false },
+          { id: 'tableOptionName', desc: false },
         ],
       }}
       mantineSearchTextInputProps={{
@@ -163,7 +163,7 @@ const RootPropTable = ({ onlyProps }: Props) => {
       }}
       mantinePaperProps={{
         sx: { marginBottom: '24px' },
-        id: onlyProps ? 'relevant-props-table' : 'props-table',
+        id: onlyOptions ? 'relevant-props-table' : 'props-table',
       }}
       positionGlobalFilter="left"
       renderDetailPanel={({ row }) => (
@@ -178,4 +178,4 @@ const RootPropTable = ({ onlyProps }: Props) => {
   );
 };
 
-export default RootPropTable;
+export default TableOptionsTable;

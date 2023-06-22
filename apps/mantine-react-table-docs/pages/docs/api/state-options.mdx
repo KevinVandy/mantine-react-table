@@ -24,19 +24,19 @@ import SourceCode from '../../../components/prop-tables/StateOptionsSource';
 
 Here is a list of all the state options you can pass to `initialState` or `state`.
 
-```tsx
-<MantineReactTable
-  initialState={
-    {
-      // all the state options you can pass here
-    }
-  }
-  state={
-    {
-      // or here
-    }
-  }
-/>
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  initialState: {
+    // all the state options you can pass here
+  },
+  state: {
+    // or here - NOTE: state values will override initialState values
+  },
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 <StateOptionsTable />
