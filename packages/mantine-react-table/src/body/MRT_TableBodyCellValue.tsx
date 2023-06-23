@@ -4,6 +4,7 @@ import highlightWords from 'highlight-words';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
 
 const allowedTypes = ['string', 'number'];
+const allowedFilterVariants = ['text', 'autocomplete'];
 
 interface Props<TData extends Record<string, any>> {
   cell: MRT_Cell<TData>;
@@ -55,7 +56,7 @@ export const MRT_TableBodyCellValue = <TData extends Record<string, any>>({
     allowedTypes.includes(typeof renderedCellValue) &&
     ((filterValue &&
       allowedTypes.includes(typeof filterValue) &&
-      columnDef.filterVariant === 'text') ||
+      allowedFilterVariants.includes(columnDef.filterVariant as string)) ||
       (globalFilter &&
         allowedTypes.includes(typeof globalFilter) &&
         column.getCanGlobalFilter()))
