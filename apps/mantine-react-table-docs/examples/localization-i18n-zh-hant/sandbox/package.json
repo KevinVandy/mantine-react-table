@@ -13,12 +13,12 @@
     "@mantine/core": "^6.0.14",
     "@mantine/hooks": "^6.0.14",
     "@tabler/icons-react": "2.22.0",
-    "mantine-react-table": "^1.0.0-beta.14",
+    "mantine-react-table": "^1.0.0-beta.15",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.13",
+    "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@vitejs/plugin-react": "^4.0.1",
     "typescript": "^5.1.3",
