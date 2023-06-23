@@ -203,7 +203,7 @@ export const FilterFnAndFilterVariantsFaceted = () => (
       {
         header: 'First Name',
         accessorKey: 'firstName',
-        filterFn: 'fuzzy', // default
+        filterVariant: 'autocomplete',
       },
       {
         header: 'Last Name',

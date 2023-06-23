@@ -1,13 +1,14 @@
 import { type MouseEvent, useEffect, useRef, useState, useMemo } from 'react';
 import {
   ActionIcon,
+  Autocomplete,
   Box,
-  Chip,
   MultiSelect,
   Select,
   TextInput,
   packSx,
   type MantineTheme,
+  Badge,
 } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
@@ -29,6 +30,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
       columnFilterModeOptions,
       icons: { IconX },
       localization,
+      mantineFilterAutocompleteProps,
       mantineFilterDateInputProps,
       mantineFilterMultiSelectProps,
       mantineFilterSelectProps,
@@ -117,6 +119,25 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
     ...mcDateInputProps,
   };
 
+  const mAutoCompleteProps =
+    mantineFilterAutocompleteProps instanceof Function
+      ? mantineFilterAutocompleteProps({ column, table, rangeFilterIndex })
+      : mantineFilterAutocompleteProps;
+
+  const mcAutoCompleteProps =
+    columnDef.mantineFilterAutocompleteProps instanceof Function
+      ? columnDef.mantineFilterAutocompleteProps({
+          column,
+          table,
+          rangeFilterIndex,
+        })
+      : columnDef.mantineFilterAutocompleteProps;
+
+  const autoCompleteProps = {
+    ...mAutoCompleteProps,
+    ...mcAutoCompleteProps,
+  };
+
   const isRangeFilter =
     columnDef.filterVariant === 'range' ||
     columnDef.filterVariant === 'date-range' ||
@@ -126,6 +147,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
   const isDateFilter =
     columnDef.filterVariant === 'date' ||
     columnDef.filterVariant === 'date-range';
+  const isAutoCompleteFilter = columnDef.filterVariant === 'autocomplete';
   const allowedColumnFilterOptions =
     columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
 
@@ -152,9 +174,11 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
 
   const filterSelectOptions = useMemo(
     () =>
+      autoCompleteProps?.data ??
       selectProps?.data ??
       multiSelectProps?.data ??
-      ((isSelectFilter || isMultiSelectFilter) && facetedUniqueValues
+      ((isAutoCompleteFilter || isSelectFilter || isMultiSelectFilter) &&
+      facetedUniqueValues
         ? Array.from(facetedUniqueValues.keys()).sort((a, b) =>
             a.localeCompare(b),
           )
@@ -289,12 +313,33 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
     }),
   } as const;
 
+  const ClearButton = (
+    <ActionIcon
+      aria-label={localization.clearFilter}
+      onClick={handleClear}
+      size="sm"
+      sx={{
+        '&:disabled': {
+          backgroundColor: 'transparent',
+          border: 'none',
+        },
+      }}
+      title={localization.clearFilter ?? ''}
+    >
+      <IconX />
+    </ActionIcon>
+  );
+
   return filterChipLabel ? (
     <Box sx={commonProps.sx}>
-      <Chip onClick={handleClearEmptyFilterChip} sx={{ margin: '4px' }}>
-        {filterChipLabel}{' '}
-        <IconX size="12pt" style={{ transform: 'translate(6px, 3px)' }} />
-      </Chip>
+      <Badge
+        size="lg"
+        onClick={handleClearEmptyFilterChip}
+        sx={{ margin: '5px' }}
+        rightSection={ClearButton}
+      >
+        {filterChipLabel}
+      </Badge>
     </Box>
   ) : isMultiSelectFilter ? (
     <MultiSelect
@@ -351,27 +396,29 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
       }}
       sx={commonProps.sx}
     />
+  ) : isAutoCompleteFilter ? (
+    <Autocomplete
+      {...commonProps}
+      rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
+      onChange={(value) => setFilterValue(value)}
+      withinPortal
+      {...autoCompleteProps}
+      data={filterSelectOptions}
+      ref={(node) => {
+        if (node) {
+          filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
+            node;
+          if (autoCompleteProps.ref) {
+            autoCompleteProps.ref.current = node;
+          }
+        }
+      }}
+      sx={commonProps.sx}
+    />
   ) : (
     <TextInput
       {...commonProps}
-      rightSection={
-        !filterChipLabel && filterValue?.toString()?.length ? (
-          <ActionIcon
-            aria-label={localization.clearFilter}
-            onClick={handleClear}
-            size="sm"
-            sx={{
-              '&:disabled': {
-                backgroundColor: 'transparent',
-                border: 'none',
-              },
-            }}
-            title={localization.clearFilter ?? ''}
-          >
-            <IconX />
-          </ActionIcon>
-        ) : null
-      }
+      rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
       onChange={(e) => setFilterValue(e.target.value)}
       {...textInputProps}
       ref={(node) => {

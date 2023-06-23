@@ -65,7 +65,14 @@ export const MRT_TableHeadCellFilterLabel = <
     >
       {(styles) => (
         <Box component="span" sx={{ flex: '0 0' }} style={styles}>
-          <Tooltip withinPortal withArrow position="top" label={filterTooltip}>
+          <Tooltip
+            label={filterTooltip}
+            multiline
+            position="top"
+            width={filterTooltip.length > 40 ? 300 : undefined}
+            withArrow
+            withinPortal
+          >
             <ActionIcon
               onClick={(event: MouseEvent<HTMLButtonElement>) => {
                 setShowColumnFilters(true);

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { MantineColor, MantineProvider } from '@mantine/core';
-import { MantineShade } from 'mantine-react-table';
+import { type MantineColor, MantineProvider } from '@mantine/core';
+import { type MantineShade } from 'mantine-react-table';
 
 const ThemeContext = createContext<{
   isLightTheme: boolean;
@@ -43,6 +43,7 @@ export const ThemeContextProvider = ({ children }) => {
       <MantineProvider
         theme={{
           colorScheme: isLightTheme ? 'light' : 'dark',
+          cursorType: 'pointer',
           primaryColor,
           primaryShade,
           headings: {

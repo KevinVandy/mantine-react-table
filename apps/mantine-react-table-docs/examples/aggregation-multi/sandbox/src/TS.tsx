@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mantine/core';
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
-import { data, Person } from './makeData';
+import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
+import { data, type Person } from './makeData';
 
 const localeStringOptions = {
   style: 'currency',
@@ -92,7 +92,7 @@ const Example = () => {
         pagination: { pageIndex: 0, pageSize: 20 },
         sorting: [{ id: 'state', desc: false }], //sort by state by default
       }}
-      mantineToolbarAlertBannerChipProps={{ color: 'primary' }}
+      mantineToolbarAlertBannerBadgeProps={{ color: 'primary' }}
       mantineTableContainerProps={{ sx: { maxHeight: 700 } }}
     />
   );

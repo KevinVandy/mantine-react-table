@@ -1,10 +1,6 @@
 import React, { useMemo } from 'react';
 import { Box, Stack } from '@mantine/core';
-import {
-  MantineReactTable,
-  useMantineReactTable,
-  type MRT_ColumnDef,
-} from 'mantine-react-table';
+import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 import { data, type Person } from './makeData';
 
 const Example = () => {
@@ -114,25 +110,25 @@ const Example = () => {
     [averageSalary, maxAge],
   );
 
-  const table = useMantineReactTable({
-    columns,
-    data,
-    enableColumnResizing: true,
-    enableGrouping: true,
-    enableStickyHeader: true,
-    enableStickyFooter: true,
-    initialState: {
-      density: 'xs',
-      expanded: true,
-      grouping: ['state'],
-      pagination: { pageIndex: 0, pageSize: 20 },
-      sorting: [{ id: 'state', desc: false }],
-    },
-    mantineToolbarAlertBannerBadgeProps: { color: 'blue', variant: 'outline' },
-    mantineTableContainerProps: { sx: { maxHeight: 700 } },
-  });
-
-  return <MantineReactTable table={table} />;
+  return (
+    <MantineReactTable
+      columns={columns}
+      data={data}
+      enableColumnResizing
+      enableGrouping
+      enableStickyHeader
+      enableStickyFooter
+      initialState={{
+        density: 'xs',
+        expanded: true, //expand all groups by default
+        grouping: ['state'], //an array of columns to group by by default (can be multiple)
+        pagination: { pageIndex: 0, pageSize: 20 },
+        sorting: [{ id: 'state', desc: false }], //sort by state by default
+      }}
+      mantineToolbarAlertBannerBadgeProps={{ color: 'blue', variant: 'outline' }}
+      mantineTableContainerProps={{ sx: { maxHeight: 700 } }}
+    />
+  );
 };
 
 export default Example;

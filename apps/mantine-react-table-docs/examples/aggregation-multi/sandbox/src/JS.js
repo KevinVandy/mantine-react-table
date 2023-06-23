@@ -88,7 +88,7 @@ const Example = () => {
         pagination: { pageIndex: 0, pageSize: 20 },
         sorting: [{ id: 'state', desc: false }], //sort by state by default
       }}
-      mantineToolbarAlertBannerChipProps={{ color: 'primary' }}
+      mantineToolbarAlertBannerBadgeProps={{ color: 'primary' }}
       mantineTableContainerProps={{ sx: { maxHeight: 700 } }}
     />
   );

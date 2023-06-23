@@ -7,21 +7,22 @@ import {
 } from 'react';
 import {
   type ActionIconProps,
-  type BoxProps,
-  type ProgressProps,
   type AlertProps,
+  type AutocompleteProps,
+  type BadgeProps,
+  type BoxProps,
   type CheckboxProps,
-  type ChipProps,
+  type FlexProps,
+  type MultiSelectProps,
   type PaperProps,
+  type ProgressProps,
   type RadioProps,
+  type RangeSliderProps,
+  type SelectProps,
   type SkeletonProps,
   type TableProps,
   type TextInputProps,
   type UnstyledButtonProps,
-  type SelectProps,
-  type MultiSelectProps,
-  type FlexProps,
-  type RangeSliderProps,
 } from '@mantine/core';
 import { type DateInputProps } from '@mantine/dates';
 import {
@@ -68,7 +69,7 @@ type LiteralUnion<T extends U, U = string> = T | (U & Record<never, never>);
 
 export type HTMLPropsRef<T extends HTMLElement> = Omit<
   HTMLProps<T>,
-  'color' | 'size' | 'type' | 'ref' | 'data'
+  'color' | 'size' | 'type' | 'ref' | 'data' | 'label'
 > & {
   ref?: MutableRefObject<T | null> | null;
 };
@@ -395,6 +396,7 @@ export type MRT_ColumnDef<TData extends Record<string, any>> = Omit<
   enableFilterMatchHighlighting?: boolean;
   filterFn?: MRT_FilterFn<TData>;
   filterVariant?:
+    | 'autocomplete'
     | 'checkbox'
     | 'date'
     | 'date-range'
@@ -457,6 +459,13 @@ export type MRT_ColumnDef<TData extends Record<string, any>> = Omit<
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+  mantineFilterAutocompleteProps?:
+    | (HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>)
+    | ((props: {
+        column: MRT_Column<TData>;
+        table: MRT_TableInstance<TData>;
+        rangeFilterIndex?: number;
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>);
   mantineFilterCheckboxProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | ((props: {
@@ -802,6 +811,13 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         table: MRT_TableInstance<TData>;
         row: MRT_Row<TData>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+  mantineFilterAutocompleteProps?:
+    | (HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>)
+    | ((props: {
+        column: MRT_Column<TData>;
+        table: MRT_TableInstance<TData>;
+        rangeFilterIndex?: number;
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>);
   mantineFilterCheckboxProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<CheckboxProps>)
     | ((props: {
@@ -962,11 +978,11 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
     | ((props: {
         table: MRT_TableInstance<TData>;
       }) => TableProps & HTMLPropsRef<HTMLTableElement>);
-  mantineToolbarAlertBannerChipProps?:
-    | (HTMLPropsRef<HTMLDivElement> & Partial<ChipProps>)
+  mantineToolbarAlertBannerBadgeProps?:
+    | (HTMLPropsRef<HTMLDivElement> & Partial<BadgeProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLDivElement> & Partial<ChipProps>);
+      }) => HTMLPropsRef<HTMLDivElement> & Partial<BadgeProps>);
   mantineToolbarAlertBannerProps?:
     | (AlertProps & HTMLPropsRef<HTMLDivElement>)
     | ((props: {

@@ -100,6 +100,7 @@ export const mrtFilterOptions = (
 const rangeModes = ['between', 'betweenInclusive', 'inNumberRange'];
 const emptyModes = ['empty', 'notEmpty'];
 const arrModes = ['arrIncludesSome', 'arrIncludesAll', 'arrIncludes'];
+const rangeVariants = ['range-slider', 'date-range', 'range'];
 
 interface Props<TData extends Record<string, any>> {
   header?: MRT_Header<TData>;
@@ -129,8 +130,15 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any>>({
   const { columnDef } = column ?? {};
   const currentFilterValue = column?.getFilterValue();
 
-  const allowedColumnFilterOptions =
+  let allowedColumnFilterOptions =
     columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
+
+  if (rangeVariants.includes(columnDef?.filterVariant as string)) {
+    allowedColumnFilterOptions = [
+      ...rangeModes,
+      ...(allowedColumnFilterOptions ?? []),
+    ].filter((option) => rangeModes.includes(option));
+  }
 
   const internalFilterOptions = useMemo(
     () =>
@@ -182,7 +190,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any>>({
           column.setFilterValue(currentFilterValue); // perform new filter render
         }
       } else if (
-        ['range', 'date-range'].includes(columnDef?.filterVariant as string) ||
+        rangeVariants.includes(columnDef?.filterVariant as string) ||
         rangeModes.includes(option as MRT_FilterOption)
       ) {
         // will now be range filter mode

@@ -316,7 +316,7 @@ export const columnOptions: ColumnOption[] = [
     linkText: '',
     source: 'MRT',
     required: false,
-    type: "'text' | 'select' | 'multi-select' | 'range' | 'checkbox' | 'date' | 'date-range'",
+    type: "'text' | 'autocomplete' | 'select' | 'multi-select' | 'range' | 'range-slider' | 'checkbox' | 'date' | 'date-range'",
   },
   {
     columnOption: 'getGroupingValue',
@@ -460,6 +460,16 @@ export const columnOptions: ColumnOption[] = [
     type: 'ActionIconProps | ({ column, table }) => ActionIconProps',
   },
   {
+    columnOption: 'mantineFilterAutocompleteProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/autocomplete/?t=props',
+    linkText: 'Mantine Autocomplete Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'AutocompleteProps | ({ column, table, rangeFilterIndex}) => AutocompleteProps',
+  },
+  {
     columnOption: 'mantineFilterCheckboxProps',
     defaultValue: '',
     description: '',
@@ -468,6 +478,16 @@ export const columnOptions: ColumnOption[] = [
     source: 'Mantine',
     required: false,
     type: 'CheckboxProps | ({ column, table }) => CheckboxProps',
+  },
+  {
+    columnOption: 'mantineFilterRangeSliderProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/slider/?t=props',
+    linkText: 'Mantine Slider Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'RangeSliderProps | ({ column, table }) => RangeSliderProps',
   },
   {
     columnOption: 'mantineFilterTextInputProps',

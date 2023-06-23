@@ -4,38 +4,17 @@ import {
   useMantineReactTable,
   type MRT_ColumnDef,
 } from 'mantine-react-table';
-import { citiesList, data, usStateList, type Person } from './makeData';
+import { data, type Person } from './makeData';
 
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
       {
-        accessorFn: (originalRow) => (originalRow.isActive ? 'true' : 'false'), //must be strings
-        id: 'isActive',
-        header: 'Account Status',
-        filterVariant: 'checkbox',
-        Cell: ({ cell }) =>
-          cell.getValue() === 'true' ? 'Active' : 'Inactive',
-        size: 220,
-      },
-      {
         accessorKey: 'name',
         header: 'Name',
-        filterVariant: 'text', // default
-      },
-      {
-        accessorFn: (originalRow) => new Date(originalRow.hireDate), //convert to date for sorting and filtering
-        id: 'hireDate',
-        header: 'Hire Date',
-        filterVariant: 'date-range',
-        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(), // convert back to string for display
-      },
-      {
-        accessorKey: 'age',
-        header: 'Age',
-        filterVariant: 'range',
-        filterFn: 'between',
-        size: 80,
+        filterVariant: 'autocomplete',
+        //no need to specify autocomplete props data if using faceted values
+        size: 100,
       },
       {
         accessorKey: 'salary',
@@ -48,9 +27,9 @@ const Example = () => {
         filterVariant: 'range-slider',
         filterFn: 'betweenInclusive', // default (or between)
         mantineFilterRangeSliderProps: {
-          max: 200_000, //custom max (as opposed to faceted max)
-          min: 30_000, //custom min (as opposed to faceted min)
-          step: 10_000,
+          //no need to specify min/max/step if using faceted values
+          color: 'pink',
+          step: 5_000,
           label: (value) =>
             value.toLocaleString('en-US', {
               style: 'currency',
@@ -62,17 +41,13 @@ const Example = () => {
         accessorKey: 'city',
         header: 'City',
         filterVariant: 'select',
-        mantineFilterSelectProps: {
-          data: citiesList as any,
-        },
+        //no need to specify select props data if using faceted values
       },
       {
         accessorKey: 'state',
         header: 'State',
         filterVariant: 'multi-select',
-        mantineFilterMultiSelectProps: {
-          data: usStateList as any,
-        },
+        //no need to specify select props data if using faceted values
       },
     ],
     [],
@@ -81,6 +56,7 @@ const Example = () => {
   const table = useMantineReactTable({
     columns,
     data,
+    enableFacetedValues: true,
     initialState: { showColumnFilters: true },
   });
 

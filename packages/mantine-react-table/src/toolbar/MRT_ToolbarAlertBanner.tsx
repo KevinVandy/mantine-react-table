@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Alert, Box, Chip, Collapse, Flex } from '@mantine/core';
+import { ActionIcon, Alert, Badge, Box, Collapse, Flex } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any>> {
@@ -19,7 +19,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any>>({
       icons: { IconX },
       localization,
       mantineToolbarAlertBannerProps,
-      mantineToolbarAlertBannerChipProps,
+      mantineToolbarAlertBannerBadgeProps,
       positionToolbarAlertBanner,
       rowCount,
     },
@@ -31,10 +31,10 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any>>({
       ? mantineToolbarAlertBannerProps({ table })
       : mantineToolbarAlertBannerProps;
 
-  const chipProps =
-    mantineToolbarAlertBannerChipProps instanceof Function
-      ? mantineToolbarAlertBannerChipProps({ table })
-      : mantineToolbarAlertBannerChipProps;
+  const badgeProps =
+    mantineToolbarAlertBannerBadgeProps instanceof Function
+      ? mantineToolbarAlertBannerBadgeProps({ table })
+      : mantineToolbarAlertBannerBadgeProps;
 
   const selectMessage =
     getSelectedRowModel().rows.length > 0
@@ -56,14 +56,21 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any>>({
         {grouping.map((columnId, index) => (
           <Fragment key={`${index}-${columnId}`}>
             {index > 0 ? localization.thenBy : ''}
-            <Chip
-              onChange={() => table.getColumn(columnId).toggleGrouping()}
-              sx={{ paddingLeft: '1ch' }}
-              {...chipProps}
+            <Badge
+              rightSection={
+                <ActionIcon
+                  onClick={() => table.getColumn(columnId).toggleGrouping()}
+                  size="xs"
+                >
+                  <IconX />
+                </ActionIcon>
+              }
+              sx={{ marginLeft: '1ch' }}
+              variant="filled"
+              {...badgeProps}
             >
               {table.getColumn(columnId).columnDef.header}{' '}
-              <IconX size="12pt" style={{ transform: 'translate(6px, 3px)' }} />
-            </Chip>
+            </Badge>
           </Fragment>
         ))}
       </Flex>
