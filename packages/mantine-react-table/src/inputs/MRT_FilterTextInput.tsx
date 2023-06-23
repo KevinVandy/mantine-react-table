@@ -174,17 +174,23 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
 
   const filterSelectOptions = useMemo(
     () =>
-      autoCompleteProps?.data ??
-      selectProps?.data ??
-      multiSelectProps?.data ??
-      ((isAutoCompleteFilter || isSelectFilter || isMultiSelectFilter) &&
-      facetedUniqueValues
-        ? Array.from(facetedUniqueValues.keys()).sort((a, b) =>
-            a.localeCompare(b),
-          )
-        : []),
+      (
+        autoCompleteProps?.data ??
+        selectProps?.data ??
+        multiSelectProps?.data ??
+        ((isAutoCompleteFilter || isSelectFilter || isMultiSelectFilter) &&
+        facetedUniqueValues
+          ? Array.from(facetedUniqueValues.keys()).sort((a, b) =>
+              a.localeCompare(b),
+            )
+          : [])
+      )
+        //@ts-ignore
+        .filter((o: any) => o !== undefined && o !== null),
     [
+      autoCompleteProps?.data,
       facetedUniqueValues,
+      isAutoCompleteFilter,
       isMultiSelectFilter,
       isSelectFilter,
       multiSelectProps?.data,
