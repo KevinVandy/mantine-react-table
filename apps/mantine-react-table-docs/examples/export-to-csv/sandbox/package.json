@@ -14,7 +14,7 @@
     "@tabler/icons-react": "2.22.0",
     "@mantine/core": "^6.0.14",
     "export-to-csv": "^0.2.1",
-    "mantine-react-table": "^1.0.0-beta.12",
+    "mantine-react-table": "^1.0.0-beta.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
