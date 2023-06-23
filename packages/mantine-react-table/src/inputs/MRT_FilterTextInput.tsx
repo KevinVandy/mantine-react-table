@@ -1,4 +1,4 @@
-import { type MouseEvent, useEffect, useRef, useState } from 'react';
+import { type MouseEvent, useEffect, useRef, useState, useMemo } from 'react';
 import {
   ActionIcon,
   Box,
@@ -148,6 +148,26 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
     ? localization.max
     : '';
 
+  const facetedUniqueValues = column.getFacetedUniqueValues();
+
+  const filterSelectOptions = useMemo(
+    () =>
+      selectProps?.data ??
+      multiSelectProps?.data ??
+      ((isSelectFilter || isMultiSelectFilter) && facetedUniqueValues
+        ? Array.from(facetedUniqueValues.keys()).sort((a, b) =>
+            a.localeCompare(b),
+          )
+        : []),
+    [
+      facetedUniqueValues,
+      isMultiSelectFilter,
+      isSelectFilter,
+      multiSelectProps?.data,
+      selectProps?.data,
+    ],
+  );
+
   const isMounted = useRef(false);
 
   const [filterValue, setFilterValue] = useState<any>(() =>
@@ -165,7 +185,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
     manualFiltering ? 400 : 200,
   );
 
-  //send deboundedFilterValue to table instance
+  //send debounced filterValue to table instance
   useEffect(() => {
     if (!isMounted.current) return;
     if (isRangeFilter) {
@@ -279,10 +299,10 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
   ) : isMultiSelectFilter ? (
     <MultiSelect
       {...commonProps}
-      data={multiSelectProps.data as any}
       searchable
       withinPortal
       {...multiSelectProps}
+      data={filterSelectOptions}
       ref={(node) => {
         if (node) {
           filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
@@ -298,10 +318,10 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
     <Select
       {...commonProps}
       clearable
-      data={selectProps.data as any}
       searchable
       withinPortal
       {...selectProps}
+      data={filterSelectOptions}
       ref={(node) => {
         if (node) {
           filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =

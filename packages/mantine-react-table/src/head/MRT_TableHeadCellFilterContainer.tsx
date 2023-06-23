@@ -4,6 +4,7 @@ import { MRT_FilterTextInput } from '../inputs/MRT_FilterTextInput';
 import { MRT_FilterCheckbox } from '../inputs/MRT_FilterCheckbox';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
+import { MRT_FilterRangeSlider } from '../inputs/MRT_FilterRangeSlider';
 
 interface Props<TData extends Record<string, any>> {
   header: MRT_Header<TData>;
@@ -44,8 +45,9 @@ export const MRT_TableHeadCellFilterContainer = <
         <Flex align="flex-end">
           {columnDef.filterVariant === 'checkbox' ? (
             <MRT_FilterCheckbox column={column} table={table} />
-          ) : columnDef.filterVariant === 'range' ||
-            columnDef.filterVariant === 'date-range' ||
+          ) : columnDef.filterVariant === 'range-slider' ? (
+            <MRT_FilterRangeSlider header={header} table={table} />
+          ) : ['range', 'date-range'].includes(columnDef.filterVariant ?? '') ||
             ['between', 'betweenInclusive', 'inNumberRange'].includes(
               columnDef._filterFn,
             ) ? (

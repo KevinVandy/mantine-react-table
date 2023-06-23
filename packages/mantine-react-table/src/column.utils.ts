@@ -189,17 +189,11 @@ export const getDefaultColumnOrderIds = <TData extends Record<string, any>>(
 export const getDefaultColumnFilterFn = <TData extends Record<string, any>>(
   columnDef: MRT_ColumnDef<TData>,
 ): MRT_FilterOption => {
-  if (columnDef.filterVariant === 'multi-select') return 'arrIncludesSome';
-  if (
-    columnDef.filterVariant === 'range' ||
-    columnDef.filterVariant === 'date-range'
-  )
+  const { filterVariant } = columnDef;
+  if (filterVariant === 'multi-select') return 'arrIncludesSome';
+  if (['range', 'date-range', 'range-slider'].includes(filterVariant || ''))
     return 'betweenInclusive';
-  if (
-    columnDef.filterVariant === 'select' ||
-    columnDef.filterVariant === 'checkbox' ||
-    columnDef.filterVariant === 'date'
-  )
+  if (['select', 'checkbox', 'date'].includes(filterVariant || ''))
     return 'equals';
   return 'fuzzy';
 };
