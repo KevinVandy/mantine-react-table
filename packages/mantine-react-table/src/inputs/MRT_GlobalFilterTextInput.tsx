@@ -102,7 +102,7 @@ export const MRT_GlobalFilterTextInput = <TData extends Record<string, any>>({
             <Tooltip
               withinPortal
               withArrow
-              label={localization.clearSearch ?? ''}
+              label={localization.clearSearch}
             >
               <IconX />
             </Tooltip>

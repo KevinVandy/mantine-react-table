@@ -1,98 +1,105 @@
-import {
-  IconArrowAutofitContent,
-  IconArrowsSort,
-  IconBaselineDensityLarge,
-  IconBaselineDensityMedium,
-  IconBaselineDensitySmall,
-  IconBoxMultiple,
-  IconChevronDown,
-  IconChevronLeft,
-  IconChevronRight,
-  IconChevronsDown,
-  IconCircleX,
-  IconClearAll,
-  IconColumns,
-  IconDeviceFloppy,
-  IconDots,
-  IconDotsVertical,
-  IconEdit,
-  IconEyeOff,
-  IconFilter,
-  IconFilterOff,
-  IconGripHorizontal,
-  IconMaximize,
-  IconMinimize,
-  IconPinned,
-  IconPinnedOff,
-  IconSearch,
-  IconSearchOff,
-  IconSortAscending,
-  IconSortDescending,
-  IconX,
-} from '@tabler/icons-react';
-
-export interface MRT_Icons {
-  IconArrowAutofitContent: any;
-  IconArrowsSort: any;
-  IconBaselineDensityLarge: any;
-  IconBaselineDensityMedium: any;
-  IconBaselineDensitySmall: any;
-  IconBoxMultiple: any;
-  IconChevronDown: any;
-  IconChevronLeft: any;
-  IconChevronRight: any;
-  IconChevronsDown: any;
-  IconCircleX: any;
-  IconClearAll: any;
-  IconColumns: any;
-  IconDeviceFloppy: any;
-  IconDots: any;
-  IconDotsVertical: any;
-  IconEdit: any;
-  IconEyeOff: any;
-  IconFilter: any;
-  IconFilterOff: any;
-  IconGripHorizontal: any;
-  IconMaximize: any;
-  IconMinimize: any;
-  IconPinned: any;
-  IconPinnedOff: any;
-  IconSearch: any;
-  IconSearchOff: any;
-  IconSortAscending: any;
-  IconSortDescending: any;
-  IconX: any;
-}
-
-export const MRT_Default_Icons: MRT_Icons = {
-  IconArrowAutofitContent,
-  IconArrowsSort,
-  IconBaselineDensityLarge,
-  IconBaselineDensityMedium,
-  IconBaselineDensitySmall,
-  IconBoxMultiple,
-  IconChevronDown,
-  IconChevronLeft,
-  IconChevronRight,
-  IconChevronsDown,
-  IconCircleX,
-  IconClearAll,
-  IconColumns,
-  IconDeviceFloppy,
-  IconDots,
-  IconDotsVertical,
-  IconEdit,
-  IconEyeOff,
-  IconFilter,
-  IconFilterOff,
-  IconGripHorizontal,
-  IconMaximize,
-  IconMinimize,
-  IconPinned,
-  IconPinnedOff,
-  IconSearch,
-  IconSearchOff,
-  IconSortAscending,
-  IconSortDescending,
-  IconX,
+export const blankIcons = {
+  IconArrowAutofitContent: () => null,
+  IconArrowsSort: () => null,
+  IconBaselineDensityLarge: () => null,
+  IconBaselineDensityMedium: () => null,
+  IconBaselineDensitySmall: () => null,
+  IconBoxMultiple: () => null,
+  IconChevronDown: () => null,
+  IconChevronLeft: () => null,
+  IconChevronRight: () => null,
+  IconChevronsDown: () => null,
+  IconCircleX: () => null,
+  IconClearAll: () => null,
+  IconColumns: () => null,
+  IconDeviceFloppy: () => null,
+  IconDots: () => null,
+  IconDotsVertical: () => null,
+  IconEdit: () => null,
+  IconEyeOff: () => null,
+  IconFilter: () => null,
+  IconFilterOff: () => null,
+  IconGripHorizontal: () => null,
+  IconMaximize: () => null,
+  IconMinimize: () => null,
+  IconPinned: () => null,
+  IconPinnedOff: () => null,
+  IconSearch: () => null,
+  IconSearchOff: () => null,
+  IconSortAscending: () => null,
+  IconSortDescending: () => null,
+  IconX: () => null,
 };
+
+export type MRT_Icons = Record<keyof typeof blankIcons, any>;
+
+export async function loadDefaultMRTIcons(): Promise<MRT_Icons> {
+  try {
+    const {
+      IconArrowAutofitContent,
+      IconArrowsSort,
+      IconBaselineDensityLarge,
+      IconBaselineDensityMedium,
+      IconBaselineDensitySmall,
+      IconBoxMultiple,
+      IconChevronDown,
+      IconChevronLeft,
+      IconChevronRight,
+      IconChevronsDown,
+      IconCircleX,
+      IconClearAll,
+      IconColumns,
+      IconDeviceFloppy,
+      IconDots,
+      IconDotsVertical,
+      IconEdit,
+      IconEyeOff,
+      IconFilter,
+      IconFilterOff,
+      IconGripHorizontal,
+      IconMaximize,
+      IconMinimize,
+      IconPinned,
+      IconPinnedOff,
+      IconSearch,
+      IconSearchOff,
+      IconSortAscending,
+      IconSortDescending,
+      IconX,
+    } = await import('@tabler/icons-react');
+    return {
+      IconArrowAutofitContent,
+      IconArrowsSort,
+      IconBaselineDensityLarge,
+      IconBaselineDensityMedium,
+      IconBaselineDensitySmall,
+      IconBoxMultiple,
+      IconChevronDown,
+      IconChevronLeft,
+      IconChevronRight,
+      IconChevronsDown,
+      IconCircleX,
+      IconClearAll,
+      IconColumns,
+      IconDeviceFloppy,
+      IconDots,
+      IconDotsVertical,
+      IconEdit,
+      IconEyeOff,
+      IconFilter,
+      IconFilterOff,
+      IconGripHorizontal,
+      IconMaximize,
+      IconMinimize,
+      IconPinned,
+      IconPinnedOff,
+      IconSearch,
+      IconSearchOff,
+      IconSortAscending,
+      IconSortDescending,
+      IconX,
+    };
+  } catch (e) {
+    return blankIcons;
+  }
+}
