@@ -19,7 +19,7 @@ const cardData = [
     alt: 'Easy Opt-out',
   },
   {
-    text: 'Efficient bundle size (41kb minzipped, including dependencies)',
+    text: 'Efficient bundle size (45kb minzipped, including dependencies)',
     image: '/efficient.svg',
     alt: 'Efficient',
   },

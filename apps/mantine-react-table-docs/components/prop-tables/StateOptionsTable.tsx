@@ -8,10 +8,10 @@ import {
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
-import { type StateRow, stateOptions } from './stateOptions';
+import { type StateOption, stateOptions } from './stateOptions';
 
 interface Props {
-  onlyOptions?: Set<keyof MRT_TableState<StateRow>>;
+  onlyOptions?: Set<keyof MRT_TableState<StateOption>>;
 }
 
 const StateOptionsTable = ({ onlyOptions }: Props) => {
@@ -74,7 +74,7 @@ const StateOptionsTable = ({ onlyOptions }: Props) => {
             </Link>
           ),
         },
-      ] as MRT_ColumnDef<StateRow>[],
+      ] as MRT_ColumnDef<StateOption>[],
     [],
   );
 

@@ -1,17 +1,17 @@
 import { type MRT_TableOptions } from 'mantine-react-table';
 
-export type TableOptionRow = {
+export type TableOption = {
   defaultValue?: string;
   description?: string;
   link?: string;
   linkText?: string;
-  tableOptionName: keyof MRT_TableOptions<TableOptionRow>;
+  tableOptionName: keyof MRT_TableOptions<TableOption>;
   required?: boolean;
   source?: 'MRT' | 'TanStack Table' | 'TanStack Virtual' | 'Mantine' | '';
   type?: string;
 };
 
-export const tableOptions: TableOptionRow[] = [
+export const tableOptions: TableOption[] = [
   {
     tableOptionName: 'aggregationFns',
     defaultValue: '',

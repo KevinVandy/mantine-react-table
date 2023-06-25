@@ -12,6 +12,7 @@ import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import { PopularDocs } from '../components/mdx/PopularDocs';
 import { Contributors } from '../components/mdx/Contributors';
+import { InstallCommand } from '../components/mdx/InstallCommand';
 
 const HomePage = () => {
   return (
@@ -232,10 +233,7 @@ const HomePage = () => {
           </Link>
         </Box>
         <Box py="16px">
-          <SampleCodeSnippet className="language-bash">
-            npm i mantine-react-table @mantine/core @mantine/hooks
-            @mantine/dates @emotion/react @tabler/icons-react dayjs
-          </SampleCodeSnippet>
+          <InstallCommand grow position="center" />
         </Box>
         <HomeCards />
         <Title my="2rem" ta="center" order={3}>

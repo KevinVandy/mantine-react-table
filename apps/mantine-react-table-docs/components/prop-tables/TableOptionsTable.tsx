@@ -8,11 +8,11 @@ import {
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
-import { type TableOptionRow, tableOptions } from './tableOptions';
+import { type TableOption, tableOptions } from './tableOptions';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props {
-  onlyOptions?: Set<keyof MRT_TableOptions<TableOptionRow>>;
+  onlyOptions?: Set<keyof MRT_TableOptions<TableOption>>;
 }
 
 const TableOptionsTable = ({ onlyOptions }: Props) => {
@@ -102,7 +102,7 @@ const TableOptionsTable = ({ onlyOptions }: Props) => {
             </Link>
           ),
         },
-      ] as MRT_ColumnDef<TableOptionRow>[],
+      ] as MRT_ColumnDef<TableOption>[],
     [],
   );
 

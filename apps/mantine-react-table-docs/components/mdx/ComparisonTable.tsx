@@ -66,7 +66,7 @@ const data = [
     library: 'Mantine React Table',
     libraryLink: '#',
     freeOrLicensed: 'Free MIT',
-    bundleSize: 40,
+    bundleSize: 45,
     bundlePhobiaImg:
       'https://badgen.net/bundlephobia/minzip/mantine-react-table@latest?color=blue',
     bundlePhobiaLink:
@@ -78,7 +78,7 @@ const data = [
     library: 'Mantine DataTable',
     libraryLink: 'https://icflorescu.github.io/mantine-datatable',
     freeOrLicensed: 'Free MIT',
-    bundleSize: 8,
+    bundleSize: 10,
     bundlePhobiaImg:
       'https://badgen.net/bundlephobia/minzip/mantine-datatable?color=green',
     bundlePhobiaLink:
@@ -114,7 +114,7 @@ const data = [
     library: 'AG Grid Community/Enterprise',
     libraryLink: 'https://www.ag-grid.com/license-pricing',
     freeOrLicensed: 'MIT or Paid License',
-    bundleSize: 280,
+    bundleSize: 271,
     bundlePhobiaImg:
       'https://badgen.net/bundlephobia/minzip/ag-grid-enterprise?color=red',
     bundlePhobiaLink:

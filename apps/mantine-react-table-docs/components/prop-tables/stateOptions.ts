@@ -1,16 +1,16 @@
 import { type MRT_TableState } from 'mantine-react-table';
 
-export type StateRow = {
+export type StateOption = {
   defaultValue?: string;
   description?: string;
   link?: string;
   linkText?: string;
   source?: 'MRT' | 'TanStack Table' | 'Mantine' | '';
-  stateOption: keyof MRT_TableState<StateRow>;
+  stateOption: keyof MRT_TableState<StateOption>;
   type?: string;
 };
 
-export const stateOptions: StateRow[] = [
+export const stateOptions: StateOption[] = [
   {
     defaultValue: '{}',
     description: '',
