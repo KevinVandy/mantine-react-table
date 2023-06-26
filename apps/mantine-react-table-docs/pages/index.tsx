@@ -1,14 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Anchor, Box, Button, Stack, Text, Title } from '@mantine/core';
-import { IconChevronRightPipe } from '@tabler/icons-react';
+import { IconChevronRight } from '@tabler/icons-react';
 import { HomeCards } from '../components/mdx/HomeCards';
 import { LinkCards } from '../components/mdx/LinkCards';
 import { StatBadges } from '../components/mdx/StatBadges';
 import { ComparisonTable } from '../components/mdx/ComparisonTable';
 import { LinkHeading } from '../components/mdx/LinkHeading';
 import { FeatureTable } from '../components/mdx/FeatureTable';
-import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import { PopularDocs } from '../components/mdx/PopularDocs';
 import { Contributors } from '../components/mdx/Contributors';
@@ -162,7 +161,7 @@ const HomePage = () => {
         >
           <Link href="/docs/getting-started/install" passHref>
             <Button
-              rightIcon={<IconChevronRightPipe />}
+              rightIcon={<IconChevronRight />}
               fullWidth
               size="lg"
               variant="gradient"
@@ -173,7 +172,7 @@ const HomePage = () => {
           </Link>
           <Link href="/docs/api" passHref>
             <Button
-              rightIcon={<IconChevronRightPipe />}
+              rightIcon={<IconChevronRight />}
               fullWidth
               size="lg"
               sx={(theme) => ({
@@ -193,7 +192,7 @@ const HomePage = () => {
           </Link>
           <Link href="/docs/examples" passHref>
             <Button
-              rightIcon={<IconChevronRightPipe />}
+              rightIcon={<IconChevronRight />}
               fullWidth
               size="lg"
               sx={(theme) => ({
@@ -213,7 +212,7 @@ const HomePage = () => {
           </Link>
           <Link href="/docs/guides" passHref>
             <Button
-              rightIcon={<IconChevronRightPipe />}
+              rightIcon={<IconChevronRight />}
               fullWidth
               size="lg"
               sx={(theme) => ({
