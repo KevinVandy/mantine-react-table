@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { MRT_AggregationFns } from './aggregationFns';
 import { MRT_FilterFns } from './filterFns';
 import { MRT_SortingFns } from './sortingFns';
 import { MRT_DefaultColumn, MRT_DefaultDisplayColumn } from './column.utils';
 import { MRT_Localization_EN } from './_locales/en';
-import { blankIcons, loadDefaultMRTIcons } from './icons';
+import { MRT_Default_Icons } from './icons';
 import { type MRT_Localization, type MRT_TableOptions } from './types';
 
 export const useTableOptions: <TData extends Record<string, any>>(
@@ -64,17 +64,7 @@ export const useTableOptions: <TData extends Record<string, any>>(
   sortingFns,
   ...rest
 }: MRT_TableOptions<TData>) => {
-  const [_icons, _setIcons] = useState({ ...blankIcons, ...icons });
-  useEffect(() => {
-    //Load tabler icons if not all custom icons are provided
-    if (Object.keys(icons ?? {}).length < Object.keys(blankIcons).length) {
-      loadDefaultMRTIcons().then((tablerIcons) => {
-        _setIcons({ ...tablerIcons, ...icons });
-      });
-    } else {
-      _setIcons({ ...blankIcons, ...icons });
-    }
-  }, [icons]);
+  const _icons = useMemo(() => ({ ...MRT_Default_Icons, ...icons }), [icons]);
   const _localization = useMemo(
     () => ({
       ...MRT_Localization_EN,

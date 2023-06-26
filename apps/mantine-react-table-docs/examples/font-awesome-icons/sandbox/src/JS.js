@@ -47,18 +47,10 @@ const fontAwesomeIcons = {
     <FontAwesomeIcon icon={faChevronDown} {...props} />
   ),
   IconChevronLeft: (props) => (
-    <FontAwesomeIcon
-      icon={faChevronLeft}
-      style={{ transform: 'translateX(4px)' }} //adjust for icon size in pagination
-      {...props}
-    />
+    <FontAwesomeIcon icon={faChevronLeft} {...props} />
   ),
   IconChevronRight: (props) => (
-    <FontAwesomeIcon
-      icon={faChevronRight}
-      style={{ transform: 'translateX(-4px)' }} //adjust for icon size in pagination
-      {...props}
-    />
+    <FontAwesomeIcon icon={faChevronRight} {...props} />
   ),
   IconChevronsDown: (props) => (
     <FontAwesomeIcon icon={faAnglesDown} {...props} />

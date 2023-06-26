@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Anchor, Box, Button, Stack, Text, Title } from '@mantine/core';
-import { IconChevronRight } from '@tabler/icons-react';
+import { IconChevronRightPipe } from '@tabler/icons-react';
 import { HomeCards } from '../components/mdx/HomeCards';
 import { LinkCards } from '../components/mdx/LinkCards';
 import { StatBadges } from '../components/mdx/StatBadges';
@@ -162,7 +162,7 @@ const HomePage = () => {
         >
           <Link href="/docs/getting-started/install" passHref>
             <Button
-              rightIcon={<IconChevronRight />}
+              rightIcon={<IconChevronRightPipe />}
               fullWidth
               size="lg"
               variant="gradient"
@@ -173,7 +173,7 @@ const HomePage = () => {
           </Link>
           <Link href="/docs/api" passHref>
             <Button
-              rightIcon={<IconChevronRight />}
+              rightIcon={<IconChevronRightPipe />}
               fullWidth
               size="lg"
               sx={(theme) => ({
@@ -193,7 +193,7 @@ const HomePage = () => {
           </Link>
           <Link href="/docs/examples" passHref>
             <Button
-              rightIcon={<IconChevronRight />}
+              rightIcon={<IconChevronRightPipe />}
               fullWidth
               size="lg"
               sx={(theme) => ({
@@ -213,7 +213,7 @@ const HomePage = () => {
           </Link>
           <Link href="/docs/guides" passHref>
             <Button
-              rightIcon={<IconChevronRight />}
+              rightIcon={<IconChevronRightPipe />}
               fullWidth
               size="lg"
               sx={(theme) => ({
