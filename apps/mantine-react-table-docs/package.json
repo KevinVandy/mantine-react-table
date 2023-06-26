@@ -4,7 +4,7 @@
   "scripts": {
     "build": "pnpm docs:build",
     "dev": "pnpm docs:dev",
-    "docs:build": "next build",
+    "docs:build": "next build && pnpm docs:sitemap",
     "docs:dev": "next dev --port 3001",
     "docs:sitemap": "next-sitemap --config ./next-sitemap.config.cjs",
     "docs:start": "next start --port 4001",
