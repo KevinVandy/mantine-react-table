@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { MantineReactTable } from 'mantine-react-table';
+import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 
 const data = [
   {
@@ -56,23 +56,23 @@ const Example = () => {
   );
 
   //optionally, you can manage the row selection state yourself
-  const [rowSelection, setRowSelection] = useState < RowSelectionState > {};
+  const [rowSelection, setRowSelection] = useState({});
 
   useEffect(() => {
     //do something when the row selection changes...
     console.info({ rowSelection });
   }, [rowSelection]);
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableRowSelection
-      getRowId={(row) => row.userId} //give each row a more useful id
-      onRowSelectionChange={setRowSelection} //connect internal row selection state to your own
-      state={{ rowSelection }} //pass our managed row selection state to the table to use
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data,
+    enableRowSelection: true,
+    getRowId: (row) => row.userId,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;

@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   MantineReactTable,
-  MRT_ColumnDef,
-  MRT_RowSelectionState,
+  useMantineReactTable,
+  type MRT_ColumnDef,
+  type MRT_RowSelectionState,
 } from 'mantine-react-table';
 
 const data = [
@@ -68,16 +69,16 @@ const Example = () => {
     console.info({ rowSelection });
   }, [rowSelection]);
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableRowSelection
-      getRowId={(row) => row.userId} //give each row a more useful id
-      onRowSelectionChange={setRowSelection} //connect internal row selection state to your own
-      state={{ rowSelection }} //pass our managed row selection state to the table to use
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data,
+    enableRowSelection: true,
+    getRowId: (row) => row.userId,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;

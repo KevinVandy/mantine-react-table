@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@mantine/core';
 import {
   MantineReactTable,
+  useMantineReactTable,
   type MRT_ColumnDef,
   type MRT_ColumnFiltersState,
   type MRT_DensityState,
@@ -154,31 +155,31 @@ const Example = () => {
     window.location.reload();
   };
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      onColumnFiltersChange={setColumnFilters}
-      onColumnVisibilityChange={setColumnVisibility}
-      onDensityChange={setDensity}
-      onGlobalFilterChange={setGlobalFilter}
-      onShowColumnFiltersChange={setShowColumnFilters}
-      onShowGlobalFilterChange={setShowGlobalFilter}
-      onSortingChange={setSorting}
-      state={{
-        columnFilters,
-        columnVisibility,
-        density,
-        globalFilter,
-        showColumnFilters,
-        showGlobalFilter,
-        sorting,
-      }}
-      renderTopToolbarCustomActions={() => (
-        <Button onClick={resetState}>Reset State</Button>
-      )}
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data,
+    onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
+    onDensityChange: setDensity,
+    onGlobalFilterChange: setGlobalFilter,
+    onShowColumnFiltersChange: setShowColumnFilters,
+    onShowGlobalFilterChange: setShowGlobalFilter,
+    onSortingChange: setSorting,
+    state: {
+      columnFilters,
+      columnVisibility,
+      density,
+      globalFilter,
+      showColumnFilters,
+      showGlobalFilter,
+      sorting,
+    },
+    renderTopToolbarCustomActions: () => (
+      <Button onClick={resetState}>Reset State</Button>
+    ),
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;
