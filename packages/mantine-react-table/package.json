@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-beta.16",
+  "version": "1.0.0-beta.17",
   "license": "MIT",
   "name": "mantine-react-table",
   "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",

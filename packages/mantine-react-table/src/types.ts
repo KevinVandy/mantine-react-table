@@ -213,6 +213,7 @@ export type MRT_TableInstance<TData extends Record<string, any>> = Omit<
   | 'getColumn'
   | 'getExpandedRowModel'
   | 'getFlatHeaders'
+  | 'getHeaderGroups'
   | 'getLeftLeafColumns'
   | 'getPaginationRowModel'
   | 'getPreFilteredRowModel'
@@ -230,6 +231,7 @@ export type MRT_TableInstance<TData extends Record<string, any>> = Omit<
   getColumn: (columnId: string) => MRT_Column<TData>;
   getExpandedRowModel: () => MRT_RowModel<TData>;
   getFlatHeaders: () => MRT_Header<TData>[];
+  getHeaderGroups: () => MRT_HeaderGroup<TData>[];
   getLeftLeafColumns: () => MRT_Column<TData>[];
   getPaginationRowModel: () => MRT_RowModel<TData>;
   getPreFilteredRowModel: () => MRT_RowModel<TData>;
@@ -552,6 +554,8 @@ export type MRT_DefinedColumnDef<TData extends Record<string, any>> = Omit<
 > & {
   defaultDisplayColumn: Partial<MRT_ColumnDef<TData>>;
   id: string;
+  cell: ColumnDef<TData, unknown>['cell'];
+  header: ColumnDef<TData, unknown>['header'];
   _filterFn: MRT_FilterOption;
 };
 

@@ -96,6 +96,10 @@ export const routes: Array<RouteItem> = [
         label: 'Advanced Example',
       },
       {
+        href: '/docs/examples/custom-headless',
+        label: 'Custom Headless Example',
+      },
+      {
         href: '/docs/examples/aggregation-and-grouping',
         label: 'Aggregation/Grouping Example',
       },
