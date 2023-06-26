@@ -11,9 +11,9 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@mantine/hooks": "^6.0.14",
-    "@tabler/icons-react": "2.22.0",
+    "@tabler/icons-react": "2.23.0",
     "@mantine/core": "^6.0.14",
-    "mantine-react-table": "^1.0.0-beta.17",
+    "mantine-react-table": "^1.0.0-beta.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
