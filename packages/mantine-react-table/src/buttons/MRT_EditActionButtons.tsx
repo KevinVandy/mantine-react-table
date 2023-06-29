@@ -23,7 +23,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any>>({
     refs: { editInputRefs },
     setEditingRow,
   } = table;
-  const { editingRow } = getState();
+  const { editingRow, isSaving } = getState();
 
   const handleCancel = () => {
     onEditingRowCancel?.({ row, table });
@@ -56,16 +56,17 @@ export const MRT_EditActionButtons = <TData extends Record<string, any>>({
     >
       {variant === 'icon' ? (
         <>
-          <Tooltip withinPortal withArrow label={localization.cancel}>
+          <Tooltip withinPortal label={localization.cancel}>
             <ActionIcon aria-label={localization.cancel} onClick={handleCancel}>
               <IconCircleX />
             </ActionIcon>
           </Tooltip>
-          <Tooltip withinPortal withArrow label={localization.save}>
+          <Tooltip withinPortal label={localization.save}>
             <ActionIcon
               aria-label={localization.save}
               color="blue"
               onClick={handleSave}
+              loading={isSaving}
             >
               <IconDeviceFloppy />
             </ActionIcon>
@@ -76,7 +77,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any>>({
           <Button onClick={handleCancel} variant="subtle">
             {localization.cancel}
           </Button>
-          <Button onClick={handleSave} variant="filled">
+          <Button onClick={handleSave} variant="filled" loading={isSaving}>
             {localization.save}
           </Button>
         </>

@@ -12,6 +12,16 @@ import Head from 'next/head';
 
 ### V1
 
+#### V1.0.0-beta.19
+
+- New `"custom"` editingMode that does not render any editing UI, but still handles the edit states
+- New `isSaving` state option to show spinner in edit save buttons
+- New `renderEditRowModalContent` table option to allow for the edit modal to be fully customized
+- New `mantineEditRowModalProps` table option to allow for customizing the props of the edit modal
+- Improved custom column actions with new `internalColumnMenuItems` param in `renderColumnActionsMenuItems` column/table option
+- Fixed issues with empty string row ids causing skeleton loading rows to linger after data loaded and changed `getRowId` type to allow returning `undefined`
+- Removed internal `withArrow` props from Mantine Tooltips to respect app themes better (Configure with Mantine ThemeProvider default Props API if you want them back)
+
 #### V1.0.0-beta.18
 
 - Revert `@tabler/react-icons` as an optional peer dependency. Now required again with a minimum version of `2.23.0`

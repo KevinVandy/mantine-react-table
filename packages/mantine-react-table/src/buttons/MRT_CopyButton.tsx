@@ -45,7 +45,6 @@ export const MRT_CopyButton = <TData extends Record<string, any>>({
       {({ copied, copy }) => (
         <Tooltip
           withinPortal
-          withArrow
           openDelay={1000}
           position="top"
           label={

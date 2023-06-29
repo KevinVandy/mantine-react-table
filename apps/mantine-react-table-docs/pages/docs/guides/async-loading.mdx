@@ -22,15 +22,15 @@ While you are fetching your data, you may want to show some loading indicators. 
 ### Relevant Table Options
 
 <TableOptionsTable
-  onlyOptions={
-    new Set(['mantineSkeletonProps', 'mantineProgressProps'])
-  }
+  onlyOptions={new Set(['mantineSkeletonProps', 'mantineProgressProps'])}
 />
 
 ### Relevant State Options
 
 <StateOptionsTable
-  onlyOptions={new Set(['isLoading', 'showSkeletons', 'showProgressBars'])}
+  onlyOptions={
+    new Set(['isLoading', 'isSaving', 'showSkeletons', 'showProgressBars'])
+  }
 />
 
 ### isLoading UI
@@ -38,11 +38,11 @@ While you are fetching your data, you may want to show some loading indicators. 
 Rather than coding your own spinner or loading indicator, you can simply set the `isLoading` state to `true`, and Mantine React Table will show progress bars and cell skeletons for you.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data ?? []} //fallback to array if data is undefined
-  state={{ isLoading: true }}
-/>
+const table = useMantineReactTable({
+  columns,
+  data: data, //should be empty array
+  state: { isLoading: true },
+});
 ```
 
 <LoadingExample />
@@ -52,11 +52,11 @@ Rather than coding your own spinner or loading indicator, you can simply set the
 If you do not want both progress bars and cell skeletons to show, you can use the `showProgressBars` and `showSkeletons` states, instead.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data ?? []} //fallback to array if data is undefined
-  state={{ showProgressBars: true }} //or showSkeletons
-/>
+const table = useMantineReactTable({
+  columns,
+  data: data ?? [],
+  state: { showProgressBars: true }, //or showSkeletons
+});
 ```
 
 ### Customize Linear Progress Bars

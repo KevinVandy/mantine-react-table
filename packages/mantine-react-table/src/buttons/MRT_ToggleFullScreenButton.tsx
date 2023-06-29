@@ -26,11 +26,7 @@ export const MRT_ToggleFullScreenButton = <TData extends Record<string, any>>({
   };
 
   return (
-    <Tooltip
-      withinPortal
-      withArrow
-      label={rest?.title ?? localization.toggleFullScreen}
-    >
+    <Tooltip withinPortal label={rest?.title ?? localization.toggleFullScreen}>
       <ActionIcon
         aria-label={localization.showHideFilters}
         onClick={handleToggleFullScreen}

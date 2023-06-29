@@ -28,12 +28,14 @@ There are 4 visually distinct editing modes to choose from, whether you want to 
     new Set([
       'editingMode',
       'enableEditing',
+      'mantineEditRowModalProps',
       'mantineEditSelectProps',
       'mantineEditTextInputProps',
       'onEditingCellChange',
       'onEditingRowCancel',
       'onEditingRowChange',
       'onEditingRowSave',
+      'renderEditRowModalContent',
     ])
   }
 />
@@ -53,14 +55,20 @@ There are 4 visually distinct editing modes to choose from, whether you want to 
 
 ### Relevant State Options
 
-<StateOptionsTable onlyOptions={new Set(['editingCell', 'editingRow'])} />
+<StateOptionsTable
+  onlyOptions={new Set(['editingCell', 'editingRow', 'isSaving'])}
+/>
 
 ### Enable Editing
 
-To enable editing, first you just need to set the `enableEditing` prop to `true`.
+To enable editing, first you just need to set the `enableEditing` table option to `true`.
 
 ```jsx
-<MantineReactTable columns={columns} data={data} enableEditing={true} />
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableEditing: true,
+});
 ```
 
 However, this is just the start. You will need to hook up logic and event listeners, but it depends on which editing mode you want to use.
@@ -107,17 +115,56 @@ To save data, you must hook up either the `onBlur`, `onChange`, etc. events your
 
 ### Customizing Editing Components
 
+You can customize both the Editing Modal and the Editing Inputs.
+
+#### Customizing the Editing Modal
+
+You can pass any Mantine Modal Props with the `mantineEditRowModalProps` prop.
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableEditing: true,
+  mantineEditRowModalProps: {
+    closeOnClickOutside: true,
+    withCloseButton: true,
+  },
+});
+```
+
+You can also override all the content of the editing modal by passing a `renderEditRowModalContent` prop.
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableEditing: true,
+  renderEditRowModalContent: ({ internalEditComponents, row, table }) => (
+    <Stack>
+      <Title order={5}>My Custom Edit Modal</Title>
+      {internalEditComponents} {/*or map over row.getAllCells() and render your own components */}
+      <Flex justify="flex-end">
+        <MRT_EditActionButtons row={row} table={table} variant="text" />{' '}
+        {/*or render your own buttons */}
+      </Flex>
+    </Stack>
+  ),
+});
+```
+
+#### Customizing the Editing Inputs
+
 You can pass any Mantine TextInput Props with the `mantineEditTextInputProps` prop.
 
-```tsx
+```jsx
 const columns = [
   {
     accessor: 'age',
     header: 'Age',
     mantineEditTextInputProps: {
       required: true,
-      type: 'number',
-      variant: 'outlined',
+      variant: 'filled',
     },
   },
 ];
@@ -137,8 +184,7 @@ const columns = [
     accessor: 'age',
     header: 'Age',
     mantineEditTextInputProps: {
-      error: !!validationErrors.age, //highlight Mantine text field red error color
-      helperText: validationErrors.age, //show error message in helper text.
+      error: validationErrors.age,
       required: true,
       type: 'number',
       onChange: (event) => {
@@ -170,7 +216,7 @@ const columns = [
   {
     accessorKey: 'email',
     header: 'Email',
-    Edit: ({ cell, column, table }) => <Autocomplete />,
+    Edit: ({ cell, column, table }) => <Autocomplete />, //see MRT_EditCellTextInput source code for more info
   },
 ];
 ```
@@ -179,11 +225,11 @@ const columns = [
 
 You can customize the actions column in a few different ways in the `displayColumnDefOptions` prop's `'mrt-row-actions'` section.
 
-```tsx
-<MantineReactTable
-  data={data}
-  columns={columns}
-  displayColumnDefOptions={{
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
+  displayColumnDefOptions: {
     'mrt-row-actions': {
       header: 'Edit', //change "Actions" to "Edit"
       //use a text button instead of a icon button
@@ -191,10 +237,6 @@ You can customize the actions column in a few different ways in the `displayColu
         <Button onClick={() => table.setEditingRow(row)}>Edit Customer</Button>
       ),
     },
-  }}
-/>
+  },
+});
 ```
-
-### React-Hook-Form Example
-
-TODO

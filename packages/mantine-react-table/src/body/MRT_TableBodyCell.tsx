@@ -162,7 +162,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
 
   const isEditing =
     isEditable &&
-    editingMode !== 'modal' &&
+    !['modal', 'custom'].includes(editingMode as string) &&
     (editingMode === 'table' ||
       editingRow?.id === row.id ||
       editingCell?.id === cell.id) &&

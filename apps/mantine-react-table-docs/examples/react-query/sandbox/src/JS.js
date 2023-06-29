@@ -96,7 +96,7 @@ const Example = () => {
       onPaginationChange={setPagination}
       onSortingChange={setSorting}
       renderTopToolbarCustomActions={() => (
-        <Tooltip withArrow label="Refresh Data">
+        <Tooltip label="Refresh Data">
           <ActionIcon onClick={() => refetch()}>
             <IconRefresh />
           </ActionIcon>

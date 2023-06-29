@@ -45,5 +45,5 @@ export const MantineReactTable = <TData extends Record<string, any>>(
     }
   }, [table.getState().isFullScreen]);
 
-  return <MRT_TablePaper table={table as any} />;
+  return <MRT_TablePaper table={table} />;
 };

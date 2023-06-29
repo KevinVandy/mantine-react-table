@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { type Meta } from '@storybook/react';
 import {
   MantineReactTable,
+  MRT_EditActionButtons,
   type MRT_Cell,
   type MRT_TableOptions,
 } from '../../src';
 import { faker } from '@faker-js/faker';
+import { Flex, Stack, Title } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Features/Editing Examples',
@@ -265,6 +267,97 @@ export const EditingEnabledEditModeTable = () => {
           handleSaveCell(cell, event.target.value);
         },
       })}
+    />
+  );
+};
+
+export const EditingEnabledEditModeCustom = () => {
+  const [tableData] = useState(data);
+
+  return (
+    <MantineReactTable
+      columns={[
+        {
+          header: 'First Name',
+          accessorKey: 'firstName',
+        },
+        {
+          header: 'Last Name',
+          accessorKey: 'lastName',
+        },
+        {
+          header: 'Address',
+          accessorKey: 'address',
+        },
+        {
+          header: 'State',
+          accessorKey: 'state',
+        },
+        {
+          header: 'Phone Number',
+          accessorKey: 'phoneNumber',
+        },
+      ]}
+      data={tableData}
+      editingMode="custom"
+      enableEditing
+    />
+  );
+};
+
+export const CustomEditModal = () => {
+  const [tableData, setTableData] = useState(data);
+
+  const handleSaveCell = (cell: MRT_Cell<Person>, value: string) => {
+    //@ts-ignore
+    tableData[+cell.row.index][cell.column.id] = value;
+    setTableData([...tableData]);
+    console.info('saved cell with value: ', value);
+  };
+
+  return (
+    <MantineReactTable
+      columns={[
+        {
+          header: 'First Name',
+          accessorKey: 'firstName',
+        },
+        {
+          header: 'Last Name',
+          accessorKey: 'lastName',
+        },
+        {
+          header: 'Address',
+          accessorKey: 'address',
+        },
+        {
+          header: 'State',
+          accessorKey: 'state',
+        },
+        {
+          header: 'Phone Number',
+          accessorKey: 'phoneNumber',
+        },
+      ]}
+      data={tableData}
+      editingMode="modal"
+      enableEditing
+      mantineEditTextInputProps={({ cell }) => ({
+        onBlur: (event) => {
+          handleSaveCell(cell, event.target.value);
+        },
+      })}
+      renderEditRowModalContent={({ internalEditComponents, row, table }) => {
+        return (
+          <Stack>
+            <Title order={5}>My Custom Edit Modal</Title>
+            {internalEditComponents}
+            <Flex justify="flex-end">
+              <MRT_EditActionButtons row={row} table={table} variant="text" />
+            </Flex>
+          </Stack>
+        );
+      }}
     />
   );
 };
@@ -647,7 +740,61 @@ export const EditingEnabledAsync = () => {
       enableEditing
       onEditingRowSave={handleSaveRow}
       state={{
-        showProgressBars: isSaving,
+        isSaving,
+      }}
+    />
+  );
+};
+
+export const EditingEnabledAsyncRow = () => {
+  const [tableData, setTableData] = useState(data);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
+    row,
+    values,
+    exitEditingMode,
+  }) => {
+    setIsSaving(true);
+    setTimeout(() => {
+      tableData[row.index] = values;
+      setTableData([...tableData]);
+      setIsSaving(false);
+      exitEditingMode();
+    }, 1500);
+  };
+
+  return (
+    <MantineReactTable
+      columns={[
+        {
+          header: 'First Name',
+          accessorKey: 'firstName',
+        },
+        {
+          header: 'Last Name',
+          accessorKey: 'lastName',
+        },
+        {
+          header: 'Address',
+          accessorKey: 'address',
+        },
+        {
+          header: 'State',
+          accessorKey: 'state',
+        },
+        {
+          header: 'Phone Number',
+          accessorKey: 'phoneNumber',
+        },
+      ]}
+      data={tableData}
+      editingMode="row"
+      enableEditing
+      enableRowActions
+      onEditingRowSave={handleSaveRow}
+      state={{
+        isSaving,
       }}
     />
   );

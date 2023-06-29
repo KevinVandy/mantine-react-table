@@ -148,7 +148,7 @@ export const getLeadingDisplayColumnIds = <TData extends Record<string, any>>(
     props.positionActionsColumn === 'first' &&
       (props.enableRowActions ||
         (props.enableEditing &&
-          ['row', 'modal'].includes(props.editingMode ?? ''))) &&
+          ['row', 'modal', 'custom'].includes(props.editingMode ?? ''))) &&
       'mrt-row-actions',
     props.positionExpandColumn === 'first' &&
       showExpandColumn(props) &&

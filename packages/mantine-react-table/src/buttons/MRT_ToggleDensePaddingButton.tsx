@@ -34,11 +34,7 @@ export const MRT_ToggleDensePaddingButton = <
   };
 
   return (
-    <Tooltip
-      withinPortal
-      withArrow
-      label={rest?.title ?? localization.toggleDensity}
-    >
+    <Tooltip withinPortal label={rest?.title ?? localization.toggleDensity}>
       <ActionIcon
         aria-label={localization.toggleDensity}
         onClick={handleToggleDensePadding}

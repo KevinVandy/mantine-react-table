@@ -13,7 +13,7 @@ export const InstallCommand = ({
 
   return (
     <>
-      <Tabs value={tab} onTabChange={setTab} >
+      <Tabs value={tab} onTabChange={setTab}>
         <Tabs.List {...rest}>
           <Tabs.Tab value="npm">NPM</Tabs.Tab>
           <Tabs.Tab value="pnpm">PNPM</Tabs.Tab>

@@ -181,12 +181,12 @@ const Example = () => {
         onEditingRowCancel={handleCancelRowEdits}
         renderRowActions={({ row, table }) => (
           <Box sx={{ display: 'flex', gap: '16px' }}>
-            <Tooltip withArrow position="left" label="Edit">
+            <Tooltip position="left" label="Edit">
               <ActionIcon onClick={() => table.setEditingRow(row)}>
                 <IconEdit />
               </ActionIcon>
             </Tooltip>
-            <Tooltip withArrow position="right" label="Delete">
+            <Tooltip position="right" label="Delete">
               <ActionIcon color="red" onClick={() => handleDeleteRow(row)}>
                 <IconTrash />
               </ActionIcon>

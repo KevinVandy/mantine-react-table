@@ -13,6 +13,7 @@ import {
   type BoxProps,
   type CheckboxProps,
   type FlexProps,
+  type ModalProps,
   type MultiSelectProps,
   type PaperProps,
   type ProgressProps,
@@ -286,6 +287,7 @@ export type MRT_TableState<TData extends Record<string, any>> = TableState & {
   hoveredRow: MRT_Row<TData> | { id: string } | null;
   isFullScreen: boolean;
   isLoading: boolean;
+  isSaving: boolean;
   showAlertBanner: boolean;
   showColumnFilters: boolean;
   showGlobalFilter: boolean;
@@ -538,6 +540,7 @@ export type MRT_ColumnDef<TData extends Record<string, any>> = Omit<
   renderColumnActionsMenuItems?: (props: {
     column: MRT_Column<TData>;
     table: MRT_TableInstance<TData>;
+    internalColumnMenuItems: ReactNode;
   }) => ReactNode;
   renderColumnFilterModeMenuItems?: (props: {
     column: MRT_Column<TData>;
@@ -706,7 +709,7 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
   displayColumnDefOptions?: Partial<{
     [key in MRT_DisplayColumnIds]: Partial<MRT_ColumnDef<TData>>;
   }>;
-  editingMode?: 'table' | 'modal' | 'row' | 'cell';
+  editingMode?: 'table' | 'modal' | 'row' | 'cell' | 'custom';
   enableBottomToolbar?: boolean;
   enableClickToCopy?: boolean;
   enableColumnActions?: boolean;
@@ -741,7 +744,7 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
     originalRow: TData,
     index: number,
     parentRow: MRT_Row<TData>,
-  ) => string;
+  ) => string | undefined;
   globalFilterFn?: MRT_FilterOption;
   globalFilterModeOptions?: MRT_FilterOption[] | null;
   icons?: Partial<MRT_Icons>;
@@ -788,6 +791,12 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         table: MRT_TableInstance<TData>;
         row: MRT_Row<TData>;
       }) => HTMLPropsRef<HTMLTableCellElement> & Partial<BoxProps>);
+  mantineEditRowModalProps?:
+    | (HTMLPropsRef<HTMLDivElement> & Partial<ModalProps>)
+    | ((props: {
+        table: MRT_TableInstance<TData>;
+        row: MRT_Row<TData>;
+      }) => HTMLPropsRef<HTMLDivElement> & Partial<ModalProps>);
   mantineEditSelectProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>)
     | ((props: {
@@ -1043,6 +1052,7 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
   renderColumnActionsMenuItems?: (props: {
     column: MRT_Column<TData>;
     table: MRT_TableInstance<TData>;
+    internalColumnMenuItems: ReactNode;
   }) => ReactNode;
   renderColumnFilterModeMenuItems?: (props: {
     column: MRT_Column<TData>;
@@ -1051,6 +1061,11 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderDetailPanel?: (props: {
+    row: MRT_Row<TData>;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
+  renderEditRowModalContent?: (props: {
+    internalEditComponents: ReactNode[];
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;

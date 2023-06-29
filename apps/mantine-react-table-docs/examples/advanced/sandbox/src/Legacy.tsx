@@ -140,13 +140,13 @@ const Example = () => {
       positionToolbarAlertBanner="bottom"
       renderDetailPanel={({ row }) => (
         <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          gap: '16px',
-          padding: '16px',
-        }}
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            gap: '16px',
+            padding: '16px',
+          }}
         >
           <img
             alt="avatar"

@@ -137,7 +137,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
             },
           }}
         >
-          <Tooltip withArrow label="Github">
+          <Tooltip label="Github">
             <a
               href="https://github.com/KevinVandy/mantine-react-table"
               rel="noopener"
@@ -155,7 +155,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
               </ActionIcon>
             </a>
           </Tooltip>
-          <Tooltip withArrow label="Discord">
+          <Tooltip label="Discord">
             <a
               href="https://discord.gg/5wqyRx6fnm"
               rel="noopener"
@@ -173,7 +173,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
               </ActionIcon>
             </a>
           </Tooltip>
-          <Tooltip withArrow label="Toggle Light/Dark Mode">
+          <Tooltip label="Toggle Light/Dark Mode">
             <ActionIcon
               aria-label="Toggle Light/Dark Mode"
               onClick={() => {

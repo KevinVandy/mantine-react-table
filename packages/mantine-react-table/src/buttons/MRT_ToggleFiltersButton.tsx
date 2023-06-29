@@ -26,11 +26,7 @@ export const MRT_ToggleFiltersButton = <TData extends Record<string, any>>({
   };
 
   return (
-    <Tooltip
-      withinPortal
-      withArrow
-      label={rest?.title ?? localization.showHideFilters}
-    >
+    <Tooltip withinPortal label={rest?.title ?? localization.showHideFilters}>
       <ActionIcon
         aria-label={localization.showHideFilters}
         onClick={handleToggleShowFilters}

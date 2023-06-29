@@ -41,16 +41,18 @@ const columns = [
   },
   //...
 ];
-
-return <MantineReactTable columns={columns} data={data} />;
 ```
 
 ### Enable Click to Copy For All Cells
 
-Alternatively, you can enable click to copy globally by setting the `enableClickToCopy` prop to `true`. You could then opt out per column by setting the `enableClickToCopy` option to `false` on the column definition.
+Alternatively, you can enable click to copy globally by setting the `enableClickToCopy` table option to `true`. You could then opt out per column by setting the `enableClickToCopy` option to `false` on the column definition.
 
 ```tsx
-<MantineReactTable columns={columns} data={data} enableClickToCopy />
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableClickToCopy: true,
+});
 ```
 
 ### Customize Copy Buttons
@@ -58,15 +60,15 @@ Alternatively, you can enable click to copy globally by setting the `enableClick
 The click to copy feature is built on top of the Mantine UnstyledButton and CopyButton components. You can customize the copy button by passing in the `mantineCopyButtonProps` prop or as a column option in a column definition.
 
 ```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableClickToCopy
-  mantineCopyButtonProps={{
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableClickToCopy: true,
+  mantineCopyButtonProps: {
     sx: { width: '100%' },
     leftIcon: <ContentCopy />,
-  }}
-/>
+  },
+});
 ```
 
 ### Click to Copy Example

@@ -25,12 +25,7 @@ export const MRT_RowActionMenu = <TData extends Record<string, any>>({
 
   return (
     <Menu closeOnItemClick withinPortal>
-      <Tooltip
-        withinPortal
-        withArrow
-        openDelay={1000}
-        label={localization.rowActions}
-      >
+      <Tooltip withinPortal openDelay={1000} label={localization.rowActions}>
         <Menu.Target>
           <ActionIcon
             aria-label={localization.rowActions}

@@ -31,11 +31,7 @@ export const MRT_ToggleGlobalFilterButton = <
   };
 
   return (
-    <Tooltip
-      withinPortal
-      withArrow
-      label={rest?.title ?? localization.showHideSearch}
-    >
+    <Tooltip withinPortal label={rest?.title ?? localization.showHideSearch}>
       <ActionIcon
         aria-label={rest?.title ?? localization.showHideSearch}
         disabled={!!globalFilter}

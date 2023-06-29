@@ -30,7 +30,7 @@ export const MRT_TableHeadCellSortLabel = <TData extends Record<string, any>>({
   const showIndicator = sorting.length >= 2 && column.getSortIndex() !== -1;
 
   return (
-    <Tooltip withinPortal withArrow position="top" label={sortTooltip}>
+    <Tooltip withinPortal position="top" label={sortTooltip}>
       <Indicator
         color="transparent"
         disabled={!showIndicator}

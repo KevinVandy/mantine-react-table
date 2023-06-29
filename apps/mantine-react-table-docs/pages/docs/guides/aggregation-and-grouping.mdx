@@ -52,10 +52,14 @@ Mantine React Table has built-in grouping and aggregation features. There are op
 
 ### Enable Grouping
 
-To enable grouping, set the `enableGrouping` prop to `true`. This will both add a drag handle button so that columns can be dragged to the dropzone to be grouped and will add an entry column actions menu to group or ungroup a column.
+To enable grouping, set the `enableGrouping` table option to `true`. This will both add a drag handle button so that columns can be dragged to the dropzone to be grouped and will add an entry column actions menu to group or ungroup a column.
 
 ```jsx
-<MantineReactTable columns={columns} data={data} enableGrouping />
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableGrouping: true, //enable grouping
+});
 ```
 
 #### Disable Grouping Per Column
@@ -81,12 +85,12 @@ return <MantineReactTable columns={columns} data={data} enableGrouping />;
 If you do not want the drag buttons that come with the grouping feature, you can independently disable them without disabling the grouping feature entirely by setting the `enableColumnDragging` prop to `false`.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableGrouping
-  enableColumnDragging={false} //do not show drag handle buttons, but still show grouping options in column actions menu
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableGrouping: true,
+  enableColumnDragging: false, //do not show drag handle buttons, but still show grouping options in column actions menu
+});
 ```
 
 ### Group Columns by Default
@@ -94,12 +98,12 @@ If you do not want the drag buttons that come with the grouping feature, you can
 If you want columns to be grouped by default, you can set the `grouping` state in either the `initialState` or `state` prop.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableGrouping
-  initialState={{ grouping: ['location', 'department'] }} //group by location and department by default
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableGrouping: true,
+  initialState: { grouping: ['location', 'department'] }, //group by location and department by default
+});
 ```
 
 ### Expand Grouped Rows by Default
@@ -107,15 +111,15 @@ If you want columns to be grouped by default, you can set the `grouping` state i
 In addition to grouping columns by default, you may also want those grouped rows to be expanded and visible by default, too. You can do this by setting the `expanded` state to `true` in either the `initialState` or `state` prop.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableGrouping
-  initialState={{
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableGrouping: true,
+  initialState: {
     grouping: ['location', 'department'], //group by location and department by default and expand grouped rows
     expanded: true, //show grouped rows by default
-  }}
-/>
+  },
+});
 ```
 
 ### Aggregation on Grouped Rows
@@ -156,14 +160,14 @@ const columns = [
   },
 ];
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    enableGrouping
-    initialState={{ grouping: ['team'], expanded: true }}
-  />
-);
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableGrouping: true,
+  initialState: { grouping: ['team'], expanded: true },
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 #### Custom Aggregation Functions

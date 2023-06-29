@@ -192,6 +192,16 @@ export const stateOptions: StateOption[] = [
     type: 'boolean',
   },
   {
+    defaultValue: 'false',
+    description:
+      'Shows progress bars and a spinner on the save buttons when true',
+    link: '',
+    linkText: '',
+    source: 'MRT',
+    stateOption: 'isSaving',
+    type: 'boolean',
+  },
+  {
     defaultValue: '{ pageIndex: 0, pageSize: 10 }',
     description: '',
     link: 'https://tanstack.com/table/v8/docs/api/features/pagination',

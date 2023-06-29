@@ -21,11 +21,7 @@ export const MRT_ShowHideColumnsButton = <TData extends Record<string, any>>({
 
   return (
     <Menu closeOnItemClick={false} withinPortal>
-      <Tooltip
-        withinPortal
-        withArrow
-        label={rest?.title ?? localization.showHideColumns}
-      >
+      <Tooltip withinPortal label={rest?.title ?? localization.showHideColumns}>
         <Menu.Target>
           <ActionIcon
             aria-label={localization.showHideColumns}

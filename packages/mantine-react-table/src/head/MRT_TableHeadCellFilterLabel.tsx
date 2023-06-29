@@ -70,7 +70,6 @@ export const MRT_TableHeadCellFilterLabel = <
             multiline
             position="top"
             width={filterTooltip.length > 40 ? 300 : undefined}
-            withArrow
             withinPortal
           >
             <ActionIcon

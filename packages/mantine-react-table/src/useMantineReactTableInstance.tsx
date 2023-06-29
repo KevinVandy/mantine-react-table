@@ -144,9 +144,9 @@ export const useMantineReactTableInstance: <TData extends Record<string, any>>(
           ) && {
             Cell: ({ cell, row }) => (
               <MRT_ToggleRowActionMenuButton
-                cell={cell as any}
-                row={row as any}
-                table={table as any}
+                cell={cell}
+                row={row}
+                table={table}
               />
             ),
             header: tableOptions.localization.actions,
@@ -163,10 +163,10 @@ export const useMantineReactTableInstance: <TData extends Record<string, any>>(
               tableOptions.state?.grouping ?? grouping,
             ) && {
               Cell: ({ row }) => (
-                <MRT_ExpandButton row={row as any} table={table as any} />
+                <MRT_ExpandButton row={row as any} table={table} />
               ),
               Header: tableOptions.enableExpandAll
-                ? () => <MRT_ExpandAllButton table={table as any} />
+                ? () => <MRT_ExpandAllButton table={table} />
                 : null,
               header: tableOptions.localization.expand,
               size: 60,
@@ -178,12 +178,12 @@ export const useMantineReactTableInstance: <TData extends Record<string, any>>(
             'mrt-row-select',
           ) && {
             Cell: ({ row }) => (
-              <MRT_SelectCheckbox row={row as any} table={table as any} />
+              <MRT_SelectCheckbox row={row as any} table={table} />
             ),
             Header:
               tableOptions.enableSelectAll &&
               tableOptions.enableMultiRowSelection
-                ? () => <MRT_SelectCheckbox selectAll table={table as any} />
+                ? () => <MRT_SelectCheckbox selectAll table={table} />
                 : null,
             header: tableOptions.localization.select,
             size: 60,

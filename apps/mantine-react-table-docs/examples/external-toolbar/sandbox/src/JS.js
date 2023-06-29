@@ -88,7 +88,7 @@ const Example = () => {
             <MRT_ToggleFiltersButton table={tableInstanceRef.current} />
             <MRT_ShowHideColumnsButton table={tableInstanceRef.current} />
             <MRT_ToggleDensePaddingButton table={tableInstanceRef.current} />
-            <Tooltip withArrow label="Print">
+            <Tooltip label="Print">
               <ActionIcon onClick={() => window.print()}>
                 <IconPrinter />
               </ActionIcon>

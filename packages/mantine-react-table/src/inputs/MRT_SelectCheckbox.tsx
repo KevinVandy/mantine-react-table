@@ -68,7 +68,6 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
   return (
     <Tooltip
       withinPortal
-      withArrow
       openDelay={1000}
       label={
         checkboxProps?.title ??

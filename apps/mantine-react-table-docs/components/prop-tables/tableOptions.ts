@@ -1209,6 +1209,16 @@ export const tableOptions: TableOption[] = [
     type: 'ActionIconProps | ({table, column }) => ActionIconProps',
   },
   {
+    tableOptionName: 'mantineEditRowModalProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/modal/?t=props',
+    linkText: 'Mantine Modal Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'AutocompleteProps | ({ row, table }) => AutocompleteProps',
+  },
+  {
     tableOptionName: 'mantineFilterAutocompleteProps',
     defaultValue: '',
     description: '',
@@ -1216,7 +1226,7 @@ export const tableOptions: TableOption[] = [
     linkText: 'Mantine Autocomplete Docs',
     required: false,
     source: 'Mantine',
-    type: 'AutocompleteProps | ({ column, table, rangeFilterIndex}) => AutocompleteProps',
+    type: 'AutocompleteProps | ({ column, table, rangeFilterIndex }) => AutocompleteProps',
   },
   {
     tableOptionName: 'mantineFilterCheckboxProps',
@@ -1741,7 +1751,7 @@ export const tableOptions: TableOption[] = [
     linkText: '',
     required: false,
     source: '',
-    type: '({ closeMenu, column, table }) => ReactNode[]',
+    type: '({ closeMenu, column, table, internalColumnMenuItems }) => ReactNode',
   },
   {
     tableOptionName: 'renderColumnFilterModeMenuItems',
@@ -1751,7 +1761,7 @@ export const tableOptions: TableOption[] = [
     linkText: '',
     required: false,
     source: '',
-    type: '({ column, internalFilterOptions, onSelectFilterMode, table }) => ReactNode[]',
+    type: '({ column, internalFilterOptions, onSelectFilterMode, table }) => ReactNode',
   },
   {
     tableOptionName: 'renderDetailPanel',
@@ -1764,6 +1774,16 @@ export const tableOptions: TableOption[] = [
     type: '({ row, table }) => ReactNode',
   },
   {
+    tableOptionName: 'renderEditRowModalContent',
+    defaultValue: '',
+    description: '',
+    link: '',
+    linkText: '',
+    required: false,
+    source: '',
+    type: '({ row, table, internalEditComponents }) => ReactNode',
+  },
+  {
     tableOptionName: 'renderGlobalFilterModeMenuItems',
     defaultValue: '',
     description: '',
@@ -1771,7 +1791,7 @@ export const tableOptions: TableOption[] = [
     linkText: '',
     required: false,
     source: '',
-    type: '({ internalFilterOptions, onSelectFilterMode, table }) => ReactNode[]',
+    type: '({ internalFilterOptions, onSelectFilterMode, table }) => ReactNode',
   },
   {
     tableOptionName: 'renderEmptyRowsFallback',
@@ -1791,7 +1811,7 @@ export const tableOptions: TableOption[] = [
     linkText: '',
     required: false,
     source: '',
-    type: '({ closeMenu, row, table }) => ReactNode[]',
+    type: '({ closeMenu, row, table }) => ReactNode',
   },
   {
     tableOptionName: 'renderRowActions',
@@ -1841,7 +1861,7 @@ export const tableOptions: TableOption[] = [
     linkText: '',
     required: false,
     source: '',
-    type: '({ table}) => ReactNode',
+    type: '({ table }) => ReactNode',
   },
   {
     tableOptionName: 'rowCount',

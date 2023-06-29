@@ -69,11 +69,7 @@ export const LinkHeading = ({ children, tableId, ...rest }: Props) => {
               },
             }}
           >
-            <Tooltip
-              withinPortal
-              withArrow
-              label={isCopied ? 'Copied!' : 'Copy Link'}
-            >
+            <Tooltip withinPortal label={isCopied ? 'Copied!' : 'Copy Link'}>
               <IconLink />
             </Tooltip>
           </ActionIcon>

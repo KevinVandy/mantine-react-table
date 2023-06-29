@@ -60,7 +60,6 @@ export const MRT_TableHeadCellFilterContainer = <
               <Tooltip
                 label={localization.changeFilterMode}
                 position="bottom-start"
-                withArrow
                 withinPortal
               >
                 <Menu.Target>

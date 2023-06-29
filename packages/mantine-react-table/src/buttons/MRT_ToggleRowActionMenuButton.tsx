@@ -47,12 +47,7 @@ export const MRT_ToggleRowActionMenuButton = <
         (enableEditing instanceof Function
           ? enableEditing(row)
           : enableEditing) ? (
-        <Tooltip
-          withinPortal
-          position="right"
-          withArrow
-          label={localization.edit}
-        >
+        <Tooltip withinPortal position="right" label={localization.edit}>
           <ActionIcon
             aria-label={localization.edit}
             onClick={handleStartEditMode}

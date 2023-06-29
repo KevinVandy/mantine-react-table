@@ -14,7 +14,7 @@ export const MRT_ProgressBar = <TData extends Record<string, any>>({
     options: { mantineProgressProps },
     getState,
   } = table;
-  const { isLoading, showProgressBars } = getState();
+  const { isLoading, isSaving, showProgressBars } = getState();
 
   const linearProgressProps =
     mantineProgressProps instanceof Function
@@ -23,7 +23,7 @@ export const MRT_ProgressBar = <TData extends Record<string, any>>({
 
   return (
     <Collapse
-      in={isLoading || showProgressBars}
+      in={isLoading || isSaving || showProgressBars}
       sx={{
         bottom: isTopToolbar ? 0 : undefined,
         position: 'absolute',

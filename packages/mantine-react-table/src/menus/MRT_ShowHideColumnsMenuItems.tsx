@@ -135,7 +135,6 @@ export const MRT_ShowHideColumnsMenuItems = <
           {enableHiding ? (
             <Tooltip
               withinPortal
-              withArrow
               openDelay={1000}
               label={localization.toggleVisibility}
             >

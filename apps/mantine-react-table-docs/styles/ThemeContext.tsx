@@ -56,6 +56,13 @@ export const ThemeContextProvider = ({ children }) => {
               h6: { fontWeight: 900 },
             },
           },
+          components: {
+            Tooltip: {
+              defaultProps: {
+                withArrow: true,
+              },
+            },
+          },
         }}
         withGlobalStyles
         withNormalizeCSS

@@ -37,7 +37,6 @@ export const MRT_ExpandButton = <TData extends Record<string, any>>({
   return (
     <Tooltip
       withinPortal
-      withArrow
       disabled={!canExpand && !renderDetailPanel}
       openDelay={1000}
       label={

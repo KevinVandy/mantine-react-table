@@ -15,9 +15,26 @@ export const MRT_EditRowModal = <TData extends Record<string, any>>({
   table,
 }: Props<TData>) => {
   const {
-    options: { localization, onEditingRowCancel },
+    options: {
+      localization,
+      onEditingRowCancel,
+      renderEditRowModalContent,
+      mantineEditRowModalProps,
+    },
     setEditingRow,
   } = table;
+
+  const modalProps =
+    mantineEditRowModalProps instanceof Function
+      ? mantineEditRowModalProps({ row, table })
+      : mantineEditRowModalProps;
+
+  const internalEditComponents = row
+    .getAllCells()
+    .filter((cell) => cell.column.columnDef.columnDefType === 'data')
+    .map((cell) => (
+      <MRT_EditCellTextInput cell={cell} key={cell.id} table={table} />
+    ));
 
   return (
     <Modal
@@ -28,31 +45,27 @@ export const MRT_EditRowModal = <TData extends Record<string, any>>({
       }}
       opened={open}
       withCloseButton={false}
+      {...modalProps}
     >
-      <Text sx={{ textAlign: 'center' }}>{localization.edit}</Text>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <Stack
-          sx={{
-            gap: '24px',
-            paddingTop: '16px',
-            width: '100%',
-          }}
-        >
-          {row
-            .getAllCells()
-            .filter((cell) => cell.column.columnDef.columnDefType === 'data')
-            .map((cell) => (
-              <MRT_EditCellTextInput
-                cell={cell as any}
-                key={cell.id}
-                table={table as any}
-              />
-            ))}
-        </Stack>
-      </form>
-      <Flex sx={{ paddingTop: '24px', justifyContent: 'flex-end' }}>
-        <MRT_EditActionButtons row={row} table={table} variant="text" />
-      </Flex>
+      {renderEditRowModalContent?.({ row, table, internalEditComponents }) ?? (
+        <>
+          <Text sx={{ textAlign: 'center' }}>{localization.edit}</Text>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <Stack
+              sx={{
+                gap: '24px',
+                paddingTop: '16px',
+                width: '100%',
+              }}
+            >
+              {internalEditComponents}
+            </Stack>
+          </form>
+          <Flex sx={{ paddingTop: '24px', justifyContent: 'flex-end' }}>
+            <MRT_EditActionButtons row={row} table={table} variant="text" />
+          </Flex>
+        </>
+      )}
     </Modal>
   );
 };
