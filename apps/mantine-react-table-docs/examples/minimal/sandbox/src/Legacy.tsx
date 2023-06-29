@@ -43,7 +43,7 @@ export const Example = () => {
       enableTopToolbar={false}
       mantineTableProps={{
         highlightOnHover: false,
-        withColumnBorders: true, //not working in '@mantine/core' 6.0.14 apparently
+        withColumnBorders: true,
       }}
     />
   );

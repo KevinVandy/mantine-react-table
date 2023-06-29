@@ -1,11 +1,11 @@
 import {
-  type DragEvent,
-  type MouseEvent,
-  type RefObject,
   memo,
   useEffect,
   useMemo,
   useState,
+  type DragEvent,
+  type MouseEvent,
+  type RefObject,
 } from 'react';
 import { Box, Skeleton, useMantineTheme } from '@mantine/core';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
@@ -243,7 +243,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
       <>
         {cell.getIsPlaceholder() ? (
           columnDef.PlaceholderCell?.({ cell, column, row, table }) ?? null
-        ) : isLoading || showSkeletons ? (
+        ) : (isLoading || showSkeletons) && cell.getValue() === null ? (
           <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />
         ) : enableRowNumbers &&
           rowNumberMode === 'static' &&

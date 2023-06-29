@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import {
-  MRT_Table, //import alternative sub-component if we don't want toolbars
+  MRT_Table, //import alternative sub-component if we do not want toolbars
   useMantineReactTable,
 } from 'mantine-react-table';
 import { useMantineTheme } from '@mantine/core';
@@ -46,7 +46,7 @@ export const Example = () => {
     enableSorting: false,
     mantineTableProps: {
       highlightOnHover: false,
-      withColumnBorders: true, //not working in '@mantine/core' 6.0.14 apparently
+      withColumnBorders: true,
       withBorder: colorScheme === 'light',
     },
   });

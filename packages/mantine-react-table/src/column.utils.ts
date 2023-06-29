@@ -338,7 +338,7 @@ export const getCommonCellStyles = <TData extends Record<string, any>>({
     ...(tableCellProps?.sx instanceof Function
       ? tableCellProps.sx(theme)
       : (tableCellProps?.sx as any)),
-    ...(table.options.enableColumnResizing && widthStyles), //don't let devs pass in width styles if column resizing is enabled
+    ...(table.options.enableColumnResizing && widthStyles), //do not let devs pass in width styles if column resizing is enabled
   };
 };
 
