@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-beta.17",
+  "version": "1.0.0-beta.18",
   "license": "MIT",
   "name": "mantine-react-table",
   "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",
@@ -115,13 +115,8 @@
     "@mantine/core": ">=6",
     "@mantine/dates": ">=6",
     "@mantine/hooks": ">=6",
-    "@tabler/icons-react": ">=2",
+    "@tabler/icons-react": ">=2.23.0",
     "react": ">=18.0",
     "react-dom": ">=18.0"
-  },
-  "peerDependenciesMeta": {
-    "@tabler/icons-react": {
-      "optional": true
-    }
   }
 }

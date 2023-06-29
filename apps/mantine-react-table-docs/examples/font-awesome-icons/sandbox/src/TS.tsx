@@ -51,18 +51,10 @@ const fontAwesomeIcons: Partial<MRT_Icons> = {
     <FontAwesomeIcon icon={faChevronDown} {...props} />
   ),
   IconChevronLeft: (props: any) => (
-    <FontAwesomeIcon
-      icon={faChevronLeft}
-      style={{ transform: 'translateX(4px)' }} //adjust for icon size in pagination
-      {...props}
-    />
+    <FontAwesomeIcon icon={faChevronLeft} {...props} />
   ),
   IconChevronRight: (props: any) => (
-    <FontAwesomeIcon
-      icon={faChevronRight}
-      style={{ transform: 'translateX(-4px)' }} //adjust for icon size in pagination
-      {...props}
-    />
+    <FontAwesomeIcon icon={faChevronRight} {...props} />
   ),
   IconChevronsDown: (props: any) => (
     <FontAwesomeIcon icon={faAnglesDown} {...props} />

@@ -8,7 +8,6 @@ import { StatBadges } from '../components/mdx/StatBadges';
 import { ComparisonTable } from '../components/mdx/ComparisonTable';
 import { LinkHeading } from '../components/mdx/LinkHeading';
 import { FeatureTable } from '../components/mdx/FeatureTable';
-import { SampleCodeSnippet } from '../components/mdx/SampleCodeSnippet';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import { PopularDocs } from '../components/mdx/PopularDocs';
 import { Contributors } from '../components/mdx/Contributors';
