@@ -47,7 +47,11 @@ You can easily hide columns by default by setting the `columnVisibility` `state`
 If you do not want this feature to be enabled at all, you can disable it by setting the `enableHiding` prop to `false`.
 
 ```tsx
-<MantineReactTable columns={columns} data={data} enableHiding={false} />
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableHiding: false,
+});
 ```
 
 Alternatively, you can disable hiding specific columns by setting the `enableHiding` column option to `false` per column.

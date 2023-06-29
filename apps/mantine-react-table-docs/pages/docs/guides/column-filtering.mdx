@@ -29,6 +29,7 @@ Filtering is one of the most powerful features of Mantine React Table and is ena
       'columnFilterModeOptions',
       'enableColumnFilterModes',
       'enableColumnFilters',
+      'enableFacetedValues',
       'enableFilterMatchHighlighting',
       'enableFilters',
       'filterFns',
@@ -37,6 +38,11 @@ Filtering is one of the most powerful features of Mantine React Table and is ena
       'getFacetedRowModel',
       'getFacetedUniqueValues',
       'getFilteredRowModel',
+      'mantineFilterAutocompleteProps',
+      'mantineFilterCheckboxProps',
+      'mantineFilterMultiSelectProps',
+      'mantineFilterRangeProps',
+      'mantineFilterSelectProps',
       'mantineFilterTextInputProps',
       'manualFiltering',
       'maxLeafRowFilterDepth',
@@ -59,6 +65,11 @@ Filtering is one of the most powerful features of Mantine React Table and is ena
       'enableColumnFilterModes',
       'filterFn',
       'filterVariant',
+      'mantineFilterAutocompleteProps',
+      'mantineFilterCheckboxProps',
+      'mantineFilterMultiSelectProps',
+      'mantineFilterRangeProps',
+      'mantineFilterSelectProps',
       'mantineFilterTextInputProps',
       'renderColumnFilterModeMenuItems',
     ])
@@ -75,7 +86,7 @@ Filtering is one of the most powerful features of Mantine React Table and is ena
 
 ### Disable Filtering Features
 
-Various subsets of filtering features can be disabled. If you want to disable filtering completely, you can set the `enableColumnFilters` prop to `false` to remove all filters from each column. Alternatively, `enableColumnFilter` can be set to `false` for individual columns.
+Various subsets of filtering features can be disabled. If you want to disable filtering completely, you can set the `enableColumnFilters` table option to `false` to remove all filters from each column. Alternatively, `enableColumnFilter` can be set to `false` for individual columns.
 
 `enableFilters` can be set to `false` to disable both column filters and the global search filter.
 
@@ -85,7 +96,7 @@ Various subsets of filtering features can be disabled. If you want to disable fi
 
 Filter Match Highlighting is a new featured enabled by default that will highlight text in the table body cells that matches the current filter query with a shade of the `theme.colors.yellow` color.
 
-Filter Match Highlighting will only work on columns with the default `text` filter variant. Also, if you are using a custom `Cell` render override for a column, you will need to use the `renderedCellValue` prop instead of `cell.getValue()` in order to preserve the filter match highlighting.
+Filter Match Highlighting will only work on columns with the default `text` filter variant. Also, if you are using a custom `Cell` render override for a column, you will need to use the `renderedCellValue` param instead of `cell.getValue()` in order to preserve the filter match highlighting.
 
 ```jsx
 const columns = [
@@ -99,14 +110,14 @@ const columns = [
 
 #### Disable Filter Match Highlighting
 
-This feature can be disabled by setting the `enableFilterMatchHighlighting` prop to `false`.
+This feature can be disabled by setting the `enableFilterMatchHighlighting` table option to `false`.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableFilterMatchHighlighting={false}
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableFilterMatchHighlighting: false,
+});
 ```
 
 ### Filter Variants
@@ -127,31 +138,31 @@ Mantine React Table has several built-in filter variants for advanced filtering.
 
 #### Faceted Values for Filter Variants
 
-Faceted values are a list of unique values for a column that gets generated under the hood from table data when the `enableFacetedValues` prop is set to `true`. These values can be used to populate the autocomplete suggestions, select dropdowns, or the min and max values for the `'range-slider'` variant. This means that you no longer need to manually specify the filter select `data` props for these variants manually, especially if you are using client-side filtering.
+Faceted values are a list of unique values for a column that gets generated under the hood from table data when the `enableFacetedValues` table option is set to `true`. These values can be used to populate the autocomplete suggestions, select dropdowns, or the min and max values for the `'range-slider'` variant. This means that you no longer need to manually specify the filter select `data` props for these variants manually, especially if you are using client-side filtering.
 
 <EnableColumnFacetValuesExample />
 
 #### Custom Faceted Values
 
-If you are using server-side pagination and filtering, you can still customize the faceted values output with the `getFacetedUniqueValues` and `getFacetedMinMaxValues` props.
+If you are using server-side pagination and filtering, you can still customize the faceted values output with the `getFacetedUniqueValues` and `getFacetedMinMaxValues` table options.
 
 ```tsx
-<MaterialReactTable
-  columns={columns}
-  data={data}
-  enableFacetedValues={true}
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableFacetedValues: true,
   //if using server-side pagination and filtering
-  getFacetedMinMaxValues={(table) => {
+  getFacetedMinMaxValues: (table) => {
     //fetch min and max values from server
     return [minValue, maxValue];
-  }}
+  },
   //if using server-side filtering
-  getFacetedUniqueValues={(table) => {
+  getFacetedUniqueValues: (table) => {
     const uniqueValueMap = new Map<string, number>();
     //fetch unique values from server, ideally including the count of each unique value
     return uniqueValueMap;
-  }}
-/>
+  },
+});
 ```
 
 ### Custom Filter Functions
@@ -206,7 +217,7 @@ This function will be used to filter 1 row at a time and should return a `boolea
 
 #### Add Custom Filter Functions
 
-You can add custom filter functions to the `filterFns` prop. These will be available to all columns to use. The `filterFn` prop on a column will override any filter function with the same name in the `filterFns` prop.
+You can add custom filter functions to the `filterFns` table option. These will be available to all columns to use. The `filterFn` column option on a column will override any filter function with the same name in the `filterFns` table option.
 
 ```jsx
 const columns = [
@@ -217,34 +228,36 @@ const columns = [
   },
 ];
 
-return (
-  <MantineReactTable
-    data={data}
-    columns={columns}
-    filterFns={{
-      customFilterFn: (row, id, filterValue) => {
-        return row.customField === value;
-      },
-    }}
-  />
-);
+const table = useMantineReactTable({
+  data,
+  columns,
+  filterFns: {
+    customFilterFn: (row, id, filterValue) => {
+      return row.customField === value;
+    },
+  },
+});
 ```
 
 ### Filter Modes
 
 #### Enable Column Filter Modes (Filter Switching)
 
-If you want to let the user switch between multiple different filter modes from a drop-down menu on the Filter Textfield, you can enable that with the `enableColumnFilterModes` prop or column option. This will enable the filter icon in the filter text field to open a drop-down menu with the available filter modes when clicked.
+If you want to let the user switch between multiple different filter modes from a drop-down menu on the Filter Textfield, you can enable that with the `enableColumnFilterModes` table or column option. This will enable the filter icon in the filter text field to open a drop-down menu with the available filter modes when clicked.
 
-```tsx
-<MantineReactTable columns={columns} data={data} enableColumnFilterModes />
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableColumnFilterModes: true,
+});
 ```
 
 #### Customize Filter Modes
 
-You can narrow down the available filter mode options by setting the `columnFilterModeOptions` prop or a column specific `columnFilterModeOptions` option.
+You can narrow down the available filter mode options by setting the `columnFilterModeOptions` table or a column specific `columnFilterModeOptions` option.
 
-```tsx
+```jsx
 const columns = [
   {
     accessorKey: 'firstName',
@@ -256,13 +269,12 @@ const columns = [
     header: 'Age',
     columnFilterModeOptions: ['between', 'lessThan', 'greaterThan'],
   },
-  }
-]
+];
 ```
 
 #### Render Custom Filter Mode Menu
 
-You can also render custom menu items in the filter mode drop-down menu by setting the `renderColumnFilterModeMenuItems` prop or column option. This option is a function that takes in the column and returns an array of `MenuItem` components. This is useful if you want to add custom filter modes that are not included in Mantine React Table, or if you just want to render the menu in your own custom way
+You can also render custom menu items in the filter mode drop-down menu by setting the `renderColumnFilterModeMenuItems` table or column option. This option is a function that takes in the column and returns an array of `MenuItem` components. This is useful if you want to add custom filter modes that are not included in Mantine React Table, or if you just want to render the menu in your own custom way
 
 ```jsx
 const columns = [
@@ -286,14 +298,12 @@ const columns = [
   },
 ];
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    enableColumnFilterModes
-    // renderColumnFilterModeMenuItems could go here if you want to apply to all columns
-  />
-);
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableColumnFilterModes: true,
+  // renderColumnFilterModeMenuItems could go here if you want to apply to all columns
+});
 ```
 
 <CustomizeFilterModesExample />
@@ -302,11 +312,11 @@ return (
 
 If you are using the filtering features along-side either the [grouping](/docs/guides/aggregation-and-grouping) or [expanding](/docs/guides/expanding-sub-rows) features, then there are a few behaviors and customizations you should be aware of.
 
-Check out the [Expanded Leaf Row Filtering Behavior docs](/docs/guides/expanding-sub-rows#expanded-leaf-row-filtering-behavior) to learn more about the `filterFromLeafRows` and `maxLeafRowFilterDepth` props.
+Check out the [Expanded Leaf Row Filtering Behavior docs](/docs/guides/expanding-sub-rows#expanded-leaf-row-filtering-behavior) to learn more about the `filterFromLeafRows` and `maxLeafRowFilterDepth` table options.
 
 ### Manual Server-Side Column Filtering
 
-A very common use case when you have a lot of data is to filter the data on the server, instead of client-side. In this case, you will want to set the `manualFiltering` prop to `true` and manage the `columnFilters` state yourself like so (can work in conjunction with [manual global filtering](https://www.mantine-react-table.com/docs/guides/global-filtering#manual-server-side-global-filtering)).
+A very common use case when you have a lot of data is to filter the data on the server, instead of client-side. In this case, you will want to set the `manualFiltering` table option to `true` and manage the `columnFilters` state yourself like so (can work in conjunction with [manual global filtering](https://www.mantine-react-table.com/docs/guides/global-filtering#manual-server-side-global-filtering)).
 
 ```tsx
 // You can manage and have control over the columnFilters state yourself
@@ -321,15 +331,15 @@ useEffect(() => {
   };
 }, [columnFilters]);
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data} // this will already be filtered on the server
-    manualFiltering //turn off client-side filtering
-    onColumnFiltersChange={setColumnFilters} //hoist internal columnFilters state to your state
-    state={{ columnFilters }} //pass in your own managed columnFilters state
-  />
-);
+const table = useMantineReactTable({
+  columns,
+  data, // this will already be filtered on the server
+  manualFiltering: true, //turn off client-side filtering
+  onColumnFiltersChange: setColumnFilters, //hoist internal columnFilters state to your state
+  state: { columnFilters }, //pass in your own managed columnFilters state
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 > Specifying `manualFiltering` turns off all client-side filtering and assumes that the `data` you pass to `<MantineReactTable />` is already filtered.
@@ -340,7 +350,7 @@ Here is the full Remote Data example featuring server-side **filtering**, pagina
 
 ### Customize Mantine Filter Input Components
 
-You can customize the Mantine filter components by setting the `mantineFilterTextInputProps` prop or column option.
+You can customize the Mantine filter components by setting the `mantineFilterTextInputProps` table or column option.
 
 <CustomizeFilterComponentsExample />
 

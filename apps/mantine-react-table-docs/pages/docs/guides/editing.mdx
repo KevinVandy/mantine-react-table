@@ -101,7 +101,7 @@ You must provide an `onEditingRowSave` callback function prop where you will get
 
 The `cell` editing mode is a bit simpler visually. Uses double-click cells to activate editing mode, but only for that cell.
 
-Then there is a bit of work for you to do to wire up either the `onBlur`, `onChange`, etc. events yourself in order to save the table data. This can be done in the `mantineEditTextInputProps` prop or column definition option.
+Then there is a bit of work for you to do to wire up either the `onBlur`, `onChange`, etc. events yourself in order to save the table data. This can be done in the `mantineEditTextInputProps` table or column option.
 
 <EditingCellExample />
 
@@ -109,7 +109,7 @@ Then there is a bit of work for you to do to wire up either the `onBlur`, `onCha
 
 The `table` editing mode is similar to the `cell` editing mode, but it simply has all of the data cells in the table become editable all at once.
 
-To save data, you must hook up either the `onBlur`, `onChange`, etc. events yourself. This can be done in the `mantineEditTextInputProps` prop or column definition option.
+To save data, you must hook up either the `onBlur`, `onChange`, etc. events yourself. This can be done in the `mantineEditTextInputProps` table or column option.
 
 <EditingTableExample />
 

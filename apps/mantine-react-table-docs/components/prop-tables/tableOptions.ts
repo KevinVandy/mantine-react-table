@@ -336,6 +336,16 @@ export const tableOptions: TableOption[] = [
     type: 'boolean',
   },
   {
+    tableOptionName: 'enableFacetedValues',
+    defaultValue: '',
+    description: '',
+    link: '/docs/guides/column-filtering#faceted-values-for-filter-variants',
+    linkText: 'MRT Column Filtering Docs',
+    required: false,
+    source: 'MRT',
+    type: 'boolean',
+  },
+  {
     tableOptionName: 'enableFilterMatchHighlighting',
     defaultValue: 'true',
     description:
@@ -1247,6 +1257,26 @@ export const tableOptions: TableOption[] = [
     required: false,
     source: 'Mantine',
     type: 'RangeSliderProps | ({ column, table }) => RangeSliderProps',
+  },
+  {
+    tableOptionName: 'mantineFilterSelectProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/select/?t=props',
+    linkText: 'Mantine Select Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'SelectProps | ({ column, table }) => SelectProps',
+  },
+  {
+    tableOptionName: 'mantineFilterMultiSelectProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/multi-select/?t=props',
+    linkText: 'Mantine MultiSelect Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'MultiSelectProps | ({ column, table }) => MultiSelectProps',
   },
   {
     tableOptionName: 'mantineFilterTextInputProps',

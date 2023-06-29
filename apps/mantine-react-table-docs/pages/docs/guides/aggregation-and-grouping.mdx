@@ -82,7 +82,7 @@ return <MantineReactTable columns={columns} data={data} enableGrouping />;
 
 #### Hide Drag Buttons for Grouping
 
-If you do not want the drag buttons that come with the grouping feature, you can independently disable them without disabling the grouping feature entirely by setting the `enableColumnDragging` prop to `false`.
+If you do not want the drag buttons that come with the grouping feature, you can independently disable them without disabling the grouping feature entirely by setting the `enableColumnDragging` table option to `false`.
 
 ```jsx
 const table = useMantineReactTable({
@@ -95,7 +95,7 @@ const table = useMantineReactTable({
 
 ### Group Columns by Default
 
-If you want columns to be grouped by default, you can set the `grouping` state in either the `initialState` or `state` prop.
+If you want columns to be grouped by default, you can set the `grouping` state in either the `initialState` or `state` table options.
 
 ```jsx
 const table = useMantineReactTable({
@@ -108,7 +108,7 @@ const table = useMantineReactTable({
 
 ### Expand Grouped Rows by Default
 
-In addition to grouping columns by default, you may also want those grouped rows to be expanded and visible by default, too. You can do this by setting the `expanded` state to `true` in either the `initialState` or `state` prop.
+In addition to grouping columns by default, you may also want those grouped rows to be expanded and visible by default, too. You can do this by setting the `expanded` state to `true` in either the `initialState` or `state` table options.
 
 ```jsx
 const table = useMantineReactTable({
