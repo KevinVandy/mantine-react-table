@@ -11,9 +11,7 @@ import SimpleCodeSandbox from '../../../examples/SimpleCodeSandbox';
 
 ## Usage
 
-> NOTE: The Docs will be going through a refactor soon to encourage use of the `useMantineReactTable` hook. See the [Basic Example](/docs/examples/basic) for an idea of what is coming.
-
-Here is a brief overview of how to use Mantine React Table. This is a very simple example, and will not cover all features of the library, but it is a great starting point.
+Here is a brief overview of how to use Mantine React Table. These are very simple examples and will not cover all features of the library, but should be a great starting point.
 
 ### Setup
 
@@ -23,26 +21,21 @@ There are additional steps and customizations you can do with your Mantine Theme
 
 If you need to change the colors of the table components, advanced [Mantine Theming](https://mantine.dev/theming/mantine-provider/#nested-mantineproviders) is covered in the [Customize Components](/docs/guides/customize-components) guide.
 
-### Import MantineReactTable
+### Import MantineReactTable and useMantineReactTable
 
 Once you have everything installed, you can import from `mantine-react-table` like this:
 
 ```tsx
-import { MantineReactTable } from 'mantine-react-table';
+import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 ```
 
-If you are using TypeScript, you may also want to import some TypeScript types from `'mantine-react-table'` to take advantage of the advanced strong type checking and autocompletion features. The `MRT_ColumnDef` type is especially useful for defining your columns in a type-safe way.
+`MantineReactTable` is the main component that you will use to render your table.
 
-```tsx
-import { MantineReactTable } from 'mantine-react-table';
-import { MRT_ColumnDef } from 'mantine-react-table'; // If using TypeScript (optional, but recommended)
-```
+`useMantineReactTable` is the React hook that you will use to define all the columns, data, and other options for your table.
 
 ### Creating Data/Rows
 
 Your data must be an array of objects that have properties matching the accessors in your column definitions. The objects themselves can theoretically be in any shape, but it will be easier to set up your columns if your data is already in a flat object format like the example below, but it is not required.
-
-If you are using TypeScript, remember to define a type for your data, as it can be used as a generic for your Column Definitions later for much better type safety.
 
 #### Simple Data Example
 
@@ -55,37 +48,6 @@ const data = [
   },
   {
     name: 'Sara',
-    age: 25,
-  },
-];
-```
-
-#### Nested Data Example with TypeScript
-
-```tsx
-//if you are using TypeScript, create a type based on the shape of your data that you can use in your column definitions
-interface YourDataType {
-  name: {
-    firstName: string;
-    lastName: string;
-  };
-  age: number;
-}
-
-//a more complex example with nested data
-const data: YourDataType[] = [
-  {
-    name: {
-      firstName: 'John', //accessorKey or accessorFn will need to be "name.firstName" to access this value
-      lastName: 'Doe',
-    },
-    age: 30,
-  },
-  {
-    name: {
-      firstName: 'Sara',
-      lastName: 'Smith',
-    },
     age: 25,
   },
 ];
@@ -105,36 +67,12 @@ const columns = useMemo(
   () => [
     {
       header: 'Name',
-      accessorKey: 'name', //simple accessorKey pointing to flat data
+      accessorKey: 'name', //simple recommended way to define a column
+      //more column options can be added here to enable/disable features, customize look and feel, etc.
     },
     {
       header: 'Age',
-      accessorKey: 'age', //simple accessorKey pointing to flat data
-    },
-  ],
-  [],
-);
-```
-
-#### Nested Column Definition Example with TypeScript
-
-```tsx
-//a more complex example with nested data
-//if using TypeScript, you can use the MRT_ColumnDef type to strongly type your columns (Recommended)
-const columns = useMemo<MRT_ColumnDef<YourDataType>[]>(
-  () => [
-    {
-      header: 'First Name',
-      accessorKey: 'name.firstName', //using accessorKey dot notation to access nested data
-    },
-    {
-      header: 'Last Name',
-      accessorFn: (originalRow) => originalRow.name.lastName, //alternative to accessorKey, using accessorFn
-      id: 'lastName',
-    },
-    {
-      header: 'Age',
-      accessorKey: 'age',
+      accessorFn: (dataRow) => parseInt(dataRow.age), //alternate way to access data if processing logic is needed
     },
   ],
   [],
@@ -147,8 +85,11 @@ Put it all together, and you have a basic table! You can also play around and en
 
 ```tsx
 import React, { useMemo } from 'react';
-import { MantineReactTable } from 'mantine-react-table';
-import { MRT_ColumnDef } from 'mantine-react-table'; // If using TypeScript (optional, but recommended)
+import {
+  MantineReactTable,
+  useMantineReactTable,
+  type MRT_ColumnDef, //if using TypeScript (optional, but recommended)
+} from 'mantine-react-table';
 
 //If using TypeScript, define the shape of your data (optional, but recommended)
 interface Person {
@@ -187,15 +128,18 @@ export default function App() {
     [],
   );
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableRowSelection //enable some features
-      enableColumnOrdering
-      enableGlobalFilter={false} //turn off a feature
-    />
-  );
+  //pass table options to useMantineReactTable
+  const table = useMantineReactTable({
+    columns,
+    data,
+    enableRowSelection: true, //enable some features
+    enableColumnOrdering: true,
+    enableGlobalFilter: false, //turn off a feature
+  });
+
+  //note: you can also pass table options as props directly to <MantineReactTable /> instead of using useMantineReactTable
+  //but that is not recommended and will likely be deprecated in the future
+  return <MantineReactTable table={table} />;
 }
 ```
 
