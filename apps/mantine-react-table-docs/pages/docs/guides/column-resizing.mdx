@@ -25,6 +25,7 @@ Mantine React Table lets you easily change the default widths (sizes) of columns
       'columnResizeMode',
       'defaultColumn',
       'enableColumnResizing',
+      'layoutMode',
       'onColumnSizingChange',
       'onColumnSizingInfoChange',
     ])
@@ -39,7 +40,9 @@ Mantine React Table lets you easily change the default widths (sizes) of columns
 
 ### Relevant State
 
-<StateOptionsTable onlyOptions={new Set(['columnSizing', 'columnSizingInfo'])} />
+<StateOptionsTable
+  onlyOptions={new Set(['columnSizing', 'columnSizingInfo'])}
+/>
 
 ### Change Default Column Widths
 
@@ -49,7 +52,7 @@ This was also covered in the [Data Columns Guide](/docs/guides/data-columns), bu
 
 You can change the width of any column by setting its `size` option on the column definition. `minSize` and `maxSize` are also available to enforce limits during resizing.
 
-```tsx
+```jsx
 const columns = [
   {
     accessorKey: 'id',
@@ -75,14 +78,16 @@ You may notice, however, that the column sizes might not change as much as you w
 
 You can improve this slightly by changing the table layout to `fixed` instead of the default `auto` in the `mantineTableProps`.
 
-```tsx
-<MantineReactTable
-  mantineTableProps={{
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantineTableProps: {
     sx: {
       tableLayout: 'fixed',
     },
-  }}
-/>
+  },
+});
 ```
 
 The columns will still try to increase their width to take up the full width of the table, but the columns that do have a defined size will have their width respected more.
@@ -95,47 +100,55 @@ If you are using either virtualization features or have the layoutMode set to `"
 
 By default, columns will have the following size properties defined:
 
-```tsx
-defaultColumn = { minSize: 40, maxSize: 1000, size: 180 }; //units are in px
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  defaultColumn: { minSize: 40, maxSize: 1000, size: 180 }, //units are in px (these are the default values)
+});
 ```
 
-You can modify the default column widths by setting the `defaultColumn` prop on the table.
+You can modify the default column widths by setting the `defaultColumn` table option.
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  defaultColumn={{
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  defaultColumn: {
     minSize: 20, //allow columns to get smaller than default
     maxSize: 9001, //allow columns to get larger than default
     size: 260, //make columns wider by default
-  }}
-/>
+  },
+});
 ```
 
 ### Enable Column Resizing Feature
 
-`enableColumnResizing` is the boolean prop that enables the column resizing feature.
+`enableColumnResizing` is the boolean table option that enables the column resizing feature.
 
-```tsx
-<MantineReactTable columns={columns} data={data} enableColumnResizing />
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableColumnResizing: true,
+});
 ```
 
 You can disable specific columns from being resizable by setting the `enableResizing` column option to false in their respective column definition.
 
-> When Column Resizing is enabled, a CSS `table-layout: fixed` style is automatically added to the `<table>` element in order to make the browser respect the widths of the columns more.
+> When Column Resizing is enabled, a CSS `table-layout: fixed` style is automatically added to the `<table>` element in order to make the browser respect the widths of the columns more. (Unless layoutMode is set to `"grid"`)
 
 #### Column Resize Mode
 
 The default `columnResizeMode` is `onChange`, which means that column resizing will occur immediately as the user drags the column resize handle. If you are running into performance issues because of many other enabled features, you might want to set the `columnResizeMode` to `onEnd` instead. This will make the column resizing only occur after the user has finished dragging the column resize handle and released their mouse.
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableColumnResizing
-  columnResizeMode="onEnd" //instead of the default "onChange" mode
-/>
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableColumnResizing: true,
+  columnResizeMode: 'onEnd',
+});
 ```
 
 <Example />
@@ -144,23 +157,23 @@ The default `columnResizeMode` is `onChange`, which means that column resizing w
 
 If you want to prevent the columns from growing to fill the width of the table, use this flexbox trick when the layoutMode is `"grid"`:
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableColumnResizing
-  layoutMode="grid" //instead of the default "semantic" layout mode
-  mantineTableHeadCellProps={{
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableColumnResizing: true,
+  layoutMode: 'grid',
+  mantineTableHeadCellProps: {
     sx: {
       flex: '0 0 auto',
     },
-  }}
-  mantineTableBodyCellProps={{
+  },
+  mantineTableBodyCellProps: {
     sx: {
       flex: '0 0 auto',
     },
-  }}
-/>
+  },
+});
 ```
 
 <NoGrowExample />

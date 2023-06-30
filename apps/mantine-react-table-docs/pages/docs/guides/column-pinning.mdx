@@ -32,23 +32,32 @@ Column pinning is a cool feature that lets users pin (freeze) columns to the lef
 
 ### Enable Column Pinning
 
-Column pinning can simply be enabled by setting the `enablePinning` prop to `true`.
+Column pinning can simply be enabled by setting the `enablePinning` table option to `true`.
 
-```tsx
-<MantineReactTable data={data} columns={columns} enablePinning />
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
+  enablePinning: true,
+});
 ```
 
 ### Pin (Freeze) Columns By Default
 
-Columns can start out pinned in your table by setting the `columnPinning` states in `initialState` or `state`.
+Columns can start out pinned in your table by setting the `columnPinning` states in either `initialState` or `state`.
 
-```tsx
-<MantineReactTable
-  data={data}
-  columns={columns}
-  enablePinning
-  initialState={{ columnPinning: { left: ['email'] } }} //pin email column to left by default
-/>
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
+  enablePinning: true,
+  initialState: {
+    columnPinning: {
+      left: ['email'], //pin email column to left by default
+      right: ['mrt-row-actions'], //pin built-in row actions display column to right by default
+    },
+  },
+});
 ```
 
 #### Column Pinning Example
