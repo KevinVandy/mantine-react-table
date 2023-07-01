@@ -1111,13 +1111,4 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
    * Manage state externally any way you want, then pass it back into MRT.
    */
   state?: Partial<MRT_TableState<TData>>;
-  /**
-   * Sequence of features important any dependent feature must be defined first
-   */
-  tableFeatures?: Array<MRT_CreateTableFeature<TData>>;
-  /**
-   * Get access to the table instance via a ref to read state or call built-in methods
-   * @deprecated Use `useMantineReactTable` hook instead
-   */
-  tableInstanceRef?: MutableRefObject<MRT_TableInstance<TData> | null>;
 };

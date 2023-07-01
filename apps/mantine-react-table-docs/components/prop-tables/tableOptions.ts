@@ -1956,16 +1956,6 @@ export const tableOptions: TableOption[] = [
     type: 'Partial<MRT_TableState<TData>>',
   },
   {
-    tableOptionName: 'tableInstanceRef',
-    defaultValue: '',
-    description: '',
-    link: '',
-    linkText: '',
-    required: false,
-    source: 'MRT',
-    type: 'MutableRefObject<MRT_TableInstance<TData> | null>',
-  },
-  {
     tableOptionName: 'rowVirtualizerProps',
     defaultValue: '',
     description: '',

@@ -9,6 +9,7 @@ import {
   type MRT_VirtualItem,
   type MRT_Virtualizer,
 } from '../types';
+import { getCanRankRows } from '../column.utils';
 
 interface Props<TData extends Record<string, any>> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
@@ -57,7 +58,6 @@ export const MRT_TableBody = <TData extends Record<string, any>>({
     density,
     expanded,
     globalFilter,
-    globalFilterFn,
     pagination,
     sorting,
   } = getState();
@@ -72,18 +72,11 @@ export const MRT_TableBody = <TData extends Record<string, any>>({
       ? rowVirtualizerProps({ table })
       : rowVirtualizerProps;
 
-  const shouldRankResults = useMemo(
+  const shouldRankRows = useMemo(
     () =>
-      !manualExpanding &&
-      !manualFiltering &&
-      !manualGrouping &&
-      !manualSorting &&
-      enableGlobalFilterRankedResults &&
-      globalFilter &&
-      globalFilterFn === 'fuzzy' &&
-      expanded !== true &&
+      getCanRankRows(table) &&
       !Object.values(sorting).some(Boolean) &&
-      !Object.values(expanded).some(Boolean),
+      globalFilter,
     [
       enableGlobalFilterRankedResults,
       expanded,
@@ -97,7 +90,7 @@ export const MRT_TableBody = <TData extends Record<string, any>>({
   );
 
   const rows = useMemo(() => {
-    if (!shouldRankResults) return getRowModel().rows;
+    if (!shouldRankRows) return getRowModel().rows;
     const rankedRows = getPrePaginationRowModel().rows.sort((a, b) =>
       rankGlobalFuzzy(a, b),
     );
@@ -107,8 +100,8 @@ export const MRT_TableBody = <TData extends Record<string, any>>({
     }
     return rankedRows;
   }, [
-    shouldRankResults,
-    shouldRankResults ? getPrePaginationRowModel().rows : getRowModel().rows,
+    shouldRankRows,
+    shouldRankRows ? getPrePaginationRowModel().rows : getRowModel().rows,
     pagination.pageIndex,
     pagination.pageSize,
   ]);

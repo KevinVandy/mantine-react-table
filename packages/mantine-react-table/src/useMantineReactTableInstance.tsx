@@ -12,11 +12,12 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import {
-  prepareColumns,
   getAllLeafColumnDefs,
-  getDefaultColumnOrderIds,
-  getDefaultColumnFilterFn,
+  getCanRankRows,
   getColumnId,
+  getDefaultColumnFilterFn,
+  getDefaultColumnOrderIds,
+  prepareColumns,
   showExpandColumn,
 } from './column.utils';
 import {
@@ -33,6 +34,7 @@ import {
   type MRT_ColumnOrderState,
   type MRT_GroupingState,
   type MRT_FilterFnsState,
+  type MRT_SortingState,
 } from './types';
 import { MRT_ExpandAllButton } from './buttons/MRT_ExpandAllButton';
 import { MRT_ExpandButton } from './buttons/MRT_ExpandButton';
@@ -372,11 +374,6 @@ export const useMantineReactTableInstance: <TData extends Record<string, any>>(
       tableOptions.onShowToolbarDropZoneChange ?? setShowToolbarDropZone,
   } as MRT_TableInstance<TData>;
 
-  //deprecated
-  if (tableOptions.tableInstanceRef) {
-    tableOptions.tableInstanceRef.current = table;
-  }
-
   //if page index is out of bounds, set it to the last page
   useEffect(() => {
     const { pageIndex, pageSize } = table.getState().pagination;
@@ -387,6 +384,23 @@ export const useMantineReactTableInstance: <TData extends Record<string, any>>(
       table.setPageIndex(Math.floor(totalRowCount / pageSize));
     }
   }, [tableOptions.rowCount, table.getPrePaginationRowModel().rows.length]);
+
+  //turn off sort when global filter is looking for ranked results
+  const appliedSort = useRef<MRT_SortingState>(table.getState().sorting);
+  useEffect(() => {
+    if (table.getState().sorting.length) {
+      appliedSort.current = table.getState().sorting;
+    }
+  }, table.getState().sorting);
+
+  useEffect(() => {
+    if (!getCanRankRows(table)) return;
+    if (table.getState().globalFilter) {
+      table.setSorting([]);
+    } else {
+      table.setSorting(() => appliedSort.current || []);
+    }
+  }, [table.getState().globalFilter]);
 
   return table;
 };
