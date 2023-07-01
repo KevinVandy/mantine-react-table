@@ -114,7 +114,6 @@ const fontAwesomeIcons: Partial<MRT_Icons> = {
 
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -139,7 +138,7 @@ const Example = () => {
         header: 'State',
       },
     ],
-    [], //end
+    [],
   );
 
   return (

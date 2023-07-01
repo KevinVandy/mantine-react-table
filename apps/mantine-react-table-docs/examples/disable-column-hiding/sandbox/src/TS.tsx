@@ -33,7 +33,6 @@ const Example = () => {
 
   const data = useMemo(
     () => [
-      //data definitions...
       {
         firstName: 'Dylan',
         lastName: 'Murray',
@@ -69,7 +68,6 @@ const Example = () => {
         city: 'Charleston',
         state: 'South Carolina',
       },
-      //end
     ],
     [],
   );

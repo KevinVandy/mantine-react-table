@@ -10,7 +10,7 @@ const data = [
     address: '261 Erdman Ford',
     city: 'East Daphne',
     state: 'Kentucky',
-  }, //data definitions...
+  },
   {
     userId: 'be731030-df83-419c-b3d6-9ef04e7f4a9f',
     firstName: 'Raquel',
@@ -20,12 +20,10 @@ const data = [
     city: 'Columbus',
     state: 'Ohio',
   },
-  //end
 ];
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -52,7 +50,7 @@ const Example = () => {
         header: 'State',
       },
     ],
-    [], //end
+    [],
   );
 
   //optionally, you can manage the row selection state yourself

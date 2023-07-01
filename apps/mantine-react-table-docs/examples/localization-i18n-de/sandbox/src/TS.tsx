@@ -10,7 +10,6 @@ import { MRT_Localization_DE } from 'mantine-react-table/locales/de';
 import { data, Person } from './makeData';
 
 const columns: MRT_ColumnDef<Person>[] = [
-  //column definitions...
   {
     accessorKey: 'firstName',
     header: 'Vorname',
@@ -24,7 +23,6 @@ const columns: MRT_ColumnDef<Person>[] = [
     accessorKey: 'age',
     header: 'Das Alter',
   },
-  //end
 ];
 
 const Example = () => {

@@ -11,7 +11,6 @@ export const Example = () => {
   const { colorScheme } = useMantineTheme();
 
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -35,7 +34,6 @@ export const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   const table = useMantineReactTable({

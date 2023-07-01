@@ -5,7 +5,6 @@ import { Button } from '@mantine/core';
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -25,7 +24,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   const [progress, setProgress] = useState(0);

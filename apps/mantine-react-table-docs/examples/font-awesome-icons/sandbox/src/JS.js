@@ -98,7 +98,6 @@ const fontAwesomeIcons = {
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -123,7 +122,7 @@ const Example = () => {
         header: 'State',
       },
     ],
-    [], //end
+    [],
   );
 
   return (

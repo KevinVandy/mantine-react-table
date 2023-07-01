@@ -4,7 +4,6 @@ import { data } from './makeData';
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () => [
       {
         accessorKey: 'id',
@@ -28,7 +27,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   return (

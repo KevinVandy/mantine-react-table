@@ -5,7 +5,6 @@ import { data } from './makeData';
 const Example = () => {
   const columns = useMemo(
     () => [
-      //column definitions...
       {
         accessorKey: 'firstName',
         header: 'First Name',
@@ -26,7 +25,6 @@ const Example = () => {
         accessorKey: 'state',
         header: 'State',
       },
-      //end
     ],
     [],
   );

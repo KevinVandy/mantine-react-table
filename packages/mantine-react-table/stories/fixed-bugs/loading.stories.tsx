@@ -60,7 +60,6 @@ export const NestedLoadingDataWithInitialExpanded = () => {
 export const NestedLoadingDataWithInitialFilter = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
-      //column definitions...
       {
         accessorKey: 'name.firstName',
         header: 'First Name',
@@ -81,7 +80,6 @@ export const NestedLoadingDataWithInitialFilter = () => {
         accessorKey: 'state',
         header: 'State',
       },
-      //end
     ],
     [],
   );
@@ -101,7 +99,6 @@ export const NestedLoadingDataWithInitialFilter = () => {
 export const NestedLoadingDataWithInitialGroup = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
-      //column definitions...
       {
         accessorKey: 'name.firstName',
         header: 'First Name',
@@ -122,7 +119,6 @@ export const NestedLoadingDataWithInitialGroup = () => {
         accessorKey: 'state',
         header: 'State',
       },
-      //end
     ],
     [],
   );
@@ -142,7 +138,6 @@ export const NestedLoadingDataWithInitialGroup = () => {
 export const NestedLoadingDataWithInitialPage = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
-      //column definitions...
       {
         accessorKey: 'name.firstName',
         header: 'First Name',
@@ -163,7 +158,6 @@ export const NestedLoadingDataWithInitialPage = () => {
         accessorKey: 'state',
         header: 'State',
       },
-      //end
     ],
     [],
   );
@@ -183,7 +177,6 @@ export const NestedLoadingDataWithInitialPage = () => {
 export const NestedLoadingDataWithInitialSort = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
-      //column definitions...
       {
         accessorKey: 'name.firstName',
         header: 'First Name',
@@ -204,7 +197,6 @@ export const NestedLoadingDataWithInitialSort = () => {
         accessorKey: 'state',
         header: 'State',
       },
-      //end
     ],
     [],
   );

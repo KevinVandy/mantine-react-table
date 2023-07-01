@@ -63,7 +63,6 @@ export const data = [
 
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -90,7 +89,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   return (

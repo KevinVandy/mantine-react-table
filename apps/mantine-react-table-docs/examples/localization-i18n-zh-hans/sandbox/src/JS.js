@@ -10,7 +10,6 @@ import { MRT_Localization_ZH_HANS } from 'mantine-react-table/locales/zh-Hans';
 import { data } from './makeData';
 
 const columns = [
-  //column definitions...
   {
     accessorKey: 'firstName',
     header: '名',
@@ -24,7 +23,6 @@ const columns = [
     accessorKey: 'age',
     header: '年龄',
   },
-  //end
 ];
 
 const Example = () => {

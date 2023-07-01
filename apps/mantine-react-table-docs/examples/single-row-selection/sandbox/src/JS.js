@@ -2,7 +2,6 @@ import React, { useMemo, useState } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 
 const data = [
-  //data definitions...
   {
     userId: '3f25309c-8fa1-470f-811e-cdb082ab9017', //we'll use this as a unique row id
     firstName: 'Dylan',
@@ -21,12 +20,10 @@ const data = [
     city: 'Columbus',
     state: 'Ohio',
   },
-  //end
 ];
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -53,7 +50,7 @@ const Example = () => {
         header: 'State',
       },
     ],
-    [], //end
+    [],
   );
 
   //optionally, you can manage the row selection state yourself

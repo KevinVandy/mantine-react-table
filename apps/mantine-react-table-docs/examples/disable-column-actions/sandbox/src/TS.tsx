@@ -23,7 +23,6 @@ const Example = () => {
   );
 
   const data = useMemo(
-    //data definitions...
     () => [
       {
         id: 1,
@@ -37,7 +36,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   return <MantineReactTable columns={columns} data={data} />;

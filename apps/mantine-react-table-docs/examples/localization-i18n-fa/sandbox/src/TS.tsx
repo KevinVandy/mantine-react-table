@@ -11,7 +11,6 @@ import { data, Person } from './makeData';
 import { MantineProvider, useMantineTheme } from '@mantine/core';
 
 const columns: MRT_ColumnDef<Person>[] = [
-  //column definitions...
   {
     accessorKey: 'firstName',
     header: 'نام',
@@ -25,7 +24,6 @@ const columns: MRT_ColumnDef<Person>[] = [
     accessorKey: 'age',
     header: 'سن',
   },
-  //end
 ];
 
 const Example = () => {

@@ -4,7 +4,6 @@ import { data, Person } from './makeData';
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () =>
       [
         {
@@ -29,7 +28,6 @@ const Example = () => {
         },
       ] as MRT_ColumnDef<Person>[],
     [],
-    //end
   );
 
   return (

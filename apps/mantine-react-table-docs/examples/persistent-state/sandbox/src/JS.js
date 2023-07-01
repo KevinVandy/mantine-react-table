@@ -3,7 +3,6 @@ import { Button } from '@mantine/core';
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import { data } from './makeData';
 
-//column definitions...
 const columns = [
   {
     accessorKey: 'firstName',
@@ -26,7 +25,6 @@ const columns = [
     header: 'Salary',
   },
 ];
-//end
 
 const Example = () => {
   const isFirstRender = useRef(true);

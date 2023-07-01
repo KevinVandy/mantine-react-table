@@ -1,12 +1,7 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { type Meta } from '@storybook/react';
-import {
-  MantineReactTable,
-  type MRT_ColumnDef,
-  type MRT_TableInstance,
-} from '../../src';
+import { MantineReactTable, type MRT_ColumnDef } from '../../src';
 import { faker } from '@faker-js/faker';
-import { Button } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Features/Selection Examples',
@@ -161,25 +156,3 @@ export const SelectCheckboxSecondaryColor = () => (
     mantineSelectCheckboxProps={{ color: 'orange' }}
   />
 );
-
-export const SelectionWithInstanceRef = () => {
-  const tableInstanceRef = useRef<MRT_TableInstance<(typeof data)[0]>>(null);
-
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableRowSelection
-      tableInstanceRef={tableInstanceRef}
-      renderTopToolbarCustomActions={() => (
-        <Button
-          onClick={() =>
-            console.info(tableInstanceRef.current?.getSelectedRowModel().rows)
-          }
-        >
-          Log Selected Rows
-        </Button>
-      )}
-    />
-  );
-};

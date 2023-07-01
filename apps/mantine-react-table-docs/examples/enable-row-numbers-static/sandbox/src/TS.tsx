@@ -5,7 +5,6 @@ import { data, Person } from './makeData';
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
-      //column definitions...
       {
         accessorKey: 'firstName',
         header: 'First Name',
@@ -26,7 +25,6 @@ const Example = () => {
         accessorKey: 'state',
         header: 'State',
       },
-      //end
     ],
 
     [],

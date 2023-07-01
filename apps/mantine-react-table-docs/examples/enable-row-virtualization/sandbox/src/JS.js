@@ -4,7 +4,6 @@ import { makeData } from './makeData';
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -48,7 +47,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   //optionally access the underlying virtualizer instance

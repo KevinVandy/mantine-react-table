@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import { Menu, Divider } from '@mantine/core';
 
-//data definitions...
 const data = [
   {
     id: 1,
@@ -15,7 +14,6 @@ const data = [
     lastName: 'Kohler',
   },
 ];
-//end
 
 const Example = () => {
   const columns = useMemo(

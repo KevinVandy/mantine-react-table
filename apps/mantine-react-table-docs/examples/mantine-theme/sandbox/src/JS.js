@@ -2,7 +2,6 @@ import React from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 import { MantineProvider, useMantineTheme } from '@mantine/core';
 
-//column definitions...
 const columns = [
   {
     accessorKey: 'firstName',
@@ -25,9 +24,7 @@ const columns = [
     header: 'State',
   },
 ];
-//end
 
-//data definitions...
 const data = [
   {
     firstName: 'Dylan',
@@ -65,7 +62,6 @@ const data = [
     state: 'South Carolina',
   },
 ];
-//end
 
 const Example = () => {
   const globalTheme = useMantineTheme(); //(optional) if you already have a theme defined in your app root, you can import here

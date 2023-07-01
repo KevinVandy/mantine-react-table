@@ -17,6 +17,9 @@ import ExternalExample from '../../../examples/external-toolbar';
 
 This guide shows you how to [hide](#hide-or-disable-toolbars), [customize](#customize-toolbar-buttons), or [override](#override-with-custom-toolbar-components) the top and bottom toolbars in Mantine React Table.
 
+> Note: This guide has become much more simple since the introduction of the `useMantineReactTable` hook. <br />
+> No more `tableInstanceRef` hacks required!
+
 ### Relevant Table Options
 
 <TableOptionsTable
@@ -51,15 +54,29 @@ This guide shows you how to [hide](#hide-or-disable-toolbars), [customize](#cust
 
 ### Hide or Disable Toolbars
 
-There are `enableTopToolbar` and `enableBottomToolbar` props that you can use to show or hide the toolbars.
+There are `enableTopToolbar` and `enableBottomToolbar` table options that you can use to show or hide the toolbars.
 
-```tsx
-<MantineReactTable
-  data={data}
-  columns={columns}
-  enableTopToolbar={false} //hide top toolbar
-  enableBottomToolbar={false} //hide bottom toolbar
-/>
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
+  enableTopToolbar: false,
+  enableBottomToolbar: false,
+});
+
+return <MantineReactTable table={table} />;
+```
+
+Alternatively, you could just use a different MRT component that does not have the toolbars built-in. For example, use the `<MRT_TableContainer />` or `<MRT_Table />` components instead of the `<MantineReactTable />` component.
+
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
+});
+
+//This MRT sub-component does not contain the code for the toolbars. MRT_TablePaper and MantineReactTable do.
+return <MRT_TableContainer table={table} />;
 ```
 
 #### No Toolbars Example
@@ -68,55 +85,55 @@ There are `enableTopToolbar` and `enableBottomToolbar` props that you can use to
 
 ### Customize Toolbar buttons
 
-Everything in the toolbars is customizable. You can add your own buttons or change the order of the built-in buttons.
+Everything in the toolbars are customizable. You can add your own buttons or change the order of the built-in buttons.
 
 #### Customize Built-In Internal Toolbar Button Area
 
-The `renderToolbarInternalActions` prop allows you to redefine the built-in buttons that usually reside in the top right of the top toolbar. You can reorder the icon buttons or even insert your own custom buttons. All of the built-in buttons are available to be imported from 'mantine-react-table'.
+The `renderToolbarInternalActions` table option allows you to redefine the built-in buttons that usually reside in the top right of the top toolbar. You can reorder the icon buttons or even insert your own custom buttons. All of the built-in buttons are available to be imported from 'mantine-react-table'.
 
-```tsx
+```jsx
 import {
   MantineReactTable,
   MRT_ShowHideColumnsButton,
   MRT_ToggleFullScreenButton,
 } from 'mantine-react-table';
-//...
-return (
-  <MantineReactTable
-    data={data}
-    columns={columns}
-    renderToolbarInternalActions={({ table }) => (
-      <>
-        {/* add your own custom print button or something */}
-        <IconButton onClick={() => showPrintPreview(true)}>
-          <PrintIcon />
-        </IconButton>
-        {/* built-in buttons (must pass in table prop for them to work!) */}
-        <MRT_ShowHideColumnsButton table={table} />
-        <MRT_ToggleFullScreenButton table={table} />
-      </>
-    )}
-  />
-);
+
+const table = useMantineReactTable({
+  data,
+  columns,
+  renderToolbarInternalActions: ({ table }) => (
+    <>
+      {/* add your own custom print button or something */}
+      <IconButton onClick={() => showPrintPreview(true)}>
+        <PrintIcon />
+      </IconButton>
+      {/* built-in buttons (must pass in table prop for them to work!) */}
+      <MRT_ShowHideColumnsButton table={table} />
+      <MRT_ToggleFullScreenButton table={table} />
+    </>
+  ),
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 #### Add Custom Toolbar Buttons/Components
 
-The `renderTopToolbarCustomActions` and `renderBottomToolbarCustomActions` props allow you to add your own custom buttons or components to the top and bottom toolbar areas. These props are functions that return a ReactNode. You can add your own buttons or whatever components you want.
+The `renderTopToolbarCustomActions` and `renderBottomToolbarCustomActions` table options allow you to add your own custom buttons or components to the top and bottom toolbar areas. These props are functions that return a ReactNode. You can add your own buttons or whatever components you want.
 
-In all of these `render...` props, you get access to the underlying `table` instance that you can use to perform actions or extract data from the table.
+In all of these `render...` table options, you get access to the `table` instance that you can use to perform actions or extract data from the table.
 
-```tsx
-<MantineReactTable
-  data={data}
-  columns={columns}
-  enableRowSelection
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
+  enableRowSelection: true,
   //Simply adding a table title to the top-left of the top toolbar
-  renderTopToolbarCustomActions={() => (
+  renderTopToolbarCustomActions: () => (
     <Typography variant="h3">Customer's Table</Typography>
-  )}
+  ),
   //Adding a custom button to the bottom toolbar
-  renderBottomToolbarCustomActions={({ table }) => (
+  renderBottomToolbarCustomActions: ({ table }) => (
     <Button
       variant="contained"
       color="lightblue"
@@ -125,53 +142,58 @@ In all of these `render...` props, you get access to the underlying `table` inst
     >
       Download Selected Rows
     </Button>
-  )}
-/>
+  ),
+});
+
+return <MantineReactTable table={table} />;
 ```
 
-#### Full Custom Top Toolbar Example
+#### Custom Toolbar Actions Example
 
 <CustomTopToolbarExample />
 
 ### Position Toolbar Areas
 
-The `positionToolbarAlertBanner`, `positionGlobalFilter`, `positionPagination`, and `positionToolbarDropZone` props allow you to swap the default position of certain areas of the toolbars. Experiment moving them around until you find a layout that works for you.
+The `positionToolbarAlertBanner`, `positionGlobalFilter`, `positionPagination`, and `positionToolbarDropZone` table options allow you to swap the default position of certain areas of the toolbars. Experiment moving them around until you find a layout that works for you.
 
-```tsx
-<MantineReactTable
-  data={data}
-  columns={columns}
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns
   //if rendering top toolbar buttons, sometimes you want alerts to be at the bottom
-  positionToolbarAlertBanner="bottom"
-  positionGlobalFilter="left" //move the search box to the left of the top toolbar
-  positionPagination="top"
-  renderTopToolbarCustomActions={() => <Box>...</Box>}
-/>
+  positionToolbarAlertBanner: 'bottom',
+  positionGlobalFilter: 'left', //move the search box to the left of the top toolbar
+  positionPagination: 'top',
+  renderTopToolbarCustomActions: () => <Box>...</Box>,
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 ### Customize Toolbar Props and Styles
 
-The `mantineTopToolbarProps`, `mantineBottomToolbarProps`, `mantineToolbarAlertBannerProps`, and `mantineToolbarAlertBannerBadgeProps` props allow you to customize the props and styles of the underlying Mantine components that make up the toolbar components. Remember that you can pass CSS overrides to their `sx` or `style` props. Some have found this useful for forcing `position: absolute` on alerts, etc.
+The `mantineTopToolbarProps`, `mantineBottomToolbarProps`, `mantineToolbarAlertBannerProps`, and `mantineToolbarAlertBannerBadgeProps` table options allow you to customize the props and styles of the underlying Mantine components that make up the toolbar components. Remember that you can pass CSS overrides to their `sx` or `style` props. Some have found this useful for forcing `position: absolute` on alerts, etc.
 
 ### Customize Linear Progress Bars
 
-The progress bars that display in both the top and bottom toolbars become visible when either the `isLoading` or `showProgressBars` state options are set to `true`. You can customize the progress bars by passing in props to the `mantineProgressProps` prop. By default, the progress bars have an indeterminate state, but you can set the `value` prop to a number between 0 and 100 to show real progress values if your table is doing some complicated long running tasks that you want to show progress for. Visit the [Mantine Progress docs](https://mantine.dev/core/progress/) to learn more.
+The progress bars that display in both the top and bottom toolbars become visible when either the `isLoading` or `showProgressBars` state options are set to `true`. You can customize the progress bars by passing in props to the `mantineProgressProps` table option. By default, the progress bars have a full animated progress bar, but you can set the `value` prop to a number between 0 and 100 to show real progress values if your table is doing some complicated long running tasks that you want to show progress for. Visit the [Mantine Progress docs](https://mantine.dev/core/progress/) to learn more.
 
-```tsx
-<MantineReactTable
-  data={data}
-  columns={columns}
-  mantineProgressProps={({ isTopToolbar }) => ({
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
+  mantineProgressProps: ({ isTopToolbar }) => ({
     color: 'orange',
     sx: { display: isTopToolbar ? 'block' : 'none' }, //only show top toolbar progress bar
     value: fetchProgress, //show precise real progress value if you so desire
-    variant: 'determinate',
-  })}
-  state={{
+  }),
+  state: {
     isLoading,
     showProgressBars,
-  }}
-/>
+  },
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 ### Customize Toolbar Alert Banner
@@ -180,75 +202,61 @@ The toolbar alert banner is an internal component used to display alerts to the 
 
 However, you can repurpose this alert banner to show your own custom messages too. You can force the alert banner to show by setting the `showAlertBanner` state option to `true`. You can then customize the messages and other stylings using the `mantineToolbarAlertBannerProps` to create your custom message. You probably saw this in the [Remote Data](/docs/examples/remote) or [React Query](/docs/examples/react-query) examples.
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
   //show a custom error message if there was an error fetching data in the top toolbar
-  mantineToolbarAlertBannerProps={
-    isError
-      ? {
-          color: 'red',
-          children: 'Network Error. Could not fetch data.',
-        }
-      : undefined
-  }
-  state={{
+  mantineToolbarAlertBannerProps: isError
+    ? {
+        color: 'red',
+        children: 'Network Error. Could not fetch data.',
+      }
+    : undefined,
+  state: {
     showAlertBanner: isError,
     showProgressBars: isFetching,
-  }}
-/>
+  },
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 ### Override with Custom Toolbar Components
 
 If you want to completely override the default toolbar components, you can do so by passing in your own custom components to the `renderTopToolbar` and `renderBottomToolbar` props.
 
-The drawback to this approach is that you will not get all the automatic features of the default toolbar components, such as the automatic alert banner, progress bars, etc. You will have to implement all of that yourself if you still want those features.
-
-```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  renderTopToolbar={({ table }) => <Box></Box>}
-  renderBottomToolbar={({ table }) => <Box></Box>}
-/>
-```
-
-#### Import MRT Components for Custom Toolbars
-
-If you are using a custom toolbar, you can still import some of the built-in MRT components to use in your custom toolbar. For example, you can import all of the built-in internal toolbar icon buttons components and use them in your custom toolbar.
+The drawback to this approach is that you will not get all the automatic features of the default toolbar components, such as the automatic alert banner, progress bars, etc. You will have to implement all of that yourself if you still want those features. Though you can also just import those MRT components and use them in your custom toolbar.
 
 ```jsx
 import {
+  MRT_GlobalFilterTextInput,
+  MRT_TablePagination,
   MantineReactTable,
-  MRT_ShowHideColumnsButton, // import the built-in show/hide columns button
-  MRT_ToggleFullScreenButton, // import the built-in full screen toggle button
-} from 'mantine-react-table';
-//...
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    renderTopToolbar={({ table }) => (
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography>Custom Toolbar</Typography>
-        <Box>
-          <MRT_ShowHideColumnsButton table={table} />
-          <MRT_ToggleFullScreenButton table={table} />
-        </Box>
-      </Box>
-    )}
-  />
-);
+  useMantineReactTable,
+} from '@mantine/mantine-react-table';
+
+const table = useMantineReactTable({
+  data,
+  columns,
+  renderTopToolbar: ({ table }) => (
+    <Flex align="center" justify="space-between">
+      <MRT_GlobalFilterTextInput table={table} />
+      <MRT_TablePagination table={table} />
+    </Flex>
+  ),
+  renderBottomToolbar: ({ table }) => (
+    <Box>
+      <Button>Download</Button>
+    </Box>
+  ),
+});
+
+return <MantineReactTable table={table} />;
 ```
 
-### Create Your Own External Toolbar Component
+### Build Your Own Toolbar
 
-You may want to separate out your own toolbar functionality away from the main table component. MRT lets you do this and still connect your custom components to the table instance using the `tableInstanceRef` prop.
-
-You can import import the MRT Internal Toolbar button components and use them in your custom toolbar, just like you can when customizing the built-in toolbar, BUT there are some extra re-render hacks that you have to do to make the icon buttons work properly. See the example below:
-
-> Passing the `tableInstanceRef` as a prop for the `table` prop that MRT\_\* components need also requires some weird re-render hacks to make the icon buttons work properly, because refs do not trigger re-renders in React.
+Instead of overriding the toolbar components up above, you may want 100% control over the layout and styling of your table controls and where they are on the page. You can do this by just using a MRT sub component such as `<MRT_TableContainer />` for the table component, which does not have the internal toolbar components built-in. Optionally, build your own custom toolbar components using the other MRT sub components.
 
 <ExternalExample />

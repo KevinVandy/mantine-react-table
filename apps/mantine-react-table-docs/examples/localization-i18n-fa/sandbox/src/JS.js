@@ -11,7 +11,6 @@ import { data } from './makeData';
 import { MantineProvider, useMantineTheme } from '@mantine/core';
 
 const columns = [
-  //column definitions...
   {
     accessorKey: 'firstName',
     header: 'نام',
@@ -25,7 +24,6 @@ const columns = [
     accessorKey: 'age',
     header: 'سن',
   },
-  //end
 ];
 
 const Example = () => {

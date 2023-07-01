@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 import { Button } from '@mantine/core';
 
-//data definitions...
 export const data = [
   {
     id: '1',
@@ -77,11 +76,9 @@ export const data = [
     ],
   },
 ];
-//end
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -108,7 +105,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   const initialExpandedRootRows = useMemo(

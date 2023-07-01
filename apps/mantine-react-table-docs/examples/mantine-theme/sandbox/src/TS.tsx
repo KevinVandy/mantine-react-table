@@ -10,7 +10,6 @@ type Person = {
   state: string;
 };
 
-//column definitions...
 const columns: MRT_ColumnDef<Person>[] = [
   {
     accessorKey: 'firstName',
@@ -33,9 +32,7 @@ const columns: MRT_ColumnDef<Person>[] = [
     header: 'State',
   },
 ];
-//end
 
-//data definitions...
 const data = [
   {
     firstName: 'Dylan',
@@ -73,7 +70,6 @@ const data = [
     state: 'South Carolina',
   },
 ];
-//end
 
 const Example = () => {
   const globalTheme = useMantineTheme(); //(optional) if you already have a theme defined in your app root, you can import here

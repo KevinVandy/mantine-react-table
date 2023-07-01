@@ -61,7 +61,6 @@ export const data = [
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -88,7 +87,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   return (

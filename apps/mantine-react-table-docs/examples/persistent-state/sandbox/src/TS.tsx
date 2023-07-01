@@ -11,7 +11,6 @@ import {
 } from 'mantine-react-table';
 import { data, type Person } from './makeData';
 
-//column definitions...
 const columns: MRT_ColumnDef<Person>[] = [
   {
     accessorKey: 'firstName',
@@ -34,7 +33,6 @@ const columns: MRT_ColumnDef<Person>[] = [
     header: 'Salary',
   },
 ];
-//end
 
 const Example = () => {
   const isFirstRender = useRef(true);

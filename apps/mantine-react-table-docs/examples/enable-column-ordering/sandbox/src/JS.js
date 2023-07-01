@@ -13,7 +13,7 @@ const Example = () => {
         accessorKey: 'lastName',
         header: 'Last Name',
       },
-      //column definitions...
+
       {
         accessorKey: 'address',
         header: 'Address',
@@ -22,7 +22,7 @@ const Example = () => {
         accessorKey: 'city',
         header: 'City',
       },
-      //end
+
       {
         accessorKey: 'state',
         enableColumnOrdering: false, //disable column ordering for this column,

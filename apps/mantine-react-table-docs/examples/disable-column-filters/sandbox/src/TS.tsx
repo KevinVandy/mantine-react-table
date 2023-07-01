@@ -10,7 +10,7 @@ const Example = () => {
           enableColumnFilter: false, // could disable just this column's filter
           header: 'ID',
         },
-        //column definitions...
+
         {
           accessorKey: 'firstName',
           header: 'First Name',
@@ -23,13 +23,11 @@ const Example = () => {
           accessorKey: 'lastName',
           header: 'Last Name',
         },
-        //end
       ] as MRT_ColumnDef<(typeof data)[0]>[],
     [],
   );
 
   const data = useMemo(
-    //data definitions...
     () => [
       {
         id: 1,
@@ -45,7 +43,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   return (

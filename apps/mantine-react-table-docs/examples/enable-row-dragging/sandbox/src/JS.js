@@ -5,7 +5,6 @@ import { data } from './makeData';
 
 const Example = () => {
   const columns = useMemo(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -21,7 +20,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   const [data1, setData1] = useState(() => data.slice(0, 3));

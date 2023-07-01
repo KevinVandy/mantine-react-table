@@ -10,7 +10,6 @@ import { data, Person } from './makeData';
 
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -26,7 +25,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   const [data1, setData1] = useState<Person[]>(() => data.slice(0, 3));

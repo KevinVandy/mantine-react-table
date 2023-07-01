@@ -6,7 +6,6 @@ const Example = () => {
   const columns = useMemo(
     () =>
       [
-        //column definitions...
         {
           accessorKey: 'firstName',
           header: 'First Name',
@@ -31,7 +30,6 @@ const Example = () => {
           accessorKey: 'state',
           header: 'State',
         },
-        //end
       ] as MRT_ColumnDef<(typeof data)[0]>[],
     [],
   );

@@ -16,7 +16,6 @@ export type Person = {
   subRows?: Person[]; //Each person can have sub rows of more people
 };
 
-//data definitions...
 export const data: Person[] = [
   {
     id: '1',
@@ -91,11 +90,9 @@ export const data: Person[] = [
     ],
   },
 ];
-//end
 
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
-    //column definitions...
     () => [
       {
         accessorKey: 'firstName',
@@ -122,7 +119,6 @@ const Example = () => {
       },
     ],
     [],
-    //end
   );
 
   const initialExpandedRootRows = useMemo<MRT_ExpandedState>(

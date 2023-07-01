@@ -489,7 +489,7 @@ export const columnOptions: ColumnOption[] = [
     source: 'Mantine',
     type: 'RangeSliderProps | ({ column, table }) => RangeSliderProps',
   },
-    {
+  {
     columnOption: 'mantineFilterSelectProps',
     defaultValue: '',
     description: '',

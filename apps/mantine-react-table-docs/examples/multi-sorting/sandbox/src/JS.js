@@ -9,7 +9,7 @@ const columns = [
     header: 'First Name',
     sortDescFirst: false, //sort first name in ascending order by default on first sort click (default for non-numeric columns)
   },
-  //column definitions...
+
   {
     accessorKey: 'lastName',
     header: 'Last Name',
@@ -22,7 +22,7 @@ const columns = [
     accessorKey: 'state',
     header: 'State',
   },
-  //end
+
   {
     accessorKey: 'salary',
     header: 'Salary',
