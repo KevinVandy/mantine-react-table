@@ -50,13 +50,13 @@ There is a tiny bit of extra overhead that gets added to your table's rendering 
 
 Enabling row virtualization is as simple as setting the `enableRowVirtualization` prop to `true`. However, you will probably also want to turn off pagination, which you can do by setting `enablePagination` to `false`.
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enablePagination={false}
-  enableRowVirtualization
-/>
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enablePagination: false, //turn off pagination
+  enableRowVirtualization: true, //enable row virtualization
+});
 ```
 
 Take a look at the example below with 10,000 rows!
@@ -67,8 +67,12 @@ Take a look at the example below with 10,000 rows!
 
 Enabling column virtualization is also as simple as setting the `enableColumnVirtualization` prop to `true`.
 
-```tsx
-<MantineReactTable columns={columns} data={data} enableColumnVirtualization />
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableColumnVirtualization: true, //enable column virtualization
+});
 ```
 
 Take a look at the example below with 500 columns!
@@ -81,11 +85,11 @@ Take a look at the example below with 500 columns!
 
 When either Row or Column Virtualization is enabled, a few other props automatically get set internally.
 
-#### `layoutMode` Prop
+#### layoutMode Table Option
 
 The `layoutMode` prop is automatically set to the `'grid'` value when either row or column virtualization is enabled, which means that all of the table markup will use CSS Grid and Flexbox instead of the traditional semantic styles that usually come with table tags. This is necessary to make the virtualization work properly with decent performance.
 
-#### `enableStickyHeader` Prop
+#### enableStickyHeader Table Option
 
 The `enableStickyHeader` prop is automatically set to `true` when row virtualization is enabled. This keeps the table header sticky and visible while scrolling and adds a default max-height of 100vh to the table container.
 
@@ -94,21 +98,21 @@ The `enableStickyHeader` prop is automatically set to `true` when row virtualiza
 You can adjust some of the virtualizer props that are used internally with the `rowVirtualizerProps` and `columnVirtualizerProps` props. The most useful virtualizer props are the `overscan` and `estimateSize` options. You may want to adjust these values if you have unusual row heights or column widths that are causing the default scrolling to act weirdly.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableColumnVirtualization
-  enablePagination={false}
-  enableRowVirtualization
-  columnVirtualizerProps={{
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableColumnVirtualization: true,
+  enablePagination: false,
+  enableRowVirtualization: true,
+  columnVirtualizerProps: {
     overscan: 5, //adjust the number of columns that are rendered to the left and right of the visible area of the table
     estimateSize: () => 400, //if your columns are wider or , try tweaking this value to make scrollbar size more accurate
-  }}
-  rowVirtualizerProps={{
+  },
+  rowVirtualizerProps: {
     overscan: 10, //adjust the number or rows that are rendered above and below the visible area of the table
     estimateSize: () => 100, //if your rows are taller than normal, try tweaking this value to make scrollbar size more accurate
-  }}
-/>
+  },
+});
 ```
 
 See the official TanStack [Virtualizer Options API Docs](https://tanstack.com/virtual/v3/docs/api/virtualizer#optional-options) for more information.
@@ -124,20 +128,25 @@ const rowVirtualizerInstanceRef = useRef<Virtualizer>(null);
 useEffect(() => {
   if (rowVirtualizerInstanceRef.current) {
     //scroll to the top of the table when sorting changes
-    rowVirtualizerInstanceRef.current.scrollToIndex(0);
+    try {
+      rowVirtualizerInstanceRef.current.scrollToIndex(0);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }, [sorting]);
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    enableColumnVirtualization
-    enableRowVirtualization
-    rowVirtualizerInstanceRef={rowVirtualizerInstanceRef}
-    columnVirtualizerInstanceRef={columnVirtualizerInstanceRef}
-  />
-);
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableColumnVirtualization: true,
+  enablePagination: false,
+  enableRowVirtualization: true,
+  rowVirtualizerInstanceRef,
+  columnVirtualizerInstanceRef,
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 See the official TanStack [Virtualizer Instance API Docs](https://tanstack.com/virtual/v3/docs/api/virtualizer#virtualizer-instance) for more information.

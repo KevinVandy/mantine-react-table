@@ -41,7 +41,7 @@ const data = [...Array(200)].map(() => ({
   address: faker.location.streetAddress(),
   state: faker.location.state(),
   phoneNumber: faker.phone.number(),
-  age: +faker.datatype.float({ min: 0, max: 100 }),
+  age: +faker.number.float({ min: 0, max: 100 }),
 }));
 
 export const SearchEnabledDefault = () => (

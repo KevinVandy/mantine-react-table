@@ -36,7 +36,7 @@ const columns: MRT_ColumnDef<Person>[] = [
 const Example = () => {
   const table = useMantineReactTable({
     columns,
-    data,
+    data, //must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
     //MRT display columns can still work, optionally override cell renders with `displayColumnDefOptions`
     enableRowSelection: true,
     initialState: {

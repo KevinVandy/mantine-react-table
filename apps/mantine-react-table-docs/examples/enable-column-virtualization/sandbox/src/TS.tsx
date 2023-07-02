@@ -1,5 +1,9 @@
 import React, { useRef } from 'react';
-import { MantineReactTable, MRT_Virtualizer } from 'mantine-react-table';
+import {
+  MantineReactTable,
+  useMantineReactTable,
+  type MRT_Virtualizer,
+} from 'mantine-react-table';
 import { fakeColumns, fakeData } from './makeData';
 
 const Example = () => {
@@ -7,17 +11,17 @@ const Example = () => {
   const columnVirtualizerInstanceRef =
     useRef<MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>>(null);
 
-  return (
-    <MantineReactTable
-      columnVirtualizerInstanceRef={columnVirtualizerInstanceRef} //optional
-      columnVirtualizerProps={{ overscan: 4 }} //optionally customize the virtualizer
-      columns={fakeColumns} //500 columns
-      data={fakeData}
-      enableColumnVirtualization
-      enablePinning
-      enableRowNumbers
-    />
-  );
+  const table = useMantineReactTable({
+    columnVirtualizerInstanceRef, //optional
+    columnVirtualizerProps: { overscan: 4 }, //optionally customize the virtualizer
+    columns: fakeColumns, //500 columns
+    data: fakeData,
+    enableColumnVirtualization: true,
+    enablePinning: true,
+    enableRowNumbers: true,
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;

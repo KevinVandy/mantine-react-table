@@ -41,6 +41,7 @@ Your data must be an array of objects that have properties matching the accessor
 
 ```jsx
 //recommended flat structure for data, but not required (nested data is fine, but takes more setup in column definitions)
+//must be memoized or stable (useState, useMemo, defined outside of the component, etc.)
 const data = [
   {
     name: 'John', // key "name" matches `accessorKey` in ColumnDef down below
@@ -131,7 +132,7 @@ export default function App() {
   //pass table options to useMantineReactTable
   const table = useMantineReactTable({
     columns,
-    data,
+    data, //must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
     enableRowSelection: true, //enable some features
     enableColumnOrdering: true,
     enableGlobalFilter: false, //turn off a feature

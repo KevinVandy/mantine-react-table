@@ -80,7 +80,7 @@ const Example = () => {
 
   const table = useMantineReactTable({
     columns,
-    data,
+    data, //must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
   });
 
   return <MantineReactTable table={table} />;

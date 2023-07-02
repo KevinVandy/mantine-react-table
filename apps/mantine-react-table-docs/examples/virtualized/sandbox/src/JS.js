@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { MantineReactTable } from 'mantine-react-table';
+import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import { makeData } from './makeData';
 
 const Example = () => {
@@ -99,26 +99,26 @@ const Example = () => {
     rowVirtualizerInstanceRef.current?.scrollToIndex(0);
   }, [sorting]);
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data} //10,000 rows
-      enableBottomToolbar={false}
-      enableColumnResizing
-      enableColumnVirtualization
-      enableGlobalFilterModes
-      enablePagination={false}
-      enablePinning
-      enableRowNumbers
-      enableRowVirtualization
-      mantineTableContainerProps={{ sx: { maxHeight: '600px' } }}
-      onSortingChange={setSorting}
-      state={{ isLoading, sorting }}
-      rowVirtualizerInstanceRef={rowVirtualizerInstanceRef} //optional
-      rowVirtualizerProps={{ overscan: 5 }} //optionally customize the row virtualizer
-      columnVirtualizerProps={{ overscan: 2 }} //optionally customize the column virtualizer
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data, //10,000 rows
+    enableBottomToolbar: false,
+    enableColumnResizing: true,
+    enableColumnVirtualization: true,
+    enableGlobalFilterModes: true,
+    enablePagination: false,
+    enablePinning: true,
+    enableRowNumbers: true,
+    enableRowVirtualization: true,
+    mantineTableContainerProps: { sx: { maxHeight: '600px' } },
+    onSortingChange: setSorting,
+    state: { isLoading, sorting },
+    rowVirtualizerInstanceRef, //optional
+    rowVirtualizerProps: { overscan: 5 }, //optionally customize the row virtualizer
+    columnVirtualizerProps: { overscan: 2 }, //optionally customize the column virtualizer
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;
