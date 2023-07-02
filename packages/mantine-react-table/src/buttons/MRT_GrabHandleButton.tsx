@@ -5,7 +5,7 @@ import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
 interface Props<TData extends Record<string, any>> {
   actionIconProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;
   onDragStart: DragEventHandler<HTMLButtonElement>;
-  onDrag: DragEventHandler<HTMLButtonElement>;
+  onDrag?: DragEventHandler<HTMLButtonElement>;
   onDragEnd: DragEventHandler<HTMLButtonElement>;
   table: MRT_TableInstance<TData>;
 }
