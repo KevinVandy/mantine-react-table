@@ -3,7 +3,6 @@ import { MRT_TopToolbar } from '../toolbar/MRT_TopToolbar';
 import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';
 import { MRT_TableContainer } from './MRT_TableContainer';
 import { type MRT_TableInstance } from '../types';
-import { useEffect, useRef } from 'react';
 
 interface Props<TData extends Record<string, any>> {
   table: MRT_TableInstance<TData>;
@@ -29,24 +28,6 @@ export const MRT_TablePaper = <TData extends Record<string, any>>({
     mantinePaperProps instanceof Function
       ? mantinePaperProps({ table })
       : mantinePaperProps;
-
-  const initialBodyHeight = useRef<string>();
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      initialBodyHeight.current = document.body.style.height;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (table.getState().isFullScreen) {
-        document.body.style.height = '100vh';
-      } else {
-        document.body.style.height = initialBodyHeight.current as string;
-      }
-    }
-  }, [table.getState().isFullScreen]);
 
   return (
     <Paper

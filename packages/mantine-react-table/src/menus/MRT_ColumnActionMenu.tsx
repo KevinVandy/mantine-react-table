@@ -1,11 +1,6 @@
 import { ActionIcon, Menu, Tooltip } from '@mantine/core';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
-export const commonListItemStyles = {
-  display: 'flex',
-  alignItems: 'center',
-};
-
 interface Props<TData extends Record<string, any>> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
