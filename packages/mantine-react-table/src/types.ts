@@ -63,6 +63,7 @@ import { type MRT_AggregationFns } from './aggregationFns';
 import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
 import { type MRT_Icons } from './icons';
+import { type GhostRowProps } from './GhostRow';
 
 export type { MRT_Icons };
 
@@ -891,11 +892,17 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         table: MRT_TableInstance<TData>;
       }) => PaperProps & HTMLPropsRef<HTMLDivElement>);
   mantineRowDragHandleProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
+    | (HTMLPropsRef<HTMLButtonElement> &
+        Partial<ActionIconProps> & {
+          ghostRowProps?: GhostRowProps;
+        })
     | ((props: {
         table: MRT_TableInstance<TData>;
         row: MRT_Row<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> &
+        Partial<ActionIconProps> & {
+          ghostRowProps?: GhostRowProps;
+        });
   mantineSearchTextInputProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | ((props: {

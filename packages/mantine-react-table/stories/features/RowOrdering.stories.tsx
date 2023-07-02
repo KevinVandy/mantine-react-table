@@ -81,6 +81,41 @@ export const RowOrderingEnabled = () => {
   );
 };
 
+export const RowOrderingGhostRow = () => {
+  const [data, setData] = useState(() => initData);
+
+  return (
+    <MantineReactTable
+      autoResetPageIndex={false}
+      columns={columns}
+      data={data}
+      enableRowOrdering
+      enableSorting={false}
+      mantineRowDragHandleProps={({ table }) => ({
+        onDragEnd: () => {
+          const { draggingRow, hoveredRow } = table.getState();
+          if (hoveredRow && draggingRow) {
+            data.splice(
+              (hoveredRow as MRT_Row<Person>).index,
+              0,
+              data.splice(draggingRow.index, 1)[0],
+            );
+            setData([...data]);
+          }
+        },
+        ghostRowProps: {
+          enabled: true,
+          rowStyle: ({ theme }) => ({
+            opacity: 0.9,
+            border: `1px solid ${theme.colors.blue[5]}`,
+            boxShadow: `0 0 30px 0 ${theme.colors.blue[5]}`,
+          }),
+        },
+      })}
+    />
+  );
+};
+
 export const RowOrderingWithSelect = () => {
   const [data, setData] = useState(() => initData);
   const [draggingRow, setDraggingRow] = useState<MRT_Row<Person> | null>(null);

@@ -5,6 +5,7 @@ import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
 interface Props<TData extends Record<string, any>> {
   actionIconProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;
   onDragStart: DragEventHandler<HTMLButtonElement>;
+  onDrag: DragEventHandler<HTMLButtonElement>;
   onDragEnd: DragEventHandler<HTMLButtonElement>;
   table: MRT_TableInstance<TData>;
 }
@@ -12,6 +13,7 @@ interface Props<TData extends Record<string, any>> {
 export const MRT_GrabHandleButton = <TData extends Record<string, any>>({
   actionIconProps,
   onDragEnd,
+  onDrag,
   onDragStart,
   table,
 }: Props<TData>) => {
@@ -39,6 +41,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any>>({
         }}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
+        onDrag={onDrag}
         sx={(theme) => ({
           cursor: 'grab',
           margin: '0 -0.16px',
