@@ -10,7 +10,6 @@ import {
 import { Box, Skeleton, useMantineTheme } from '@mantine/core';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
-import { MRT_TableBodyRowGrabHandle } from './MRT_TableBodyRowGrabHandle';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
 import {
   getCommonCellStyles,
@@ -99,21 +98,16 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
       ? mantineSkeletonProps({ cell, column, row, table })
       : mantineSkeletonProps;
 
-  const [skeletonWidth, setSkeletonWidth] = useState(0);
-  useEffect(
-    () =>
-      setSkeletonWidth(
-        isLoading || showSkeletons
-          ? columnDefType === 'display'
-            ? column.getSize() / 2
-            : Math.round(
-                Math.random() * (column.getSize() - column.getSize() / 3) +
-                  column.getSize() / 3,
-              )
-          : 100,
-      ),
-    [],
-  );
+  const [skeletonWidth, setSkeletonWidth] = useState(100);
+  useEffect(() => {
+    if ((!isLoading && !showSkeletons) || skeletonWidth !== 100) return;
+    const size = column.getSize();
+    setSkeletonWidth(
+      columnDefType === 'display'
+        ? size / 2
+        : Math.round(Math.random() * (size - size / 3) + size / 3),
+    );
+  }, [isLoading, showSkeletons]);
 
   const draggingBorders = useMemo(() => {
     const isDraggingColumn = draggingColumn?.id === column.id;
@@ -249,21 +243,17 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
           rowNumberMode === 'static' &&
           column.id === 'mrt-row-numbers' ? (
           rowIndex + 1
-        ) : column.id === 'mrt-row-drag' ? (
-          <MRT_TableBodyRowGrabHandle
-            cell={cell}
-            rowRef={rowRef}
-            table={table}
-          />
         ) : columnDefType === 'display' &&
-          (column.id === 'mrt-row-select' ||
-            column.id === 'mrt-row-expand' ||
+          (['mrt-row-drag', 'mrt-row-expand', 'mrt-row-select'].includes(
+            column.id,
+          ) ||
             !row.getIsGrouped()) ? (
           columnDef.Cell?.({
             cell,
             column,
             row,
-            renderedCellValue: cell.getValue() as any,
+            rowRef,
+            renderedCellValue: <>{cell.getValue()}</>,
             table,
           })
         ) : isEditing ? (

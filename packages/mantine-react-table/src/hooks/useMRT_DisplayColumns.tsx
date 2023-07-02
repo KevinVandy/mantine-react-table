@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { type RefObject, useMemo } from 'react';
 import { showExpandColumn } from '../column.utils';
 import { MRT_ExpandAllButton } from '../buttons/MRT_ExpandAllButton';
 import { MRT_ExpandButton } from '../buttons/MRT_ExpandButton';
@@ -10,6 +10,7 @@ import {
   type MRT_GroupingState,
   type MRT_DefinedTableOptions,
 } from '../types';
+import { MRT_TableBodyRowGrabHandle } from '../body';
 
 interface Params<TData extends Record<string, any>> {
   columnOrder: MRT_ColumnOrderState;
@@ -29,6 +30,13 @@ export const useMRT_DisplayColumns = <TData extends Record<string, any>>({
           (tableOptions.state?.columnOrder ?? columnOrder).includes(
             'mrt-row-drag',
           ) && {
+            Cell: ({ row, rowRef, table }) => (
+              <MRT_TableBodyRowGrabHandle
+                row={row}
+                rowRef={rowRef as RefObject<HTMLTableRowElement>}
+                table={table}
+              />
+            ),
             header: tableOptions.localization.move,
             size: 60,
             ...tableOptions.defaultDisplayColumn,

@@ -131,9 +131,6 @@ importers:
       '@tanstack/react-virtual':
         specifier: 3.0.0-beta.54
         version: 3.0.0-beta.54(react@18.2.0)
-      highlight-words:
-        specifier: 1.2.2
-        version: 1.2.2
     devDependencies:
       '@babel/core':
         specifier: ^7.22.5
@@ -8351,11 +8348,6 @@ packages:
       property-information: 5.6.0
       space-separated-tokens: 1.1.5
     dev: true
-
-  /highlight-words@1.2.2:
-    resolution: {integrity: sha512-Mf4xfPXYm8Ay1wTibCrHpNWeR2nUMynMVFkXCi4mbl+TEgmNOe+I4hV7W3OCZcSvzGL6kupaqpfHOemliMTGxQ==}
-    engines: {node: '>= 16', npm: '>= 8'}
-    dev: false
 
   /highlight.js@10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}

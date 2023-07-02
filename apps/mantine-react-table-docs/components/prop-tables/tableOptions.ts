@@ -1229,6 +1229,16 @@ export const tableOptions: TableOption[] = [
     type: 'AutocompleteProps | ({ row, table }) => AutocompleteProps',
   },
   {
+    tableOptionName: 'mantineHighlightProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/highlight/?t=props',
+    linkText: 'Mantine Highlight Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'HighlightProps | ({ cell, column, row, table }) => HighlightProps',
+  },
+  {
     tableOptionName: 'mantineFilterAutocompleteProps',
     defaultValue: '',
     description: '',

@@ -15,7 +15,6 @@ export default [
       '@tanstack/react-table',
       '@tanstack/react-virtual',
       'dayjs',
-      'highlight-words',
       'react',
     ],
     input: './src/index.ts',

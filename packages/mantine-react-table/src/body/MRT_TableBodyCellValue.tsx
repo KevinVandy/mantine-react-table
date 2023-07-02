@@ -1,6 +1,4 @@
-import { type ReactNode } from 'react';
-import { Box } from '@mantine/core';
-import highlightWords from 'highlight-words';
+import { Highlight, type HighlightProps } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
 
 const allowedTypes = ['string', 'number'];
@@ -17,12 +15,18 @@ export const MRT_TableBodyCellValue = <TData extends Record<string, any>>({
 }: Props<TData>) => {
   const {
     getState,
-    options: { enableFilterMatchHighlighting },
+    options: { enableFilterMatchHighlighting, mantineHighlightProps },
   } = table;
   const { column, row } = cell;
   const { columnDef } = column;
   const { globalFilter, globalFilterFn } = getState();
   const filterValue = column.getFilterValue();
+
+  const highlightProps = (
+    mantineHighlightProps instanceof Function
+      ? mantineHighlightProps({ cell, column, row, table })
+      : mantineHighlightProps
+  ) as Partial<HighlightProps>;
 
   let renderedCellValue =
     cell.getIsAggregated() && columnDef.AggregatedCell
@@ -46,7 +50,7 @@ export const MRT_TableBodyCellValue = <TData extends Record<string, any>>({
   const isGroupedValue = renderedCellValue !== undefined;
 
   if (!isGroupedValue) {
-    renderedCellValue = cell.renderValue() as number | string | ReactNode;
+    renderedCellValue = cell.renderValue() as number | string;
   }
 
   if (
@@ -61,43 +65,20 @@ export const MRT_TableBodyCellValue = <TData extends Record<string, any>>({
         allowedTypes.includes(typeof globalFilter) &&
         column.getCanGlobalFilter()))
   ) {
-    const chunks = highlightWords?.({
-      text: renderedCellValue?.toString(),
-      query: (column.getFilterValue() ?? globalFilter ?? '').toString(),
-      matchExactly:
-        (filterValue ? columnDef._filterFn : globalFilterFn) !== 'fuzzy',
-    });
-    if (chunks?.length > 1 || chunks?.[0]?.match) {
-      renderedCellValue = (
-        <span aria-label={renderedCellValue as string} role="note">
-          {chunks?.map(({ key, match, text }) => (
-            <Box
-              aria-hidden="true"
-              component="span"
-              key={key}
-              sx={
-                match
-                  ? (theme) => ({
-                      backgroundColor:
-                        theme.colors.yellow[
-                          theme.colorScheme === 'dark' ? 9 : 5
-                        ],
-                      borderRadius: '2px',
-                      color:
-                        theme.colorScheme === 'dark'
-                          ? theme.white
-                          : theme.black,
-                      p: '2px 1px',
-                    })
-                  : undefined
-              }
-            >
-              {text}
-            </Box>
-          )) ?? renderedCellValue}
-        </span>
-      );
+    let highlight: string | string[] = (
+      column.getFilterValue() ??
+      globalFilter ??
+      ''
+    ).toString() as string;
+    if ((filterValue ? columnDef._filterFn : globalFilterFn) === 'fuzzy') {
+      highlight = highlight.split(' ');
     }
+
+    renderedCellValue = (
+      <Highlight highlight={highlight} {...highlightProps}>
+        {renderedCellValue?.toString()}
+      </Highlight>
+    );
   }
 
   if (columnDef.Cell && !isGroupedValue) {
@@ -110,5 +91,5 @@ export const MRT_TableBodyCellValue = <TData extends Record<string, any>>({
     });
   }
 
-  return <>{renderedCellValue}</>;
+  return renderedCellValue;
 };

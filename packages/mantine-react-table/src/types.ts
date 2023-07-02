@@ -3,6 +3,7 @@ import {
   type HTMLProps,
   type MutableRefObject,
   type ReactNode,
+  type RefObject,
   type SetStateAction,
 } from 'react';
 import {
@@ -13,6 +14,7 @@ import {
   type BoxProps,
   type CheckboxProps,
   type FlexProps,
+  type HighlightProps,
   type ModalProps,
   type MultiSelectProps,
   type PaperProps,
@@ -326,6 +328,7 @@ export type MRT_ColumnDef<TData extends Record<string, any>> = Omit<
     renderedCellValue: number | string | ReactNode;
     column: MRT_Column<TData>;
     row: MRT_Row<TData>;
+    rowRef?: RefObject<HTMLTableRowElement>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   Edit?: (props: {
@@ -878,6 +881,14 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         column: MRT_Column<TData>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+  mantineHighlightProps?:
+    | (HTMLPropsRef<HTMLSpanElement> & Partial<HighlightProps>)
+    | ((props: {
+        cell: MRT_Cell<TData>;
+        column: MRT_Column<TData>;
+        row: MRT_Row<TData>;
+        table: MRT_TableInstance<TData>;
+      }) => HTMLPropsRef<HTMLSpanElement> & Partial<HighlightProps>);
   mantineProgressProps?:
     | (ProgressProps & HTMLPropsRef<HTMLDivElement>)
     | ((props: {

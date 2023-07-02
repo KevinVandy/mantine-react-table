@@ -12,6 +12,11 @@ import Head from 'next/head';
 
 ### V1
 
+#### V1.0.0-beta.21
+
+- Removed `highlight-words` internal dependency in favor of using Mantine's own Highlight component. Added `mantineHighlightProps` table option to customize the props of the Highlight component used for filter match highlighting
+- Refactored to make `mrt-row-drag` display column cell overrideable
+
 #### V1.0.0-beta.20
 
 - Better TypeScript types to warn not to use other props alongside the `table` prop when passing to `<MantineReactTable />` (Either pass `table` or all table options as props, not both)

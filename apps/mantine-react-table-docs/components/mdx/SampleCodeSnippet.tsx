@@ -1,26 +1,16 @@
 import { Prism, type PrismProps } from '@mantine/prism';
-import { Paper, useMantineTheme } from '@mantine/core';
+import { Code, Paper, useMantineTheme } from '@mantine/core';
 import { type Language } from 'prism-react-renderer';
-import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 
 interface Props extends Partial<PrismProps> {
   children: string;
 }
 
 export const SampleCodeSnippet = (props: Props) => {
-  const theme = useMantineTheme();
+  const { primaryColor } = useMantineTheme();
 
   if (!props.language && !props.className) {
-    return (
-      <code
-        style={{
-          backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.1),
-          padding: '4px',
-          margin: '0 0.5ch',
-        }}
-        {...props}
-      />
-    );
+    return <Code color={primaryColor} fz="0.9em" {...props} />;
   }
 
   if (props.noCopy) {
