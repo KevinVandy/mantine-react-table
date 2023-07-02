@@ -24,9 +24,10 @@ const Example = () => {
   const table = useMantineReactTable({
     columns,
     data,
-    enableSelectAll: false,
-    enableRowSelection: (row) => row.original.age >= 21, //enable row selection conditionally per row
-    mantineSelectCheckboxProps: { color: 'red', size: 'xl' },
+    enableRowSelection: true,
+    getRowId: (row) => row.userId,
+    mantineSelectCheckboxProps: { variant: 'switch' },
+    mantineSelectAllCheckboxProps: { variant: 'switch' },
   });
 
   return <MantineReactTable table={table} />;

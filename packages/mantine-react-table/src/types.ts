@@ -21,6 +21,7 @@ import {
   type RangeSliderProps,
   type SelectProps,
   type SkeletonProps,
+  type SwitchProps,
   type TableProps,
   type TextInputProps,
   type UnstyledButtonProps,
@@ -78,6 +79,8 @@ export type HTMLPropsRef<T extends HTMLElement> = Omit<
 export type MantineShade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
+
+export type SelectVariant = 'checkbox' | 'radio' | 'switch';
 
 export interface MRT_PaginationProps {
   rowsPerPageOptions?: string[];
@@ -902,16 +905,29 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
   mantineSelectAllCheckboxProps?:
-    | (HTMLPropsRef<HTMLInputElement> & Partial<CheckboxProps>)
+    | (HTMLPropsRef<HTMLInputElement> &
+        (CheckboxProps | RadioProps | SwitchProps) & {
+          variant?: SelectVariant;
+        })
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLInputElement> & Partial<CheckboxProps>);
+      }) => HTMLPropsRef<HTMLInputElement> &
+        (CheckboxProps | RadioProps | SwitchProps) & {
+          variant?: SelectVariant;
+        });
   mantineSelectCheckboxProps?:
-    | ((CheckboxProps | RadioProps) & HTMLPropsRef<HTMLInputElement>)
-    | ((props: {
-        table: MRT_TableInstance<TData>;
-        row: MRT_Row<TData>;
-      }) => (CheckboxProps | RadioProps) & HTMLPropsRef<HTMLInputElement>);
+    | (((CheckboxProps | RadioProps | SwitchProps) & {
+        variant?: SelectVariant;
+      }) &
+        HTMLPropsRef<HTMLInputElement>)
+    | ((props: { table: MRT_TableInstance<TData>; row: MRT_Row<TData> }) => ((
+        | CheckboxProps
+        | RadioProps
+        | SwitchProps
+      ) & {
+        variant?: SelectVariant;
+      }) &
+        HTMLPropsRef<HTMLInputElement>);
   mantineSkeletonProps?:
     | (SkeletonProps & HTMLPropsRef<HTMLDivElement>)
     | ((props: {

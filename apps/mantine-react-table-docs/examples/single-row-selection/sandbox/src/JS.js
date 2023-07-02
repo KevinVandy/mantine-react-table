@@ -1,26 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { MantineReactTable } from 'mantine-react-table';
-
-const data = [
-  {
-    userId: '3f25309c-8fa1-470f-811e-cdb082ab9017', //we'll use this as a unique row id
-    firstName: 'Dylan',
-    lastName: 'Murray',
-    age: 22,
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky',
-  },
-  {
-    userId: 'be731030-df83-419c-b3d6-9ef04e7f4a9f',
-    firstName: 'Raquel',
-    lastName: 'Kohler',
-    age: 18,
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio',
-  },
-];
+import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
+import { data } from './makeData';
 
 const Example = () => {
   const columns = useMemo(
@@ -37,41 +17,30 @@ const Example = () => {
         accessorKey: 'age',
         header: 'Age',
       },
-      {
-        accessorKey: 'address',
-        header: 'Address',
-      },
-      {
-        accessorKey: 'city',
-        header: 'City',
-      },
-      {
-        accessorKey: 'state',
-        header: 'State',
-      },
     ],
     [],
   );
 
   //optionally, you can manage the row selection state yourself
-  const [rowSelection, setRowSelection] = useState < RowSelectionState > {};
+  const [rowSelection, setRowSelection] = useState({});
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableMultiRowSelection={false} //use radio buttons instead of checkboxes
-      enableRowSelection
-      getRowId={(row) => row.userId} //give each row a more useful id
+  const table = useMantineReactTable({
+    columns,
+    data,
+    enableMultiRowSelection: false, //use radio buttons instead of checkboxes
+    enableRowSelection: true,
+    positionToolbarAlertBanner: 'none', //don't show the toolbar alert banner
+    getRowId: (row) => row.userId, //give each row a more useful id
+    mantineTableBodyRowProps: ({ row }) => ({
       //add onClick to row to select upon clicking anywhere in the row
-      mantineTableBodyRowProps={({ row }) => ({
-        onClick: row.getToggleSelectedHandler(),
-        sx: { cursor: 'pointer' },
-      })}
-      onRowSelectionChange={setRowSelection} //connect internal row selection state to your own
-      state={{ rowSelection }} //pass our managed row selection state to the table to use
-    />
-  );
+      onClick: row.getToggleSelectedHandler(),
+      sx: { cursor: 'pointer' },
+    }),
+    onRowSelectionChange: setRowSelection, //connect internal row selection state to your own
+    state: { rowSelection }, //pass our managed row selection state to the table to use
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;

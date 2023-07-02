@@ -148,6 +148,16 @@ export const SingleSelectionRadioWithRowClick = () => (
   />
 );
 
+export const SelectSwitch = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowSelection
+    mantineSelectCheckboxProps={{ variant: 'switch' }}
+    mantineSelectAllCheckboxProps={{ variant: 'switch' }}
+  />
+);
+
 export const SelectCheckboxSecondaryColor = () => (
   <MantineReactTable
     columns={columns}

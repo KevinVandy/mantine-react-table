@@ -1,5 +1,9 @@
 import React, { useMemo } from 'react';
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
+import {
+  MantineReactTable,
+  useMantineReactTable,
+  type MRT_ColumnDef,
+} from 'mantine-react-table';
 import { data } from './makeData';
 
 const Example = () => {
@@ -18,31 +22,19 @@ const Example = () => {
           accessorKey: 'age',
           header: 'Age',
         },
-        {
-          accessorKey: 'address',
-          header: 'Address',
-        },
-        {
-          accessorKey: 'city',
-          header: 'City',
-        },
-        {
-          accessorKey: 'state',
-          header: 'State',
-        },
       ] as MRT_ColumnDef<(typeof data)[0]>[],
     [],
   );
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableSelectAll={false}
-      enableRowSelection={(row) => row.original.age >= 21} //enable row selection conditionally per row
-      mantineSelectCheckboxProps={{ color: 'red' }}
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data,
+    enableSelectAll: false,
+    enableRowSelection: (row) => row.original.age >= 21, //enable row selection conditionally per row
+    mantineSelectCheckboxProps: { color: 'red', size: 'xl' },
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;

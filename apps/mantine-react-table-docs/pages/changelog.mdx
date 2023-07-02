@@ -12,6 +12,13 @@ import Head from 'next/head';
 
 ### V1
 
+#### V1.0.0-beta.20
+
+- Better TypeScript types to warn not to use other props alongside the `table` prop when passing to `<MantineReactTable />` (Either pass `table` or all table options as props, not both)
+- Removed deprecated `tableInstanceRef` prop to force usage of `useMantineReactTable` hook (way less bugs, easier code)
+- Added functionality to temporarily remove sort when global filter is ranking results, but restore the sort upon clearing the global filter
+- New `mantineSelectCheckboxProps.variant` to allow for checkbox, radio, or switch select variants
+
 #### V1.0.0-beta.19
 
 - New `"custom"` editingMode that does not render any editing UI, but still handles the edit states

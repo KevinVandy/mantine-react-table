@@ -1,33 +1,14 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   MantineReactTable,
-  MRT_ColumnDef,
-  MRT_RowSelectionState,
+  useMantineReactTable,
+  type MRT_ColumnDef,
+  type MRT_RowSelectionState,
 } from 'mantine-react-table';
-
-const data = [
-  {
-    userId: '3f25309c-8fa1-470f-811e-cdb082ab9017', //we'll use this as a unique row id
-    firstName: 'Dylan',
-    lastName: 'Murray',
-    age: 22,
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky',
-  },
-  {
-    userId: 'be731030-df83-419c-b3d6-9ef04e7f4a9f',
-    firstName: 'Raquel',
-    lastName: 'Kohler',
-    age: 18,
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio',
-  },
-];
+import { data, type Person } from './makeData';
 
 const Example = () => {
-  const columns = useMemo<MRT_ColumnDef<(typeof data)[0]>[]>(
+  const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
       {
         accessorKey: 'firstName',
@@ -59,26 +40,26 @@ const Example = () => {
 
   const [rowSelection, setRowSelection] = useState<MRT_RowSelectionState>({});
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      getRowId={(row) => row.userId}
-      mantineTableBodyRowProps={({ row }) => ({
-        //implement row selection click events manually
-        onClick: () =>
-          setRowSelection((prev) => ({
-            ...prev,
-            [row.id]: !prev[row.id],
-          })),
-        selected: rowSelection[row.id],
-        sx: {
-          cursor: 'pointer',
-        },
-      })}
-      state={{ rowSelection }}
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data,
+    getRowId: (row) => row.userId,
+    mantineTableBodyRowProps: ({ row }) => ({
+      //implement row selection click events manually
+      onClick: () =>
+        setRowSelection((prev) => ({
+          ...prev,
+          [row.id]: !prev[row.id],
+        })),
+      selected: rowSelection[row.id],
+      sx: {
+        cursor: 'pointer',
+      },
+    }),
+    state: { rowSelection },
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;

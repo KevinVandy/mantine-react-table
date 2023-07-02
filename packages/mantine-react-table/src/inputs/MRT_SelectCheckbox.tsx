@@ -2,11 +2,17 @@ import { type MouseEvent } from 'react';
 import {
   Checkbox,
   Radio,
+  Switch,
   Tooltip,
   type CheckboxProps,
   type RadioProps,
+  type SwitchProps,
 } from '@mantine/core';
-import { type MRT_Row, type MRT_TableInstance } from '../types';
+import {
+  type SelectVariant,
+  type MRT_Row,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends Record<string, any>> {
   row?: MRT_Row<TData>;
@@ -39,6 +45,8 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
     ? mantineSelectCheckboxProps({ row, table })
     : mantineSelectCheckboxProps;
 
+  const SelectVariant = checkboxProps?.variant;
+
   const allRowsSelected = selectAll
     ? selectAllMode === 'page'
       ? table.getIsAllPageRowsSelected()
@@ -62,8 +70,8 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
       e.stopPropagation();
       checkboxProps?.onClick?.(e);
     },
-    title: undefined,
-  } as CheckboxProps & RadioProps;
+    // title: undefined,
+  } as CheckboxProps & RadioProps & SwitchProps & { variant: SelectVariant };
 
   return (
     <Tooltip
@@ -76,7 +84,11 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
           : localization.toggleSelectRow)
       }
     >
-      {enableMultiRowSelection === false ? (
+      {SelectVariant === 'switch' ? (
+        // <span>
+          <Switch {...commonProps} />
+        // </span>
+      ) : SelectVariant === 'radio' || enableMultiRowSelection === false ? (
         <Radio {...commonProps} />
       ) : (
         <Checkbox
