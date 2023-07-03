@@ -1915,7 +1915,7 @@ export const tableOptions: TableOption[] = [
   },
   {
     tableOptionName: 'rowNumberMode',
-    defaultValue: "'original'",
+    defaultValue: "'static'",
     description: '',
     link: '',
     linkText: '',

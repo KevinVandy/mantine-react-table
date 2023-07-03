@@ -6,7 +6,7 @@ export type Person = {
   address: string;
   city: string;
   state: string;
-}
+};
 
 export const data: Person[] = [
   {

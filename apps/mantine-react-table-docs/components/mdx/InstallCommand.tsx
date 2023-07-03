@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tabs } from '@mantine/core';
 import { SampleCodeSnippet } from './SampleCodeSnippet';
 

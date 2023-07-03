@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { type MantineColor, MantineProvider } from '@mantine/core';
 import { type MantineShade } from 'mantine-react-table';
 

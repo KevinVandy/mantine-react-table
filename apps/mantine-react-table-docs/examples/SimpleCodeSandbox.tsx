@@ -1,4 +1,3 @@
-import React from 'react';
 import { useThemeContext } from '../styles/ThemeContext';
 
 const SimpleCodeSandbox = () => {

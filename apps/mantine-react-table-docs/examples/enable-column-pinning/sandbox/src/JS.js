@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { data } from './makeData';
 

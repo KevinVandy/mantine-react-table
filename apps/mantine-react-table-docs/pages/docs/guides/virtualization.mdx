@@ -48,7 +48,7 @@ There is a tiny bit of extra overhead that gets added to your table's rendering 
 
 ### Enable Row Virtualization
 
-Enabling row virtualization is as simple as setting the `enableRowVirtualization` prop to `true`. However, you will probably also want to turn off pagination, which you can do by setting `enablePagination` to `false`.
+Enabling row virtualization is as simple as setting the `enableRowVirtualization` table option to `true`. However, you will probably also want to turn off pagination, which you can do by setting `enablePagination` to `false`.
 
 ```jsx
 const table = useMantineReactTable({
@@ -65,7 +65,7 @@ Take a look at the example below with 10,000 rows!
 
 ### Enable Column Virtualization
 
-Enabling column virtualization is also as simple as setting the `enableColumnVirtualization` prop to `true`.
+Enabling column virtualization is also as simple as setting the `enableColumnVirtualization` table option to `true`.
 
 ```jsx
 const table = useMantineReactTable({
@@ -83,19 +83,19 @@ Take a look at the example below with 500 columns!
 
 ### Virtualization Side Effects
 
-When either Row or Column Virtualization is enabled, a few other props automatically get set internally.
+When either Row or Column Virtualization is enabled, a few other table options automatically get set internally.
 
 #### layoutMode Table Option
 
-The `layoutMode` prop is automatically set to the `'grid'` value when either row or column virtualization is enabled, which means that all of the table markup will use CSS Grid and Flexbox instead of the traditional semantic styles that usually come with table tags. This is necessary to make the virtualization work properly with decent performance.
+The `layoutMode` table option is automatically set to the `'grid'` value when either row or column virtualization is enabled, which means that all of the table markup will use CSS Grid and Flexbox instead of the traditional semantic styles that usually come with table tags. This is necessary to make the virtualization work properly with decent performance.
 
 #### enableStickyHeader Table Option
 
-The `enableStickyHeader` prop is automatically set to `true` when row virtualization is enabled. This keeps the table header sticky and visible while scrolling and adds a default max-height of 100vh to the table container.
+The `enableStickyHeader` table option is automatically set to `true` when row virtualization is enabled. This keeps the table header sticky and visible while scrolling and adds a default max-height of 100vh to the table container.
 
 ### Customize Virtualizer Props
 
-You can adjust some of the virtualizer props that are used internally with the `rowVirtualizerProps` and `columnVirtualizerProps` props. The most useful virtualizer props are the `overscan` and `estimateSize` options. You may want to adjust these values if you have unusual row heights or column widths that are causing the default scrolling to act weirdly.
+You can adjust some of the virtualizer props that are used internally with the `rowVirtualizerProps` and `columnVirtualizerProps` table options. The most useful virtualizer props are the `overscan` and `estimateSize` options. You may want to adjust these values if you have unusual row heights or column widths that are causing the default scrolling to act weirdly.
 
 ```jsx
 const table = useMantineReactTable({

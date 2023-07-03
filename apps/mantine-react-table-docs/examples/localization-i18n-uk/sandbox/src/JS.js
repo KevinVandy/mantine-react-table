@@ -1,5 +1,3 @@
-import React from 'react';
-
 //Import Mantine React Table and its Types
 import { MantineReactTable } from 'mantine-react-table';
 

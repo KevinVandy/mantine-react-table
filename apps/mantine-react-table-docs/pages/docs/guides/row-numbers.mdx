@@ -17,18 +17,20 @@ Mantine React Table has an easy to implement row number features. There are two 
 
 ### Relevant Table Options
 
-<TableOptionsTable onlyOptions={new Set(['enableRowNumbers', 'rowNumberMode'])} />
-
-### Enable Row Numbers (Original Mode)
-
-In the default rowNumberMode (`original`), the row numbers linked to the original index of the data array. This means that when you search or filter, the same row numbers will stay with the row, though they will not be in the same order when sorted or will skip numbers when filtered.
-
-<OriginalExample />
+<TableOptionsTable
+  onlyOptions={new Set(['enableRowNumbers', 'rowNumberMode'])}
+/>
 
 ### Enable Row Numbers (Static Mode)
 
-Alternatively, if you just want row numbers to always be the same and in order, you can use the `static` row number mode.
+In the default rowNumberMode (`static`), row numbers are just a static part of the table in their own column. They act like the row numbers in an excel spreadsheet. Sorting and filtering will not affect the row numbers.
 
 <StaticExample />
+
+### Enable Row Numbers (Original Mode)
+
+Alternatively, use the `"original"` rowNumberMode to have row numbers linked to the original index of the data array. This means that when you search or filter, the same row numbers will stay with the same rows as data is sorted and filtered.
+
+<OriginalExample />
 
 View Extra Storybook **[Examples](https://www.mantine-react-table.dev/?path=/story/features-row-number-examples)**

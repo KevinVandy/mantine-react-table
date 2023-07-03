@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
+import { useMemo } from 'react';
+import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 import { data } from './makeData';
 
 const Example = () => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { MantineReactTable, MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { Box, Button } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';

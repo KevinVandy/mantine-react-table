@@ -1,4 +1,3 @@
-import React from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 import { data } from './makeData';
 import { Button } from '@mantine/core';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 import { MantineProvider, useMantineTheme } from '@mantine/core';
 

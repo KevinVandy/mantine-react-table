@@ -248,7 +248,6 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any>>({
       <Tooltip
         withinPortal
         openDelay={1000}
-        position="top"
         label={actionIconProps?.title ?? localization.columnActions}
       >
         <Menu.Target>

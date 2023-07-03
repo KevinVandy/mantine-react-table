@@ -1,5 +1,3 @@
-import React from 'react';
-
 //Import Mantine React Table and its Types
 import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
 

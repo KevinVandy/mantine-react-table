@@ -1,4 +1,3 @@
-import React from 'react';
 import { SourceCodeSnippet } from '../../components/mdx/SourceCodeSnippet';
 import Example from './sandbox/src/Legacy';
 const JS = require('!!raw-loader!./sandbox/src/JS.js').default;

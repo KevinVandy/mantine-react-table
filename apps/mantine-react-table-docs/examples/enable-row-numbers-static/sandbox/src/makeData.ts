@@ -1,3 +1,5 @@
+import { type MRT_ColumnDef } from 'mantine-react-table';
+
 export type Person = {
   firstName: string;
   lastName: string;
@@ -5,6 +7,29 @@ export type Person = {
   city: string;
   state: string;
 };
+
+export const columns: MRT_ColumnDef<Person>[] = [
+  {
+    accessorKey: 'firstName',
+    header: 'First Name',
+  },
+  {
+    accessorKey: 'lastName',
+    header: 'Last Name',
+  },
+  {
+    accessorKey: 'address',
+    header: 'Address',
+  },
+  {
+    accessorKey: 'city',
+    header: 'City',
+  },
+  {
+    accessorKey: 'state',
+    header: 'State',
+  },
+];
 
 export const data = [
   {

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   MRT_ToggleDensePaddingButton,
   MRT_ToggleFullScreenButton,

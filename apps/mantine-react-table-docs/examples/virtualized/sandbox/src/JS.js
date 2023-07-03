@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import { makeData } from './makeData';
 

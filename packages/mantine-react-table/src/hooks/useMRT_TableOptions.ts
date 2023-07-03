@@ -57,7 +57,7 @@ export const useMRT_TableOptions: <TData extends Record<string, any>>(
   positionPagination = 'bottom',
   positionToolbarAlertBanner = 'top',
   positionToolbarDropZone = 'top',
-  rowNumberMode = 'original',
+  rowNumberMode = 'static',
   selectAllMode = 'page',
   sortingFns,
   ...rest

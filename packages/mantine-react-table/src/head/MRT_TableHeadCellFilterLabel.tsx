@@ -68,7 +68,6 @@ export const MRT_TableHeadCellFilterLabel = <
           <Tooltip
             label={filterTooltip}
             multiline
-            position="top"
             width={filterTooltip.length > 40 ? 300 : undefined}
             withinPortal
           >

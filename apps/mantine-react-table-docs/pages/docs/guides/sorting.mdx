@@ -58,9 +58,9 @@ Mantine React Table supports almost any sorting scenario you may have. Client-si
 
 ### Disable Sorting
 
-Sorting can be disabled globally by setting the `enableSorting` prop to `false`. This will disable sorting for all columns. You can also disable sorting for individual columns by setting the `enableSorting` column option to `false`.
+Sorting can be disabled globally by setting the `enableSorting` table option to `false`. This will disable sorting for all columns. You can also disable sorting for individual columns by setting the `enableSorting` column option to `false`.
 
-```tsx
+```jsx
 const columns = [
   {
     accessorKey: 'name',
@@ -69,24 +69,24 @@ const columns = [
   },
 ];
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    enableSorting={false} //disable sorting for all columns
-  />
-);
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableSorting: false, //disable sorting for all columns
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 ### Initial/Default Sorting
 
-You can sort by a column or multiple columns by default by setting the `sorting` state option in either the `initialState` or `state` props.
+You can sort by a column or multiple columns by default by setting the `sorting` state option in either the `initialState` or `state` table options.
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  initialState={{
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  initialState: {
     sorting: [
       {
         id: 'age', //sort by age by default on page load
@@ -97,8 +97,8 @@ You can sort by a column or multiple columns by default by setting the `sorting`
         desc: true,
       },
     ],
-  }}
-/>
+  },
+});
 ```
 
 ### Default Sorting Features
@@ -107,33 +107,33 @@ Client-side sorting is enabled by default. When sorting is toggled on for a colu
 
 #### Multi-Sorting
 
-Multi-sorting is also enabled by default, which means a user can sort by multiple columns at once. This can be accomplished by clicking on a column header while holding down the `shift` key. The table will then be sorted by the previously sorted column, and then by the newly clicked column. Or if you want multi-sorting to be the default click behavior without the need to hold `shift`, you can set the `isMultiSortEvent` prop to `() => true`.
+Multi-sorting is also enabled by default, which means a user can sort by multiple columns at once. This can be accomplished by clicking on a column header while holding down the `shift` key. The table will then be sorted by the previously sorted column, and then by the newly clicked column. Or if you want multi-sorting to be the default click behavior without the need to hold `shift`, you can set the `isMultiSortEvent` table option to `() => true`.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  isMultiSortEvent={() => true} //multi-sorting will be the default click behavior without the need to hold shift
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  isMultiSortEvent: () => true, //multi-sorting will be the default click behavior without the need to hold shift
+});
 ```
 
-You can limit the number of columns that can be sorted at once by setting the `maxMultiSortColCount` prop, or you can disable multi-sorting entirely by setting the `enableMultiSort` prop to `false`.
+You can limit the number of columns that can be sorted at once by setting the `maxMultiSortColCount` table option, or you can disable multi-sorting entirely by setting the `enableMultiSort` table option to `false`.
 
 #### Sorting Removal
 
-By default, users can remove a sort on a column by clicking through the sort direction options or selecting "Clear Sort" from the column actions menu. You can disable this feature by setting the `enableSortingRemoval` prop to `false`.
+By default, users can remove a sort on a column by clicking through the sort direction options or selecting "Clear Sort" from the column actions menu. You can disable this feature by setting the `enableSortingRemoval` table option to `false`.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableSortingRemoval={false} //users will not be able to remove a sort on a column
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableSortingRemoval: false, //users will not be able to remove a sort on a column
+});
 ```
 
 #### Sort Direction
 
-By default, columns with `string` datatypes will sort alphabetically in ascending order, but columns with `number` datatypes will sort numerically in descending order. You can change the default sort direction per column by specifying the `sortDescFirst` column option to either `true` or `false`. You can also change the default sort direction globally by setting the `sortDescFirst` prop to either `true` or `false`.
+By default, columns with `string` datatypes will sort alphabetically in ascending order, but columns with `number` datatypes will sort numerically in descending order. You can change the default sort direction per column by specifying the `sortDescFirst` column option to either `true` or `false`. You can also change the default sort direction globally by setting the `sortDescFirst` table option to either `true` or `false`.
 
 <MultiSortingExample />
 
@@ -145,17 +145,17 @@ There are 6 built-in sorting functions that you can choose from: ` alphanumeric`
 
 #### Add Custom Sorting Functions
 
-If none of these sorting functions meet your needs, you can add your own custom sorting functions by specifying more sorting functions in the `sortingFns` prop.
+If none of these sorting functions meet your needs, you can add your own custom sorting functions by specifying more sorting functions in the `sortingFns` table option.
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  sortingFns={{
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  sortingFns: {
     //will add a new sorting function to the list of other sorting functions already available
     myCustomSortingFn: (rowA, rowB, columnId) => // your custom sorting logic
-  }}
-/>
+  },
+});
 ```
 
 #### Change Sorting Function Per Column
@@ -180,11 +180,11 @@ const columns = [
 
 ### Manual Server-Side Sorting
 
-If you are working with large data sets, you may want to let your back-end apis handle all of the sorting and pagination processing instead of doing it client-side. You can do this by setting the `manualSorting` prop to `true`. This will disable the default client-side sorting and pagination features, and will allow you to implement your own sorting and pagination logic.
+If you are working with large data sets, you may want to let your back-end apis handle all of the sorting and pagination processing instead of doing it client-side. You can do this by setting the `manualSorting` table option to `true`. This will disable the default client-side sorting and pagination features, and will allow you to implement your own sorting and pagination logic.
 
 > When `manualSorting` is set to `true`, Mantine React Table assumes that your `data` is already sorted by the time you are passing it to the table.
 
-If you need to sort your data in a back-end api, then you will also probably need access to the internal `sorting` state from the table. You can do this by managing the `sorting` state yourself, and then passing it to the table via the `state` prop. You can also pass a callback function to the `onSortingChange` prop, which will be called whenever the `sorting` state changes internally in the table
+If you need to sort your data in a back-end api, then you will also probably need access to the internal `sorting` state from the table. You can do this by managing the `sorting` state yourself, and then passing it to the table via the `state` table option. You can also pass a callback function to the `onSortingChange` table option, which will be called whenever the `sorting` state changes internally in the table
 
 ```tsx
 const [sorting, setSorting] = useState([]);
@@ -193,15 +193,15 @@ useEffect(() => {
   //do something with the sorting state when it changes
 }, [sorting]);
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    manualSorting
-    state={{ sorting }}
-    onSortingChange={setSorting}
-  />
-);
+const table = useMantineReactTable({
+  columns,
+  data,
+  manualSorting: true,
+  state: { sorting },
+  onSortingChange: setSorting,
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 #### Remote Sorting Example

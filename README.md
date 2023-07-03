@@ -121,7 +121,7 @@ npm install mantine-react-table
 > Read the full usage docs [here](https://www.mantine-react-table.com/docs/getting-started/usage/)
 
 ```jsx
-import React, { useMemo, useRef, useState, useEffect } from 'react';
+import { useMemo, useRef, useState, useEffect } from 'react';
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 
 const data = [

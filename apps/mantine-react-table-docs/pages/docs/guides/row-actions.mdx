@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
+import MenuItemsExample from '../../../examples/row-actions-menu-items';
+import ButtonsExample from '../../../examples/row-actions-buttons';
 
 <Head>
   <title>Row Actions Feature Guide - Mantine React Table Docs</title>
@@ -31,44 +33,57 @@ Using the built-in Row Actions column is optional, as you can just simply create
 
 ### Enable Row Actions
 
-You can enable the Row Actions feature by setting the `enableRowActions` prop to `true`.
+You can enable the row actions feature by setting the `enableRowActions` prop to `true`.
 
-Then you can add your row action components with either the `renderRowActions` or `renderRowActionMenuItems` props.
+You can then add your row action components with either the `renderRowActions` or `renderRowActionMenuItems` props.
 
 #### Add Row Actions Menu Items
 
 If you want to embed all of your row actions into a single menu, then you can use the `renderRowActionMenuItems` prop.
 
 ```jsx
-<MantineReactTable
-  enableRowActions
-  renderRowActionMenuItems={({row}) => [
-      <Menu.Item onClick={() => console.info('Edit')}>Edit</Menu.Item>,
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableRowActions: true,
+  renderRowActionMenuItems: ({ row }) => (
+    <>
+      <Menu.Item onClick={() => console.info('Edit')}>Edit</Menu.Item>
       <Menu.Item onClick={() => console.info('Delete')}>Delete</Menu.Item>
-    ]
-  )}
-/>
+    </>
+  ),
+});
+
+return <MantineReactTable table={table} />;
 ```
+
+<MenuItemsExample />
 
 #### Add Row Action Buttons
 
 If you want to add row action buttons, then you can use the `renderRowActions` prop.
 
 ```jsx
-<MantineReactTable
-  enableRowActions
-  renderRowActions={({ row }) => (
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableRowActions: true,
+  renderRowActions: ({ row }) => (
     <Box>
-      <IconButton onClick={() => console.info('Edit')}>
+      <ActionIcon onClick={() => console.info('Edit')}>
         <IconEdit />
-      </IconButton>
-      <IconButton onClick={() => console.info('Delete')}>
+      </ActionIcon>
+      <ActionIcon onClick={() => console.info('Delete')}>
         <DeleteIcon />
-      </IconButton>
+      </ActionIcon>
     </Box>
-  )}
-/>
+  ),
+});
+
+return <MantineReactTable table={table} />;
 ```
+
+<ButtonsExample />
 
 ### Customize Row Actions Column
 
@@ -77,23 +92,24 @@ If you want to add row action buttons, then you can use the `renderRowActions` p
 You can customize all column def options for the row actions column, including the column width, header text, and more using the `displayColumnDefOptions` prop.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  displayColumnDefOptions={{
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableRowActions: true,
+  displayColumnDefOptions: {
     'mrt-row-actions': {
       header: 'Change Account Settings', //change header text
       size: 300, //make actions column wider
     },
-  }}
-  renderRowActions={({ table }) => (
+  },
+  renderRowActions: ({ row }) => (
     <Box>
       <Button>Button 1</Button>
       <Button>Button 2</Button>
       <Button>Button 3</Button>
     </Box>
-  )}
-/>
+  ),
+});
 ```
 
 #### Position Row Actions Column
@@ -101,5 +117,12 @@ You can customize all column def options for the row actions column, including t
 You can position the row actions column to the left or right (first or last column) of the table using the `positionActionsColumn` prop. The default is as the first column.
 
 ```jsx
-<MantineReactTable columns={columns} data={data} positionActionsColumn="last" />
+// <MantineReactTable columns={columns} data={data} positionActionsColumn="last" />
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableRowActions: true,
+  positionActionsColumn: 'last',
+  renderRowActions: ({ row }) => <Button>Button</Button>,
+});
 ```

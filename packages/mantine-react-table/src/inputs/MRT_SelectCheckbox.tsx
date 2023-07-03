@@ -86,9 +86,9 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
     >
       {SelectVariant === 'switch' ? (
         // <span>
-          <Switch {...commonProps} />
-        // </span>
-      ) : SelectVariant === 'radio' || enableMultiRowSelection === false ? (
+        <Switch {...commonProps} />
+      ) : // </span>
+      SelectVariant === 'radio' || enableMultiRowSelection === false ? (
         <Radio {...commonProps} />
       ) : (
         <Checkbox

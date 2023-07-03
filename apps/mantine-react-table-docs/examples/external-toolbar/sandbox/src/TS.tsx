@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   MRT_GlobalFilterTextInput,
   MRT_ShowHideColumnsButton,

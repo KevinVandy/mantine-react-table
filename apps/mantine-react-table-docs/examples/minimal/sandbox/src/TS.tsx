@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   MRT_Table, //import alternative sub-component if we do not want toolbars
   type MRT_ColumnDef,

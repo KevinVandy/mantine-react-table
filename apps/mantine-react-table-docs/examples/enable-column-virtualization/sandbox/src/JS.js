@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import { fakeColumns, fakeData } from './makeData';
 

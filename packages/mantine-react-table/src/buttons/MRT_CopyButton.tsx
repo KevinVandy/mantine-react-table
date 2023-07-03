@@ -44,9 +44,9 @@ export const MRT_CopyButton = <TData extends Record<string, any>>({
     <CopyButton value={cell.getValue<string>()}>
       {({ copied, copy }) => (
         <Tooltip
+          color={copied ? 'green' : undefined}
           withinPortal
           openDelay={1000}
-          position="top"
           label={
             buttonProps?.title ??
             (copied ? localization.copiedToClipboard : localization.clickToCopy)

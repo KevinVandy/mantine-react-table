@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import { data } from './makeData';
 
@@ -28,6 +28,7 @@ const Example = () => {
     getRowId: (row) => row.userId,
     mantineSelectCheckboxProps: { variant: 'switch' },
     mantineSelectAllCheckboxProps: { variant: 'switch' },
+    positionToolbarAlertBanner: 'bottom',
   });
 
   return <MantineReactTable table={table} />;

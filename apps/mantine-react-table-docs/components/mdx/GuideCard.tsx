@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, Title } from '@mantine/core';
 import Link from 'next/link';
 

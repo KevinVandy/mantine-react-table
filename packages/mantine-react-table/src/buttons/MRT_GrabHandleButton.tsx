@@ -26,7 +26,6 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any>>({
     <Tooltip
       withinPortal
       openDelay={1000}
-      position="top"
       label={actionIconProps?.title ?? localization.move}
     >
       <ActionIcon
