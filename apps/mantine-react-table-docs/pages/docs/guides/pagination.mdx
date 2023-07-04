@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
+import AlternatePaginationExample from '../../../examples/alternate-pagination';
 import RemoteExample from '../../../examples/remote';
 
 <Head>
@@ -40,36 +41,57 @@ Client-side pagination is enabled by default in Mantine React Table. There are a
 
 ### Disable Pagination
 
-If you simply want to disable pagination, you can set the `enablePagination` prop to `false`. This will both hide the pagination controls and disable the pagination functionality.
+If you simply want to disable pagination, you can set the `enablePagination` table option to `false`. This will both hide the pagination controls and disable the pagination functionality.
 
 If you only want to disable the pagination logic, but still want to show and use the pagination controls, take a look down below at the [Manual Pagination](##manual-or-server-side-pagination) docs.
 
-```tsx
-<MantineReactTable columns={columns} data={data} enablePagination={false} />
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enablePagination: false,
+  enableBottomToolbar: false, //hide the bottom toolbar as well if you want
+});
 ```
 
 ### Customize Pagination
 
 #### Customize Pagination Behavior
 
-There are a few props that you can use to customize the pagination behavior. The first one is `autoResetPageIndex`. This prop is `true` by default, and causes a table to automatically reset the table back to the first page whenever sorting, filtering, or grouping occurs. This makes sense for most use cases, but if you want to disable this behavior, you can set this prop to `false`.
+There are a few table options that you can use to customize the pagination behavior. The first one is `autoResetPageIndex`. This table option is `true` by default, and causes a table to automatically reset the table back to the first page whenever sorting, filtering, or grouping occurs. This makes sense for most use cases, but if you want to disable this behavior, you can set this table option to `false`.
 
-Next there is `paginateExpandedRows`, which works in conjunction expanding features. This prop is `true` by default, and forces the table to still only render the same number of rows per page that is set as the page size, even as sub-rows become expanded. However, this does cause expanded rows to sometimes not be on the same page as their parent row, so you can turn this off to keep sub rows with their parent row on the same page.
+Next there is `paginateExpandedRows`, which works in conjunction expanding features. This table option is `true` by default, and forces the table to still only render the same number of rows per page that is set as the page size, even as sub-rows become expanded. However, this does cause expanded rows to sometimes not be on the same page as their parent row, so you can turn this off to keep sub rows with their parent row on the same page.
 
 #### Customize Pagination Components
 
-You can customize the pagination component with the `mantinePaginationProps` prop to change things like the `rowsPerPageOptions` or whether or not to show the first and last page buttons, and more.
+You can customize the pagination component with the `mantinePaginationProps` table option to change things like the `rowsPerPageOptions` or whether or not to show the first and last page buttons, and more.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  mantinePaginationProps={{
-    rowsPerPageOptions: ["5", "10"],
-    showFirstLastPageButtons: false,
-  }}
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantinePaginationProps: {
+    rowsPerPageOptions: ['5', '10'],
+    withEdges: false, //note: changed from `showFirstLastButtons` in v1.0
+  },
+});
 ```
+
+#### Alternate Pagination UI
+
+By default, Mantine React Table provides its own Table Pagination UI that is more compact and traditional for data tables. However, if you want to use the Mantine Pagination component instead, it is as easy as setting the `variant` prop in `mantinePaginationProps` to `mantine`.
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantinePaginationProps: {
+    variant: 'mantine',
+  },
+});
+```
+
+<AlternatePaginationExample />
 
 ### Manual or Server-Side Pagination
 
@@ -77,26 +99,26 @@ You can customize the pagination component with the `mantinePaginationProps` pro
 
 The default pagination features are client-side. This means you have to have all of your data fetched and stored in the table all at once. This may not be ideal for large datasets, but do not worry, Mantine React Table supports server-side pagination.
 
-When the `manualPagination` prop is set to `true`, Mantine React Table will assume that the `data` that is passed to the table already has had the pagination logic applied. Usually you would do this in your back-end logic.
+When the `manualPagination` table option is set to `true`, Mantine React Table will assume that the `data` that is passed to the table already has had the pagination logic applied. Usually you would do this in your back-end logic.
 
 #### Override Page Count and Row Count
 
-If you are using manual pagination, the default page count and row count in the MRT Pagination component will be incorrect, as it is only derived from the number of rows provided in the client-side `data` prop. Luckily, you can override these values and set your own page count or row count in the `pageCount` and `rowCount` props.
+If you are using manual pagination, the default page count and row count in the MRT Pagination component will be incorrect, as it is only derived from the number of rows provided in the client-side `data` table option. Luckily, you can override these values and set your own page count or row count in the `pageCount` and `rowCount` table options.
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  manualPagination
-  rowCount={data.meta.totalDBRowCount} //you can tell the pagination how many rows there are in your back-end data
-/>
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  manualPagination: true,
+  rowCount: data.meta.totalDBRowCount, //you can tell the pagination how many rows there are in your back-end data
+});
 ```
 
 ### Manage Pagination State
 
 For either client-side or server-side pagination, you may want to have access to the pagination state yourself. You can do this like so with `state`:
 
-```tsx
+```jsx
 //store pagination state in your own state
 const [pagination, setPagination] = useState({
   pageIndex: 0,
@@ -107,24 +129,24 @@ useEffect(() => {
   //do something when the pagination state changes
 }, [pagination.pageIndex, pagination.pageSize]);
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    onPaginationChange={setPagination} //hoist pagination state to your state when it changes internally
-    state={{ pagination }} //pass the pagination state to the table
-  />
-);
+const table = useMantineReactTable({
+  columns,
+  data,
+  onPaginationChange: setPagination, //hoist pagination state to your state when it changes internally
+  state: { pagination }, //pass the pagination state to the table
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 Alternatively, if all you care about is customizing the initial pagination state and do not need to react to its changes, like customizing the default page size or the page index, you can do that like so with `initialState`:
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  initialState={{ pagination: { pageSize: 25, pageIndex: 2 } }}
-/>
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  initialState: { pagination: { pageSize: 25, pageIndex: 2 } },
+});
 ```
 
 Here is the full Remote Data example showing off server-side filtering, **pagination**, and sorting.

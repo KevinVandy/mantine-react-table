@@ -29,7 +29,7 @@ export const useMRT_Effects = <TData extends Record<string, any>>(
     if (sorting.length) {
       appliedSort.current = sorting;
     }
-  }, sorting);
+  }, [sorting]);
 
   useEffect(() => {
     if (!getCanRankRows(table)) return;

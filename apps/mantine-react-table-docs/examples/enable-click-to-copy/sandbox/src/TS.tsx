@@ -1,6 +1,10 @@
 import { useMemo } from 'react';
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
-import { data, Person } from './makeData';
+import {
+  MantineReactTable,
+  useMantineReactTable,
+  type MRT_ColumnDef,
+} from 'mantine-react-table';
+import { data, type Person } from './makeData';
 
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
@@ -27,7 +31,12 @@ const Example = () => {
     [],
   );
 
-  return <MantineReactTable columns={columns} data={data} />;
+  const table = useMantineReactTable({
+    columns,
+    data,
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;

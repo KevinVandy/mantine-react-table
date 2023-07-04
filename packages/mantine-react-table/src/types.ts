@@ -7,6 +7,7 @@ import {
   type SetStateAction,
 } from 'react';
 import {
+  type PaginationProps,
   type ActionIconProps,
   type AlertProps,
   type AutocompleteProps,
@@ -84,11 +85,11 @@ export type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
 
 export type SelectVariant = 'checkbox' | 'radio' | 'switch';
 
-export interface MRT_PaginationProps {
+export type MRT_PaginationProps = Partial<PaginationProps> & {
   rowsPerPageOptions?: string[];
-  showFirstLastPageButtons?: boolean;
   showRowsPerPage?: boolean;
-}
+  variant: 'default' | 'mantine';
+};
 
 export type MRT_DensityState = 'xs' | 'md' | 'xl';
 
