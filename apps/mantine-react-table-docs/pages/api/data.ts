@@ -7,9 +7,13 @@ import { getData } from './mock';
 
 //This is just a simple mock of a backend API where you would do server-side pagination, filtering, and sorting
 //You would most likely want way more validation and error handling than this in a real world application
+//Also most of this logic should actually be in the database query itself, but this is just a mock
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   let dbData = getData();
-  const { start, size, filters, sorting, globalFilter } = req.query as Record<
+  const { start, size, filters, filterModes, sorting, globalFilter } =
+    req.query as Record<string, string>;
+
+  const parsedFilterModes = JSON.parse(filterModes ?? '{}') as Record<
     string,
     string
   >;
@@ -18,11 +22,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (parsedColumnFilters?.length) {
     parsedColumnFilters.map((filter) => {
       const { id: columnId, value: filterValue } = filter;
+      const filterMode = parsedFilterModes?.[columnId] ?? 'contains';
       dbData = dbData.filter((row) => {
-        return row[columnId]
-          ?.toString()
-          ?.toLowerCase()
-          ?.includes?.((filterValue as string).toLowerCase());
+        const rowValue = row[columnId]?.toString()?.toLowerCase();
+        if (filterMode === 'contains') {
+          return rowValue.includes?.((filterValue as string).toLowerCase());
+        } else if (filterMode === 'startsWith') {
+          return rowValue.startsWith?.((filterValue as string).toLowerCase());
+        } else if (filterMode === 'endsWith') {
+          return rowValue.endsWith?.((filterValue as string).toLowerCase());
+        }
       });
     });
   }

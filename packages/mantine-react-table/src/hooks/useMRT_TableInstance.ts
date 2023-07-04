@@ -27,7 +27,7 @@ import {
   type MRT_ColumnOrderState,
   type MRT_DefinedTableOptions,
   type MRT_DensityState,
-  type MRT_FilterFnsState,
+  type MRT_ColumnFilterFnsState,
   type MRT_FilterOption,
   type MRT_GroupingState,
   type MRT_Row,
@@ -57,7 +57,7 @@ export const useMRT_TableInstance: <TData extends Record<string, any>>(
     return initState;
   }, []);
 
-  const [columnFilterFns, setColumnFilterFns] = useState<MRT_FilterFnsState>(
+  const [columnFilterFns, setColumnFilterFns] = useState<MRT_ColumnFilterFnsState>(
     () =>
       Object.assign(
         {},

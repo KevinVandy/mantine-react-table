@@ -1,5 +1,5 @@
 import {
-  UIEvent,
+  type UIEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -8,10 +8,11 @@ import {
 } from 'react';
 import {
   MantineReactTable,
-  MRT_ColumnDef,
-  MRT_ColumnFiltersState,
-  MRT_SortingState,
-  MRT_Virtualizer,
+  useMantineReactTable,
+  type MRT_ColumnDef,
+  type MRT_ColumnFiltersState,
+  type MRT_SortingState,
+  type MRT_Virtualizer,
 } from 'mantine-react-table';
 import { Text } from '@mantine/core';
 import {
@@ -125,7 +126,11 @@ const Example = () => {
   //scroll to top of table when sorting or filters change
   useEffect(() => {
     if (rowVirtualizerInstanceRef.current) {
-      rowVirtualizerInstanceRef.current.scrollToIndex(0);
+      try {
+        rowVirtualizerInstanceRef.current.scrollToIndex(0);
+      } catch (e) {
+        console.error(e);
+      }
     }
   }, [sorting, columnFilters, globalFilter]);
 
@@ -134,50 +139,46 @@ const Example = () => {
     fetchMoreOnBottomReached(tableContainerRef.current);
   }, [fetchMoreOnBottomReached]);
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={flatData}
-      enablePagination={false}
-      enableRowNumbers
-      enableRowVirtualization //optional, but recommended if it is likely going to be more than 100 rows
-      manualFiltering
-      manualSorting
-      mantineTableContainerProps={{
-        ref: tableContainerRef, //get access to the table container element
-        sx: { maxHeight: '600px' }, //give the table a max height
-        onScroll: (
-          event: UIEvent<HTMLDivElement>, //add an event listener to the table container element
-        ) => fetchMoreOnBottomReached(event.target as HTMLDivElement),
-      }}
-      mantineToolbarAlertBannerProps={
-        isError
-          ? {
-              color: 'red',
-              children: 'Error loading data',
-            }
-          : undefined
-      }
-      onColumnFiltersChange={setColumnFilters}
-      onGlobalFilterChange={setGlobalFilter}
-      onSortingChange={setSorting}
-      renderBottomToolbarCustomActions={() => (
-        <Text>
-          Fetched {totalFetched} of {totalDBRowCount} total rows.
-        </Text>
-      )}
-      state={{
-        columnFilters,
-        globalFilter,
-        isLoading,
-        showAlertBanner: isError,
-        showProgressBars: isFetching,
-        sorting,
-      }}
-      rowVirtualizerInstanceRef={rowVirtualizerInstanceRef} //get access to the virtualizer instance
-      rowVirtualizerProps={{ overscan: 10 }}
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data: flatData,
+    enablePagination: false,
+    enableRowNumbers: true,
+    enableRowVirtualization: true, //optional, but recommended if it is likely going to be more than 100 rows
+    manualFiltering: true,
+    manualSorting: true,
+    mantineTableContainerProps: {
+      ref: tableContainerRef, //get access to the table container element
+      sx: { maxHeight: '600px' }, //give the table a max height
+      onScroll: (
+        event: UIEvent<HTMLDivElement>, //add an event listener to the table container element
+      ) => fetchMoreOnBottomReached(event.target as HTMLDivElement),
+    },
+    mantineToolbarAlertBannerProps: {
+      color: 'red',
+      children: 'Error loading data',
+    },
+    onColumnFiltersChange: setColumnFilters,
+    onGlobalFilterChange: setGlobalFilter,
+    onSortingChange: setSorting,
+    renderBottomToolbarCustomActions: () => (
+      <Text>
+        Fetched {totalFetched} of {totalDBRowCount} total rows.
+      </Text>
+    ),
+    state: {
+      columnFilters,
+      globalFilter,
+      isLoading,
+      showAlertBanner: isError,
+      showProgressBars: isFetching,
+      sorting,
+    },
+    rowVirtualizerInstanceRef, //get access to the virtualizer instance
+    rowVirtualizerProps: { overscan: 10 },
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 const queryClient = new QueryClient();

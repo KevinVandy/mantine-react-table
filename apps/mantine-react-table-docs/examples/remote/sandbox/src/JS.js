@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { MantineReactTable } from 'mantine-react-table';
+import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 
 const Example = () => {
   //data and fetching state
@@ -59,11 +59,11 @@ const Example = () => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    columnFilters,
-    globalFilter,
-    pagination.pageIndex,
-    pagination.pageSize,
-    sorting,
+    columnFilters, //refetch when column filters change
+    globalFilter, //refetch when global filter changes
+    pagination.pageIndex, //refetch when page index changes
+    pagination.pageSize, //refetch when page size changes
+    sorting, //refetch when sorting changes
   ]);
 
   const columns = useMemo(
@@ -93,40 +93,35 @@ const Example = () => {
     [],
   );
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableRowSelection
-      getRowId={(row) => row.phoneNumber}
-      initialState={{ showColumnFilters: true }}
-      manualFiltering
-      manualPagination
-      manualSorting
-      mantineToolbarAlertBannerProps={
-        isError
-          ? {
-              color: 'red',
-              children: 'Error loading data',
-            }
-          : undefined
-      }
-      onColumnFiltersChange={setColumnFilters}
-      onGlobalFilterChange={setGlobalFilter}
-      onPaginationChange={setPagination}
-      onSortingChange={setSorting}
-      rowCount={rowCount}
-      state={{
-        columnFilters,
-        globalFilter,
-        isLoading,
-        pagination,
-        showAlertBanner: isError,
-        showProgressBars: isRefetching,
-        sorting,
-      }}
-    />
-  );
+  const table = useMantineReactTable({
+    columns,
+    data,
+    enableRowSelection: true,
+    getRowId: (row) => row.phoneNumber,
+    initialState: { showColumnFilters: true },
+    manualFiltering: true,
+    manualPagination: true,
+    manualSorting: true,
+    rowCount,
+    onColumnFiltersChange: setColumnFilters,
+    onGlobalFilterChange: setGlobalFilter,
+    onPaginationChange: setPagination,
+    onSortingChange: setSorting,
+    state: {
+      columnFilters,
+      globalFilter,
+      isLoading,
+      pagination,
+      showAlertBanner: isError,
+      showProgressBars: isRefetching,
+      sorting,
+    },
+    mantineToolbarAlertBannerProps: isError
+      ? { color: 'red', children: 'Error loading data' }
+      : undefined,
+  });
+
+  return <MantineReactTable table={table} />;
 };
 
 export default Example;

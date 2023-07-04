@@ -92,7 +92,7 @@ export interface MRT_PaginationProps {
 
 export type MRT_DensityState = 'xs' | 'md' | 'xl';
 
-export type MRT_FilterFnsState = Record<string, MRT_FilterOption>;
+export type MRT_ColumnFilterFnsState = Record<string, MRT_FilterOption>;
 
 export type {
   ColumnFiltersState as MRT_ColumnFiltersState,
@@ -257,7 +257,7 @@ export type MRT_TableInstance<TData extends Record<string, any>> = Omit<
     tablePaperRef: MutableRefObject<HTMLDivElement>;
     topToolbarRef: MutableRefObject<HTMLDivElement>;
   };
-  setColumnFilterFns: Dispatch<SetStateAction<MRT_FilterFnsState>>;
+  setColumnFilterFns: Dispatch<SetStateAction<MRT_ColumnFilterFnsState>>;
   setDensity: Dispatch<SetStateAction<MRT_DensityState>>;
   setDraggingColumn: Dispatch<SetStateAction<MRT_Column<TData> | null>>;
   setDraggingRow: Dispatch<SetStateAction<MRT_Row<TData> | null>>;
@@ -284,7 +284,7 @@ export type MRT_DefinedTableOptions<TData extends Record<string, any>> =
   };
 
 export type MRT_TableState<TData extends Record<string, any>> = TableState & {
-  columnFilterFns: MRT_FilterFnsState;
+  columnFilterFns: MRT_ColumnFilterFnsState;
   density: MRT_DensityState;
   draggingColumn: MRT_Column<TData> | null;
   draggingRow: MRT_Row<TData> | null;
