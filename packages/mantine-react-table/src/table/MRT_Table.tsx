@@ -7,7 +7,7 @@ import {
 import { Table } from '@mantine/core';
 import { MRT_TableHead } from '../head/MRT_TableHead';
 import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
-import { MRT_EditRowModal } from './MRT_EditRowModal';
+import { MRT_EditRowModal } from '../modals/MRT_EditRowModal';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
 import { parseCSSVarId } from '../column.utils';
 import { type MRT_TableInstance, type MRT_Virtualizer } from '../types';
@@ -26,6 +26,7 @@ export const MRT_Table = <TData extends Record<string, any>>({
       columnVirtualizerInstanceRef,
       columnVirtualizerProps,
       columns,
+      creatingMode,
       editingMode,
       enableColumnResizing,
       enableColumnVirtualization,
@@ -43,6 +44,7 @@ export const MRT_Table = <TData extends Record<string, any>>({
     columnSizing,
     columnSizingInfo,
     columnVisibility,
+    creatingRow,
     density,
     editingRow,
   } = getState();
@@ -184,9 +186,10 @@ export const MRT_Table = <TData extends Record<string, any>>({
         )}
         {enableTableFooter && <MRT_TableFooter {...props} />}
       </Table>
-      {editingRow && editingMode === 'modal' && (
-        <MRT_EditRowModal row={editingRow as any} table={table} open />
-      )}
+      {(creatingRow && creatingMode === 'modal') ||
+        (editingRow && editingMode === 'modal' && (
+          <MRT_EditRowModal open table={table} />
+        ))}
     </>
   );
 };

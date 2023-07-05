@@ -30,18 +30,22 @@ export const MRT_ToggleRowActionMenuButton = <
     setEditingRow,
   } = table;
 
-  const { editingRow } = getState();
+  const { creatingRow, editingRow } = getState();
 
   const handleStartEditMode = (event: MouseEvent) => {
     event.stopPropagation();
     setEditingRow({ ...row });
   };
 
+  const showEditActionButtons =
+    (creatingRow?.id === row.id || row.id === editingRow?.id) &&
+    editingMode === 'row';
+
   return (
     <>
-      {renderRowActions ? (
+      {renderRowActions && !showEditActionButtons ? (
         <>{renderRowActions({ cell, row, table })}</>
-      ) : row.id === editingRow?.id && editingMode === 'row' ? (
+      ) : showEditActionButtons ? (
         <MRT_EditActionButtons row={row} table={table} />
       ) : !renderRowActionMenuItems &&
         (enableEditing instanceof Function

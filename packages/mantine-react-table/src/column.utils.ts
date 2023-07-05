@@ -1,4 +1,10 @@
-import { type Row } from '@tanstack/react-table';
+import { type ReactNode } from 'react';
+import {
+  type Row,
+  type Renderable,
+  flexRender as _flexRender,
+  createRow as _createRow,
+} from '@tanstack/react-table';
 import { type MRT_AggregationFns } from './aggregationFns';
 import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
@@ -402,3 +408,26 @@ export const getPrimaryColor = (
 ): string => theme.colors[theme.primaryColor][shade ?? getPrimaryShade(theme)];
 
 export const parseCSSVarId = (id: string) => id.replace(/[^a-zA-Z0-9]/g, '_');
+
+export const flexRender = _flexRender as (
+  Comp: Renderable<any>,
+  props: any,
+) => ReactNode | JSX.Element;
+
+export const createRow = <TData extends Record<string, any>>(
+  table: MRT_TableInstance<TData>,
+  originalRow?: TData,
+): MRT_Row<TData> =>
+  _createRow(
+    table as any,
+    'mrt-row-create',
+    originalRow ??
+      Object.assign(
+        {},
+        ...getAllLeafColumnDefs(table.options.columns).map((col) => ({
+          [getColumnId(col)]: '',
+        })),
+      ),
+    -1,
+    0,
+  ) as MRT_Row<TData>;

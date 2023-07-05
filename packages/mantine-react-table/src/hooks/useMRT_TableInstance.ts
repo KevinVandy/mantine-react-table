@@ -57,8 +57,11 @@ export const useMRT_TableInstance: <TData extends Record<string, any>>(
     return initState;
   }, []);
 
-  const [columnFilterFns, setColumnFilterFns] = useState<MRT_ColumnFilterFnsState>(
-    () =>
+  const [creatingRow, setCreatingRow] = useState<MRT_Row<TData> | null>(
+    initialState.creatingRow ?? null,
+  );
+  const [columnFilterFns, setColumnFilterFns] =
+    useState<MRT_ColumnFilterFnsState>(() =>
       Object.assign(
         {},
         ...getAllLeafColumnDefs(
@@ -72,7 +75,7 @@ export const useMRT_TableInstance: <TData extends Record<string, any>>(
                 getDefaultColumnFilterFn(col),
         })),
       ),
-  );
+    );
   const [columnOrder, setColumnOrder] = useState<MRT_ColumnOrderState>(
     initialState.columnOrder ?? [],
   );
@@ -212,6 +215,7 @@ export const useMRT_TableInstance: <TData extends Record<string, any>>(
         tableOptions.filterFns?.fuzzy,
       initialState,
       state: {
+        creatingRow,
         columnFilterFns,
         columnOrder,
         density,
@@ -241,6 +245,7 @@ export const useMRT_TableInstance: <TData extends Record<string, any>>(
       tablePaperRef,
       topToolbarRef,
     },
+    setCreatingRow: tableOptions.onCreatingRowChange ?? setCreatingRow,
     setColumnFilterFns:
       tableOptions.onColumnFilterFnsChange ?? setColumnFilterFns,
     setDensity: tableOptions.onDensityChange ?? setDensity,

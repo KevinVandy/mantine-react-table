@@ -16,7 +16,7 @@ interface Props<TData extends Record<string, any>> {
   enableHover?: boolean;
   isStriped?: boolean;
   measureElement?: (element: HTMLTableRowElement) => void;
-  numRows: number;
+  numRows?: number;
   row: MRT_Row<TData>;
   rowIndex: number;
   table: MRT_TableInstance<TData>;

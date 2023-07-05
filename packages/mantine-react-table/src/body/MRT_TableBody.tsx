@@ -3,13 +3,13 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import { Box, Text } from '@mantine/core';
 import { Memo_MRT_TableBodyRow, MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { rankGlobalFuzzy } from '../sortingFns';
+import { getCanRankRows } from '../column.utils';
 import {
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_VirtualItem,
   type MRT_Virtualizer,
 } from '../types';
-import { getCanRankRows } from '../column.utils';
 
 interface Props<TData extends Record<string, any>> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
@@ -35,6 +35,7 @@ export const MRT_TableBody = <TData extends Record<string, any>>({
     getPrePaginationRowModel,
     getState,
     options: {
+      creatingMode,
       enableGlobalFilterRankedResults,
       enablePagination,
       enableRowVirtualization,
@@ -54,6 +55,7 @@ export const MRT_TableBody = <TData extends Record<string, any>>({
     refs: { tableContainerRef, tablePaperRef },
   } = table;
   const {
+    creatingRow,
     columnFilters,
     density,
     expanded,
@@ -148,6 +150,9 @@ export const MRT_TableBody = <TData extends Record<string, any>>({
           : (tableBodyProps?.sx as any)),
       })}
     >
+      {creatingRow && creatingMode === 'row' && (
+        <MRT_TableBodyRow table={table} row={creatingRow} rowIndex={-1} />
+      )}
       {!rows.length ? (
         <tr style={{ display: layoutMode === 'grid' ? 'grid' : 'table-row' }}>
           <td

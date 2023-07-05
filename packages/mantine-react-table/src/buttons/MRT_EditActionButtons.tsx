@@ -17,17 +17,28 @@ export const MRT_EditActionButtons = <TData extends Record<string, any>>({
     options: {
       icons: { IconCircleX, IconDeviceFloppy },
       localization,
+      onCreatingRowCancel,
+      onCreatingRowSave,
       onEditingRowSave,
       onEditingRowCancel,
     },
     refs: { editInputRefs },
+    setCreatingRow,
     setEditingRow,
   } = table;
-  const { editingRow, isSaving } = getState();
+  const { creatingRow, editingRow, isSaving } = getState();
+
+  const isCreating = creatingRow?.id === row.id;
+  const isEditing = editingRow?.id === row.id;
 
   const handleCancel = () => {
-    onEditingRowCancel?.({ row, table });
-    setEditingRow(null);
+    if (isCreating) {
+      onCreatingRowCancel?.({ row, table });
+      setCreatingRow(null);
+    } else if (isEditing) {
+      onEditingRowCancel?.({ row, table });
+      setEditingRow(null);
+    }
   };
 
   const handleSave = () => {
@@ -35,18 +46,35 @@ export const MRT_EditActionButtons = <TData extends Record<string, any>>({
     Object.values(editInputRefs?.current)?.forEach((input) => {
       if (
         input.value !== undefined &&
-        Object.hasOwn(editingRow?._valuesCache as object, input.name)
+        Object.hasOwn(
+          (isCreating ? creatingRow : editingRow)?._valuesCache as object,
+          input.name,
+        )
       ) {
-        // @ts-ignore
-        editingRow._valuesCache[input.name] = input.value;
+        if (isCreating) {
+          // @ts-ignore
+          creatingRow._valuesCache[input.name] = input.value;
+        } else if (isEditing) {
+          // @ts-ignore
+          editingRow._valuesCache[input.name] = input.value;
+        }
       }
     });
-    onEditingRowSave?.({
-      exitEditingMode: () => setEditingRow(null),
-      row: editingRow ?? row,
-      table,
-      values: editingRow?._valuesCache ?? { ...row.original },
-    });
+    if (isCreating)
+      onCreatingRowSave?.({
+        exitCreatingMode: () => setCreatingRow(null),
+        row: creatingRow,
+        table,
+        values: creatingRow._valuesCache,
+      });
+    else if (isEditing) {
+      onEditingRowSave?.({
+        exitEditingMode: () => setEditingRow(null),
+        row: editingRow,
+        table,
+        values: editingRow?._valuesCache,
+      });
+    }
   };
 
   return (

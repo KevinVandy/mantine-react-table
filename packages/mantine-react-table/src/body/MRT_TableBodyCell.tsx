@@ -27,7 +27,7 @@ interface Props<TData extends Record<string, any>> {
   cell: MRT_Cell<TData>;
   isStriped?: boolean;
   measureElement?: (element: HTMLTableCellElement) => void;
-  numRows: number;
+  numRows?: number;
   rowIndex: number;
   rowRef: RefObject<HTMLTableRowElement>;
   table: MRT_TableInstance<TData>;
@@ -64,13 +64,14 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
     setHoveredColumn,
   } = table;
   const {
+    creatingRow,
+    density,
     draggingColumn,
     draggingRow,
-    hoveredRow,
     editingCell,
     editingRow,
     hoveredColumn,
-    density,
+    hoveredRow,
     isLoading,
     showSkeletons,
   } = getState();
@@ -116,7 +117,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
     const isHoveredRow = hoveredRow?.id === row.id;
     const isFirstColumn = getIsFirstColumn(column, table);
     const isLastColumn = getIsLastColumn(column, table);
-    const isLastRow = rowIndex === numRows - 1;
+    const isLastRow = rowIndex === numRows && numRows - 1;
 
     const borderStyle =
       isDraggingColumn || isDraggingRow
@@ -158,6 +159,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
     isEditable &&
     !['modal', 'custom'].includes(editingMode as string) &&
     (editingMode === 'table' ||
+      creatingRow?.id === row.id ||
       editingRow?.id === row.id ||
       editingCell?.id === cell.id) &&
     !row.getIsGrouped();
@@ -237,7 +239,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
       <>
         {cell.getIsPlaceholder() ? (
           columnDef.PlaceholderCell?.({ cell, column, row, table }) ?? null
-        ) : (isLoading || showSkeletons) && cell.getValue() === null ? (
+        ) : (isLoading || showSkeletons) &&
+          [undefined, null].includes(cell.getValue<any>()) ? (
           <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />
         ) : enableRowNumbers &&
           rowNumberMode === 'static' &&

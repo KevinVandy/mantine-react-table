@@ -1,285 +1,309 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
+  MRT_EditActionButtons,
   MantineReactTable,
-  MRT_TableOptions,
-  MRT_Cell,
-  MRT_ColumnDef,
-  MRT_Row,
+  createRow,
+  type MRT_ColumnDef,
+  type MRT_Row,
+  type MRT_TableOptions,
+  useMantineReactTable,
 } from 'mantine-react-table';
 import {
-  Box,
-  Button,
-  Dialog,
-  Flex,
-  Title,
   ActionIcon,
-  Menu,
+  Button,
+  Flex,
   Stack,
-  TextInput,
+  Text,
+  Title,
   Tooltip,
 } from '@mantine/core';
-import { IconTrash, IconEdit } from '@tabler/icons-react';
-import { data, states } from './makeData';
-
-export type Person = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  age: number;
-  state: string;
-};
+import { ModalsProvider, modals } from '@mantine/modals';
+import { IconEdit, IconTrash } from '@tabler/icons-react';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
+import { type User, fakeData, usStates } from './makeData';
 
 const Example = () => {
-  const [createModalOpen, setCreateModalOpen] = useState(false);
-  const [tableData, setTableData] = useState<Person[]>(() => data);
-  const [validationErrors, setValidationErrors] = useState<{
-    [cellId: string]: string;
-  }>({});
+  const [validationErrors, setValidationErrors] = useState<
+    Record<string, string | undefined>
+  >({});
 
-  const handleCreateNewRow = (values: Person) => {
-    tableData.push(values);
-    setTableData([...tableData]);
-  };
-
-  const handleSaveRowEdits: MRT_TableOptions<Person>['onEditingRowSave'] =
-    async ({ exitEditingMode, row, values }) => {
-      if (!Object.keys(validationErrors).length) {
-        tableData[row.index] = values;
-        //send/receive api updates here, then refetch or update local table data for re-render
-        setTableData([...tableData]);
-        exitEditingMode(); //required to exit editing mode and close modal
-      }
-    };
-
-  const handleCancelRowEdits = () => {
-    setValidationErrors({});
-  };
-
-  const handleDeleteRow = useCallback(
-    (row: MRT_Row<Person>) => {
-      if (
-        !confirm(`Are you sure you want to delete ${row.getValue('firstName')}`)
-      ) {
-        return;
-      }
-      //send api delete request here, then refetch or update local table data for re-render
-      tableData.splice(row.index, 1);
-      setTableData([...tableData]);
-    },
-    [tableData],
-  );
-
-  const getCommonEditTextInputProps = useCallback(
-    (
-      cell: MRT_Cell<Person>,
-    ): MRT_ColumnDef<Person>['mantineEditTextInputProps'] => {
-      return {
-        error: validationErrors[cell.id],
-        onBlur: (event) => {
-          const isValid =
-            cell.column.id === 'email'
-              ? validateEmail(event.target.value)
-              : cell.column.id === 'age'
-              ? validateAge(+event.target.value)
-              : validateRequired(event.target.value);
-          if (!isValid) {
-            //set validation error for cell if invalid
-            setValidationErrors({
-              ...validationErrors,
-              [cell.id]: `${cell.column.columnDef.header} is required`,
-            });
-          } else {
-            //remove validation error for cell if valid
-            delete validationErrors[cell.id];
-            setValidationErrors({
-              ...validationErrors,
-            });
-          }
-        },
-      };
-    },
-    [validationErrors],
-  );
-
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
+  const columns = useMemo<MRT_ColumnDef<User>[]>(
     () => [
       {
         accessorKey: 'id',
-        header: 'ID',
-        enableColumnOrdering: false,
-        enableEditing: false, //disable editing on this column
-        enableSorting: false,
+        header: 'Id',
+        enableEditing: false,
         size: 80,
       },
       {
         accessorKey: 'firstName',
         header: 'First Name',
-        size: 140,
-        mantineEditTextInputProps: ({ cell }) => ({
-          ...getCommonEditTextInputProps(cell),
-        }),
+        mantineEditTextInputProps: {
+          type: 'email',
+          required: true,
+          error: validationErrors?.firstName,
+        },
       },
       {
         accessorKey: 'lastName',
         header: 'Last Name',
-        size: 140,
-        mantineEditTextInputProps: ({ cell }) => ({
-          ...getCommonEditTextInputProps(cell),
-        }),
+        mantineEditTextInputProps: {
+          type: 'email',
+          required: true,
+          error: validationErrors?.lastName,
+        },
       },
       {
         accessorKey: 'email',
         header: 'Email',
-        mantineEditTextInputProps: ({ cell }) => ({
-          ...getCommonEditTextInputProps(cell),
+        mantineEditTextInputProps: {
           type: 'email',
-        }),
-      },
-      {
-        accessorKey: 'age',
-        header: 'Age',
-        size: 80,
-        mantineEditTextInputProps: ({ cell }) => ({
-          ...getCommonEditTextInputProps(cell),
-          type: 'number',
-        }),
+          required: true,
+          error: validationErrors?.email,
+        },
       },
       {
         accessorKey: 'state',
         header: 'State',
-        // mantineEditTextInputProps: {
-        //   select: true, //change to select for a dropdown
-        //   children: states.map((state) => (
-        //     <Menu.Item key={state} value={state}>
-        //       {state}
-        //     </Menu.Item>
-        //   )),
-        // },
+        editVariant: 'select',
+        mantineEditSelectProps: {
+          data: usStates,
+          error: validationErrors?.state,
+        },
       },
     ],
-    [getCommonEditTextInputProps],
+    [validationErrors],
   );
 
-  return (
-    <>
-      <MantineReactTable
-        displayColumnDefOptions={{
-          'mrt-row-actions': {
-            mantineTableHeadCellProps: {
-              align: 'center',
-            },
-            size: 120,
-          },
-        }}
-        columns={columns}
-        data={tableData}
-        editingMode="modal" //default
-        enableColumnOrdering
-        enableEditing
-        onEditingRowSave={handleSaveRowEdits}
-        onEditingRowCancel={handleCancelRowEdits}
-        renderRowActions={({ row, table }) => (
-          <Box sx={{ display: 'flex', gap: '16px' }}>
-            <Tooltip position="left" label="Edit">
-              <ActionIcon onClick={() => table.setEditingRow(row)}>
-                <IconEdit />
-              </ActionIcon>
-            </Tooltip>
-            <Tooltip position="right" label="Delete">
-              <ActionIcon color="red" onClick={() => handleDeleteRow(row)}>
-                <IconTrash />
-              </ActionIcon>
-            </Tooltip>
-          </Box>
-        )}
-        renderTopToolbarCustomActions={() => (
-          <Button
-            color="teal"
-            onClick={() => setCreateModalOpen(true)}
-            variant="filled"
-          >
-            Create New Account
-          </Button>
-        )}
-      />
-      <CreateNewAccountModal
-        columns={columns}
-        open={createModalOpen}
-        onClose={() => setCreateModalOpen(false)}
-        onSubmit={handleCreateNewRow}
-      />
-    </>
-  );
-};
+  //call CREATE hook
+  const { mutateAsync: createUser, isLoading: isCreatingUser } =
+    useCreateUser();
+  //call READ hook
+  const {
+    data: fetchedUsers = [],
+    isError: isLoadingUsersError,
+    isFetching: isFetchingUsers,
+    isLoading: isLoadingUsers,
+  } = useGetUsers();
+  //call UPDATE hook
+  const { mutateAsync: updateUser, isLoading: isUpdatingUser } =
+    useUpdateUser();
+  //call DELETE hook
+  const { mutateAsync: deleteUser, isLoading: isDeletingUser } =
+    useDeleteUser();
 
-interface Props {
-  columns: MRT_ColumnDef<Person>[];
-  onClose: () => void;
-  onSubmit: (values: Person) => void;
-  open: boolean;
-}
-
-//example of creating a mantine dialog modal for creating new rows
-export const CreateNewAccountModal = ({
-  open,
-  columns,
-  onClose,
-  onSubmit,
-}: Props) => {
-  const [values, setValues] = useState<any>(() =>
-    columns.reduce((acc, column) => {
-      acc[column.accessorKey ?? ''] = '';
-      return acc;
-    }, {} as any),
-  );
-
-  const handleSubmit = () => {
-    //put your validation logic here
-    onSubmit(values);
-    onClose();
+  //CREATE action
+  const handleCreateUser: MRT_TableOptions<User>['onCreatingRowSave'] = async ({
+    values,
+    exitCreatingMode,
+  }) => {
+    const newValidationErrors = validateUser(values);
+    if (Object.values(newValidationErrors).some((error) => error)) {
+      setValidationErrors(newValidationErrors);
+      return;
+    }
+    setValidationErrors({});
+    await createUser(values);
+    exitCreatingMode();
   };
 
-  return (
-    <Dialog opened={open}>
-      <Title ta="center">Create New Account</Title>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <Stack
-          sx={{
-            width: '100%',
-            gap: '24px',
-          }}
-        >
-          {columns.map((column) => (
-            <TextInput
-              key={column.accessorKey}
-              label={column.header}
-              name={column.accessorKey}
-              onChange={(e) =>
-                setValues({ ...values, [e.target.name]: e.target.value })
-              }
-            />
-          ))}
-        </Stack>
-      </form>
-      <Flex
-        sx={{
-          padding: '20px',
-          width: '100%',
-          justifyContent: 'flex-end',
-          gap: '16px',
+  //UPDATE action
+  const handleSaveUser: MRT_TableOptions<User>['onEditingRowSave'] = async ({
+    values,
+    exitEditingMode,
+  }) => {
+    const newValidationErrors = validateUser(values);
+    if (Object.values(newValidationErrors).some((error) => error)) {
+      setValidationErrors(newValidationErrors);
+      return;
+    }
+    setValidationErrors({});
+    await updateUser(values);
+    exitEditingMode();
+  };
+
+  //DELETE action
+  const openDeleteConfirmModal = (row: MRT_Row<User>) =>
+    modals.openConfirmModal({
+      title: 'Are you sure you want to delete this user?',
+      children: (
+        <Text>
+          Are you sure you want to delete {row.original.firstName}{' '}
+          {row.original.lastName}? This action cannot be undone. (Unless you
+          reload the page lol)
+        </Text>
+      ),
+      labels: { confirm: 'Delete', cancel: 'Cancel' },
+      confirmProps: { color: 'red' },
+      onConfirm: () => deleteUser(row.original.id),
+    });
+
+  const table = useMantineReactTable({
+    columns,
+    data: fetchedUsers,
+    creatingMode: 'modal', //default (row, and custom are also available)
+    editingMode: 'modal', //default (row, cell, table, and custom are also available)
+    enableEditing: true,
+    mantineToolbarAlertBannerProps: isLoadingUsersError
+      ? {
+          color: 'red',
+          children: 'Error loading data',
+        }
+      : undefined,
+    onCreatingRowCancel: () => setValidationErrors({}),
+    onCreatingRowSave: handleCreateUser,
+    onEditingRowCancel: () => setValidationErrors({}),
+    onEditingRowSave: handleSaveUser,
+    renderCreateRowModalContent: ({ table, row, internalEditComponents }) => (
+      <Stack>
+        <Title order={3}>Create New User</Title>
+        {internalEditComponents}
+        <Flex justify="flex-end">
+          <MRT_EditActionButtons variant="text" table={table} row={row} />
+        </Flex>
+      </Stack>
+    ),
+    renderEditRowModalContent: ({ table, row, internalEditComponents }) => (
+      <Stack>
+        <Title order={3}>Edit User</Title>
+        {internalEditComponents}
+        <Flex justify="flex-end">
+          <MRT_EditActionButtons variant="text" table={table} row={row} />
+        </Flex>
+      </Stack>
+    ),
+    renderRowActions: ({ row, table }) => (
+      <Flex gap="md">
+        <Tooltip label="Edit">
+          <ActionIcon onClick={() => table.setEditingRow(row)}>
+            <IconEdit />
+          </ActionIcon>
+        </Tooltip>
+        <Tooltip label="Delete">
+          <ActionIcon color="red" onClick={() => openDeleteConfirmModal(row)}>
+            <IconTrash />
+          </ActionIcon>
+        </Tooltip>
+      </Flex>
+    ),
+    renderTopToolbarCustomActions: ({ table }) => (
+      <Button
+        onClick={() => {
+          table.setCreatingRow(createRow(table));
         }}
       >
-        <Button onClick={onClose} variant="subtle">
-          Cancel
-        </Button>
-        <Button color="teal" onClick={handleSubmit} variant="filled">
-          Create New Account
-        </Button>
-      </Flex>
-    </Dialog>
-  );
+        Create New User
+      </Button>
+    ),
+    state: {
+      isLoading: isLoadingUsers,
+      isSaving: isCreatingUser || isUpdatingUser || isDeletingUser,
+      showAlertBanner: isLoadingUsersError,
+      showProgressBars: isFetchingUsers,
+    },
+  });
+
+  return <MantineReactTable table={table} />;
 };
+
+//CREATE hook (post new user to api)
+function useCreateUser() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (user: User) => {
+      //send api update request here
+      await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
+      return Promise.resolve();
+    },
+    //client side optimistic update
+    onMutate: (newUserInfo: User) => {
+      queryClient.setQueryData(
+        ['users'],
+        (prevUsers: any) =>
+          [
+            ...prevUsers,
+            {
+              ...newUserInfo,
+              id: (Math.random() + 1).toString(36).substring(7),
+            },
+          ] as User[],
+      );
+    },
+    // onSettled: () => queryClient.invalidateQueries({ queryKey: ['users'] }), //refetch users after mutation, disabled for demo
+  });
+}
+
+//READ hook (get users from api)
+function useGetUsers() {
+  return useQuery<User[]>({
+    queryKey: ['users'],
+    queryFn: async () => {
+      //send api request here
+      await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
+      return Promise.resolve(fakeData);
+    },
+    refetchOnWindowFocus: false,
+  });
+}
+
+//UPDATE hook (put user in api)
+function useUpdateUser() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (user: User) => {
+      //send api update request here
+      await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
+      return Promise.resolve();
+    },
+    //client side optimistic update
+    onMutate: (newUserInfo: User) => {
+      queryClient.setQueryData(['users'], (prevUsers: any) =>
+        prevUsers?.map((prevUser: User) =>
+          prevUser.id === newUserInfo.id ? newUserInfo : prevUser,
+        ),
+      );
+    },
+    // onSettled: () => queryClient.invalidateQueries({ queryKey: ['users'] }), //refetch users after mutation, disabled for demo
+  });
+}
+
+//DELETE hook (delete user in api)
+function useDeleteUser() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (userId: string) => {
+      //send api update request here
+      await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
+      return Promise.resolve();
+    },
+    //client side optimistic update
+    onMutate: (userId: string) => {
+      queryClient.setQueryData(['users'], (prevUsers: any) =>
+        prevUsers?.filter((user: User) => user.id !== userId),
+      );
+    },
+    // onSettled: () => queryClient.invalidateQueries({ queryKey: ['users'] }), //refetch users after mutation, disabled for demo
+  });
+}
+
+const queryClient = new QueryClient();
+
+const ExampleWithProviders = () => (
+  //Put this with your other react-query providers near root of your app
+  <QueryClientProvider client={queryClient}>
+    <ModalsProvider>
+      <Example />
+    </ModalsProvider>
+  </QueryClientProvider>
+);
+
+export default ExampleWithProviders;
 
 const validateRequired = (value: string) => !!value.length;
 const validateEmail = (email: string) =>
@@ -289,6 +313,13 @@ const validateEmail = (email: string) =>
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     );
-const validateAge = (age: number) => age >= 18 && age <= 50;
 
-export default Example;
+function validateUser(user: User) {
+  return {
+    firstName: !validateRequired(user.firstName)
+      ? 'First Name is Required'
+      : '',
+    lastName: !validateRequired(user.lastName) ? 'Last Name is Required' : '',
+    email: !validateEmail(user.email) ? 'Incorrect Email Format' : '',
+  };
+}

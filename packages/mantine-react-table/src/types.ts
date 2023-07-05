@@ -127,6 +127,7 @@ export interface MRT_Localization {
   collapseAll: string;
   columnActions: string;
   copiedToClipboard: string;
+  create?: string;
   dropToGroupBy: string;
   edit: string;
   expand: string;
@@ -258,6 +259,7 @@ export type MRT_TableInstance<TData extends Record<string, any>> = Omit<
     tablePaperRef: MutableRefObject<HTMLDivElement>;
     topToolbarRef: MutableRefObject<HTMLDivElement>;
   };
+  setCreatingRow: Dispatch<SetStateAction<MRT_Row<TData> | null>>;
   setColumnFilterFns: Dispatch<SetStateAction<MRT_ColumnFilterFnsState>>;
   setDensity: Dispatch<SetStateAction<MRT_DensityState>>;
   setDraggingColumn: Dispatch<SetStateAction<MRT_Column<TData> | null>>;
@@ -286,6 +288,7 @@ export type MRT_DefinedTableOptions<TData extends Record<string, any>> =
 
 export type MRT_TableState<TData extends Record<string, any>> = TableState & {
   columnFilterFns: MRT_ColumnFilterFnsState;
+  creatingRow: MRT_Row<TData> | null;
   density: MRT_DensityState;
   draggingColumn: MRT_Column<TData> | null;
   draggingRow: MRT_Row<TData> | null;
@@ -719,7 +722,8 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
   displayColumnDefOptions?: Partial<{
     [key in MRT_DisplayColumnIds]: Partial<MRT_ColumnDef<TData>>;
   }>;
-  editingMode?: 'table' | 'modal' | 'row' | 'cell' | 'custom';
+  editingMode?: 'modal' | 'row' | 'cell' | 'table' | 'custom';
+  creatingMode?: 'modal' | 'row' | 'custom';
   enableBottomToolbar?: boolean;
   enableClickToCopy?: boolean;
   enableColumnActions?: boolean;
@@ -795,6 +799,12 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<UnstyledButtonProps>);
+  mantineCreateRowModalProps?:
+    | (HTMLPropsRef<HTMLDivElement> & Partial<ModalProps>)
+    | ((props: {
+        table: MRT_TableInstance<TData>;
+        row: MRT_Row<TData>;
+      }) => HTMLPropsRef<HTMLDivElement> & Partial<ModalProps>);
   mantineDetailPanelProps?:
     | (HTMLPropsRef<HTMLTableCellElement> & Partial<BoxProps>)
     | ((props: {
@@ -1044,6 +1054,17 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
    * @link https://www.mantine-react-table.com/docs/guides/memoize-components
    */
   memoMode?: 'cells' | 'rows' | 'table-body';
+  onCreatingRowCancel?: (props: {
+    row: MRT_Row<TData>;
+    table: MRT_TableInstance<TData>;
+  }) => void;
+  onCreatingRowChange?: OnChangeFn<MRT_Row<TData> | null>;
+  onCreatingRowSave?: (props: {
+    exitCreatingMode: () => void;
+    row: MRT_Row<TData>;
+    table: MRT_TableInstance<TData>;
+    values: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
+  }) => void;
   onColumnFilterFnsChange?: OnChangeFn<{ [key: string]: MRT_FilterOption }>;
   onDensityChange?: OnChangeFn<MRT_DensityState>;
   onDraggingColumnChange?: OnChangeFn<MRT_Column<TData> | null>;
@@ -1078,6 +1099,11 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
     | ReactNode
     | ((props: { table: MRT_TableInstance<TData> }) => ReactNode);
   renderBottomToolbarCustomActions?: (props: {
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
+  renderCreateRowModalContent?: (props: {
+    internalEditComponents: ReactNode[];
+    row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderColumnActionsMenuItems?: (props: {

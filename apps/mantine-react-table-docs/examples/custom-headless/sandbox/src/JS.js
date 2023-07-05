@@ -1,5 +1,5 @@
 import {
-  MRT_FlexRender,
+  flexRender,
   MRT_GlobalFilterTextInput,
   MRT_TablePagination,
   MRT_ToolbarAlertBanner,
@@ -80,7 +80,7 @@ const Example = () => {
                 <th key={header.id}>
                   {header.isPlaceholder
                     ? null
-                    : MRT_FlexRender(
+                    : flexRender(
                         header.column.columnDef.Header ??
                           header.column.columnDef.header,
                         header.getContext(),
@@ -95,7 +95,7 @@ const Example = () => {
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>
-                  {MRT_FlexRender(
+                  {flexRender(
                     cell.column.columnDef.Cell ?? cell.column.columnDef.cell,
                     cell.getContext(),
                   )}
