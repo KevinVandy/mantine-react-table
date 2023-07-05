@@ -151,6 +151,9 @@ export const MRT_Table = <TData extends Record<string, any>>({
     virtualPaddingRight,
   };
 
+  const createModalOpen = creatingMode === 'modal' && creatingRow;
+  const editModalOpen = editingMode === 'modal' && editingRow;
+
   return (
     <>
       <Table
@@ -186,10 +189,9 @@ export const MRT_Table = <TData extends Record<string, any>>({
         )}
         {enableTableFooter && <MRT_TableFooter {...props} />}
       </Table>
-      {(creatingRow && creatingMode === 'modal') ||
-        (editingRow && editingMode === 'modal' && (
-          <MRT_EditRowModal open table={table} />
-        ))}
+      {(createModalOpen || editModalOpen) && (
+        <MRT_EditRowModal open table={table} />
+      )}
     </>
   );
 };

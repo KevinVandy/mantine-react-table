@@ -66,6 +66,7 @@ export const MRT_EditRowModal = <TData extends Record<string, any>>({
       opened={open}
       withCloseButton={false}
       {...modalProps}
+      key={row.id}
     >
       {((creatingRow &&
         renderCreateRowModalContent?.({
