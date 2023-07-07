@@ -48,6 +48,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
   const {
     getState,
     options: {
+      creatingMode,
       editingMode,
       enableClickToCopy,
       enableColumnOrdering,
@@ -159,17 +160,19 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
     isEditable &&
     !['modal', 'custom'].includes(editingMode as string) &&
     (editingMode === 'table' ||
-      creatingRow?.id === row.id ||
       editingRow?.id === row.id ||
       editingCell?.id === cell.id) &&
     !row.getIsGrouped();
+
+  const isCreating =
+    isEditable && creatingMode === 'row' && creatingRow?.id === row.id;
 
   const handleDoubleClick = (event: MouseEvent<HTMLTableCellElement>) => {
     tableCellProps?.onDoubleClick?.(event);
     if (isEditable && editingMode === 'cell') {
       setEditingCell(cell);
       setTimeout(() => {
-        const textField = editInputRefs.current[column.id];
+        const textField = editInputRefs.current[cell.id];
         if (textField) {
           textField.focus();
           textField.select?.();
@@ -218,6 +221,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
           draggingColumn?.id === column.id ? 2 : column.getIsPinned() ? 1 : 0,
         '&:hover': {
           outline:
+            isEditing &&
             ['table', 'cell'].includes(editingMode ?? '') &&
             columnDefType !== 'display'
               ? `1px solid ${theme.colors.gray[7]}`
@@ -259,7 +263,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
             renderedCellValue: <>{cell.getValue()}</>,
             table,
           })
-        ) : isEditing ? (
+        ) : isCreating || isEditing ? (
           <MRT_EditCellTextInput cell={cell} table={table} />
         ) : (enableClickToCopy || columnDef.enableClickToCopy) &&
           columnDef.enableClickToCopy !== false ? (

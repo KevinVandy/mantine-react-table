@@ -41,38 +41,32 @@ export const MRT_EditActionButtons = <TData extends Record<string, any>>({
     }
   };
 
-  const handleSave = () => {
+  const handleSubmitRow = () => {
     //look for auto-filled input values
-    Object.values(editInputRefs?.current)?.forEach((input) => {
-      if (
-        input.value !== undefined &&
-        Object.hasOwn(
-          (isCreating ? creatingRow : editingRow)?._valuesCache as object,
-          input.name,
-        )
-      ) {
-        if (isCreating) {
+    Object.values(editInputRefs?.current)
+      .filter((inputRef) => row.id === inputRef?.name?.split('_')?.[0])
+      ?.forEach((input) => {
+        if (
+          input.value !== undefined &&
+          Object.hasOwn(row?._valuesCache as object, input.name)
+        ) {
           // @ts-ignore
-          creatingRow._valuesCache[input.name] = input.value;
-        } else if (isEditing) {
-          // @ts-ignore
-          editingRow._valuesCache[input.name] = input.value;
+          row._valuesCache[input.name] = input.value;
         }
-      }
-    });
+      });
     if (isCreating)
       onCreatingRowSave?.({
         exitCreatingMode: () => setCreatingRow(null),
-        row: creatingRow,
+        row,
         table,
-        values: creatingRow._valuesCache,
+        values: row._valuesCache,
       });
     else if (isEditing) {
       onEditingRowSave?.({
         exitEditingMode: () => setEditingRow(null),
-        row: editingRow,
+        row,
         table,
-        values: editingRow?._valuesCache,
+        values: row?._valuesCache,
       });
     }
   };
@@ -93,7 +87,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any>>({
             <ActionIcon
               aria-label={localization.save}
               color="blue"
-              onClick={handleSave}
+              onClick={handleSubmitRow}
               loading={isSaving}
             >
               <IconDeviceFloppy />
@@ -105,7 +99,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any>>({
           <Button onClick={handleCancel} variant="subtle">
             {localization.cancel}
           </Button>
-          <Button onClick={handleSave} variant="filled" loading={isSaving}>
+          <Button onClick={handleSubmitRow} variant="filled" loading={isSaving}>
             {localization.save}
           </Button>
         </>

@@ -230,7 +230,7 @@ export const routes: Array<RouteItem> = [
           },
           {
             href: '/docs/guides/editing',
-            label: 'Editing (Editable)',
+            label: 'Editing and Creating',
           },
           {
             href: '/docs/guides/expanding-sub-rows',

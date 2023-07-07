@@ -11,6 +11,25 @@ export const useMRT_Effects = <TData extends Record<string, any>>(
   } = table;
   const { globalFilter, isFullScreen, pagination, sorting } = getState();
 
+  //hide page scrollbars when table is in full screen mode
+  const initialBodyHeight = useRef<string>();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      initialBodyHeight.current = document.body.style.height;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (isFullScreen) {
+        document.body.style.height = '100vh';
+      } else {
+        document.body.style.height = initialBodyHeight.current as string;
+      }
+    }
+  }, [isFullScreen]);
+
   //if page index is out of bounds, set it to the last page
   useEffect(() => {
     if (!enablePagination) return;
@@ -39,23 +58,4 @@ export const useMRT_Effects = <TData extends Record<string, any>>(
       table.setSorting(() => appliedSort.current || []);
     }
   }, [globalFilter]);
-
-  //hide page scrollbars when table is in full screen mode
-  const initialBodyHeight = useRef<string>();
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      initialBodyHeight.current = document.body.style.height;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (isFullScreen) {
-        document.body.style.height = '100vh';
-      } else {
-        document.body.style.height = initialBodyHeight.current as string;
-      }
-    }
-  }, [isFullScreen]);
 };

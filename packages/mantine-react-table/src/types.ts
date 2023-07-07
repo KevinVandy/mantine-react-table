@@ -259,7 +259,7 @@ export type MRT_TableInstance<TData extends Record<string, any>> = Omit<
     tablePaperRef: MutableRefObject<HTMLDivElement>;
     topToolbarRef: MutableRefObject<HTMLDivElement>;
   };
-  setCreatingRow: Dispatch<SetStateAction<MRT_Row<TData> | null>>;
+  setCreatingRow: Dispatch<SetStateAction<MRT_Row<TData> | null | true>>;
   setColumnFilterFns: Dispatch<SetStateAction<MRT_ColumnFilterFnsState>>;
   setDensity: Dispatch<SetStateAction<MRT_DensityState>>;
   setDraggingColumn: Dispatch<SetStateAction<MRT_Column<TData> | null>>;
@@ -1082,8 +1082,8 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
     values: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
   }) => Promise<void> | void;
   onGlobalFilterFnChange?: OnChangeFn<MRT_FilterOption>;
-  onHoveredColumnChange?: OnChangeFn<MRT_Column<TData> | null>;
-  onHoveredRowChange?: OnChangeFn<MRT_Row<TData> | null>;
+  onHoveredColumnChange?: OnChangeFn<MRT_Column<TData> | { id: string } | null>;
+  onHoveredRowChange?: OnChangeFn<MRT_Row<TData> | { id: string } | null>;
   onIsFullScreenChange?: OnChangeFn<boolean>;
   onShowAlertBannerChange?: OnChangeFn<boolean>;
   onShowColumnFiltersChange?: OnChangeFn<boolean>;

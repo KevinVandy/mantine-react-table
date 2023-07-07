@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import {
   MRT_EditActionButtons,
   MantineReactTable,
-  createRow,
+  // createRow,
   useMantineReactTable,
 } from 'mantine-react-table';
 import {
@@ -43,6 +43,13 @@ const Example = () => {
           type: 'email',
           required: true,
           error: validationErrors?.firstName,
+          //remove any previous validation errors when user focuses on the input
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              firstName: undefined,
+            }),
+          //optionally add validation checking for onBlur or onChange
         },
       },
       {
@@ -52,6 +59,12 @@ const Example = () => {
           type: 'email',
           required: true,
           error: validationErrors?.lastName,
+          //remove any previous validation errors when user focuses on the input
+          onFocus: (event) =>
+            setValidationErrors({
+              ...validationErrors,
+              lastName: undefined,
+            }),
         },
       },
       {
@@ -61,6 +74,12 @@ const Example = () => {
           type: 'email',
           required: true,
           error: validationErrors?.email,
+          //remove any previous validation errors when user focuses on the input
+          onFocus: (event) =>
+            setValidationErrors({
+              ...validationErrors,
+              email: undefined,
+            }),
         },
       },
       {
@@ -136,15 +155,21 @@ const Example = () => {
   const table = useMantineReactTable({
     columns,
     data: fetchedUsers,
-    creatingMode: 'modal', //default (row, and custom are also available)
-    editingMode: 'modal', //default (row, cell, table, and custom are also available)
+    creatingMode: 'modal', //default ('row', and 'custom' are also available)
+    editingMode: 'modal', //default ('row', 'cell', 'table', and 'custom' are also available)
     enableEditing: true,
+    getRowId: (row) => row.id,
     mantineToolbarAlertBannerProps: isLoadingUsersError
       ? {
           color: 'red',
           children: 'Error loading data',
         }
       : undefined,
+    mantineTableContainerProps: {
+      sx: {
+        minHeight: '500px',
+      },
+    },
     onCreatingRowCancel: () => setValidationErrors({}),
     onCreatingRowSave: handleCreateUser,
     onEditingRowCancel: () => setValidationErrors({}),
@@ -153,7 +178,7 @@ const Example = () => {
       <Stack>
         <Title order={3}>Create New User</Title>
         {internalEditComponents}
-        <Flex justify="flex-end">
+        <Flex justify="flex-end" mt="xl">
           <MRT_EditActionButtons variant="text" table={table} row={row} />
         </Flex>
       </Stack>
@@ -162,7 +187,7 @@ const Example = () => {
       <Stack>
         <Title order={3}>Edit User</Title>
         {internalEditComponents}
-        <Flex justify="flex-end">
+        <Flex justify="flex-end" mt="xl">
           <MRT_EditActionButtons variant="text" table={table} row={row} />
         </Flex>
       </Stack>
@@ -184,7 +209,13 @@ const Example = () => {
     renderTopToolbarCustomActions: ({ table }) => (
       <Button
         onClick={() => {
-          table.setCreatingRow(createRow(table));
+          table.setCreatingRow(true); //simplest way to open the create row modal with no default values
+          //or you can pass in a row object to set default values with the `createRow` helper function
+          // table.setCreatingRow(
+          //   createRow(table, {
+          //     //optionally pass in default values for the new row, useful for nested data or other complex scenarios
+          //   }),
+          // );
         }}
       >
         Create New User

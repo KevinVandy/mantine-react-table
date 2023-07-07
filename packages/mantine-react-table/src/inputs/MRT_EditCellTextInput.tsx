@@ -13,15 +13,23 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any>>({
 }: Props<TData>) => {
   const {
     getState,
-    options: { editingMode, mantineEditTextInputProps, mantineEditSelectProps },
+    options: {
+      creatingMode,
+      editingMode,
+      mantineEditTextInputProps,
+      mantineEditSelectProps,
+    },
     refs: { editInputRefs },
     setEditingCell,
     setEditingRow,
+    setCreatingRow,
   } = table;
   const { column, row } = cell;
   const { columnDef } = column;
-  const { editingRow } = getState();
+  const { creatingRow, editingRow } = getState();
 
+  const isCreating = creatingRow?.id === row.id;
+  const isEditing = editingRow?.id === row.id;
   const isSelectEdit = columnDef.editVariant === 'select';
 
   const [value, setValue] = useState(() => cell.getValue<any>());
@@ -66,29 +74,31 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any>>({
     ...mcTableBodyCellEditSelectProps,
   };
 
-  const saveRow = (newValue: string | null) => {
-    if (editingRow) {
-      setEditingRow({
-        ...editingRow,
-        _valuesCache: { ...editingRow._valuesCache, [column.id]: newValue },
-      });
+  const saveInputValueToRowCache = (newValue: string | null) => {
+    //@ts-ignore
+    row._valuesCache[column.id] = newValue;
+    if (isCreating) {
+      setCreatingRow({ ...row });
+    } else if (isEditing) {
+      setEditingRow({ ...row });
     }
   };
 
   const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
     textInputProps.onBlur?.(event);
-    saveRow(value);
+    saveInputValueToRowCache(value);
     setEditingCell(null);
   };
 
   const handleEnterKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    textInputProps.onKeyDown?.(event);
     if (event.key === 'Enter') {
-      editInputRefs.current[column.id]?.blur();
+      editInputRefs.current[cell.id]?.blur();
     }
   };
 
   if (columnDef.Edit) {
-    return <>{columnDef.Edit?.({ cell, column, row, table })}</>;
+    return columnDef.Edit?.({ cell, column, row, table });
   }
 
   const commonProps = {
@@ -96,9 +106,17 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any>>({
       (columnDef.enableEditing instanceof Function
         ? columnDef.enableEditing(row)
         : columnDef.enableEditing) === false,
-    label: editingMode === 'modal' ? column.columnDef.header : undefined,
-    name: column.id,
-    placeholder: columnDef.header,
+    label: ['modal', 'custom'].includes(
+      (isCreating ? creatingMode : editingMode) as string,
+    )
+      ? column.columnDef.header
+      : undefined,
+    name: cell.id,
+    placeholder: !['modal', 'custom'].includes(
+      (isCreating ? creatingMode : editingMode) as string,
+    )
+      ? columnDef.header
+      : undefined,
     value,
     variant: editingMode === 'table' ? 'unstyled' : 'default',
     onClick: (e: any) => {
@@ -127,7 +145,7 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any>>({
         }}
         ref={(node) => {
           if (node) {
-            editInputRefs.current[column.id] = node;
+            editInputRefs.current[cell.id] = node;
             if (selectProps.ref) {
               selectProps.ref.current = node;
             }
@@ -154,7 +172,7 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any>>({
       }}
       ref={(node) => {
         if (node) {
-          editInputRefs.current[column.id] = node;
+          editInputRefs.current[cell.id] = node;
           if (textInputProps.ref) {
             textInputProps.ref.current = node;
           }

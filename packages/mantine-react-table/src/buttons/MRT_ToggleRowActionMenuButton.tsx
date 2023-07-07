@@ -20,6 +20,7 @@ export const MRT_ToggleRowActionMenuButton = <
   const {
     getState,
     options: {
+      creatingMode,
       editingMode,
       enableEditing,
       icons: { IconEdit },
@@ -32,14 +33,17 @@ export const MRT_ToggleRowActionMenuButton = <
 
   const { creatingRow, editingRow } = getState();
 
+  const isCreating = creatingRow?.id === row.id;
+  const isEditing = editingRow?.id === row.id;
+
   const handleStartEditMode = (event: MouseEvent) => {
     event.stopPropagation();
     setEditingRow({ ...row });
   };
 
   const showEditActionButtons =
-    (creatingRow?.id === row.id || row.id === editingRow?.id) &&
-    editingMode === 'row';
+    (isCreating && creatingMode === 'row') ||
+    (isEditing && editingMode === 'row');
 
   return (
     <>

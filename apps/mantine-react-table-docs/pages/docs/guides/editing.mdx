@@ -26,15 +26,21 @@ There are 4 visually distinct editing modes to choose from, whether you want to 
 <TableOptionsTable
   onlyOptions={
     new Set([
+      'creatingMode',
       'editingMode',
       'enableEditing',
+      'mantineCreateRowModalProps',
       'mantineEditRowModalProps',
       'mantineEditSelectProps',
       'mantineEditTextInputProps',
+      'onCreatingRowCancel',
+      'onCreatingRowChange',
+      'onCreatingRowSave',
       'onEditingCellChange',
       'onEditingRowCancel',
       'onEditingRowChange',
       'onEditingRowSave',
+      'renderCreateRowModalContent',
       'renderEditRowModalContent',
     ])
   }
@@ -56,7 +62,9 @@ There are 4 visually distinct editing modes to choose from, whether you want to 
 ### Relevant State Options
 
 <StateOptionsTable
-  onlyOptions={new Set(['editingCell', 'editingRow', 'isSaving'])}
+  onlyOptions={
+    new Set(['creatingRow', 'editingCell', 'editingRow', 'isSaving'])
+  }
 />
 
 ### Enable Editing
