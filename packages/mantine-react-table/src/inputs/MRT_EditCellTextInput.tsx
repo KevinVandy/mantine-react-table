@@ -1,5 +1,6 @@
 import { type FocusEvent, type KeyboardEvent, useState } from 'react';
-import { Select, TextInput } from '@mantine/core';
+import { Select } from '@mantine/core';
+import { Input } from '@chakra-ui/react';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any>> {
@@ -156,7 +157,7 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any>>({
   }
 
   return (
-    <TextInput
+    <Input
       {...commonProps}
       onKeyDown={handleEnterKeyDown}
       value={value ?? ''}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { RangeSlider, type RangeSliderProps } from '@mantine/core';
+import { RangeSlider, type RangeSliderProps } from '@chakra-ui/react';
 import { type MRT_TableInstance, type MRT_Header } from '../types';
 
 interface Props<TData extends Record<string, any>> {
@@ -101,15 +101,13 @@ export const MRT_FilterRangeSlider = <TData extends Record<string, any>>({
           }
         }
       }}
-      sx={(theme) => ({
+      sx={{
         margin: 'auto',
         marginTop: '16px',
         marginBottom: '6px',
         width: 'calc(100% - 8px)',
-        ...(rangeSliderProps?.sx instanceof Function
-          ? rangeSliderProps.sx(theme)
-          : (rangeSliderProps?.sx as any)),
-      })}
+        ...(rangeSliderProps?.sx as any),
+      }}
     />
   );
 };

@@ -7,6 +7,8 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     'storybook-dark-mode',
+    '@chakra-ui/storybook-addon',
+
     {
       name: '@storybook/addon-storysource',
       options: {
@@ -23,6 +25,10 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: 'tag',
+  },
+  features: {
+    // @ts-ignore
+    emotionAlias: false,
   },
 };
 export default config;

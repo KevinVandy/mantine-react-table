@@ -1,4 +1,3 @@
-import { type MouseEvent } from 'react';
 import {
   Checkbox,
   Radio,
@@ -7,7 +6,7 @@ import {
   type CheckboxProps,
   type RadioProps,
   type SwitchProps,
-} from '@mantine/core';
+} from '@chakra-ui/react';
 import {
   type SelectVariant,
   type MRT_Row,
@@ -59,23 +58,15 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
       : localization.toggleSelectRow,
     checked: selectAll ? allRowsSelected : row?.getIsSelected(),
     disabled: isLoading || (row && !row.getCanSelect()),
-    onChange: row
-      ? row.getToggleSelectedHandler()
-      : selectAllMode === 'all'
-      ? table.getToggleAllRowsSelectedHandler()
-      : table.getToggleAllPageRowsSelectedHandler(),
+
     size: density === 'xs' ? 'sm' : 'md',
     ...checkboxProps,
-    onClick: (e: MouseEvent<HTMLInputElement>) => {
-      e.stopPropagation();
-      checkboxProps?.onClick?.(e);
-    },
     // title: undefined,
   } as CheckboxProps & RadioProps & SwitchProps & { variant: SelectVariant };
 
   return (
     <Tooltip
-      withinPortal
+      hasArrow
       openDelay={1000}
       label={
         checkboxProps?.title ??
@@ -92,6 +83,17 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
         <Radio {...commonProps} />
       ) : (
         <Checkbox
+          onClick={(e) => {
+            e.stopPropagation();
+            checkboxProps?.onClick?.(e as any);
+          }}
+          onChange={
+            row
+              ? row.getToggleSelectedHandler()
+              : selectAllMode === 'all'
+              ? table.getToggleAllRowsSelectedHandler()
+              : table.getToggleAllPageRowsSelectedHandler()
+          }
           indeterminate={
             selectAll
               ? table.getIsSomeRowsSelected() && !allRowsSelected

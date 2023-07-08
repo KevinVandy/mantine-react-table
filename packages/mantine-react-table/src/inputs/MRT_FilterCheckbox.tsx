@@ -1,4 +1,4 @@
-import { Checkbox, type CheckboxProps, Tooltip } from '@mantine/core';
+import { Checkbox, type CheckboxProps, Tooltip } from '@chakra-ui/react';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any>> {
@@ -45,7 +45,7 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any>>({
 
   return (
     <Tooltip
-      withinPortal
+      hasArrow
       openDelay={1000}
       label={checkboxProps?.title ?? filterLabel}
     >
@@ -70,13 +70,11 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any>>({
           );
           checkboxProps?.onChange?.(e);
         }}
-        sx={(theme) => ({
+        sx={{
           fontWeight: 'normal',
           marginTop: '8px',
-          ...(checkboxProps?.sx instanceof Function
-            ? checkboxProps.sx(theme)
-            : (checkboxProps?.sx as any)),
-        })}
+          ...(checkboxProps?.sx as any),
+        }}
         title={undefined}
       />
     </Tooltip>

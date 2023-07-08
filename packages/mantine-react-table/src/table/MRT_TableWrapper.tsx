@@ -1,14 +1,14 @@
-import { Paper } from '@mantine/core';
 import { MRT_TopToolbar } from '../toolbar/MRT_TopToolbar';
 import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';
 import { MRT_TableContainer } from './MRT_TableContainer';
 import { type MRT_TableInstance } from '../types';
+import { Card, useColorModeValue } from '@chakra-ui/react';
 
 interface Props<TData extends Record<string, any>> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TablePaper = <TData extends Record<string, any>>({
+export const MRT_TableWrapper = <TData extends Record<string, any>>({
   table,
 }: Props<TData>) => {
   const {
@@ -30,9 +30,9 @@ export const MRT_TablePaper = <TData extends Record<string, any>>({
       : mantinePaperProps;
 
   return (
-    <Paper
+    <Card
       shadow="xs"
-      withBorder
+      variant="outline"
       {...tablePaperProps}
       ref={(ref: HTMLDivElement) => {
         tablePaperRef.current = ref;
@@ -41,14 +41,22 @@ export const MRT_TablePaper = <TData extends Record<string, any>>({
           tablePaperProps.ref.current = ref;
         }
       }}
-      sx={(theme) => ({
+      overflow="hidden"
+      borderRadius={'md'}
+      border={`1px solid `}
+      borderColor={useColorModeValue('whiteAlpha.400', 'gray.200')}
+      transition="all 100ms ease-in-out"
+      // sx={(theme) => ({
+      //   overflow: 'hidden',
+      //   transition: 'all 100ms ease-in-out',
+      //   ...(tablePaperProps?.sx instanceof Function
+      //     ? tablePaperProps?.sx(theme)
+      //     : (tablePaperProps?.sx as any)),
+      // })}
+      style={{
         overflow: 'hidden',
         transition: 'all 100ms ease-in-out',
-        ...(tablePaperProps?.sx instanceof Function
-          ? tablePaperProps?.sx(theme)
-          : (tablePaperProps?.sx as any)),
-      })}
-      style={{
+        ...(tablePaperProps?.sx as any),
         ...tablePaperProps?.style,
         ...(isFullScreen
           ? {
@@ -77,6 +85,6 @@ export const MRT_TablePaper = <TData extends Record<string, any>>({
         (renderBottomToolbar instanceof Function
           ? renderBottomToolbar({ table })
           : renderBottomToolbar ?? <MRT_BottomToolbar table={table} />)}
-    </Paper>
+    </Card>
   );
 };

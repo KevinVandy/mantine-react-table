@@ -1,9 +1,16 @@
 import { Fragment } from 'react';
-import { ActionIcon, Alert, Badge, Box, Collapse, Flex } from '@mantine/core';
+import {
+  IconButton,
+  Alert,
+  Badge,
+  Box,
+  Collapse,
+  Flex,
+} from '@chakra-ui/react';
 import { type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any>> {
-  stackAlertBanner: boolean;
+  stackAlertBanner: boolean | boolean[];
   table: MRT_TableInstance<TData>;
 }
 
@@ -25,7 +32,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any>>({
     },
   } = table;
   const { grouping, showAlertBanner } = getState();
-
+  console.log({ IconX });
   const alertProps =
     mantineToolbarAlertBannerProps instanceof Function
       ? mantineToolbarAlertBannerProps({ table })
@@ -58,12 +65,12 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any>>({
             {index > 0 ? localization.thenBy : ''}
             <Badge
               rightSection={
-                <ActionIcon
+                <IconButton
+                  aria-label="close"
                   onClick={() => table.getColumn(columnId).toggleGrouping()}
                   size="xs"
-                >
-                  <IconX />
-                </ActionIcon>
+                  icon={<IconX />}
+                />
               }
               sx={{ marginLeft: '1ch' }}
               variant="filled"
@@ -79,13 +86,13 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any>>({
   return (
     <Collapse
       in={showAlertBanner || !!selectMessage || !!groupedByMessage}
-      transitionDuration={stackAlertBanner ? 200 : 0}
+      // TODO: figure it out how to set duration transition for the collapse component
+      // transitionDuration={stackAlertBanner ? 200 : 0}
     >
       <Alert
-        color="blue"
-        icon={false}
+        colorScheme="blue"
         {...alertProps}
-        sx={(theme) => ({
+        style={{
           borderRadius: 0,
           fontSize: '16px',
           left: 0,
@@ -100,10 +107,11 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any>>({
           top: 0,
           width: '100%',
           zIndex: 2,
-          ...(alertProps?.sx instanceof Function
-            ? alertProps.sx(theme)
-            : (alertProps?.sx as any)),
-        })}
+          ...(alertProps?.sx as any),
+          // ...(alertProps?.sx instanceof Function
+          //   ? alertProps.sx(theme)
+          //   : (alertProps?.sx as any)),
+        }}
       >
         {alertProps?.title && <Box>{alertProps.title}</Box>}
         <Flex sx={{ padding: '8px 16px' }}>

@@ -1,4 +1,4 @@
-import { Collapse, Progress } from '@mantine/core';
+import { Collapse, Progress } from '@chakra-ui/react';
 import { type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any>> {
@@ -24,20 +24,19 @@ export const MRT_ProgressBar = <TData extends Record<string, any>>({
   return (
     <Collapse
       in={isLoading || isSaving || showProgressBars}
-      sx={{
-        bottom: isTopToolbar ? 0 : undefined,
-        position: 'absolute',
-        top: !isTopToolbar ? 0 : undefined,
-        width: '100%',
-      }}
+
+      // sx={{
+      //   bottom: isTopToolbar ? 0 : undefined,
+      //   position: 'absolute',
+      //   top: !isTopToolbar ? 0 : undefined,
+      //   width: '100%',
+      // }}
     >
       <Progress
         animate
         aria-label="Loading"
         aria-busy="true"
-        sx={{
-          position: 'relative',
-        }}
+        position="relative"
         value={100}
         {...linearProgressProps}
       />

@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@mantine/core';
-import { useDebouncedValue } from '@mantine/hooks';
+import {
+  IconButton,
+  Collapse,
+  Menu,
+  Input,
+  Tooltip,
+  MenuButton,
+  Box,
+} from '@chakra-ui/react';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_TableInstance } from '../types';
+import { useDebouncedValue } from '../hooks/useDebouncedValue';
 
 interface Props<TData extends Record<string, any>> {
   table: MRT_TableInstance<TData>;
@@ -59,62 +67,66 @@ export const MRT_GlobalFilterTextInput = <TData extends Record<string, any>>({
   }, [globalFilter]);
 
   return (
-    <Collapse
-      in={showGlobalFilter}
-      sx={{
-        '& > div': {
-          display: 'flex',
-          alignItems: 'center',
-          gap: '16px',
-          flexWrap: 'nowrap',
-        },
-      }}
-    >
-      {enableGlobalFilterModes && (
-        <Menu withinPortal>
-          <Menu.Target>
-            <ActionIcon aria-label={localization.changeSearchMode} size="sm">
-              <IconSearch />
-            </ActionIcon>
-          </Menu.Target>
-          <MRT_FilterOptionMenu table={table} onSelect={handleClear} />
-        </Menu>
-      )}
-      <TextInput
-        placeholder={localization.search}
-        onChange={(event) => setSearchValue(event.target.value)}
-        value={searchValue ?? ''}
-        variant="filled"
-        icon={!enableGlobalFilterModes && <IconSearch />}
-        rightSection={
-          <ActionIcon
-            aria-label={localization.clearSearch}
-            disabled={!searchValue?.length}
-            onClick={handleClear}
-            size="sm"
-            sx={{
-              '&:disabled': {
-                backgroundColor: 'transparent',
-                border: 'none',
-              },
-            }}
-          >
-            <Tooltip withinPortal label={localization.clearSearch}>
-              <IconX />
-            </Tooltip>
-          </ActionIcon>
-        }
-        {...textFieldProps}
-        ref={(node) => {
-          if (node) {
-            searchInputRef.current = node;
-            if (textFieldProps?.ref) {
-              // @ts-ignore
-              textFieldProps.ref = node;
-            }
-          }
+    <Collapse in={showGlobalFilter}>
+      <Box
+        sx={{
+          '& > div': {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px',
+            flexWrap: 'nowrap',
+          },
         }}
-      />
+      >
+        {enableGlobalFilterModes && (
+          <>
+            <Menu>
+              <MenuButton>
+                <IconButton
+                  aria-label={localization.changeSearchMode}
+                  size="sm"
+                  icon={<IconSearch />}
+                />
+              </MenuButton>
+              <MRT_FilterOptionMenu table={table} onSelect={handleClear} />
+            </Menu>
+          </>
+        )}
+        <Input
+          placeholder={localization.search}
+          onChange={(event) => setSearchValue(event.target.value)}
+          value={searchValue ?? ''}
+          variant="filled"
+          icon={!enableGlobalFilterModes && <IconSearch />}
+          rightSection={
+            <IconButton
+              aria-label={localization.clearSearch}
+              disabled={!searchValue?.length}
+              onClick={handleClear}
+              size="sm"
+              _disabled={{
+                backgroundColor: 'none',
+                border: 'none',
+              }}
+              icon={
+                <Tooltip label={localization.clearSearch}>
+                  <IconX />
+                </Tooltip>
+              }
+            />
+          }
+          {...textFieldProps}
+          ref={(node) => {
+            if (node) {
+              searchInputRef.current = node;
+              if (textFieldProps?.ref) {
+                // @ts-ignore
+                textFieldProps.ref = node;
+              }
+            }
+          }}
+        />
+      </Box>
     </Collapse>
   );
 };

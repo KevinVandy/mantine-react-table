@@ -1,5 +1,4 @@
 import { Fragment, useMemo } from 'react';
-import { Flex, Menu } from '@mantine/core';
 import {
   type MRT_FilterOption,
   type MRT_Header,
@@ -7,6 +6,7 @@ import {
   type MRT_Localization,
   type MRT_TableInstance,
 } from '../types';
+import { MenuDivider, MenuItem, MenuList, Flex } from '@chakra-ui/react';
 
 export const mrtFilterOptions = (
   localization: MRT_Localization,
@@ -219,7 +219,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any>>({
     !!header && columnDef ? columnDef._filterFn : globalFilterFn;
 
   return (
-    <Menu.Dropdown>
+    <MenuList>
       {(header && column && columnDef
         ? columnDef.renderColumnFilterModeMenuItems?.({
             column: column as any,
@@ -241,7 +241,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any>>({
         internalFilterOptions.map(
           ({ option, label, divider, symbol }, index) => (
             <Fragment key={index}>
-              <Menu.Item
+              <MenuItem
                 onClick={() =>
                   handleSelectFilterMode(option as MRT_FilterOption)
                 }
@@ -265,11 +265,11 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any>>({
                   {symbol}
                 </Flex>
                 <Flex align="center">{label}</Flex>
-              </Menu.Item>
-              {divider && <Menu.Divider />}
+              </MenuItem>
+              {divider && <MenuDivider />}
             </Fragment>
           ),
         )}
-    </Menu.Dropdown>
+    </MenuList>
   );
 };

@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box } from '@chakra-ui/react';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
 
@@ -31,18 +31,16 @@ export const MRT_TableHead = <TData extends Record<string, any>>({
 
   return (
     <Box
-      component="thead"
+      as="thead"
       {...tableHeadProps}
-      sx={(theme) => ({
+      sx={{
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
         position: stickyHeader && layoutMode === 'grid' ? 'sticky' : 'relative',
         opacity: 0.97,
         top: stickyHeader ? 0 : undefined,
         zIndex: stickyHeader ? 2 : undefined,
-        ...(tableHeadProps?.sx instanceof Function
-          ? tableHeadProps?.sx(theme)
-          : (tableHeadProps?.sx as any)),
-      })}
+        ...(tableHeadProps?.sx as any),
+      }}
     >
       {getHeaderGroups().map((headerGroup) => (
         <MRT_TableHeadRow

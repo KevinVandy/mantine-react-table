@@ -1,5 +1,5 @@
 import { useMantineReactTable } from './useMantineReactTable';
-import { MRT_TablePaper } from './table/MRT_TablePaper';
+import { MRT_TableWrapper } from './table/MRT_TableWrapper';
 import { type MRT_TableOptions, type MRT_TableInstance } from './types';
 
 type Prettify<T> = { [K in keyof T]: T[K] } & unknown;
@@ -33,5 +33,5 @@ export const MantineReactTable = <TData extends Record<string, any>>(
     table = useMantineReactTable(props);
   }
 
-  return <MRT_TablePaper table={table} />;
+  return <MRT_TableWrapper table={table} />;
 };

@@ -1,9 +1,7 @@
-import { Box } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, useMediaQuery, useColorModeValue } from '@chakra-ui/react';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
-import { commonToolbarStyles } from './MRT_TopToolbar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
 
@@ -48,19 +46,25 @@ export const MRT_BottomToolbar = <TData extends Record<string, any>>({
           }
         }
       }}
-      sx={(theme) =>
-        ({
-          ...commonToolbarStyles({ theme }),
-          bottom: isFullScreen ? '0' : undefined,
-          boxShadow: `0 1px 2px -1px ${theme.fn.rgba(theme.black, 0.1)} inset`,
-          left: 0,
-          position: isFullScreen ? 'fixed' : 'relative',
-          right: 0,
-          ...(toolbarProps?.sx instanceof Function
-            ? toolbarProps.sx(theme)
-            : (toolbarProps?.sx as any)),
-        } as any)
-      }
+      backgroundColor={useColorModeValue('blackAlpha.500', 'white')}
+      position={isFullScreen ? 'fixed' : 'relative'}
+      alignItems="flex-start"
+      backgroundImage="none"
+      display="grid"
+      flexWrap="wrap-reverse"
+      minHeight="3.5rem"
+      overflow="visible"
+      p="0"
+      transition="all 100ms ease-in-out"
+      zIndex={3}
+      boxShadow={'0 1px 2px -1px gray.800 inset'}
+      bottom={isFullScreen ? '0' : undefined}
+      left={0}
+      right={0}
+      style={{
+        // boxShadow: `0 1px 2px -1px gray.800 inset`,
+        ...(toolbarProps?.sx as any),
+      }}
     >
       <MRT_ProgressBar isTopToolbar={false} table={table} />
       {positionToolbarAlertBanner === 'bottom' && (

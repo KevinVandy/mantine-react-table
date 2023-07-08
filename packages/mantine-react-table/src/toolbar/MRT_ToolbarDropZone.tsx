@@ -1,7 +1,6 @@
 import { type DragEvent, useEffect } from 'react';
-import { Flex, Text, Transition } from '@mantine/core';
+import { Flex, ScaleFade, Text } from '@chakra-ui/react';
 import { type MRT_TableInstance } from '../types';
-import { getPrimaryColor } from '../column.utils';
 
 interface Props<TData extends Record<string, any>> {
   table: MRT_TableInstance<TData>;
@@ -36,34 +35,36 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any>>({
   }, [enableGrouping, draggingColumn, grouping]);
 
   return (
-    <Transition mounted={showToolbarDropZone} transition="fade">
-      {(styles) => (
-        <Flex
-          className="mantine-ToolbarDropZone"
-          sx={(theme) => ({
-            alignItems: 'center',
-            backgroundColor: theme.fn.rgba(
-              getPrimaryColor(theme),
-              hoveredColumn?.id === 'drop-zone' ? 0.2 : 0.1,
-            ),
-            border: `dashed ${getPrimaryColor(theme)} 2px`,
-            justifyContent: 'center',
-            height: 'calc(100%)',
-            position: 'absolute',
-            width: 'calc(100%)',
-            zIndex: 2,
-          })}
-          onDragEnter={handleDragEnter}
-          style={styles}
-        >
-          <Text>
-            {localization.dropToGroupBy.replace(
-              '{column}',
-              draggingColumn?.columnDef?.header ?? '',
-            )}
-          </Text>
-        </Flex>
-      )}
-    </Transition>
+    <ScaleFade in={showToolbarDropZone}>
+      <Flex
+        className="mantine-ToolbarDropZone"
+        alignItems="center"
+        backgroundColor={
+          hoveredColumn?.id === 'drop-zone' ? 'gray.700' : 'gray.900'
+        }
+        border="2px dashed"
+        justifyContent="center"
+        height="calc(100%)"
+        position="absolute"
+        width="calc(100%)"
+        zIndex={2}
+        style={
+          {
+            // backgroundColor: theme.fn.rgba(
+            //   getPrimaryColor(theme),
+            //   hoveredColumn?.id === 'drop-zone' ? 0.2 : 0.1,
+            // ),
+          }
+        }
+        onDragEnter={handleDragEnter}
+      >
+        <Text>
+          {localization.dropToGroupBy.replace(
+            '{column}',
+            draggingColumn?.columnDef?.header ?? '',
+          )}
+        </Text>
+      </Flex>
+    </ScaleFade>
   );
 };

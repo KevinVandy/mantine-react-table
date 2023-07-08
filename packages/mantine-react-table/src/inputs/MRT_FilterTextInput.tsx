@@ -1,15 +1,13 @@
+// TODO: work on components on next line
 import { type MouseEvent, useEffect, useRef, useState, useMemo } from 'react';
+import { Autocomplete, MultiSelect, packSx, Select } from '@mantine/core';
 import {
-  ActionIcon,
-  Autocomplete,
+  IconButton,
   Box,
-  MultiSelect,
-  Select,
-  TextInput,
-  packSx,
-  type MantineTheme,
-  Badge,
-} from '@mantine/core';
+  Input,
+  Tag,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
@@ -287,11 +285,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
     onClick: (event: MouseEvent<HTMLInputElement>) => event.stopPropagation(),
     onChange: setFilterValue,
     value: filterValue,
-    variant: 'unstyled',
-    sx: (theme: MantineTheme) => ({
-      borderBottom: `2px solid ${
-        theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
-      }`,
+    sx: {
       minWidth: isDateFilter
         ? '125px'
         : isRangeFilter
@@ -316,11 +310,11 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
           ? dateInputProps.sx
           : textInputProps?.sx,
       ) as any),
-    }),
+    },
   } as const;
 
   const ClearButton = (
-    <ActionIcon
+    <IconButton
       aria-label={localization.clearFilter}
       onClick={handleClear}
       size="sm"
@@ -331,21 +325,35 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
         },
       }}
       title={localization.clearFilter ?? ''}
-    >
-      <IconX />
-    </ActionIcon>
+      icon={<IconX />}
+    />
   );
 
   return filterChipLabel ? (
-    <Box sx={commonProps.sx}>
-      <Badge
+    <Box
+      sx={commonProps.sx}
+      borderColor={useColorModeValue('gray.300', 'gray.700')}
+    >
+      <Tag
         size="lg"
         onClick={handleClearEmptyFilterChip}
         sx={{ margin: '5px' }}
-        rightSection={ClearButton}
       >
         {filterChipLabel}
-      </Badge>
+        <IconButton
+          aria-label={localization.clearFilter}
+          onClick={handleClear}
+          size="sm"
+          sx={{
+            '&:disabled': {
+              backgroundColor: 'transparent',
+              border: 'none',
+            },
+          }}
+          title={localization.clearFilter ?? ''}
+          icon={<IconX />}
+        />
+      </Tag>
     </Box>
   ) : isMultiSelectFilter ? (
     <MultiSelect
@@ -422,7 +430,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
       sx={commonProps.sx}
     />
   ) : (
-    <TextInput
+    <Input
       {...commonProps}
       rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
       onChange={(e) => setFilterValue(e.target.value)}

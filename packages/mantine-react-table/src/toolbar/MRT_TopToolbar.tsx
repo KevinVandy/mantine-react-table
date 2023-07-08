@@ -1,5 +1,11 @@
-import { Box, Flex, type MantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import {
+  Box,
+  type ColorMode,
+  Flex,
+  useColorMode,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import { useMediaQuery } from '@chakra-ui/react';
 import { MRT_GlobalFilterTextInput } from '../inputs/MRT_GlobalFilterTextInput';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_TablePagination } from './MRT_TablePagination';
@@ -8,10 +14,9 @@ import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
 
-export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
+export const commonToolbarStyles = (colorMode: ColorMode) => ({
   alignItems: 'flex-start',
-  backgroundColor:
-    theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+  backgroundColor: colorMode === 'dark' ? 'gray.700' : 'white',
   backgroundImage: 'none',
   display: 'grid',
   flexWrap: 'wrap-reverse',
@@ -44,7 +49,8 @@ export const MRT_TopToolbar = <TData extends Record<string, any>>({
     },
     refs: { topToolbarRef },
   } = table;
-
+  const { colorMode } = useColorMode();
+  console.log({ colorMode });
   const { isFullScreen, showGlobalFilter } = getState();
 
   const isMobile = useMediaQuery('(max-width: 720px)');
@@ -56,7 +62,7 @@ export const MRT_TopToolbar = <TData extends Record<string, any>>({
 
   const stackAlertBanner =
     isMobile || !!renderTopToolbarCustomActions || showGlobalFilter;
-
+  console.log({ stackAlertBanner });
   return (
     <Box
       {...toolbarProps}
@@ -68,16 +74,21 @@ export const MRT_TopToolbar = <TData extends Record<string, any>>({
           }
         }
       }}
-      sx={(theme) =>
-        ({
-          position: isFullScreen ? 'sticky' : 'relative',
-          top: isFullScreen ? '0' : undefined,
-          ...commonToolbarStyles({ theme }),
-          ...(toolbarProps?.sx instanceof Function
-            ? toolbarProps.sx(theme)
-            : (toolbarProps?.sx as any)),
-        } as any)
-      }
+      backgroundColor={useColorModeValue('blackAlpha.500', 'white')}
+      position={isFullScreen ? 'sticky' : 'relative'}
+      alignItems="flex-start"
+      backgroundImage="none"
+      display="grid"
+      flexWrap="wrap-reverse"
+      minHeight="3.5rem"
+      overflow="visible"
+      p="0"
+      transition="all 100ms ease-in-out"
+      zIndex={3}
+      top={isFullScreen ? '0' : undefined}
+      style={{
+        ...(toolbarProps?.sx as any),
+      }}
     >
       {positionToolbarAlertBanner === 'top' && (
         <MRT_ToolbarAlertBanner
@@ -89,16 +100,14 @@ export const MRT_TopToolbar = <TData extends Record<string, any>>({
         <MRT_ToolbarDropZone table={table} />
       )}
       <Flex
-        sx={{
-          alignItems: 'flex-start',
-          boxSizing: 'border-box',
-          justifyContent: 'space-between',
-          padding: '8px',
-          position: stackAlertBanner ? 'relative' : 'absolute',
-          right: 0,
-          top: 0,
-          width: '100%',
-        }}
+        alignItems="flex-start"
+        boxSizing="border-box"
+        justifyContent="space-between"
+        padding="8px"
+        position={stackAlertBanner ? 'relative' : 'absolute'}
+        right={0}
+        top={0}
+        width="full"
       >
         {enableGlobalFilter && positionGlobalFilter === 'left' && (
           <MRT_GlobalFilterTextInput table={table} />

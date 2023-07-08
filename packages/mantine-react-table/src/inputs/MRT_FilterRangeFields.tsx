@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box } from '@chakra-ui/react';
 import { MRT_FilterTextInput } from './MRT_FilterTextInput';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 

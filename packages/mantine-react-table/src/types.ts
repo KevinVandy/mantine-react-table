@@ -7,28 +7,80 @@ import {
   type SetStateAction,
 } from 'react';
 import {
-  type PaginationProps,
-  type ActionIconProps,
-  type AlertProps,
+  //   type PaginationProps,
+  //   type ActionIconProps,
+  //   type AlertProps,
   type AutocompleteProps,
-  type BadgeProps,
-  type BoxProps,
-  type CheckboxProps,
-  type FlexProps,
-  type HighlightProps,
-  type ModalProps,
+  //   type BadgeProps,
+  //   type BoxProps,
+  //   type CheckboxProps,
+  //   type FlexProps,
+  //   type HighlightProps,
+  //   type ModalProps,
   type MultiSelectProps,
-  type PaperProps,
-  type ProgressProps,
-  type RadioProps,
-  type RangeSliderProps,
+  //   type PaperProps,
+  //   type ProgressProps,
+  //   type RadioProps,
+  //   type RangeSliderProps,
   type SelectProps,
-  type SkeletonProps,
-  type SwitchProps,
-  type TableProps,
-  type TextInputProps,
-  type UnstyledButtonProps,
+  //   type SkeletonProps,
+  //   type SwitchProps,
+  //   type TableProps,
+  //   type TextInputProps,
+  //   type UnstyledButtonProps,
 } from '@mantine/core';
+import {
+  type AlertProps,
+  type ButtonProps,
+  type CheckboxProps,
+  type TagProps,
+  type IconButtonProps,
+  type ProgressProps,
+  type PopoverProps,
+  type TooltipProps,
+  type RadioProps,
+  type RadioGroupProps,
+  type SkeletonProps,
+  type SliderProps,
+  type SliderTrackProps,
+  type SliderThumbProps,
+  type SliderMarkProps,
+  type TableProps,
+  type TableHeadProps,
+  type TableBodyProps,
+  type TableFooterProps,
+  type TableRowProps,
+  type TableColumnHeaderProps,
+  type TableCellProps,
+  type TableCaptionProps,
+  type TableContainerProps,
+  type TextProps,
+  type FlexProps,
+  type ModalProps,
+  type NumberInputProps,
+  type NumberInputFieldProps,
+  type NumberInputStepperProps,
+  type NumberIncrementStepperProps,
+  type NumberDecrementStepperProps,
+  // type SelectProps,
+  type MenuProps,
+  type MenuButtonProps,
+  type MenuListProps,
+  type MenuItemProps,
+  type MenuItemOptionProps,
+  type MenuGroupProps,
+  type MenuOptionGroupProps,
+  type MenuDividerProps,
+  type InputProps,
+  type RangeSliderProps,
+  type BoxProps,
+  type HighlightProps,
+  type SwitchProps,
+  type BadgeProps,
+} from '@chakra-ui/react';
+
+// TODO: need to work on Autocomplete, Select, MultiSelect Components
+
 import { type DateInputProps } from '@mantine/dates';
 import {
   type AggregationFn,
@@ -84,8 +136,8 @@ export type MantineShade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
 
 export type SelectVariant = 'checkbox' | 'radio' | 'switch';
-
-export type MRT_PaginationProps = Partial<PaginationProps> & {
+// TODO: change it later to a real type (any => PaginationProps)
+export type MRT_PaginationProps = Partial<any> & {
   rowsPerPageOptions?: string[];
   showRowsPerPage?: boolean;
   variant: 'default' | 'mantine';
@@ -441,25 +493,26 @@ export type MRT_ColumnDef<TData extends Record<string, any>> = Omit<
    */
   id?: LiteralUnion<string & keyof TData>;
   mantineColumnActionsButtonProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
+    | (HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>);
   mantineColumnDragHandleProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
+    | (HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>);
   mantineCopyButtonProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<UnstyledButtonProps>)
+    | (HTMLPropsRef<HTMLButtonElement> & Partial<ButtonProps>)
     | ((props: {
         cell: MRT_Cell<TData>;
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<UnstyledButtonProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ButtonProps>);
+  // TODO: Deal with the multi select of mantine and replace it with custom component using components from chakra-ui
   mantineEditSelectProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>)
     | ((props: {
@@ -469,13 +522,14 @@ export type MRT_ColumnDef<TData extends Record<string, any>> = Omit<
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>);
   mantineEditTextInputProps?:
-    | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
+    | (HTMLPropsRef<HTMLInputElement> & Partial<InputProps>)
     | ((props: {
         cell: MRT_Cell<TData>;
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<InputProps>);
+  // TODO: Deal with the autocomplete of mantine and replace it with custom component using components from chakra-ui
   mantineFilterAutocompleteProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>)
     | ((props: {
@@ -484,11 +538,11 @@ export type MRT_ColumnDef<TData extends Record<string, any>> = Omit<
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>);
   mantineFilterCheckboxProps?:
-    | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
+    | (HTMLPropsRef<HTMLInputElement> & Partial<InputProps>)
     | ((props: {
         column: MRT_Column<TData>;
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<InputProps>);
   mantineFilterDateInputProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<DateInputProps>)
     | ((props: {
@@ -518,12 +572,12 @@ export type MRT_ColumnDef<TData extends Record<string, any>> = Omit<
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>);
   mantineFilterTextInputProps?:
-    | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
+    | (HTMLPropsRef<HTMLInputElement> & Partial<InputProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
         rangeFilterIndex?: number;
-      }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<InputProps>);
   mantineTableBodyCellProps?:
     | (Partial<BoxProps> & HTMLPropsRef<HTMLTableCellElement> & ColumnAlignment)
     | ((props: {
@@ -780,25 +834,25 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLDivElement> & Partial<BoxProps>);
   mantineColumnActionsButtonProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
+    | (HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>);
   mantineColumnDragHandleProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
+    | (HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>);
   mantineCopyButtonProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<UnstyledButtonProps>)
+    | (HTMLPropsRef<HTMLButtonElement> & Partial<ButtonProps>)
     | ((props: {
         cell: MRT_Cell<TData>;
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<UnstyledButtonProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ButtonProps>);
   mantineCreateRowModalProps?:
     | (HTMLPropsRef<HTMLDivElement> & Partial<ModalProps>)
     | ((props: {
@@ -826,24 +880,24 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>);
   mantineEditTextInputProps?:
-    | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
+    | (HTMLPropsRef<HTMLInputElement> & Partial<InputProps>)
     | ((props: {
         cell: MRT_Cell<TData>;
         column: MRT_Column<TData>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<InputProps>);
   mantineExpandAllButtonProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
+    | (HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>);
   mantineExpandButtonProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
+    | (HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
         row: MRT_Row<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>);
   mantineFilterAutocompleteProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>)
     | ((props: {
@@ -886,12 +940,12 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>);
   mantineFilterTextInputProps?:
-    | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
+    | (HTMLPropsRef<HTMLInputElement> & Partial<InputProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
         column: MRT_Column<TData>;
         rangeFilterIndex?: number;
-      }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<InputProps>);
   mantineHighlightProps?:
     | (HTMLPropsRef<HTMLSpanElement> & Partial<HighlightProps>)
     | ((props: {
@@ -914,21 +968,21 @@ export type MRT_TableOptions<TData extends Record<string, any>> = Omit<
         MRT_PaginationProps & FlexProps & HTMLPropsRef<HTMLDivElement>
       >);
   mantinePaperProps?:
-    | (PaperProps & HTMLPropsRef<HTMLDivElement>)
+    | (BoxProps & HTMLPropsRef<HTMLDivElement>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => PaperProps & HTMLPropsRef<HTMLDivElement>);
+      }) => BoxProps & HTMLPropsRef<HTMLDivElement>);
   mantineRowDragHandleProps?:
-    | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
+    | (HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
         row: MRT_Row<TData>;
-      }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+      }) => HTMLPropsRef<HTMLButtonElement> & Partial<IconButtonProps>);
   mantineSearchTextInputProps?:
-    | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
+    | (HTMLPropsRef<HTMLInputElement> & Partial<InputProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<InputProps>);
   mantineSelectAllCheckboxProps?:
     | (HTMLPropsRef<HTMLInputElement> &
         (CheckboxProps | RadioProps | SwitchProps) & {
