@@ -3,6 +3,9 @@ import {
   MRT_EditActionButtons,
   MantineReactTable,
   // createRow,
+  type MRT_ColumnDef,
+  type MRT_Row,
+  type MRT_TableOptions,
   useMantineReactTable,
 } from 'mantine-react-table';
 import {
@@ -23,12 +26,14 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { fakeData, usStates } from './makeData';
+import { type User, fakeData, usStates } from './makeData';
 
 const Example = () => {
-  const [validationErrors, setValidationErrors] = useState({});
+  const [validationErrors, setValidationErrors] = useState<
+    Record<string, string | undefined>
+  >({});
 
-  const columns = useMemo(
+  const columns = useMemo<MRT_ColumnDef<User>[]>(
     () => [
       {
         accessorKey: 'id',
@@ -60,7 +65,7 @@ const Example = () => {
           required: true,
           error: validationErrors?.lastName,
           //remove any previous validation errors when user focuses on the input
-          onFocus: (event) =>
+          onFocus: () =>
             setValidationErrors({
               ...validationErrors,
               lastName: undefined,
@@ -75,7 +80,7 @@ const Example = () => {
           required: true,
           error: validationErrors?.email,
           //remove any previous validation errors when user focuses on the input
-          onFocus: (event) =>
+          onFocus: () =>
             setValidationErrors({
               ...validationErrors,
               email: undefined,
@@ -113,7 +118,10 @@ const Example = () => {
     useDeleteUser();
 
   //CREATE action
-  const handleCreateUser = async ({ values, exitCreatingMode }) => {
+  const handleCreateUser: MRT_TableOptions<User>['onCreatingRowSave'] = async ({
+    values,
+    exitCreatingMode,
+  }) => {
     const newValidationErrors = validateUser(values);
     if (Object.values(newValidationErrors).some((error) => error)) {
       setValidationErrors(newValidationErrors);
@@ -125,7 +133,10 @@ const Example = () => {
   };
 
   //UPDATE action
-  const handleSaveUser = async ({ values, exitEditingMode }) => {
+  const handleSaveUser: MRT_TableOptions<User>['onEditingRowSave'] = async ({
+    values,
+    exitEditingMode,
+  }) => {
     const newValidationErrors = validateUser(values);
     if (Object.values(newValidationErrors).some((error) => error)) {
       setValidationErrors(newValidationErrors);
@@ -137,14 +148,13 @@ const Example = () => {
   };
 
   //DELETE action
-  const openDeleteConfirmModal = (row) =>
+  const openDeleteConfirmModal = (row: MRT_Row<User>) =>
     modals.openConfirmModal({
       title: 'Are you sure you want to delete this user?',
       children: (
         <Text>
           Are you sure you want to delete {row.original.firstName}{' '}
-          {row.original.lastName}? This action cannot be undone. (Unless you
-          reload the page lol)
+          {row.original.lastName}? This action cannot be undone.
         </Text>
       ),
       labels: { confirm: 'Delete', cancel: 'Cancel' },
@@ -236,20 +246,24 @@ const Example = () => {
 function useCreateUser() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (user) => {
+    mutationFn: async (user: User) => {
       //send api update request here
       await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
       return Promise.resolve();
     },
     //client side optimistic update
-    onMutate: (newUserInfo) => {
-      queryClient.setQueryData(['users'], (prevUsers) => [
-        ...prevUsers,
-        {
-          ...newUserInfo,
-          id: (Math.random() + 1).toString(36).substring(7),
-        },
-      ]);
+    onMutate: (newUserInfo: User) => {
+      queryClient.setQueryData(
+        ['users'],
+        (prevUsers: any) =>
+          [
+            ...prevUsers,
+            {
+              ...newUserInfo,
+              id: (Math.random() + 1).toString(36).substring(7),
+            },
+          ] as User[],
+      );
     },
     // onSettled: () => queryClient.invalidateQueries({ queryKey: ['users'] }), //refetch users after mutation, disabled for demo
   });
@@ -257,7 +271,7 @@ function useCreateUser() {
 
 //READ hook (get users from api)
 function useGetUsers() {
-  return useQuery({
+  return useQuery<User[]>({
     queryKey: ['users'],
     queryFn: async () => {
       //send api request here
@@ -272,15 +286,15 @@ function useGetUsers() {
 function useUpdateUser() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (user) => {
+    mutationFn: async (user: User) => {
       //send api update request here
       await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
       return Promise.resolve();
     },
     //client side optimistic update
-    onMutate: (newUserInfo) => {
-      queryClient.setQueryData(['users'], (prevUsers) =>
-        prevUsers?.map((prevUser) =>
+    onMutate: (newUserInfo: User) => {
+      queryClient.setQueryData(['users'], (prevUsers: any) =>
+        prevUsers?.map((prevUser: User) =>
           prevUser.id === newUserInfo.id ? newUserInfo : prevUser,
         ),
       );
@@ -293,15 +307,15 @@ function useUpdateUser() {
 function useDeleteUser() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (userId) => {
+    mutationFn: async (userId: string) => {
       //send api update request here
       await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
       return Promise.resolve();
     },
     //client side optimistic update
-    onMutate: (userId) => {
-      queryClient.setQueryData(['users'], (prevUsers) =>
-        prevUsers?.filter((user) => user.id !== userId),
+    onMutate: (userId: string) => {
+      queryClient.setQueryData(['users'], (prevUsers: any) =>
+        prevUsers?.filter((user: User) => user.id !== userId),
       );
     },
     // onSettled: () => queryClient.invalidateQueries({ queryKey: ['users'] }), //refetch users after mutation, disabled for demo
@@ -321,8 +335,8 @@ const ExampleWithProviders = () => (
 
 export default ExampleWithProviders;
 
-const validateRequired = (value) => !!value.length;
-const validateEmail = (email) =>
+const validateRequired = (value: string) => !!value.length;
+const validateEmail = (email: string) =>
   !!email.length &&
   email
     .toLowerCase()
@@ -330,7 +344,7 @@ const validateEmail = (email) =>
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     );
 
-function validateUser(user) {
+function validateUser(user: User) {
   return {
     firstName: !validateRequired(user.firstName)
       ? 'First Name is Required'

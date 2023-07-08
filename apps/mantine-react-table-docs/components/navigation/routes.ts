@@ -4,6 +4,7 @@ export type RouteItem = {
   items?: RouteItem[];
   divider?: boolean;
   external?: boolean;
+  secondaryHrefs?: string[];
 };
 
 export const routes: Array<RouteItem> = [
@@ -105,19 +106,21 @@ export const routes: Array<RouteItem> = [
       },
       {
         href: '/docs/examples/data-export',
-        label: 'Data Export Example',
+        label: 'Data Export Examples',
       },
       {
         href: '/docs/examples/editing-crud',
-        label: 'Editing (CRUD) Example',
-      },
-      {
-        href: '/docs/examples/remote',
-        label: 'Remote Data Fetching Example',
+        label: 'Editing (CRUD) Examples',
+        secondaryHrefs: [
+          '/docs/examples/editing-crud-inline-row',
+          '/docs/examples/editing-crud-inline-cell',
+          '/docs/examples/editing-crud-inline-table',
+        ],
       },
       {
         href: '/docs/examples/react-query',
-        label: 'React Query Example',
+        label: 'Remote Data Fetching Examples',
+        secondaryHrefs: ['/docs/examples/remote'],
       },
       {
         href: '/docs/examples/virtualized',

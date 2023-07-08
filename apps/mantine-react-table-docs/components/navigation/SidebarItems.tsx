@@ -29,7 +29,7 @@ export const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
 
   return (
     <>
-      {routes.map(({ href, items, label, external }) => (
+      {routes.map(({ href, items, label, external, secondaryHrefs }) => (
         <Fragment key={label}>
           <Link href={href ?? ''} passHref legacyBehavior>
             <a
@@ -38,11 +38,16 @@ export const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
               rel={external ? 'noopener noreferrer' : undefined}
             >
               <UnstyledButton
-                ref={(node) => selectedItemRef(node, pathname === href)}
+                ref={(node) =>
+                  selectedItemRef(
+                    node,
+                    pathname === href || secondaryHrefs?.includes(pathname),
+                  )
+                }
                 onClick={handleCloseMenu}
                 sx={(theme) => ({
                   backgroundColor:
-                    pathname === href
+                    pathname === href || secondaryHrefs?.includes(pathname)
                       ? theme.fn.rgba(getPrimaryColor(theme), 0.2)
                       : 'transparent',
                   color: !items
