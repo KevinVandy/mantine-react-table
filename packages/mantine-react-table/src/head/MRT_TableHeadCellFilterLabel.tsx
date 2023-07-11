@@ -144,7 +144,12 @@ export const MRT_TableHeadCellFilterLabel = <
         )}
       </Transition>
       {columnFilterDisplayMode === 'popover' && (
-        <Popover.Dropdown onClick={(event) => event.stopPropagation()}>
+        <Popover.Dropdown
+          onClick={(event) => event.stopPropagation()}
+          onKeyDown={(event) =>
+            event.key === 'Enter' && setPopoverOpened(false)
+          }
+        >
           <MRT_TableHeadCellFilterContainer header={header} table={table} />
         </Popover.Dropdown>
       )}
