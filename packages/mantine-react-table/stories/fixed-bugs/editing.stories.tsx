@@ -53,7 +53,7 @@ export const TableEditModeAndRowActions = () => {
     <MantineReactTable
       columns={columns}
       data={data}
-      editingMode="table"
+      editDisplayMode="table"
       enableEditing
       enableRowActions
       renderRowActionMenuItems={() => (

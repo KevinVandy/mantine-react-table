@@ -47,14 +47,14 @@ const Example = () => {
     <MantineReactTable
       columns={columns}
       data={tableData}
-      editingMode="table"
+      editDisplayMode="table"
       enableEditing
       mantineEditTextInputProps={({ cell }) => ({
         //onBlur is more efficient, but could use onChange instead
         onBlur: (event) => {
           handleSaveCell(cell, event.target.value);
         },
-        variant: 'unstyled', //default for editingMode="table"
+        variant: 'unstyled', //default for editDisplayMode="table"
       })}
     />
   );

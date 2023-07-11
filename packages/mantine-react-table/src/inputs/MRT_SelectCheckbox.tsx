@@ -8,11 +8,7 @@ import {
   type RadioProps,
   type SwitchProps,
 } from '@mantine/core';
-import {
-  type SelectVariant,
-  type MRT_Row,
-  type MRT_TableInstance,
-} from '../types';
+import { type MRT_Row, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends Record<string, any>> {
   row?: MRT_Row<TData>;
@@ -28,11 +24,12 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
   const {
     getState,
     options: {
-      localization,
       enableMultiRowSelection,
-      mantineSelectCheckboxProps,
+      localization,
       mantineSelectAllCheckboxProps,
+      mantineSelectCheckboxProps,
       selectAllMode,
+      selectDisplayMode,
     },
   } = table;
   const { density, isLoading } = getState();
@@ -44,8 +41,6 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
     : mantineSelectCheckboxProps instanceof Function
     ? mantineSelectCheckboxProps({ row, table })
     : mantineSelectCheckboxProps;
-
-  const SelectVariant = checkboxProps?.variant;
 
   const allRowsSelected = selectAll
     ? selectAllMode === 'page'
@@ -70,8 +65,8 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
       e.stopPropagation();
       checkboxProps?.onClick?.(e);
     },
-    // title: undefined,
-  } as CheckboxProps & RadioProps & SwitchProps & { variant: SelectVariant };
+    title: undefined,
+  } as CheckboxProps & RadioProps & SwitchProps;
 
   return (
     <Tooltip
@@ -84,22 +79,23 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any>>({
           : localization.toggleSelectRow)
       }
     >
-      {SelectVariant === 'switch' ? (
-        // <span>
-        <Switch {...commonProps} />
-      ) : // </span>
-      SelectVariant === 'radio' || enableMultiRowSelection === false ? (
-        <Radio {...commonProps} />
-      ) : (
-        <Checkbox
-          indeterminate={
-            selectAll
-              ? table.getIsSomeRowsSelected() && !allRowsSelected
-              : row?.getIsSomeSelected()
-          }
-          {...commonProps}
-        />
-      )}
+      <span>
+        {selectDisplayMode === 'switch' ? (
+          <Switch {...commonProps} />
+        ) : selectDisplayMode === 'radio' ||
+          enableMultiRowSelection === false ? (
+          <Radio {...commonProps} />
+        ) : (
+          <Checkbox
+            indeterminate={
+              selectAll
+                ? table.getIsSomeRowsSelected() && !allRowsSelected
+                : row?.getIsSomeSelected()
+            }
+            {...commonProps}
+          />
+        )}
+      </span>
     </Tooltip>
   );
 };

@@ -15,6 +15,7 @@ export const MRT_ToolbarInternalButtons = <TData extends Record<string, any>>({
 }: Props<TData>) => {
   const {
     options: {
+      columnFilterDisplayMode,
       enableColumnFilters,
       enableColumnOrdering,
       enableDensityToggle,
@@ -45,9 +46,11 @@ export const MRT_ToolbarInternalButtons = <TData extends Record<string, any>>({
             !initialState?.showGlobalFilter && (
               <MRT_ToggleGlobalFilterButton table={table} />
             )}
-          {enableFilters && enableColumnFilters && (
-            <MRT_ToggleFiltersButton table={table} />
-          )}
+          {enableFilters &&
+            enableColumnFilters &&
+            columnFilterDisplayMode !== 'popover' && (
+              <MRT_ToggleFiltersButton table={table} />
+            )}
           {(enableHiding || enableColumnOrdering || enablePinning) && (
             <MRT_ShowHideColumnsButton table={table} />
           )}

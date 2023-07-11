@@ -26,9 +26,8 @@ const Example = () => {
     data,
     enableRowSelection: true,
     getRowId: (row) => row.userId,
-    mantineSelectCheckboxProps: { variant: 'switch' },
-    mantineSelectAllCheckboxProps: { variant: 'switch' },
     positionToolbarAlertBanner: 'bottom',
+    selectDisplayMode: 'switch',
   });
 
   return <MantineReactTable table={table} />;

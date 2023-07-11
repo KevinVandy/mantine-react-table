@@ -154,7 +154,7 @@ export const getLeadingDisplayColumnIds = <TData extends Record<string, any>>(
     props.positionActionsColumn === 'first' &&
       (props.enableRowActions ||
         (props.enableEditing &&
-          ['row', 'modal', 'custom'].includes(props.editingMode ?? ''))) &&
+          ['row', 'modal', 'custom'].includes(props.editDisplayMode ?? ''))) &&
       'mrt-row-actions',
     props.positionExpandColumn === 'first' &&
       showExpandColumn(props) &&
@@ -170,7 +170,7 @@ export const getTrailingDisplayColumnIds = <TData extends Record<string, any>>(
     props.positionActionsColumn === 'last' &&
       (props.enableRowActions ||
         (props.enableEditing &&
-          ['row', 'modal'].includes(props.editingMode ?? ''))) &&
+          ['row', 'modal'].includes(props.editDisplayMode ?? ''))) &&
       'mrt-row-actions',
     props.positionExpandColumn === 'last' &&
       showExpandColumn(props) &&

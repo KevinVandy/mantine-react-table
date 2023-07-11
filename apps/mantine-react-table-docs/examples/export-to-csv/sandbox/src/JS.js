@@ -1,7 +1,4 @@
-import {
-  MantineReactTable,
-  useMantineReactTable,
-} from 'mantine-react-table';
+import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import { Box, Button } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
 import { ExportToCsv } from 'export-to-csv'; //or use your library of choice here
@@ -65,9 +62,7 @@ const Example = () => {
     columns,
     data,
     enableRowSelection: true,
-    mantinePaginationProps: {
-      variant: 'mantine',
-    },
+    paginationDisplayMode: 'pages',
     positionToolbarAlertBanner: 'bottom',
     renderTopToolbarCustomActions: ({ table }) => (
       <Box

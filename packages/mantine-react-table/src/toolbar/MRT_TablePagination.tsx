@@ -40,6 +40,7 @@ export const MRT_TablePagination = <TData extends Record<string, any>>({
       },
       localization,
       mantinePaginationProps,
+      paginationDisplayMode,
       rowCount,
     },
   } = table;
@@ -105,7 +106,7 @@ export const MRT_TablePagination = <TData extends Record<string, any>>({
           withinPortal
         />
       )}
-      {paginationProps?.variant === 'mantine' ? (
+      {paginationDisplayMode === 'pages' ? (
         <Pagination
           onChange={(newPageIndex) => setPageIndex(newPageIndex - 1)}
           total={numberOfPages}
@@ -117,11 +118,13 @@ export const MRT_TablePagination = <TData extends Record<string, any>>({
           lastIcon={IconChevronRightPipe}
           {...paginationProps}
         />
-      ) : (
+      ) : paginationDisplayMode === 'default' ? (
         <>
           <Text>{`${
-            lastRowIndex === 0 ? 0 : firstRowIndex + 1
-          }-${lastRowIndex} ${localization.of} ${totalRowCount}`}</Text>
+            lastRowIndex === 0 ? 0 : (firstRowIndex + 1).toLocaleString()
+          }-${lastRowIndex.toLocaleString()} ${
+            localization.of
+          } ${totalRowCount.toLocaleString()}`}</Text>
           <Flex gap="xs">
             {showFirstLastPageButtons && (
               <ActionIcon
@@ -153,9 +156,7 @@ export const MRT_TablePagination = <TData extends Record<string, any>>({
               <ActionIcon
                 aria-label={localization.goToLastPage}
                 disabled={lastRowIndex >= totalRowCount}
-                onClick={() =>
-                  setPageIndex(numberOfPages - 1)
-                }
+                onClick={() => setPageIndex(numberOfPages - 1)}
                 sx={commonActionButtonStyles}
               >
                 <IconChevronRightPipe />
@@ -163,7 +164,7 @@ export const MRT_TablePagination = <TData extends Record<string, any>>({
             )}
           </Flex>
         </>
-      )}
+      ) : null}
     </Flex>
   );
 };

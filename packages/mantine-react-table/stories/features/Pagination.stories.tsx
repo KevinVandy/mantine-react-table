@@ -26,7 +26,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
     accessorKey: 'address',
   },
 ];
-const data = [...Array(210)].map(() => ({
+const data = [...Array(3333)].map(() => ({
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
   age: faker.number.int(80),
@@ -41,7 +41,7 @@ export const MantinePaginationEnabledDefault = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    mantinePaginationProps={{ variant: 'mantine' }}
+    paginationDisplayMode="pages"
   />
 );
 

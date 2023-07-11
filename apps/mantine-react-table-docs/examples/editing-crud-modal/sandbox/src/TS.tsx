@@ -165,8 +165,8 @@ const Example = () => {
   const table = useMantineReactTable({
     columns,
     data: fetchedUsers,
-    creatingMode: 'modal', //default ('row', and 'custom' are also available)
-    editingMode: 'modal', //default ('row', 'cell', 'table', and 'custom' are also available)
+    createDisplayMode: 'modal', //default ('row', and 'custom' are also available)
+    editDisplayMode: 'modal', //default ('row', 'cell', 'table', and 'custom' are also available)
     enableEditing: true,
     getRowId: (row) => row.id,
     mantineToolbarAlertBannerProps: isLoadingUsersError

@@ -35,11 +35,17 @@ export const MRT_ProgressBar = <TData extends Record<string, any>>({
         animate
         aria-label="Loading"
         aria-busy="true"
-        sx={{
-          position: 'relative',
-        }}
         value={100}
         {...linearProgressProps}
+        sx={(theme) => ({
+          borderRadius: 0,
+          '& .mantine-Progress-bar': {
+            borderRadius: 0,
+          },
+          ...(linearProgressProps?.sx instanceof Function
+            ? linearProgressProps.sx(theme)
+            : (linearProgressProps?.sx as any)),
+        })}
       />
     </Collapse>
   );

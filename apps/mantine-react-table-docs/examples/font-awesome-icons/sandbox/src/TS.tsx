@@ -145,7 +145,7 @@ const Example = () => {
     <MantineReactTable
       columns={columns}
       data={data}
-      editingMode="row"
+      editDisplayMode="row"
       enableColumnFilterModes
       enableColumnOrdering
       enableColumnResizing

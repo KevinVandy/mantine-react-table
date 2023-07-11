@@ -153,8 +153,7 @@ export const SelectSwitch = () => (
     columns={columns}
     data={data}
     enableRowSelection
-    mantineSelectCheckboxProps={{ variant: 'switch' }}
-    mantineSelectAllCheckboxProps={{ variant: 'switch' }}
+    selectDisplayMode="switch"
   />
 );
 

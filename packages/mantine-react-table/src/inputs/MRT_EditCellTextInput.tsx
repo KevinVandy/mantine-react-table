@@ -14,8 +14,8 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any>>({
   const {
     getState,
     options: {
-      creatingMode,
-      editingMode,
+      createDisplayMode,
+      editDisplayMode,
       mantineEditTextInputProps,
       mantineEditSelectProps,
     },
@@ -107,18 +107,18 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any>>({
         ? columnDef.enableEditing(row)
         : columnDef.enableEditing) === false,
     label: ['modal', 'custom'].includes(
-      (isCreating ? creatingMode : editingMode) as string,
+      (isCreating ? createDisplayMode : editDisplayMode) as string,
     )
       ? column.columnDef.header
       : undefined,
     name: cell.id,
     placeholder: !['modal', 'custom'].includes(
-      (isCreating ? creatingMode : editingMode) as string,
+      (isCreating ? createDisplayMode : editDisplayMode) as string,
     )
       ? columnDef.header
       : undefined,
     value,
-    variant: editingMode === 'table' ? 'unstyled' : 'default',
+    variant: editDisplayMode === 'table' ? 'unstyled' : 'default',
     onClick: (e: any) => {
       e.stopPropagation();
       textInputProps?.onClick?.(e);

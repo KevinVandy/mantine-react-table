@@ -26,8 +26,8 @@ export const MRT_Table = <TData extends Record<string, any>>({
       columnVirtualizerInstanceRef,
       columnVirtualizerProps,
       columns,
-      creatingMode,
-      editingMode,
+      createDisplayMode,
+      editDisplayMode,
       enableColumnResizing,
       enableColumnVirtualization,
       enablePinning,
@@ -151,8 +151,8 @@ export const MRT_Table = <TData extends Record<string, any>>({
     virtualPaddingRight,
   };
 
-  const createModalOpen = creatingMode === 'modal' && creatingRow;
-  const editModalOpen = editingMode === 'modal' && editingRow;
+  const createModalOpen = createDisplayMode === 'modal' && creatingRow;
+  const editModalOpen = editDisplayMode === 'modal' && editingRow;
 
   return (
     <>

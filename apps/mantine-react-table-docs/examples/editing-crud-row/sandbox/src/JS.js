@@ -4,13 +4,7 @@ import {
   // createRow,
   useMantineReactTable,
 } from 'mantine-react-table';
-import {
-  ActionIcon,
-  Button,
-  Flex,
-  Text,
-  Tooltip,
-} from '@mantine/core';
+import { ActionIcon, Button, Flex, Text, Tooltip } from '@mantine/core';
 import { ModalsProvider, modals } from '@mantine/modals';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
 import {
@@ -151,8 +145,8 @@ const Example = () => {
   const table = useMantineReactTable({
     columns,
     data: fetchedUsers,
-    creatingMode: 'row', // ('modal', and 'custom' are also available)
-    editingMode: 'row', // ('modal', 'cell', 'table', and 'custom' are also available)
+    createDisplayMode: 'row', // ('modal', and 'custom' are also available)
+    editDisplayMode: 'row', // ('modal', 'cell', 'table', and 'custom' are also available)
     enableEditing: true,
     getRowId: (row) => row.id,
     mantineToolbarAlertBannerProps: isLoadingUsersError

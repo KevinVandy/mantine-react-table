@@ -29,6 +29,7 @@ Client-side pagination is enabled by default in Mantine React Table. There are a
       'onPaginationChange',
       'pageCount',
       'rowCount',
+      'paginationDisplayMode',
       'paginateExpandedRows',
       'positionPagination',
     ])
@@ -79,15 +80,13 @@ const table = useMantineReactTable({
 
 #### Alternate Pagination UI
 
-By default, Mantine React Table provides its own Table Pagination UI that is more compact and traditional for data tables. However, if you want to use the Mantine Pagination component instead, it is as easy as setting the `variant` prop in `mantinePaginationProps` to `mantine`.
+By default, Mantine React Table provides its own Table Pagination UI that is more compact and traditional for data tables. However, if you want to use the Mantine Pagination component instead, it is as easy as setting the `paginationDisplayMode` table option to `pages`.
 
 ```jsx
 const table = useMantineReactTable({
   columns,
   data,
-  mantinePaginationProps: {
-    variant: 'mantine',
-  },
+  paginationDisplayMode: 'pages',
 });
 ```
 

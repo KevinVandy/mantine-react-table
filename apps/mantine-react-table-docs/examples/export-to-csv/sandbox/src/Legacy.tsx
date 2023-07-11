@@ -67,9 +67,7 @@ const Example = () => {
       columns={columns}
       data={data}
       enableRowSelection
-      mantinePaginationProps={{
-        variant: 'mantine',
-      }}
+      paginationDisplayMode="pages"
       positionToolbarAlertBanner="bottom"
       renderTopToolbarCustomActions={({ table }) => (
         <Box

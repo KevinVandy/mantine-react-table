@@ -73,6 +73,14 @@ export const FilteringEnabledDefault = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
+export const PopoverDisplayMode = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    columnFilterDisplayMode="popover"
+  />
+);
+
 export const ColumnFilteringDisabled = () => (
   <MantineReactTable
     columns={columns}
@@ -197,6 +205,110 @@ export const FilterFnAndFilterVariants = () => (
   />
 );
 
+export const FilterFnAndFilterVariantsPopover = () => (
+  <MantineReactTable
+    columns={[
+      {
+        header: 'Is Active',
+        accessorFn: (originalRow) => (originalRow.isActive ? 'true' : 'false'),
+        id: 'isActive',
+        filterVariant: 'checkbox',
+        Cell: ({ cell }) => (cell.getValue() === 'true' ? 'Yes' : 'No'),
+        size: 200,
+      },
+      {
+        header: 'First Name',
+        accessorKey: 'firstName',
+        filterFn: 'fuzzy', // default
+      },
+      {
+        header: 'Last Name',
+        accessorKey: 'lastName',
+        filterFn: 'contains',
+      },
+      {
+        header: 'Age',
+        accessorKey: 'age',
+        filterVariant: 'range',
+      },
+      {
+        header: 'Salary',
+        accessorKey: 'salary',
+        Cell: ({ cell }) =>
+          cell.getValue<number>().toLocaleString('en-US', {
+            currency: 'USD',
+            style: 'currency',
+          }),
+        filterVariant: 'range-slider',
+        mantineFilterRangeSliderProps: {
+          min: 1000,
+          max: 100000,
+        },
+      },
+      {
+        header: 'Gender',
+        accessorKey: 'gender',
+        mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
+        filterVariant: 'select',
+      },
+      {
+        header: 'Address',
+        accessorKey: 'address',
+        filterFn: 'includesStringSensitive',
+      },
+      {
+        header: 'State',
+        accessorKey: 'state',
+        mantineFilterMultiSelectProps: {
+          data: [
+            'Alabama',
+            'Arizona',
+            'Arkansas',
+            'California',
+            'Colorado',
+            'Connecticut',
+            'Delaware',
+            'Florida',
+            'Georgia',
+            'New York',
+            'Texas',
+            'Washington',
+          ] as any,
+        },
+        filterVariant: 'multi-select',
+      },
+      {
+        accessorFn: (row) => {
+          const bDay = new Date(row.birthDate);
+          bDay.setHours(0, 0, 0, 0); // remove time from date
+          return bDay;
+        },
+        id: 'birthDate',
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
+        filterVariant: 'date',
+        header: 'Birth Date',
+        sortingFn: 'datetime',
+        size: 200,
+      },
+      {
+        accessorFn: (row) => {
+          const hDay = new Date(row.hireDate);
+          hDay.setHours(0, 0, 0, 0); // remove time from date
+          return hDay;
+        },
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
+        id: 'hireDate',
+        filterVariant: 'date-range',
+        header: 'Hire Date',
+        sortingFn: 'datetime',
+        size: 200,
+      },
+    ]}
+    data={data}
+    columnFilterDisplayMode="popover"
+  />
+);
+
 export const FilterFnAndFilterVariantsFaceted = () => (
   <MantineReactTable
     columns={[
@@ -279,6 +391,56 @@ export const EnableFilterModes = () => (
     data={data}
     enableColumnFilterModes
     initialState={{ showColumnFilters: true }}
+  />
+);
+
+export const EnableFilterModesPopover = () => (
+  <MantineReactTable
+    columns={[
+      {
+        header: 'First Name',
+        accessorKey: 'firstName',
+      },
+      {
+        header: 'Last Name',
+        accessorKey: 'lastName',
+      },
+      {
+        header: 'Age',
+        accessorKey: 'age',
+        filterFn: 'between',
+      },
+      {
+        header: 'Salary',
+        accessorKey: 'salary',
+        Cell: ({ cell }) =>
+          cell.getValue<number>().toLocaleString('en-US', {
+            currency: 'USD',
+            style: 'currency',
+          }),
+        filterVariant: 'range-slider',
+        mantineFilterRangeSliderProps: {
+          min: 1000,
+          max: 100000,
+        },
+      },
+      {
+        header: 'Gender',
+        accessorKey: 'gender',
+        mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
+      },
+      {
+        header: 'Address',
+        accessorKey: 'address',
+      },
+      {
+        header: 'State',
+        accessorKey: 'state',
+      },
+    ]}
+    data={data}
+    columnFilterDisplayMode="popover"
+    enableColumnFilterModes
   />
 );
 

@@ -49,7 +49,7 @@ export const useMRT_DisplayColumns = <TData extends Record<string, any>>({
           ((tableOptions.state?.columnOrder ?? columnOrder).includes(
             'mrt-row-actions',
           ) ||
-            (creatingRow && tableOptions.creatingMode === 'row')) && {
+            (creatingRow && tableOptions.createDisplayMode === 'row')) && {
             Cell: ({ cell, row, table }) => (
               <MRT_ToggleRowActionMenuButton
                 cell={cell}
@@ -116,7 +116,7 @@ export const useMRT_DisplayColumns = <TData extends Record<string, any>>({
       columnOrder,
       grouping,
       tableOptions.displayColumnDefOptions,
-      tableOptions.editingMode,
+      tableOptions.editDisplayMode,
       tableOptions.enableColumnDragging,
       tableOptions.enableColumnFilterModes,
       tableOptions.enableColumnOrdering,

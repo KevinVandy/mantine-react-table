@@ -20,11 +20,13 @@ export const MRT_TableHeadCellFilterContainer = <
   const {
     getState,
     options: {
+      columnFilterDisplayMode,
       enableColumnFilterModes,
       columnFilterModeOptions,
-      icons: { IconFilter },
+      icons: { IconFilterCog },
       localization,
     },
+    refs: { filterInputRefs },
   } = table;
   const { showColumnFilters } = getState();
   const { column } = header;
@@ -40,7 +42,7 @@ export const MRT_TableHeadCellFilterContainer = <
       !!allowedColumnFilterOptions?.length);
 
   return (
-    <Collapse in={showColumnFilters}>
+    <Collapse in={showColumnFilters || columnFilterDisplayMode === 'popover'}>
       <Flex direction="column">
         <Flex align="flex-end">
           {columnDef.filterVariant === 'checkbox' ? (
@@ -56,7 +58,7 @@ export const MRT_TableHeadCellFilterContainer = <
             <MRT_FilterTextInput header={header} table={table} />
           )}
           {showChangeModeButton && (
-            <Menu withinPortal>
+            <Menu withinPortal={columnFilterDisplayMode !== 'popover'}>
               <Tooltip
                 label={localization.changeFilterMode}
                 position="bottom-start"
@@ -68,11 +70,20 @@ export const MRT_TableHeadCellFilterContainer = <
                     size="md"
                     sx={{ transform: 'translateY(-2px)' }}
                   >
-                    <IconFilter />
+                    <IconFilterCog />
                   </ActionIcon>
                 </Menu.Target>
               </Tooltip>
-              <MRT_FilterOptionMenu header={header} table={table} />
+              <MRT_FilterOptionMenu
+                header={header}
+                table={table}
+                onSelect={() =>
+                  setTimeout(
+                    () => filterInputRefs.current[`${column.id}-0`]?.focus(),
+                    100,
+                  )
+                }
+              />
             </Menu>
           )}
         </Flex>

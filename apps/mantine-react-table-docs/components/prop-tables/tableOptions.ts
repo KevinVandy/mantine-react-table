@@ -108,7 +108,7 @@ export const tableOptions: TableOption[] = [
     type: 'MutableRefObject<Virtualizer | null>',
   },
   {
-    tableOptionName: 'creatingMode',
+    tableOptionName: 'createDisplayMode',
     defaultValue: "'modal'",
     description:
       'You can choose between 3 different built-in creating modes. Create a row in a modal, or a row inline, or render your own custom creating UI.',
@@ -206,7 +206,7 @@ export const tableOptions: TableOption[] = [
     type: '{ [key: string]: MRT_ColumnDef<TData> }',
   },
   {
-    tableOptionName: 'editingMode',
+    tableOptionName: 'editDisplayMode',
     defaultValue: "'modal'",
     description:
       'You can choose between 5 different built-in editing modes. Edit a row in a modal, or a row inline, just 1 cell at a time, always have all cells editable, or create your own custom external editing UI.',
@@ -667,7 +667,18 @@ export const tableOptions: TableOption[] = [
     linkText: '',
     required: false,
     source: '',
-    type: '(dataRow: TData) => TData[]', //?
+    type: '(dataRow: TData) => TData[]',
+  },
+  {
+    tableOptionName: 'columnFilterDisplayMode',
+    defaultValue: "'subheader'",
+    description:
+      'You can choose between 3 different built-in filter display modes. See column filters below the header, in a pop-up menu, or in your own custom components.',
+    link: '/docs/guides/editing#editing-modes',
+    linkText: 'MRT Editing Docs',
+    required: false,
+    source: 'MRT',
+    type: "'subheader' | 'popover' | 'custom'",
   },
   {
     tableOptionName: 'filterFns',
@@ -1629,7 +1640,7 @@ export const tableOptions: TableOption[] = [
     source: 'MRT',
     type: 'OnChangeFn<boolean>',
   },
-    {
+  {
     tableOptionName: 'onCreatingRowSave',
     defaultValue: '',
     description: '',
@@ -1649,7 +1660,7 @@ export const tableOptions: TableOption[] = [
     source: 'MRT',
     type: '({ exitEditingMode, row, table, values}) => Promise<void> | void',
   },
-    {
+  {
     tableOptionName: 'onCreatingRowCancel',
     defaultValue: '',
     description: '',
@@ -1752,6 +1763,17 @@ export const tableOptions: TableOption[] = [
     required: false,
     source: 'TanStack Table',
     type: 'number',
+  },
+  {
+    tableOptionName: 'paginationDisplayMode',
+    defaultValue: "'default'",
+    description:
+      "You can choose between 3 different built-in pagination display modes. Use the default pagination UI, mantine's pagination component, or a custom pagination component.",
+    link: '/docs/guides/editing#editing-modes',
+    linkText: 'MRT Editing Docs',
+    required: false,
+    source: 'MRT',
+    type: "'default' | 'pages' | 'custom'",
   },
   {
     tableOptionName: 'paginateExpandedRows',
@@ -1993,6 +2015,17 @@ export const tableOptions: TableOption[] = [
     required: false,
     source: '',
     type: `'all' | 'page'`,
+  },
+  {
+    tableOptionName: 'selectDisplayMode',
+    defaultValue: "'checkbox'",
+    description:
+      'You can choose between 3 different built-in select display modes. Use the default checkboxes, radio buttons, or switches.',
+    link: '/docs/guides/editing#editing-modes',
+    linkText: 'MRT Editing Docs',
+    required: false,
+    source: 'MRT',
+    type: "'checkbox' | 'radio' | 'switch'",
   },
   {
     tableOptionName: 'sortDescFirst',

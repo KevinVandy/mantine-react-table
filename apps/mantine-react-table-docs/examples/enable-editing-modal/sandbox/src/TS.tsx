@@ -53,7 +53,7 @@ const Example = () => {
     <MantineReactTable
       columns={columns}
       data={tableData}
-      editingMode="modal" //default
+      editDisplayMode="modal" //default
       enableEditing
       onEditingRowSave={handleSaveRow}
     />

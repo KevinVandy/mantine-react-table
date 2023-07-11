@@ -15,6 +15,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any>>({
     toggleAllColumnsVisible,
     setColumnOrder,
     options: {
+      columnFilterDisplayMode,
       enableColumnFilters,
       enableColumnResizing,
       enableGrouping,
@@ -147,24 +148,26 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any>>({
           )}
         </>
       )}
-      {enableColumnFilters && column.getCanFilter() && (
-        <>
-          <Menu.Item
-            disabled={!column.getFilterValue()}
-            icon={<IconFilterOff />}
-            onClick={handleClearFilter}
-          >
-            {localization.clearFilter}
-          </Menu.Item>
-          <Menu.Item icon={<IconFilter />} onClick={handleFilterByColumn}>
-            {localization.filterByColumn?.replace(
-              '{column}',
-              String(columnDef.header),
-            )}
-          </Menu.Item>
-          {(enableGrouping || enableHiding) && <Menu.Divider key={2} />}
-        </>
-      )}
+      {enableColumnFilters &&
+        columnFilterDisplayMode !== 'popover' &&
+        column.getCanFilter() && (
+          <>
+            <Menu.Item
+              disabled={!column.getFilterValue()}
+              icon={<IconFilterOff />}
+              onClick={handleClearFilter}
+            >
+              {localization.clearFilter}
+            </Menu.Item>
+            <Menu.Item icon={<IconFilter />} onClick={handleFilterByColumn}>
+              {localization.filterByColumn?.replace(
+                '{column}',
+                String(columnDef.header),
+              )}
+            </Menu.Item>
+            {(enableGrouping || enableHiding) && <Menu.Divider key={2} />}
+          </>
+        )}
       {enableGrouping && column.getCanGroup() && (
         <>
           <Menu.Item icon={<IconBoxMultiple />} onClick={handleGroupByColumn}>
@@ -244,7 +247,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any>>({
   );
 
   return (
-    <Menu closeOnItemClick withinPortal>
+    <Menu closeOnItemClick withinPortal position="bottom-start">
       <Tooltip
         withinPortal
         openDelay={1000}

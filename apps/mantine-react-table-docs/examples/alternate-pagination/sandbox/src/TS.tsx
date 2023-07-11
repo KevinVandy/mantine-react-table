@@ -7,8 +7,8 @@ const Example = () => {
     data,
     mantinePaginationProps: {
       showRowsPerPage: false,
-      variant: 'mantine',
     },
+    paginationDisplayMode: 'pages',
   });
 
   return <MantineReactTable table={table} />;

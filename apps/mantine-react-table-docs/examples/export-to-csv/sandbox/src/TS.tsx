@@ -67,9 +67,7 @@ const Example = () => {
     columns,
     data,
     enableRowSelection: true,
-    mantinePaginationProps: {
-      variant: 'mantine',
-    },
+    paginationDisplayMode: 'pages',
     positionToolbarAlertBanner: 'bottom',
     renderTopToolbarCustomActions: ({ table }) => (
       <Box

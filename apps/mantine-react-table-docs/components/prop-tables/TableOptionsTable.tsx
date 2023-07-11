@@ -153,10 +153,7 @@ const TableOptionsTable = ({ onlyOptions }: Props) => {
         columnVisibility: { required: false, description: false },
         density: 'xs',
         showGlobalFilter: true,
-        sorting: [
-          { id: 'required', desc: true },
-          { id: 'tableOptionName', desc: false },
-        ],
+        sorting: [{ id: 'tableOptionName', desc: false }],
       }}
       mantineSearchTextInputProps={{
         placeholder: 'Search All Props',

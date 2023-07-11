@@ -173,7 +173,7 @@ export const EditingEnabledEditModeRow = () => {
       ]}
       data={tableData}
       enableEditing
-      editingMode="row"
+      editDisplayMode="row"
       onEditingRowSave={handleSaveRow}
     />
   );
@@ -214,7 +214,7 @@ export const EditingEnabledEditModeCell = () => {
         },
       ]}
       data={tableData}
-      editingMode="cell"
+      editDisplayMode="cell"
       enableEditing
       mantineEditTextInputProps={({ cell }) => ({
         onBlur: (event) => {
@@ -260,7 +260,7 @@ export const EditingEnabledEditModeTable = () => {
         },
       ]}
       data={tableData}
-      editingMode="table"
+      editDisplayMode="table"
       enableEditing
       mantineEditTextInputProps={({ cell }) => ({
         onBlur: (event) => {
@@ -299,7 +299,7 @@ export const EditingEnabledEditModeCustom = () => {
         },
       ]}
       data={tableData}
-      editingMode="custom"
+      editDisplayMode="custom"
       enableEditing
     />
   );
@@ -340,7 +340,7 @@ export const CustomEditModal = () => {
         },
       ]}
       data={tableData}
-      editingMode="modal"
+      editDisplayMode="modal"
       enableEditing
       mantineEditTextInputProps={({ cell }) => ({
         onBlur: (event) => {
@@ -404,7 +404,7 @@ export const EditSelectVariant = () => {
         },
       ]}
       data={tableData}
-      editingMode="row"
+      editDisplayMode="row"
       enableRowActions
       enableEditing
       onEditingRowSave={handleSaveRow}
@@ -499,7 +499,7 @@ export const EditSelectVariantAlternate = () => {
         },
       ]}
       data={tableData}
-      editingMode="row"
+      editDisplayMode="row"
       enableRowActions
       enableEditing
       onEditingRowSave={handleSaveRow}
@@ -789,7 +789,7 @@ export const EditingEnabledAsyncRow = () => {
         },
       ]}
       data={tableData}
-      editingMode="row"
+      editDisplayMode="row"
       enableEditing
       enableRowActions
       onEditingRowSave={handleSaveRow}
@@ -899,7 +899,7 @@ export const EditingEnabledEditModeTableWithGroupedRows = () => {
       data={tableData}
       enableEditing
       enableGrouping
-      editingMode="table"
+      editDisplayMode="table"
       onEditingRowSave={handleSaveRow}
     />
   );
@@ -945,7 +945,7 @@ export const EnableEditingConditionally = () => {
       ]}
       data={tableData}
       enableEditing={(row) => row.index % 2 === 0}
-      editingMode="row"
+      editDisplayMode="row"
       onEditingRowSave={handleSaveRow}
     />
   );
@@ -991,7 +991,7 @@ export const EnableEditingConditionallyCell = () => {
       ]}
       data={tableData}
       enableEditing={(row) => row.index % 2 === 0}
-      editingMode="cell"
+      editDisplayMode="cell"
       onEditingRowSave={handleSaveRow}
     />
   );
@@ -1037,7 +1037,7 @@ export const EnableEditingConditionallyTable = () => {
       ]}
       data={tableData}
       enableEditing={(row) => row.index % 2 === 0}
-      editingMode="table"
+      editDisplayMode="table"
       onEditingRowSave={handleSaveRow}
     />
   );

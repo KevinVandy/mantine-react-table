@@ -22,6 +22,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any>>({
   const {
     getState,
     options: {
+      columnFilterDisplayMode,
       enableColumnActions,
       enableColumnDragging,
       enableColumnOrdering,
@@ -232,7 +233,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any>>({
           )}
         </Flex>
       )}
-      {column.getCanFilter() && (
+      {columnFilterDisplayMode === 'subheader' && column.getCanFilter() && (
         <MRT_TableHeadCellFilterContainer header={header} table={table} />
       )}
     </Box>

@@ -44,7 +44,7 @@ const Example = () => {
     <MantineReactTable
       columns={columns}
       data={tableData}
-      editingMode="cell"
+      editDisplayMode="cell"
       enableEditing
       mantineEditTextInputProps={({ cell }) => ({
         //onBlur is more efficient, but could use onChange instead

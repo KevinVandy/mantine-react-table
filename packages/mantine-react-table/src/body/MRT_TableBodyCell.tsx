@@ -48,8 +48,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
   const {
     getState,
     options: {
-      creatingMode,
-      editingMode,
+      createDisplayMode,
+      editDisplayMode,
       enableClickToCopy,
       enableColumnOrdering,
       enableEditing,
@@ -158,18 +158,18 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
 
   const isEditing =
     isEditable &&
-    !['modal', 'custom'].includes(editingMode as string) &&
-    (editingMode === 'table' ||
+    !['modal', 'custom'].includes(editDisplayMode as string) &&
+    (editDisplayMode === 'table' ||
       editingRow?.id === row.id ||
       editingCell?.id === cell.id) &&
     !row.getIsGrouped();
 
   const isCreating =
-    isEditable && creatingMode === 'row' && creatingRow?.id === row.id;
+    isEditable && createDisplayMode === 'row' && creatingRow?.id === row.id;
 
   const handleDoubleClick = (event: MouseEvent<HTMLTableCellElement>) => {
     tableCellProps?.onDoubleClick?.(event);
-    if (isEditable && editingMode === 'cell') {
+    if (isEditable && editDisplayMode === 'cell') {
       setEditingCell(cell);
       setTimeout(() => {
         const textField = editInputRefs.current[cell.id];
@@ -207,7 +207,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
       onDoubleClick={handleDoubleClick}
       sx={(theme) => ({
         alignItems: layoutMode === 'grid' ? 'center' : undefined,
-        cursor: isEditable && editingMode === 'cell' ? 'pointer' : 'inherit',
+        cursor:
+          isEditable && editDisplayMode === 'cell' ? 'pointer' : 'inherit',
         justifyContent:
           layoutMode === 'grid' ? tableCellProps.align : undefined,
         overflow: 'hidden',
@@ -222,7 +223,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any>>({
         '&:hover': {
           outline:
             isEditing &&
-            ['table', 'cell'].includes(editingMode ?? '') &&
+            ['table', 'cell'].includes(editDisplayMode ?? '') &&
             columnDefType !== 'display'
               ? `1px solid ${theme.colors.gray[7]}`
               : undefined,

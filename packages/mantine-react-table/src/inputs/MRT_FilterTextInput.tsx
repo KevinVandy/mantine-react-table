@@ -27,6 +27,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
 }: Props<TData>) => {
   const {
     options: {
+      columnFilterDisplayMode,
       columnFilterModeOptions,
       icons: { IconX },
       localization,
@@ -350,6 +351,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
   ) : isMultiSelectFilter ? (
     <MultiSelect
       {...commonProps}
+      clearable
       searchable
       withinPortal
       {...multiSelectProps}
@@ -389,7 +391,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any>>({
       {...commonProps}
       allowDeselect
       clearable
-      popoverProps={{ withinPortal: true }}
+      popoverProps={{ withinPortal: columnFilterDisplayMode !== 'popover' }}
       {...dateInputProps}
       ref={(node) => {
         if (node) {

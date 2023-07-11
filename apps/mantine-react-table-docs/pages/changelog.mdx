@@ -12,6 +12,17 @@ import Head from 'next/head';
 
 ### V1
 
+#### V1.0.0-beta.26
+
+- Renamed `creatingMode` table option to `createDisplayMode`
+- Renamed `editingMode` table option to `editDisplayMode`
+- Added `columnFilterDisplayMode` table option to render column filters in `'subheader' | 'popover' | 'custom'` display modes
+- Added `paginationDisplayMode` table option to render pagination in `'default' | 'pages' | 'custom'` display modes
+- Added `selectDisplayMode` table option to render `'checkbox' | 'radio' | 'switch'` select modes
+- Fixed large pagination numbers not being formatted with locale string
+- Better column actions menu alignment
+- Starting using `IconFilterCog` tabler icon for filter mode switching button.
+
 #### V1.0.0-beta.25
 
 - Fixed "Toggle Full Screen" tooltip not hiding after clicking to toggle full screen
@@ -46,7 +57,7 @@ import Head from 'next/head';
 
 #### V1.0.0-beta.19
 
-- New `"custom"` editingMode that does not render any editing UI, but still handles the edit states
+- New `"custom"` editDisplayMode that does not render any editing UI, but still handles the edit states
 - New `isSaving` state option to show spinner in edit save buttons
 - New `renderEditRowModalContent` table option to allow for the edit modal to be fully customized
 - New `mantineEditRowModalProps` table option to allow for customizing the props of the edit modal

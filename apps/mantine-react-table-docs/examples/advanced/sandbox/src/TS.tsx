@@ -141,9 +141,7 @@ const Example = () => {
     enableRowActions: true,
     enableRowSelection: true,
     initialState: { showColumnFilters: true },
-    mantinePaginationProps: {
-      variant: 'mantine',
-    },
+    paginationDisplayMode: 'pages',
     positionToolbarAlertBanner: 'bottom',
     renderDetailPanel: ({ row }) => (
       <Box

@@ -161,8 +161,8 @@ const Example = () => {
   const table = useMantineReactTable({
     columns,
     data: fetchedUsers,
-    creatingMode: 'row', // ('modal', and 'custom' are also available)
-    editingMode: 'cell', // ('modal', 'row', 'cell', and 'custom' are also available)
+    createDisplayMode: 'row', // ('modal', and 'custom' are also available)
+    editDisplayMode: 'cell', // ('modal', 'row', 'cell', and 'custom' are also available)
     enableEditing: true,
     enableRowActions: true,
     positionActionsColumn: 'last',

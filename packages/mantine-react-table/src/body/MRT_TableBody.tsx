@@ -35,7 +35,7 @@ export const MRT_TableBody = <TData extends Record<string, any>>({
     getPrePaginationRowModel,
     getState,
     options: {
-      creatingMode,
+      createDisplayMode,
       enableGlobalFilterRankedResults,
       enablePagination,
       enableRowVirtualization,
@@ -150,7 +150,7 @@ export const MRT_TableBody = <TData extends Record<string, any>>({
           : (tableBodyProps?.sx as any)),
       })}
     >
-      {creatingRow && creatingMode === 'row' && (
+      {creatingRow && createDisplayMode === 'row' && (
         <MRT_TableBodyRow table={table} row={creatingRow} rowIndex={-1} />
       )}
       {!rows.length ? (

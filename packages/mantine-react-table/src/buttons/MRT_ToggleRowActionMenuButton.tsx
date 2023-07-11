@@ -20,8 +20,8 @@ export const MRT_ToggleRowActionMenuButton = <
   const {
     getState,
     options: {
-      creatingMode,
-      editingMode,
+      createDisplayMode,
+      editDisplayMode,
       enableEditing,
       icons: { IconEdit },
       localization,
@@ -42,8 +42,8 @@ export const MRT_ToggleRowActionMenuButton = <
   };
 
   const showEditActionButtons =
-    (isCreating && creatingMode === 'row') ||
-    (isEditing && editingMode === 'row');
+    (isCreating && createDisplayMode === 'row') ||
+    (isEditing && editDisplayMode === 'row');
 
   return (
     <>

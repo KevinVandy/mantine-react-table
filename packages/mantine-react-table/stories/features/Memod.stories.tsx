@@ -77,7 +77,7 @@ export const NoMemos = () => {
     <MantineReactTable
       columns={columns}
       data={tableData}
-      editingMode="row"
+      editDisplayMode="row"
       enableColumnOrdering
       enableEditing
       enableGrouping
@@ -105,7 +105,7 @@ export const MemoCells = () => {
     <MantineReactTable
       columns={columns}
       data={tableData}
-      editingMode="row"
+      editDisplayMode="row"
       enableColumnOrdering
       enableEditing
       enableGrouping
@@ -134,7 +134,7 @@ export const MemoRows = () => {
     <MantineReactTable
       columns={columns}
       data={tableData}
-      editingMode="row"
+      editDisplayMode="row"
       enableColumnOrdering
       enableEditing
       enableGrouping
@@ -163,7 +163,7 @@ export const MemoTableBody = () => {
     <MantineReactTable
       columns={columns}
       data={tableData}
-      editingMode="row"
+      editDisplayMode="row"
       enableColumnOrdering
       enableEditing
       enableGrouping
