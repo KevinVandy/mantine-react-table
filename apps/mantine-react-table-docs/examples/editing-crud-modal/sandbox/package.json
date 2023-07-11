@@ -17,7 +17,7 @@
     "@tabler/icons-react": "2.24.0",
     "@tanstack/react-query": "^4.29.19",
     "dayjs": "^1.11.9",
-    "mantine-react-table": "^1.0.0-beta.26",
+    "mantine-react-table": "^1.0.0-beta.27",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
