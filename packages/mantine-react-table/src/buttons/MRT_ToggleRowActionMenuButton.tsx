@@ -48,7 +48,7 @@ export const MRT_ToggleRowActionMenuButton = <
   return (
     <>
       {renderRowActions && !showEditActionButtons ? (
-        <>{renderRowActions({ cell, row, table })}</>
+        renderRowActions({ cell, row, table })
       ) : showEditActionButtons ? (
         <MRT_EditActionButtons row={row} table={table} />
       ) : !renderRowActionMenuItems &&

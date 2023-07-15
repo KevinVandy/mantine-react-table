@@ -1,5 +1,6 @@
 import { type RefObject, useMemo } from 'react';
 import { showExpandColumn } from '../column.utils';
+import { MRT_TableBodyRowGrabHandle } from '../body';
 import { MRT_ExpandAllButton } from '../buttons/MRT_ExpandAllButton';
 import { MRT_ExpandButton } from '../buttons/MRT_ExpandButton';
 import { MRT_ToggleRowActionMenuButton } from '../buttons/MRT_ToggleRowActionMenuButton';
@@ -11,7 +12,6 @@ import {
   type MRT_DefinedTableOptions,
   type MRT_Row,
 } from '../types';
-import { MRT_TableBodyRowGrabHandle } from '../body';
 
 interface Params<TData extends Record<string, any>> {
   creatingRow: MRT_Row<TData> | null;
