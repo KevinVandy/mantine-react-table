@@ -115,7 +115,7 @@ return <MantineReactTable table={table} />;
 
 The `useMantineReactTable` hook returns the table instance. The `<MantineReactTable />` needs the table instance for all of its internal logic, but you can also use it for your own purposes.
 
-```tsx
+```jsx
 const table = useMantineReactTable({
   columns,
   data,
@@ -133,11 +133,7 @@ return (
     <ExternalButton onClick={someEventHandler}>
       Export or Something
     </ExternalButton>
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      tableInstanceRef={tableInstanceRef}
-    />
+    <MantineReactTable table={table} />
   </div>
 );
 ```

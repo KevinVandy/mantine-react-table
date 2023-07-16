@@ -38,11 +38,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (globalFilter) {
     dbData = dbData.filter((row) =>
-      Object.keys(row).some((columnId) =>
-        row[columnId]
-          ?.toString()
-          ?.toLowerCase()
-          ?.includes?.((globalFilter as string).toLowerCase()),
+      Object.keys(row).some(
+        (columnId) =>
+          row[columnId]
+            ?.toString()
+            ?.toLowerCase()
+            ?.includes?.((globalFilter as string).toLowerCase()),
       ),
     );
   }

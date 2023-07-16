@@ -93,8 +93,8 @@ export const prepareColumns = <TData extends Record<string, any> = {}>({
           leafRows: Row<TData>[],
           childRows: Row<TData>[],
         ) =>
-          aggFns.map((fn) =>
-            aggregationFns[fn]?.(columnId, leafRows, childRows),
+          aggFns.map(
+            (fn) => aggregationFns[fn]?.(columnId, leafRows, childRows),
           );
       }
 

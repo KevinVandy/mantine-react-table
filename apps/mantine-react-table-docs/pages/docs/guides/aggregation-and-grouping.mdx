@@ -77,7 +77,13 @@ const columns = [
   },
 ];
 
-return <MantineReactTable columns={columns} data={data} enableGrouping />;
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableGrouping: true, //enable grouping
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 #### Hide Drag Buttons for Grouping

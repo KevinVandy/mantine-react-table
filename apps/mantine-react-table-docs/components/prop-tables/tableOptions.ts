@@ -1328,7 +1328,7 @@ export const tableOptions: TableOption[] = [
     linkText: 'Mantine TextInput Docs',
     required: false,
     source: 'Mantine',
-    type: 'TextInputProps | ({ table, column, rangeFilterIndex ) => TextInputProps',
+    type: 'TextInputProps | ({ table, column, rangeFilterIndex }) => TextInputProps',
   },
   {
     tableOptionName: 'mantineLoadingOverlayProps',
@@ -1338,7 +1338,7 @@ export const tableOptions: TableOption[] = [
     linkText: 'Mantine LoadingOverlay Docs',
     required: false,
     source: 'Mantine',
-    type: 'TextInputProps | ({ table ) => Loading',
+    type: 'LoadingOverlayProps | ({ table }) => LoadingOverlayProps',
   },
   {
     tableOptionName: 'mantineTableHeadCellProps',
@@ -1358,7 +1358,7 @@ export const tableOptions: TableOption[] = [
     linkText: 'Mantine TableHead Docs',
     required: false,
     source: 'Mantine',
-    type: 'TableHeadProps | ({ table }) => TableHeadProps',
+    type: 'BoxProps | ({ table }) => BoxProps',
   },
   {
     tableOptionName: 'mantineTableHeadRowProps',
@@ -1374,11 +1374,11 @@ export const tableOptions: TableOption[] = [
     tableOptionName: 'mantinePaginationProps',
     defaultValue: '',
     description: '',
-    link: '/docs/guides/pagination/',
-    linkText: 'MRT Pagination Docs',
+    link: 'https://mantine.dev/core/pagination/?t=props',
+    linkText: 'Mantine Pagination Docs',
     required: false,
-    source: 'MRT',
-    type: '{ rowsPerPageOptions?: string[], showFirstLastPageButtons?: boolean, showRowsPerPage?: boolean; }',
+    source: 'Mantine',
+    type: 'PaginationProps & { rowsPerPageOptions?: string[], showRowsPerPage?: boolean; }',
   },
   {
     tableOptionName: 'mantinePaperProps',
@@ -1398,7 +1398,7 @@ export const tableOptions: TableOption[] = [
     linkText: 'Mantine Table Docs',
     required: false,
     source: 'Mantine',
-    type: 'TableProps',
+    type: 'TableProps | ({ table }} => TableProps',
   },
   {
     tableOptionName: 'mantineToolbarAlertBannerBadgeProps',

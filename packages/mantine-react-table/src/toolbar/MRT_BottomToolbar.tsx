@@ -48,19 +48,17 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={(theme) =>
-        ({
-          ...commonToolbarStyles({ theme }),
-          bottom: isFullScreen ? '0' : undefined,
-          boxShadow: `0 1px 2px -1px ${theme.fn.rgba(theme.black, 0.1)} inset`,
-          left: 0,
-          position: isFullScreen ? 'fixed' : 'relative',
-          right: 0,
-          ...(toolbarProps?.sx instanceof Function
-            ? toolbarProps.sx(theme)
-            : (toolbarProps?.sx as any)),
-        } as any)
-      }
+      sx={(theme) => ({
+        ...commonToolbarStyles({ theme }),
+        bottom: isFullScreen ? '0' : undefined,
+        boxShadow: `0 1px 2px -1px ${theme.fn.rgba(theme.black, 0.1)} inset`,
+        left: 0,
+        position: isFullScreen ? 'fixed' : 'relative',
+        right: 0,
+        ...(toolbarProps?.sx instanceof Function
+          ? toolbarProps.sx(theme)
+          : (toolbarProps?.sx as any)),
+      })}
     >
       <MRT_ProgressBar isTopToolbar={false} table={table} />
       {positionToolbarAlertBanner === 'bottom' && (

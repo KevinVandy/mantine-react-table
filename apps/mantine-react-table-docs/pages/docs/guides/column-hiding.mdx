@@ -30,16 +30,21 @@ The column hiding feature is enabled by default and allows the user to hide data
 
 <StateOptionsTable onlyOptions={new Set(['columnVisibility'])} />
 
-### Hide Some Columns by Default
+### Hide Columns by Default
 
 You can easily hide columns by default by setting the `columnVisibility` `state` or `initialState` to hide the desired columns by id.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  initialState={{ columnVisibility: { firstName: false } }} //hide firstName column by default
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  initialState: {
+    columnVisibility: {
+      firstName: false, //hide firstName column by default
+      'mrt-row-expand': false, //hide row expand column by default
+    },
+  },
+});
 ```
 
 ### Disable Column Hiding

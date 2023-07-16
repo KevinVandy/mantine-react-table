@@ -17,7 +17,7 @@ export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
   flexWrap: 'wrap-reverse',
   minHeight: '3.5rem',
   overflow: 'visible',
-  padding: '0 !important',
+  padding: '0',
   transition: 'all 100ms ease-in-out',
   zIndex: 3,
 });
@@ -68,16 +68,14 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={(theme) =>
-        ({
-          position: isFullScreen ? 'sticky' : 'relative',
-          top: isFullScreen ? '0' : undefined,
-          ...commonToolbarStyles({ theme }),
-          ...(toolbarProps?.sx instanceof Function
-            ? toolbarProps.sx(theme)
-            : (toolbarProps?.sx as any)),
-        } as any)
-      }
+      sx={(theme) => ({
+        position: isFullScreen ? 'sticky' : 'relative',
+        top: isFullScreen ? '0' : undefined,
+        ...commonToolbarStyles({ theme }),
+        ...(toolbarProps?.sx instanceof Function
+          ? toolbarProps.sx(theme)
+          : (toolbarProps?.sx as any)),
+      })}
     >
       {positionToolbarAlertBanner === 'top' && (
         <MRT_ToolbarAlertBanner

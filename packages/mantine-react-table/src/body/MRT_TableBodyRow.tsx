@@ -137,9 +137,15 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
             !draggingRow &&
             editingCell?.id !== cell.id &&
             editingRow?.id !== row.id ? (
-            <Memo_MRT_TableBodyCell key={cell.id} {...props} />
+            <Memo_MRT_TableBodyCell
+              key={cell.id + cell.getValue()?.toString()}
+              {...props}
+            />
           ) : (
-            <MRT_TableBodyCell key={cell.id} {...props} />
+            <MRT_TableBodyCell
+              key={cell.id + cell.getValue?.toString()}
+              {...props}
+            />
           );
         })}
         {virtualPaddingRight ? (

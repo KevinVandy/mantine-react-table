@@ -45,8 +45,12 @@ By default, Mantine React Table renders a column actions button for each column 
 
 You can set the `enableColumnActions` table option to `false` to disable this feature and hide the button in each column header completely.
 
-```tsx
-<MantineReactTable data={data} columns={columns} enableColumnActions={false} />
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
+  enableColumnActions: false,
+});
 ```
 
 Alternatively, if you only want to hide the column actions button in specific columns, you can set the `enableColumnActions` column option to `false` instead.
