@@ -2,12 +2,12 @@ import { Fragment } from 'react';
 import { ActionIcon, Alert, Badge, Box, Collapse, Flex } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   stackAlertBanner: boolean;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ToolbarAlertBanner = <TData extends Record<string, any>>({
+export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
   stackAlertBanner,
   table,
 }: Props<TData>) => {

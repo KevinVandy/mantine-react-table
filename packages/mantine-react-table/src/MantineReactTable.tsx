@@ -8,21 +8,21 @@ type Xor<A, B> =
   | Prettify<A & { [k in keyof B]?: never }>
   | Prettify<B & { [k in keyof A]?: never }>;
 
-type TableInstanceProp<TData extends Record<string, any>> = {
+type TableInstanceProp<TData extends Record<string, any> = {}> = {
   table: MRT_TableInstance<TData>;
 };
 
-type Props<TData extends Record<string, any>> = Xor<
+type Props<TData extends Record<string, any> = {}> = Xor<
   TableInstanceProp<TData>,
   MRT_TableOptions<TData>
 >;
 
-const isTableInstanceProp = <TData extends Record<string, any>>(
+const isTableInstanceProp = <TData extends Record<string, any> = {}>(
   props: Props<TData>,
 ): props is TableInstanceProp<TData> =>
   (props as TableInstanceProp<TData>).table !== undefined;
 
-export const MantineReactTable = <TData extends Record<string, any>>(
+export const MantineReactTable = <TData extends Record<string, any> = {}>(
   props: Props<TData>,
 ) => {
   let table: MRT_TableInstance<TData>;

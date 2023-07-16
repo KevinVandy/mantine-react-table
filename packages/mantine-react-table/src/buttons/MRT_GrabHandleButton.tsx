@@ -2,14 +2,14 @@ import { type DragEventHandler } from 'react';
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
 import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   actionIconProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;
   onDragStart: DragEventHandler<HTMLButtonElement>;
   onDragEnd: DragEventHandler<HTMLButtonElement>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_GrabHandleButton = <TData extends Record<string, any>>({
+export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
   actionIconProps,
   onDragEnd,
   onDragStart,

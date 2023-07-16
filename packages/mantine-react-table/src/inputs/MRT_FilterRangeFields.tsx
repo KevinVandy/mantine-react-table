@@ -2,12 +2,12 @@ import { Box } from '@mantine/core';
 import { MRT_FilterTextInput } from './MRT_FilterTextInput';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_FilterRangeFields = <TData extends Record<string, any>>({
+export const MRT_FilterRangeFields = <TData extends Record<string, any> = {}>({
   header,
   table,
 }: Props<TData>) => {

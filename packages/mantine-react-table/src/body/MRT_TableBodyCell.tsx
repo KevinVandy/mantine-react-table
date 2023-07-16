@@ -23,7 +23,7 @@ import {
   type MRT_VirtualItem,
 } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
   isStriped?: boolean;
   measureElement?: (element: HTMLTableCellElement) => void;
@@ -34,7 +34,7 @@ interface Props<TData extends Record<string, any>> {
   virtualCell?: MRT_VirtualItem;
 }
 
-export const MRT_TableBodyCell = <TData extends Record<string, any>>({
+export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
   cell,
   isStriped,
   measureElement,

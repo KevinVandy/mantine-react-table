@@ -4,11 +4,11 @@ import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';
 import { MRT_TableContainer } from './MRT_TableContainer';
 import { type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TablePaper = <TData extends Record<string, any>>({
+export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
   table,
 }: Props<TData>) => {
   const {

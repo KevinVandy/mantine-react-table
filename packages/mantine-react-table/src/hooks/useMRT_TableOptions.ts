@@ -7,9 +7,9 @@ import { MRT_Localization_EN } from '../locales/en';
 import { MRT_Default_Icons } from '../icons';
 import { type MRT_DefinedTableOptions, type MRT_TableOptions } from '../types';
 
-export const useMRT_TableOptions: <TData extends Record<string, any>>(
+export const useMRT_TableOptions: <TData extends Record<string, any> = {}>(
   tableOptions: MRT_TableOptions<TData>,
-) => MRT_DefinedTableOptions<TData> = <TData extends Record<string, any>>({
+) => MRT_DefinedTableOptions<TData> = <TData extends Record<string, any> = {}>({
   aggregationFns,
   autoResetExpanded = false,
   columnFilterDisplayMode = 'subheader',

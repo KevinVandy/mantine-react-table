@@ -4,11 +4,13 @@ import { useDebouncedValue } from '@mantine/hooks';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_GlobalFilterTextInput = <TData extends Record<string, any>>({
+export const MRT_GlobalFilterTextInput = <
+  TData extends Record<string, any> = {},
+>({
   table,
 }: Props<TData>) => {
   const {

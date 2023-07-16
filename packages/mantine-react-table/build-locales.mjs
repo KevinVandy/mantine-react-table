@@ -3,6 +3,7 @@ import copy from 'rollup-plugin-copy';
 import typescript from '@rollup/plugin-typescript';
 
 const supportedLocales = [
+  'bg',
   'cs',
   'da',
   'de',
@@ -15,6 +16,7 @@ const supportedLocales = [
   'id',
   'it',
   'ja',
+  'ko',
   'nl',
   'no',
   'pl',

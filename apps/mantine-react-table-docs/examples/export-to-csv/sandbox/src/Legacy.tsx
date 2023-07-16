@@ -67,7 +67,7 @@ const Example = () => {
       columns={columns}
       data={data}
       enableRowSelection
-      columnFilterDisplayMode='popover'
+      columnFilterDisplayMode="popover"
       paginationDisplayMode="pages"
       positionToolbarAlertBanner="bottom"
       renderTopToolbarCustomActions={({ table }) => (

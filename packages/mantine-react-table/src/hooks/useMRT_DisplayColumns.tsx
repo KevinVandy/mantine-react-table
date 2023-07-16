@@ -13,14 +13,14 @@ import {
   type MRT_Row,
 } from '../types';
 
-interface Params<TData extends Record<string, any>> {
+interface Params<TData extends Record<string, any> = {}> {
   creatingRow: MRT_Row<TData> | null;
   columnOrder: MRT_ColumnOrderState;
   grouping: MRT_GroupingState;
   tableOptions: MRT_DefinedTableOptions<TData>;
 }
 
-export const useMRT_DisplayColumns = <TData extends Record<string, any>>({
+export const useMRT_DisplayColumns = <TData extends Record<string, any> = {}>({
   creatingRow,
   columnOrder,
   grouping,

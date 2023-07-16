@@ -2,13 +2,15 @@ import { type DragEvent, type RefObject } from 'react';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   row: MRT_Row<TData>;
   rowRef: RefObject<HTMLTableRowElement>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableBodyRowGrabHandle = <TData extends Record<string, any>>({
+export const MRT_TableBodyRowGrabHandle = <
+  TData extends Record<string, any> = {},
+>({
   row,
   rowRef,
   table,

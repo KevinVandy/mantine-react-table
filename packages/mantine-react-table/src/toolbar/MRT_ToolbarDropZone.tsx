@@ -3,11 +3,11 @@ import { Flex, Text, Transition } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ToolbarDropZone = <TData extends Record<string, any>>({
+export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
   table,
 }: Props<TData>) => {
   const {

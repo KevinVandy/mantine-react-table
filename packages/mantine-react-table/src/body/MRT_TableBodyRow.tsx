@@ -11,7 +11,7 @@ import {
   type MRT_Virtualizer,
 } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
   isStriped?: boolean;
@@ -26,7 +26,7 @@ interface Props<TData extends Record<string, any>> {
   virtualRow?: MRT_VirtualItem;
 }
 
-export const MRT_TableBodyRow = <TData extends Record<string, any>>({
+export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
   columnVirtualizer,
   enableHover,
   isStriped,

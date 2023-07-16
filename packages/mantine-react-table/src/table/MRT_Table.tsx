@@ -12,11 +12,11 @@ import { MRT_TableFooter } from '../footer/MRT_TableFooter';
 import { parseCSSVarId } from '../column.utils';
 import { type MRT_TableInstance, type MRT_Virtualizer } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_Table = <TData extends Record<string, any>>({
+export const MRT_Table = <TData extends Record<string, any> = {}>({
   table,
 }: Props<TData>) => {
   const {

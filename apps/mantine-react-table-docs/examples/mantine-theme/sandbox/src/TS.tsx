@@ -1,4 +1,4 @@
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 import { MantineProvider, useMantineTheme } from '@mantine/core';
 
 type Person = {

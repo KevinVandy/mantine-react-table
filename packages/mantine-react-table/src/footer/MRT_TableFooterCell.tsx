@@ -2,12 +2,12 @@ import { Box } from '@mantine/core';
 import { getCommonCellStyles } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   footer: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableFooterCell = <TData extends Record<string, any>>({
+export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
   footer,
   table,
 }: Props<TData>) => {

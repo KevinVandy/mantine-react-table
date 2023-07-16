@@ -1,0 +1,29 @@
+{
+  "name": "mantine-react-table-example-localization-i18n-ko",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --port 3001",
+    "build": "vite build",
+    "serve": "vite preview",
+    "start": "vite"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@mantine/core": "^6.0.16",
+    "@mantine/dates": "^6.0.16",
+    "@mantine/hooks": "^6.0.16",
+    "@tabler/icons-react": "2.24.0",
+    "dayjs": "^1.11.9",
+    "mantine-react-table": "^1.0.0-beta.27",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "@vitejs/plugin-react": "^4.0.3",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.2"
+  }
+}

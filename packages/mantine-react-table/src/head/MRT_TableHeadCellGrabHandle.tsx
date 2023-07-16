@@ -3,13 +3,15 @@ import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
 import { reorderColumn } from '../column.utils';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   column: MRT_Column<TData>;
   table: MRT_TableInstance<TData>;
   tableHeadCellRef: RefObject<HTMLTableCellElement>;
 }
 
-export const MRT_TableHeadCellGrabHandle = <TData extends Record<string, any>>({
+export const MRT_TableHeadCellGrabHandle = <
+  TData extends Record<string, any> = {},
+>({
   column,
   table,
   tableHeadCellRef,

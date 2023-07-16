@@ -6,11 +6,11 @@ import { type MRT_TableInstance } from '../types';
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableContainer = <TData extends Record<string, any>>({
+export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
   table,
 }: Props<TData>) => {
   const {

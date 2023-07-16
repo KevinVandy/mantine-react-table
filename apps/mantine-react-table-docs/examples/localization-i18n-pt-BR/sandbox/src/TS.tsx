@@ -1,11 +1,11 @@
 //Import Mantine React Table and its Types
-import { MantineReactTable, MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 
 //Import Mantine React Table Translations
 import { MRT_Localization_PT_BR } from 'mantine-react-table/locales/pt-BR';
 
 //mock data
-import { data, Person } from './makeData';
+import { data, type Person } from './makeData';
 
 const columns: MRT_ColumnDef<Person>[] = [
   {

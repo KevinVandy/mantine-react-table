@@ -7,7 +7,7 @@ import {
   type MRT_VirtualItem,
 } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   headerGroup: MRT_HeaderGroup<TData>;
   table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
@@ -15,7 +15,7 @@ interface Props<TData extends Record<string, any>> {
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableHeadRow = <TData extends Record<string, any>>({
+export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
   headerGroup,
   table,
   virtualColumns,

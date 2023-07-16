@@ -2,12 +2,12 @@ import { type FocusEvent, type KeyboardEvent, useState } from 'react';
 import { Select, TextInput } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_EditCellTextInput = <TData extends Record<string, any>>({
+export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
   cell,
   table,
 }: Props<TData>) => {

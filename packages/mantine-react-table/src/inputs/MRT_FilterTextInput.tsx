@@ -14,13 +14,13 @@ import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
   rangeFilterIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_FilterTextInput = <TData extends Record<string, any>>({
+export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
   header,
   rangeFilterIndex,
   table,

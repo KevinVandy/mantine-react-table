@@ -5,7 +5,7 @@ import {
   MRT_ColumnDef,
 } from 'mantine-react-table';
 import { Text } from '@mantine/core';
-import { data, Person } from './makeData';
+import { data, type Person } from './makeData';
 
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(

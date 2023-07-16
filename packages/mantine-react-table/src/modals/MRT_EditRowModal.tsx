@@ -3,12 +3,12 @@ import { MRT_EditActionButtons } from '../buttons/MRT_EditActionButtons';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   open: boolean;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_EditRowModal = <TData extends Record<string, any>>({
+export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
   open,
   table,
 }: Props<TData>) => {

@@ -6,13 +6,13 @@ import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { MRT_FilterRangeSlider } from '../inputs/MRT_FilterRangeSlider';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TableHeadCellFilterContainer = <
-  TData extends Record<string, any>,
+  TData extends Record<string, any> = {},
 >({
   header,
   table,

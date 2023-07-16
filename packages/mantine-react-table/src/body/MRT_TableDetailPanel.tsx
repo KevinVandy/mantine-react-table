@@ -6,7 +6,7 @@ import {
   type MRT_VirtualItem,
 } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
   row: MRT_Row<TData>;
   rowIndex: number;
@@ -14,7 +14,7 @@ interface Props<TData extends Record<string, any>> {
   virtualRow?: MRT_VirtualItem;
 }
 
-export const MRT_TableDetailPanel = <TData extends Record<string, any>>({
+export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
   parentRowRef,
   row,
   rowIndex,

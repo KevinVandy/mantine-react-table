@@ -4,12 +4,14 @@ import { MRT_ShowHideColumnsMenuItems } from './MRT_ShowHideColumnsMenuItems';
 import { getDefaultColumnOrderIds } from '../column.utils';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   isSubMenu?: boolean;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ShowHideColumnsMenu = <TData extends Record<string, any>>({
+export const MRT_ShowHideColumnsMenu = <
+  TData extends Record<string, any> = {},
+>({
   isSubMenu,
   table,
 }: Props<TData>) => {

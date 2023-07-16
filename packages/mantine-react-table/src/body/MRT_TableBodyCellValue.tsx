@@ -4,12 +4,12 @@ import { type MRT_Cell, type MRT_TableInstance } from '../types';
 const allowedTypes = ['string', 'number'];
 const allowedFilterVariants = ['text', 'autocomplete'];
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableBodyCellValue = <TData extends Record<string, any>>({
+export const MRT_TableBodyCellValue = <TData extends Record<string, any> = {}>({
   cell,
   table,
 }: Props<TData>) => {

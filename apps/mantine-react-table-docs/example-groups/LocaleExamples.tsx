@@ -1,5 +1,6 @@
-import { Suspense, useState } from 'react';
-import { Tabs, Skeleton, Box } from '@mantine/core';
+import { useState } from 'react';
+import { Tabs, Box } from '@mantine/core';
+import BG_Table from '../examples/localization-i18n-bg';
 import CS_Table from '../examples/localization-i18n-cs';
 import DA_Table from '../examples/localization-i18n-da';
 import DE_Table from '../examples/localization-i18n-de';
@@ -12,6 +13,7 @@ import HU_Table from '../examples/localization-i18n-hu';
 import ID_Table from '../examples/localization-i18n-id';
 import IT_Table from '../examples/localization-i18n-it';
 import JA_Table from '../examples/localization-i18n-ja';
+import KO_Table from '../examples/localization-i18n-ko';
 import NL_Table from '../examples/localization-i18n-nl';
 import NO_TABLE from '../examples/localization-i18n-no';
 import PL_Table from '../examples/localization-i18n-pl';
@@ -30,6 +32,7 @@ import ZH_HANS_Table from '../examples/localization-i18n-zh-hans';
 import ZH_HANT_Table from '../examples/localization-i18n-zh-hant';
 
 const supportedLocales = [
+  'bg',
   'cs',
   'da',
   'de',
@@ -42,6 +45,7 @@ const supportedLocales = [
   'id',
   'it',
   'ja',
+  'ko',
   'nl',
   'no',
   'pl',
@@ -77,36 +81,36 @@ const LocaleExamples = () => {
         </Tabs>
       </Box>
       <div style={{ minHeight: '1500px' }} lang={currentLocale ?? 'en'}>
-        <Suspense fallback={<Skeleton height="600px" width="100%" />}>
-          {currentLocale === 'cs' && <CS_Table />}
-          {currentLocale === 'da' && <DA_Table />}
-          {currentLocale === 'de' && <DE_Table />}
-          {currentLocale === 'en' && <EN_Table />}
-          {currentLocale === 'es' && <ES_Table />}
-          {currentLocale === 'fa' && <FA_Table />}
-          {currentLocale === 'fi' && <FI_Table />}
-          {currentLocale === 'fr' && <FR_Table />}
-          {currentLocale === 'hu' && <HU_Table />}
-          {currentLocale === 'id' && <ID_Table />}
-          {currentLocale === 'it' && <IT_Table />}
-          {currentLocale === 'ja' && <JA_Table />}
-          {currentLocale === 'nl' && <NL_Table />}
-          {currentLocale === 'pl' && <PL_Table />}
-          {currentLocale === 'pt' && <PT_Table />}
-          {currentLocale === 'pt-BR' && <PT_BR_Table />}
-          {currentLocale === 'ro' && <RO_Table />}
-          {currentLocale === 'ru' && <RU_Table />}
-          {currentLocale === 'sk' && <SK_Table />}
-          {currentLocale === 'sr-Cyrl-RS' && <SR_Cyrl_RS_Table />}
-          {currentLocale === 'sr-Latn-RS' && <SR_Latn_RS_Table />}
-          {currentLocale === 'sv' && <SV_Table />}
-          {currentLocale === 'tr' && <TR_Table />}
-          {currentLocale === 'uk' && <UK_Table />}
-          {currentLocale === 'vi' && <VI_Table />}
-          {currentLocale === 'zh-Hans' && <ZH_HANS_Table />}
-          {currentLocale === 'zh-Hant' && <ZH_HANT_Table />}
-          {currentLocale === 'no' && <NO_TABLE />}
-        </Suspense>
+        {currentLocale === 'bg' && <BG_Table />}
+        {currentLocale === 'cs' && <CS_Table />}
+        {currentLocale === 'da' && <DA_Table />}
+        {currentLocale === 'de' && <DE_Table />}
+        {currentLocale === 'en' && <EN_Table />}
+        {currentLocale === 'es' && <ES_Table />}
+        {currentLocale === 'fa' && <FA_Table />}
+        {currentLocale === 'fi' && <FI_Table />}
+        {currentLocale === 'fr' && <FR_Table />}
+        {currentLocale === 'hu' && <HU_Table />}
+        {currentLocale === 'id' && <ID_Table />}
+        {currentLocale === 'it' && <IT_Table />}
+        {currentLocale === 'ja' && <JA_Table />}
+        {currentLocale === 'ko' && <KO_Table />}
+        {currentLocale === 'nl' && <NL_Table />}
+        {currentLocale === 'pl' && <PL_Table />}
+        {currentLocale === 'pt' && <PT_Table />}
+        {currentLocale === 'pt-BR' && <PT_BR_Table />}
+        {currentLocale === 'ro' && <RO_Table />}
+        {currentLocale === 'ru' && <RU_Table />}
+        {currentLocale === 'sk' && <SK_Table />}
+        {currentLocale === 'sr-Cyrl-RS' && <SR_Cyrl_RS_Table />}
+        {currentLocale === 'sr-Latn-RS' && <SR_Latn_RS_Table />}
+        {currentLocale === 'sv' && <SV_Table />}
+        {currentLocale === 'tr' && <TR_Table />}
+        {currentLocale === 'uk' && <UK_Table />}
+        {currentLocale === 'vi' && <VI_Table />}
+        {currentLocale === 'zh-Hans' && <ZH_HANS_Table />}
+        {currentLocale === 'zh-Hant' && <ZH_HANT_Table />}
+        {currentLocale === 'no' && <NO_TABLE />}
       </div>
     </>
   );

@@ -1,12 +1,14 @@
 import { ActionIcon, Flex, Tooltip } from '@mantine/core';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   column: MRT_Column<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ColumnPinningButtons = <TData extends Record<string, any>>({
+export const MRT_ColumnPinningButtons = <
+  TData extends Record<string, any> = {},
+>({
   column,
   table,
 }: Props<TData>) => {

@@ -2,13 +2,13 @@ import { Box, Divider } from '@mantine/core';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TableHeadCellResizeHandle = <
-  TData extends Record<string, any>,
+  TData extends Record<string, any> = {},
 >({
   header,
   table,
