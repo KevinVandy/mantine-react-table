@@ -27,6 +27,7 @@ import {
   type TableProps,
   type TextInputProps,
   type UnstyledButtonProps,
+  LoadingOverlayProps,
 } from '@mantine/core';
 import { type DateInputProps } from '@mantine/dates';
 import {
@@ -300,6 +301,7 @@ export type MRT_TableState<TData extends Record<string, any> = {}> =
     showAlertBanner: boolean;
     showColumnFilters: boolean;
     showGlobalFilter: boolean;
+    showLoadingOverlay: boolean;
     showProgressBars: boolean;
     showSkeletons: boolean;
     showToolbarDropZone: boolean;
@@ -894,6 +896,11 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLSpanElement> & Partial<HighlightProps>);
+  mantineLoadingOverlayProps?:
+    | (HTMLPropsRef<HTMLDivElement> & Partial<LoadingOverlayProps>)
+    | ((props: {
+        table: MRT_TableInstance<TData>;
+      }) => HTMLPropsRef<HTMLDivElement> & Partial<LoadingOverlayProps>);
   mantineProgressProps?:
     | (HTMLPropsRef<HTMLDivElement> & ProgressProps)
     | ((props: {

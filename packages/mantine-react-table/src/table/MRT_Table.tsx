@@ -7,7 +7,6 @@ import {
 import { Table } from '@mantine/core';
 import { MRT_TableHead } from '../head/MRT_TableHead';
 import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
-import { MRT_EditRowModal } from '../modals/MRT_EditRowModal';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
 import { parseCSSVarId } from '../column.utils';
 import { type MRT_TableInstance, type MRT_Virtualizer } from '../types';
@@ -26,8 +25,6 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
       columnVirtualizerInstanceRef,
       columnVirtualizerProps,
       columns,
-      createDisplayMode,
-      editDisplayMode,
       enableColumnResizing,
       enableColumnVirtualization,
       enablePinning,
@@ -44,9 +41,7 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
     columnSizing,
     columnSizingInfo,
     columnVisibility,
-    creatingRow,
     density,
-    editingRow,
   } = getState();
 
   const tableProps =
@@ -151,47 +146,39 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
     virtualPaddingRight,
   };
 
-  const createModalOpen = createDisplayMode === 'modal' && creatingRow;
-  const editModalOpen = editDisplayMode === 'modal' && editingRow;
-
   return (
-    <>
-      <Table
-        highlightOnHover
-        horizontalSpacing={density}
-        verticalSpacing={density}
-        {...tableProps}
-        sx={(theme) => ({
-          display: layoutMode === 'grid' ? 'grid' : 'table',
-          tableLayout:
-            layoutMode !== 'grid' && enableColumnResizing ? 'fixed' : undefined,
-          '& tr:first-of-type td': {
-            borderTop: `1px solid ${
-              theme.colors.gray[theme.colorScheme === 'dark' ? 8 : 3]
-            }`,
-          },
-          '& tr:last-of-type td': {
-            borderBottom: `1px solid ${
-              theme.colors.gray[theme.colorScheme === 'dark' ? 8 : 3]
-            }`,
-          },
-          ...(tableProps?.sx instanceof Function
-            ? tableProps.sx(theme)
-            : (tableProps?.sx as any)),
-        })}
-        style={{ ...columnSizeVars, ...tableProps?.style }}
-      >
-        {enableTableHead && <MRT_TableHead {...props} />}
-        {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (
-          <Memo_MRT_TableBody {...props} />
-        ) : (
-          <MRT_TableBody {...props} />
-        )}
-        {enableTableFooter && <MRT_TableFooter {...props} />}
-      </Table>
-      {(createModalOpen || editModalOpen) && (
-        <MRT_EditRowModal open table={table} />
+    <Table
+      highlightOnHover
+      horizontalSpacing={density}
+      verticalSpacing={density}
+      {...tableProps}
+      sx={(theme) => ({
+        display: layoutMode === 'grid' ? 'grid' : 'table',
+        tableLayout:
+          layoutMode !== 'grid' && enableColumnResizing ? 'fixed' : undefined,
+        '& tr:first-of-type td': {
+          borderTop: `1px solid ${
+            theme.colors.gray[theme.colorScheme === 'dark' ? 8 : 3]
+          }`,
+        },
+        '& tr:last-of-type td': {
+          borderBottom: `1px solid ${
+            theme.colors.gray[theme.colorScheme === 'dark' ? 8 : 3]
+          }`,
+        },
+        ...(tableProps?.sx instanceof Function
+          ? tableProps.sx(theme)
+          : (tableProps?.sx as any)),
+      })}
+      style={{ ...columnSizeVars, ...tableProps?.style }}
+    >
+      {enableTableHead && <MRT_TableHead {...props} />}
+      {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (
+        <Memo_MRT_TableBody {...props} />
+      ) : (
+        <MRT_TableBody {...props} />
       )}
-    </>
+      {enableTableFooter && <MRT_TableFooter {...props} />}
+    </Table>
   );
 };

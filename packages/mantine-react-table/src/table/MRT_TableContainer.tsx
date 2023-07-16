@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { Box } from '@mantine/core';
+import { Box, LoadingOverlay } from '@mantine/core';
 import { MRT_Table } from './MRT_Table';
+import { MRT_EditRowModal } from '../modals';
 import { type MRT_TableInstance } from '../types';
 
 const useIsomorphicLayoutEffect =
@@ -15,10 +16,22 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
 }: Props<TData>) => {
   const {
     getState,
-    options: { enableStickyHeader, mantineTableContainerProps },
+    options: {
+      createDisplayMode,
+      editDisplayMode,
+      enableStickyHeader,
+      mantineLoadingOverlayProps,
+      mantineTableContainerProps,
+    },
     refs: { tableContainerRef, bottomToolbarRef, topToolbarRef },
   } = table;
-  const { isFullScreen } = getState();
+  const {
+    isFullScreen,
+    isLoading,
+    showLoadingOverlay,
+    creatingRow,
+    editingRow,
+  } = getState();
 
   const [totalToolbarHeight, setTotalToolbarHeight] = useState(0);
 
@@ -26,6 +39,11 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
     mantineTableContainerProps instanceof Function
       ? mantineTableContainerProps({ table })
       : mantineTableContainerProps;
+
+  const loadingOverlayProps =
+    mantineLoadingOverlayProps instanceof Function
+      ? mantineLoadingOverlayProps({ table })
+      : mantineLoadingOverlayProps;
 
   useIsomorphicLayoutEffect(() => {
     const topToolbarHeight =
@@ -40,6 +58,9 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
 
     setTotalToolbarHeight(topToolbarHeight + bottomToolbarHeight);
   });
+
+  const createModalOpen = createDisplayMode === 'modal' && creatingRow;
+  const editModalOpen = editDisplayMode === 'modal' && editingRow;
 
   return (
     <Box
@@ -59,6 +80,7 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
           ? `clamp(350px, calc(100vh - ${totalToolbarHeight}px), 9999px)`
           : undefined,
         overflow: 'auto',
+        position: 'relative',
         ...(tableContainerProps?.sx instanceof Function
           ? tableContainerProps.sx(theme)
           : (tableContainerProps?.sx as any)),
@@ -70,7 +92,14 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
         ...tableContainerProps?.style,
       }}
     >
+      <LoadingOverlay
+        visible={isLoading || showLoadingOverlay}
+        {...loadingOverlayProps}
+      />
       <MRT_Table table={table} />
+      {(createModalOpen || editModalOpen) && (
+        <MRT_EditRowModal open table={table} />
+      )}
     </Box>
   );
 };

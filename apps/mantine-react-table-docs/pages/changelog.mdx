@@ -12,6 +12,14 @@ import Head from 'next/head';
 
 ### V1
 
+#### V1.0.0-beta.28
+
+- New Loading Overlay in Table Container to indicate loading state that will show when `state.isLoading` or `state.showLoadingOverlay` is `true`
+- Progress Bars will no longer show when `state.isLoading` is true. Must set `state.showProgressBars` or `state.isSaving` to `true` to show them.
+- Filtering and Sorting icons in header cell will now highlight in primary color when active
+- Fixed page scroll position not being restored when exiting full screen mode
+- TypeScript TData generic no longer required and will default to `{}` if not provided
+
 #### V1.0.0-beta.27
 
 - hitting `'enter'` key when filtering in popover display mode now closes the popover

@@ -1,5 +1,6 @@
-import { ActionIcon, Indicator, Tooltip } from '@mantine/core';
+import { ActionIcon, Indicator, Tooltip, useMantineTheme } from '@mantine/core';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
+import { getPrimaryColor } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
@@ -23,6 +24,8 @@ export const MRT_TableHeadCellSortLabel = <
   const { columnDef } = column;
   const { sorting } = getState();
 
+  const theme = useMantineTheme();
+
   const sortTooltip = column.getIsSorted()
     ? column.getIsSorted() === 'desc'
       ? localization.sortedByColumnDesc.replace('{column}', columnDef.header)
@@ -42,6 +45,7 @@ export const MRT_TableHeadCellSortLabel = <
       >
         <ActionIcon
           aria-label={sortTooltip}
+          color={column.getIsSorted() ? getPrimaryColor(theme) : undefined}
           size="xs"
           sx={{
             opacity: column.getIsSorted() ? 1 : 0.5,

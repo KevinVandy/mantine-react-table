@@ -1331,6 +1331,16 @@ export const tableOptions: TableOption[] = [
     type: 'TextInputProps | ({ table, column, rangeFilterIndex ) => TextInputProps',
   },
   {
+    tableOptionName: 'mantineLoadingOverlayProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/loading-overlay/?t=props',
+    linkText: 'Mantine LoadingOverlay Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'TextInputProps | ({ table ) => Loading',
+  },
+  {
     tableOptionName: 'mantineTableHeadCellProps',
     defaultValue: '',
     description: '',
