@@ -32,6 +32,10 @@ export const routes: Array<RouteItem> = [
         href: '/docs/getting-started/usage',
         label: 'Usage',
       },
+      {
+        href: '/docs/getting-started/typescript',
+        label: 'TypeScript',
+      },
     ],
   },
   {

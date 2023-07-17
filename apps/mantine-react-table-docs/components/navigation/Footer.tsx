@@ -103,7 +103,7 @@ export const Footer = () => {
             items={
               routes
                 .find((item) => item.href === '/docs/api')
-                ?.items?.find((item) => item.label === 'Props and Options')
+                ?.items?.find((item) => item.label === 'Options')
                 ?.items ?? []
             }
             isFooter
