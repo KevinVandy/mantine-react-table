@@ -8,7 +8,7 @@ const RemoteFetching = () => {
 
   return (
     <>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%', marginTop: '1rem' }}>
         <Tabs
           value={pathname.split('/').pop()}
           onTabChange={(newPath) => push(newPath as string)}

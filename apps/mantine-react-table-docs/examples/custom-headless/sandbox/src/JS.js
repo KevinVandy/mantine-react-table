@@ -45,9 +45,7 @@ const Example = () => {
     mantinePaginationProps: {
       rowsPerPageOptions: ['5', '10', '15'],
     },
-    mantineSelectAllCheckboxProps: {
-      color: 'blue',
-    },
+    paginationDisplayMode: 'pages'
   });
 
   return (

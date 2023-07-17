@@ -19,6 +19,7 @@ import { useThemeContext } from '../../styles/ThemeContext';
 import docsearch from '@docsearch/js';
 import '@docsearch/css';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
+import { useRouter } from 'next/router';
 
 interface Props {
   navOpen: boolean;
@@ -26,6 +27,7 @@ interface Props {
 }
 
 export const TopBar = ({ navOpen, setNavOpen }: Props) => {
+  const { pathname } = useRouter();
   const plausible = usePlausible();
   const theme = useMantineTheme();
   const isMobile = useMediaQuery('(max-width: 600px)');
@@ -84,7 +86,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
         })}
       >
         <Flex align="center" gap="md">
-          {!isDesktop && (
+          {(!isDesktop || pathname === "/") && (
             <Burger
               color="white"
               opened={navOpen}

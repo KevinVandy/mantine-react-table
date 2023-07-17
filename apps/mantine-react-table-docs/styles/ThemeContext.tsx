@@ -57,10 +57,31 @@ export const ThemeContextProvider = ({ children }) => {
             },
           },
           components: {
+            Card: {
+              defaultProps: {
+                shadow: 'sm',
+                withBorder: true,
+              },
+            },
+            Code: {
+              defaultProps: {
+                fz: '0.9em',
+              },
+            },
             Tooltip: {
               defaultProps: {
                 withArrow: true,
               },
+            },
+            Tabs: {
+              styles: () => ({
+                tab: {
+                  fontSize: '1.1rem',
+                  marginTop: '2rem',
+                  alignItems: 'center',
+                  display: 'flex',
+                },
+              }),
             },
           },
         }}

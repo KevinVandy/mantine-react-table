@@ -33,6 +33,8 @@ function App({ Component, pageProps }: AppProps) {
 
   const [navOpen, setNavOpen] = useState(false);
 
+  const isNavOpen = navOpen || (isDesktop && pathname !== '/');
+
   return (
     <>
       <Head>
@@ -72,8 +74,8 @@ function App({ Component, pageProps }: AppProps) {
       >
         <ThemeContextProvider>
           <MDXProvider components={mdxComponents}>
-            <TopBar navOpen={navOpen || isDesktop} setNavOpen={setNavOpen} />
-            <SideBar navOpen={navOpen || isDesktop} setNavOpen={setNavOpen} />
+            <TopBar navOpen={isNavOpen} setNavOpen={setNavOpen} />
+            <SideBar navOpen={isNavOpen} setNavOpen={setNavOpen} />
             <Box
               component="main"
               sx={{
@@ -86,9 +88,7 @@ function App({ Component, pageProps }: AppProps) {
                     : showMiniNav && isXLDesktop
                     ? '300px'
                     : '36px'
-                } 0 ${
-                  isMobile ? '16px' : navOpen || isDesktop ? '300px' : '36px'
-                }`,
+                } 0 ${isMobile ? '16px' : isNavOpen ? '300px' : '36px'}`,
                 transition: 'all 100ms ease-in-out',
                 width: '100%',
               }}

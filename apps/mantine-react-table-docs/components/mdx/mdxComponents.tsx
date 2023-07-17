@@ -1,20 +1,11 @@
-import Link from 'next/link';
-import { Anchor, Divider, Text, Title } from '@mantine/core';
+import {  Divider, Text, Title } from '@mantine/core';
 import { Blockquote } from './Blockquote';
 import { SampleCodeSnippet } from './SampleCodeSnippet';
 import { LinkHeading } from './LinkHeading';
+import { AnchorLink } from './AnchorLink';
 
 export const mdxComponents = {
-  a: (props: any) => (
-    <Link href={props.href} passHref legacyBehavior>
-      <Anchor
-        target={props.href.startsWith('http') ? '_blank' : undefined}
-        rel="noopener"
-      >
-        {props.children}
-      </Anchor>
-    </Link>
-  ),
+  a: (props: any) => <AnchorLink {...props} />,
   blockquote: (props: any) => <Blockquote {...props} />,
   code: (props: any) => <SampleCodeSnippet {...props} />,
   h1: (props: any) => <Title order={1} my="lg" {...props} />,

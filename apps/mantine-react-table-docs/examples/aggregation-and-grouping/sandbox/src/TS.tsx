@@ -57,7 +57,7 @@ const Example = () => {
         accessorKey: 'gender',
         //optionally, customize the cell render when this column is grouped. Make the text blue and pluralize the word
         GroupedCell: ({ cell, row }) => (
-          <Box sx={{ color: 'blue' }}>
+          <Box sx={{ color: 'skyblue' }}>
             <strong>{cell.getValue<string>()}s </strong> ({row.subRows?.length})
           </Box>
         ),

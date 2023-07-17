@@ -674,8 +674,8 @@ export const tableOptions: TableOption[] = [
     defaultValue: "'subheader'",
     description:
       'You can choose between 3 different built-in filter display modes. See column filters below the header, in a pop-up menu, or in your own custom components.',
-    link: '/docs/guides/editing#editing-modes',
-    linkText: 'MRT Editing Docs',
+    link: '/docs/guides/column-filtering',
+    linkText: 'MRT Column Filtering Docs',
     required: false,
     source: 'MRT',
     type: "'subheader' | 'popover' | 'custom'",
