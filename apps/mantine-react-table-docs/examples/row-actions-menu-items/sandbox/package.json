@@ -1,5 +1,5 @@
 {
-  "name": "material-react-table-example-row-actions-menu-items",
+  "name": "mantine-react-table-example-row-actions-menu-items",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -14,7 +14,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.0",
     "@mui/material": "^5.14.0",
-    "material-react-table": "^1.14.0",
+    "mantine-react-table": "^1.0.0-beta.28",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
