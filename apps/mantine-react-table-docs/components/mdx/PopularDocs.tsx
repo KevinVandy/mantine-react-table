@@ -13,7 +13,7 @@ export const PopularDocs = () => {
         },
       }}
     >
-      <Link href="/docs/examples/basic">
+      <Link href="/docs/getting-started-usage">
         <Button size="xl" fullWidth variant="gradient">
           Usage
         </Button>
