@@ -41,8 +41,8 @@ export const MRT_TableHeadCellFilterLabel = <
   const [popoverOpened, setPopoverOpened] = useState(false);
 
   const isFilterActive =
-    (Array.isArray(filterValue) && filterValue.filter(Boolean).length) ||
-    !!filterValue;
+    (Array.isArray(filterValue) && filterValue.some(Boolean)) ||
+    (!!filterValue && !Array.isArray(filterValue));
 
   const isRangeFilter =
     columnDef.filterVariant === 'range' ||

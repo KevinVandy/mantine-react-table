@@ -37,7 +37,6 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
       ref={(ref: HTMLDivElement) => {
         tablePaperRef.current = ref;
         if (tablePaperProps?.ref) {
-          //@ts-ignore
           tablePaperProps.ref.current = ref;
         }
       }}
@@ -49,7 +48,6 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
           : (tablePaperProps?.sx as any)),
       })}
       style={{
-        ...tablePaperProps?.style,
         ...(isFullScreen
           ? {
               bottom: 0,
@@ -63,9 +61,10 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
               right: 0,
               top: 0,
               width: '100vw',
-              zIndex: 10,
+              zIndex: 100,
             }
           : {}),
+        ...tablePaperProps?.style,
       }}
     >
       {enableTopToolbar &&

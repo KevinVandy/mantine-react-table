@@ -2,11 +2,11 @@ import Head from 'next/head';
 import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
 import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
+import AlternateExample from '../../../examples/alternate-column-filtering';
 import CustomizeFilterVariantsExample from '../../../examples/customize-filter-variants';
 import CustomizeFilterModesExample from '../../../examples/customize-filter-modes';
 import CustomizeFilterComponentsExample from '../../../examples/customize-filter-components';
 import EnableColumnFacetValuesExample from '../../../examples/enable-filter-facet-values';
-import RemoteExample from '../../../examples/remote';
 
 <Head>
   <title>Column Filtering Feature Guide - Mantine React Table Docs</title>
@@ -91,34 +91,6 @@ Various subsets of filtering features can be disabled. If you want to disable fi
 
 `enableFilters` can be set to `false` to disable both column filters and the global search filter.
 
-### Filter Match Highlighting
-
-Filter Match Highlighting is a new featured enabled by default that will highlight text in the table body cells that matches the current filter query with a shade of the `theme.colors.yellow` color.
-
-Filter Match Highlighting will only work on columns with the default `text` filter variant. Also, if you are using a custom `Cell` render override for a column, you will need to use the `renderedCellValue` param instead of `cell.getValue()` in order to preserve the filter match highlighting.
-
-```jsx
-const columns = [
-  {
-    accessorKey: 'name',
-    header: 'Name',
-    Cell: ({ renderedCellValue }) => <span>{renderedCellValue}</span>, // use renderedCellValue instead of cell.getValue()
-  },
-];
-```
-
-#### Disable Filter Match Highlighting
-
-This feature can be disabled by setting the `enableFilterMatchHighlighting` table option to `false`.
-
-```jsx
-const table = useMantineReactTable({
-  columns,
-  data,
-  enableFilterMatchHighlighting: false,
-});
-```
-
 ### Filter Variants
 
 Mantine React Table has several built-in filter variants for advanced filtering. These can be specified on a per-column basis using the `filterVariant` option. The following variants are available:
@@ -163,6 +135,30 @@ const table = useMantineReactTable({
   },
 });
 ```
+
+### Column Filter Display Modes
+
+By default, column filters inputs show below the column header. You can switch to a more "excel-like" UI by setting the `columnFilterDisplayMode` table option to `'popover'`. This will show a filter icon in the column header that can be clicked to open a popover with the filter input.
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  columnFilterDisplayMode: 'popover', //filter inputs will show in a popover (like excel)
+});
+```
+
+Alternatively, if you want to render your own column filter UI in a separate sidebar, but still want to use the built-in filtering functionality, you can set the `columnFilterDisplayMode` table option to `'custom'`.
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  columnFilterDisplayMode: 'custom', //render your own column filter UI (e.g. in a sidebar)
+});
+```
+
+<AlternateExample />
 
 ### Custom Filter Functions
 
@@ -343,9 +339,7 @@ return <MantineReactTable table={table} />;
 
 > Specifying `manualFiltering` turns off all client-side filtering and assumes that the `data` you pass to `<MantineReactTable />` is already filtered.
 
-Here is the full Remote Data example featuring server-side **filtering**, pagination, and sorting.
-
-<RemoteExample />
+See the full [Remote Data example](/docs/examples/remote) featuring server-side **filtering**, pagination, and sorting.
 
 ### Customize Mantine Filter Input Components
 
@@ -356,5 +350,33 @@ You can customize the Mantine filter components by setting the `mantineFilterTex
 ### Custom Filter Components
 
 If you need custom filter components that are much more complex than text-boxes and dropdowns, you can create and pass in your own filter components using the `Filter` column option.
+
+### Filter Match Highlighting
+
+Filter Match Highlighting is a new featured enabled by default that will highlight text in the table body cells that matches the current filter query with a shade of the `theme.colors.yellow` color.
+
+Filter Match Highlighting will only work on columns with the default `text` filter variant. Also, if you are using a custom `Cell` render override for a column, you will need to use the `renderedCellValue` param instead of `cell.getValue()` in order to preserve the filter match highlighting.
+
+```jsx
+const columns = [
+  {
+    accessorKey: 'name',
+    header: 'Name',
+    Cell: ({ renderedCellValue }) => <span>{renderedCellValue}</span>, // use renderedCellValue instead of cell.getValue()
+  },
+];
+```
+
+#### Disable Filter Match Highlighting
+
+This feature can be disabled by setting the `enableFilterMatchHighlighting` table option to `false`.
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableFilterMatchHighlighting: false,
+});
+```
 
 View Extra Storybook **[Examples](https://www.mantine-react-table.dev/?path=/story/features-filtering-examples)**

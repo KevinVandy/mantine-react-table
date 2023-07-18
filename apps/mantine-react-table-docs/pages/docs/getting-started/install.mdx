@@ -9,12 +9,6 @@ import { FAQs } from '../../../components/mdx/FAQs';
 
 ## Installation
 
-If you are using **Mantine V5.7+**, but not **v6** yet, you will want to install mantine-react-table `v0.9.5`.
-
-If you are using **Mantine V6**, you will want to install the MRT `v1.0.0` betas. They install by default now.
-
-> The last version of MRT that supports Mantine V5 is mantine-react-table `v0.9.5`.
-
 > `mantine-react-table` V1 requires **Mantine V6.0+** packages as dependencies in your project.
 >
 > If you are already using Mantine, you probably already have most of these peer dependencies installed.
@@ -27,7 +21,7 @@ If you are using **Mantine V6**, you will want to install the MRT `v1.0.0` betas
 > 4.  `@tabler/icons-react` (2.23.0+)
 > 5.  `@emotion/react` (v11)
 > 6.  `dayjs` (v1.11+)
-> 7.  `react` and `react-dom` (v17 or v18)
+> 7.  `react` and `react-dom` (v18)
 
 ### Quick Install
 
@@ -45,7 +39,7 @@ If you are using **Mantine V6**, you will want to install the MRT `v1.0.0` betas
 
 If you get an error like this:
 
-```bash
+```bsh
 "Error: Element type is invalid: expected a string (for built-in components)
 or a class/function (for composite components) but got: undefined.
 You likely forgot to export your component from the file it's defined in,
@@ -60,13 +54,21 @@ Make sure that the `@tabler/icons-react` package is at least v2.23.0.
 
 If you are using an older version of `webpack` or `create-react-app` and get an error like this:
 
-```bash
+```bsh
 ./node_modules/@tanstack/virtual-core/build/lib/index.esm.js 147:92
 Module parse failed: Unexpected token (147:92)
 File was processed with these loaders:
 ```
 
 Then try upgrading either `webpack` or `react-scripts` to the latest versions.
+
+If you are using the Next.js App Directory and get an error like this:
+
+```bsh
+Attempted import error: 'useState' is not exported from 'react'
+```
+
+Mantine itself does not work with React Server components and will require `"use-client"` on all components from both Mantine and MRT. The creator of Mantine recommends not using Mantine in the Next.js App Directory at all. Mantine V7 and MRT V2 should address this issue by the end of 2023.
 
 ### FAQs
 
@@ -75,6 +77,22 @@ Then try upgrading either `webpack` or `react-scripts` to the latest versions.
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Does Mantine V5 Work with Mantine React Table?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The last version of MRT that worked with Mantine V5 was v0.9.5. You can try it out, but it is not recommended as v0 will receive no further updates. Many features and bugfixes are only present in MRT v1. MRT v1 requires Mantine V6.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does Mantine V7 Work with Mantine React Table?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Eventually. MRT v2 will be completely rewritten to use Mantine v7. This should be available by the end of 2023.',
+        },
+      },
       {
         '@type': 'Question',
         name: 'What is the difference between Mantine React Table and Material React Table?',
