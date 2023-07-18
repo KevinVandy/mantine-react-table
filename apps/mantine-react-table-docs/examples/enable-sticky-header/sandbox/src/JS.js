@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
-import { data, type Person } from './makeData';
+import { data } from './makeData';
 
 const Example = () => {
   const columns = useMemo(

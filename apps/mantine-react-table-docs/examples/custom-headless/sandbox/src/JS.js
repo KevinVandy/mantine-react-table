@@ -45,7 +45,7 @@ const Example = () => {
     mantinePaginationProps: {
       rowsPerPageOptions: ['5', '10', '15'],
     },
-    paginationDisplayMode: 'pages'
+    paginationDisplayMode: 'pages',
   });
 
   return (

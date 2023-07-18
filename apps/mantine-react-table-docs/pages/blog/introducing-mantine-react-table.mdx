@@ -1,0 +1,205 @@
+import Head from 'next/head';
+import Image from 'next/image';
+import { BlogAuthor } from '../../components/mdx/BlogAuthor';
+
+<Head>
+  <title>{'Introducing Mantine React Table V1 - MRT Blog'}</title>
+  <meta
+    name="description"
+    content="Mantine React Table V1 is finally released. Here is everything unique that it brings to the table"
+  />
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: 'Introducing Mantine React Table V1',
+        keywords: ['React', 'Mantine', 'TanStack', 'Datagrid', 'NPM'],
+        wordCount: 1430,
+        datePublished: '2023-07-18',
+        dateModified: '2023-07-18',
+        author: [
+          {
+            '@type': 'Person',
+            name: 'Kevin Van Cott',
+            url: 'https://www.kevinvancott.dev/',
+          },
+        ],
+      }),
+    }}
+  />
+</Head>
+
+## Introducing Mantine React Table V1
+
+<BlogAuthor publishDate="2023/07/18" />
+
+I'm finally releasing `mantine-react-table` as stable with its initial V1 release. I have been working on this for the past 7 months, and though I originally wanted to release it much earlier, I'm glad that I kept it in beta as long as I did. Tons of bugs have been fixed, but more importantly, I was able to make a few breaking changes in the month leading up to this release where I was able to introduce a new paradigm to MRT that makes it much easier to work with, as it is now much more similar to TanStack Table.
+
+### Building on Material React Table
+
+Mantine React Table comes as a fork on my first popular library, [Material React Table](https://material-react-table.com). The initial fork only took about a month to get up to feature parody, and it was mostly done as a proof of concept at first to see how easy it would be to create more libraries built on top of TanStack Table in the same way that I had built Material React Table. Mantine is built very similarly to Material-UI, and so it was relatively easy to fork. It had the same Emotion styled system (pre V7), and most of the components had one-to-one counterparts as Material UI.
+
+What I was not expecting, was that I would end up liking Mantine so much more than Material UI. Mantine components just seem "better by default". I ended up writing much less CSS overrides than I did with Material UI, and the components just seemed to work better out of the box. They also just look better, in my opinion, as they don't have to stick to a decade+ old Material Design spec.
+
+I ended up getting a new job at a startup this year, and it seemed that the perfect opportunity to make this into my main project was there. So for the past couple of months, I have been using the Mantine version of MRT in production at my dat job. It has been working well, and all new development and features are being driven through the Mantine version of MRT first. The Material version of MRT is not going anywhere, and it will continue to keep up with the Mantine version. It still has 10 times as many downloads, and gets most of the issues and PRs from the community still. What's great about maintaining two similar projects in slightly different developer communities is that the projects can benefit from each other. Every time a bug is fixed in one, it also gets fixed in the other. It's a win-win for everyone.
+
+### What Makes MRT Different?
+
+There are a ton of features that have been stabilized and polished over the past few months, like advanced filter UI, virtualization, fuzzy search, and more that you could argue set MRT apart from a lot of similar data grid libraries, but the real difference that I think sets MRT apart is that it is now fully embracing the patterns of TanStack Table, and allowing inversion of control to the developer.
+
+#### The Option of Inversion of Control
+
+What do I mean by Inversion of Control? This concept is not new, and has been especially present in libraries like Downshift and React Table V7 and up. The idea is that developers can be in charge of their own UI markup and the library will mostly just provide logical state and data control. I highly recommend watching [this talk by Tanner Linsley](https://www.youtube.com/watch?v=O4IWJcafX8c) to learn more about this.
+
+If you look at Material React Table V1, or pretty much any other data grid library, you will see a single component data grid where its usage looks something like this:
+
+```jsx
+import { DataGrid } from 'data-grid-library';
+//...
+return (
+  <DataGrid //traditional single component data grid library
+    columns={columns}
+    rows={rows}
+    //more options
+  />
+);
+```
+
+Pass in your columns, data, and options, but what goes on under the hood is a mystery, and trying to control or tweak anything going on is a pain. Now I think Material React Table V1 still does a great job of making it easy to customize and control the inner workings, but now in Mantine React Table, we are getting to the next level by allowing full control of the TanStack Table instance that powers MRT.
+
+```jsx
+import { useMantineReactTable, MantineReactTable } from 'mantine-react-table';
+//...
+const table = useMantineReactTable({
+  columns,
+  rows,
+  //more options
+});
+
+return <MantineReactTable table={table} />;
+```
+
+This doesn't look that much different, but there is actually a ton of new flexibility here. In this example, we are still just using a single component for the entire data grid. However, because we have access to the entire table instance object from the `useMantineReactTable` hook, we could just build the entire table UI ourselves if we want to. Here is a bare bones example of what that might look like:
+
+```jsx
+import { Table } from '@mantine/core';
+import { useMantineReactTable } from 'mantine-react-table';
+//...
+const table = useMantineReactTable({
+  columns,
+  rows,
+  //more options
+});
+
+return (
+  <Table striped withBorder>
+    <thead>
+      {table.getHeaderGroups().map((headerGroup) => (
+        <tr key={headerGroup.id}>
+          {headerGroup.headers.map((header) => (
+            <th key={header.id}>{header.column.columnDef.header}</th>
+          ))}
+        </tr>
+      ))}
+    </thead>
+    <tbody>
+      {table.getRowModel().rows.map((row) => (
+        <tr key={row.id}>
+          {row.getVisibleCells().map((cell) => (
+            <td key={cell.id}>{cell.getValue()}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </Table>
+);
+```
+
+This example is not any different from using vanilla TanStack Table with Mantine components. The real power comes when if you start to use a hybrid of pre-built MRT components alongside your own UI whenever you need 100% control over your UI.
+
+#### MRT is a Table Component Library
+
+All internal components and utility functions are now exported from MRT. So if you want to combine your own UI with MRT components, you can do that!
+
+```jsx
+import { Table } from '@mantine/core';
+import {
+  useMantineReactTable,
+  MRT_GlobalFilterTextInput,
+  MRT_TableBody,
+  MRT_TablePagination,
+} from 'mantine-react-table';
+//...
+const table = useMantineReactTable({
+  columns,
+  rows,
+  //more options
+});
+
+return (
+  <Stack>
+    <MRT_GlobalFilterTextInput table={table} /> {/* MRT search component */}
+    <Table striped withBorder>
+      {/* Custom table head markup */}
+      <thead>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <tr key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <th key={header.id}>{header.column.columnDef.header}</th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <MRT_TableBody table={table} /> {/* MRT table body component */}
+    </Table>
+    <MRT_TablePagination table={table} /> {/* MRT pagination component */}
+  </Stack>
+);
+```
+
+In this example, the developer wants 100% control over the UI and markup in the table head rows, so they just code that themselves. Also, they don't care about all of the features in the top and bottom toolbars, so they just import the sub-components that they actually care about for their use case. This is the real power of the optional inversion of control in MRT. You can use as much or as little of the library as you want, and you can combine it with your own UI whenever you need to.
+
+#### The Single Component Data Grid is Still There
+
+MRT still has the single component data grid experience that you are used to, of course. In fact, I expect 90% of developers will still just use it this way. Mantine React Table offers the best of both worlds. Easy to use Data Grids with the option to switch over to manual mode when you need it.
+
+```jsx
+import { MantineReactTable } from 'mantine-react-table';
+//...
+return (
+  // traditional single component experience is still there for quick tables
+  <MantineReactTable
+    columns={columns}
+    rows={rows}
+    //more options
+  />
+);
+```
+
+### What Features are Available?
+
+So enough about the new architecture, what features are available in Mantine React Table?
+
+MRT has all of the basic table features like pagination, sorting, filtering, grouping, expanding, resizing, selection, pinning, and more. But MRT also has a ton of advanced features that you may not find in other data grid libraries like virtualization, aggregation, full CRUD support, faceted values, fuzzy search, advanced pre-built filter UI components, and more. See the [feature guides](https://mantine-react-table.com/docs/guides) for more complete info.
+
+### Are There Other Mantine React Table Libraries?
+
+Yes! There are a couple that you should know about before choosing MRT right away.
+
+#### 1. [Mantine DataTable](https://icflorescu.github.io/mantine-datatable/)
+
+Mantine DataTable has been around a bit longer that Mantine React Table, and is a very stock Mantine feeling data grid library. It has some, but not all of the same features as MRT, and it is a single component data grid library. It is high quality, and a bit lighter weight than MRT. I would almost describe it as the missing stock Mantine data grid library.
+
+#### 2. [Mantine Data Grid](https://kuechlin.github.io/mantine-data-grid)
+
+Mantine Data Grid is another library that is built on top of TanStack Table. It does not get as much feature development as MRT or MDT. If you are considering it, make sure that the project is active and that it has the features that you need. I really respect the work done on this library with TanStack Table. It just does not seem to have as active of a community.
+
+#### 3. [AG Grid](https://www.ag-grid.com/)
+
+If you need the best possible data grid library out there that can be a full excel replacement, use AG Grid. It is not built with Mantine, but it is the best data grid library out there. You just will have to not care about large bundle sizes, and there is a possibility that you might have to pay for a license if you need some specific advanced features.
+
+### What is the Future of Mantine React Table?
+
+There will be no more breaking changes form Mantine React Table V1. New features are still planned, and bug fixes will continue. However, the elephant in the room is the Mantine V7 upgrade that will need to be done by the end of the year for Mantine React Table V2. Mantine V7 is a major upgrade where the underlying library is being heavily refactored to not use Emotion or CSS in JS at all, so how you style components is going to be a lot different. More to come on that later.

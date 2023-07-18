@@ -19,11 +19,11 @@ Display columns do not have any processing features, such as sorting, filtering,
 
 Mantine React Table has a few built-in display columns that are created automatically when certain features are enabled.
 
-- `mrt-row-drag` - created when `enableRowDragging` or `enableRowOrdering` prop are `true`
-- `mrt-row-actions` - created when `enableRowActions` (or sometimes when `enableEditing`) props are `true`
-- `mrt-row-expand` - created when `enableExpanding`, `enableGrouping`, or `renderDetailPanel` props are `true`
-- `mrt-row-select` - created when `enableRowSelection` prop is `true`
-- `mrt-row-numbers` - created when `enableRowNumbers` prop is `true`
+- `mrt-row-drag` - created when `enableRowDragging` or `enableRowOrdering` table options are `true`
+- `mrt-row-actions` - created when `enableRowActions` (or sometimes when `enableEditing`) table options are `true`
+- `mrt-row-expand` - created when `enableExpanding`, `enableGrouping`, or `renderDetailPanel` table options are `true`
+- `mrt-row-select` - created when `enableRowSelection` table option is `true`
+- `mrt-row-numbers` - created when `enableRowNumbers` table option is `true`
 
 Display columns are, for the most part, the same as a data column, except they do not have an accessor to access data. When a display column is created internally by Mantine React Table, the following options are all set to false by default:
 
@@ -48,43 +48,45 @@ All of these values are able to be overridden if needed, and you'll learn about 
 
 ### Customize Built-in MRT Display Columns
 
-It is possible to change and override the default behavior of built-in display columns. Whether you want to change the default column width, add some styles, or enable some features, such as column actions or column drag and drop, you can do it with the `displayColumnDefOptions` prop.
+It is possible to change and override the default behavior of built-in display columns. Whether you want to change the default column width, add some styles, or enable some features, such as column actions or column drag and drop, you can do it with the `displayColumnDefOptions` table option.
 
-#### Display Column Definition Options Prop
+#### Display Column Definition Options
 
 Let's say you need to adjust the width of the Actions column to be wide enough to fit all of your action buttons. You could do that as follows:
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  displayColumnDefOptions={{ 'mrt-row-actions': { size: 300 } }} //change width of actions column to 300px
-  enableRowActions
-  renderRowActions={({ row }) => (
+const table = useMantineReactTable({
+  columns,
+  data,
+  displayColumnDefOptions: { 'mrt-row-actions': { size: 300 } }, //change width of actions column to 300px
+  enableRowActions: true,
+  renderRowActions: ({ row }) => (
     <div>
       <Button>Action 1</Button>
       <Button>Action 2</Button>
       <Button>Action 3</Button>
     </div>
-  )}
-/>
+  ),
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 Or maybe you want to enable a feature that is off by default for display columns, such as column ordering or pinning.
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  displayColumnDefOptions={{
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  displayColumnDefOptions: {
     'mrt-row-numbers': {
       enableOrdering: true,
       enablePinning: true,
       enableColumnActions: true,
     },
-  }}
-  enableRowNumbers
-/>
+  },
+  enableRowNumbers: true,
+});
 ```
 
 Here is a full example and demo for customizing display columns.
@@ -95,7 +97,7 @@ Here is a full example and demo for customizing display columns.
 
 You do not have to use the built in Row Actions feature. You can just create your own display columns instead. It is as easy as creating a normal column, only specifying the `columnDefType` as `display`.
 
-```tsx
+```jsx
 const columns = [
   {
     id: 'sendEmail',

@@ -1,5 +1,5 @@
 //Import Mantine React Table and its Types
-import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
+import { MantineReactTable } from 'mantine-react-table';
 
 //Import Mantine React Table Translations
 import { MRT_Localization_NL } from 'mantine-react-table/locales/nl';

@@ -2,9 +2,9 @@
 
 View the [Docs Site](https://www.mantine-react-table.com/)
 
-A work in progress fork of [Material React Table](https://www.material-react-table.com)
+A fork of [Material React Table](https://www.material-react-table.com)
 
-Coming soon in early 2023, but you can try out the beta now.
+V1 released July 18, 2023
 
 <a href="https://npmjs.com/package/mantine-react-table" target="_blank">
   <img alt="" src="https://badgen.net/npm/v/mantine-react-table?color=blue" />

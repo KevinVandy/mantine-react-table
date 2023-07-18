@@ -35,14 +35,14 @@ A density toggle is shown by default to let a user change the density to cycle t
 
 #### Change Default Density
 
-If you want to change the default density, you can set that in either the `initialState` prop or the `state` prop.
+If you want to change the default density, you can set that in either the `initialState` or `state` table option.
 
-```tsx
-<MantineReactTable
-  data={data}
-  columns={columns}
-  initialState={{ density: 'xs' }}
-/>
+```jsx
+const table = useMantineReactTable({
+  data,
+  columns,
+  initialState: { density: 'xs' },
+});
 ```
 
 ### Disable or Hide the Density Toggle

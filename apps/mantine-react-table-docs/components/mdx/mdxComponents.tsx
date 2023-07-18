@@ -1,4 +1,4 @@
-import {  Divider, Text, Title } from '@mantine/core';
+import { Divider, Text, Title } from '@mantine/core';
 import { Blockquote } from './Blockquote';
 import { SampleCodeSnippet } from './SampleCodeSnippet';
 import { LinkHeading } from './LinkHeading';

@@ -4,7 +4,7 @@ const JS = require('!!raw-loader!./sandbox/src/JS.js').default;
 const TS = require('!!raw-loader!./sandbox/src/TS.tsx').default;
 const Legacy = require('!!raw-loader!./sandbox/src/Legacy.tsx').default;
 
-const ExampleTable = ({showTopRow = true}) => {
+const ExampleTable = ({ showTopRow = true }) => {
   return (
     <SourceCodeSnippet
       Component={Example}

@@ -24,41 +24,41 @@ Here are a few common examples of some useful event listeners you might want to 
 #### Add an onClick to a Table Row
 
 ```jsx
-<MantineReactTable
-  mantineTableBodyRowProps={({ row }) => ({
+const table = useMantineReactTable({
+  mantineTableBodyRowProps: ({ row }) => ({
     onClick: (event) => {
       console.info(event, row.id);
     },
     sx: {
       cursor: 'pointer', //you might want to change the cursor too when adding an onClick
     },
-  })}
-/>
+  }),
+});
 ```
 
 #### Add an onDoubleClick to a Table Cell
 
 ```jsx
-<MantineReactTable
-  mantineTableBodyCellProps={({ cell }) => ({
+const table = useMantineReactTable({
+  mantineTableBodyCellProps: ({ cell }) => ({
     onDoubleClick: (event) => {
       console.info(event, cell.id);
     },
-  })}
-/>
+  }),
+});
 ```
 
 #### Add an onBlur to an Edit TextField
 
 ```jsx
 //add to every edit text field
-<MantineReactTable
-  mantineEditTextInputProps={({ cell }) => ({
+const table = useMantineReactTable({
+  mantineEditTextInputProps: ({ cell }) => ({
     onBlur: (event) => {
       console.info(event, cell.id);
     },
-  })}
-/>
+  }),
+});
 ```
 
 ```jsx
@@ -82,13 +82,13 @@ const columns = [
 
 ```jsx
 //add to every edit text field
-<MantineReactTable
-  mantineEditTextInputProps={({ cell }) => ({
+const table = useMantineReactTable({
+  mantineEditTextInputProps: ({ cell }) => ({
     onChange: (event) => {
       console.info(event, cell.id);
     },
-  })}
-/>
+  }),
+});
 ```
 
 ```jsx

@@ -20,7 +20,6 @@ const BasicExamples = ({ isPage = false }) => {
             isPage ? push(newPath as string) : setActiveTab(newPath as string)
           }
           keepMounted={false}
-          
         >
           <Tabs.List grow={!isPage}>
             <Tabs.Tab value="basic">Basic</Tabs.Tab>

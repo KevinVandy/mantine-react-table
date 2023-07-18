@@ -7,7 +7,7 @@ import { MRT_Localization_DA } from 'mantine-react-table/locales/da';
 //mock data
 import { data } from './makeData';
 
-const columns: MRT_ColumnDef<Person>[] = [
+const columns = [
   {
     accessorKey: 'firstName',
     header: 'Fornavn',

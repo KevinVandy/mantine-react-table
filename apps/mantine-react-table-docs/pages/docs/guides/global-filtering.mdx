@@ -3,7 +3,6 @@ import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable
 import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
 import CustomizeComponentExample from '../../../examples/customize-global-filter-component';
-import RemoteExample from '../../../examples/remote';
 
 <Head>
   <title>
@@ -60,7 +59,7 @@ You can either disable the global filter feature entirely, or disable it for spe
 
 If you simply want to not include a column as one of the columns that the global filter scans through during filtering, you can set the `enableGlobalFilter` option to `false` for that column.
 
-```tsx
+```jsx
 const columns = [
   {
     accessorKey: 'id',
@@ -78,12 +77,12 @@ const columns = [
 
 You can disable the global filtering feature and hide the search icon by setting the `enableGlobalFilter` prop to `false`.
 
-```tsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableGlobalFilter={false} //disable search feature
-/>
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableGlobalFilter: false, //disable search feature
+});
 ```
 
 ### Filter Match Highlighting
@@ -107,11 +106,11 @@ const columns = [
 Filter Match Highlighting can be disabled by setting the `enableFilterMatchHighlighting` prop to `false`.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableFilterMatchHighlighting={false}
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableFilterMatchHighlighting: false,
+});
 ```
 
 ### Client-Side Global Filtering
@@ -123,25 +122,25 @@ Client-side filtering (and global filtering) is enabled by default. This means t
 You can use any of the built-in `filterFns` or any of the custom filter functions that you have defined in the `filterFns` prop, just like you would with the column filters.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  globalFilterFn="contains" //turn off fuzzy matching and use simple contains filter function
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  globalFilterFn: 'contains', //turn off fuzzy matching and use simple contains filter function
+});
 ```
 
 or a custom filter function:
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  filterFns={{
+const table = useMantineReactTable({
+  columns,
+  data,
+  filterFns: {
     myCustomFilterFn: (row, id, filterValue) =>
       row.getValue(id).startsWith(filterValue),
-  }}
-  globalFilterFn="myCustomFilterFn" //set the global filter function to myCustomFilterFn
-/>
+  },
+  globalFilterFn: 'myCustomFilterFn', //set the global filter function to myCustomFilterFn
+});
 ```
 
 The default global filter function is set to `fuzzy`, which is a filtering algorithm based on the popular `match-sorter` [library from Kent C. Dodds](https://www.npmjs.com/package/match-sorter), though you can change the global filter function by setting the `globalFilterFn` prop.
@@ -155,11 +154,11 @@ The ranked results feature will disable itself automatically if a sort direction
 If you do not want ranked results to be enabled, but you still want fuzzy matching, you can set the `enableGlobalFilterRankedResults` prop to `false`.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableGlobalFilterRankedResults={false} //preserve the order of the data when fuzzy match searching
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableGlobalFilterRankedResults: false, //preserve the order of the data when fuzzy match searching
+});
 ```
 
 ### Global Filter Modes
@@ -167,12 +166,12 @@ If you do not want ranked results to be enabled, but you still want fuzzy matchi
 Similar to the column filter modes, you can enable the user to be able to choose between multiple different filter modes for the global filter with the `enableGlobalFilterModes` prop. You can then customize which filter modes are available in the dropdown by setting the `globalFilterModeOptions` prop, or by rendering your own custom menu items with the `renderGlobalFilterModeMenuItems` prop.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  enableGlobalFilterModes //enable the user to choose between multiple search filter modes
-  globalFilterModeOptions={['fuzzy', 'startsWith']} //only allow the user to choose between fuzzy and startsWith filter modes
-/>
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableGlobalFilterModes: true, //enable the user to choose between multiple search filter modes
+  globalFilterModeOptions: ['fuzzy', 'startsWith'], //only allow the user to choose between fuzzy and startsWith filter modes
+});
 ```
 
 #### Show Search Field by Default
@@ -184,14 +183,14 @@ Also, if you want to show the search text box by default and not hide it behind 
 You can customize the position of the global filter (search box) in the top toolbar by setting the `positionGlobalFilter` prop to `left` or `right`. It is shown on the right by default.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  positionGlobalFilter="left" //show the global filter on the left side of the top toolbar
-  initialState={{
+const table = useMantineReactTable({
+  columns,
+  data,
+  positionGlobalFilter: 'left', //show the global filter on the left side of the top toolbar
+  initialState: {
     showGlobalFilter: true, //show the global filter by default
-  }}
-/>
+  },
+});
 ```
 
 ### Customize the Search Text Field
@@ -199,15 +198,15 @@ You can customize the position of the global filter (search box) in the top tool
 You can customize the search text field by passing in props to the `mantineSearchTextInputProps` prop. This is useful if you want to customize the placeholder text, add styles, or any other text field props.
 
 ```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  mantineSearchTextInputProps={{
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantineSearchTextInputProps: {
     placeholder: 'Search all users',
     sx: { minWidth: '300px' },
     variant: 'outlined',
-  }}
-/>
+  },
+});
 ```
 
 <CustomizeComponentExample />
@@ -229,21 +228,19 @@ useEffect(() => {
   };
 }, [globalFilter]);
 
-return (
-  <MantineReactTable
-    columns={columns}
-    data={data} // this will already be filtered on the server
-    manualFiltering //turn off client-side filtering
-    onGlobalFilterChange={setGlobalFilter} //hoist internal global state to your state
-    state={{ globalFilter }} //pass in your own managed globalFilter state
-  />
-);
+const table = useMantineReactTable({
+  columns,
+  data, // this will already be filtered on the server
+  manualFiltering: true, //turn off client-side filtering
+  onGlobalFilterChange: setGlobalFilter, //hoist internal global state to your state
+  state: { globalFilter }, //pass in your own managed globalFilter state
+});
+
+return <MantineReactTable table={table} />;
 ```
 
 > Specifying `manualFiltering` turns off all client-side filtering, and assumes that the `data` you pass to `<MantineReactTable />` is already filtered.
 
-Here is the full Remote Data example showing off server-side **filtering**, pagination, and sorting.
-
-<RemoteExample />
+See the full [Remote Data example](/docs/examples/remote) showing off server-side **filtering**, pagination, and sorting.
 
 View Extra Storybook **[Examples](https://www.mantine-react-table.dev/?path=/story/features-search-examples)**

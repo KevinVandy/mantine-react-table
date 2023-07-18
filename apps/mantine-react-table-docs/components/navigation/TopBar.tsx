@@ -86,7 +86,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
         })}
       >
         <Flex align="center" gap="md">
-          {(!isDesktop || pathname === "/") && (
+          {(!isDesktop || pathname === '/') && (
             <Burger
               color="white"
               opened={navOpen}

@@ -226,14 +226,14 @@ However, the column sizes might not change as much as you would expect. This is 
 
 You can improve this slightly by changing the table layout to `fixed` instead of the default `auto` in the `mantineTableProps`.
 
-```tsx
-<MantineReactTable
-  mantineTableProps={{
+```jsx
+const table = useMantineReactTable({
+  mantineTableProps: {
     sx: {
       tableLayout: 'fixed',
     },
-  }}
-/>
+  },
+});
 ```
 
 The columns will still try to increase their width to take up the full width of the table, but the columns that do have a defined size will have their width respected more.

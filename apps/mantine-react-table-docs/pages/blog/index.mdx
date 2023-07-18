@@ -1,0 +1,14 @@
+import Head from 'next/head';
+import { TableOfContentsList } from '../../components/navigation/TableOfContentsList';
+import { routes } from '../../components/navigation/routes';
+
+<Head>
+  <title>Mantine React Table Blog</title>
+  <meta name="description" content="Mantine React Table Blog Posts" />
+</Head>
+
+## Blog
+
+<TableOfContentsList
+  items={routes.find((item) => item.href === '/blog').items}
+/>

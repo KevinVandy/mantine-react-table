@@ -5,7 +5,7 @@ import { MantineReactTable } from 'mantine-react-table';
 import { MRT_Localization_SR_CYRL_RS } from 'mantine-react-table/locales/sr-Cyrl-RS';
 
 //mock data
-import { data, type Person } from './makeData';
+import { data } from './makeData';
 
 const columns = [
   {

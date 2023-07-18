@@ -287,16 +287,16 @@ export const routes: Array<RouteItem> = [
       },
     ],
   },
-  // {
-  //   label: 'Blog',
-  //   href: '/blog',
-  //   items: [
-  //     {
-  //       href: '/blog',
-  //       label: 'Blog',
-  //     },
-  //   ],
-  // },
+  {
+    label: 'Blog',
+    href: '/blog',
+    items: [
+      {
+        href: '/blog/introducing-mantine-react-table',
+        label: 'Introducing Mantine React Table',
+      },
+    ],
+  },
   {
     label: 'Other',
     href: '#',
