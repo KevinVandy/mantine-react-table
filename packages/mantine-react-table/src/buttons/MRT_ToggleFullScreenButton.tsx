@@ -38,7 +38,7 @@ export const MRT_ToggleFullScreenButton = <
       label={rest?.title ?? localization.toggleFullScreen}
     >
       <ActionIcon
-        aria-label={localization.showHideFilters}
+        aria-label={localization.toggleFullScreen}
         onClick={handleToggleFullScreen}
         onMouseEnter={() => setTooltipOpened(true)}
         onMouseLeave={() => setTooltipOpened(false)}
