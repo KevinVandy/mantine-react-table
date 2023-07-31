@@ -24,7 +24,7 @@ const TableOptionsTable = ({ onlyOptions }: Props) => {
         {
           enableClickToCopy: true,
           header: 'Prop Name',
-          accessorKey: 'tableOptionName',
+          accessorKey: 'tableOption',
           mantineCopyButtonProps: ({ cell }) => ({
             className: 'prop',
             id: `${cell.getValue<string>()}-prop`,
@@ -112,7 +112,7 @@ const TableOptionsTable = ({ onlyOptions }: Props) => {
     if (typeof window !== 'undefined') {
       if (isDesktop) {
         setColumnPinning({
-          left: ['mrt-row-expand', 'mrt-row-numbers', 'tableOptionName'],
+          left: ['mrt-row-expand', 'mrt-row-numbers', 'tableOption'],
           right: ['link'],
         });
       } else {
@@ -123,8 +123,8 @@ const TableOptionsTable = ({ onlyOptions }: Props) => {
 
   const data = useMemo(() => {
     if (onlyOptions) {
-      return tableOptions.filter(({ tableOptionName }) =>
-        onlyOptions.has(tableOptionName),
+      return tableOptions.filter(({ tableOption }) =>
+        onlyOptions.has(tableOption),
       );
     }
     return tableOptions;
@@ -153,7 +153,7 @@ const TableOptionsTable = ({ onlyOptions }: Props) => {
         columnVisibility: { required: false, description: false },
         density: 'xs',
         showGlobalFilter: true,
-        sorting: [{ id: 'tableOptionName', desc: false }],
+        sorting: [{ id: 'tableOption', desc: false }],
       }}
       mantineSearchTextInputProps={{
         placeholder: 'Search All Props',

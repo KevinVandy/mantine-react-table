@@ -520,6 +520,16 @@ export const columnOptions: ColumnOption[] = [
     type: 'TextInputProps | ({ column, rangeFilterIndex, table }) => TextInputProps',
   },
   {
+    columnOption: 'mantineFilterDateInputProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/date-picker/?t=props',
+    linkText: 'Mantine DatePicker Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'DatePickerProps | ({ table, column, rangeFilterIndex }) => DatePickerProps',
+  },
+  {
     columnOption: 'mantineTableHeadCellProps',
     defaultValue: '',
     description: '',
