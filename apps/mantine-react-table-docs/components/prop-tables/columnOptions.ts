@@ -524,10 +524,10 @@ export const columnOptions: ColumnOption[] = [
     defaultValue: '',
     description: '',
     link: 'https://mantine.dev/core/date-picker/?t=props',
-    linkText: 'Mantine DatePicker Docs',
+    linkText: 'Mantine DateInput Docs',
     required: false,
     source: 'Mantine',
-    type: 'DatePickerProps | ({ table, column, rangeFilterIndex }) => DatePickerProps',
+    type: 'DateInputProps | ({ table, column, rangeFilterIndex }) => DateInputProps',
   },
   {
     columnOption: 'mantineTableHeadCellProps',
