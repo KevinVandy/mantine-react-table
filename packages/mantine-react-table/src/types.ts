@@ -27,7 +27,7 @@ import {
   type TableProps,
   type TextInputProps,
   type UnstyledButtonProps,
-  LoadingOverlayProps,
+  type LoadingOverlayProps,
 } from '@mantine/core';
 import { type DateInputProps } from '@mantine/dates';
 import {
@@ -200,7 +200,6 @@ export interface MRT_Localization {
   ungroupByColumn: string;
   unpin: string;
   unpinAll: string;
-  unsorted: string;
 }
 
 export interface MRT_RowModel<TData extends Record<string, any> = {}> {

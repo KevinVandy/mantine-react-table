@@ -71,6 +71,9 @@ export const ThemeContextProvider = ({ children }) => {
             Tooltip: {
               defaultProps: {
                 withArrow: true,
+                portalProps: {
+                  target: '.mantine-tooltips',
+                },
               },
             },
             Tabs: {

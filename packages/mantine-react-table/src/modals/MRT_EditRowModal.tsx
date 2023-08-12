@@ -1,4 +1,4 @@
-import { Flex, Modal, Stack, Text } from '@mantine/core';
+import { Flex, Modal, Stack } from '@mantine/core';
 import { MRT_EditActionButtons } from '../buttons/MRT_EditActionButtons';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
@@ -15,7 +15,6 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
   const {
     getState,
     options: {
-      localization,
       onEditingRowCancel,
       onCreatingRowCancel,
       renderEditRowModalContent,
@@ -80,9 +79,6 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
           internalEditComponents,
         })) ?? (
         <>
-          <Text sx={{ textAlign: 'center' }}>
-            {(creatingRow && localization.create) || localization.edit}
-          </Text>
           <form onSubmit={(e) => e.preventDefault()}>
             <Stack
               sx={{

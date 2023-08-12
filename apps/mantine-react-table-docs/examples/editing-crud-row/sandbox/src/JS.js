@@ -116,7 +116,7 @@ const Example = () => {
   };
 
   //UPDATE action
-  const handleSaveUser = async ({ values, exitEditingMode }) => {
+  const handleSaveUser = async ({ values, table }) => {
     const newValidationErrors = validateUser(values);
     if (Object.values(newValidationErrors).some((error) => error)) {
       setValidationErrors(newValidationErrors);
@@ -124,7 +124,7 @@ const Example = () => {
     }
     setValidationErrors({});
     await updateUser(values);
-    exitEditingMode();
+    table.setEditingRow(null); //exit editing mode
   };
 
   //DELETE action

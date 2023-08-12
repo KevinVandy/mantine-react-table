@@ -19,12 +19,23 @@ export const MRT_RowActionMenu = <TData extends Record<string, any> = {}>({
       enableEditing,
       icons: { IconEdit, IconDots },
       localization,
+      positionActionsColumn,
       renderRowActionMenuItems,
     },
   } = table;
 
   return (
-    <Menu closeOnItemClick withinPortal>
+    <Menu
+      position={
+        positionActionsColumn === 'first'
+          ? 'bottom-start'
+          : positionActionsColumn === 'last'
+          ? 'bottom-end'
+          : undefined
+      }
+      closeOnItemClick
+      withinPortal
+    >
       <Tooltip withinPortal openDelay={1000} label={localization.rowActions}>
         <Menu.Target>
           <ActionIcon

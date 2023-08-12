@@ -6,6 +6,8 @@ import MinimalExample from '../examples/minimal';
 import AdvancedExample from '../examples/advanced';
 import AggregationAndGroupingExample from '../examples/aggregation-and-grouping';
 import CustomHeadlessExample from '../examples/custom-headless';
+import Link from 'next/link';
+import { IconExternalLink } from '@tabler/icons-react';
 
 const BasicExamples = ({ isPage = false }) => {
   const { pathname, push } = useRouter();
@@ -17,7 +19,9 @@ const BasicExamples = ({ isPage = false }) => {
         <Tabs
           value={isPage ? pathname.split('/').pop() : activeTab}
           onTabChange={(newPath) =>
-            isPage ? push(newPath as string) : setActiveTab(newPath as string)
+            isPage && newPath !== 'more'
+              ? push(newPath as string)
+              : setActiveTab(newPath as string)
           }
           keepMounted={false}
         >
@@ -29,6 +33,11 @@ const BasicExamples = ({ isPage = false }) => {
               Aggregation and Grouping
             </Tabs.Tab>
             <Tabs.Tab value="custom-headless">Custom Headless</Tabs.Tab>
+            <Link href="/docs/examples">
+              <Tabs.Tab value="more">
+                More Examples <IconExternalLink size="1.1rem" />
+              </Tabs.Tab>
+            </Link>
           </Tabs.List>
           <Tabs.Panel value="basic">
             <BasicExample showTopRow={isPage} />

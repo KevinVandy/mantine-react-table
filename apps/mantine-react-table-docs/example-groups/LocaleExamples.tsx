@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Tabs, Box } from '@mantine/core';
+import AR_Table from '../examples/localization-i18n-ar';
 import BG_Table from '../examples/localization-i18n-bg';
 import CS_Table from '../examples/localization-i18n-cs';
 import DA_Table from '../examples/localization-i18n-da';
@@ -32,6 +33,7 @@ import ZH_HANS_Table from '../examples/localization-i18n-zh-hans';
 import ZH_HANT_Table from '../examples/localization-i18n-zh-hant';
 
 const supportedLocales = [
+  'ar',
   'bg',
   'cs',
   'da',
@@ -80,7 +82,8 @@ const LocaleExamples = () => {
           </Tabs.List>
         </Tabs>
       </Box>
-      <div style={{ minHeight: '1500px' }} lang={currentLocale ?? 'en'}>
+      <Box sx={{ minHeight: '1500px' }} lang={currentLocale ?? 'en'}>
+        {currentLocale === 'ar' && <AR_Table />}
         {currentLocale === 'bg' && <BG_Table />}
         {currentLocale === 'cs' && <CS_Table />}
         {currentLocale === 'da' && <DA_Table />}
@@ -111,7 +114,7 @@ const LocaleExamples = () => {
         {currentLocale === 'zh-Hans' && <ZH_HANS_Table />}
         {currentLocale === 'zh-Hant' && <ZH_HANT_Table />}
         {currentLocale === 'no' && <NO_TABLE />}
-      </div>
+      </Box>
     </>
   );
 };

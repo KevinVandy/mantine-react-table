@@ -89,5 +89,4 @@ export const MRT_Localization_ZH_HANS: MRT_Localization = {
   ungroupByColumn: '取消按 {column} 分组',
   unpin: '取消固定',
   unpinAll: '全部取消固定',
-  unsorted: '取消排序',
 };

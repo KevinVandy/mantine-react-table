@@ -126,7 +126,7 @@ const Example = () => {
   //UPDATE action
   const handleSaveUser: MRT_TableOptions<User>['onEditingRowSave'] = async ({
     values,
-    exitEditingMode,
+    table,
   }) => {
     const newValidationErrors = validateUser(values);
     if (Object.values(newValidationErrors).some((error) => error)) {
@@ -135,7 +135,7 @@ const Example = () => {
     }
     setValidationErrors({});
     await updateUser(values);
-    exitEditingMode();
+    table.setEditingRow(null); //exit editing mode
   };
 
   //DELETE action

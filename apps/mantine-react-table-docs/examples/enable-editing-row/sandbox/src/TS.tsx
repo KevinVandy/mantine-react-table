@@ -38,7 +38,7 @@ const Example = () => {
   const [tableData, setTableData] = useState<Person[]>(() => data);
 
   const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = async ({
-    exitEditingMode,
+    table,
     row,
     values,
   }) => {
@@ -46,7 +46,7 @@ const Example = () => {
     tableData[row.index] = values;
     //send/receive api updates here
     setTableData([...tableData]);
-    exitEditingMode(); //required to exit editing mode
+    table.setEditingRow(null); //exit editing mode
   };
 
   return (

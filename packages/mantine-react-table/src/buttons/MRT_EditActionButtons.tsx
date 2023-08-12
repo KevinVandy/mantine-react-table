@@ -39,6 +39,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
       onEditingRowCancel?.({ row, table });
       setEditingRow(null);
     }
+    row._valuesCache = row.original;
   };
 
   const handleSubmitRow = () => {

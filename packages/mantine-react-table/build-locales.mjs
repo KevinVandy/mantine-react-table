@@ -3,6 +3,7 @@ import copy from 'rollup-plugin-copy';
 import typescript from '@rollup/plugin-typescript';
 
 const supportedLocales = [
+  'ar',
   'bg',
   'cs',
   'da',

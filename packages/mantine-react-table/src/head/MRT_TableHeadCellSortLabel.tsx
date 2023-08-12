@@ -30,7 +30,9 @@ export const MRT_TableHeadCellSortLabel = <
     ? column.getIsSorted() === 'desc'
       ? localization.sortedByColumnDesc.replace('{column}', columnDef.header)
       : localization.sortedByColumnAsc.replace('{column}', columnDef.header)
-    : localization.unsorted;
+    : column.getNextSortingOrder() === 'desc'
+    ? localization.sortByColumnDesc.replace('{column}', columnDef.header)
+    : localization.sortByColumnAsc.replace('{column}', columnDef.header);
 
   const showIndicator = sorting.length >= 2 && column.getSortIndex() !== -1;
 
