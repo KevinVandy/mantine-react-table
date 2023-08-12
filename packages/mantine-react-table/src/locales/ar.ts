@@ -1,7 +1,7 @@
 import { type MRT_Localization } from '..';
 
 export const MRT_Localization_EN: MRT_Localization = {
-    actions: 'أجراءات',
+    actions: 'إجراءات',
     and: 'و',
     cancel: 'إلغاء',
     changeFilterMode: 'تغيير وضع المرشح',
@@ -9,14 +9,14 @@ export const MRT_Localization_EN: MRT_Localization = {
     clearFilter: 'إعادة تعين المرشح',
     clearSearch: 'إعادة تعيين البحث',
     clearSort: 'إعادة تعيين الفرز',
-    clickToCopy: ' أنقر للنسخ',
+    clickToCopy: 'انقر للنسخ',
     collapse: 'إخفاء',
     collapseAll: 'إخفاء الكل',
     columnActions: 'إجراءات العمود',
     copiedToClipboard: 'نسخ إلى الحافظة',
     create: 'إنشاء',
     dropToGroupBy: 'أفلت للمجموعة حسب {column}',
-    edit: ' تعديل',
+    edit: 'تعديل',
     expand: 'إظهار',
     expandAll: 'إظهار الكل',
     filterArrIncludes: 'يشمل',
@@ -37,7 +37,7 @@ export const MRT_Localization_EN: MRT_Localization = {
     filterIncludesString: 'يتضمن',
     filterIncludesStringSensitive: 'يتضمن',
     filterLessThan: 'أقل من',
-    filterLessThanOrEqualTo: 'اقل او يساوي',
+    filterLessThanOrEqualTo: 'أقل من أو يساوي',
     filterMode: 'وضع التصفية: {filterType}',
     filterNotEmpty: 'ليس فارغًا',
     filterNotEquals: 'لا يساوي',
@@ -72,7 +72,7 @@ export const MRT_Localization_EN: MRT_Localization = {
     search: 'بحث',
     selectedCountOfRowCountRowsSelected:
         '{selectedCount} ل {rowCount} row(s) المحدد',
-    select: 'أختيار',
+    select: 'اخيار',
     showAll: 'عرض الكل',
     showAllColumns: 'إظهار كافة الأعمدة',
     showHideColumns: 'إظهار / إخفاء الأعمدة',
