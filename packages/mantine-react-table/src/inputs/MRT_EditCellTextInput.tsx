@@ -78,9 +78,9 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
     //@ts-ignore
     row._valuesCache[column.id] = newValue;
     if (isCreating) {
-      setCreatingRow({ ...row });
+      setCreatingRow(row);
     } else if (isEditing) {
-      setEditingRow({ ...row });
+      setEditingRow(row);
     }
   };
 

@@ -436,9 +436,11 @@ export const createRow = <TData extends Record<string, any> = {}>(
     originalRow ??
       Object.assign(
         {},
-        ...getAllLeafColumnDefs(table.options.columns).map((col) => ({
-          [getColumnId(col)]: '',
-        })),
+        ...getAllLeafColumnDefs(table.options.columns)
+          .filter((c) => c.columnDefType === 'data')
+          .map((col) => ({
+            [getColumnId(col)]: '',
+          })),
       ),
     -1,
     0,

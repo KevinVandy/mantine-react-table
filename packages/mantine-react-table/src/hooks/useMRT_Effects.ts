@@ -9,7 +9,14 @@ export const useMRT_Effects = <TData extends Record<string, any> = {}>(
     getState,
     options: { enablePagination, rowCount },
   } = table;
-  const { globalFilter, isFullScreen, pagination, sorting } = getState();
+  const {
+    globalFilter,
+    isFullScreen,
+    pagination,
+    sorting,
+    isLoading,
+    showSkeletons,
+  } = getState();
 
   const isMounted = useRef(false);
   const initialBodyHeight = useRef<string>();
@@ -41,7 +48,7 @@ export const useMRT_Effects = <TData extends Record<string, any> = {}>(
 
   //if page index is out of bounds, set it to the last page
   useEffect(() => {
-    if (!enablePagination) return;
+    if (!enablePagination || isLoading || showSkeletons) return;
     const { pageIndex, pageSize } = pagination;
     const totalRowCount =
       rowCount ?? table.getPrePaginationRowModel().rows.length;

@@ -50,21 +50,24 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
       <MRT_EditCellTextInput cell={cell} key={cell.id} table={table} />
     ));
 
+  const handleCancel = () => {
+    if (creatingRow) {
+      onCreatingRowCancel?.({ row, table });
+      setCreatingRow(null);
+    } else {
+      onEditingRowCancel?.({ row, table });
+      setEditingRow(null);
+    }
+    row._valuesCache = {} as any; //reset values cache
+    modalProps.onClose?.();
+  };
+
   return (
     <Modal
-      closeOnClickOutside={false}
-      onClose={() => {
-        if (creatingRow) {
-          onCreatingRowCancel?.({ row, table });
-          setCreatingRow(null);
-        } else {
-          onEditingRowCancel?.({ row, table });
-          setEditingRow(null);
-        }
-      }}
       opened={open}
       withCloseButton={false}
       {...modalProps}
+      onClose={handleCancel}
       key={row.id}
     >
       {((creatingRow &&
