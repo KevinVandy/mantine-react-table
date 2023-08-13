@@ -10,6 +10,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/docs/getting-started/typescript',
+        destination: '/docs/guides/typescript',
+        permanent: true,
+      },
+      {
         source: '/docs/guides/filtering',
         destination: '/docs/guides/column-filtering',
         permanent: true,

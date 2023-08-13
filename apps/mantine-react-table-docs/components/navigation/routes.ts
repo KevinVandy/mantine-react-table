@@ -4,7 +4,7 @@ export type RouteItem = {
   items?: RouteItem[];
   divider?: boolean;
   external?: boolean;
-  secondaryHrefs?: string[];
+  secondaryItems?: RouteItem[];
 };
 
 export const routes: Array<RouteItem> = [
@@ -31,10 +31,6 @@ export const routes: Array<RouteItem> = [
       {
         href: '/docs/getting-started/usage',
         label: 'Usage',
-      },
-      {
-        href: '/docs/getting-started/typescript',
-        label: 'TypeScript',
       },
     ],
   },
@@ -115,16 +111,30 @@ export const routes: Array<RouteItem> = [
       {
         href: '/docs/examples/editing-crud',
         label: 'Editing (CRUD) Examples',
-        secondaryHrefs: [
-          '/docs/examples/editing-crud-inline-row',
-          '/docs/examples/editing-crud-inline-cell',
-          '/docs/examples/editing-crud-inline-table',
+        secondaryItems: [
+          {
+            href: '/docs/examples/editing-crud-inline-row',
+            label: 'Inline Row Editing',
+          },
+          {
+            href: '/docs/examples/editing-crud-inline-cell',
+            label: 'Inline Cell Editing',
+          },
+          {
+            href: '/docs/examples/editing-crud-inline-table',
+            label: 'Inline Table Editing',
+          },
         ],
       },
       {
         href: '/docs/examples/react-query',
         label: 'Remote Data Fetching Examples',
-        secondaryHrefs: ['/docs/examples/remote'],
+        secondaryItems: [
+          {
+            href: '/docs/examples/remote',
+            label: 'Remote Data Fetching',
+          },
+        ],
       },
       {
         href: '/docs/examples/virtualized',
@@ -149,6 +159,10 @@ export const routes: Array<RouteItem> = [
         label: 'Fundamentals',
         href: '/docs/guides#fundamentals',
         items: [
+          {
+            href: '/docs/guides/typescript',
+            label: 'TypeScript',
+          },
           {
             href: '/docs/guides/data-columns',
             label: 'Data (Accessor) Columns',
