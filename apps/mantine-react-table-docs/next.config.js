@@ -59,6 +59,11 @@ const nextConfig = {
         destination: '/docs/api/table-options',
         permanent: true,
       },
+      {
+        source: '/docs/examples/data-export',
+        destination: '/docs/examples/export-csv',
+        permanent: true,
+      },
     ];
   },
 };

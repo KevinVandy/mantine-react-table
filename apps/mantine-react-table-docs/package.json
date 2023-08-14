@@ -34,6 +34,8 @@
     "@types/mdx": "^2.0.6",
     "dayjs": "^1.11.9",
     "export-to-csv": "^0.2.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.31",
     "mantine-react-table": "workspace:*",
     "next": "13.4.13",
     "next-sitemap": "^4.2.2",

@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
 import { Box, Tabs } from '@mantine/core';
-import ReactQueryExample from '../examples/react-query';
-import RemoteExample from '../examples/remote';
+import CSVExport from '../examples/export-to-csv';
+import PDFExport from '../examples/export-to-pdf';
 import { useState } from 'react';
 import Link from 'next/link';
 import { IconExternalLink } from '@tabler/icons-react';
 
 const RemoteFetching = ({ isPage = false }) => {
   const { pathname, push } = useRouter();
-  const [activeTab, setActiveTab] = useState('react-query');
+  const [activeTab, setActiveTab] = useState('export-csv');
 
   return (
     <>
@@ -23,19 +23,19 @@ const RemoteFetching = ({ isPage = false }) => {
           keepMounted={false}
         >
           <Tabs.List>
-            <Tabs.Tab value="react-query">React Query</Tabs.Tab>
-            <Tabs.Tab value="remote">useEffect</Tabs.Tab>
+            <Tabs.Tab value="export-csv">CSV</Tabs.Tab>
+            <Tabs.Tab value="export-pdf">PDF</Tabs.Tab>
             <Link href="/docs/examples">
               <Tabs.Tab value="more">
                 More Examples <IconExternalLink size="1rem" />
               </Tabs.Tab>
             </Link>
           </Tabs.List>
-          <Tabs.Panel value="react-query">
-            <ReactQueryExample />
+          <Tabs.Panel value="export-csv">
+            <CSVExport />
           </Tabs.Panel>
-          <Tabs.Panel value="remote">
-            <RemoteExample />
+          <Tabs.Panel value="export-pdf">
+            <PDFExport />
           </Tabs.Panel>
         </Tabs>
       </Box>

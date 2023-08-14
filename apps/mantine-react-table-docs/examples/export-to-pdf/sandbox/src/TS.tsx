@@ -6,7 +6,8 @@ import {
 } from 'mantine-react-table';
 import { Box, Button } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
-import { ExportToCsv } from 'export-to-csv'; //or use your library of choice here
+import { jsPDF } from 'jspdf'; //or use your library of choice here
+import autoTable from 'jspdf-autotable';
 import { data, type Person } from './makeData';
 
 const columns: MRT_ColumnDef<Person>[] = [
@@ -41,25 +42,18 @@ const columns: MRT_ColumnDef<Person>[] = [
   },
 ];
 
-const csvOptions = {
-  fieldSeparator: ',',
-  quoteStrings: '"',
-  decimalSeparator: '.',
-  showLabels: true,
-  useBom: true,
-  useKeysAsHeaders: false,
-  headers: columns.map((c) => c.header),
-};
-
-const csvExporter = new ExportToCsv(csvOptions);
-
 const Example = () => {
   const handleExportRows = (rows: MRT_Row<Person>[]) => {
-    csvExporter.generateCsv(rows.map((row) => row.original));
-  };
+    const doc = new jsPDF();
+    const tableData = rows.map((row) => Object.values(row.original));
+    const tableHeaders = columns.map((c) => c.header);
 
-  const handleExportData = () => {
-    csvExporter.generateCsv(data);
+    autoTable(doc, {
+      head: [tableHeaders],
+      body: tableData,
+    });
+
+    doc.save('mrt-pdf-example.pdf');
   };
 
   const table = useMantineReactTable({
@@ -78,15 +72,6 @@ const Example = () => {
           flexWrap: 'wrap',
         }}
       >
-        <Button
-          color="lightblue"
-          //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
-          onClick={handleExportData}
-          leftIcon={<IconDownload />}
-          variant="filled"
-        >
-          Export All Data
-        </Button>
         <Button
           disabled={table.getPrePaginationRowModel().rows.length === 0}
           //export all rows, including from the next page, (still respects filtering and sorting)

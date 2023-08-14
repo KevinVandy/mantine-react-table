@@ -105,8 +105,14 @@ export const routes: Array<RouteItem> = [
         label: 'Aggregation/Grouping Example',
       },
       {
-        href: '/docs/examples/data-export',
+        href: '/docs/examples/export-csv',
         label: 'Data Export Examples',
+        secondaryItems: [
+          {
+            href: '/docs/examples/export-pdf',
+            label: 'Export to PDF',
+          },
+        ],
       },
       {
         href: '/docs/examples/editing-crud',

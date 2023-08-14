@@ -35,7 +35,7 @@ const BasicExamples = ({ isPage = false }) => {
             <Tabs.Tab value="custom-headless">Custom Headless</Tabs.Tab>
             <Link href="/docs/examples">
               <Tabs.Tab value="more">
-                More Examples <IconExternalLink size="1.1rem" />
+                More Examples <IconExternalLink size="1rem" />
               </Tabs.Tab>
             </Link>
           </Tabs.List>
