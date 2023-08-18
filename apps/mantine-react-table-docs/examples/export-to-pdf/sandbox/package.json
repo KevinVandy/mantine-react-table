@@ -18,7 +18,7 @@
     "export-to-csv": "^0.2.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.31",
-    "mantine-react-table": "^1.1.1",
+    "mantine-react-table": "^1.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
