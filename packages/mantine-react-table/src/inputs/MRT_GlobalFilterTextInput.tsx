@@ -89,22 +89,18 @@ export const MRT_GlobalFilterTextInput = <
         variant="filled"
         icon={!enableGlobalFilterModes && <IconSearch />}
         rightSection={
-          <ActionIcon
-            aria-label={localization.clearSearch}
-            disabled={!searchValue?.length}
-            onClick={handleClear}
-            size="sm"
-            sx={{
-              '&:disabled': {
-                backgroundColor: 'transparent',
-                border: 'none',
-              },
-            }}
-          >
-            <Tooltip withinPortal label={localization.clearSearch}>
-              <IconX />
-            </Tooltip>
-          </ActionIcon>
+          searchValue ? (
+            <ActionIcon
+              aria-label={localization.clearSearch}
+              disabled={!searchValue?.length}
+              onClick={handleClear}
+              size="sm"
+            >
+              <Tooltip withinPortal label={localization.clearSearch}>
+                <IconX />
+              </Tooltip>
+            </ActionIcon>
+          ) : null
         }
         {...textFieldProps}
         ref={(node) => {
@@ -116,6 +112,12 @@ export const MRT_GlobalFilterTextInput = <
             }
           }
         }}
+        sx={(theme) => ({
+          minWidth: '250px',
+          ...(textFieldProps?.sx instanceof Function
+            ? textFieldProps.sx(theme)
+            : (textFieldProps?.sx as any)),
+        })}
       />
     </Collapse>
   );

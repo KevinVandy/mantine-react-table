@@ -320,22 +320,16 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
     }),
   } as const;
 
-  const ClearButton = (
+  const ClearButton = filterValue ? (
     <ActionIcon
       aria-label={localization.clearFilter}
       onClick={handleClear}
       size="sm"
-      sx={{
-        '&:disabled': {
-          backgroundColor: 'transparent',
-          border: 'none',
-        },
-      }}
       title={localization.clearFilter ?? ''}
     >
       <IconX />
     </ActionIcon>
-  );
+  ) : null;
 
   return filterChipLabel ? (
     <Box sx={commonProps.sx}>
