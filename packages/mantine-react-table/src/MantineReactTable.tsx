@@ -1,12 +1,10 @@
 import { useMantineReactTable } from './useMantineReactTable';
 import { MRT_TablePaper } from './table/MRT_TablePaper';
-import { type MRT_TableOptions, type MRT_TableInstance } from './types';
-
-type Prettify<T> = { [K in keyof T]: T[K] } & unknown;
-
-type Xor<A, B> =
-  | Prettify<A & { [k in keyof B]?: never }>
-  | Prettify<B & { [k in keyof A]?: never }>;
+import {
+  type MRT_TableOptions,
+  type MRT_TableInstance,
+  type Xor,
+} from './types';
 
 type TableInstanceProp<TData extends Record<string, any> = {}> = {
   table: MRT_TableInstance<TData>;

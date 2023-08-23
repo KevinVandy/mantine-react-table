@@ -1854,7 +1854,7 @@ export const tableOptions: TableOption[] = [
     linkText: '',
     required: false,
     source: 'MRT',
-    type: "'bottom' | 'top' | 'none'",
+    type: "'bottom' | 'top' | 'head-overlay' | 'none'",
   },
   {
     tableOption: 'positionToolbarDropZone',
@@ -1975,6 +1975,16 @@ export const tableOptions: TableOption[] = [
     required: false,
     source: '',
     type: '({ table }) => ReactNode',
+  },
+  {
+    tableOption: 'renderToolbarAlertBannerContent',
+    defaultValue: '',
+    description: '',
+    link: '',
+    linkText: '',
+    required: false,
+    source: '',
+    type: '({ groupedAlert, selectedAlert, table }) => ReactNode',
   },
   {
     tableOption: 'renderTopToolbar',

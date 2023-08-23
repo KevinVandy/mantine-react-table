@@ -1,8 +1,11 @@
 import { useMemo } from 'react';
 import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
+import { useMantineTheme } from '@mantine/core';
 import { data, type Person } from './makeData';
 
 export const Example = () => {
+  const { colorScheme } = useMantineTheme();
+
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
       {
@@ -42,6 +45,18 @@ export const Example = () => {
       mantineTableProps={{
         highlightOnHover: false,
         withColumnBorders: true,
+        withBorder: colorScheme === 'light',
+        sx: {
+          'thead > tr': {
+            backgroundColor: 'inherit',
+          },
+          'thead > tr > th': {
+            backgroundColor: 'inherit',
+          },
+          'tbody > tr > td': {
+            backgroundColor: 'inherit',
+          },
+        },
       }}
     />
   );

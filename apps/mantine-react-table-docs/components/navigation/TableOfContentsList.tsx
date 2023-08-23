@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { Box, Anchor } from '@mantine/core';
 import { LinkHeading } from '../mdx/LinkHeading';
@@ -57,12 +58,8 @@ export const TableOfContentsList = ({
       >
         {items.map((item, index) => {
           return (
-            <>
-              <TableOfContentsListItem
-                key={index}
-                item={item}
-                isFooter={isFooter}
-              />
+            <Fragment key={index}>
+              <TableOfContentsListItem item={item} isFooter={isFooter} />
               {item.secondaryItems
                 ? item.secondaryItems.map((item, index) => {
                     return (
@@ -74,7 +71,7 @@ export const TableOfContentsList = ({
                     );
                   })
                 : null}
-            </>
+            </Fragment>
           );
         })}
       </ul>

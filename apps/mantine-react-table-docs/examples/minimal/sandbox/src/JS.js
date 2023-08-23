@@ -46,9 +46,21 @@ export const Example = () => {
       highlightOnHover: false,
       withColumnBorders: true,
       withBorder: colorScheme === 'light',
+      sx: {
+        'thead > tr': {
+          backgroundColor: 'inherit',
+        },
+        'thead > tr > th': {
+          backgroundColor: 'inherit',
+        },
+        'tbody > tr > td': {
+          backgroundColor: 'inherit',
+        },
+      },
     },
   });
 
+  //using MRT_Table instead of MantineReactTable if we do not want any of the toolbar features
   return <MRT_Table table={table} />;
 };
 

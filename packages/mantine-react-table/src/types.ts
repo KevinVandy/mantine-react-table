@@ -70,7 +70,15 @@ import { type MRT_Icons } from './icons';
 
 export type { MRT_Icons };
 
-type LiteralUnion<T extends U, U = string> = T | (U & Record<never, never>);
+export type LiteralUnion<T extends U, U = string> =
+  | T
+  | (U & Record<never, never>);
+
+export type Prettify<T> = { [K in keyof T]: T[K] } & unknown;
+
+export type Xor<A, B> =
+  | Prettify<A & { [k in keyof B]?: never }>
+  | Prettify<B & { [k in keyof A]?: never }>;
 
 export type HTMLPropsRef<T extends HTMLElement> = Omit<
   HTMLProps<T>,
@@ -282,7 +290,7 @@ export type MRT_DefinedTableOptions<TData extends Record<string, any> = {}> =
     icons: MRT_Icons;
   };
 
-export type MRT_TableState<TData extends Record<string, any> = {}> =
+export type MRT_TableState<TData extends Record<string, any> = {}> = Prettify<
   TableState & {
     columnFilterFns: MRT_ColumnFilterFnsState;
     creatingRow: MRT_Row<TData> | null;
@@ -304,7 +312,8 @@ export type MRT_TableState<TData extends Record<string, any> = {}> =
     showProgressBars: boolean;
     showSkeletons: boolean;
     showToolbarDropZone: boolean;
-  };
+  }
+>;
 
 export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   ColumnDef<TData, unknown>,
@@ -1021,10 +1030,10 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLDivElement> & Partial<BadgeProps>);
   mantineToolbarAlertBannerProps?:
-    | (HTMLPropsRef<HTMLDivElement> & AlertProps)
+    | (HTMLPropsRef<HTMLDivElement> & Partial<AlertProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLDivElement> & AlertProps);
+      }) => HTMLPropsRef<HTMLDivElement> & Partial<AlertProps>);
   mantineTopToolbarProps?:
     | (HTMLPropsRef<HTMLDivElement> & BoxProps)
     | ((props: {
@@ -1076,7 +1085,7 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
   positionExpandColumn?: 'first' | 'last';
   positionGlobalFilter?: 'left' | 'right' | 'none';
   positionPagination?: 'bottom' | 'top' | 'both' | 'none';
-  positionToolbarAlertBanner?: 'bottom' | 'top' | 'none';
+  positionToolbarAlertBanner?: 'bottom' | 'top' | 'head-overlay' | 'none';
   positionToolbarDropZone?: 'bottom' | 'top' | 'none' | 'both';
   renderBottomToolbar?:
     | ReactNode
@@ -1124,6 +1133,11 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
   renderRowActions?: (props: {
     cell: MRT_Cell<TData>;
     row: MRT_Row<TData>;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
+  renderToolbarAlertBannerContent?: (props: {
+    groupedAlert: ReactNode | null;
+    selectedAlert: ReactNode | null;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderToolbarInternalActions?: (props: {

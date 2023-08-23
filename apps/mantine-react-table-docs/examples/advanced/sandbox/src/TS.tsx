@@ -3,8 +3,10 @@ import {
   MantineReactTable,
   useMantineReactTable,
   type MRT_ColumnDef,
+  MRT_GlobalFilterTextInput,
+  MRT_ToggleFiltersButton,
 } from 'mantine-react-table';
-import { Box, Button, Menu, Text, Title } from '@mantine/core';
+import { Box, Button, Flex, Menu, Text, Title } from '@mantine/core';
 import { IconUserCircle, IconSend } from '@tabler/icons-react';
 import { data } from './makeData';
 
@@ -140,9 +142,16 @@ const Example = () => {
     enablePinning: true,
     enableRowActions: true,
     enableRowSelection: true,
-    initialState: { showColumnFilters: true },
+    initialState: { showColumnFilters: true, showGlobalFilter: true },
     paginationDisplayMode: 'pages',
     positionToolbarAlertBanner: 'bottom',
+    mantinePaginationProps: {
+      radius: 'xl',
+      size: 'lg',
+    },
+    mantineSearchTextInputProps: {
+      placeholder: 'Search Employees',
+    },
     renderDetailPanel: ({ row }) => (
       <Box
         sx={{
@@ -171,7 +180,7 @@ const Example = () => {
         <Menu.Item icon={<IconSend />}>Send Email</Menu.Item>
       </>
     ),
-    renderTopToolbarCustomActions: ({ table }) => {
+    renderTopToolbar: ({ table }) => {
       const handleDeactivate = () => {
         table.getSelectedRowModel().flatRows.map((row) => {
           alert('deactivating ' + row.getValue('name'));
@@ -191,32 +200,39 @@ const Example = () => {
       };
 
       return (
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <Button
-            color="red"
-            disabled={!table.getIsSomeRowsSelected()}
-            onClick={handleDeactivate}
-            variant="filled"
-          >
-            Deactivate
-          </Button>
-          <Button
-            color="green"
-            disabled={!table.getIsSomeRowsSelected()}
-            onClick={handleActivate}
-            variant="filled"
-          >
-            Activate
-          </Button>
-          <Button
-            color="blue"
-            disabled={!table.getIsSomeRowsSelected()}
-            onClick={handleContact}
-            variant="filled"
-          >
-            Contact
-          </Button>
-        </div>
+        <Flex p="md" justify="space-between">
+          <Flex gap="xs">
+            {/* import MRT sub-components */}
+            <MRT_GlobalFilterTextInput table={table} />
+            <MRT_ToggleFiltersButton table={table} />
+          </Flex>
+          <Flex sx={{ gap: '8px' }}>
+            <Button
+              color="red"
+              disabled={!table.getIsSomeRowsSelected()}
+              onClick={handleDeactivate}
+              variant="filled"
+            >
+              Deactivate
+            </Button>
+            <Button
+              color="green"
+              disabled={!table.getIsSomeRowsSelected()}
+              onClick={handleActivate}
+              variant="filled"
+            >
+              Activate
+            </Button>
+            <Button
+              color="blue"
+              disabled={!table.getIsSomeRowsSelected()}
+              onClick={handleContact}
+              variant="filled"
+            >
+              Contact
+            </Button>
+          </Flex>
+        </Flex>
       );
     },
   });

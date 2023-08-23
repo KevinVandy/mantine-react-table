@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+import {
+  MantineReactTable,
+  MRT_SelectCheckbox,
+  type MRT_ColumnDef,
+} from '../../src';
 import { faker } from '@faker-js/faker';
+import { Button, Flex } from '@mantine/core';
+import { IconSend, IconTrash } from '@tabler/icons-react';
 
 const meta: Meta = {
   title: 'Features/Selection Examples',
@@ -163,5 +169,50 @@ export const SelectCheckboxSecondaryColor = () => (
     data={data}
     enableRowSelection
     mantineSelectCheckboxProps={{ color: 'orange' }}
+  />
+);
+
+export const AlertBannerBottom = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowSelection
+    positionToolbarAlertBanner="bottom"
+  />
+);
+
+export const AlertBannerHeadOverlay = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowSelection
+    positionToolbarAlertBanner="head-overlay"
+  />
+);
+
+export const CustomAlertBannerHeadOverlay = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowSelection
+    positionToolbarAlertBanner="head-overlay"
+    mantineToolbarAlertBannerProps={{
+      color: 'cyan',
+    }}
+    renderToolbarAlertBannerContent={({ selectedAlert, table }) => (
+      <Flex justify="space-between">
+        <Flex p="6px" gap="xl">
+          <MRT_SelectCheckbox selectAll table={table} /> {selectedAlert}{' '}
+        </Flex>
+        <Flex gap="md">
+          <Button leftIcon={<IconSend />} color="blue">
+            Email Selected
+          </Button>
+          <Button leftIcon={<IconTrash />} color="red">
+            Remove Selected
+          </Button>
+        </Flex>
+      </Flex>
+    )}
   />
 );

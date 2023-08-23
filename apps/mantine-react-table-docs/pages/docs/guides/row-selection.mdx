@@ -172,14 +172,14 @@ const table = useMantineReactTable({
 
 ### Position or Hide Alert Banner Selection Message
 
-By default, an alert banner will be show as rows are selected. You can either position which toolbar the alert banner is shown in or hide it altogether with the `positionToolbarAlertBanner` table option.
+By default, an alert banner will be show as rows are selected. You can use the `positionToolbarAlertBanner` table option to show the alert banner in the top toolbar, bottom toolbar, as an overlay in the table head, or hide it completely.
 
 ```jsx
 const table = useMantineReactTable({
   columns,
   data,
   enableRowSelection: true,
-  positionToolbarAlertBanner: 'bottom', //show alert banner in bottom toolbar instead of top
+  positionToolbarAlertBanner: 'head-overlay', //show alert banner in bottom toolbar instead of top
 });
 ```
 

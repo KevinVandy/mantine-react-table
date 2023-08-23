@@ -1,9 +1,10 @@
 import { Fragment } from 'react';
-import { ActionIcon, Alert, Badge, Box, Collapse, Flex } from '@mantine/core';
+import { ActionIcon, Alert, Badge, Collapse, Flex, Stack } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
+import { MRT_SelectCheckbox } from '../inputs';
 
 interface Props<TData extends Record<string, any> = {}> {
-  stackAlertBanner: boolean;
+  stackAlertBanner?: boolean;
   table: MRT_TableInstance<TData>;
 }
 
@@ -16,15 +17,18 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
     getSelectedRowModel,
     getState,
     options: {
+      enableRowSelection,
+      enableSelectAll,
       icons: { IconX },
       localization,
-      mantineToolbarAlertBannerProps,
       mantineToolbarAlertBannerBadgeProps,
+      mantineToolbarAlertBannerProps,
       positionToolbarAlertBanner,
+      renderToolbarAlertBannerContent,
       rowCount,
     },
   } = table;
-  const { grouping, showAlertBanner } = getState();
+  const { grouping, showAlertBanner, density } = getState();
 
   const alertProps =
     mantineToolbarAlertBannerProps instanceof Function
@@ -36,7 +40,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
       ? mantineToolbarAlertBannerBadgeProps({ table })
       : mantineToolbarAlertBannerBadgeProps;
 
-  const selectMessage =
+  const selectedAlert =
     getSelectedRowModel().rows.length > 0
       ? localization.selectedCountOfRowCountRowsSelected
           ?.replace(
@@ -49,7 +53,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           )
       : null;
 
-  const groupedByMessage =
+  const groupedAlert =
     grouping.length > 0 ? (
       <Flex>
         {localization.groupedBy}{' '}
@@ -78,7 +82,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
 
   return (
     <Collapse
-      in={showAlertBanner || !!selectMessage || !!groupedByMessage}
+      in={showAlertBanner || !!selectedAlert || !!groupedAlert}
       transitionDuration={stackAlertBanner ? 200 : 0}
     >
       <Alert
@@ -105,16 +109,40 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
             : (alertProps?.sx as any)),
         })}
       >
-        {alertProps?.title && <Box>{alertProps.title}</Box>}
-        <Flex sx={{ padding: '8px 16px' }}>
-          {alertProps?.children}
-          {alertProps?.children && (selectMessage || groupedByMessage) && (
-            <br />
-          )}
-          {selectMessage}
-          {selectMessage && groupedByMessage && <br />}
-          {groupedByMessage}
-        </Flex>
+        {renderToolbarAlertBannerContent?.({
+          groupedAlert,
+          selectedAlert,
+          table,
+        }) ?? (
+          <Flex
+            sx={{
+              gap: '12px',
+              padding:
+                positionToolbarAlertBanner === 'head-overlay'
+                  ? density === 'xl'
+                    ? '16px'
+                    : density === 'md'
+                    ? '8px'
+                    : '2px'
+                  : '8px 16px',
+            }}
+          >
+            {enableRowSelection &&
+              enableSelectAll &&
+              positionToolbarAlertBanner === 'head-overlay' && (
+                <MRT_SelectCheckbox selectAll table={table} />
+              )}
+            <Stack>
+              {alertProps?.children}
+              {alertProps?.children && (selectedAlert || groupedAlert) && (
+                <br />
+              )}
+              {selectedAlert}
+              {selectedAlert && groupedAlert && <br />}
+              {groupedAlert}
+            </Stack>
+          </Flex>
+        )}
       </Alert>
     </Collapse>
   );

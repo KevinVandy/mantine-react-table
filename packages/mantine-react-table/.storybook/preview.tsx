@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Preview } from '@storybook/react';
 import { useDarkMode } from 'storybook-dark-mode';
 import {
@@ -51,6 +51,19 @@ const preview: Preview = {
             colorScheme === 'dark' ? '#333' : '#fff';
         }
       }, [useDarkMode()]);
+
+      useEffect(() => {
+        if (process.env.NODE_ENV === 'development') return;
+        const script = document.createElement('script');
+        script.src = 'https://plausible.io/js/script.js';
+        script.setAttribute('data-domain', 'mantine-react-table.dev');
+        script.defer = true;
+
+        document.body.appendChild(script);
+        return () => {
+          document.body.removeChild(script);
+        };
+      }, []);
 
       return (
         <ColorSchemeProvider
