@@ -1,7 +1,7 @@
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import { Box, Button } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
-import { ExportToCsv } from 'export-to-csv'; //or use your library of choice here
+import { mkConfig, generateCsv, download } from 'export-to-csv'; //or use your library of choice here
 import { data } from './makeData';
 
 //defining columns outside of the component is fine, is stable
@@ -37,25 +37,22 @@ const columns = [
   },
 ];
 
-const csvOptions = {
+const csvConfig = mkConfig({
   fieldSeparator: ',',
-  quoteStrings: '"',
   decimalSeparator: '.',
-  showLabels: true,
-  useBom: true,
-  useKeysAsHeaders: false,
-  headers: columns.map((c) => c.header),
-};
-
-const csvExporter = new ExportToCsv(csvOptions);
+  useKeysAsHeaders: true,
+});
 
 const Example = () => {
   const handleExportRows = (rows) => {
-    csvExporter.generateCsv(rows.map((row) => row.original));
+    const rowData = rows.map((row) => row.original);
+    const csv = generateCsv(csvConfig)(rowData);
+    download(csvConfig)(csv);
   };
 
   const handleExportData = () => {
-    csvExporter.generateCsv(data);
+    const csv = generateCsv(csvConfig)(data);
+    download(csvConfig)(csv);
   };
 
   const table = useMantineReactTable({
