@@ -32,7 +32,7 @@ const Example = () => {
     enableSelectAll: false,
     enableRowSelection: (row) => row.original.age >= 21, //enable row selection conditionally per row
     mantineSelectCheckboxProps: { color: 'red', size: 'lg' },
-    positionToolbarAlertBanner: 'head-overlay'
+    positionToolbarAlertBanner: 'head-overlay',
   });
 
   return <MantineReactTable table={table} />;

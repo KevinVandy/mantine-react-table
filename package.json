@@ -25,8 +25,8 @@
     "storybook:dev": "turbo run storybook"
   },
   "devDependencies": {
-    "prettier": "^3.0.1",
-    "turbo": "^1.10.12"
+    "prettier": "^3.0.3",
+    "turbo": "^1.10.13"
   },
   "engines": {
     "node": ">=14.0.0"

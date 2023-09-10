@@ -103,8 +103,12 @@ const Example = () => {
   }, []);
 
   useEffect(() => {
-    //scroll to the top of the table when the sorting changes
-    rowVirtualizerInstanceRef.current?.scrollToIndex(0);
+    try {
+      //scroll to the top of the table when the sorting changes
+      rowVirtualizerInstanceRef.current?.scrollToIndex(0);
+    } catch (e) {
+      console.log(e);
+    }
   }, [sorting]);
 
   const table = useMantineReactTable({
