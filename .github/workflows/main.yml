@@ -3,7 +3,7 @@ name: Upgrade Example Versions
 on:
   push:
     branches:
-      - 'v1'
+      - 'v2'
     paths:
       - 'packages/mantine-react-table/package.json'
 
