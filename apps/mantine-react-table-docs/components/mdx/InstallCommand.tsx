@@ -3,7 +3,7 @@ import { Tabs } from '@mantine/core';
 import { SampleCodeSnippet } from './SampleCodeSnippet';
 
 const defaultPackagesString =
-  'mantine-react-table @mantine/core @mantine/hooks @mantine/dates @emotion/react @tabler/icons-react dayjs';
+  'mantine-react-table @mantine/core@6.0.21 @mantine/hooks@6.0.21 @mantine/dates@6.0.21 @emotion/react @tabler/icons-react dayjs';
 
 export const InstallCommand = ({
   packagesString = defaultPackagesString,

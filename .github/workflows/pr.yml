@@ -3,7 +3,7 @@ name: Clean PR
 on:
   pull_request:
     branches:
-      - main
+      - v1
 
 jobs:
   clean-pr:

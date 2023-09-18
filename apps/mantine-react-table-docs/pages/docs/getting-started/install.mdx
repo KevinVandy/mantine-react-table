@@ -7,6 +7,8 @@ import { FAQs } from '../../../components/mdx/FAQs';
   <meta name="description" content="How to install Mantine React Table" />
 </Head>
 
+> This is the install guide for `mantine-react-table` **V1** and `@mantine/` packages **V6**. MRT V1 will not work with Mantine V7. MRT V2 will be released by the end of 2023 and will work with Mantine V7.
+
 ## Installation
 
 > `mantine-react-table` V1 requires **Mantine V6.0+** packages as dependencies in your project.
@@ -15,9 +17,9 @@ import { FAQs } from '../../../components/mdx/FAQs';
 >
 > Just double-check that you have the following in your package.json, or use the [full install commands](<#install-with-required-peer-dependencies-(recommended)>) below.
 >
-> 1.  `@mantine/core` (v6.0+)
-> 2.  `@mantine/hooks` (v6.0+)
-> 3.  `@mantine/dates` (v6.0+)
+> 1.  `@mantine/core` (^v6.0)
+> 2.  `@mantine/hooks` (^v6.0)
+> 3.  `@mantine/dates` (^v6.0)
 > 4.  `@tabler/icons-react` (2.23.0+)
 > 5.  `@emotion/react` (v11)
 > 6.  `dayjs` (v1.11+)
@@ -36,6 +38,8 @@ import { FAQs } from '../../../components/mdx/FAQs';
 > All internal dependencies: `@tanstack/react-table`, `@tanstack/react-virtual`, and `@tanstack/match-sorter-utils`
 
 ### Common Errors
+
+If you don't see any styles applied to the mantine table components, you may have mismatching versions of `mantine-react-table` and `@mantine/core`. MRT v1 requires Mantine v6 and will not work with Mantine v7. MRT v2 will be released by the end of 2023 and will work with Mantine v7.
 
 If you get an error like this:
 

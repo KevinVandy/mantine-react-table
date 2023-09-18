@@ -395,7 +395,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
    * @example accessorKey: 'username' //simple
    * @example accessorKey: 'name.firstName' //deep key dot notation
    */
-  accessorKey?: DeepKeys<TData>;
+  accessorKey?: (string & {}) | DeepKeys<TData>;
   aggregationFn?: MRT_AggregationFn<TData> | Array<MRT_AggregationFn<TData>>;
   /**
    * Specify what type of column this is. Either `data`, `display`, or `group`. Defaults to `data`.
