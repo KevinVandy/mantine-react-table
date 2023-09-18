@@ -74,7 +74,7 @@ const HomePage = () => {
             target="_blank"
             rel="noopener"
           >
-            Mantine<sup>V6</sup>
+            Mantine<sup>V7</sup>
           </Anchor>
         </Link>{' '}
         and&nbsp;
