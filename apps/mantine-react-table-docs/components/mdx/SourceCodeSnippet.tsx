@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Box, Flex, Divider, Button, Select, Tooltip } from '@mantine/core';
-import { Prism } from '@mantine/prism';
+import { Box, Flex, Button, Select, Tooltip } from '@mantine/core';
+import {
+  CodeHighlightTabs,
+} from '@mantine/code-highlight';
 import {
   IconBrandTypescript,
   IconBrandJavascript,
@@ -207,46 +209,34 @@ export const SourceCodeSnippet = ({
           <Component />
         </>
       )}
-      <Prism.Tabs defaultValue={defaultTS ? 'ts' : 'js'}>
-        <Prism.TabsList>
-          <Prism.Tab value="ts" icon={<IconBrandTypescript />}>
-            TypeScript
-          </Prism.Tab>
-          {javaScriptCode && (
-            <Prism.Tab value="js" icon={<IconBrandJavascript />}>
-              JavaScript
-            </Prism.Tab>
-          )}
-          {legacyCode && (
-            <Prism.Tab value="legacy" icon={<IconCode />}>
-              Legacy Props API
-            </Prism.Tab>
-          )}
-          {apiCode && (
-            <Prism.Tab value="api" icon={<IconApi />}>
-              Back-end API
-            </Prism.Tab>
-          )}
-        </Prism.TabsList>
-        <Prism.Panel withLineNumbers language="tsx" value="ts">
-          {typeScriptCode}
-        </Prism.Panel>
-        {javaScriptCode && (
-          <Prism.Panel withLineNumbers language="jsx" value="js">
-            {javaScriptCode}
-          </Prism.Panel>
-        )}
-        {legacyCode && (
-          <Prism.Panel withLineNumbers language="tsx" value="legacy">
-            {legacyCode}
-          </Prism.Panel>
-        )}
-        {apiCode && (
-          <Prism.Panel withLineNumbers language="typescript" value="api">
-            {apiCode}
-          </Prism.Panel>
-        )}
-      </Prism.Tabs>
+      <CodeHighlightTabs
+        code={[
+          {
+            fileName: 'TS',
+            code: typeScriptCode,
+            language: 'tsx',
+            icon: <IconBrandTypescript />,
+          },
+          javaScriptCode && {
+            fileName: 'JS',
+            code: javaScriptCode,
+            language: 'jsx',
+            icon: <IconBrandJavascript />,
+          },
+          legacyCode && {
+            fileName: 'Legacy',
+            code: legacyCode,
+            language: 'tsx',
+            icon: <IconCode />,
+          },
+          apiCode && {
+            fileName: 'API',
+            code: apiCode,
+            language: 'typescript',
+            icon: <IconApi />,
+          },
+        ].filter(Boolean)}
+      />
     </Box>
   );
 };

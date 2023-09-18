@@ -1,8 +1,7 @@
-import { Prism, type PrismProps } from '@mantine/prism';
+import { CodeHighlight, type CodeHighlightProps } from '@mantine/code-highlight';
 import { Code, Paper, useMantineTheme } from '@mantine/core';
-import { type Language } from 'prism-react-renderer';
 
-interface Props extends Partial<PrismProps> {
+interface Props extends CodeHighlightProps {
   children: string;
 }
 
@@ -13,31 +12,18 @@ export const SampleCodeSnippet = (props: Props) => {
     return <Code color={primaryColor} fz="0.9em" {...props} />;
   }
 
-  if (props.noCopy) {
-    return (
-      <Prism
-        {...props}
-        language={
-          props.language ??
-          (props?.className?.replace(/language-/, '') as Language)
-        }
-        styles={{
-          code: {
-            backgroundColor: 'transparent !important',
-            padding: 0,
-          },
-        }}
-      />
-    );
+  if (!props.withCopyButton) {
+    return <CodeHighlight code={props.children} />;
   }
 
   return (
-    <Paper radius="sm" shadow="sm" withBorder={!props.noCopy}>
-      <Prism
+    <Paper radius="sm" shadow="sm" withBorder={props.withCopyButton}>
+      <CodeHighlight
         {...props}
+        code={props.children}
         language={
           props.language ??
-          (props?.className?.replace(/language-/, '') as Language)
+          (props?.className?.replace(/language-/, ''))
         }
       />
     </Paper>
