@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Accordion, Box, Title } from '@mantine/core';
-
+import classes from './FAQs.module.css';
 interface FAQStructuredData {
   '@context': string;
   '@type': string;
@@ -35,7 +35,7 @@ export const FAQs = ({ faqStructuredData }: Props) => {
             <Accordion.Control>
               <Title order={4}>{faq.name}</Title>
             </Accordion.Control>
-            <Accordion.Panel sx={{ lineHeight: '2rem' }}>
+            <Accordion.Panel className={classes.panel}>
               <Box
                 dangerouslySetInnerHTML={{ __html: faq.acceptedAnswer.text }}
               ></Box>

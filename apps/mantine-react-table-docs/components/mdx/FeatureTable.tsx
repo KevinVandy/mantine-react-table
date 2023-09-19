@@ -1,5 +1,6 @@
 import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
+import classes from './FeatureTable.module.css';
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
@@ -12,9 +13,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
     header: 'Mantine React Table',
     mantineTableHeadCellProps: {
       align: 'center',
-      sx: (theme) => ({
-        color: getPrimaryColor(theme),
-      }),
+      className: classes.mantineReactTable,
     },
     mantineTableBodyCellProps: {
       align: 'center',

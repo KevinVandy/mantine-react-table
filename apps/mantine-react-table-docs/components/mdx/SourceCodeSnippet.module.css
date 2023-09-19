@@ -1,0 +1,42 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 2rem auto;
+}
+
+.topRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.wrapper2 {
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 1rem;
+  display: flex;
+}
+
+.topRowLeft {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  @media (max-width: 720px) {
+    justify-content: center;
+  }
+}
+
+.primaryShadeSelect {
+  max-width: 65px;
+}
+
+.primaryColorSelect {
+  max-width: 100px;
+}
+
+.colorSchemeSelect {
+  max-width: 90px;
+}

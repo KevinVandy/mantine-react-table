@@ -1,18 +1,9 @@
 import { Flex } from '@mantine/core';
+import classes from './StatBadges.module.css';
 
 export const StatBadges = () => {
   return (
-    <Flex
-      sx={{
-        gap: '16px',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        margin: '16px',
-        '& img': {
-          imageRendering: 'pixelated',
-        },
-      }}
-    >
+    <Flex className={classes.statBadges}>
       <a
         aria-label="NPM Version"
         href="https://npmjs.com/package/mantine-react-table"

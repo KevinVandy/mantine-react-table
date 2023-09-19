@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Box, Flex, Button, Select, Tooltip } from '@mantine/core';
-import {
-  CodeHighlightTabs,
-} from '@mantine/code-highlight';
+import { CodeHighlightTabs } from '@mantine/code-highlight';
 import {
   IconBrandTypescript,
   IconBrandJavascript,
@@ -17,6 +15,7 @@ import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
 import { useThemeContext } from '../../styles/ThemeContext';
 import { type MantineShade } from 'mantine-react-table';
+import classes from './SourceCodeSnippet.module.css';
 
 const mantineColors = [
   'dark',
@@ -79,44 +78,16 @@ export const SourceCodeSnippet = ({
   );
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        margin: '2rem auto',
-      }}
-    >
+    <Box className={classes.wrapper}>
       {Component && (
         <>
           {showTopRow && (
-            <Box
-              sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '16px',
-              }}
-            >
+            <Box className={classes.topRow}>
               <LinkHeading tableId={tableId} order={4}>
                 Demo
               </LinkHeading>
-              <Flex
-                sx={{
-                  justifyContent: 'space-between',
-                  flexGrow: 1,
-                  flexWrap: 'wrap',
-                  gap: '1rem',
-                }}
-              >
-                <Flex
-                  sx={{
-                    flexWrap: 'wrap',
-                    gap: '16px',
-                    '@media (max-width: 720px)': {
-                      justifyContent: 'center',
-                    },
-                  }}
-                >
+              <Box className={classes.wrapper2}>
+                <Flex className={classes.topRowLeft}>
                   <a
                     href={`https://stackblitz.com/github/KevinVandy/mantine-react-table/tree/main/apps/mantine-react-table-docs/examples/${tableId}/sandbox?file=src/TS.tsx`}
                     rel="noopener"
@@ -124,9 +95,9 @@ export const SourceCodeSnippet = ({
                   >
                     <Button
                       color="green.7"
-                      leftIcon={<IconBolt />}
+                      leftSection={<IconBolt />}
                       onClick={() => plausible('open-stackblitz')}
-                      rightIcon={<IconExternalLink />}
+                      rightSection={<IconExternalLink />}
                       variant="outline"
                     >
                       Open Stackblitz
@@ -139,9 +110,9 @@ export const SourceCodeSnippet = ({
                   >
                     <Button
                       color="yellow.7"
-                      leftIcon={<IconBrandCodesandbox />}
+                      leftSection={<IconBrandCodesandbox />}
                       onClick={() => plausible('open-code-sandbox')}
-                      rightIcon={<IconExternalLink />}
+                      rightSection={<IconExternalLink />}
                       variant="outline"
                     >
                       Open Code Sandbox
@@ -156,9 +127,9 @@ export const SourceCodeSnippet = ({
                   >
                     <Button
                       color="blue.7"
-                      rightIcon={<IconExternalLink />}
+                      rightSection={<IconExternalLink />}
                       onClick={() => plausible('open-on-github')}
-                      leftIcon={<IconBrandGithub />}
+                      leftSection={<IconBrandGithub />}
                       variant="outline"
                     >
                       Open on GitHub
@@ -175,7 +146,7 @@ export const SourceCodeSnippet = ({
                         setPrimaryShade(+(value as string) as MantineShade);
                         plausible('change-shade');
                       }}
-                      sx={{ width: '65px' }}
+                      className={classes.primaryShadeSelect}
                     />
                   </Tooltip>
                   <Tooltip label="Select Theme Primary Color">
@@ -187,7 +158,7 @@ export const SourceCodeSnippet = ({
                         setPrimaryColor(value as string);
                         plausible('change-primary-color');
                       }}
-                      sx={{ width: '100px' }}
+                      className={classes.primaryColorSelect}
                     />
                   </Tooltip>
                   <Tooltip label="Select Theme Color Scheme">
@@ -199,11 +170,11 @@ export const SourceCodeSnippet = ({
                         setIsLightTheme(value === 'light');
                         plausible(`toggle-theme-${value}-mode`);
                       }}
-                      sx={{ width: '90px' }}
+                      className={classes.colorSchemeSelect}
                     />
                   </Tooltip>
                 </Flex>
-              </Flex>
+              </Box>
             </Box>
           )}
           <Component />

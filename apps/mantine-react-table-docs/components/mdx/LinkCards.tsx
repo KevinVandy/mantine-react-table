@@ -1,5 +1,6 @@
 import { Box, Card, Text, Title, Anchor } from '@mantine/core';
 import Image from 'next/image';
+import classes from './LinkCards.module.css';
 
 const cardData = [
   {
@@ -31,55 +32,20 @@ const cardData = [
 
 export const LinkCards = () => {
   return (
-    <Box
-      sx={{
-        marginTop: '2rem',
-        textAlign: 'center',
-      }}
-    >
-      <Title sx={{ padding: '16px' }} order={3}>
+    <Box className={classes.wrapper}>
+      <Title className={classes.title} order={3}>
         Important Links
       </Title>
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '24px',
-        }}
-      >
+      <Box className={classes.wrapper2}>
         {cardData.map((cd, index) => (
           <Anchor
             key={index}
             href={cd.href}
             target="_blank"
             rel="noopener noreferrer"
-            sx={{ textDecoration: 'none' }}
+            className={classes.anchor}
           >
-            <Card
-              shadow="md"
-              withBorder
-              sx={(theme) => ({
-                alignItems: 'center',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100px',
-                fontWeight: 'bold',
-                gap: '16px',
-                justifyContent: 'center',
-                padding: '16px',
-                width: '10rem',
-                '&:hover': {
-                  boxShadow: `1px 4px 8px gray`,
-                  '& img': {
-                    transform: 'scale(1.01)',
-                    transition: 'transform 100ms ease-in-out',
-                  },
-                },
-              })}
-            >
+            <Card shadow="md" withBorder className={classes.card}>
               <Image
                 src={cd.image}
                 alt={cd.text}

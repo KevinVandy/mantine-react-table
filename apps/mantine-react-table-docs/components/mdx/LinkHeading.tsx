@@ -4,19 +4,18 @@ import { useRouter } from 'next/router';
 import {
   ActionIcon,
   Anchor,
-  packSx,
-  type Sx,
   Title,
   type TitleProps,
   Tooltip,
 } from '@mantine/core';
 import { IconLink } from '@tabler/icons-react';
+import classes from './LinkHeading.module.css';
+import clsx from 'clsx';
 
 interface Props extends TitleProps {
   children: ReactNode | string;
   tableId?: string;
   href?: string;
-  sx?: Sx | Sx[];
 }
 
 export const LinkHeading = ({ children, tableId, ...rest }: Props) => {
@@ -39,35 +38,17 @@ export const LinkHeading = ({ children, tableId, ...rest }: Props) => {
 
   return (
     <Link href={href} passHref legacyBehavior>
-      <Anchor
-        sx={{
-          color: 'inherit',
-          textDecoration: 'none',
-          '&:hover': {
-            textDecoration: 'underline',
-          },
-        }}
-      >
+      <Anchor className={classes.anchor}>
         <Title
-          className={id.includes('relevant') ? 'relevant' : undefined}
+          className={clsx(id.includes('relevant') && 'relevant', classes.title)}
           id={id}
           {...rest}
-          sx={[
-            { display: 'flex', gap: '16px', alignItems: 'center' },
-            //...packSx(rest.sx),
-          ]}
         >
           {children}
           <ActionIcon
             aria-label="Copy link"
             onClick={handleCopy}
-            sx={{
-              opacity: 0.2,
-              transition: 'all 100ms ease',
-              '&:hover': {
-                opacity: 1,
-              },
-            }}
+            className={classes.actionIcon}
           >
             <Tooltip withinPortal label={isCopied ? 'Copied!' : 'Copy Link'}>
               <IconLink />

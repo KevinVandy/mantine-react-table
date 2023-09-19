@@ -1,39 +1,13 @@
 import { Box, Card, Code, Stack, Text, Title } from '@mantine/core';
 import Image from 'next/image';
 import { AnchorLink } from './AnchorLink';
+import classes from './HomeCards.module.css';
 
-export const HomeCards = () => {
+export function HomeCards() {
   return (
-    <Box
-      sx={{
-        marginTop: '3rem',
-        gap: '1rem',
-        display: 'grid',
-        gridTemplateColumns: '2fr 1fr',
-        h3: {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
-          marginBottom: '1rem',
-          gap: '0.75rem',
-        },
-        '@media (max-width: 1024px)': {
-          gridTemplateColumns: '1fr',
-        },
-      }}
-    >
-      <Stack sx={{ display: 'grid', gap: '1rem' }}>
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '1rem',
-            '@media (max-width: 768px)': {
-              gridTemplateColumns: '1fr',
-            },
-          }}
-        >
+    <Box className={classes.homeCardsGrid}>
+      <Stack className={classes.homeCardsStack}>
+        <Box className={classes.homeCardsGrid2}>
           <Card>
             <Title order={3}>The Best of Both Worlds</Title>
             <Box
@@ -73,16 +47,7 @@ export const HomeCards = () => {
             </Text>
           </Card>
         </Box>
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '1rem',
-            '@media (max-width: 768px)': {
-              gridTemplateColumns: '1fr',
-            },
-          }}
-        >
+        <Box className={classes.homeCardsGrid2}>
           <Card>
             <Title order={3}>
               <Image
@@ -125,7 +90,7 @@ export const HomeCards = () => {
           </Card>
         </Box>
       </Stack>
-      <Stack sx={{ display: 'grid', gap: '1rem' }}>
+      <Stack className={classes.homeCardsStack}>
         <Card>
           <Title order={3}>
             <Image
@@ -210,4 +175,4 @@ export const HomeCards = () => {
       </Stack>
     </Box>
   );
-};
+}

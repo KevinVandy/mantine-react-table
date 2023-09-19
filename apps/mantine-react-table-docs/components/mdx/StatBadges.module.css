@@ -1,0 +1,11 @@
+.statBadges {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px;
+
+  & img {
+    image-rendering: pixelated;
+  }
+}

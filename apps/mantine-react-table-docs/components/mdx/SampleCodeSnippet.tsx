@@ -1,11 +1,14 @@
-import { CodeHighlight, type CodeHighlightProps } from '@mantine/code-highlight';
+import {
+  CodeHighlight,
+  type CodeHighlightProps,
+} from '@mantine/code-highlight';
 import { Code, Paper, useMantineTheme } from '@mantine/core';
 
 interface Props extends CodeHighlightProps {
   children: string;
 }
 
-export const SampleCodeSnippet = (props: Props) => {
+export function SampleCodeSnippet(props: Props) {
   const { primaryColor } = useMantineTheme();
 
   if (!props.language && !props.className) {
@@ -21,11 +24,8 @@ export const SampleCodeSnippet = (props: Props) => {
       <CodeHighlight
         {...props}
         code={props.children}
-        language={
-          props.language ??
-          (props?.className?.replace(/language-/, ''))
-        }
+        language={props.language ?? props?.className?.replace(/language-/, '')}
       />
     </Paper>
   );
-};
+}

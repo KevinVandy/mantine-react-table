@@ -3,6 +3,7 @@ import { Blockquote } from './Blockquote';
 import { SampleCodeSnippet } from './SampleCodeSnippet';
 import { LinkHeading } from './LinkHeading';
 import { AnchorLink } from './AnchorLink';
+import { Paragraph } from './Paragraph';
 
 export const mdxComponents = {
   a: (props: any) => <AnchorLink {...props} />,
@@ -26,18 +27,5 @@ export const mdxComponents = {
       <Text>{props.children}</Text>
     </li>
   ),
-  p: (props: any) => (
-    <Text
-      className="docsearch-content"
-      sx={{
-        textAlign: {
-          xs: 'left',
-          md: 'justify',
-        },
-        lineHeight: '1.75rem',
-        margin: '12px 0',
-      }}
-      {...props}
-    />
-  ),
+  p: (props: any) => <Paragraph {...props} />,
 };
