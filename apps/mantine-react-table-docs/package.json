@@ -49,6 +49,9 @@
     "eslint-config-next": "13.4.19",
     "next-plausible": "^3.11.1",
     "raw-loader": "^4.0.2",
+    "postcss": "^8.4.30",
+    "postcss-preset-mantine": "^1.7.0",
+    "postcss-simple-vars": "^7.0.1",
     "typescript": "5.2.2"
   }
 }

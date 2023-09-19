@@ -8,7 +8,7 @@ import Head from 'next/head';
 import PlausibleProvider from 'next-plausible';
 import { useRouter } from 'next/router';
 import { MDXProvider } from '@mdx-js/react';
-import { Box } from '@mantine/core';
+import { AppShell } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { mdxComponents } from '../components/mdx/mdxComponents';
 import { ThemeContextProvider } from '../styles/ThemeContext';
@@ -33,9 +33,7 @@ function App({ Component, pageProps }: AppProps) {
   const isMobile = !!useMediaQuery('(max-width: 900px)');
   const isDesktop = !!useMediaQuery('(min-width: 1500px)');
   const isXLDesktop = !!useMediaQuery('(min-width: 1800px)');
-
   const [navOpen, setNavOpen] = useState(false);
-
   const isNavOpen = navOpen || (isDesktop && pathname !== '/');
 
   return (
@@ -77,38 +75,42 @@ function App({ Component, pageProps }: AppProps) {
       >
         <ThemeContextProvider>
           <MDXProvider components={mdxComponents}>
-            <TopBar navOpen={isNavOpen} setNavOpen={setNavOpen} />
-            <SideBar navOpen={isNavOpen} setNavOpen={setNavOpen} />
-            <Box
-              component="main"
-              sx={{
-                maxWidth: showMiniNav ? '1800px' : '1600px',
-                margin: 'auto',
-                minHeight: '100vh',
-                padding: `75px ${
-                  isMobile
+            <AppShell
+              header={{ height: 55 }}
+              navbar={{ width: 300, breakpoint: 'sm' }}
+              padding="md"
+            >
+              <TopBar navOpen={isNavOpen} setNavOpen={setNavOpen} />
+              <SideBar navOpen={isNavOpen} setNavOpen={setNavOpen} />
+              <AppShell.Main
+                style={{
+                  maxWidth: showMiniNav ? '1800px' : '1600px',
+                  margin: 'auto',
+                  minHeight: '100vh',
+                  padding: `75px ${isMobile
                     ? '16px'
                     : showMiniNav && isXLDesktop
-                    ? '300px'
-                    : '36px'
-                } 0 ${isMobile ? '16px' : isNavOpen ? '300px' : '36px'}`,
-                transition: 'all 100ms ease-in-out',
-                width: '100%',
-              }}
-            >
-              {showBreadCrumbs && <BreadCrumbs />}
-              {showMiniNav && !isXLDesktop && <MiniNav />}
-              {pathname === '/' ? (
-                <Component {...pageProps} />
-              ) : (
-                <article>
+                      ? '300px'
+                      : '36px'
+                    } 0 ${isMobile ? '16px' : isNavOpen ? '300px' : '36px'}`,
+                  transition: 'all 100ms ease-in-out',
+                  width: '100%',
+                }}
+              >
+                {showBreadCrumbs && <BreadCrumbs />}
+                {showMiniNav && !isXLDesktop && <MiniNav />}
+                {pathname === '/' ? (
                   <Component {...pageProps} />
-                </article>
-              )}
-              <SuggestsEditsButton />
-              <Footer />
-            </Box>
-            {showMiniNav && isXLDesktop && <MiniNav />}
+                ) : (
+                  <article>
+                    <Component {...pageProps} />
+                  </article>
+                )}
+                <SuggestsEditsButton />
+                <Footer />
+              </AppShell.Main>
+              {showMiniNav && isXLDesktop && <MiniNav />}
+            </AppShell>
           </MDXProvider>
         </ThemeContextProvider>
       </PlausibleProvider>
