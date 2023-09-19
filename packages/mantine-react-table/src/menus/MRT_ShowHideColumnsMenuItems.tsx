@@ -5,10 +5,18 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Box, Menu, Switch, Tooltip, Text } from '@mantine/core';
+import {
+  Box,
+  Menu,
+  Switch,
+  Tooltip,
+  Text,
+  useMantineTheme,
+  rem,
+} from '@mantine/core';
 import { MRT_ColumnPinningButtons } from '../buttons/MRT_ColumnPinningButtons';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
-import { reorderColumn } from '../column.utils';
+import { getPrimaryColor, reorderColumn } from '../column.utils';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
 
 import classes from './MRT_ShowHideColumnsMenuItems.module.css';
@@ -32,6 +40,7 @@ export const MRT_ShowHideColumnsMenuItems = <
   isSubMenu,
   table,
 }: Props<TData>) => {
+  const theme = useMantineTheme();
   const {
     getState,
     options: {
@@ -90,12 +99,15 @@ export const MRT_ShowHideColumnsMenuItems = <
         component="span"
         ref={menuItemRef as any}
         __vars={{
-          '--_column-depth': `${column.depth}`,
+          '--_column-depth': rem(column.depth),
+          '--_hover-color': getPrimaryColor(theme),
         }}
         onDragEnter={handleDragEnter}
         className={classes.root}
         data-dragging={isDragging || undefined}
-        data-hovered={hoveredColumn?.id === column.id || undefined}
+        data-hovered={
+          (!isDragging && hoveredColumn?.id === column.id) || undefined
+        }
       >
         <Box className={classes.menu}>
           {!isSubMenu &&
