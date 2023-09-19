@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Box, Anchor, Stack, Title, Text } from '@mantine/core';
+import classes from './BlogAuthor.module.css';
 
 interface Props {
   author?: string;
@@ -16,23 +17,12 @@ export const BlogAuthor = ({
 }: Props) => {
   return (
     <Stack>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: 'auto 50px',
-          gap: '1rem',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-        }}
-      >
+      <Box className={classes.author}>
         <Text fz="14pt">
           By{' '}
           <Anchor
             color="text.primary"
-            sx={{
-              textDecoration: 'none',
-              '&:hover': { textDecoration: 'underline' },
-            }}
+            className={classes.anchor}
             target="_blank"
             rel="noopener noreferrer"
             href={authorLink}

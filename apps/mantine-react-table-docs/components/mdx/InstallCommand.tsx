@@ -2,34 +2,54 @@ import { useState } from 'react';
 import { Tabs } from '@mantine/core';
 import { SampleCodeSnippet } from './SampleCodeSnippet';
 
-const defaultPackagesString =
+const packagesString =
   'mantine-react-table @mantine/core@6.0.21 @mantine/hooks@6.0.21 @mantine/dates@6.0.21 @emotion/react @tabler/icons-react dayjs';
 
-export const InstallCommand = ({
-  packagesString = defaultPackagesString,
-  ...rest
-}) => {
-  const [tab, setTab] = useState<string | null>('npm');
+export function InstallCommand() {
+  const tabValues = [
+    {
+      value: 'npm',
+      label: 'NPM',
+      command: `npm i ${packagesString}`,
+    },
+    {
+      value: 'pnpm',
+      label: 'PNPM',
+      command: `pnpm add ${packagesString}`,
+    },
+    {
+      value: 'yarn',
+      label: 'Yarn',
+      command: `yarn add ${packagesString}`,
+    },
+    {
+      value: 'bun',
+      label: 'Bun',
+      command: `bun i ${packagesString}`,
+    },
+  ];
 
   return (
     <>
-      <Tabs value={tab} onTabChange={setTab}>
-        <Tabs.List {...rest}>
-          <Tabs.Tab value="npm">NPM</Tabs.Tab>
-          <Tabs.Tab value="pnpm">PNPM</Tabs.Tab>
-          <Tabs.Tab value="yarn">Yarn</Tabs.Tab>
+      <Tabs defaultValue="npm">
+        <Tabs.List>
+          {tabValues.map((tabValue) => (
+            <Tabs.Tab key={tabValue.value} value={tabValue.value}>
+              {tabValue.label}
+            </Tabs.Tab>
+          ))}
         </Tabs.List>
+        {tabValues.map((tabValue) => (
+          <Tabs.Panel key={tabValue.value} value={tabValue.value}>
+            <SampleCodeSnippet
+              className="language-bash"
+              style={{ overflowX: 'hidden' }}
+            >
+              {tabValue.command}
+            </SampleCodeSnippet>
+          </Tabs.Panel>
+        ))}
       </Tabs>
-      <SampleCodeSnippet
-        className="language-bash"
-        style={{ overflowX: 'hidden' }}
-      >
-        {tab === 'npm'
-          ? `npm i ${packagesString}`
-          : tab === 'pnpm'
-          ? `pnpm add ${packagesString}`
-          : `yarn add ${packagesString}`}
-      </SampleCodeSnippet>
     </>
   );
-};
+}

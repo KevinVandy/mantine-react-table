@@ -2,6 +2,7 @@ import { Anchor, Button, Stack, Text } from '@mantine/core';
 import { IconBrandGithub, IconEdit } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
 import { usePlausible } from 'next-plausible';
+import classes from './SuggestsEditButton.module.css';
 
 export const SuggestsEditsButton = () => {
   const { pathname } = useRouter();
@@ -25,26 +26,16 @@ export const SuggestsEditsButton = () => {
       >
         <Button
           color="teal"
-          rightIcon={<IconBrandGithub />}
-          leftIcon={<IconEdit />}
+          rightSection={<IconBrandGithub />}
+          leftSection={<IconEdit />}
           onClick={() => plausible('edit-on-github')}
-          sx={{
-            height: '3rem',
-            cursor: 'pointer',
-            textAlign: 'center',
-          }}
+          className={classes.button}
           variant="outline"
         >
           Suggest an Edit for this page on GitHub
         </Button>
       </a>
-      <Text
-        sx={{
-          justifyContent: 'center',
-          display: 'flex',
-          alignContent: 'center',
-        }}
-      >
+      <Text className={classes.youCanHelpMakeTheseDocsBetter}>
         You can help make these docs better!{' '}
         <a
           aria-label="Learn how to contribute"
@@ -59,12 +50,7 @@ export const SuggestsEditsButton = () => {
           />
         </a>
       </Text>
-      <Text
-        sx={{
-          marginTop: '2rem',
-          textAlign: 'center',
-        }}
-      >
+      <Text className={classes.materialUi}>
         Using{' '}
         <Anchor
           color="blue.6"
@@ -80,17 +66,7 @@ export const SuggestsEditsButton = () => {
         <Anchor
           href="https://material-react-table.com"
           target="_blank"
-          sx={(theme) => ({
-            background: `-webkit-linear-gradient(left, ${theme.colors.blue[6]}, ${theme.colors.teal[7]})`,
-            display: 'inline',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            textDecoration: 'none',
-            '&:hover': {
-              textDecoration: 'underline',
-              textDecorationColor: theme.colors.blue[6],
-            },
-          })}
+          className={classes.materialUiAnchor}
         >
           Material&nbsp;React&nbsp;Table
         </Anchor>

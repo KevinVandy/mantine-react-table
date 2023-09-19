@@ -1,0 +1,23 @@
+.anchor {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.title {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.actionIcon {
+  opacity: 0.2;
+  transition: all 100ms ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}

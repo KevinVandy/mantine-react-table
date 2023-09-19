@@ -1,6 +1,6 @@
 import { Box, Card, Text, Anchor } from '@mantine/core';
-import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
 import Image from 'next/image';
+import classes from './Contributors.module.css';
 
 const cardData = [
   {
@@ -25,58 +25,17 @@ const cardData = [
 
 export const Contributors = () => {
   return (
-    <Box
-      sx={{
-        marginTop: '4rem',
-        textAlign: 'center',
-      }}
-    >
-      <Box
-        sx={{
-          padding: '16px 150px 3rem 150px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '24px',
-          '@media(max-width: 900px)': {
-            padding: '16px 16px 2rem 16px',
-          },
-        }}
-      >
+    <Box className={classes.wrapper}>
+      <Box className={classes.wrapper2}>
         {cardData.map((cd, index) => (
           <Anchor
             key={index}
             href={cd.href}
             target="_blank"
             rel="noopener noreferrer"
-            sx={{ textDecoration: 'none' }}
+            className={classes.anchor}
           >
-            <Card
-              withBorder
-              shadow="xs"
-              sx={(theme) => ({
-                alignItems: 'center',
-                borderRadius: '8px',
-                color: getPrimaryColor(theme),
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: '200px',
-                minHeight: '200px',
-                gap: '16px',
-                justifyContent: 'center',
-                padding: '16px',
-                textAlign: 'center',
-                width: '10rem',
-                '&:hover': {
-                  boxShadow: `1px 4px 8px black`,
-                  '& img': {
-                    transform: 'scale(1.01)',
-                    transition: 'transform 100ms ease-in-out',
-                  },
-                },
-              })}
-            >
+            <Card withBorder shadow="xs" className={classes.card}>
               <Image
                 src={cd.image}
                 alt={cd.name}

@@ -1,0 +1,85 @@
+.wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 5rem;
+  font-weight: bold;
+  line-height: 6rem;
+
+  @media (max-width: 1024px) {
+    font-size: 3rem;
+    line-height: 4rem;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+    line-height: 3rem;
+  }
+}
+
+.subtitle {
+  font-size: 2.3rem;
+  text-align: center;
+  line-height: 2.25rem;
+  font-weight: normal;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.titleMantineReactTable {
+  background-image: linear-gradient(
+    to right,
+    var(--TODO_PRIMARY_COLOR),
+    var(--mantine-colors-blue-7)
+  );
+  display: inline;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.buttonSection {
+  margin-top: 1rem;
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 16rem 16rem;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 16rem;
+  }
+
+  > a {
+    display: block;
+  }
+}
+
+.comparisonTitle {
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 32px;
+}
+
+.comparisonTitleMantineReactTable {
+  background-image: linear-gradient(
+    to right,
+    var(--mantine-colors-blue-7),
+    var(--mantine-colors-blue-7)
+  );
+  display: inline;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
