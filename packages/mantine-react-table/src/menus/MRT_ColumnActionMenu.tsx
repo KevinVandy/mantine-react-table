@@ -1,6 +1,8 @@
 import { ActionIcon, Menu, Tooltip } from '@mantine/core';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
+import classes from './MRT_ColumnActionMenu.module.css';
+
 interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
@@ -117,7 +119,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
           {enableSortingRemoval !== false && (
             <Menu.Item
               disabled={!column.getIsSorted()}
-              icon={<IconClearAll />}
+              leftSection={<IconClearAll />}
               onClick={handleClearSort}
             >
               {localization.clearSort}
@@ -125,7 +127,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
           )}
           <Menu.Item
             disabled={column.getIsSorted() === 'asc'}
-            icon={<IconSortAscending />}
+            leftSection={<IconSortAscending />}
             onClick={handleSortAsc}
           >
             {localization.sortByColumnAsc?.replace(
@@ -134,7 +136,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
             )}
           </Menu.Item>
           <Menu.Item
-            icon={<IconSortDescending />}
+            leftSection={<IconSortDescending />}
             disabled={column.getIsSorted() === 'desc'}
             onClick={handleSortDesc}
           >
@@ -154,12 +156,15 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
           <>
             <Menu.Item
               disabled={!column.getFilterValue()}
-              icon={<IconFilterOff />}
+              leftSection={<IconFilterOff />}
               onClick={handleClearFilter}
             >
               {localization.clearFilter}
             </Menu.Item>
-            <Menu.Item icon={<IconFilter />} onClick={handleFilterByColumn}>
+            <Menu.Item
+              leftSection={<IconFilter />}
+              onClick={handleFilterByColumn}
+            >
               {localization.filterByColumn?.replace(
                 '{column}',
                 String(columnDef.header),
@@ -170,7 +175,10 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
         )}
       {enableGrouping && column.getCanGroup() && (
         <>
-          <Menu.Item icon={<IconBoxMultiple />} onClick={handleGroupByColumn}>
+          <Menu.Item
+            leftSection={<IconBoxMultiple />}
+            onClick={handleGroupByColumn}
+          >
             {localization[
               column.getIsGrouped() ? 'ungroupByColumn' : 'groupByColumn'
             ]?.replace('{column}', String(columnDef.header))}
@@ -182,21 +190,21 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
         <>
           <Menu.Item
             disabled={column.getIsPinned() === 'left' || !column.getCanPin()}
-            icon={<IconPinned style={{ transform: 'rotate(90deg)' }} />}
+            leftSection={<IconPinned style={{ transform: 'rotate(90deg)' }} />}
             onClick={() => handlePinColumn('left')}
           >
             {localization.pinToLeft}
           </Menu.Item>
           <Menu.Item
             disabled={column.getIsPinned() === 'right' || !column.getCanPin()}
-            icon={<IconPinned style={{ transform: 'rotate(-90deg)' }} />}
+            leftSection={<IconPinned style={{ transform: 'rotate(-90deg)' }} />}
             onClick={() => handlePinColumn('right')}
           >
             {localization.pinToRight}
           </Menu.Item>
           <Menu.Item
             disabled={!column.getIsPinned()}
-            icon={<IconPinnedOff />}
+            leftSection={<IconPinnedOff />}
             onClick={() => handlePinColumn(false)}
           >
             {localization.unpin}
@@ -207,7 +215,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
       {enableColumnResizing && column.getCanResize() && (
         <Menu.Item
           disabled={!columnSizing[column.id]}
-          icon={<IconArrowAutofitContent />}
+          leftSection={<IconArrowAutofitContent />}
           key={0}
           onClick={handleResetColumnSize}
         >
@@ -218,7 +226,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
         <>
           <Menu.Item
             disabled={!column.getCanHide()}
-            icon={<IconEyeOff />}
+            leftSection={<IconEyeOff />}
             key={0}
             onClick={handleHideColumn}
           >
@@ -232,7 +240,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
               !Object.values(columnVisibility).filter((visible) => !visible)
                 .length
             }
-            icon={<IconColumns />}
+            leftSection={<IconColumns />}
             key={1}
             onClick={handleShowAllColumns}
           >
@@ -258,16 +266,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
             aria-label={localization.columnActions}
             size="sm"
             {...actionIconProps}
-            sx={(theme) => ({
-              opacity: 0.5,
-              transition: 'opacity 100ms',
-              '&:hover': {
-                opacity: 1,
-              },
-              ...(actionIconProps?.sx instanceof Function
-                ? actionIconProps.sx(theme)
-                : (actionIconProps?.sx as any)),
-            })}
+            className={classes.actionIcon}
           >
             <IconDotsVertical />
           </ActionIcon>

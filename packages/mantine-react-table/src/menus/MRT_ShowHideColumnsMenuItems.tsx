@@ -5,11 +5,21 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Box, Menu, Switch, Tooltip, Text } from '@mantine/core';
+import {
+  Box,
+  Menu,
+  Switch,
+  Tooltip,
+  Text,
+  useMantineTheme,
+  rem,
+} from '@mantine/core';
 import { MRT_ColumnPinningButtons } from '../buttons/MRT_ColumnPinningButtons';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
 import { getPrimaryColor, reorderColumn } from '../column.utils';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
+
+import classes from './MRT_ShowHideColumnsMenuItems.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   allColumns: MRT_Column<TData>[];
@@ -30,6 +40,7 @@ export const MRT_ShowHideColumnsMenuItems = <
   isSubMenu,
   table,
 }: Props<TData>) => {
+  const theme = useMantineTheme();
   const {
     getState,
     options: {
@@ -87,29 +98,18 @@ export const MRT_ShowHideColumnsMenuItems = <
       <Menu.Item
         component="span"
         ref={menuItemRef as any}
+        __vars={{
+          '--_column-depth': rem(column.depth),
+          '--_hover-color': getPrimaryColor(theme),
+        }}
         onDragEnter={handleDragEnter}
-        sx={(theme) => ({
-          alignItems: 'center',
-          cursor: 'default',
-          justifyContent: 'flex-start',
-          opacity: isDragging ? 0.5 : 1,
-          outline: isDragging
-            ? `1px dashed ${theme.colors.gray[7]}`
-            : hoveredColumn?.id === column.id
-            ? `2px dashed ${getPrimaryColor(theme)}`
-            : 'none',
-          paddingLeft: `${(column.depth + 0.5) * 2}rem`,
-          paddingTop: '6px',
-          paddingBottom: '6px',
-        })}
+        className={classes.root}
+        data-dragging={isDragging || undefined}
+        data-hovered={
+          (!isDragging && hoveredColumn?.id === column.id) || undefined
+        }
       >
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'nowrap',
-            gap: '8px',
-          }}
-        >
+        <Box className={classes.menu}>
           {!isSubMenu &&
             columnDefType !== 'group' &&
             enableColumnOrdering &&
@@ -123,14 +123,14 @@ export const MRT_ShowHideColumnsMenuItems = <
                 table={table}
               />
             ) : (
-              <Box sx={{ width: '22px' }} />
+              <Box className={classes.grab} />
             ))}
           {!isSubMenu &&
             enablePinning &&
             (column.getCanPin() ? (
               <MRT_ColumnPinningButtons column={column} table={table} />
             ) : (
-              <Box sx={{ width: '70px' }} />
+              <Box className={classes.pin} />
             ))}
           {enableHiding ? (
             <Tooltip
@@ -143,13 +143,11 @@ export const MRT_ShowHideColumnsMenuItems = <
                 disabled={(isSubMenu && switchChecked) || !column.getCanHide()}
                 label={columnDef.header}
                 onChange={() => handleToggleColumnHidden(column)}
-                sx={{
-                  cursor: 'pointer !important',
-                }}
+                className={classes.switch}
               />
             </Tooltip>
           ) : (
-            <Text sx={{ alignSelf: 'center' }}>{columnDef.header}</Text>
+            <Text className={classes.header}>{columnDef.header}</Text>
           )}
         </Box>
       </Menu.Item>

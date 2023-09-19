@@ -58,8 +58,8 @@ export const RowClickAndRowMenuActions = () => {
       enableEditing
       renderRowActionMenuItems={() => (
         <>
-          <Menu.Item icon={<IconUserCircle />}>View Profile</Menu.Item>
-          <Menu.Item icon={<IconSend />}>Send Email</Menu.Item>
+          <Menu.Item leftSection={<IconUserCircle />}>View Profile</Menu.Item>
+          <Menu.Item leftSection={<IconSend />}>Send Email</Menu.Item>
         </>
       )}
       mantineTableBodyRowProps={{

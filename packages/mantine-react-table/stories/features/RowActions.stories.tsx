@@ -48,7 +48,7 @@ export const RowActionsEnabled = () => (
     enableRowActions
     renderRowActionMenuItems={({ row }) => [
       <Menu.Item
-        icon={<IconUser />}
+        leftSection={<IconUser />}
         key={1}
         onClick={() => {
           console.info('View Profile', row);
@@ -57,7 +57,7 @@ export const RowActionsEnabled = () => (
         View Profile
       </Menu.Item>,
       <Menu.Item
-        icon={<IconTrash />}
+        leftSection={<IconTrash />}
         key={2}
         onClick={() => {
           console.info('Remove', row);
@@ -66,7 +66,7 @@ export const RowActionsEnabled = () => (
         Remove
       </Menu.Item>,
       <Menu.Item
-        icon={<IconShare />}
+        leftSection={<IconShare />}
         key={3}
         onClick={() => {
           console.info('Share', row);
@@ -86,7 +86,7 @@ export const RowActionsAndEditingEnabled = () => (
     enableEditing
     renderRowActionMenuItems={({ row }) => [
       <Menu.Item
-        icon={<IconUser />}
+        leftSection={<IconUser />}
         key={1}
         onClick={() => {
           console.info('View Profile', row);
@@ -95,7 +95,7 @@ export const RowActionsAndEditingEnabled = () => (
         View Profile
       </Menu.Item>,
       <Menu.Item
-        icon={<IconTrash />}
+        leftSection={<IconTrash />}
         key={2}
         onClick={() => {
           console.info('Remove', row);
@@ -104,7 +104,7 @@ export const RowActionsAndEditingEnabled = () => (
         Remove
       </Menu.Item>,
       <Menu.Item
-        icon={<IconShare />}
+        leftSection={<IconShare />}
         key={3}
         onClick={() => {
           console.info('Share', row);
@@ -125,7 +125,7 @@ export const RowActionsLastColumn = () => (
     positionActionsColumn="last"
     renderRowActionMenuItems={({ row }) => [
       <Menu.Item
-        icon={<IconUser />}
+        leftSection={<IconUser />}
         key={1}
         onClick={() => {
           console.info('View Profile', row);
@@ -134,7 +134,7 @@ export const RowActionsLastColumn = () => (
         View Profile
       </Menu.Item>,
       <Menu.Item
-        icon={<IconTrash />}
+        leftSection={<IconTrash />}
         key={2}
         onClick={() => {
           console.info('Remove', row);
@@ -143,7 +143,7 @@ export const RowActionsLastColumn = () => (
         Remove
       </Menu.Item>,
       <Menu.Item
-        icon={<IconShare />}
+        leftSection={<IconShare />}
         key={3}
         onClick={() => {
           console.info('Share', row);
@@ -224,7 +224,7 @@ export const RowActionsWithVirtualization = () => (
     enableRowVirtualization
     renderRowActionMenuItems={({ row }) => [
       <Menu.Item
-        icon={<IconUser />}
+        leftSection={<IconUser />}
         key={1}
         onClick={() => {
           console.info('View Profile', row);
@@ -233,7 +233,7 @@ export const RowActionsWithVirtualization = () => (
         View Profile
       </Menu.Item>,
       <Menu.Item
-        icon={<IconTrash />}
+        leftSection={<IconTrash />}
         key={2}
         onClick={() => {
           console.info('Remove', row);
@@ -242,7 +242,7 @@ export const RowActionsWithVirtualization = () => (
         Remove
       </Menu.Item>,
       <Menu.Item
-        icon={<IconShare />}
+        leftSection={<IconShare />}
         key={3}
         onClick={() => {
           console.info('Share', row);
@@ -263,7 +263,7 @@ export const RowActionsLastWithColumnOrdering = () => (
     positionActionsColumn="last"
     renderRowActionMenuItems={({ row }) => [
       <Menu.Item
-        icon={<IconUser />}
+        leftSection={<IconUser />}
         key={1}
         onClick={() => {
           console.info('View Profile', row);
@@ -272,7 +272,7 @@ export const RowActionsLastWithColumnOrdering = () => (
         View Profile
       </Menu.Item>,
       <Menu.Item
-        icon={<IconTrash />}
+        leftSection={<IconTrash />}
         key={2}
         onClick={() => {
           console.info('Remove', row);
@@ -281,7 +281,7 @@ export const RowActionsLastWithColumnOrdering = () => (
         Remove
       </Menu.Item>,
       <Menu.Item
-        icon={<IconShare />}
+        leftSection={<IconShare />}
         key={3}
         onClick={() => {
           console.info('Share', row);

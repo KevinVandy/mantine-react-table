@@ -1,0 +1,34 @@
+.root {
+  align-items: center;
+  cursor: default;
+  justify-content: flex-start;
+  opacity: 1;
+  outline: none;
+  padding-top: rem(6px);
+  padding-bottom: rem(6px);
+  padding-bottom: calc((var(--_column-depth) + 0.5) * 2);
+  &[data-dragging] {
+    opacity: 0.5;
+    outline: 1px dashed var(--mantine-color-gray-7);
+  }
+  &[data-hovered] {
+    outline: 2px dashed var(--_hover-color);
+  }
+}
+.menu {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: rem(8px);
+}
+.grab {
+  width: rem(22px);
+}
+.pin {
+  width: rem(70px);
+}
+.switch {
+  cursor: pointer !important;
+}
+.header {
+  align-self: center;
+}
