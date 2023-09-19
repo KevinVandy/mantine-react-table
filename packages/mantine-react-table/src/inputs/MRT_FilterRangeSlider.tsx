@@ -106,6 +106,7 @@ export const MRT_FilterRangeSlider = <TData extends Record<string, any> = {}>({
         marginTop: '16px',
         marginBottom: '6px',
         width: 'calc(100% - 8px)',
+        ...rangeSliderProps?.style,
       }}
     />
   );

@@ -73,6 +73,7 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
         style={{
           fontWeight: 'normal',
           marginTop: '8px',
+          ...checkboxProps?.style,
         }}
         title={undefined}
       />
