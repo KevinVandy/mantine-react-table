@@ -1,0 +1,33 @@
+.root {
+  align-items: center;
+  cursor: default;
+  justify-content: flex-start;
+  opacity: 1;
+  outline: none;
+  paddingtop: 6px;
+  paddingbottom: 6px;
+  &[data-dragging] {
+    opacity: 0.5;
+    outline: 1px dashed var(--mantine-color-gray-7);
+  }
+  &[data-hovered] {
+    outline: 2px dashed var(--mantine-primary-color-filled);
+  }
+}
+.menu {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+.grab {
+  width: 22px;
+}
+.pin {
+  width: 70px;
+}
+.switch {
+  cursor: pointer !important;
+}
+.header {
+  align-self: center;
+}

@@ -205,10 +205,10 @@ export const CustomAlertBannerHeadOverlay = () => (
           <MRT_SelectCheckbox selectAll table={table} /> {selectedAlert}{' '}
         </Flex>
         <Flex gap="md">
-          <Button leftIcon={<IconSend />} color="blue">
+          <Button leftSection={<IconSend />} color="blue">
             Email Selected
           </Button>
-          <Button leftIcon={<IconTrash />} color="red">
+          <Button leftSection={<IconTrash />} color="red">
             Remove Selected
           </Button>
         </Flex>
