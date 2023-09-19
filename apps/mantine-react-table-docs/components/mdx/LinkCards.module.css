@@ -1,0 +1,42 @@
+.wrapper {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.title {
+  padding: 16px;
+}
+
+.wrapper2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.anchor {
+  text-decoration: none;
+}
+
+.card {
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  font-weight: bold;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
+  width: 10rem;
+
+  &:hover {
+    box-shadow: 1px 4px 8px gray;
+
+    & img {
+      transform: scale(1.01);
+      transition: transform 100ms ease-in-out;
+    }
+  }
+}

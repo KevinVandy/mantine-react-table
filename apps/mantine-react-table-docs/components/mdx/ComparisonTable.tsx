@@ -1,6 +1,6 @@
 import { Box, Anchor } from '@mantine/core';
 import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
-import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
+import classes from './ComparisonTable.module.css';
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
@@ -12,21 +12,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
         href={row.original.libraryLink}
         target="_blank"
         rel="noopener"
-        sx={(theme) => ({
-          color:
-            cell.getValue() === 'Mantine React Table'
-              ? getPrimaryColor(theme)
-              : cell.getValue() === 'TanStack Table (React Table)'
-              ? theme.colors.blue[7]
-              : theme.colorScheme === 'dark'
-              ? theme.white
-              : theme.black,
-          fontWeight: 'bold',
-          textDecoration: 'none',
-          '&:hover': {
-            textDecoration: 'underline',
-          },
-        })}
+        className={classes.libraryAnchor}
       >
         <>{cell.getValue()}</>
       </Anchor>
@@ -41,7 +27,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
     accessorKey: 'bundleSize',
     header: 'Bundle Size',
     Cell: ({ cell, row }) => (
-      <Box sx={{ display: 'flex', alignContent: 'center', gap: '1ch' }}>
+      <Box className={classes.bundleSize}>
         {`${cell.getValue<string>()} KB`}
         <a href={row.original.bundlePhobiaLink} target="_blank" rel="noopener">
           <img

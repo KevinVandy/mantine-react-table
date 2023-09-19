@@ -1,0 +1,15 @@
+.blogauthor {
+  display: grid;
+  grid-template-columns: auto 50px;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.anchor {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

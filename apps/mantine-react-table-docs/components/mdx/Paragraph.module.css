@@ -1,0 +1,10 @@
+.paragraph {
+  text-align: left;
+  line-height: 1.75rem;
+  margin: 12px 0;
+
+  /* TODO: CHECK width for md */
+  @media (min-width: 768px) {
+    text-align: justify;
+  }
+}

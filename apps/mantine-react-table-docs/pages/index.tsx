@@ -13,54 +13,21 @@ import { PopularDocs } from '../components/mdx/PopularDocs';
 import { Contributors } from '../components/mdx/Contributors';
 import { InstallCommand } from '../components/mdx/InstallCommand';
 import BasicExamples from '../example-groups/BasicExamples';
+import classes from './index.module.css';
 
 const HomePage = () => {
   return (
-    <Stack sx={{ maxWidth: '1240px', margin: 'auto', paddingTop: '2rem' }}>
-      <Title
-        sx={{
-          textAlign: 'center',
-          fontSize: '5rem',
-          fontWeight: 'bold',
-          lineHeight: '6rem',
-          '@media (max-width: 1024px)': {
-            fontSize: '3rem',
-            lineHeight: '4rem',
-            marginBottom: '16px',
-          },
-          '@media (max-width: 768px)': {
-            fontSize: '32px',
-            lineHeight: '3rem',
-          },
-        }}
-        order={1}
-      >
+    <Stack className={classes.wrapper}>
+      <Title className={classes.title} order={1}>
         Welcome To
         <br />
-        <Box
-          sx={(theme) => ({
-            background: `-webkit-linear-gradient(left, ${getPrimaryColor(
-              theme,
-            )}, ${theme.colors.blue[7]})`,
-            display: 'inline',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          })}
-        >
+        <Box className={classes.titleMantineReactTable}>
           Mantine&nbsp;React&nbsp;Table
         </Box>
       </Title>
       <Title
         color="dimmed"
-        sx={{
-          fontSize: '2.3rem',
-          textAlign: 'center',
-          lineHeight: '2.25rem',
-          fontWeight: 'normal',
-          '@media (max-width: 768px)': {
-            fontSize: '1.5rem',
-          },
-        }}
+        className={classes.subtitle}
         order={2}
       >
         Built with{' '}
@@ -93,28 +60,10 @@ const HomePage = () => {
         </Link>
       </Title>
       <StatBadges />
-      <Box
-        sx={{
-          marginTop: '1rem',
-          display: 'grid',
-          gap: '24px',
-          width: '100%',
-          justifyContent: 'center',
-          gridTemplateColumns: '1fr 1fr 1fr 1fr',
-          '@media (max-width: 1024px)': {
-            gridTemplateColumns: '16rem 16rem',
-          },
-          '@media (max-width: 768px)': {
-            gridTemplateColumns: '16rem',
-          },
-          '> a': {
-            display: 'block',
-          },
-        }}
-      >
+      <Box className={classes.buttonSection}>
         <Link href="/docs/getting-started/install" passHref>
           <Button
-            rightIcon={<IconChevronRight />}
+            rightSection={<IconChevronRight />}
             fullWidth
             size="lg"
             variant="gradient"
@@ -125,7 +74,7 @@ const HomePage = () => {
         </Link>
         <Link href="/docs/api" passHref>
           <Button
-            rightIcon={<IconChevronRight />}
+            rightSection={<IconChevronRight />}
             fullWidth
             size="lg"
             variant="light"
@@ -135,7 +84,7 @@ const HomePage = () => {
         </Link>
         <Link href="/docs/examples" passHref>
           <Button
-            rightIcon={<IconChevronRight />}
+            rightSection={<IconChevronRight />}
             fullWidth
             size="lg"
             variant="light"
@@ -145,7 +94,7 @@ const HomePage = () => {
         </Link>
         <Link href="/docs/guides" passHref>
           <Button
-            rightIcon={<IconChevronRight />}
+            rightSection={<IconChevronRight />}
             fullWidth
             size="lg"
             variant="light"
@@ -155,36 +104,61 @@ const HomePage = () => {
         </Link>
       </Box>
       <Box>
-        <InstallCommand grow position="center" />
+        <InstallCommand />
       </Box>
       <HomeCards />
       <Title my="2rem" ta="center" order={3}>
         Popular Docs
       </Title>
-      <PopularDocs />
+      <Box className={classes.buttonSection}>
+        <Link href="/docs/getting-started/usage">
+          <Button size="xl" fullWidth variant="gradient">
+            Usage
+          </Button>
+        </Link>
+        <Link href="/docs/api/table-options">
+          <Button size="xl" fullWidth variant="gradient">
+            Table Options
+          </Button>
+        </Link>
+        <Link href="/docs/examples/editing-crud">
+          <Button size="xl" fullWidth variant="gradient">
+            CRUD Examples
+          </Button>
+        </Link>
+        <Link href="/docs/examples/react-query">
+          <Button size="xl" fullWidth variant="gradient">
+            Fetching Examples
+          </Button>
+        </Link>
+        <Link href="/docs/guides/localization">
+          <Button size="xl" fullWidth variant="gradient">
+            Localization
+          </Button>
+        </Link>
+        <Link href="/docs/guides/data-columns">
+          <Button size="xl" fullWidth variant="gradient">
+            Create Columns
+          </Button>
+        </Link>
+        <Link href="/docs/guides/column-filtering">
+          <Button size="xl" fullWidth variant="gradient">
+            Column Filtering
+          </Button>
+        </Link>
+        <Link href="/docs/guides/row-selection">
+          <Button size="xl" fullWidth variant="gradient">
+            Row Selection
+          </Button>
+        </Link>
+      </Box>
       <Title mt="2rem" ta="center" order={3}>
         Examples to Get You Started
       </Title>
       <BasicExamples />
-      <Title
-        sx={{
-          textAlign: 'center',
-          marginTop: '5rem',
-          fontSize: '32px',
-        }}
-        order={3}
-      >
+      <Title className={classes.comparisonTitle} order={3}>
         Is{' '}
-        <Box
-          sx={(theme) => ({
-            background: `-webkit-linear-gradient(left, ${getPrimaryColor(
-              theme,
-            )}, ${theme.colors.blue[7]})`,
-            display: 'inline',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          })}
-        >
+        <Box className={classes.comparisonTitleMantineReactTable}>
           &lt;MantineReactTable&nbsp;/&gt;
         </Box>{' '}
         Right For Your Project?

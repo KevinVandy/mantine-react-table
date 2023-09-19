@@ -1,0 +1,29 @@
+.button {
+  height: 3rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.youCanHelpMakeTheseDocsBetter {
+  justify-content: center;
+  display: flex;
+  align-content: center;
+}
+
+.materialUi {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.materialUiAnchor {
+  background-image: linear-gradient(to right, var(--TODO), var(--TODO));
+  display: inline;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--TODO);
+  }
+}

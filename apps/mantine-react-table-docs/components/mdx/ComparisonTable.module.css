@@ -1,0 +1,14 @@
+.libraryAnchor {
+  color: var(--TODO);
+  font-weight: bold;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.bundleSize {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+}
