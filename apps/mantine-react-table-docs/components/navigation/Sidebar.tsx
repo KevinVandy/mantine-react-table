@@ -1,4 +1,4 @@
-import { Navbar, Overlay } from '@mantine/core';
+import { AppShell, Overlay } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SideBarItems } from './SidebarItems';
 import { routes } from './routes';
@@ -16,16 +16,15 @@ export const SideBar = ({ navOpen, setNavOpen }: Props) => {
       {navOpen && isMobile && (
         <Overlay
           onClick={() => setNavOpen(false)}
-          sx={{ backgroundColor: 'black', position: 'fixed' }}
+          style={{ backgroundColor: 'black', position: 'fixed' }}
           zIndex={3}
         />
       )}
-      <Navbar
-        fixed
+      <AppShell.Navbar
         hidden={!navOpen}
-        width={{ xl: 275, xs: 275 }}
+        w={{ xl: 275, xs: 275 }}
         withBorder
-        sx={{
+        style={{
           display: navOpen ? 'flex' : 'none',
           overflowY: 'auto',
           paddingBottom: '20rem',
@@ -33,10 +32,8 @@ export const SideBar = ({ navOpen, setNavOpen }: Props) => {
           left: 0,
         }}
       >
-        <Navbar.Section>
-          <SideBarItems routes={routes} setNavOpen={setNavOpen} />
-        </Navbar.Section>
-      </Navbar>
+        <SideBarItems routes={routes} setNavOpen={setNavOpen} />
+      </AppShell.Navbar>
     </>
   );
 };

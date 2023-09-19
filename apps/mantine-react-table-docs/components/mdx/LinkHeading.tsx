@@ -54,7 +54,7 @@ export const LinkHeading = ({ children, tableId, ...rest }: Props) => {
           {...rest}
           sx={[
             { display: 'flex', gap: '16px', alignItems: 'center' },
-            ...packSx(rest.sx),
+            //...packSx(rest.sx),
           ]}
         >
           {children}

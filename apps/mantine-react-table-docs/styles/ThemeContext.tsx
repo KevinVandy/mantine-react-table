@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { type MantineColor, MantineProvider } from '@mantine/core';
+import { createContext } from 'react';
+import { type MantineColor, MantineProvider, createTheme } from '@mantine/core';
 import { type MantineShade } from 'mantine-react-table';
+import { useContext } from 'react';
 
 const ThemeContext = createContext<{
   isLightTheme: boolean;
@@ -12,88 +13,57 @@ const ThemeContext = createContext<{
 }>({} as any);
 
 export const ThemeContextProvider = ({ children }) => {
-  const [isLightTheme, setIsLightTheme] = useState(false);
-  const [primaryColor, setPrimaryColor] = useState<MantineColor>('teal');
-  const [primaryShade, setPrimaryShade] = useState<MantineShade>(7);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsLightTheme(localStorage.getItem('isLightTheme') === 'true');
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      document.body.style.backgroundColor = isLightTheme ? '#fff' : '#111';
-      localStorage.setItem('isLightTheme', isLightTheme.toString());
-    }
-  }, [isLightTheme]);
-
   return (
-    <ThemeContext.Provider
-      value={{
-        isLightTheme,
-        setIsLightTheme,
-        primaryColor,
-        setPrimaryColor,
-        primaryShade,
-        setPrimaryShade,
-      }}
+    <MantineProvider
+      theme={createTheme({
+        cursorType: 'pointer',
+        primaryColor: 'teal',
+        primaryShade: 7,
+        headings: {
+          sizes: {
+            h1: { fontWeight: '100', fontSize: '32px', lineHeight: '1.4' },
+            h2: { fontSize: '30px', lineHeight: '1.5' },
+            h3: { fontSize: '26px', lineHeight: '1.5' },
+            h4: { fontSize: '22px', lineHeight: '1.5' },
+            h5: { fontSize: '20px', lineHeight: '1.5' },
+            h6: { fontWeight: '900' },
+          },
+        },
+        components: {
+          Card: {
+            defaultProps: {
+              shadow: 'sm',
+              withBorder: true,
+            },
+          },
+          Code: {
+            defaultProps: {
+              fz: '0.9em',
+            },
+          },
+          Tooltip: {
+            defaultProps: {
+              withArrow: true,
+              portalProps: {
+                target: '.mantine-tooltips',
+              },
+            },
+          },
+          Tabs: {
+            styles: () => ({
+              tab: {
+                fontSize: '1.1rem',
+                marginTop: '2rem',
+                alignItems: 'center',
+                display: 'flex',
+              },
+            }),
+          },
+        },
+      })}
     >
-      <MantineProvider
-        theme={{
-          colorScheme: isLightTheme ? 'light' : 'dark',
-          cursorType: 'pointer',
-          primaryColor,
-          primaryShade,
-          headings: {
-            sizes: {
-              h1: { fontWeight: 100, fontSize: '32px', lineHeight: 1.4 },
-              h2: { fontSize: '30px', lineHeight: 1.5 },
-              h3: { fontSize: '26px', lineHeight: 1.5 },
-              h4: { fontSize: '22px', lineHeight: 1.5 },
-              h5: { fontSize: '20px', lineHeight: 1.5 },
-              h6: { fontWeight: 900 },
-            },
-          },
-          components: {
-            Card: {
-              defaultProps: {
-                shadow: 'sm',
-                withBorder: true,
-              },
-            },
-            Code: {
-              defaultProps: {
-                fz: '0.9em',
-              },
-            },
-            Tooltip: {
-              defaultProps: {
-                withArrow: true,
-                portalProps: {
-                  target: '.mantine-tooltips',
-                },
-              },
-            },
-            Tabs: {
-              styles: () => ({
-                tab: {
-                  fontSize: '1.1rem',
-                  marginTop: '2rem',
-                  alignItems: 'center',
-                  display: 'flex',
-                },
-              }),
-            },
-          },
-        }}
-        withGlobalStyles
-        withNormalizeCSS
-      >
-        {children}
-      </MantineProvider>
-    </ThemeContext.Provider>
+      {children}
+    </MantineProvider>
   );
 };
 

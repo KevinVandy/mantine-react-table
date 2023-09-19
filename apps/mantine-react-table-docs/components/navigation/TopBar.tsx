@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePlausible } from 'next-plausible';
 import {
-  Header,
   Box,
   Tooltip,
   Text,
@@ -11,11 +10,12 @@ import {
   Flex,
   Burger,
   useMantineTheme,
+  AppShell,
+  useMantineColorScheme,
 } from '@mantine/core';
 import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconSun, IconMoonStars } from '@tabler/icons-react';
-import { useThemeContext } from '../../styles/ThemeContext';
 import docsearch from '@docsearch/js';
 import '@docsearch/css';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
@@ -29,11 +29,13 @@ interface Props {
 export const TopBar = ({ navOpen, setNavOpen }: Props) => {
   const { pathname } = useRouter();
   const plausible = usePlausible();
-  const theme = useMantineTheme();
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 900px)');
   const isDesktop = useMediaQuery('(min-width: 1500px)');
-  const { isLightTheme, setIsLightTheme } = useThemeContext();
+  const theme = useMantineTheme();
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
+  const isLightTheme = colorScheme === 'light';
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -55,7 +57,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
             --docsearch-highlight-color: ${theme.colors[theme.primaryColor][8]};
             --docsearch-logo-color: ${theme.colors[theme.primaryColor][8]};
             ${!isLightTheme
-              ? `--docsearch-container-background: rgba(11, 11, 11, 0.8);
+            ? `--docsearch-container-background: rgba(11, 11, 11, 0.8);
             --docsearch-footer-background: #222;
             --docsearch-hit-background: #333;
             --docsearch-hit-color: #fff;
@@ -66,24 +68,22 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
             --docsearch-searchbox-focus-background: #000;
             --docsearch-text-color: #fff;
            `
-              : ''}
+            : ''}
           }
         `}
       </style>
-      <Header
-        fixed
-        height={55}
-        sx={(theme) => ({
+      <AppShell.Header
+        style={{
           alignContent: 'center',
           backgroundColor:
-            theme.colorScheme === 'dark'
+            colorScheme === 'dark'
               ? theme.colors.dark[7]
               : getPrimaryColor(theme, 8),
           display: 'flex',
           justifyContent: 'space-between',
           padding: '4px 20px',
           zIndex: 5,
-        })}
+        }}
       >
         <Flex align="center" gap="md">
           {(!isDesktop || pathname === '/') && (
@@ -96,17 +96,14 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
           )}
           <Link href="/" passHref legacyBehavior>
             <Text
-              sx={{
+              c="white"
+              style={{
                 alignItems: 'center',
-                color: '#fff',
                 cursor: 'pointer',
                 display: 'flex',
                 fontSize: '24px',
                 gap: '16px',
                 transition: 'color 0.2s ease',
-                '&:hover': {
-                  color: '#fff',
-                },
               }}
               component="h1"
             >
@@ -123,14 +120,14 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
         <Box
           onClick={() => plausible('open-search')}
           id="docsearch"
-          sx={{
+          style={{
             display: 'grid',
             width: isDesktop ? '400px' : !isTablet ? '250px' : undefined,
             alignItems: 'center',
           }}
         />
         <Box
-          sx={{
+          style={{
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
@@ -140,61 +137,46 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
           }}
         >
           <Tooltip label="Github">
-            <a
+            <ActionIcon
+              component={Link}
+              aria-label="Github"
+              c="white"
+              variant="transparent"
+              size={isMobile ? 'sm' : 'lg'}
               href="https://github.com/KevinVandy/mantine-react-table"
               rel="noopener"
               target="_blank"
             >
-              <ActionIcon
-                aria-label="Github"
-                size={isMobile ? 'sm' : 'lg'}
-                sx={{
-                  color: 'white',
-                  '&:hover': { backgroundColor: 'transparent' },
-                }}
-              >
-                <IconBrandGithub />
-              </ActionIcon>
-            </a>
+              <IconBrandGithub />
+            </ActionIcon>
           </Tooltip>
           <Tooltip label="Discord">
-            <a
+            <ActionIcon
+              component={Link}
+              aria-label="Discord"
+              size={isMobile ? 'sm' : 'lg'}
+              variant="transparent"
+              c="white"
               href="https://discord.gg/5wqyRx6fnm"
               rel="noopener"
               target="_blank"
             >
-              <ActionIcon
-                aria-label="Discord"
-                size={isMobile ? 'sm' : 'lg'}
-                sx={{
-                  color: 'white',
-                  '&:hover': { backgroundColor: 'transparent' },
-                }}
-              >
-                <IconBrandDiscord />
-              </ActionIcon>
-            </a>
+              <IconBrandDiscord />
+            </ActionIcon>
           </Tooltip>
           <Tooltip label="Toggle Light/Dark Mode">
             <ActionIcon
               aria-label="Toggle Light/Dark Mode"
-              onClick={() => {
-                setIsLightTheme(!isLightTheme);
-                plausible(
-                  `toggle-theme-${isLightTheme ? 'dark' : 'light'}-mode`,
-                );
-              }}
+              c="white"
+              variant="transparent"
+              onClick={toggleColorScheme}
               size={isMobile ? 'sm' : 'lg'}
-              sx={{
-                color: 'white',
-                '&:hover': { backgroundColor: 'transparent' },
-              }}
             >
-              {isLightTheme ? <IconSun /> : <IconMoonStars />}
+              {true ? <IconSun /> : <IconMoonStars />}
             </ActionIcon>
           </Tooltip>
         </Box>
-      </Header>
+      </AppShell.Header>
     </>
   );
 };
