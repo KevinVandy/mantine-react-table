@@ -12,7 +12,9 @@ export const MRT_FilterRangeFields = <TData extends Record<string, any> = {}>({
   table,
 }: Props<TData>) => {
   return (
-    <Box sx={{ display: 'grid', gridTemplateColumns: '6fr 6fr', gap: '16px' }}>
+    <Box
+      style={{ display: 'grid', gridTemplateColumns: '6fr 6fr', gap: '16px' }}
+    >
       <MRT_FilterTextInput header={header} rangeFilterIndex={0} table={table} />
       <MRT_FilterTextInput header={header} rangeFilterIndex={1} table={table} />
     </Box>

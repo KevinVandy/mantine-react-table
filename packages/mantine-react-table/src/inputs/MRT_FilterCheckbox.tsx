@@ -70,12 +70,12 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
           );
           checkboxProps?.onChange?.(e);
         }}
-        sx={(theme) => ({
+        style={(theme) => ({
           fontWeight: 'normal',
           marginTop: '8px',
-          ...(checkboxProps?.sx instanceof Function
-            ? checkboxProps.sx(theme)
-            : (checkboxProps?.sx as any)),
+          ...(checkboxProps?.style instanceof Function
+            ? checkboxProps.style(theme)
+            : (checkboxProps?.style as any)),
         })}
         title={undefined}
       />
