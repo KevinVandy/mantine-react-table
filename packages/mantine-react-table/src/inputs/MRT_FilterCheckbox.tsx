@@ -70,13 +70,10 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
           );
           checkboxProps?.onChange?.(e);
         }}
-        sx={(theme) => ({
+        style={{
           fontWeight: 'normal',
           marginTop: '8px',
-          ...(checkboxProps?.sx instanceof Function
-            ? checkboxProps.sx(theme)
-            : (checkboxProps?.sx as any)),
-        })}
+        }}
         title={undefined}
       />
     </Tooltip>

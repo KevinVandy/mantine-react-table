@@ -101,15 +101,12 @@ export const MRT_FilterRangeSlider = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={(theme) => ({
+      style={{
         margin: 'auto',
         marginTop: '16px',
         marginBottom: '6px',
         width: 'calc(100% - 8px)',
-        ...(rangeSliderProps?.sx instanceof Function
-          ? rangeSliderProps.sx(theme)
-          : (rangeSliderProps?.sx as any)),
-      })}
+      }}
     />
   );
 };
