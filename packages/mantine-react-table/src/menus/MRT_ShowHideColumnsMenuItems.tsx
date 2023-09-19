@@ -89,13 +89,13 @@ export const MRT_ShowHideColumnsMenuItems = <
       <Menu.Item
         component="span"
         ref={menuItemRef as any}
+        __vars={{
+          '--_column-depth': `${column.depth}`,
+        }}
         onDragEnter={handleDragEnter}
         className={classes.root}
-        data-dragging={isDragging}
-        data-hovered={hoveredColumn?.id === column.id}
-        style={{
-          paddingLeft: `${(column.depth + 0.5) * 2}rem`,
-        }}
+        data-dragging={isDragging || undefined}
+        data-hovered={hoveredColumn?.id === column.id || undefined}
       >
         <Box className={classes.menu}>
           {!isSubMenu &&

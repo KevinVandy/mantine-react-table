@@ -4,8 +4,9 @@
   justify-content: flex-start;
   opacity: 1;
   outline: none;
-  paddingtop: 6px;
-  paddingbottom: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-bottom: calc((var(--_column-depth) + 0.5) * 2);
   &[data-dragging] {
     opacity: 0.5;
     outline: 1px dashed var(--mantine-color-gray-7);
