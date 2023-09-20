@@ -1,19 +1,4 @@
-/* sx={(theme) => ({
-          color: !isFooter
-            ? theme.colorScheme === 'dark'
-              ? theme.white
-              : theme.black
-            : theme.colorScheme === 'dark'
-            ? theme.colors.gray[3]
-            : theme.colors.gray[7],
-          cursor: 'pointer',
-          lineHeight: isFooter ? '1.6rem' : '2rem',
-          fontSize: isFooter ? '0.9rem' : '1.2rem',
-          textDecoration: 'none',
-          '&:hover': {
-            textDecoration: 'underline',
-          },
-        })} */
+
 
 .navigationLinkFooter {
   cursor: pointer;
