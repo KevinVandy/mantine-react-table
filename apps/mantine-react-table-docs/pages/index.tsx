@@ -18,9 +18,13 @@ const HomePage = () => {
       <Title className={classes.title} order={1}>
         Welcome To
         <br />
-        <Box className={classes.titleMantineReactTable}>
+        <Text
+          variant="gradient"
+          gradient={{ from: 'teal.7', to: 'blue.7', deg: 90 }}
+          className={classes.titleMantineReactTable}
+        >
           Mantine&nbsp;React&nbsp;Table
-        </Box>
+        </Text>
       </Title>
       <Title c="dimmed" className={classes.subtitle} order={2}>
         Built with{' '}
@@ -144,10 +148,15 @@ const HomePage = () => {
       </Title>
       <BasicExamples />
       <Title className={classes.comparisonTitle} order={3}>
-        Is{' '}
-        <Box className={classes.comparisonTitleMantineReactTable}>
+        Is {''}
+        <Text
+          component="span"
+          variant="gradient"
+          gradient={{ from: 'teal.7', to: 'blue.7', deg: 90 }}
+          className={classes.comparisonTitleMantineReactTable}
+        >
           &lt;MantineReactTable&nbsp;/&gt;
-        </Box>{' '}
+        </Text>{' '}
         Right For Your Project?
       </Title>
       <LinkHeading c="dimmed" order={4}>
