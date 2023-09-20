@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, lighten } from '@mantine/core';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
 import {
   type MRT_Header,
@@ -46,16 +46,16 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
     <Box
       component="tr"
       {...tableRowProps}
-      sx={(theme) => ({
-        backgroundColor: theme.fn.lighten(
+      style={(theme) => ({
+        backgroundColor: lighten(
           theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
           0.06,
         ),
         display: layoutMode === 'grid' ? 'flex' : 'table-row',
         width: '100%',
-        ...(tableRowProps?.sx instanceof Function
-          ? tableRowProps?.sx(theme)
-          : (tableRowProps?.sx as any)),
+        ...(tableRowProps?.style instanceof Function
+          ? tableRowProps?.style(theme)
+          : (tableRowProps?.style as any)),
       })}
     >
       {virtualPaddingLeft ? (

@@ -350,7 +350,7 @@ export const MaxVirtualization = () => (
     enablePinning
     enableRowNumbers
     enableRowVirtualization
-    mantineTableContainerProps={{ sx: { maxHeight: 500 } }}
-    mantinePaperProps={{ sx: { margin: 'auto', maxWidth: 1000 } }}
+    mantineTableContainerProps={{ style: { maxHeight: 500 } }}
+    mantinePaperProps={{ style: { margin: 'auto', maxWidth: 1000 } }}
   />
 );

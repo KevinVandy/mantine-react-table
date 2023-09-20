@@ -44,7 +44,7 @@ export const MaxWidthAndCentered = () => (
     columns={columns}
     data={data}
     mantinePaperProps={{
-      sx: {
+      style: {
         maxWidth: '800px',
         margin: 'auto',
       },
@@ -57,7 +57,7 @@ export const maxHeight = () => (
     columns={columns}
     data={data}
     mantineTableContainerProps={{
-      sx: {
+      style: {
         maxHeight: '500px',
       },
     }}
@@ -69,7 +69,7 @@ export const minHeight = () => (
     columns={columns}
     data={data.slice(0, 5)}
     mantineTableContainerProps={{
-      sx: {
+      style: {
         minHeight: '800px',
       },
     }}
@@ -82,12 +82,12 @@ export const minHeightParent = () => (
       columns={columns}
       data={data.slice(0, 5)}
       mantineTableContainerProps={({ table }) => ({
-        sx: {
+        style: {
           height: `calc(100% - ${table.refs.topToolbarRef.current?.offsetHeight}px - ${table.refs.bottomToolbarRef.current?.offsetHeight}px)`,
         },
       })}
       mantinePaperProps={{
-        sx: {
+        style: {
           height: '100%',
         },
       }}

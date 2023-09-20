@@ -44,7 +44,7 @@ export const Example = () => {
       enableSorting={false} //sorting does not work with memoized table body
       enableStickyHeader
       memoMode="table-body" // memoize table body to improve render performance, but break all features
-      mantineTableContainerProps={{ sx: { maxHeight: '500px' } }}
+      mantineTableContainerProps={{ style: { maxHeight: '500px' } }}
       renderTopToolbarCustomActions={() => (
         <Title order={4}>Static Memoized Table</Title>
       )}

@@ -37,29 +37,29 @@ const Example = () => {
         AggregatedCell: ({ cell }) => (
           <>
             Count:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue()?.[0]}
             </Box>
             Average:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue()?.[1]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
             </Box>
             Median:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue()?.[2]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
             </Box>
             Min:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue()?.[3]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
             </Box>
             Max:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue()?.[4]
                 ?.toLocaleString?.('en-US', localeStringOptions)}
@@ -89,7 +89,7 @@ const Example = () => {
         sorting: [{ id: 'state', desc: false }], //sort by state by default
       }}
       mantineToolbarAlertBannerBadgeProps={{ color: 'primary' }}
-      mantineTableContainerProps={{ sx: { maxHeight: 700 } }}
+      mantineTableContainerProps={{ style: { maxHeight: 700 } }}
     />
   );
 };

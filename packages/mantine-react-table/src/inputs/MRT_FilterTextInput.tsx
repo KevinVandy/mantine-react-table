@@ -6,7 +6,6 @@ import {
   MultiSelect,
   Select,
   TextInput,
-  packSx,
   type MantineTheme,
   Badge,
 } from '@mantine/core';
@@ -289,7 +288,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
     onChange: setFilterValue,
     value: filterValue,
     variant: 'unstyled',
-    sx: (theme: MantineTheme) => ({
+    style: (theme: MantineTheme) => ({
       borderBottom: `2px solid ${
         theme.colors.gray[theme.colorScheme === 'dark' ? 7 : 3]
       }`,
@@ -308,15 +307,15 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       '& .mantine-DateInput-input': {
         height: '2.1rem',
       },
-      ...(packSx(
-        isMultiSelectFilter
-          ? multiSelectProps.sx
+      ...{
+        ...(isMultiSelectFilter
+          ? multiSelectProps?.style
           : isSelectFilter
-          ? selectProps.sx
+          ? selectProps?.style
           : isDateFilter
-          ? dateInputProps.sx
-          : textInputProps?.sx,
-      ) as any),
+          ? dateInputProps?.style
+          : textInputProps?.style),
+      },
     }),
   } as const;
 
@@ -332,11 +331,11 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
   ) : null;
 
   return filterChipLabel ? (
-    <Box sx={commonProps.sx}>
+    <Box style={commonProps.style}>
       <Badge
         size="lg"
         onClick={handleClearEmptyFilterChip}
-        sx={{ margin: '5px' }}
+        style={{ margin: '5px' }}
         rightSection={ClearButton}
       >
         {filterChipLabel}
@@ -359,7 +358,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={commonProps.sx}
+      style={commonProps.style}
     />
   ) : isSelectFilter ? (
     <Select
@@ -378,7 +377,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={commonProps.sx}
+      style={commonProps.style}
     />
   ) : isDateFilter ? (
     <DateInput
@@ -396,7 +395,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={commonProps.sx}
+      style={commonProps.style}
     />
   ) : isAutoCompleteFilter ? (
     <Autocomplete
@@ -415,7 +414,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={commonProps.sx}
+      style={commonProps.style}
     />
   ) : (
     <TextInput
@@ -432,7 +431,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={commonProps.sx}
+      style={commonProps.style}
     />
   );
 };

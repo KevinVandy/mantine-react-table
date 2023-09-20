@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { UnstyledButton, CopyButton, Tooltip } from '@mantine/core';
+import { UnstyledButton, CopyButton, Tooltip, rgba } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
 
@@ -58,7 +58,7 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
               e.stopPropagation();
               copy();
             }}
-            sx={(theme) => ({
+            style={(theme) => ({
               backgroundColor: 'transparent',
               border: 'none',
               borderRadius: '4px',
@@ -78,11 +78,11 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
                 transform: 'translateY(1px)',
               },
               '&:hover': {
-                backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.1),
+                backgroundColor: rgba(getPrimaryColor(theme), 0.1),
               },
-              ...(buttonProps?.sx instanceof Function
-                ? buttonProps.sx(theme)
-                : (buttonProps?.sx as any)),
+              ...(buttonProps?.style instanceof Function
+                ? buttonProps.style(theme)
+                : (buttonProps?.style as any)),
             })}
             title={undefined}
           >

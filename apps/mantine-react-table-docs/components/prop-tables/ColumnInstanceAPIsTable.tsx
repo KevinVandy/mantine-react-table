@@ -117,11 +117,11 @@ const ColumnInstanceAPIsTable = ({ onlyOptions }: Props) => {
       }}
       mantineSearchTextInputProps={{
         placeholder: 'Search Column APIs',
-        sx: { minWidth: '18rem' },
+        style: { minWidth: '18rem' },
         variant: 'filled',
       }}
       mantinePaperProps={{
-        sx: { marginBottom: '24px' },
+        style: { marginBottom: '24px' },
         id: onlyOptions
           ? 'relevant-column-instance-apis-table'
           : 'column-instance-apis-table',

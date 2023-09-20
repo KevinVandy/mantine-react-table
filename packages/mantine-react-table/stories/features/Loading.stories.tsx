@@ -118,7 +118,7 @@ export const OnlyTopProgressBar = () => (
     data={data}
     state={{ showProgressBars: true }}
     mantineProgressProps={({ isTopToolbar }) => ({
-      sx: { display: isTopToolbar ? 'block' : 'none' },
+      style: { display: isTopToolbar ? 'block' : 'none' },
     })}
   />
 );

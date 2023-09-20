@@ -45,7 +45,7 @@ const Example = () => {
           enableColumnOrdering: true, //turn on some features that are usually off
           enableResizing: true,
           mantineTableHeadCellProps: {
-            sx: {
+            style: {
               fontSize: '1.2rem',
             },
           },
@@ -62,7 +62,7 @@ const Example = () => {
       enableRowSelection
       enableRowActions
       renderRowActions={({ row }) => (
-        <Box sx={{ display: 'flex', gap: '16px' }}>
+        <Box style={{ display: 'flex', gap: '16px' }}>
           <Button>Button 1</Button>
           <Button>Button 2</Button>
           <Button>Button 3</Button>

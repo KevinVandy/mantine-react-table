@@ -117,7 +117,7 @@ export default function App() {
       {
         accessorKey: 'name', //simple recommended way to define a column
         header: 'Name',
-        mantineTableHeadCellProps: { sx: { color: 'green' } }, //custom props
+        mantineTableHeadCellProps: { style: { color: 'green' } }, //custom props
       },
       {
         accessorFn: (originalRow) => originalRow.age, //alternate way

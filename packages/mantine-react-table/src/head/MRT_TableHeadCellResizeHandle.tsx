@@ -32,7 +32,7 @@ export const MRT_TableHeadCellResizeHandle = <
       }}
       onMouseDown={header.getResizeHandler()}
       onTouchStart={header.getResizeHandler()}
-      sx={(theme) => ({
+      style={(theme) => ({
         cursor: 'col-resize',
         marginRight:
           density === 'xl' ? '-24px' : density === 'md' ? '-20px' : '-14px',
@@ -54,7 +54,7 @@ export const MRT_TableHeadCellResizeHandle = <
       <Divider
         orientation="vertical"
         size="lg"
-        sx={{
+        style={{
           borderRadius: '2px',
           borderWidth: '4px',
           height: '24px',

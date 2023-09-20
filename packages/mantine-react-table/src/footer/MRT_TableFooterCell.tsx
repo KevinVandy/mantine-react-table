@@ -39,7 +39,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={footer.colSpan}
       {...tableCellProps}
-      sx={(theme) => ({
+      style={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table-cell',
         fontWeight: 'bold',
         justifyContent: columnDefType === 'group' ? 'center' : undefined,

@@ -45,7 +45,7 @@ export const MRT_ExpandAllButton = <TData extends Record<string, any> = {}>({
         disabled={isLoading || (!renderDetailPanel && !getCanSomeRowsExpand())}
         onClick={() => toggleAllRowsExpanded(!isAllRowsExpanded)}
         {...actionIconProps}
-        sx={(theme) => ({
+        style={(theme) => ({
           marginLeft:
             density === 'xl' ? '-6px' : density === 'md' ? '0' : '6px',
           opacity: 0.8,
@@ -56,9 +56,9 @@ export const MRT_ExpandAllButton = <TData extends Record<string, any> = {}>({
           '&:hover': {
             opacity: 1,
           },
-          ...(actionIconProps?.sx instanceof Function
-            ? actionIconProps?.sx(theme)
-            : (actionIconProps?.sx as any)),
+          ...(actionIconProps?.style instanceof Function
+            ? actionIconProps?.style(theme)
+            : (actionIconProps?.style as any)),
         })}
         title={undefined}
       >

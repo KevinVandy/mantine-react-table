@@ -33,7 +33,7 @@ export const MRT_ToolbarInternalButtons = <
 
   return (
     <Flex
-      sx={{
+      style={{
         alignItems: 'center',
         gap: '2px',
         zIndex: 3,

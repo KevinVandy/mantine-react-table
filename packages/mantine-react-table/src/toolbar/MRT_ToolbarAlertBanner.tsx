@@ -69,7 +69,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
                   <IconX />
                 </ActionIcon>
               }
-              sx={{ marginLeft: '1ch' }}
+              style={{ marginLeft: '1ch' }}
               variant="filled"
               {...badgeProps}
             >
@@ -89,7 +89,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
         color="blue"
         icon={false}
         {...alertProps}
-        sx={(theme) => ({
+        style={(theme) => ({
           borderRadius: 0,
           fontSize: '16px',
           left: 0,
@@ -104,9 +104,9 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           top: 0,
           width: '100%',
           zIndex: 2,
-          ...(alertProps?.sx instanceof Function
-            ? alertProps.sx(theme)
-            : (alertProps?.sx as any)),
+          ...(alertProps?.style instanceof Function
+            ? alertProps.style(theme)
+            : (alertProps?.style as any)),
         })}
       >
         {renderToolbarAlertBannerContent?.({
@@ -115,7 +115,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           table,
         }) ?? (
           <Flex
-            sx={{
+            style={{
               gap: '12px',
               padding:
                 positionToolbarAlertBanner === 'head-overlay'

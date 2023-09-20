@@ -100,7 +100,7 @@ export const MRT_TableHeadCellFilterLabel = <
         }
       >
         {(styles) => (
-          <Box component="span" sx={{ flex: '0 0' }} style={styles}>
+          <Box component="span" style={{ flex: '0 0' }} style={styles}>
             <Popover.Target>
               <Tooltip
                 disabled={popoverOpened}
@@ -124,7 +124,7 @@ export const MRT_TableHeadCellFilterLabel = <
                     }, 100);
                   }}
                   size="sm"
-                  sx={{
+                  style={{
                     opacity: isFilterActive ? 1 : 0.5,
                     padding: '2px',
                     '&:hover': {

@@ -46,7 +46,7 @@ const Example = () => {
       data={data}
       mantinePaperProps={{
         shadow: 'none',
-        sx: {
+        style: {
           borderRadius: '0',
           border: '1px dashed #e0e0e0',
         },

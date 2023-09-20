@@ -184,7 +184,7 @@ const table = useMantineReactTable({
   columns,
   mantineProgressProps: ({ isTopToolbar }) => ({
     color: 'orange',
-    sx: { display: isTopToolbar ? 'block' : 'none' }, //only show top toolbar progress bar
+    style: { display: isTopToolbar ? 'block' : 'none' }, //only show top toolbar progress bar
     value: fetchProgress, //show precise real progress value if you so desire
   }),
   state: {

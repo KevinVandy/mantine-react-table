@@ -29,7 +29,7 @@ const ColumnOptionsTable = ({ onlyOptions }: Props) => {
             row.original?.required ? (
               <Text
                 component="strong"
-                sx={(theme) => ({
+                style={(theme) => ({
                   color: getPrimaryColor(theme),
                 })}
               >
@@ -144,11 +144,11 @@ const ColumnOptionsTable = ({ onlyOptions }: Props) => {
       }}
       mantineSearchTextInputProps={{
         placeholder: 'Search Column Options',
-        sx: { minWidth: '18rem' },
+        style: { minWidth: '18rem' },
         variant: 'filled',
       }}
       mantinePaperProps={{
-        sx: { marginBottom: '24px' },
+        style: { marginBottom: '24px' },
         id: onlyOptions
           ? 'relevant-column-options-table'
           : 'column-options-table',

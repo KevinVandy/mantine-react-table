@@ -129,11 +129,11 @@ const StateOptionsTable = ({ onlyOptions }: Props) => {
       }}
       mantineSearchTextInputProps={{
         placeholder: 'Search State Options',
-        sx: { minWidth: '18rem' },
+        style: { minWidth: '18rem' },
         variant: 'filled',
       }}
       mantinePaperProps={{
-        sx: { marginBottom: '24px' },
+        style: { marginBottom: '24px' },
         id: onlyOptions
           ? 'relevant-state-options-table'
           : 'state-options-table',

@@ -50,11 +50,11 @@ const Example = () => {
       data={data}
       initialState={{ showColumnFilters: true }} //show filters by default
       mantineFilterTextInputProps={{
-        sx: { borderBottom: 'unset', marginTop: '8px' },
+        style: { borderBottom: 'unset', marginTop: '8px' },
         variant: 'filled',
       }}
       mantineFilterSelectProps={{
-        sx: { borderBottom: 'unset', marginTop: '8px' },
+        style: { borderBottom: 'unset', marginTop: '8px' },
         variant: 'filled',
       }}
     />

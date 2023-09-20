@@ -50,7 +50,7 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
         disabled={!canExpand && !renderDetailPanel}
         {...actionIconProps}
         onClick={handleToggleExpand}
-        sx={(theme) => ({
+        style={(theme) => ({
           opacity: 0.8,
           '&:disabled': {
             backgroundColor: 'transparent',
@@ -59,9 +59,9 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
           '&:hover': {
             opacity: 1,
           },
-          ...(actionIconProps?.sx instanceof Function
-            ? actionIconProps.sx(theme)
-            : (actionIconProps?.sx as any)),
+          ...(actionIconProps?.style instanceof Function
+            ? actionIconProps.style(theme)
+            : (actionIconProps?.style as any)),
         })}
         title={undefined}
       >

@@ -35,7 +35,7 @@ const Example = () => {
       data={data}
       enableStickyHeader
       enableStickyFooter
-      mantineTableContainerProps={{ sx: { maxHeight: '300px' } }}
+      mantineTableContainerProps={{ style: { maxHeight: '300px' } }}
     />
   );
 };

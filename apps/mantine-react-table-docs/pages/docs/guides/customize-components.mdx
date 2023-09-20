@@ -154,7 +154,7 @@ Do not worry, `className` and `style` props will still work, but let's show off 
   data={data}
   mantineTableHeadCellProps={{
     //simple styling with the `sx` prop, works just like a style prop in this example
-    sx: {
+    style: {
       fontWeight: 'normal',
       fontSize: '14px',
     },
@@ -170,7 +170,7 @@ Do not worry, `className` and `style` props will still work, but let's show off 
   data={data}
   mantineTableHeadCellProps={{
     //no useMantineTheme hook needed, just use the `sx` prop with the theme callback
-    sx: (theme) => ({
+    style: (theme) => ({
       color: theme.colors.red[5],
     }),
   }}
@@ -185,7 +185,7 @@ Do not worry, `className` and `style` props will still work, but let's show off 
   data={data}
   mantineTableHeadCellProps={{
     //easier way to create media queries, no useMediaQuery hook needed.
-    sx: {
+    style: {
       fontSize: '14px',
       '@media (min-width: 600px)': {
         fontSize: '12px',
@@ -265,7 +265,7 @@ You can customize both the props and the styles of the internal `<Paper />` comp
   mantinePaperProps={{
     shadow: 'lg', //use a larger shadow
     //customize paper styles
-    sx: {
+    style: {
       borderRadius: '0',
       border: '1px dashed #e0e0e0',
     },
@@ -298,7 +298,7 @@ But if you want to stripe the rows yourself, you can do something like this:
   columns={columns}
   data={data}
   mantineTableBodyProps={{
-    sx: {
+    style: {
       //stripe the rows, make odd rows a darker color
       '& tr:nth-of-type(odd)': {
         backgroundColor: '#f5f5f5',
@@ -317,7 +317,7 @@ Similarly, if you want to stripe the columns, you can do something like this:
   columns={columns}
   data={data}
   mantineTableBodyProps={{
-    sx: {
+    style: {
       //stripe the rows, make odd rows a darker color
       '& td:nth-of-type(odd)': {
         backgroundColor: '#f5f5f5',
@@ -325,7 +325,7 @@ Similarly, if you want to stripe the columns, you can do something like this:
     },
   }}
   mantineTableBodyCellProps={{
-    sx: {
+    style: {
       borderRight: '2px solid #e0e0e0', //add a border between columns
     },
   }}

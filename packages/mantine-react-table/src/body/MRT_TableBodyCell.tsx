@@ -205,7 +205,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       {...tableCellProps}
       onDragEnter={handleDragEnter}
       onDoubleClick={handleDoubleClick}
-      sx={(theme) => ({
+      style={(theme) => ({
         alignItems: layoutMode === 'grid' ? 'center' : undefined,
         cursor:
           isEditable && editDisplayMode === 'cell' ? 'pointer' : 'inherit',

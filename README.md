@@ -141,7 +141,7 @@ export default function App() {
       {
         accessorKey: 'name', //simple recommended way to define a column
         header: 'Name',
-        mantineTableHeadCellProps: { sx: { color: 'green' } }, //optional custom props
+        mantineTableHeadCellProps: { style: { color: 'green' } }, //optional custom props
         Cell: ({ cell }) => <span>{cell.getValue()}</span>, //optional custom cell render
       },
       {

@@ -69,7 +69,7 @@ export const StickyHeaderShorterTable = () => (
     enableRowSelection
     enablePinning
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}
-    mantineTableContainerProps={{ sx: { maxHeight: 400 } }}
+    mantineTableContainerProps={{ style: { maxHeight: 400 } }}
   />
 );
 
@@ -106,7 +106,7 @@ export const disableStickyFooter = () => (
     columns={columnsWithFooters}
     data={data}
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}
-    mantineTableContainerProps={{ sx: { maxHeight: 400 } }}
+    mantineTableContainerProps={{ style: { maxHeight: 400 } }}
     enableStickyHeader
     enableStickyFooter={false}
     enableRowNumbers
@@ -118,7 +118,7 @@ export const enableStickyFooter = () => (
     columns={columnsWithFooters}
     data={data}
     initialState={{ pagination: { pageSize: 25, pageIndex: 0 } }}
-    mantineTableContainerProps={{ sx: { maxHeight: 400 } }}
+    mantineTableContainerProps={{ style: { maxHeight: 400 } }}
     enableStickyHeader
     enableStickyFooter
     enableRowNumbers

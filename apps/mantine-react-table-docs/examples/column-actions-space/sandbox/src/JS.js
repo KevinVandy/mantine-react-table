@@ -26,7 +26,7 @@ const Example = () => {
       columns={columns}
       data={data}
       mantineTableHeadCellProps={{
-        sx: {
+        style: {
           '& .mantine-TableHeadCell-Content': {
             justifyContent: 'space-between',
           },

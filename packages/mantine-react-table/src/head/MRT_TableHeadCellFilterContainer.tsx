@@ -68,7 +68,7 @@ export const MRT_TableHeadCellFilterContainer = <
                   <ActionIcon
                     aria-label={localization.changeFilterMode}
                     size="md"
-                    sx={{ transform: 'translateY(-2px)' }}
+                    style={{ transform: 'translateY(-2px)' }}
                   >
                     <IconFilterCog />
                   </ActionIcon>
@@ -91,7 +91,7 @@ export const MRT_TableHeadCellFilterContainer = <
           <Text
             component="label"
             color="dimmed"
-            sx={{ whiteSpace: 'nowrap', marginTop: '4px', fontSize: '10px' }}
+            style={{ whiteSpace: 'nowrap', marginTop: '4px', fontSize: '10px' }}
           >
             {localization.filterMode.replace(
               '{filterType}',

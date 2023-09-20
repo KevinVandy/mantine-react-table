@@ -8,7 +8,7 @@ import {
 import { type MRT_AggregationFns } from './aggregationFns';
 import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
-import { type BoxProps, type MantineTheme } from '@mantine/core';
+import { rgba, type BoxProps, type MantineTheme, darken, lighten } from '@mantine/core';
 import {
   type MRT_TableOptions,
   type MantineShade,
@@ -311,25 +311,25 @@ export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
   return {
     backgroundColor: row
       ? row?.getIsSelected()
-        ? theme.fn.rgba(getPrimaryColor(theme), 0.1)
+        ? rgba(getPrimaryColor(theme), 0.1)
         : column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-        ? theme.fn.rgba(
+        ? rgba(
             theme.colorScheme === 'dark'
-              ? theme.fn.darken(theme.colors.dark[7], 0.02)
+              ? darken(theme.colors.dark[7], 0.02)
               : theme.white,
             0.97,
           )
         : isStriped
         ? 'inherit'
         : theme.colorScheme === 'dark'
-        ? theme.fn.lighten(theme.colors.dark[7], 0.02)
+        ? lighten(theme.colors.dark[7], 0.02)
         : theme.white
       : 'inherit',
     backgroundClip: 'padding-box',
     boxShadow: getIsLastLeftPinnedColumn(table, column)
-      ? `-4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
+      ? `-4px 0 8px -6px ${rgba(theme.black, 0.2)} inset`
       : getIsFirstRightPinnedColumn(column)
-      ? `4px 0 8px -6px ${theme.fn.rgba(theme.black, 0.2)} inset`
+      ? `4px 0 8px -6px ${rgba(theme.black, 0.2)} inset`
       : undefined,
     display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
     flex:
@@ -378,9 +378,9 @@ export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
       ? 'none'
       : `padding 100ms ease-in-out`,
     ...(!table.options.enableColumnResizing && widthStyles), //let devs pass in width styles if column resizing is disabled
-    ...(tableCellProps?.sx instanceof Function
-      ? tableCellProps.sx(theme)
-      : (tableCellProps?.sx as any)),
+    ...(tableCellProps?.style instanceof Function
+      ? tableCellProps.style(theme)
+      : (tableCellProps?.style as any)),
     ...(table.options.enableColumnResizing && widthStyles), //do not let devs pass in width styles if column resizing is enabled
   };
 };

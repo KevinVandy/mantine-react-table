@@ -16,7 +16,7 @@ export const MiniNav = () => {
 
   return (
     <Box
-      sx={{
+      style={{
         position: isXLDesktop ? 'fixed' : undefined,
         top: '80px',
         right: '2rem',
@@ -52,7 +52,7 @@ export const MiniNav = () => {
             >
               <Anchor
                 href={`#${heading.id}`}
-                sx={(theme) => ({
+                style={(theme) => ({
                   color:
                     theme.colorScheme === 'dark'
                       ? theme.colors.gray[3]

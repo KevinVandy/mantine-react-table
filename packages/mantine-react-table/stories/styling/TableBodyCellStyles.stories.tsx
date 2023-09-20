@@ -42,7 +42,7 @@ export const StyleAllMantineTableBodyCell = () => (
     columns={columns}
     data={data}
     mantineTableBodyCellProps={{
-      sx: {
+      style: {
         backgroundColor: 'rgba(52, 210, 235, 0.1)',
         borderRight: '1px solid rgba(224,224,224,1)',
       },
@@ -65,7 +65,7 @@ export const StyleMantineTableBodyCellConditionallyIn1Column = () => (
         header: 'Age',
         accessorKey: 'age',
         mantineTableBodyCellProps: ({ cell }) => ({
-          sx: {
+          style: {
             backgroundColor:
               cell.getValue<number>() > 40
                 ? 'rgba(22, 184, 44, 0.5)'

@@ -33,7 +33,7 @@ const TableOptionsTable = ({ onlyOptions }: Props) => {
             row.original?.required ? (
               <Text
                 component="strong"
-                sx={(theme) => ({
+                style={(theme) => ({
                   color: getPrimaryColor(theme),
                 })}
               >
@@ -157,11 +157,11 @@ const TableOptionsTable = ({ onlyOptions }: Props) => {
       }}
       mantineSearchTextInputProps={{
         placeholder: 'Search All Props',
-        sx: { minWidth: '18rem' },
+        style: { minWidth: '18rem' },
         variant: 'filled',
       }}
       mantinePaperProps={{
-        sx: { marginBottom: '24px' },
+        style: { marginBottom: '24px' },
         id: onlyOptions ? 'relevant-props-table' : 'props-table',
       }}
       positionGlobalFilter="left"

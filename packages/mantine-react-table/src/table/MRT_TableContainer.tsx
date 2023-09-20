@@ -74,16 +74,16 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={(theme) => ({
+      style={(theme) => ({
         maxWidth: '100%',
         maxHeight: enableStickyHeader
           ? `clamp(350px, calc(100vh - ${totalToolbarHeight}px), 9999px)`
           : undefined,
         overflow: 'auto',
         position: 'relative',
-        ...(tableContainerProps?.sx instanceof Function
-          ? tableContainerProps.sx(theme)
-          : (tableContainerProps?.sx as any)),
+        ...(tableContainerProps?.style instanceof Function
+          ? tableContainerProps.style(theme)
+          : (tableContainerProps?.style as any)),
       })}
       style={{
         maxHeight: isFullScreen

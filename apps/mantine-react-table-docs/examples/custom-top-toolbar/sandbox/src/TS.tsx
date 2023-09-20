@@ -40,7 +40,7 @@ const Example = () => {
     positionToolbarAlertBanner: 'bottom',
     //add custom action buttons to top-left of top toolbar
     renderTopToolbarCustomActions: ({ table }) => (
-      <Box sx={{ display: 'flex', gap: '16px', padding: '4px' }}>
+      <Box style={{ display: 'flex', gap: '16px', padding: '4px' }}>
         <Button
           color="teal"
           onClick={() => {

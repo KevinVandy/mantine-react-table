@@ -60,7 +60,7 @@ export const MRT_ToggleRowActionMenuButton = <
             aria-label={localization.edit}
             disabled={!!editingRow && editingRow.id !== row.id}
             onClick={handleStartEditMode}
-            sx={{
+            style={{
               opacity: 0.8,
               '&:hover': {
                 opacity: 1,

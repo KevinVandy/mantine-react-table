@@ -46,7 +46,7 @@ const columns = [
       <>
         Max by{' '}
         {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
-        <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+        <Box style={{ color: 'green', fontWeight: 'bold' }}>
           {cell.getValue<number>()}
         </Box>
       </>
@@ -62,7 +62,7 @@ const columns = [
     header: 'Gender',
     accessorKey: 'gender',
     GroupedCell: ({ cell }) => (
-      <Box sx={{ color: 'primary.main' }}>{cell.getValue<string>()}</Box>
+      <Box style={{ color: 'primary.main' }}>{cell.getValue<string>()}</Box>
     ),
   },
   {
@@ -78,7 +78,7 @@ const columns = [
       <>
         Average by{' '}
         {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
-        <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+        <Box style={{ color: 'green', fontWeight: 'bold' }}>
           {cell.getValue<number>()?.toLocaleString?.('en-US', {
             style: 'currency',
             currency: 'USD',
@@ -166,7 +166,7 @@ export const MultiAggregationPerColumn = () => (
           <>
             Min by{' '}
             {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue<[number, number]>()[0]}
             </Box>
             <br />
@@ -174,7 +174,7 @@ export const MultiAggregationPerColumn = () => (
             {
               table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header
             }:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue<[number, number]>()[1]}
             </Box>
           </>
@@ -190,7 +190,7 @@ export const MultiAggregationPerColumn = () => (
         header: 'Gender',
         accessorKey: 'gender',
         GroupedCell: ({ cell }) => (
-          <Box sx={{ color: 'primary.main' }}>{cell.getValue<string>()}</Box>
+          <Box style={{ color: 'primary.main' }}>{cell.getValue<string>()}</Box>
         ),
       },
       {
@@ -205,7 +205,7 @@ export const MultiAggregationPerColumn = () => (
         AggregatedCell: ({ cell, table }) => (
           <>
             Count:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue<[number, number]>()?.[0]}
             </Box>
             <br />
@@ -213,7 +213,7 @@ export const MultiAggregationPerColumn = () => (
             {
               table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header
             }:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell
                 .getValue<[number, number]>()?.[1]
                 ?.toLocaleString?.('en-US', {

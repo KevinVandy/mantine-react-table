@@ -38,7 +38,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
         }}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
-        sx={(theme) => ({
+        style={(theme) => ({
           cursor: 'grab',
           margin: '0 -0.16px',
           opacity: 0.5,
@@ -51,9 +51,9 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
           '&:active': {
             cursor: 'grabbing',
           },
-          ...(actionIconProps?.sx instanceof Function
-            ? actionIconProps?.sx(theme)
-            : (actionIconProps?.sx as any)),
+          ...(actionIconProps?.style instanceof Function
+            ? actionIconProps?.style(theme)
+            : (actionIconProps?.style as any)),
         })}
         title={undefined}
       >

@@ -33,7 +33,7 @@ const Example = () => {
       data={data}
       renderDetailPanel={({ row }) => (
         <Box
-          sx={{
+          style={{
             display: 'grid',
             margin: 'auto',
             gridTemplateColumns: '1fr 1fr',

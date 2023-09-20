@@ -125,7 +125,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
         }
       }}
       {...tableCellProps}
-      sx={(theme: MantineTheme) => ({
+      style={(theme: MantineTheme) => ({
         flexDirection: layoutMode === 'grid' ? 'column' : undefined,
         fontWeight: 'bold',
         overflow: 'visible',
@@ -154,7 +154,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
       {header.isPlaceholder ? null : (
         <Flex
           className="mantine-TableHeadCell-Content"
-          sx={{
+          style={{
             alignItems: 'flex-start',
             flexDirection:
               tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
@@ -171,7 +171,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
           <Flex
             className="mantine-TableHeadCell-Content-Labels"
             onClick={column.getToggleSortingHandler()}
-            sx={{
+            style={{
               alignItems: 'center',
               cursor:
                 column.getCanSort() && columnDefType !== 'group'
@@ -188,7 +188,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
           >
             <Flex
               className="mantine-TableHeadCell-Content-Wrapper"
-              sx={{
+              style={{
                 overflow: columnDefType === 'data' ? 'hidden' : undefined,
                 textOverflow: 'ellipsis',
                 whiteSpace:
@@ -208,7 +208,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
           {columnDefType !== 'group' && (
             <Flex
               className="mantine-TableHeadCell-Content-Actions"
-              sx={{
+              style={{
                 alignItems: 'center',
                 alignSelf: 'center',
                 whiteSpace: 'nowrap',

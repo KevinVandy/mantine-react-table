@@ -24,7 +24,7 @@ export const MRT_ProgressBar = <TData extends Record<string, any> = {}>({
   return (
     <Collapse
       in={isSaving || showProgressBars}
-      sx={{
+      style={{
         bottom: isTopToolbar ? 0 : undefined,
         position: 'absolute',
         top: !isTopToolbar ? 0 : undefined,

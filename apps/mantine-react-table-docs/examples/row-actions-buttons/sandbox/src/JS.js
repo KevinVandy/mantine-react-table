@@ -12,7 +12,7 @@ export const Example = () => {
     data,
     enableRowActions: true,
     renderRowActions: ({ row }) => (
-      <Box sx={{ display: 'flex', flexWrap: 'nowrap', gap: '8px' }}>
+      <Box style={{ display: 'flex', flexWrap: 'nowrap', gap: '8px' }}>
         <ActionIcon
           color="blue"
           onClick={() =>

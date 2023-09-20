@@ -11,7 +11,7 @@ export function HomeCards() {
           <Card>
             <Title order={3}>The Best of Both Worlds</Title>
             <Box
-              sx={{
+              style={{
                 display: 'flex',
                 justifyContent: 'center',
                 margin: '1rem auto',

@@ -246,7 +246,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
                   handleSelectFilterMode(option as MRT_FilterOption)
                 }
                 color={option === filterOption ? 'blue' : undefined}
-                sx={{
+                style={{
                   '& > .mantine-Menu-itemLabel': {
                     display: 'flex',
                     flexWrap: 'nowrap',
@@ -256,7 +256,7 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
                 value={option}
               >
                 <Flex
-                  sx={{
+                  style={{
                     fontSize: '20px',
                     transform: 'translateY(-2px)',
                     width: '2ch',

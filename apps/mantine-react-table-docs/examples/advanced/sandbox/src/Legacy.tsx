@@ -30,7 +30,7 @@ const Example = () => {
             filterVariant: 'autocomplete',
             Cell: ({ renderedCellValue, row }) => (
               <Box
-                sx={{
+                style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '16px',
@@ -76,7 +76,7 @@ const Example = () => {
             //custom conditional format and styling
             Cell: ({ cell }) => (
               <Box
-                sx={(theme) => ({
+                style={(theme) => ({
                   backgroundColor:
                     cell.getValue<number>() < 50_000
                       ? theme.colors.red[9]
@@ -141,7 +141,7 @@ const Example = () => {
       positionToolbarAlertBanner="bottom"
       renderDetailPanel={({ row }) => (
         <Box
-          sx={{
+          style={{
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -155,7 +155,7 @@ const Example = () => {
             src={row.original.avatar}
             style={{ borderRadius: '50%' }}
           />
-          <Box sx={{ textAlign: 'center' }}>
+          <Box style={{ textAlign: 'center' }}>
             <Title>Signature Catch Phrase:</Title>
             <Text>&quot;{row.original.signatureCatchPhrase}&quot;</Text>
           </Box>

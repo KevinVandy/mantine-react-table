@@ -40,7 +40,7 @@ const Example = () => {
       positionGlobalFilter="left"
       mantineSearchTextInputProps={{
         placeholder: `Search ${data.length} rows`,
-        sx: { minWidth: '300px' },
+        style: { minWidth: '300px' },
         variant: 'filled',
       }}
     />

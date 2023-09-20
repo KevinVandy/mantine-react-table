@@ -34,7 +34,7 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
     <Box
       component="tfoot"
       {...tableFooterProps}
-      sx={(theme) => ({
+      style={(theme) => ({
         bottom: stickFooter ? 0 : undefined,
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
         opacity: stickFooter ? 0.97 : undefined,
@@ -45,9 +45,9 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
           : undefined,
         position: stickFooter ? 'sticky' : undefined,
         zIndex: stickFooter ? 1 : undefined,
-        ...(tableFooterProps?.sx instanceof Function
-          ? tableFooterProps?.sx(theme)
-          : (tableFooterProps?.sx as any)),
+        ...(tableFooterProps?.style instanceof Function
+          ? tableFooterProps?.style(theme)
+          : (tableFooterProps?.style as any)),
       })}
     >
       {getFooterGroups().map((footerGroup) => (

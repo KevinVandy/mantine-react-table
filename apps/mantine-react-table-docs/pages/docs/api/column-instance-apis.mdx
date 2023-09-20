@@ -31,7 +31,7 @@ const columns = [
     header: 'Username',
     //you can access a column instance in many callback functions in a column definition like this
     mantineTableHeadCellProps: ({ column }) => ({
-      sx: {
+      style: {
         color: column.getIsSorted() ? 'red' : 'black',
       },
     }),
@@ -39,7 +39,7 @@ const columns = [
     Header: ({ column }) => <div>{column.columnDef.header}</div>,
     Cell: ({ cell, column }) => (
       <Box
-        sx={{
+        style={{
           backgroundColor: column.getIsGrouped() ? 'green' : 'white',
         }}
       >
@@ -53,7 +53,7 @@ const table = useMantineReactTable({
   columns,
   data,
   mantineTableBodyCellProps: ({ column }) => ({
-    sx: { boxShadow: column.getIsPinned() ? '0 0 0 2px red' : 'none' },
+    style: { boxShadow: column.getIsPinned() ? '0 0 0 2px red' : 'none' },
   }),
 });
 

@@ -117,7 +117,7 @@ const Example = () => {
     manualSorting: true,
     mantineTableContainerProps: {
       ref: tableContainerRef, //get access to the table container element
-      sx: { maxHeight: '600px' }, //give the table a max height
+      style: { maxHeight: '600px' }, //give the table a max height
       onScroll: (
         event, //add an event listener to the table container element
       ) => fetchMoreOnBottomReached(event.target),

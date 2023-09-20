@@ -47,7 +47,7 @@ export const Example = () => {
       highlightOnHover: false,
       withColumnBorders: true,
       withBorder: colorScheme === 'light',
-      sx: {
+      style: {
         'thead > tr': {
           backgroundColor: 'inherit',
         },

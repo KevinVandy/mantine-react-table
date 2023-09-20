@@ -40,7 +40,7 @@ const Example = () => {
     enableRowDragging: true,
     enableFullScreenToggle: false,
     mantineTableContainerProps: {
-      sx: {
+      style: {
         minHeight: '320px',
       },
     },
@@ -50,7 +50,7 @@ const Example = () => {
 
   return (
     <Box
-      sx={{
+      style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
         gap: '16px',
@@ -78,7 +78,7 @@ const Example = () => {
         }}
         mantinePaperProps={{
           onDragEnter: () => setHoveredTable('table-1'),
-          sx: {
+          style: {
             outline: hoveredTable === 'table-1' ? '2px dashed pink' : undefined,
           },
         }}
@@ -108,7 +108,7 @@ const Example = () => {
         }}
         mantinePaperProps={{
           onDragEnter: () => setHoveredTable('table-2'),
-          sx: {
+          style: {
             outline: hoveredTable === 'table-2' ? '2px dashed pink' : undefined,
           },
         }}

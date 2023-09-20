@@ -71,13 +71,13 @@ export const MRT_ShowHideColumnsMenu = <
 
   return (
     <Menu.Dropdown
-      sx={{
+      style={{
         maxHeight: 'calc(80vh - 100px)',
         overflowY: 'auto',
       }}
     >
       <Flex
-        sx={{
+        style={{
           justifyContent: isSubMenu ? 'center' : 'space-between',
           padding: '8px',
           gap: '8px',

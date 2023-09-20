@@ -1,5 +1,5 @@
 import { type DragEvent, memo, useRef } from 'react';
-import { Box } from '@mantine/core';
+import { Box, darken, lighten, rgba } from '@mantine/core';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import { getPrimaryColor } from '../column.utils';
@@ -80,7 +80,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           }
         }}
         {...tableRowProps}
-        sx={(theme) => ({
+        style={(theme) => ({
           boxSizing: 'border-box',
           display: layoutMode === 'grid' ? 'flex' : 'table-row',
           opacity:
@@ -89,26 +89,23 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           top: virtualRow ? 0 : undefined,
           transition: virtualRow ? 'none' : 'all 100ms ease-in-out',
           width: '100%',
+          transform: virtualRow
+            ? `translateY(${virtualRow?.start}px)`
+            : undefined,
           '&:hover td': {
             backgroundColor:
               enableHover !== false
                 ? row.getIsSelected()
-                  ? theme.fn.rgba(getPrimaryColor(theme), 0.2)
+                  ? rgba(getPrimaryColor(theme), 0.2)
                   : theme.colorScheme === 'dark'
-                  ? `${theme.fn.lighten(theme.colors.dark[7], 0.12)}`
-                  : `${theme.fn.darken(theme.white, 0.05)}`
+                  ? `${lighten(theme.colors.dark[7], 0.12)}`
+                  : `${darken(theme.white, 0.05)}`
                 : undefined,
           },
-          ...(tableRowProps?.sx instanceof Function
-            ? tableRowProps.sx(theme)
-            : (tableRowProps?.sx as any)),
+          ...(tableRowProps?.style instanceof Function
+            ? tableRowProps.style(theme)
+            : (tableRowProps?.style as any)),
         })}
-        style={{
-          transform: virtualRow
-            ? `translateY(${virtualRow?.start}px)`
-            : undefined,
-          ...tableRowProps?.style,
-        }}
       >
         {virtualPaddingLeft ? (
           <td style={{ display: 'flex', width: virtualPaddingLeft }} />

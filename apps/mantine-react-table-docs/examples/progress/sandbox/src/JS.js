@@ -47,7 +47,7 @@ const Example = () => {
         color: 'orange',
         variant: 'determinate', //if you want to show exact progress value
         value: progress, //value between 0 and 100
-        sx: {
+        style: {
           display: isTopToolbar ? 'block' : 'none', //hide bottom progress bar
         },
       })}

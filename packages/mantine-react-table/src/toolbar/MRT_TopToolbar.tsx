@@ -68,13 +68,13 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      sx={(theme) => ({
+      style={(theme) => ({
         position: isFullScreen ? 'sticky' : 'relative',
         top: isFullScreen ? '0' : undefined,
         ...commonToolbarStyles({ theme }),
-        ...(toolbarProps?.sx instanceof Function
-          ? toolbarProps.sx(theme)
-          : (toolbarProps?.sx as any)),
+        ...(toolbarProps?.style instanceof Function
+          ? toolbarProps.style(theme)
+          : (toolbarProps?.style as any)),
       })}
     >
       {positionToolbarAlertBanner === 'top' && (
@@ -87,7 +87,7 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
         <MRT_ToolbarDropZone table={table} />
       )}
       <Flex
-        sx={{
+        style={{
           alignItems: 'flex-start',
           boxSizing: 'border-box',
           justifyContent: 'space-between',
@@ -104,7 +104,7 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
         {renderTopToolbarCustomActions?.({ table }) ?? <span />}
         {enableToolbarInternalActions ? (
           <Flex
-            sx={{
+            style={{
               flexWrap: 'wrap-reverse',
               justifyContent: 'flex-end',
             }}

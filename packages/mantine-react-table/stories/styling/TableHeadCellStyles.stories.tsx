@@ -44,7 +44,7 @@ export const StyleAllMantineTableHeadCell = () => (
     columns={columns}
     data={data}
     mantineTableHeadCellProps={{
-      sx: {
+      style: {
         backgroundColor: 'rgba(52, 210, 235, 0.1)',
         borderRight: '1px solid rgba(224,224,224,1)',
         color: '#fff',
@@ -64,7 +64,7 @@ export const StyleTableHeadCellsIndividually = () => (
         header: 'Last Name',
         accessorKey: 'lastName',
         mantineTableHeadCellProps: {
-          sx: (theme) => ({
+          style: (theme) => ({
             color: getPrimaryColor(theme),
           }),
         },
@@ -73,7 +73,7 @@ export const StyleTableHeadCellsIndividually = () => (
         header: 'Age',
         accessorKey: 'age',
         mantineTableHeadCellProps: {
-          sx: {
+          style: {
             color: 'red',
           },
         },

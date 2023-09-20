@@ -74,7 +74,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           : undefined
       }
       p="relative"
-      sx={{ zIndex: 2 }}
+      style={{ zIndex: 2 }}
     >
       {paginationProps?.showRowsPerPage !== false && (
         <Select
@@ -93,7 +93,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           label={localization.rowsPerPage}
           onChange={(value: string) => setPageSize(+value)}
           value={pageSize.toString()}
-          sx={{
+          style={{
             '@media (min-width: 720px)': {
               display: 'flex',
               alignItems: 'center',
@@ -131,7 +131,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
                 aria-label={localization.goToFirstPage}
                 disabled={pageIndex <= 0}
                 onClick={() => setPageIndex(0)}
-                sx={commonActionButtonStyles}
+                style={commonActionButtonStyles}
               >
                 <IconChevronLeftPipe />
               </ActionIcon>
@@ -140,7 +140,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
               aria-label={localization.goToPreviousPage}
               disabled={pageIndex <= 0}
               onClick={() => setPageIndex(pageIndex - 1)}
-              sx={commonActionButtonStyles}
+              style={commonActionButtonStyles}
             >
               <IconChevronLeft />
             </ActionIcon>
@@ -148,7 +148,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
               aria-label={localization.goToNextPage}
               disabled={lastRowIndex >= totalRowCount}
               onClick={() => setPageIndex(pageIndex + 1)}
-              sx={commonActionButtonStyles}
+              style={commonActionButtonStyles}
             >
               <IconChevronRight />
             </ActionIcon>
@@ -157,7 +157,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
                 aria-label={localization.goToLastPage}
                 disabled={lastRowIndex >= totalRowCount}
                 onClick={() => setPageIndex(numberOfPages - 1)}
-                sx={commonActionButtonStyles}
+                style={commonActionButtonStyles}
               >
                 <IconChevronRightPipe />
               </ActionIcon>

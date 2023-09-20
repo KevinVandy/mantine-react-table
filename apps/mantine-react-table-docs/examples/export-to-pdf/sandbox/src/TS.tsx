@@ -65,7 +65,7 @@ const Example = () => {
     positionToolbarAlertBanner: 'bottom',
     renderTopToolbarCustomActions: ({ table }) => (
       <Box
-        sx={{
+        style={{
           display: 'flex',
           gap: '16px',
           padding: '8px',

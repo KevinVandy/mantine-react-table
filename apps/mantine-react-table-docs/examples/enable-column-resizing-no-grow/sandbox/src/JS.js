@@ -30,12 +30,12 @@ const Example = () => {
       layoutMode="grid"
       //Disables the default flex-grow behavior of the table cells
       mantineTableHeadCellProps={{
-        sx: {
+        style: {
           flex: '0 0 auto',
         },
       }}
       mantineTableBodyCellProps={{
-        sx: {
+        style: {
           flex: '0 0 auto',
         },
       }}

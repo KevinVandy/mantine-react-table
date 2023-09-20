@@ -25,7 +25,7 @@ export const MRT_ColumnPinningButtons = <
 
   return (
     <Flex
-      sx={{
+      style={{
         minWidth: '70px',
         alignContent: 'center',
         justifyContent: 'center',

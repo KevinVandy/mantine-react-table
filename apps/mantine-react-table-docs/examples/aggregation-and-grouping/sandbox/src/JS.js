@@ -35,7 +35,7 @@ const Example = () => {
             Oldest by{' '}
             {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
             <Box
-              sx={{ color: 'skyblue', display: 'inline', fontWeight: 'bold' }}
+              style={{ color: 'skyblue', display: 'inline', fontWeight: 'bold' }}
             >
               {cell.getValue()}
             </Box>
@@ -53,7 +53,7 @@ const Example = () => {
         accessorKey: 'gender',
         //optionally, customize the cell render when this column is grouped. Make the text blue and pluralize the word
         GroupedCell: ({ cell, row }) => (
-          <Box sx={{ color: 'skyblue' }}>
+          <Box style={{ color: 'skyblue' }}>
             <strong>{cell.getValue()}s </strong> ({row.subRows?.length})
           </Box>
         ),
@@ -71,7 +71,7 @@ const Example = () => {
           <>
             Average by{' '}
             {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
-            <Box sx={{ color: 'green', fontWeight: 'bold' }}>
+            <Box style={{ color: 'green', fontWeight: 'bold' }}>
               {cell.getValue()?.toLocaleString?.('en-US', {
                 style: 'currency',
                 currency: 'USD',
@@ -125,7 +125,7 @@ const Example = () => {
       sorting: [{ id: 'state', desc: false }],
     },
     mantineToolbarAlertBannerBadgeProps: { color: 'blue', variant: 'outline' },
-    mantineTableContainerProps: { sx: { maxHeight: 700 } },
+    mantineTableContainerProps: { style: { maxHeight: 700 } },
   });
 
   return <MantineReactTable table={table} />;

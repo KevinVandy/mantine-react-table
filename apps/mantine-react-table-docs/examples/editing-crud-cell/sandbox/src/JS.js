@@ -174,7 +174,7 @@ const Example = () => {
         }
       : undefined,
     mantineTableContainerProps: {
-      sx: {
+      style: {
         minHeight: '500px',
       },
     },

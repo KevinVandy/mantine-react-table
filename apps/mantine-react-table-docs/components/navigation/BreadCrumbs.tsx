@@ -48,12 +48,12 @@ export const BreadCrumbs = () => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ paddingBottom: '16px' }}>
+      <Breadcrumbs aria-label="breadcrumb" style={{ paddingBottom: '16px' }}>
         {breadCrumbLinks.map((link, index) => (
           <Link key={index} href={link} passHref legacyBehavior>
             <Anchor
               color="inherit"
-              sx={{
+              style={{
                 cursor: 'pointer',
                 textTransform: 'capitalize',
                 textDecoration: 'none',

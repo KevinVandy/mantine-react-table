@@ -84,7 +84,7 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
         <>
           <form onSubmit={(e) => e.preventDefault()}>
             <Stack
-              sx={{
+              style={{
                 gap: '24px',
                 paddingTop: '16px',
                 width: '100%',
@@ -93,7 +93,7 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
               {internalEditComponents}
             </Stack>
           </form>
-          <Flex sx={{ paddingTop: '24px', justifyContent: 'flex-end' }}>
+          <Flex style={{ paddingTop: '24px', justifyContent: 'flex-end' }}>
             <MRT_EditActionButtons row={row} table={table} variant="text" />
           </Flex>
         </>

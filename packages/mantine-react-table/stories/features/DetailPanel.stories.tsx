@@ -75,7 +75,7 @@ export const DetailPanelEnabledConditional = () => (
       phone: faker.phone.number(),
     }))}
     mantineExpandButtonProps={({ row }) => ({
-      sx: {
+      style: {
         display: row.original.age > 50 ? 'flex' : 'none',
       },
     })}

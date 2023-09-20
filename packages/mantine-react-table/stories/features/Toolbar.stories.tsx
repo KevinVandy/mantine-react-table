@@ -350,7 +350,7 @@ export const renderCustomTopToolbar = () => (
     columns={columns}
     data={data}
     renderTopToolbar={() => (
-      <Box sx={{ padding: '2rem' }}>Custom Top Toolbar</Box>
+      <Box style={{ padding: '2rem' }}>Custom Top Toolbar</Box>
     )}
   />
 );
@@ -360,7 +360,7 @@ export const renderCustomBottomToolbar = () => (
     columns={columns}
     data={data}
     renderBottomToolbar={() => (
-      <Box sx={{ padding: '2rem' }}>Custom Bottom Toolbar</Box>
+      <Box style={{ padding: '2rem' }}>Custom Bottom Toolbar</Box>
     )}
   />
 );

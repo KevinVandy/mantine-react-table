@@ -34,7 +34,7 @@ const Example = () => {
     mantineTableBodyRowProps: ({ row }) => ({
       //add onClick to row to select upon clicking anywhere in the row
       onClick: row.getToggleSelectedHandler(),
-      sx: { cursor: 'pointer' },
+      style: { cursor: 'pointer' },
     }),
     onRowSelectionChange: setRowSelection, //connect internal row selection state to your own
     state: { rowSelection }, //pass our managed row selection state to the table to use

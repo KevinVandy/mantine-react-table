@@ -138,15 +138,15 @@ export const PinnedColumnsWithStickyFooter = () => {
       enableStickyHeader
       enableStickyFooter
       mantineTableContainerProps={{
-        sx: { maxHeight: 300 },
+        style: { maxHeight: 300 },
       }}
       mantineTableHeadCellProps={{
         align: 'center',
-        sx: { borderLeft: '1px solid black' },
+        style: { borderLeft: '1px solid black' },
       }}
       mantineTableBodyCellProps={{
         align: 'center',
-        sx: { borderLeft: '1px solid black' },
+        style: { borderLeft: '1px solid black' },
       }}
       initialState={{ columnPinning: { left: ['no', 'name', 'firstName'] } }}
     />

@@ -8,7 +8,7 @@ import {
   MRT_ToolbarAlertBanner,
   useMantineReactTable,
 } from 'mantine-react-table';
-import { ActionIcon, Box, Button, Flex, Text, Tooltip } from '@mantine/core';
+import { ActionIcon, Box, Button, Flex, Text, Tooltip, rgba } from '@mantine/core';
 import { IconPrinter } from '@tabler/icons-react';
 import { data } from './makeData';
 
@@ -40,11 +40,11 @@ const Example = () => {
   });
 
   return (
-    <Box sx={{ border: 'gray 2px dashed', padding: '16px' }}>
+    <Box style={{ border: 'gray 2px dashed', padding: '16px' }}>
       {/* Our Custom External Top Toolbar */}
       <Flex
-        sx={(theme) => ({
-          backgroundColor: theme.fn.rgba(theme.colors.blue[3], 0.2),
+        style={(theme) => ({
+          backgroundColor: rgba(theme.colors.blue[3], 0.2),
           borderRadius: '4px',
           flexDirection: 'row',
           gap: '16px',
@@ -91,7 +91,7 @@ const Example = () => {
         <Flex justify="flex-end">
           <MRT_TablePagination table={table} />
         </Flex>
-        <Box sx={{ display: 'grid', width: '100%' }}>
+        <Box style={{ display: 'grid', width: '100%' }}>
           <MRT_ToolbarAlertBanner stackAlertBanner table={table} />
         </Box>
       </Box>

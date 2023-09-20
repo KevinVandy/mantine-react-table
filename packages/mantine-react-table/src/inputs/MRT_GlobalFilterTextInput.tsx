@@ -63,7 +63,7 @@ export const MRT_GlobalFilterTextInput = <
   return (
     <Collapse
       in={showGlobalFilter}
-      sx={{
+      style={{
         '& > div': {
           display: 'flex',
           alignItems: 'center',
@@ -112,11 +112,11 @@ export const MRT_GlobalFilterTextInput = <
             }
           }
         }}
-        sx={(theme) => ({
+        style={(theme) => ({
           minWidth: '250px',
-          ...(textFieldProps?.sx instanceof Function
-            ? textFieldProps.sx(theme)
-            : (textFieldProps?.sx as any)),
+          ...(textFieldProps?.style instanceof Function
+            ? textFieldProps.style(theme)
+            : (textFieldProps?.style as any)),
         })}
       />
     </Collapse>

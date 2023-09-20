@@ -122,7 +122,7 @@ const Example = () => {
       enablePinning
       enableRowNumbers
       enableRowVirtualization
-      mantineTableContainerProps={{ sx: { maxHeight: '600px' } }}
+      mantineTableContainerProps={{ style: { maxHeight: '600px' } }}
       onSortingChange={setSorting}
       state={{ isLoading, sorting }}
       rowVirtualizerInstanceRef={rowVirtualizerInstanceRef} //optional

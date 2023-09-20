@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, rgba } from '@mantine/core';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import {
   type MRT_Header,
@@ -39,15 +39,15 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
     <Box
       component="tr"
       {...tableRowProps}
-      sx={(theme) => ({
+      style={(theme) => ({
         backgroundColor:
           theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-        boxShadow: `0 4px 8px ${theme.fn.rgba(theme.black, 0.1)}`,
+        boxShadow: `0 4px 8px ${rgba(theme.black, 0.1)}`,
         display: layoutMode === 'grid' ? 'flex' : 'table-row',
         top: stickyHeader ? 0 : undefined,
-        ...(tableRowProps?.sx instanceof Function
-          ? tableRowProps?.sx(theme)
-          : (tableRowProps?.sx as any)),
+        ...(tableRowProps?.style instanceof Function
+          ? tableRowProps?.style(theme)
+          : (tableRowProps?.style as any)),
         position: stickyHeader ? 'sticky' : undefined,
       })}
     >

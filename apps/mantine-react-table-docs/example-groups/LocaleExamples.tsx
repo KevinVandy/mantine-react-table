@@ -73,7 +73,7 @@ const LocaleExamples = () => {
 
   return (
     <>
-      <Box sx={{ width: '100%' }}>
+      <Box style={{ width: '100%' }}>
         <Tabs onTabChange={setCurrentLocale} value={currentLocale}>
           <Tabs.List>
             {supportedLocales.map((locale) => (
@@ -84,7 +84,7 @@ const LocaleExamples = () => {
           </Tabs.List>
         </Tabs>
       </Box>
-      <Box sx={{ minHeight: '1500px' }} lang={currentLocale ?? 'en'}>
+      <Box style={{ minHeight: '1500px' }} lang={currentLocale ?? 'en'}>
         {currentLocale === 'ar' && <AR_Table />}
         {currentLocale === 'bg' && <BG_Table />}
         {currentLocale === 'cs' && <CS_Table />}

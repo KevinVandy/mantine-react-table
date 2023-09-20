@@ -114,11 +114,11 @@ const CellInstanceAPIsTable = ({ onlyOptions }: Props) => {
       }}
       mantineSearchTextInputProps={{
         placeholder: 'Search Cell APIs',
-        sx: { minWidth: '18rem' },
+        style: { minWidth: '18rem' },
         variant: 'filled',
       }}
       mantinePaperProps={{
-        sx: { marginBottom: '24px' },
+        style: { marginBottom: '24px' },
         id: onlyOptions
           ? 'relevant-cell-instance-apis-table'
           : 'cell-instance-apis-table',

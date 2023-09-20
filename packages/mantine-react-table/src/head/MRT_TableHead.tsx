@@ -40,15 +40,15 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
     <Box
       component="thead"
       {...tableHeadProps}
-      sx={(theme) => ({
+      style={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
         position: stickyHeader && layoutMode === 'grid' ? 'sticky' : 'relative',
         opacity: 0.97,
         top: stickyHeader ? 0 : undefined,
         zIndex: stickyHeader ? 2 : undefined,
-        ...(tableHeadProps?.sx instanceof Function
-          ? tableHeadProps?.sx(theme)
-          : (tableHeadProps?.sx as any)),
+        ...(tableHeadProps?.style instanceof Function
+          ? tableHeadProps?.style(theme)
+          : (tableHeadProps?.style as any)),
       })}
     >
       {positionToolbarAlertBanner === 'head-overlay' &&

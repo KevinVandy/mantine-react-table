@@ -78,7 +78,7 @@ const preview: Preview = {
             <Flex justify="space-between">
               <Stack>
                 <Text
-                  sx={{
+                  style={{
                     paddingBottom: '8px',
                     color: useDarkMode() ? '#fff' : '#666',
                   }}
@@ -94,7 +94,7 @@ const preview: Preview = {
                   </Anchor>
                 </Text>
                 <Text
-                  sx={{
+                  style={{
                     paddingBottom: '16px',
                     color: useDarkMode() ? '#fff' : '#666',
                   }}

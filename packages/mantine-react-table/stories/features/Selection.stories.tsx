@@ -59,7 +59,7 @@ export const SelectionEnabledWithRowClick = () => (
     enableRowSelection
     mantineTableBodyRowProps={({ row }) => ({
       onClick: row.getToggleSelectedHandler(),
-      sx: {
+      style: {
         cursor: 'pointer',
       },
     })}
@@ -82,7 +82,7 @@ export const ManualSelection = () => {
             [row.id]: !prev[row.id],
           })),
         selected: rowSelection[row.id],
-        sx: {
+        style: {
           cursor: 'pointer',
         },
       })}
@@ -147,7 +147,7 @@ export const SingleSelectionRadioWithRowClick = () => (
     enableMultiRowSelection={false}
     mantineTableBodyRowProps={({ row }) => ({
       onClick: row.getToggleSelectedHandler(),
-      sx: {
+      style: {
         cursor: 'pointer',
       },
     })}

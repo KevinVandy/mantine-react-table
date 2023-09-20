@@ -57,7 +57,7 @@ const Example = () => {
         },
       })}
       renderBottomToolbarCustomActions={() => (
-        <Text sx={{ fontStyle: 'italic', padding: '0 16px' }}>
+        <Text style={{ fontStyle: 'italic', padding: '0 16px' }}>
           Double-Click a Cell to Edit
         </Text>
       )}

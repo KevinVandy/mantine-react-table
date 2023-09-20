@@ -1,7 +1,7 @@
 import { Fragment, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { UnstyledButton, Flex } from '@mantine/core';
+import { UnstyledButton, Flex, rgba } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconExternalLink } from '@tabler/icons-react';
 import { type RouteItem } from './routes';
@@ -47,10 +47,10 @@ export const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
                     )
                   }
                   onClick={handleCloseMenu}
-                  sx={(theme) => ({
+                  style={(theme) => ({
                     backgroundColor:
                       pathname === href || secondaryHrefs?.includes(pathname)
-                        ? theme.fn.rgba(getPrimaryColor(theme), 0.2)
+                        ? rgba(getPrimaryColor(theme), 0.2)
                         : 'transparent',
                     color: !items
                       ? getPrimaryColor(
@@ -72,7 +72,7 @@ export const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
                     whiteSpace: 'nowrap',
                     transition: 'background-color 0.1s ease',
                     '&:hover': {
-                      backgroundColor: theme.fn.rgba(
+                      backgroundColor: rgba(
                         getPrimaryColor(theme),
                         0.1,
                       ),
@@ -80,7 +80,7 @@ export const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
                   })}
                 >
                   <Flex
-                    sx={{
+                    style={{
                       marginLeft: `${depth}rem`,
                     }}
                   >

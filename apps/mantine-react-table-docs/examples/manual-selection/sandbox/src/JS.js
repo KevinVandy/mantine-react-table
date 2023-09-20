@@ -47,7 +47,7 @@ const Example = () => {
           [row.id]: !prev[row.id],
         })),
       selected: rowSelection[row.id],
-      sx: {
+      style: {
         cursor: 'pointer',
       },
     }),

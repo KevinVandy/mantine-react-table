@@ -51,7 +51,7 @@ export const Example = () => {
       enableStickyHeader
       initialState={{ pagination: { pageSize: 20, pageIndex: 0 } }}
       memoMode="cells"
-      mantineTableContainerProps={{ sx: { maxHeight: '500px' } }}
+      mantineTableContainerProps={{ style: { maxHeight: '500px' } }}
       renderDetailPanel={({ row }) => <div>{row.original.firstName}</div>}
       renderTopToolbarCustomActions={() => (
         <Title order={4}>Memoized Cells</Title>

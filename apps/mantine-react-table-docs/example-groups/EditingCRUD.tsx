@@ -14,7 +14,7 @@ const EditingCRUD = ({ isPage = false }) => {
 
   return (
     <>
-      <Box sx={{ width: '100%', marginTop: '1rem' }}>
+      <Box style={{ width: '100%', marginTop: '1rem' }}>
         <Tabs
           value={isPage ? pathname.split('/').pop() : activeTab}
           onTabChange={(newPath) =>
