@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Anchor, Box, Button, Paper, Stack, Text, Title } from '@mantine/core';
 import { IconChevronRight } from '@tabler/icons-react';
 import { HomeCards } from '../components/mdx/HomeCards';
@@ -8,8 +7,6 @@ import { StatBadges } from '../components/mdx/StatBadges';
 import { ComparisonTable } from '../components/mdx/ComparisonTable';
 import { LinkHeading } from '../components/mdx/LinkHeading';
 import { FeatureTable } from '../components/mdx/FeatureTable';
-import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
-import { PopularDocs } from '../components/mdx/PopularDocs';
 import { Contributors } from '../components/mdx/Contributors';
 import { InstallCommand } from '../components/mdx/InstallCommand';
 import BasicExamples from '../example-groups/BasicExamples';
@@ -25,19 +22,11 @@ const HomePage = () => {
           Mantine&nbsp;React&nbsp;Table
         </Box>
       </Title>
-      <Title
-        color="dimmed"
-        className={classes.subtitle}
-        order={2}
-      >
+      <Title c="dimmed" className={classes.subtitle} order={2}>
         Built with{' '}
         <Link href="https://mantine.dev/" passHref legacyBehavior>
           <Anchor
-            sx={(theme) => ({
-              color: getPrimaryColor(theme),
-              textDecoration: 'none',
-              '&:hover': { textDecoration: 'underline' },
-            })}
+            className={classes.builtWithMantine}
             target="_blank"
             rel="noopener"
           >
@@ -47,11 +36,7 @@ const HomePage = () => {
         and&nbsp;
         <Link href="https://tanstack.com/table/v8" passHref legacyBehavior>
           <Anchor
-            sx={(theme) => ({
-              color: theme.colors.blue[8],
-              textDecoration: 'none',
-              '&:hover': { textDecoration: 'underline' },
-            })}
+            className={classes.builtWithTanStack}
             target="_blank"
             rel="noopener"
           >
@@ -163,40 +148,18 @@ const HomePage = () => {
         </Box>{' '}
         Right For Your Project?
       </Title>
-      <LinkHeading
-        color="dimmed"
-        sx={{
-          margin: '2rem auto',
-          justifyContent: 'center',
-        }}
-        order={4}
-      >
+      <LinkHeading c="dimmed" order={4}>
         Let&apos;s Compare
       </LinkHeading>
       <ComparisonTable />
-      <LinkHeading
-        color="dimmed"
-        sx={{
-          justifyContent: 'center',
-          margin: '2rem auto',
-        }}
-        order={4}
-      >
+      <LinkHeading c="dimmed" order={4}>
         Feature Comparison
       </LinkHeading>
       <FeatureTable />
-      <Text component="p" size="sm" sx={{ marginTop: '16px' }}>
+      <Text component="p" size="sm" my="1rem">
         *If you see any inaccuracies in this table, PRs are welcome!
       </Text>
-      <LinkHeading
-        sx={{
-          justifyContent: 'center',
-          marginTop: '2rem',
-        }}
-        order={3}
-      >
-        Maintainers and Contributors
-      </LinkHeading>
+      <LinkHeading order={3}>Maintainers and Contributors</LinkHeading>
       <Contributors />
       <LinkCards />
     </Stack>

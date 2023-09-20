@@ -11,11 +11,16 @@
   display: flex;
   gap: 16px;
   align-items: center;
+  margin: 2rem auto;
+  justify-content: center;
+  font-size: 22px;
 }
 
 .actionIcon {
   opacity: 0.2;
   transition: all 100ms ease;
+  color: '#e9ecef';
+  background-color: transparent;
 
   &:hover {
     opacity: 1;

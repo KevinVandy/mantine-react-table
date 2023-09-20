@@ -83,3 +83,16 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.builtWithMantine {
+  line-height: var(--mantine-line-height-md);
+  font-size: inherit;
+  text-decoration: none;
+  color: #0ca678;
+}
+.builtWithTanStack {
+  line-height: var(--mantine-line-height-md);
+  font-size: inherit;
+  text-decoration: none;
+  color: #1971c2;
+}
