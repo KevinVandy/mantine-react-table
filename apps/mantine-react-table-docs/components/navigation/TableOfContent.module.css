@@ -1,0 +1,53 @@
+/* sx={(theme) => ({
+          color: !isFooter
+            ? theme.colorScheme === 'dark'
+              ? theme.white
+              : theme.black
+            : theme.colorScheme === 'dark'
+            ? theme.colors.gray[3]
+            : theme.colors.gray[7],
+          cursor: 'pointer',
+          lineHeight: isFooter ? '1.6rem' : '2rem',
+          fontSize: isFooter ? '0.9rem' : '1.2rem',
+          textDecoration: 'none',
+          '&:hover': {
+            textDecoration: 'underline',
+          },
+        })} */
+
+.navigationLinkFooter {
+  cursor: pointer;
+  line-height: 1.6rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+
+  @mixin light {
+    color: var(--mantine-color-gray-7);
+  }
+
+  @mixin dark {
+    color: var(--mantine-color-gray-3);
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* We need to create another classnmae */
+.isNotNavigationLinkFooter {
+  cursor: pointer;
+  line-height: 2rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  @mixin light {
+    color: var(--mantine-color-gray-7);
+  }
+
+  @mixin dark {
+    color: var(--mantine-color-gray-3);
+  }
+}

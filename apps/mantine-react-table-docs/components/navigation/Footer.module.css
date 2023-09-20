@@ -1,0 +1,27 @@
+.wrapper {
+  border-radius: 8px;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  margin-top: 100px;
+  padding: 24px;
+}
+
+.directoryWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 16px;
+  gap: 8px;
+  justify-content: space-between;
+  flex-direction: row;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Box, Anchor } from '@mantine/core';
 import { LinkHeading } from '../mdx/LinkHeading';
 import { type RouteItem } from './routes';
+import classes from './TableOfContent.module.css';
 
 export const TableOfContentsListItem = ({
   item,
@@ -10,32 +11,23 @@ export const TableOfContentsListItem = ({
 }: {
   item: RouteItem;
   isFooter?: boolean;
-}) => (
-  <li>
-    <Link href={item.href} passHref legacyBehavior>
-      <Anchor
-        sx={(theme) => ({
-          color: !isFooter
-            ? theme.colorScheme === 'dark'
-              ? theme.white
-              : theme.black
-            : theme.colorScheme === 'dark'
-            ? theme.colors.gray[3]
-            : theme.colors.gray[7],
-          cursor: 'pointer',
-          lineHeight: isFooter ? '1.6rem' : '2rem',
-          fontSize: isFooter ? '0.9rem' : '1.2rem',
-          textDecoration: 'none',
-          '&:hover': {
-            textDecoration: 'underline',
-          },
-        })}
-      >
-        {item.label}
-      </Anchor>
-    </Link>
-  </li>
-);
+}) => {
+  return (
+    <li>
+      <Link href={item.href} passHref legacyBehavior>
+        <Anchor
+          className={
+            isFooter
+              ? classes.navigationLinkFooter
+              : classes.isNotNavigationLinkFooter
+          }
+        >
+          {item.label}
+        </Anchor>
+      </Link>
+    </li>
+  );
+};
 
 interface Props {
   items: Array<RouteItem>;

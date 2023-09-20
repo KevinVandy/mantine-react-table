@@ -15,10 +15,10 @@ const BasicExamples = ({ isPage = false }) => {
 
   return (
     <>
-      <Box sx={{ width: '100%', marginTop: '1rem' }}>
+      <Box w={'100%'} mt={1}>
         <Tabs
           value={isPage ? pathname.split('/').pop() : activeTab}
-          onTabChange={(newPath) =>
+          onChange={(newPath) =>
             isPage && newPath !== 'more'
               ? push(newPath as string)
               : setActiveTab(newPath as string)
