@@ -156,7 +156,7 @@ const HomePage = () => {
         Feature Comparison
       </LinkHeading>
       <FeatureTable />
-      <Text component="p" size="sm" my="1rem">
+      <Text component="p" size="sm" mt="1rem">
         *If you see any inaccuracies in this table, PRs are welcome!
       </Text>
       <LinkHeading order={3}>Maintainers and Contributors</LinkHeading>
