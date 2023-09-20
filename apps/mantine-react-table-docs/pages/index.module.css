@@ -34,20 +34,14 @@
 }
 
 .titleMantineReactTable {
-  /* background: linear-gradient(
-    to right,
-    var(--mantine-colors-teal-7),
-    var(--mantine-colors-blue-7)
-  ); */
-  background: -webkit-linear-gradient(
-    var(--mantine-colors-teal-7),
-    var(--mantine-colors-blue-7)
-  );
-
   display: inline;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
+  @media (min-width: 1440px) {
+    font-size: 80px;
+  }
 }
 
 .buttonSection {
@@ -75,18 +69,13 @@
   text-align: center;
   margin-top: 5rem;
   font-size: 32px;
+  display: flex;
+  margin-inline: auto;
 }
 
 .comparisonTitleMantineReactTable {
-  background-image: linear-gradient(
-    to right,
-    var(--mantine-colors-blue-7),
-    var(--mantine-colors-blue-7)
-  );
-  display: inline;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: inherit;
+  margin-inline: 0.4rem;
 }
 
 .builtWithMantine {
