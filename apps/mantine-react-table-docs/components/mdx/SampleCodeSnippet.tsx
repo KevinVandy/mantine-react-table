@@ -7,7 +7,7 @@ interface Props extends Partial<PrismProps> {
 }
 
 export const SampleCodeSnippet = (props: Props) => {
-  const { primaryColor } = useMantineTheme();
+  const { primaryColor, colorScheme } = useMantineTheme();
 
   if (!props.language && !props.className) {
     return <Code color={primaryColor} fz="0.9em" {...props} />;
@@ -17,6 +17,7 @@ export const SampleCodeSnippet = (props: Props) => {
     return (
       <Prism
         {...props}
+        colorScheme={colorScheme}
         language={
           props.language ??
           (props?.className?.replace(/language-/, '') as Language)
@@ -35,6 +36,7 @@ export const SampleCodeSnippet = (props: Props) => {
     <Paper radius="sm" shadow="sm" withBorder={!props.noCopy}>
       <Prism
         {...props}
+        colorScheme={colorScheme}
         language={
           props.language ??
           (props?.className?.replace(/language-/, '') as Language)

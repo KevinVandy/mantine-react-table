@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Box, Flex, Divider, Button, Select, Tooltip } from '@mantine/core';
+import {
+  Box,
+  Flex,
+  Button,
+  Select,
+  Tooltip,
+  useMantineTheme,
+} from '@mantine/core';
 import { Prism } from '@mantine/prism';
 import {
   IconBrandTypescript,
@@ -52,6 +59,7 @@ export const SourceCodeSnippet = ({
   typeScriptCode,
   showTopRow = true,
 }: Props) => {
+  const { colorScheme } = useMantineTheme();
   const plausible = usePlausible();
   const {
     primaryColor,
@@ -228,21 +236,41 @@ export const SourceCodeSnippet = ({
             </Prism.Tab>
           )}
         </Prism.TabsList>
-        <Prism.Panel withLineNumbers language="tsx" value="ts">
+        <Prism.Panel
+          colorScheme={colorScheme}
+          withLineNumbers
+          language="tsx"
+          value="ts"
+        >
           {typeScriptCode}
         </Prism.Panel>
         {javaScriptCode && (
-          <Prism.Panel withLineNumbers language="jsx" value="js">
+          <Prism.Panel
+            colorScheme={colorScheme}
+            withLineNumbers
+            language="jsx"
+            value="js"
+          >
             {javaScriptCode}
           </Prism.Panel>
         )}
         {legacyCode && (
-          <Prism.Panel withLineNumbers language="tsx" value="legacy">
+          <Prism.Panel
+            colorScheme={colorScheme}
+            withLineNumbers
+            language="tsx"
+            value="legacy"
+          >
             {legacyCode}
           </Prism.Panel>
         )}
         {apiCode && (
-          <Prism.Panel withLineNumbers language="typescript" value="api">
+          <Prism.Panel
+            colorScheme={colorScheme}
+            withLineNumbers
+            language="typescript"
+            value="api"
+          >
             {apiCode}
           </Prism.Panel>
         )}

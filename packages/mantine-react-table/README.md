@@ -29,7 +29,7 @@ V1 released July 18, 2023
 
 ### _Quickly Create React Data Tables with Mantine_
 
-### __Built with [Mantine <sup>V5</sup>](https://mantine.dev/) and [TanStack Table <sup>V8</sup>](https://tanstack.com/table/v8)__
+### __Built with [Mantine <sup>V6</sup>](https://mantine.dev/) and [TanStack Table <sup>V8</sup>](https://tanstack.com/table/v8)__
 
 <img src="https://mantine-react-table.com/banner.png" alt="MRT" height="50"/>
 
