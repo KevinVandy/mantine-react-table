@@ -88,3 +88,14 @@
   font-size: inherit;
   text-decoration: none;
 }
+
+.builtWithMantine {
+  line-height: var(--mantine-line-height-md);
+  font-size: inherit;
+  text-decoration: none;
+}
+.builtWithTanStack {
+  line-height: var(--mantine-line-height-md);
+  font-size: inherit;
+  text-decoration: none;
+}
