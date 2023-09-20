@@ -34,11 +34,16 @@
 }
 
 .titleMantineReactTable {
-  background-image: linear-gradient(
+  /* background: linear-gradient(
     to right,
-    var(--TODO_PRIMARY_COLOR),
+    var(--mantine-colors-teal-7),
+    var(--mantine-colors-blue-7)
+  ); */
+  background: -webkit-linear-gradient(
+    var(--mantine-colors-teal-7),
     var(--mantine-colors-blue-7)
   );
+
   display: inline;
   -webkit-background-clip: text;
   background-clip: text;
@@ -88,11 +93,9 @@
   line-height: var(--mantine-line-height-md);
   font-size: inherit;
   text-decoration: none;
-  color: #0ca678;
 }
 .builtWithTanStack {
   line-height: var(--mantine-line-height-md);
   font-size: inherit;
   text-decoration: none;
-  color: #1971c2;
 }

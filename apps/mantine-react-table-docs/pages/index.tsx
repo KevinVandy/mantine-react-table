@@ -27,6 +27,7 @@ const HomePage = () => {
         <Link href="https://mantine.dev/" passHref legacyBehavior>
           <Anchor
             className={classes.builtWithMantine}
+            c="teal.7"
             target="_blank"
             rel="noopener"
           >
@@ -36,6 +37,7 @@ const HomePage = () => {
         and&nbsp;
         <Link href="https://tanstack.com/table/v8" passHref legacyBehavior>
           <Anchor
+            c="blue.8"
             className={classes.builtWithTanStack}
             target="_blank"
             rel="noopener"
