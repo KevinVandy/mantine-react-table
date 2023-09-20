@@ -1,6 +1,7 @@
-import { Box, Divider, Anchor, Paper, Text } from '@mantine/core';
+import { Box, Divider, Anchor, Paper, Text, Flex } from '@mantine/core';
 import { TableOfContentsList } from './TableOfContentsList';
 import { routes } from './routes';
+import classes from './Footer.module.css';
 
 export const Footer = () => {
   return (
@@ -8,27 +9,14 @@ export const Footer = () => {
       component="footer"
       shadow="sm"
       withBorder
-      sx={{
-        borderRadius: '8px',
-        borderBottomLeftRadius: '0',
-        borderBottomRightRadius: '0',
-        marginTop: '100px',
-        padding: '24px',
-      }}
+      className={classes.wrapper}
     >
-      <Text color="dimmed" ta="center" mb="16px">
+      <Text c="dimmed" ta="center" mb="16px">
         © {new Date().getFullYear()} Kevin&nbsp;Van&nbsp;Cott
       </Text>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '16px',
-          flexWrap: 'wrap',
-        }}
-      >
+      <Flex justify={'center'} gap={16} wrap="wrap">
         <Anchor
-          color="dimmed"
+          c="dimmed"
           href="https://www.npmjs.com/package/mantine-react-table"
           target="_blank"
           rel="noopener"
@@ -36,7 +24,7 @@ export const Footer = () => {
           NPM
         </Anchor>
         <Anchor
-          color="dimmed"
+          c="dimmed"
           href="https://github.com/KevinVandy/mantine-react-table"
           target="_blank"
           rel="noopener"
@@ -44,7 +32,7 @@ export const Footer = () => {
           Source Code
         </Anchor>
         <Anchor
-          color="dimmed"
+          c="dimmed"
           href="https://github.com/KevinVandy/mantine-react-table/issues"
           target="_blank"
           rel="noopener"
@@ -52,7 +40,7 @@ export const Footer = () => {
           Submit a Bug Report
         </Anchor>
         <Anchor
-          color="dimmed"
+          c="dimmed"
           href="https://discord.gg/5wqyRx6fnm"
           target="_blank"
           rel="noopener"
@@ -60,32 +48,16 @@ export const Footer = () => {
           Join&nbsp;the&nbsp;Discord!
         </Anchor>
         <Anchor
-          color="dimmed"
+          c="dimmed"
           href="https://twitter.com/kevinvancott"
           target="_blank"
           rel="noopener"
         >
           Twitter
         </Anchor>
-      </Box>
-      <Divider sx={{ margin: '2rem 0' }} />
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          marginTop: '16px',
-          gap: '8px',
-          justifyContent: 'space-between',
-          '@media (max-width: 800px)': {
-            flexDirection: 'column',
-            justifyContent: 'space-around',
-          },
-          '@media (max-width: 600px)': {
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-          },
-        }}
-      >
+      </Flex>
+      <Divider my={'2rem'} />
+      <Box className={classes.directoryWrapper}>
         <Box>
           <Text>Site Directory</Text>
           <TableOfContentsList items={routes} isFooter />

@@ -206,6 +206,9 @@ const data = [
 export const FeatureTable = () => {
   return (
     <MantineReactTable
+      mantineTableProps={{
+        className: classes.mantineReactTable,
+      }}
       columns={columns}
       data={data}
       enablePagination={false}

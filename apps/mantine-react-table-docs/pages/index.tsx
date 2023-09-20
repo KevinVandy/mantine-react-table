@@ -19,6 +19,7 @@ const HomePage = () => {
         Welcome To
         <br />
         <Text
+          fw={'bold'}
           variant="gradient"
           gradient={{ from: 'teal.7', to: 'blue.7', deg: 90 }}
           className={classes.titleMantineReactTable}

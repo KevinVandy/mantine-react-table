@@ -1,3 +1,8 @@
 .mantineReactTable {
-  color: var(--TODO)
+  width: 100%;
+  border-collapse: collapse;
+  caption-side: top;
+  color: #c1c2c5;
+  line-height: 1.55;
+  display: table;
 }

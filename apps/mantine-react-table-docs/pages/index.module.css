@@ -36,6 +36,7 @@
 .titleMantineReactTable {
   display: inline;
   font-size: 2rem;
+  line-height: 6rem;
   @media (min-width: 768px) {
     font-size: 4rem;
   }

@@ -25,4 +25,7 @@
   &:hover {
     opacity: 1;
   }
+  @mixin light {
+    color: rgb(73, 80, 87);
+  }
 }
