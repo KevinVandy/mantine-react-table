@@ -3,13 +3,15 @@ import { Preview } from '@storybook/react';
 import { useDarkMode } from 'storybook-dark-mode';
 import {
   Anchor,
-  ColorSchemeProvider,
+  ColorSchemeScript,
   Flex,
   MantineProvider,
   Select,
   Stack,
   Text,
 } from '@mantine/core';
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
 
 const preview: Preview = {
   parameters: {
@@ -66,54 +68,49 @@ const preview: Preview = {
       }, []);
 
       return (
-        <ColorSchemeProvider
-          colorScheme={colorScheme}
-          toggleColorScheme={() => {}}
+        <MantineProvider
+          forceColorScheme={colorScheme}
+          theme={{ colorScheme, primaryColor }}
         >
-          <MantineProvider
-            theme={{ colorScheme, primaryColor }}
-            withGlobalStyles
-            withNormalizeCSS
-          >
-            <Flex justify="space-between">
-              <Stack>
-                <Text
-                  style={{
-                    paddingBottom: '8px',
-                    color: useDarkMode() ? '#fff' : '#666',
-                  }}
+          <ColorSchemeScript forceColorScheme={colorScheme} />
+          <Flex justify="space-between">
+            <Stack>
+              <Text
+                style={{
+                  paddingBottom: '8px',
+                  color: useDarkMode() ? '#fff' : '#666',
+                }}
+              >
+                Looking for the main docs site? Click{' '}
+                <Anchor
+                  underline
+                  href="https://www.mantine-react-table.com"
+                  target="_blank"
+                  rel="noopener"
                 >
-                  Looking for the main docs site? Click{' '}
-                  <Anchor
-                    underline
-                    href="https://www.mantine-react-table.com"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    here.
-                  </Anchor>
-                </Text>
-                <Text
-                  style={{
-                    paddingBottom: '16px',
-                    color: useDarkMode() ? '#fff' : '#666',
-                  }}
-                >
-                  View source code below in the story tab on Canvas or the Show
-                  Code Button in Docs. Toggle dark and light mode in the toolbar
-                  buttons above.
-                </Text>
-              </Stack>
-              <Select
-                label="Primary Color"
-                data={mantineColors}
-                value={primaryColor}
-                onChange={(value) => setPrimaryColor(value as string)}
-              />
-            </Flex>
-            <Story {...context} />
-          </MantineProvider>
-        </ColorSchemeProvider>
+                  here.
+                </Anchor>
+              </Text>
+              <Text
+                style={{
+                  paddingBottom: '16px',
+                  color: useDarkMode() ? '#fff' : '#666',
+                }}
+              >
+                View source code below in the story tab on Canvas or the Show
+                Code Button in Docs. Toggle dark and light mode in the toolbar
+                buttons above.
+              </Text>
+            </Stack>
+            <Select
+              label="Primary Color"
+              data={mantineColors}
+              value={primaryColor}
+              onChange={(value) => setPrimaryColor(value as string)}
+            />
+          </Flex>
+          <Story {...context} />
+        </MantineProvider>
       );
     },
   ],
