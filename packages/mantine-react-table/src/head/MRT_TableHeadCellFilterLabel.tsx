@@ -106,10 +106,11 @@ export const MRT_TableHeadCellFilterLabel = <
                 disabled={popoverOpened}
                 label={filterTooltip}
                 multiline
-                width={filterTooltip.length > 40 ? 300 : undefined}
+                w={filterTooltip.length > 40 ? 300 : undefined}
                 withinPortal
               >
                 <ActionIcon
+                  variant="transparent"
                   color={isFilterActive ? getPrimaryColor(theme) : undefined}
                   onClick={(event: MouseEvent<HTMLButtonElement>) => {
                     event.stopPropagation();
