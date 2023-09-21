@@ -9,6 +9,8 @@ import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
 import { getCommonCellStyles, getPrimaryColor } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
+import classes from './MRT_TableHeadCell.module.css';
+
 interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
@@ -153,45 +155,42 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
     >
       {header.isPlaceholder ? null : (
         <Flex
-          className="mantine-TableHeadCell-Content"
-          style={{
-            alignItems: 'flex-start',
-            flexDirection:
-              tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
-            justifyContent:
+          className={classes.content}
+          __vars={{
+            '--justify-content':
               columnDefType === 'group' || tableCellProps?.align === 'center'
                 ? 'center'
                 : column.getCanResize()
                 ? 'space-between'
                 : 'flex-start',
-            position: 'relative',
-            width: '100%',
+            '--flex-direction':
+              tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
           }}
         >
           <Flex
-            className="mantine-TableHeadCell-Content-Labels"
+            className={classes.labels}
             onClick={column.getToggleSortingHandler()}
-            style={{
-              alignItems: 'center',
-              cursor:
+            __vars={{
+              '--labels-cursor':
                 column.getCanSort() && columnDefType !== 'group'
                   ? 'pointer'
                   : undefined,
-              flexDirection:
+              '--labels-flex-direction':
                 tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
-              overflow: columnDefType === 'data' ? 'hidden' : undefined,
-              paddingLeft:
+              '--labels-flex-overflow':
+                columnDefType === 'data' ? 'hidden' : undefined,
+              '--labels-padding-left':
                 tableCellProps?.align === 'center'
                   ? `${headerPL}rem`
                   : undefined,
             }}
           >
             <Flex
-              className="mantine-TableHeadCell-Content-Wrapper"
-              style={{
-                overflow: columnDefType === 'data' ? 'hidden' : undefined,
-                textOverflow: 'ellipsis',
-                whiteSpace:
+              className={classes.wrapper}
+              __vars={{
+                '--wrapper-overflow':
+                  columnDefType === 'data' ? 'hidden' : undefined,
+                '--wrapper-whitespace':
                   (columnDef.header?.length ?? 0) < 20 ? 'nowrap' : 'normal',
               }}
               title={columnDefType === 'data' ? columnDef.header : undefined}
@@ -206,14 +205,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
             )}
           </Flex>
           {columnDefType !== 'group' && (
-            <Flex
-              className="mantine-TableHeadCell-Content-Actions"
-              style={{
-                alignItems: 'center',
-                alignSelf: 'center',
-                whiteSpace: 'nowrap',
-              }}
-            >
+            <Flex className={classes.actions}>
               {showDragHandle && (
                 <MRT_TableHeadCellGrabHandle
                   column={column}

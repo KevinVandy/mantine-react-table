@@ -31,6 +31,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
       <ActionIcon
         draggable="true"
         size="sm"
+        variant="transparent"
         {...actionIconProps}
         onClick={(e) => {
           e.stopPropagation();

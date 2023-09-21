@@ -66,6 +66,7 @@ export const MRT_TableHeadCellFilterContainer = <
               >
                 <Menu.Target>
                   <ActionIcon
+                    variant="transparent"
                     aria-label={localization.changeFilterMode}
                     size="md"
                     style={{ transform: 'translateY(-2px)' }}

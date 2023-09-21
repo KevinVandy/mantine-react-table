@@ -1,6 +1,8 @@
-.action-icon {
+.action {
+  color: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-4));
+  background-color: transparent;
   opacity: 0.5;
-  transition: opacity 100ms;
+  transition: opacity 100ms ease;
   &:hover {
     opacity: 1;
   }
