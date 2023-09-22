@@ -27,6 +27,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "ES6",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "references": [
     {
