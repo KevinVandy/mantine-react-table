@@ -4,15 +4,15 @@ import clsx from 'clsx';
 import {
   Memo_MRT_TableBodyCell,
   MRT_TableBodyCell,
-} from '../MRT_TableBodyCell';
-import { MRT_TableDetailPanel } from '../MRT_TableDetailPanel';
+} from './MRT_TableBodyCell';
+import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import {
   type MRT_Cell,
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_VirtualItem,
   type MRT_Virtualizer,
-} from '../../types';
+} from '../types';
 
 import classes from './MRT_TableBodyRow.module.css';
 
