@@ -1,0 +1,33 @@
+.MRT_TableBodyRow {
+  box-sizing: border-box;
+  width: 100%;
+  transition: all 100ms ease-in-out;
+  &--layout-grid {
+    display: flex;
+  }
+
+  &--layout-table-row {
+    display: table-row;
+  }
+
+  &--virtual {
+    position: absolute;
+    top: 0;
+    transition: none !important;
+  }
+
+  &--hover {
+    &:hover td[data-selected="true"] {
+      background-color: var(--mantine-primary-color-filled)
+    }
+
+    &:hover td[data-selected="false"] {
+      @mixin light {
+        background-color: rgba(var(--mantine-color-white), 0.05);
+      }
+      @mixin dark {
+        background-color: rgba(var(--mantine-color-dark-7), 0.12);
+      }
+    }
+  }
+}
