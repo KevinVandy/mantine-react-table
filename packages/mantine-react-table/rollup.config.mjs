@@ -2,6 +2,8 @@ import dts from 'rollup-plugin-dts';
 import external from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
+import postcss from 'rollup-plugin-postcss';
+import copy from 'rollup-plugin-copy';
 import { babel } from '@rollup/plugin-babel';
 
 export default [
@@ -40,6 +42,7 @@ export default [
       typescript({
         rootDir: './src',
       }),
+      postcss({ extract: 'mrt.css' }),
     ],
   },
   {

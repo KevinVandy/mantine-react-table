@@ -1,5 +1,6 @@
 import { ActionIcon, Flex, Tooltip } from '@mantine/core';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
+import classes from './MRT_ColumnPinningButtons.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   column: MRT_Column<TData>;
@@ -24,13 +25,7 @@ export const MRT_ColumnPinningButtons = <
   };
 
   return (
-    <Flex
-      style={{
-        minWidth: '70px',
-        alignContent: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <Flex className={classes.container}>
       {column.getIsPinned() ? (
         <Tooltip withinPortal label={localization.unpin}>
           <ActionIcon onClick={() => handlePinColumn(false)} size="md">
