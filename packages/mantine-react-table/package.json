@@ -105,12 +105,14 @@
     "storybook-dark-mode": "^3.0.1",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2",
+    "typescript-plugin-css-modules": "^5.0.1",
     "vite": "^4.4.9"
   },
   "dependencies": {
     "@tanstack/match-sorter-utils": "8.8.4",
     "@tanstack/react-table": "8.10.1",
-    "@tanstack/react-virtual": "3.0.0-beta.60"
+    "@tanstack/react-virtual": "3.0.0-beta.60",
+    "clsx": "^2.0.0"
   },
   "peerDependencies": {
     "@mantine/core": "^7",
