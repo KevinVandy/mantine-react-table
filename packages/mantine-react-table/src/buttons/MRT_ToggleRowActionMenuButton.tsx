@@ -1,6 +1,5 @@
 import { type MouseEvent } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
-import clsx from 'clsx';
 import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
 import { MRT_EditActionButtons } from './MRT_EditActionButtons';
 import { type MRT_Cell, type MRT_Row, type MRT_TableInstance } from '../types';
@@ -10,7 +9,6 @@ interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
   row: MRT_Row<TData>;
   table: MRT_TableInstance<TData>;
-  className?: string | string[];
 }
 
 export const MRT_ToggleRowActionMenuButton = <
@@ -19,7 +17,6 @@ export const MRT_ToggleRowActionMenuButton = <
   cell,
   row,
   table,
-  className,
 }: Props<TData>) => {
   const {
     getState,
@@ -64,7 +61,7 @@ export const MRT_ToggleRowActionMenuButton = <
             aria-label={localization.edit}
             disabled={!!editingRow && editingRow.id !== row.id}
             onClick={handleStartEditMode}
-            className={clsx(classes.MRT_ToggleRowActionMenuButton, className)}
+            className={classes.MRT_ToggleRowActionMenuButton}
           >
             <IconEdit />
           </ActionIcon>
