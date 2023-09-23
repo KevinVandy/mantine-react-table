@@ -1,0 +1,18 @@
+.MRT_TableFooterCell {
+  font-weight: bold;
+  // Not resolved?
+  padding: rem(9px);
+  vertical-align: top;
+
+  &--center-column {
+    justify-content: center;
+  }
+
+  &--grid {
+    display: grid;
+  }
+
+  &--table-cell {
+    display: table-cell;
+  }
+}
