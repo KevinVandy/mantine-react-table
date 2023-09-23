@@ -1,0 +1,24 @@
+.MRT_TableFooter {
+  &--grid {
+    display: grid;
+  }
+
+  &--table-row-group {
+    display: table-row-group;
+  }
+
+  &--sticky {
+    bottom: 0;
+    opacity: 0.97;
+    position: sticky;
+    z-index: 1;
+
+    @mixin light {
+      outline: 1px solid var(--mantine-color-gray-3);
+    }
+
+    @mixin dark {
+      outline: 1px solid var(--mantine-color-gray-7);
+    }
+  }
+}

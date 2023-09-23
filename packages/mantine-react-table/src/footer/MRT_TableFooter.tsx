@@ -1,6 +1,8 @@
 import { Box } from '@mantine/core';
+import clsx from 'clsx';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
+import classes from './MRT_TableFooter.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -34,17 +36,14 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
     <Box
       component="tfoot"
       {...tableFooterProps}
+      className={clsx(
+        stickFooter && classes.MRT_TableFooterSticky,
+        layoutMode === 'grid'
+          ? classes.MRT_TableFooterGrid
+          : classes.MRT_TableFooterTableRowGroup,
+        tableFooterProps?.className,
+      )}
       style={(theme) => ({
-        bottom: stickFooter ? 0 : undefined,
-        display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
-        opacity: stickFooter ? 0.97 : undefined,
-        outline: stickFooter
-          ? theme.colorScheme === 'light'
-            ? `1px solid ${theme.colors.gray[3]}`
-            : `1px solid ${theme.colors.gray[7]}`
-          : undefined,
-        position: stickFooter ? 'sticky' : undefined,
-        zIndex: stickFooter ? 1 : undefined,
         ...(tableFooterProps?.style instanceof Function
           ? tableFooterProps?.style(theme)
           : (tableFooterProps?.style as any)),
