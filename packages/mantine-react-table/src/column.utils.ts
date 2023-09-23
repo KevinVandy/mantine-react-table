@@ -8,7 +8,13 @@ import {
 import { type MRT_AggregationFns } from './aggregationFns';
 import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
-import { rgba, type BoxProps, type MantineTheme, darken, lighten } from '@mantine/core';
+import {
+  rgba,
+  type BoxProps,
+  type MantineTheme,
+  darken,
+  lighten,
+} from '@mantine/core';
 import {
   type MRT_TableOptions,
   type MantineShade,
@@ -281,7 +287,7 @@ export const getCanRankRows = <TData extends Record<string, any> = {}>(
     !Object.values(expanded).some(Boolean)
   );
 };
-
+// TODO: this needs to be refactored out to use CSS classes/styles
 export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
   column,
   header,

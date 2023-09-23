@@ -1,4 +1,5 @@
-import { Box, lighten } from '@mantine/core';
+import { Box } from '@mantine/core';
+import clsx from 'clsx';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
 import {
   type MRT_Header,
@@ -6,6 +7,7 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
+import classes from './MRT_TableFooterRow.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   footerGroup: MRT_HeaderGroup<TData>;
@@ -37,7 +39,7 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
   )
     return null;
 
-  const tableRowProps =
+  const { className, ...tableRowProps } =
     mantineTableFooterRowProps instanceof Function
       ? mantineTableFooterRowProps({ footerGroup, table })
       : mantineTableFooterRowProps;
@@ -45,14 +47,15 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
   return (
     <Box
       component="tr"
+      className={clsx(
+        classes.MRT_TableFooterRow,
+        layoutMode === 'grid'
+          ? classes.MRT_TableFooterRowGrid
+          : classes.MRT_TableFooterRowTableRow,
+        className,
+      )}
       {...tableRowProps}
       style={(theme) => ({
-        backgroundColor: lighten(
-          theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-          0.06,
-        ),
-        display: layoutMode === 'grid' ? 'flex' : 'table-row',
-        width: '100%',
         ...(tableRowProps?.style instanceof Function
           ? tableRowProps?.style(theme)
           : (tableRowProps?.style as any)),
