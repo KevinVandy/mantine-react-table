@@ -82,7 +82,7 @@ export type Xor<A, B> =
 
 export type HTMLPropsRef<T extends HTMLElement> = Omit<
   HTMLProps<T>,
-  'color' | 'size' | 'type' | 'ref' | 'data' | 'label'
+  'color' | 'size' | 'type' | 'ref' | 'data' | 'label' | 'style'
 > & {
   ref?: MutableRefObject<T | null> | null;
 };
