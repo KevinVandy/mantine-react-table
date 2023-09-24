@@ -1,0 +1,15 @@
+.MRT_TableHeadRow {
+  box-shadow: 0 4px rgba(var(--mantine-color-black, 0.1));
+  display: var(--display);
+  &--sticky {
+    position: sticky;
+    top: 0;
+  };
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
+
+  @mixin light {
+    background-color: var(--mantine-color-white);
+  }
+}

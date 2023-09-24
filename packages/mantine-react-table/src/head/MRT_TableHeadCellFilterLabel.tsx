@@ -10,6 +10,7 @@ import {
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
+import classes from './MRT_TableHeadCellFilterLabel.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
@@ -100,7 +101,7 @@ export const MRT_TableHeadCellFilterLabel = <
         }
       >
         {(styles) => (
-          <Box component="span" style={{ flex: '0 0' }} style={styles}>
+          <Box component="span" style={{ ...styles, flex: '0 0' }}>
             <Popover.Target>
               <Tooltip
                 disabled={popoverOpened}
@@ -125,12 +126,9 @@ export const MRT_TableHeadCellFilterLabel = <
                     }, 100);
                   }}
                   size="sm"
-                  style={{
-                    opacity: isFilterActive ? 1 : 0.5,
-                    padding: '2px',
-                    '&:hover': {
-                      opacity: 1,
-                    },
+                  className={classes.MRT_TableHeadCellFilterLabelActionIcon}
+                  __vars={{
+                    '--opacity': isFilterActive ? '1' : '0.5',
                   }}
                 >
                   <IconFilter />
