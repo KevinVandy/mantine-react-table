@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
 import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_TableInstance } from '../types';
+import classes from './MRT_GlobalFilterTextInput.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -63,14 +65,7 @@ export const MRT_GlobalFilterTextInput = <
   return (
     <Collapse
       in={showGlobalFilter}
-      style={{
-        '& > div': {
-          display: 'flex',
-          alignItems: 'center',
-          gap: '16px',
-          flexWrap: 'nowrap',
-        },
-      }}
+      className={classes.MRT_GlobalFilterTextInputCollapse}
     >
       {enableGlobalFilterModes && (
         <Menu withinPortal>
@@ -87,7 +82,7 @@ export const MRT_GlobalFilterTextInput = <
         onChange={(event) => setSearchValue(event.target.value)}
         value={searchValue ?? ''}
         variant="filled"
-        icon={!enableGlobalFilterModes && <IconSearch />}
+        leftSection={!enableGlobalFilterModes && <IconSearch />}
         rightSection={
           searchValue ? (
             <ActionIcon
@@ -112,8 +107,11 @@ export const MRT_GlobalFilterTextInput = <
             }
           }
         }}
+        className={clsx(
+          classes.MRT_GlobalFilterTextInputTextInput,
+          textFieldProps?.className,
+        )}
         style={(theme) => ({
-          minWidth: '250px',
           ...(textFieldProps?.style instanceof Function
             ? textFieldProps.style(theme)
             : (textFieldProps?.style as any)),

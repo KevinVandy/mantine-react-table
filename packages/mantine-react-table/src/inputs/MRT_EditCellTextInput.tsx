@@ -132,7 +132,6 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
         {...commonProps}
         searchable
         value={value}
-        withinPortal
         {...selectProps}
         onBlur={handleBlur}
         onChange={(value) => {
