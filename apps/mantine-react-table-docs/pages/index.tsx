@@ -47,7 +47,20 @@ const HomePage = () => {
             WebkitTextFillColor: 'transparent',
           })}
         >
-          Mantine&nbsp;React&nbsp;Table
+          Mantine&nbsp;React&nbsp;Table{' '}
+          <Box
+            component="sup"
+            sx={(theme) => ({
+              WebkitBackgroundClip: 'border-box',
+              WebkitTextFillColor: theme.colors.blue[7],
+              color: theme.colors.blue[7],
+              fontSize: '0.5em',
+              transform: 'translateY(-1.5rem)',
+              position: 'relative',
+            })}
+          >
+            V1
+          </Box>
         </Box>
       </Title>
       <Title
