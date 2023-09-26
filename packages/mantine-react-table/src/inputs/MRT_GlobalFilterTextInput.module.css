@@ -1,0 +1,13 @@
+.MRT_GlobalFilterTextInput {
+  &-collapse {
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: rem(16px);
+      flex-wrap: nowrap;
+    }
+  }
+  &-text-input {
+    min-width: rem(250px);
+  }
+}

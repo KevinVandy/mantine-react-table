@@ -1,0 +1,17 @@
+.MRT_FilterTextInput {
+  @mixin light {
+    border-bottom: 2px solid var(--mantine-color-gray-3);
+  }
+  @mixin dark {
+    border-bottom: 2px solid var(--mantine-color-gray-7);
+  }
+  min-width: var(--min-width);
+  width: 100%;
+  & .mantine-TextInput-input {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  & .mantine-DateInput-input {
+    height: 2.1rem;
+  }
+}
