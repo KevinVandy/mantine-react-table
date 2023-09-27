@@ -3,7 +3,7 @@
   --width: calc(var(--header-id) * 1px);
   --bg-color: color-mix(in srgb, var(--mantine-color-dark-7) .2%, var(--mantine-color-black));
   background-color: inherit;
-  // Not very sure about these attribute gymnastics...
+  /* Not very sure about these attribute gymnastics... */
   [data-selected="true"] {
       background-color: rgba(var(--mantine-primary-color-filled), 0.1);
   }
