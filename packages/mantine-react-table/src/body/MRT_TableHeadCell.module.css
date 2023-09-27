@@ -1,0 +1,14 @@
+.MRT_TableHeadCell {
+  flex-direction: var(--flex-direction);
+  font-weight: bold;
+  overflow: visible;
+  padding: rem(var(--padding));
+  user-select: var(--user-select);
+  vertical-align: top;
+  z-index: var(--z-index);
+  @mixin hover {
+    .mantine-ActionIcon-root {
+      opacity: 1;
+    }
+  }
+}

@@ -1,23 +1,20 @@
 import { type ReactNode } from 'react';
 import {
-  type Row,
-  type Renderable,
-  flexRender as _flexRender,
   createRow as _createRow,
+  flexRender as _flexRender,
+  type Renderable,
+  type Row,
 } from '@tanstack/react-table';
 import { type MRT_AggregationFns } from './aggregationFns';
 import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
 import {
-  rgba,
   type BoxProps,
+  type CssVariable,
+  type CssVariables,
   type MantineTheme,
-  darken,
-  lighten,
 } from '@mantine/core';
 import {
-  type MRT_TableOptions,
-  type MantineShade,
   type MRT_Column,
   type MRT_ColumnDef,
   type MRT_ColumnOrderState,
@@ -28,7 +25,9 @@ import {
   type MRT_Header,
   type MRT_Row,
   type MRT_TableInstance,
+  type MRT_TableOptions,
 } from './types';
+import classes from './columns.utils.module.css';
 
 export const getColumnId = <TData extends Record<string, any> = {}>(
   columnDef: MRT_ColumnDef<TData>,
@@ -287,107 +286,83 @@ export const getCanRankRows = <TData extends Record<string, any> = {}>(
     !Object.values(expanded).some(Boolean)
   );
 };
-// TODO: this needs to be refactored out to use CSS classes/styles
+
 export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
   column,
   header,
-  isStriped,
-  row,
   table,
   tableCellProps,
   theme,
 }: {
   column: MRT_Column<TData>;
   header?: MRT_Header<TData>;
-  isStriped?: boolean;
-  row?: MRT_Row<TData>;
   table: MRT_TableInstance<TData>;
   tableCellProps: BoxProps;
   theme: MantineTheme;
-}) => {
+}): { __vars: CssVariables; className: string; style: CSSStyleDeclaration } => {
+  const __vars: Record<CssVariable, string | undefined> = {};
+  const headerId = `--${header ? 'header' : 'col'}-${parseCSSVarId(
+    header?.id ?? column.id,
+  )}-size`;
   const widthStyles = {
-    minWidth: `max(calc(var(--${header ? 'header' : 'col'}-${parseCSSVarId(
-      header?.id ?? column.id,
-    )}-size) * 1px), ${column.columnDef.minSize ?? 30}px)`,
-    width: `calc(var(--${header ? 'header' : 'col'}-${parseCSSVarId(
-      header?.id ?? column.id,
-    )}-size) * 1px)`,
+    minWidth: `max(calc(var(--header-id) * 1px), ${
+      column.columnDef.minSize ?? 30
+    }px)`,
+    width: `calc(var(--header-id) * 1px)`,
   };
+  __vars['--header-id'] = headerId;
+  __vars['--col-size'] = `${column.columnDef.minSize ?? 30}px`;
+  __vars['--box-shadow'] = getIsLastLeftPinnedColumn(table, column)
+    ? '-4px 0 8px -6px rgba(var(--mantine-color-black, 0.2)) inset'
+    : getIsFirstRightPinnedColumn(column)
+    ? `4px 0 8px -6px rgba(var(--mantine-color-black, 0.2)) inset`
+    : 'transparent';
+  __vars['--display'] =
+    table.options.layoutMode === 'grid' ? 'flex' : 'table-cell';
 
+  __vars['--flex'] =
+    table.options.layoutMode === 'grid' ? 'var(--header-id) 0 auto' : '';
+  __vars['--left'] = `${column.getStart('left')}px`;
+  __vars['--ml'] =
+    table.options.enableColumnVirtualization &&
+    column.getIsPinned() === 'left' &&
+    column.getPinnedIndex() === 0
+      ? `-${
+          column.getSize() * (table.getState().columnPinning.left?.length ?? 1)
+        }px`
+      : undefined;
+  __vars['--mr'] =
+    table.options.enableColumnVirtualization &&
+    column.getIsPinned() === 'right' &&
+    column.getPinnedIndex() === table.getVisibleLeafColumns().length - 1
+      ? `-${
+          column.getSize() *
+          (table.getState().columnPinning.right?.length ?? 1) *
+          1.2
+        }px`
+      : undefined;
+  __vars['--opacity'] =
+    table.getState().draggingColumn?.id === column.id ||
+    table.getState().hoveredColumn?.id === column.id
+      ? '0.5'
+      : '1';
+  __vars['--right'] =
+    column.getIsPinned() === 'right'
+      ? `${getTotalRight(table, column)}px`
+      : undefined;
+  __vars['--transition'] = table.options.enableColumnVirtualization
+    ? 'none'
+    : `padding 100ms ease-in-out`;
   return {
-    backgroundColor: row
-      ? row?.getIsSelected()
-        ? rgba(getPrimaryColor(theme), 0.1)
-        : column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-        ? rgba(
-            theme.colorScheme === 'dark'
-              ? darken(theme.colors.dark[7], 0.02)
-              : theme.white,
-            0.97,
-          )
-        : isStriped
-        ? 'inherit'
-        : theme.colorScheme === 'dark'
-        ? lighten(theme.colors.dark[7], 0.02)
-        : theme.white
-      : 'inherit',
-    backgroundClip: 'padding-box',
-    boxShadow: getIsLastLeftPinnedColumn(table, column)
-      ? `-4px 0 8px -6px ${rgba(theme.black, 0.2)} inset`
-      : getIsFirstRightPinnedColumn(column)
-      ? `4px 0 8px -6px ${rgba(theme.black, 0.2)} inset`
-      : undefined,
-    display: table.options.layoutMode === 'grid' ? 'flex' : 'table-cell',
-    flex:
-      table.options.layoutMode === 'grid'
-        ? `var(--${header ? 'header' : 'col'}-${parseCSSVarId(
-            header?.id ?? column.id,
-          )}-size) 0 auto`
-        : undefined,
-    left:
-      column.getIsPinned() === 'left'
-        ? `${column.getStart('left')}px`
-        : undefined,
-    ml:
-      table.options.enableColumnVirtualization &&
-      column.getIsPinned() === 'left' &&
-      column.getPinnedIndex() === 0
-        ? `-${
-            column.getSize() *
-            (table.getState().columnPinning.left?.length ?? 1)
-          }px`
-        : undefined,
-    mr:
-      table.options.enableColumnVirtualization &&
-      column.getIsPinned() === 'right' &&
-      column.getPinnedIndex() === table.getVisibleLeafColumns().length - 1
-        ? `-${
-            column.getSize() *
-            (table.getState().columnPinning.right?.length ?? 1) *
-            1.2
-          }px`
-        : undefined,
-    opacity:
-      table.getState().draggingColumn?.id === column.id ||
-      table.getState().hoveredColumn?.id === column.id
-        ? 0.5
-        : 1,
-    position:
-      column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-        ? 'sticky'
-        : undefined,
-    right:
-      column.getIsPinned() === 'right'
-        ? `${getTotalRight(table, column)}px`
-        : undefined,
-    transition: table.options.enableColumnVirtualization
-      ? 'none'
-      : `padding 100ms ease-in-out`,
-    ...(!table.options.enableColumnResizing && widthStyles), //let devs pass in width styles if column resizing is disabled
-    ...(tableCellProps?.style instanceof Function
-      ? tableCellProps.style(theme)
-      : (tableCellProps?.style as any)),
-    ...(table.options.enableColumnResizing && widthStyles), //do not let devs pass in width styles if column resizing is enabled
+    className: classes.MRT_ColumnCommonStyles,
+    style: {
+      ...(!table.options.enableColumnResizing && widthStyles), //let devs pass in width styles if column resizing is disabled
+      ...(tableCellProps?.style instanceof Function
+        ? tableCellProps.style(theme)
+        : (tableCellProps?.style as any)),
+      ...(table.options.enableColumnResizing && widthStyles), //do not let devs pass in width styles if column resizing is enabled
+    },
+    __vars,
   };
 };
 
@@ -412,18 +387,6 @@ export const MRT_DefaultDisplayColumn = {
   enableResizing: false,
   enableSorting: false,
 } as const;
-
-export const getPrimaryShade = (theme: MantineTheme): number =>
-  (theme.colorScheme === 'dark'
-    ? // @ts-ignore
-      theme.primaryShade?.dark ?? theme.primaryShade
-    : // @ts-ignore
-      theme.primaryShade?.light ?? theme.primaryShade) ?? 7;
-
-export const getPrimaryColor = (
-  theme: MantineTheme,
-  shade?: MantineShade,
-): string => theme.colors[theme.primaryColor][shade ?? getPrimaryShade(theme)];
 
 export const parseCSSVarId = (id: string) => id.replace(/[^a-zA-Z0-9]/g, '_');
 

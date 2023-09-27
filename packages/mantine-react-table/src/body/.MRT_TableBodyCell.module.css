@@ -1,0 +1,17 @@
+.MRT_TableBodyCell {
+  align-items: var(--align-items);
+  cursor: var(--cursor);
+  justify-content: var(--align);
+  overflow: hidden;
+  padding-left: var(--padding-left);
+  white-space: var(--white-space);
+  z-index: var(--z-index);
+  :is([data-columndef="data"], [data-columndef="group"]) {
+    text-overflow: ellipsis;
+  }
+  @mixin hover {
+    outline: var(--outline);
+    outline-offset: -1px;
+    text-overflow: clip;
+  }
+}

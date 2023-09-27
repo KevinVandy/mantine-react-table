@@ -1,12 +1,13 @@
 import { type DragEvent, type ReactNode, useMemo } from 'react';
 import { Box, Flex, type MantineTheme, useMantineTheme } from '@mantine/core';
+import clsx from 'clsx';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
 import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
 import { MRT_TableHeadCellResizeHandle } from './MRT_TableHeadCellResizeHandle';
 import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
-import { getCommonCellStyles, getPrimaryColor } from '../column.utils';
+import { getCommonCellStyles } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
 import classes from './MRT_TableHeadCell.module.css';
@@ -80,9 +81,9 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
   const draggingBorder = useMemo(
     () =>
       draggingColumn?.id === column.id
-        ? `1px dashed ${theme.colors.gray[7]} !important`
+        ? `1px dashed var(--mantine-color-gray-7) !important`
         : hoveredColumn?.id === column.id
-        ? `2px dashed ${getPrimaryColor(theme)} !important`
+        ? `2px dashed var(--mantine-color-gray-7) !important`
         : undefined,
     [draggingColumn, hoveredColumn],
   );
@@ -114,44 +115,55 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
           table,
         })
       : columnDef?.Header ?? (columnDef.header as ReactNode);
+  const { className, __vars, style } = getCommonCellStyles({
+    column,
+    header,
+    table,
+    tableCellProps,
+    theme,
+  });
 
   return (
     <Box
       component="th"
       align={columnDefType === 'group' ? 'center' : 'left'}
+      data-selected={row?.getIsSelected() ?? 'false'}
+      data-ispinned={column?.getIsPinned() ?? 'false'}
+      data-cansort={column.getCanSort()}
+      data-isresizing={column.getIsResizing()}
       colSpan={header.colSpan}
       onDragEnter={handleDragEnter}
+      data-columndef={columnDefType}
       ref={(node: HTMLTableCellElement) => {
         if (node) {
           tableHeadCellRefs.current[column.id] = node;
         }
       }}
       {...tableCellProps}
-      style={(theme: MantineTheme) => ({
-        flexDirection: layoutMode === 'grid' ? 'column' : undefined,
-        fontWeight: 'bold',
-        overflow: 'visible',
-        padding: density === 'xl' ? '23px' : density === 'md' ? '16px' : '10px',
-        userSelect: enableMultiSort && column.getCanSort() ? 'none' : undefined,
-        verticalAlign: 'top',
-        zIndex:
+      className={clsx(
+        className,
+        classes.MRT_TableHeadCell,
+        tableCellProps.className,
+      )}
+      __vars={{
+        ...__vars,
+        '--flex-direction': layoutMode === 'grid' ? 'column' : undefined,
+        '--padding':
+          density === 'xl' ? '23px' : density === 'md' ? '16px' : '10px',
+        '--user-select':
+          enableMultiSort && column.getCanSort() ? 'none' : undefined,
+        '--z-index':
           column.getIsResizing() || draggingColumn?.id === column.id
-            ? 3
+            ? '3'
             : column.getIsPinned() && columnDefType !== 'group'
-            ? 2
-            : 1,
-        '&:hover .mantine-ActionIcon-root': {
-          opacity: 1,
-        },
-        ...getCommonCellStyles({
-          column,
-          header,
-          table,
-          tableCellProps,
-          theme,
-        }),
+            ? '2'
+            : '1',
+        ...tableCellProps.__vars,
+      }}
+      style={{
+        ...style,
         ...draggingBorders,
-      })}
+      }}
     >
       {header.isPlaceholder ? null : (
         <Flex

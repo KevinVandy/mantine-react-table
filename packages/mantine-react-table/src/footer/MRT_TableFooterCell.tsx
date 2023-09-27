@@ -35,29 +35,35 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
     ...mcTableFooterCellProps,
   };
 
+  const {
+    className: commonClassName,
+    __vars,
+    style,
+  } = getCommonCellStyles({
+    column,
+    table,
+    theme,
+    tableCellProps,
+  });
+
   return (
     <Box
       component="th"
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={footer.colSpan}
+      data-selected={row?.getIsSelected() ?? 'false'}
+      data-ispinned={column?.getIsPinned() ?? 'false'}
+      data-columndef={columnDefType}
       {...tableCellProps}
-      className={clsx(
-        classes.MRT_TableFooterCell,
-        layoutMode === 'grid'
-          ? classes.MRT_TableFooterCellGrid
-          : classes.MRT_TableFooterCellTableCell,
-        columnDefType === 'group' && classes.MRT_TableFooterCellCenterColumn,
-        className,
-      )}
-      style={(theme) => ({
-        zIndex: column.getIsPinned() && columnDefType !== 'group' ? 2 : 1,
-        ...getCommonCellStyles({
-          column,
-          table,
-          theme,
-          tableCellProps,
-        }),
-      })}
+      className={clsx(commonClassName, classes.MRT_TableFooterCell, className)}
+      __vars={{
+        ...__vars,
+        '--z-index':
+          column.getIsPinned() && columnDefType !== 'group' ? '2' : '1',
+        '--display': layoutMode === 'grid' ? 'grid' : 'table-cell',
+        ...tableCellProps.__vars,
+      }}
+      style={style}
     >
       <>
         {footer.isPlaceholder

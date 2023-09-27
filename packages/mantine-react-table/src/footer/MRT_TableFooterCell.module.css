@@ -1,18 +1,11 @@
 .MRT_TableFooterCell {
   font-weight: bold;
-  // Not resolved?
   padding: rem(9px);
   vertical-align: top;
+  z-index: var(--z-index);
+  display: var(--display);
 
-  &--center-column {
+  [data-columndef="group"] {
     justify-content: center;
-  }
-
-  &--grid {
-    display: grid;
-  }
-
-  &--table-cell {
-    display: table-cell;
   }
 }
