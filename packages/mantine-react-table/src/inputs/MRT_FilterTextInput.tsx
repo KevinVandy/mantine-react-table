@@ -269,7 +269,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
   const ClearButton = filterValue ? (
     <ActionIcon
       aria-label={localization.clearFilter}
-      color='gray'
+      color="gray"
       onClick={handleClear}
       size="sm"
       title={localization.clearFilter ?? ''}

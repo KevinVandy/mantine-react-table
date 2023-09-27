@@ -253,7 +253,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
         <Menu.Target>
           <ActionIcon
             className={classes.action}
-            color='gray'
+            color="gray"
             aria-label={localization.columnActions}
             size="xs"
             variant="transparent"

@@ -59,7 +59,7 @@ export const MRT_ToggleRowActionMenuButton = <
           <ActionIcon
             aria-label={localization.edit}
             className={classes.MRT_ToggleRowActionMenuButton}
-            color='gray'
+            color="gray"
             disabled={!!editingRow && editingRow.id !== row.id}
             onClick={handleStartEditMode}
             variant="transparent"

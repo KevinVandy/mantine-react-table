@@ -8,7 +8,15 @@ import {
   MRT_ToolbarAlertBanner,
   useMantineReactTable,
 } from 'mantine-react-table';
-import { ActionIcon, Box, Button, Flex, Text, Tooltip, rgba } from '@mantine/core';
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Flex,
+  Text,
+  Tooltip,
+  rgba,
+} from '@mantine/core';
 import { IconPrinter } from '@tabler/icons-react';
 import { data } from './makeData';
 

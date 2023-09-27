@@ -72,10 +72,7 @@ export const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
                     whiteSpace: 'nowrap',
                     transition: 'background-color 0.1s ease',
                     '&:hover': {
-                      backgroundColor: rgba(
-                        getPrimaryColor(theme),
-                        0.1,
-                      ),
+                      backgroundColor: rgba(getPrimaryColor(theme), 0.1),
                     },
                   })}
                 >

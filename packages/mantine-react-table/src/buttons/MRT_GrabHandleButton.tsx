@@ -31,7 +31,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
     >
       <ActionIcon
         draggable="true"
-        color='gray'
+        color="gray"
         size="sm"
         variant="transparent"
         {...actionIconProps}
