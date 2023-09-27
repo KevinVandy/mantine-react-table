@@ -1,8 +1,8 @@
-import { ActionIcon, Menu, Tooltip } from '@mantine/core';
+import { Menu, Tooltip } from '@mantine/core';
+
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { funcValue } from '../funcValue';
-
-import classes from './MRT_ColumnActionMenu.module.css';
+import { MRT_ActionIcon } from '../buttons/MRT_ActionIcon';
 
 interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
@@ -57,6 +57,8 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
     ...funcValue(mantineColumnActionsButtonProps, arg),
     ...funcValue(columnDef.mantineColumnActionsButtonProps, arg),
   };
+
+  console.log('aiprops', actionIconProps);
 
   const handleClearSort = () => {
     column.clearSorting();
@@ -251,15 +253,15 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
         label={actionIconProps?.title ?? localization.columnActions}
       >
         <Menu.Target>
-          <ActionIcon
-            className={classes.action}
-            aria-label={localization.columnActions}
-            size="xs"
-            variant="transparent"
-            {...actionIconProps}
-          >
-            <IconDotsVertical />
-          </ActionIcon>
+          <div>
+            {/* i have no idea why i need this div, because of Menu.Target? */}
+            <MRT_ActionIcon
+              aria-label={localization.columnActions}
+              {...actionIconProps}
+            >
+              <IconDotsVertical />
+            </MRT_ActionIcon>
+          </div>
         </Menu.Target>
       </Tooltip>
       <Menu.Dropdown>

@@ -1,6 +1,8 @@
-import { ActionIcon, Indicator, Tooltip, useMantineTheme } from '@mantine/core';
+import { Indicator, Tooltip } from '@mantine/core';
+
 import { type MRT_Header, type MRT_TableInstance } from '../types';
-import { getPrimaryColor } from '../column.utils';
+import { MRT_ActionIcon } from '../buttons/MRT_ActionIcon';
+
 import classes from './MRT_TableHeadCellSortLabel.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -11,62 +13,54 @@ interface Props<TData extends Record<string, any> = {}> {
 export const MRT_TableHeadCellSortLabel = <
   TData extends Record<string, any> = {},
 >({
-  header,
-  table,
-}: Props<TData>) => {
-  const {
+  header: { column },
+  table: {
     getState,
     options: {
       icons: { IconSortDescending, IconSortAscending, IconArrowsSort },
       localization,
     },
-  } = table;
-  const { column } = header;
+  },
+}: Props<TData>) => {
   const { columnDef } = column;
   const { sorting } = getState();
+  const sorted = column.getIsSorted();
+  const sortIndex = column.getSortIndex();
 
-  const theme = useMantineTheme();
-
-  const sortTooltip = column.getIsSorted()
-    ? column.getIsSorted() === 'desc'
+  const sortTooltip = sorted
+    ? sorted === 'desc'
       ? localization.sortedByColumnDesc.replace('{column}', columnDef.header)
       : localization.sortedByColumnAsc.replace('{column}', columnDef.header)
     : column.getNextSortingOrder() === 'desc'
     ? localization.sortByColumnDesc.replace('{column}', columnDef.header)
     : localization.sortByColumnAsc.replace('{column}', columnDef.header);
 
-  const showIndicator = sorting.length >= 2 && column.getSortIndex() !== -1;
+  const icon =
+    sorted === 'desc' ? (
+      <IconSortDescending />
+    ) : sorted === 'asc' ? (
+      <IconSortAscending />
+    ) : (
+      <IconArrowsSort />
+    );
 
   return (
     <Tooltip withinPortal label={sortTooltip}>
       <Indicator
         color="transparent"
-        disabled={!showIndicator}
+        disabled={sorting.length < 2 || sortIndex === -1}
         inline
-        label={column.getSortIndex() + 1}
+        processing
+        label={sortIndex + 1}
         offset={3}
       >
-        <ActionIcon
-          aria-label={sortTooltip}
-          color={column.getIsSorted() ? getPrimaryColor(theme) : undefined}
+        <MRT_ActionIcon
           className={classes.MRT_TableHeadCellSortLabel}
-          __vars={{
-            '--transform': showIndicator
-              ? 'translate(-2px, 2px) scale(0.9)'
-              : undefined,
-            '--opacity': column.getIsSorted() ? '1' : '0.5',
-          }}
-          size="xs"
-          variant="transparent"
+          aria-label={sortTooltip}
+          {...(sorted ? { 'data-sorted': true } : null)}
         >
-          {column.getIsSorted() === 'desc' ? (
-            <IconSortDescending />
-          ) : column.getIsSorted() === 'asc' ? (
-            <IconSortAscending />
-          ) : (
-            <IconArrowsSort />
-          )}
-        </ActionIcon>
+          {icon}
+        </MRT_ActionIcon>
       </Indicator>
     </Tooltip>
   );
