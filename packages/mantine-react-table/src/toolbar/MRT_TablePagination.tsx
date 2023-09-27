@@ -1,4 +1,11 @@
-import { ActionIcon, Flex, Pagination, Select, Text } from '@mantine/core';
+import {
+  ActionIcon,
+  Flex,
+  type MantineStyleProp,
+  Pagination,
+  Select,
+  Text,
+} from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 import { funcValue } from '../funcValue';
 
@@ -7,12 +14,13 @@ interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
 
-const commonActionButtonStyles: Sx = {
+const commonActionButtonStyles: MantineStyleProp = {
   userSelect: 'none',
-  '&:disabled': {
-    backgroundColor: 'transparent',
-    border: 'none',
-  },
+  // TODO: move to module
+  // '&:disabled': {
+  //   backgroundColor: 'transparent',
+  //   border: 'none',
+  // },
 };
 
 export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
@@ -84,18 +92,20 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           label={localization.rowsPerPage}
           onChange={(value: string) => setPageSize(+value)}
           value={pageSize.toString()}
-          style={{
-            '@media (min-width: 720px)': {
+          style={
+            {
               // TODO: move to module
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-            },
-            '& .mantine-Select-input': {
-              width: '80px',
-            },
-          }}
-          withinPortal
+              // '@media (min-width: 720px)': {
+              //   display: 'flex',
+              //   alignItems: 'center',
+              //   gap: '8px',
+              // },
+              // '& .mantine-Select-input': {
+              //   width: '80px',
+              // },
+            }
+          }
+          // withinPortal // TODO: doesn't exist anymore.
         />
       )}
       {paginationDisplayMode === 'pages' ? (

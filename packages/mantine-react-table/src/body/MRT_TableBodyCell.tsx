@@ -28,7 +28,7 @@ import classes from './MRT_TableBodyRow.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
-  isStriped?: boolean;
+  isStriped?: boolean | 'odd' | 'even';
   measureElement?: (element: HTMLTableCellElement) => void;
   numRows?: number;
   rowIndex: number;
@@ -184,8 +184,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
 
   const { style, className, __vars } = getCommonCellStyles({
     column,
-    isStriped,
-    row,
+    // isStriped,  TODO: why were these here?
+    // row,
     table,
     theme,
     tableCellProps,
@@ -218,7 +218,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
         '--white-space': density === 'xs' ? 'nowrap' : 'normal',
         '--z-index':
           draggingColumn?.id === column.id
-            ? 2
+            ? '2'
             : column.getIsPinned()
             ? '1'
             : '0',

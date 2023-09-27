@@ -7,7 +7,7 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
-import { funcValue } from '../funcValue';
+import { funcValue, styleValue } from '../funcValue';
 
 import classes from './MRT_TableFooterRow.module.css';
 

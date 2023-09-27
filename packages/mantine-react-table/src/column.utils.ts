@@ -393,11 +393,15 @@ export const MRT_DefaultDisplayColumn = {
 export const parseCSSVarId = (id: string) => id.replace(/[^a-zA-Z0-9]/g, '_');
 
 export const getPrimaryShade = (theme: MantineTheme): number =>
-  (theme.colorScheme === 'dark'
-    ? // @ts-ignore
-      theme.primaryShade?.dark ?? theme.primaryShade
-    : // @ts-ignore
-      theme.primaryShade?.light ?? theme.primaryShade) ?? 7;
+  typeof theme.primaryShade === 'number'
+    ? theme.primaryShade
+    : theme.primaryShade?.dark ?? 7;
+// TODO: where is colorScheme?
+// (theme.colorScheme === 'dark'
+//   ? // @ts-ignore
+//     theme.primaryShade?.dark ?? theme.primaryShade
+//   : // @ts-ignore
+//     theme.primaryShade?.light ?? theme.primaryShade) ?? 7;
 
 export const getPrimaryColor = (
   theme: MantineTheme,

@@ -33,7 +33,7 @@ export const MRT_ProgressBar = <TData extends Record<string, any> = {}>({
       }}
     >
       <Progress
-        animate
+        animated
         aria-busy="true"
         aria-label="Loading"
         radius={0}

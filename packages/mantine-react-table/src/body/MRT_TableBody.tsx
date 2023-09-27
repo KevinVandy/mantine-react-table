@@ -15,7 +15,7 @@ import { funcValue, styleValue } from '../funcValue';
 interface Props<TData extends Record<string, any> = {}> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
-  isStriped?: boolean;
+  isStriped?: boolean | 'odd' | 'even';
   table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;

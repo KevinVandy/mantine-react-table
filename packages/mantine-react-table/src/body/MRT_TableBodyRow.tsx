@@ -17,7 +17,7 @@ import classes from './MRT_TableBodyRow.module.css';
 interface Props<TData extends Record<string, any> = {}> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
-  isStriped?: boolean;
+  isStriped?: boolean | 'odd' | 'even';
   measureElement?: (element: HTMLTableRowElement) => void;
   numRows?: number;
   row: MRT_Row<TData>;
