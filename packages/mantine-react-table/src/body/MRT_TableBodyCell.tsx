@@ -1,13 +1,14 @@
 import {
+  type DragEvent,
   memo,
+  type MouseEvent,
+  type RefObject,
   useEffect,
   useMemo,
   useState,
-  type DragEvent,
-  type MouseEvent,
-  type RefObject,
 } from 'react';
 import { Box, Skeleton, useMantineTheme } from '@mantine/core';
+import clsx from 'clsx';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
@@ -15,13 +16,13 @@ import {
   getCommonCellStyles,
   getIsFirstColumn,
   getIsLastColumn,
-  getPrimaryColor,
 } from '../column.utils';
 import {
   type MRT_Cell,
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
+import classes from './MRT_TableBodyRow.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
@@ -122,9 +123,9 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
 
     const borderStyle =
       isDraggingColumn || isDraggingRow
-        ? `1px dashed ${theme.colors.gray[7]} !important`
+        ? '1px dashed var(--mantine-color-gray-7) !important'
         : isHoveredColumn || isHoveredRow
-        ? `2px dashed ${getPrimaryColor(theme)} !important`
+        ? '2px dashed var(--mantine-primary-color-filled) !important'
         : undefined;
 
     return borderStyle
@@ -193,53 +194,65 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
     }
   };
 
+  const { style, className, __vars } = getCommonCellStyles({
+    column,
+    isStriped,
+    row,
+    table,
+    theme,
+    tableCellProps,
+  });
+
   return (
     <Box
       component="td"
       data-index={virtualCell?.index}
+      data-selected={row?.getIsSelected() ?? 'false'}
+      data-ispinned={column?.getIsPinned() ?? 'false'}
+      data-striped={isStriped}
+      data-columndef={columnDefType}
       ref={(node: HTMLTableCellElement) => {
         if (node) {
           measureElement?.(node);
         }
       }}
       {...tableCellProps}
-      onDragEnter={handleDragEnter}
-      onDoubleClick={handleDoubleClick}
-      style={(theme) => ({
-        alignItems: layoutMode === 'grid' ? 'center' : undefined,
-        cursor:
+      __vars={{
+        ...__vars,
+        '--align-items': layoutMode === 'grid' ? 'center' : undefined,
+        '--cursor':
           isEditable && editDisplayMode === 'cell' ? 'pointer' : 'inherit',
-        justifyContent:
-          layoutMode === 'grid' ? tableCellProps.align : undefined,
-        overflow: 'hidden',
-        paddingLeft:
+        '--align': layoutMode === 'grid' ? tableCellProps.align : undefined,
+        '--padding-left':
           column.id === 'mrt-row-expand'
             ? `${row.depth + 1}rem !important`
             : undefined,
-        textOverflow: columnDefType !== 'display' ? 'ellipsis' : undefined,
-        whiteSpace: density === 'xs' ? 'nowrap' : 'normal',
-        zIndex:
-          draggingColumn?.id === column.id ? 2 : column.getIsPinned() ? 1 : 0,
-        '&:hover': {
-          outline:
-            isEditing &&
-            ['table', 'cell'].includes(editDisplayMode ?? '') &&
-            columnDefType !== 'display'
-              ? `1px solid ${theme.colors.gray[7]}`
-              : undefined,
-          outlineOffset: '-1px',
-          textOverflow: 'clip',
-        },
-        ...getCommonCellStyles({
-          column,
-          isStriped,
-          row,
-          table,
-          theme,
-          tableCellProps,
-        }),
+        '--white-space': density === 'xs' ? 'nowrap' : 'normal',
+        '--z-index':
+          draggingColumn?.id === column.id
+            ? 2
+            : column.getIsPinned()
+            ? '1'
+            : '0',
+        '--outline':
+          isEditing &&
+          ['table', 'cell'].includes(editDisplayMode ?? '') &&
+          columnDefType !== 'display'
+            ? `1px solid var(--mantine-color-gray-7)`
+            : undefined,
+        ...tableCellProps.__vars,
+      }}
+      className={clsx(
+        className,
+        classes.MRT_TableBodyCell,
+        tableCellProps.className,
+      )}
+      onDragEnter={handleDragEnter}
+      onDoubleClick={handleDoubleClick}
+      style={{
+        ...style,
         ...draggingBorders,
-      })}
+      }}
     >
       <>
         {cell.getIsPlaceholder() ? (
