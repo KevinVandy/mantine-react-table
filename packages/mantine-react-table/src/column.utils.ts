@@ -30,6 +30,7 @@ import {
   type MRT_TableOptions,
 } from './types';
 import classes from './columns.utils.module.css';
+import { funcValue } from './funcValue';
 
 export const getColumnId = <TData extends Record<string, any> = {}>(
   columnDef: MRT_ColumnDef<TData>,
@@ -355,13 +356,12 @@ export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
   __vars['--transition'] = table.options.enableColumnVirtualization
     ? 'none'
     : `padding 100ms ease-in-out`;
+
   return {
     className: classes.MRT_ColumnCommonStyles,
     style: {
       ...(!table.options.enableColumnResizing && widthStyles), //let devs pass in width styles if column resizing is disabled
-      ...(tableCellProps?.style instanceof Function
-        ? tableCellProps.style(theme)
-        : (tableCellProps?.style as any)),
+      ...funcValue(tableCellProps?.style, theme),
       ...(table.options.enableColumnResizing && widthStyles), //do not let devs pass in width styles if column resizing is enabled
     },
     __vars,

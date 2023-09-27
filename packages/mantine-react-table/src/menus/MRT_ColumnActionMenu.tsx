@@ -1,5 +1,6 @@
 import { ActionIcon, Menu, Tooltip } from '@mantine/core';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
 
 import classes from './MRT_ColumnActionMenu.module.css';
 
@@ -51,22 +52,10 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
   const { columnDef } = column;
   const { columnSizing, columnVisibility } = getState();
 
-  const mTableHeadCellColumnActionsButtonProps =
-    mantineColumnActionsButtonProps instanceof Function
-      ? mantineColumnActionsButtonProps({ column, table })
-      : mantineColumnActionsButtonProps;
-
-  const mcTableHeadCellColumnActionsButtonProps =
-    columnDef.mantineColumnActionsButtonProps instanceof Function
-      ? columnDef.mantineColumnActionsButtonProps({
-          column,
-          table,
-        })
-      : columnDef.mantineColumnActionsButtonProps;
-
+  const arg = { column, table };
   const actionIconProps = {
-    ...mTableHeadCellColumnActionsButtonProps,
-    ...mcTableHeadCellColumnActionsButtonProps,
+    ...funcValue(mantineColumnActionsButtonProps, arg),
+    ...funcValue(columnDef.mantineColumnActionsButtonProps, arg),
   };
 
   const handleClearSort = () => {

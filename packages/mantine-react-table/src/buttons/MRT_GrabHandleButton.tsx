@@ -1,6 +1,7 @@
 import { type DragEventHandler } from 'react';
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
 import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
+import { styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   actionIconProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;
@@ -52,9 +53,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
           '&:active': {
             cursor: 'grabbing',
           },
-          ...(actionIconProps?.style instanceof Function
-            ? actionIconProps?.style(theme)
-            : (actionIconProps?.style as any)),
+          ...styleValue(actionIconProps, theme),
         })}
         title={undefined}
       >

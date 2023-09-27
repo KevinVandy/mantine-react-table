@@ -2,6 +2,8 @@ import { Box } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
+import { funcValue, styleValue } from '../funcValue';
+
 import classes from './MRT_TableFooter.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -24,10 +26,7 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
   } = table;
   const { isFullScreen } = getState();
 
-  const tableFooterProps =
-    mantineTableFooterProps instanceof Function
-      ? mantineTableFooterProps({ table })
-      : mantineTableFooterProps;
+  const tableFooterProps = funcValue(mantineTableFooterProps, { table });
 
   const stickFooter =
     (isFullScreen || enableStickyFooter) && enableStickyFooter !== false;
@@ -43,9 +42,7 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
           : classes.MRT_TableFooterTableRowGroup,
       )}
       style={(theme) => ({
-        ...(tableFooterProps?.style instanceof Function
-          ? tableFooterProps?.style(theme)
-          : (tableFooterProps?.style as any)),
+        ...styleValue(tableFooterProps, theme),
       })}
     >
       {getFooterGroups().map((footerGroup) => (

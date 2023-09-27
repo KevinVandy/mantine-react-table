@@ -9,6 +9,7 @@ import {
   type SwitchProps,
 } from '@mantine/core';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   row?: MRT_Row<TData>;
@@ -35,12 +36,8 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any> = {}>({
   const { density, isLoading } = getState();
 
   const checkboxProps = !row
-    ? mantineSelectAllCheckboxProps instanceof Function
-      ? mantineSelectAllCheckboxProps({ table })
-      : mantineSelectAllCheckboxProps
-    : mantineSelectCheckboxProps instanceof Function
-    ? mantineSelectCheckboxProps({ row, table })
-    : mantineSelectCheckboxProps;
+    ? funcValue(mantineSelectAllCheckboxProps, { table })
+    : funcValue(mantineSelectCheckboxProps, { row, table });
 
   const allRowsSelected = selectAll
     ? selectAllMode === 'page'

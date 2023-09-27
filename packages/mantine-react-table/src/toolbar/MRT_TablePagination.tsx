@@ -1,12 +1,6 @@
-import {
-  ActionIcon,
-  Flex,
-  Pagination,
-  Select,
-  Text,
-  type Sx,
-} from '@mantine/core';
+import { ActionIcon, Flex, Pagination, Select, Text } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   position?: 'top' | 'bottom';
@@ -49,10 +43,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
     showGlobalFilter,
   } = getState();
 
-  const paginationProps =
-    mantinePaginationProps instanceof Function
-      ? mantinePaginationProps({ table })
-      : mantinePaginationProps;
+  const paginationProps = funcValue(mantinePaginationProps, { table });
 
   const totalRowCount = rowCount ?? getPrePaginationRowModel().rows.length;
   const numberOfPages = Math.ceil(totalRowCount / pageSize);
@@ -95,6 +86,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           value={pageSize.toString()}
           style={{
             '@media (min-width: 720px)': {
+              // TODO: move to module
               display: 'flex',
               alignItems: 'center',
               gap: '8px',

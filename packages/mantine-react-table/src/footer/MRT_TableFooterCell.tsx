@@ -2,6 +2,8 @@ import { Box, useMantineTheme } from '@mantine/core';
 import clsx from 'clsx';
 import { getCommonCellStyles } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
+
 import classes from './MRT_TableFooterCell.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -21,19 +23,10 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
   const { columnDef } = column;
   const { columnDefType } = columnDef;
 
-  const mTableFooterCellProps =
-    mantineTableFooterCellProps instanceof Function
-      ? mantineTableFooterCellProps({ column, table })
-      : mantineTableFooterCellProps;
-
-  const mcTableFooterCellProps =
-    columnDef.mantineTableFooterCellProps instanceof Function
-      ? columnDef.mantineTableFooterCellProps({ column, table })
-      : columnDef.mantineTableFooterCellProps;
-
+  const arg = { column, table };
   const { className, ...tableCellProps } = {
-    ...mTableFooterCellProps,
-    ...mcTableFooterCellProps,
+    ...funcValue(mantineTableFooterCellProps, arg),
+    ...funcValue(columnDef.mantineTableFooterCellProps, arg),
   };
 
   const {
@@ -46,6 +39,14 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
     theme,
     tableCellProps,
   });
+
+  const footerProps = footer.isPlaceholder
+    ? null
+    : funcValue(columnDef.Footer, {
+        column,
+        footer,
+        table,
+      });
 
   return (
     <Box
@@ -66,19 +67,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
       }}
       style={style}
     >
-      <>
-        {footer.isPlaceholder
-          ? null
-          : (columnDef.Footer instanceof Function
-              ? columnDef.Footer?.({
-                  column,
-                  footer,
-                  table,
-                })
-              : columnDef.Footer) ??
-            columnDef.footer ??
-            null}
-      </>
+      <>{footerProps}</>
     </Box>
   );
 };

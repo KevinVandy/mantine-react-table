@@ -1,5 +1,6 @@
 import { Highlight, type HighlightProps } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
 
 const allowedTypes = ['string', 'number'];
 const allowedFilterVariants = ['text', 'autocomplete'];
@@ -22,11 +23,12 @@ export const MRT_TableBodyCellValue = <TData extends Record<string, any> = {}>({
   const { globalFilter, globalFilterFn } = getState();
   const filterValue = column.getFilterValue();
 
-  const highlightProps = (
-    mantineHighlightProps instanceof Function
-      ? mantineHighlightProps({ cell, column, row, table })
-      : mantineHighlightProps
-  ) as Partial<HighlightProps>;
+  const highlightProps = funcValue(mantineHighlightProps, {
+    cell,
+    column,
+    row,
+    table,
+  }) as Partial<HighlightProps>;
 
   let renderedCellValue =
     cell.getIsAggregated() && columnDef.AggregatedCell
@@ -75,11 +77,7 @@ export const MRT_TableBodyCellValue = <TData extends Record<string, any> = {}>({
     }
 
     renderedCellValue = (
-      <Highlight
-        color="yellow.3"
-        highlight={highlight}
-        {...highlightProps}
-      >
+      <Highlight color="yellow.3" highlight={highlight} {...highlightProps}>
         {renderedCellValue?.toString()}
       </Highlight>
     );

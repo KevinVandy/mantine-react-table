@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { RangeSlider, type RangeSliderProps } from '@mantine/core';
 import { type MRT_TableInstance, type MRT_Header } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
@@ -18,25 +19,10 @@ export const MRT_FilterRangeSlider = <TData extends Record<string, any> = {}>({
   const { column } = header;
   const { columnDef } = column;
 
-  const mFilterRangeSliderProps =
-    mantineFilterRangeSliderProps instanceof Function
-      ? mantineFilterRangeSliderProps({
-          column,
-          table,
-        })
-      : mantineFilterRangeSliderProps;
-
-  const mcFilterRangeSliderProps =
-    columnDef.mantineFilterRangeSliderProps instanceof Function
-      ? columnDef.mantineFilterRangeSliderProps({
-          column,
-          table,
-        })
-      : columnDef.mantineFilterRangeSliderProps;
-
+  const arg = { column, table };
   const rangeSliderProps = {
-    ...mFilterRangeSliderProps,
-    ...mcFilterRangeSliderProps,
+    ...funcValue(mantineFilterRangeSliderProps, arg),
+    ...funcValue(columnDef.mantineFilterRangeSliderProps, arg),
   } as RangeSliderProps;
 
   let [min, max] =
@@ -106,9 +92,7 @@ export const MRT_FilterRangeSlider = <TData extends Record<string, any> = {}>({
         marginTop: '16px',
         marginBottom: '6px',
         width: 'calc(100% - 8px)',
-        ...(rangeSliderProps?.style instanceof Function
-          ? rangeSliderProps.style(theme)
-          : (rangeSliderProps?.style as any)),
+        ...styleValue(rangeSliderProps, theme),
       })}
     />
   );

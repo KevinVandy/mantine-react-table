@@ -10,6 +10,7 @@ import {
   type MRT_VirtualItem,
   type MRT_Virtualizer,
 } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
@@ -64,15 +65,9 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     sorting,
   } = getState();
 
-  const tableBodyProps =
-    mantineTableBodyProps instanceof Function
-      ? mantineTableBodyProps({ table })
-      : mantineTableBodyProps;
+  const tableBodyProps = funcValue(mantineTableBodyProps, { table });
 
-  const vProps =
-    rowVirtualizerProps instanceof Function
-      ? rowVirtualizerProps({ table })
-      : rowVirtualizerProps;
+  const vProps = funcValue(rowVirtualizerProps, { table });
 
   const shouldRankRows = useMemo(
     () =>
@@ -145,9 +140,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
           : 'inherit',
         minHeight: !rows.length ? '100px' : undefined,
         position: 'relative',
-        ...(tableBodyProps?.style instanceof Function
-          ? tableBodyProps?.style(theme)
-          : (tableBodyProps?.style as any)),
+        ...styleValue(tableBodyProps, theme),
       })}
     >
       {creatingRow && createDisplayMode === 'row' && (

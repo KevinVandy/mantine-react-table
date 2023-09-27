@@ -5,6 +5,7 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
@@ -33,20 +34,14 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
   } = table;
   const { isLoading } = getState();
 
-  const tableRowProps =
-    mantineTableBodyRowProps instanceof Function
-      ? mantineTableBodyRowProps({
-          isDetailPanel: true,
-          row,
-          staticRowIndex: rowIndex,
-          table,
-        })
-      : mantineTableBodyRowProps;
+  const tableRowProps = funcValue(mantineTableBodyRowProps, {
+    isDetailPanel: true,
+    row,
+    staticRowIndex: rowIndex,
+    table,
+  });
 
-  const tableCellProps =
-    mantineDetailPanelProps instanceof Function
-      ? mantineDetailPanelProps({ row, table })
-      : mantineDetailPanelProps;
+  const tableCellProps = funcValue(mantineDetailPanelProps, { row, table });
 
   return (
     <Box
@@ -64,9 +59,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
           : undefined,
         width: '100%',
         zIndex: virtualRow ? 2 : undefined,
-        ...(tableRowProps?.style instanceof Function
-          ? tableRowProps.style(theme)
-          : (tableRowProps?.style as any)),
+        ...styleValue(tableRowProps, theme),
       })}
     >
       <Box
@@ -86,9 +79,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
           paddingTop: row.getIsExpanded() ? '16px !important' : '0 !important',
           transition: 'all 100ms ease-in-out',
           width: `${table.getTotalSize()}px`,
-          ...(tableCellProps?.style instanceof Function
-            ? tableCellProps.style(theme)
-            : (tableCellProps?.style as any)),
+          ...styleValue(tableCellProps, theme),
         })}
       >
         {renderDetailPanel && (
