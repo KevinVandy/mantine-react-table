@@ -15,6 +15,7 @@ import {
   type MantineTheme,
 } from '@mantine/core';
 import {
+  type MantineShade,
   type MRT_Column,
   type MRT_ColumnDef,
   type MRT_ColumnOrderState,
@@ -390,6 +391,17 @@ export const MRT_DefaultDisplayColumn = {
 
 export const parseCSSVarId = (id: string) => id.replace(/[^a-zA-Z0-9]/g, '_');
 
+export const getPrimaryShade = (theme: MantineTheme): number =>
+  (theme.colorScheme === 'dark'
+    ? // @ts-ignore
+      theme.primaryShade?.dark ?? theme.primaryShade
+    : // @ts-ignore
+      theme.primaryShade?.light ?? theme.primaryShade) ?? 7;
+
+export const getPrimaryColor = (
+  theme: MantineTheme,
+  shade?: MantineShade,
+): string => theme.colors[theme.primaryColor][shade ?? getPrimaryShade(theme)];
 export const flexRender = _flexRender as (
   Comp: Renderable<any>,
   props: any,
