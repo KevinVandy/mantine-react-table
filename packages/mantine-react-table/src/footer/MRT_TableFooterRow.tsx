@@ -39,7 +39,7 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
   )
     return null;
 
-  const { className, ...tableRowProps } =
+  const tableRowProps =
     mantineTableFooterRowProps instanceof Function
       ? mantineTableFooterRowProps({ footerGroup, table })
       : mantineTableFooterRowProps;
@@ -52,7 +52,6 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
         layoutMode === 'grid'
           ? classes.MRT_TableFooterRowGrid
           : classes.MRT_TableFooterRowTableRow,
-        className,
       )}
       {...tableRowProps}
       style={(theme) => ({

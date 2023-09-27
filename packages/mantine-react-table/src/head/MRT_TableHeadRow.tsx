@@ -30,7 +30,7 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
   } = table;
   const { isFullScreen } = getState();
 
-  const { className, ...tableRowProps } =
+  const tableRowProps =
     mantineTableHeadRowProps instanceof Function
       ? mantineTableHeadRowProps({ headerGroup, table })
       : mantineTableHeadRowProps;
@@ -44,7 +44,6 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
       className={clsx(
         classes.MRT_TableHeadRow,
         stickyHeader && classes.MRT_TableHeadRowSticky,
-        className,
       )}
       __vars={{
         '--display': layoutMode === 'grid' ? 'flex' : 'table-row',

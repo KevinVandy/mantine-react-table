@@ -94,7 +94,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
         borderRight: draggingBorder,
         borderTop: draggingBorder,
       }
-    : undefined;
+    : {};
 
   const handleDragEnter = (_e: DragEvent) => {
     if (enableGrouping && hoveredColumn?.id === 'drop-zone') {
@@ -127,7 +127,6 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
     <Box
       component="th"
       align={columnDefType === 'group' ? 'center' : 'left'}
-      data-selected={row?.getIsSelected() ?? 'false'}
       data-ispinned={column?.getIsPinned() ?? 'false'}
       data-cansort={column.getCanSort()}
       data-isresizing={column.getIsResizing()}
