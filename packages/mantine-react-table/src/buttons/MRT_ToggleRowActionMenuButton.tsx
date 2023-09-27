@@ -58,9 +58,11 @@ export const MRT_ToggleRowActionMenuButton = <
         <Tooltip withinPortal position="right" label={localization.edit}>
           <ActionIcon
             aria-label={localization.edit}
+            className={classes.MRT_ToggleRowActionMenuButton}
+            color='gray'
             disabled={!!editingRow && editingRow.id !== row.id}
             onClick={handleStartEditMode}
-            className={classes.MRT_ToggleRowActionMenuButton}
+            variant="transparent"
           >
             <IconEdit />
           </ActionIcon>

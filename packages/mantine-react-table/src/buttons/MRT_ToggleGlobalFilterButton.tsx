@@ -34,9 +34,11 @@ export const MRT_ToggleGlobalFilterButton = <
     <Tooltip withinPortal label={rest?.title ?? localization.showHideSearch}>
       <ActionIcon
         aria-label={rest?.title ?? localization.showHideSearch}
+        color='gray'
         disabled={!!globalFilter}
         onClick={handleToggleSearch}
         size="lg"
+        variant="transparent"
         {...rest}
         title={undefined}
       >

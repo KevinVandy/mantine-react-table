@@ -24,7 +24,7 @@ import {
 } from '../types';
 import { funcValue } from '../funcValue';
 
-import classes from './MRT_TableBodyRow.module.css';
+import classes from './MRT_TableBodyCell.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;

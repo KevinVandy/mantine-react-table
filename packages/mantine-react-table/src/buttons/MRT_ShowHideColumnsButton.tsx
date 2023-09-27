@@ -27,7 +27,9 @@ export const MRT_ShowHideColumnsButton = <
         <Menu.Target>
           <ActionIcon
             aria-label={localization.showHideColumns}
+            color="gray"
             size="lg"
+            variant="transparent"
             {...rest}
             title={undefined}
           >

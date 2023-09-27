@@ -69,7 +69,7 @@ export const MRT_GlobalFilterTextInput = <
       {enableGlobalFilterModes && (
         <Menu withinPortal>
           <Menu.Target>
-            <ActionIcon aria-label={localization.changeSearchMode} size="sm">
+            <ActionIcon aria-label={localization.changeSearchMode} color='gray' size="sm" variant="transparent">
               <IconSearch />
             </ActionIcon>
           </Menu.Target>
@@ -86,9 +86,11 @@ export const MRT_GlobalFilterTextInput = <
           searchValue ? (
             <ActionIcon
               aria-label={localization.clearSearch}
+              color='gray'
               disabled={!searchValue?.length}
               onClick={handleClear}
               size="sm"
+              variant="transparent"
             >
               <Tooltip withinPortal label={localization.clearSearch}>
                 <IconX />

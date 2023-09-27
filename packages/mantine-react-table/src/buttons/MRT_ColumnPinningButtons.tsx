@@ -28,14 +28,24 @@ export const MRT_ColumnPinningButtons = <
     <Flex className={classes.container}>
       {column.getIsPinned() ? (
         <Tooltip withinPortal label={localization.unpin}>
-          <ActionIcon onClick={() => handlePinColumn(false)} size="md">
+          <ActionIcon
+            color="gray"
+            variant="transparent"
+            onClick={() => handlePinColumn(false)}
+            size="md"
+          >
             <IconPinnedOff />
           </ActionIcon>
         </Tooltip>
       ) : (
         <>
           <Tooltip withinPortal label={localization.pinToLeft}>
-            <ActionIcon onClick={() => handlePinColumn('left')} size="md">
+            <ActionIcon
+              color="gray"
+              variant="transparent"
+              onClick={() => handlePinColumn('left')}
+              size="md"
+            >
               <IconPinned
                 style={{
                   transform: 'rotate(90deg)',
@@ -44,7 +54,12 @@ export const MRT_ColumnPinningButtons = <
             </ActionIcon>
           </Tooltip>
           <Tooltip withinPortal label={localization.pinToRight}>
-            <ActionIcon onClick={() => handlePinColumn('right')} size="md">
+            <ActionIcon
+              onClick={() => handlePinColumn('right')}
+              size="md"
+              color="gray"
+              variant="transparent"
+            >
               <IconPinned
                 style={{
                   transform: 'rotate(-90deg)',

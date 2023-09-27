@@ -39,10 +39,12 @@ export const MRT_ToggleFullScreenButton = <
     >
       <ActionIcon
         aria-label={localization.toggleFullScreen}
+        color='gray'
         onClick={handleToggleFullScreen}
         onMouseEnter={() => setTooltipOpened(true)}
         onMouseLeave={() => setTooltipOpened(false)}
         size="lg"
+        variant="transparent"
         {...rest}
         title={undefined}
       >
