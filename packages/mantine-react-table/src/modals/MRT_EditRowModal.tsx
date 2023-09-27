@@ -2,6 +2,7 @@ import { Flex, Modal, Stack } from '@mantine/core';
 import { MRT_EditActionButtons } from '../buttons/MRT_EditActionButtons';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   open: boolean;
@@ -28,19 +29,10 @@ export const MRT_EditRowModal = <TData extends Record<string, any> = {}>({
   const { creatingRow, editingRow } = getState();
   const row = (creatingRow ?? editingRow) as MRT_Row<TData>;
 
-  const createModalProps =
-    mantineCreateRowModalProps instanceof Function
-      ? mantineCreateRowModalProps({ row, table })
-      : mantineCreateRowModalProps;
-
-  const editModalProps =
-    mantineEditRowModalProps instanceof Function
-      ? mantineEditRowModalProps({ row, table })
-      : mantineEditRowModalProps;
-
+  const arg = { row, table };
   const modalProps = {
-    ...editModalProps,
-    ...(creatingRow && createModalProps),
+    ...funcValue(mantineEditRowModalProps, arg),
+    ...(creatingRow && funcValue(mantineCreateRowModalProps, arg)),
   };
 
   const internalEditComponents = row

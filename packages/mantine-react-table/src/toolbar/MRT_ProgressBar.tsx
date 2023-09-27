@@ -1,5 +1,6 @@
 import { Collapse, Progress } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   isTopToolbar: boolean;
@@ -16,10 +17,10 @@ export const MRT_ProgressBar = <TData extends Record<string, any> = {}>({
   } = table;
   const { isSaving, showProgressBars } = getState();
 
-  const linearProgressProps =
-    mantineProgressProps instanceof Function
-      ? mantineProgressProps({ isTopToolbar, table })
-      : mantineProgressProps;
+  const linearProgressProps = funcValue(mantineProgressProps, {
+    isTopToolbar,
+    table,
+  });
 
   return (
     <Collapse
@@ -32,7 +33,7 @@ export const MRT_ProgressBar = <TData extends Record<string, any> = {}>({
       }}
     >
       <Progress
-        animate
+        animated
         aria-busy="true"
         aria-label="Loading"
         radius={0}

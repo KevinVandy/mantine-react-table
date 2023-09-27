@@ -1,3 +1,4 @@
+import { type CSSProperties } from 'react';
 import { Box, Flex, type MantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { MRT_GlobalFilterTextInput } from '../inputs/MRT_GlobalFilterTextInput';
@@ -7,11 +8,16 @@ import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
-export const commonToolbarStyles = ({ theme }: { theme: MantineTheme }) => ({
+export const commonToolbarStyles = ({
+  theme,
+}: {
+  theme: MantineTheme;
+}): CSSProperties => ({
   alignItems: 'flex-start',
-  backgroundColor:
-    theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+  backgroundColor: theme.colors.dark[7],
+  // TODO: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   backgroundImage: 'none',
   display: 'grid',
   flexWrap: 'wrap-reverse',
@@ -49,10 +55,7 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
 
   const isMobile = useMediaQuery('(max-width: 720px)');
 
-  const toolbarProps =
-    mantineTopToolbarProps instanceof Function
-      ? mantineTopToolbarProps({ table })
-      : mantineTopToolbarProps;
+  const toolbarProps = funcValue(mantineTopToolbarProps, { table });
 
   const stackAlertBanner =
     isMobile || !!renderTopToolbarCustomActions || showGlobalFilter;
@@ -72,9 +75,7 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
         position: isFullScreen ? 'sticky' : 'relative',
         top: isFullScreen ? '0' : undefined,
         ...commonToolbarStyles({ theme }),
-        ...(toolbarProps?.style instanceof Function
-          ? toolbarProps.style(theme)
-          : (toolbarProps?.style as any)),
+        ...styleValue(toolbarProps, theme),
       })}
     >
       {positionToolbarAlertBanner === 'top' && (

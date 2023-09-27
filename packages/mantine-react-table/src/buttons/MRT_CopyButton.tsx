@@ -2,6 +2,7 @@ import { type ReactNode } from 'react';
 import { UnstyledButton, CopyButton, Tooltip, rgba } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
+import { funcValue, styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
@@ -20,24 +21,10 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
   const { column, row } = cell;
   const { columnDef } = column;
 
-  const mTableBodyCellCopyButtonProps =
-    mantineCopyButtonProps instanceof Function
-      ? mantineCopyButtonProps({ cell, column, row, table })
-      : mantineCopyButtonProps;
-
-  const mcTableBodyCellCopyButtonProps =
-    columnDef.mantineCopyButtonProps instanceof Function
-      ? columnDef.mantineCopyButtonProps({
-          cell,
-          column,
-          row,
-          table,
-        })
-      : columnDef.mantineCopyButtonProps;
-
+  const arg = { cell, column, row, table };
   const buttonProps = {
-    ...mTableBodyCellCopyButtonProps,
-    ...mcTableBodyCellCopyButtonProps,
+    ...funcValue(mantineCopyButtonProps, arg),
+    ...funcValue(columnDef.mantineCopyButtonProps, arg),
   };
 
   return (
@@ -80,9 +67,7 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
               '&:hover': {
                 backgroundColor: rgba(getPrimaryColor(theme), 0.1),
               },
-              ...(buttonProps?.style instanceof Function
-                ? buttonProps.style(theme)
-                : (buttonProps?.style as any)),
+              ...styleValue(buttonProps, theme),
             })}
             title={undefined}
           >

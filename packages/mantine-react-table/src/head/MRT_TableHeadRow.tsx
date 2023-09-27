@@ -1,4 +1,4 @@
-import { Box, rgba } from '@mantine/core';
+import { Box } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import {
@@ -7,6 +7,8 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
+import { funcValue, styleValue } from '../funcValue';
+
 import classes from './MRT_TableHeadRow.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -30,10 +32,10 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
   } = table;
   const { isFullScreen } = getState();
 
-  const tableRowProps =
-    mantineTableHeadRowProps instanceof Function
-      ? mantineTableHeadRowProps({ headerGroup, table })
-      : mantineTableHeadRowProps;
+  const tableRowProps = funcValue(mantineTableHeadRowProps, {
+    headerGroup,
+    table,
+  });
 
   const stickyHeader = enableStickyHeader || isFullScreen;
 
@@ -49,9 +51,7 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
         '--display': layoutMode === 'grid' ? 'flex' : 'table-row',
       }}
       style={(theme) => ({
-        ...(tableRowProps?.style instanceof Function
-          ? tableRowProps?.style(theme)
-          : (tableRowProps?.style as any)),
+        ...styleValue(tableRowProps, theme),
       })}
     >
       {virtualPaddingLeft ? (

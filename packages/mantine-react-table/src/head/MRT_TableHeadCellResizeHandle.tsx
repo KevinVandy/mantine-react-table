@@ -1,6 +1,6 @@
 import { Box, Divider } from '@mantine/core';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
-import { getPrimaryColor } from '../column.utils';
+
 import classes from './MRT_TableHeadCellResizeHandle.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {

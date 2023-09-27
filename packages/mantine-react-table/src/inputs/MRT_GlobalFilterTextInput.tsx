@@ -4,6 +4,8 @@ import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_TableInstance } from '../types';
+import { funcValue, styleValue } from '../funcValue';
+
 import classes from './MRT_GlobalFilterTextInput.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -29,10 +31,7 @@ export const MRT_GlobalFilterTextInput = <
   } = table;
   const { globalFilter, showGlobalFilter } = getState();
 
-  const textFieldProps =
-    mantineSearchTextInputProps instanceof Function
-      ? mantineSearchTextInputProps({ table })
-      : mantineSearchTextInputProps;
+  const textFieldProps = funcValue(mantineSearchTextInputProps, { table });
 
   const isMounted = useRef(false);
   const [searchValue, setSearchValue] = useState(globalFilter ?? '');
@@ -112,9 +111,7 @@ export const MRT_GlobalFilterTextInput = <
           textFieldProps?.className,
         )}
         style={(theme) => ({
-          ...(textFieldProps?.style instanceof Function
-            ? textFieldProps.style(theme)
-            : (textFieldProps?.style as any)),
+          ...styleValue(textFieldProps, theme),
         })}
       />
     </Collapse>

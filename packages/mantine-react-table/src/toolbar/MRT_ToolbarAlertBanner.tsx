@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import { ActionIcon, Alert, Badge, Collapse, Flex, Stack } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 import { MRT_SelectCheckbox } from '../inputs';
+import { funcValue, styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   stackAlertBanner?: boolean;
@@ -30,15 +31,8 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
   } = table;
   const { grouping, showAlertBanner, density } = getState();
 
-  const alertProps =
-    mantineToolbarAlertBannerProps instanceof Function
-      ? mantineToolbarAlertBannerProps({ table })
-      : mantineToolbarAlertBannerProps;
-
-  const badgeProps =
-    mantineToolbarAlertBannerBadgeProps instanceof Function
-      ? mantineToolbarAlertBannerBadgeProps({ table })
-      : mantineToolbarAlertBannerBadgeProps;
+  const alertProps = funcValue(mantineToolbarAlertBannerProps, { table });
+  const badgeProps = funcValue(mantineToolbarAlertBannerBadgeProps, { table });
 
   const selectedAlert =
     getSelectedRowModel().rows.length > 0
@@ -104,9 +98,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           top: 0,
           width: '100%',
           zIndex: 2,
-          ...(alertProps?.style instanceof Function
-            ? alertProps.style(theme)
-            : (alertProps?.style as any)),
+          ...styleValue(alertProps, theme),
         })}
       >
         {renderToolbarAlertBannerContent?.({

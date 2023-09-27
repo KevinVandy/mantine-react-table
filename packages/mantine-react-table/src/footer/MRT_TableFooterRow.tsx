@@ -7,6 +7,8 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
+import { funcValue, styleValue } from '../funcValue';
+
 import classes from './MRT_TableFooterRow.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -39,10 +41,10 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
   )
     return null;
 
-  const tableRowProps =
-    mantineTableFooterRowProps instanceof Function
-      ? mantineTableFooterRowProps({ footerGroup, table })
-      : mantineTableFooterRowProps;
+  const tableRowProps = funcValue(mantineTableFooterRowProps, {
+    footerGroup,
+    table,
+  });
 
   return (
     <Box
@@ -55,9 +57,7 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
       )}
       {...tableRowProps}
       style={(theme) => ({
-        ...(tableRowProps?.style instanceof Function
-          ? tableRowProps?.style(theme)
-          : (tableRowProps?.style as any)),
+        ...styleValue(tableRowProps, theme),
       })}
     >
       {virtualPaddingLeft ? (

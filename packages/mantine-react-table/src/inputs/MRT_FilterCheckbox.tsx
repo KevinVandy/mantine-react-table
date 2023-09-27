@@ -1,5 +1,6 @@
 import { Checkbox, type CheckboxProps, Tooltip } from '@mantine/core';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   column: MRT_Column<TData>;
@@ -17,25 +18,10 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
   const { density } = getState();
   const { columnDef } = column;
 
-  const mTableHeadCellFilterCheckboxProps =
-    mantineFilterCheckboxProps instanceof Function
-      ? mantineFilterCheckboxProps({
-          column,
-          table,
-        })
-      : mantineFilterCheckboxProps;
-
-  const mcTableHeadCellFilterCheckboxProps =
-    columnDef.mantineFilterCheckboxProps instanceof Function
-      ? columnDef.mantineFilterCheckboxProps({
-          column,
-          table,
-        })
-      : columnDef.mantineFilterCheckboxProps;
-
+  const arg = { column, table };
   const checkboxProps = {
-    ...mTableHeadCellFilterCheckboxProps,
-    ...mcTableHeadCellFilterCheckboxProps,
+    ...funcValue(mantineFilterCheckboxProps, arg),
+    ...funcValue(columnDef.mantineFilterCheckboxProps, arg),
   } as CheckboxProps;
 
   const filterLabel = localization.filterByColumn?.replace(
@@ -73,9 +59,7 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
         style={(theme) => ({
           fontWeight: 'normal',
           marginTop: '8px',
-          ...(checkboxProps?.style instanceof Function
-            ? checkboxProps.style(theme)
-            : (checkboxProps?.style as any)),
+          ...styleValue(checkboxProps, theme),
         })}
         title={undefined}
       />

@@ -3,6 +3,7 @@ import { MRT_TopToolbar } from '../toolbar/MRT_TopToolbar';
 import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';
 import { MRT_TableContainer } from './MRT_TableContainer';
 import { type MRT_TableInstance } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -24,10 +25,7 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
   } = table;
   const { isFullScreen } = getState();
 
-  const tablePaperProps =
-    mantinePaperProps instanceof Function
-      ? mantinePaperProps({ table })
-      : mantinePaperProps;
+  const tablePaperProps = funcValue(mantinePaperProps, { table });
 
   return (
     <Paper
@@ -43,11 +41,6 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
       style={(theme) => ({
         overflow: 'hidden',
         transition: 'all 100ms ease-in-out',
-        ...(tablePaperProps?.style instanceof Function
-          ? tablePaperProps?.style(theme)
-          : (tablePaperProps?.style as any)),
-      })}
-      style={{
         ...(isFullScreen
           ? {
               bottom: 0,
@@ -63,19 +56,19 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
               width: '100vw',
               zIndex: 100,
             }
-          : {}),
-        ...tablePaperProps?.style,
-      }}
+          : null),
+        ...styleValue(tablePaperProps, theme),
+      })}
     >
       {enableTopToolbar &&
-        (renderTopToolbar instanceof Function
-          ? renderTopToolbar({ table })
-          : renderTopToolbar ?? <MRT_TopToolbar table={table} />)}
+        (funcValue(renderTopToolbar, { table }) ?? (
+          <MRT_TopToolbar table={table} />
+        ))}
       <MRT_TableContainer table={table} />
       {enableBottomToolbar &&
-        (renderBottomToolbar instanceof Function
-          ? renderBottomToolbar({ table })
-          : renderBottomToolbar ?? <MRT_BottomToolbar table={table} />)}
+        (funcValue(renderBottomToolbar, { table }) ?? (
+          <MRT_BottomToolbar table={table} />
+        ))}
     </Paper>
   );
 };

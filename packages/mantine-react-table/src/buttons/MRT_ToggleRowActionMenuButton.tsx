@@ -3,6 +3,8 @@ import { ActionIcon, Tooltip } from '@mantine/core';
 import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
 import { MRT_EditActionButtons } from './MRT_EditActionButtons';
 import { type MRT_Cell, type MRT_Row, type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
+
 import classes from './MRT_ToggleRowActionMenuButton.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -52,10 +54,7 @@ export const MRT_ToggleRowActionMenuButton = <
         renderRowActions({ cell, row, table })
       ) : showEditActionButtons ? (
         <MRT_EditActionButtons row={row} table={table} />
-      ) : !renderRowActionMenuItems &&
-        (enableEditing instanceof Function
-          ? enableEditing(row)
-          : enableEditing) ? (
+      ) : !renderRowActionMenuItems && funcValue(enableEditing, row) ? (
         <Tooltip withinPortal position="right" label={localization.edit}>
           <ActionIcon
             aria-label={localization.edit}
