@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, useMantineTheme } from '@mantine/core';
 import clsx from 'clsx';
 import { getCommonCellStyles } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
@@ -13,6 +13,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
   footer,
   table,
 }: Props<TData>) => {
+  const theme = useMantineTheme();
   const {
     options: { layoutMode, mantineTableFooterCellProps },
   } = table;
@@ -51,7 +52,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
       component="th"
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={footer.colSpan}
-      data-selected={row?.getIsSelected() ?? 'false'}
+      data-selected={'false'}
       data-ispinned={column?.getIsPinned() ?? 'false'}
       data-columndef={columnDefType}
       {...tableCellProps}

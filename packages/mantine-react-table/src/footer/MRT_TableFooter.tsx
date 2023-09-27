@@ -24,7 +24,7 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
   } = table;
   const { isFullScreen } = getState();
 
-  const { className, ...tableFooterProps } =
+  const tableFooterProps =
     mantineTableFooterProps instanceof Function
       ? mantineTableFooterProps({ table })
       : mantineTableFooterProps;
@@ -41,7 +41,6 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
         layoutMode === 'grid'
           ? classes.MRT_TableFooterGrid
           : classes.MRT_TableFooterTableRowGroup,
-        className,
       )}
       style={(theme) => ({
         ...(tableFooterProps?.style instanceof Function

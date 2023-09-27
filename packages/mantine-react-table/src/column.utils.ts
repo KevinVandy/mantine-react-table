@@ -12,6 +12,7 @@ import {
   type BoxProps,
   type CssVariable,
   type CssVariables,
+  type MantineStyleProp,
   type MantineTheme,
 } from '@mantine/core';
 import {
@@ -300,7 +301,7 @@ export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
   table: MRT_TableInstance<TData>;
   tableCellProps: BoxProps;
   theme: MantineTheme;
-}): { __vars: CssVariables; className: string; style: CSSStyleDeclaration } => {
+}): { __vars: CssVariables; className: string; style: MantineStyleProp } => {
   const __vars: Record<CssVariable, string | undefined> = {};
   const headerId = `--${header ? 'header' : 'col'}-${parseCSSVarId(
     header?.id ?? column.id,
