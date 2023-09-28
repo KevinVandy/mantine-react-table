@@ -11,6 +11,7 @@ import { MRT_TableFooter } from '../footer/MRT_TableFooter';
 import { parseCSSVarId } from '../column.utils';
 import { type MRT_TableInstance, type MRT_Virtualizer } from '../types';
 import { funcValue, styleValue } from '../funcValue';
+import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_Table.module.css';
 
@@ -149,8 +150,8 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
       horizontalSpacing={density}
       verticalSpacing={density}
       {...tableProps}
-      data-layout={layoutMode}
-      {...(enableColumnResizing ? { 'data-column-resizing': true } : null)}
+      {...dataVariable('layout', layoutMode)}
+      {...dataVariable('column-resizing', enableColumnResizing)}
       style={(theme) => ({
         ...columnSizeVars,
         ...styleValue(tableProps, theme),

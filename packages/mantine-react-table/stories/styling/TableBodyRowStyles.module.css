@@ -1,0 +1,16 @@
+.striped {
+  & tr:nth-of-type(odd) {
+    color: black;
+    background-color: limegreen;
+  }
+  & tr td {
+    border-right: 2px solid #e0e0e0;
+  }
+}
+
+.stripeddetails {
+  & tr:nth-child(4n + 3) {
+    color: black;
+    background-color: limegreen;
+  }
+}

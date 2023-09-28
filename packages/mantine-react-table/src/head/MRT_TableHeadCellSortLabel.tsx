@@ -2,6 +2,7 @@ import { Indicator, Tooltip } from '@mantine/core';
 
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { MRT_ActionIcon } from '../buttons/MRT_ActionIcon';
+import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_TableHeadCellSortLabel.module.css';
 
@@ -57,7 +58,7 @@ export const MRT_TableHeadCellSortLabel = <
         <MRT_ActionIcon
           className={classes.MRT_TableHeadCellSortLabel}
           aria-label={sortTooltip}
-          {...(sorted ? { 'data-sorted': true } : null)}
+          {...dataVariable('sorted', sorted)}
         >
           {icon}
         </MRT_ActionIcon>

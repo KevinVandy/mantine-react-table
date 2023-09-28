@@ -106,7 +106,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
       table,
     }) ?? (columnDef.header as ReactNode);
 
-  const { className, __vars, style } = getCommonCellStyles({
+  const { className, style } = getCommonCellStyles({
     column,
     header,
     table,
@@ -136,7 +136,6 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
         tableCellProps.className,
       )}
       __vars={{
-        ...__vars,
         '--flex-direction': layoutMode === 'grid' ? 'column' : undefined,
         '--padding':
           density === 'xl' ? '23px' : density === 'md' ? '16px' : '10px',
