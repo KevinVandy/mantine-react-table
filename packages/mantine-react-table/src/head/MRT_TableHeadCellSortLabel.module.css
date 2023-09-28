@@ -1,8 +1,5 @@
 .MRT_TableHeadCellSortLabel {
-  opacity: var(--opacity);
-  transform: var(--transform);
-  transition: opacity 100ms ease-in-out;
-  @mixin hover{
-    opacity: 1;
+  &[data-sorted] {
+    color: var(--mantine-primary-color-filled);
   }
 }
