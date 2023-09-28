@@ -2,37 +2,27 @@
   box-sizing: border-box;
   width: 100%;
   transition: all 100ms ease-in-out;
+  display: var(--display);
+}
 
-  &--layout-grid {
-    display: flex;
-  }
-
-  &--layout-table-row {
-    display: table-row;
-  }
-
-  &--virtual {
-    position: absolute;
-    top: 0;
-    transition: none !important;
-  }
-
-  &--hover {
-    td[data-selected="true"] {
-      @mixin hover {
-        background-color: var(--mantine-primary-color-filled)
-      }
+.MRT_TableBodyRowHover {
+  @mixin hover {
+    &[data-selected="true"] > td {
+      background-color: var(--mantine-primary-color-filled)
     }
-
-    td[data-selected="false"] {
-      @mixin hover {
-        @mixin light {
-          background-color: rgba(var(--mantine-color-white), 0.05);
-        }
+    &[data-selected="false"] > td {
         @mixin dark {
-          background-color: rgba(var(--mantine-color-dark-7), 0.12);
+          background-color: var(--dark-bg-color);
         }
-      }
+        @mixin light {
+          background-color: var(--light-bg-color);
+        }
     }
   }
+}
+
+.MRT_TableBodyRowVirtual {
+  position: absolute;
+  top: 0;
+  transition: none !important;
 }

@@ -22,7 +22,7 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
-import classes from './MRT_TableBodyRow.module.css';
+import classes from './MRT_TableBodyCell.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
@@ -193,11 +193,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       );
     }
   };
-
   const { style, className, __vars } = getCommonCellStyles({
     column,
-    isStriped,
-    row,
     table,
     theme,
     tableCellProps,
@@ -219,18 +216,19 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       {...tableCellProps}
       __vars={{
         ...__vars,
-        '--align-items': layoutMode === 'grid' ? 'center' : undefined,
+        ...tableCellProps.__vars,
+        '--align-items': layoutMode === 'grid' ? 'center' : '',
         '--cursor':
           isEditable && editDisplayMode === 'cell' ? 'pointer' : 'inherit',
-        '--align': layoutMode === 'grid' ? tableCellProps.align : undefined,
+        '--align': layoutMode === 'grid' ? tableCellProps.align : '',
         '--padding-left':
           column.id === 'mrt-row-expand'
             ? `${row.depth + 1}rem !important`
-            : undefined,
+            : '',
         '--white-space': density === 'xs' ? 'nowrap' : 'normal',
         '--z-index':
           draggingColumn?.id === column.id
-            ? 2
+            ? '2'
             : column.getIsPinned()
             ? '1'
             : '0',
@@ -239,8 +237,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
           ['table', 'cell'].includes(editDisplayMode ?? '') &&
           columnDefType !== 'display'
             ? `1px solid var(--mantine-color-gray-7)`
-            : undefined,
-        ...tableCellProps.__vars,
+            : '',
       }}
       className={clsx(
         className,
