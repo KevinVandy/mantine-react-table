@@ -18,6 +18,7 @@ import { MRT_ColumnPinningButtons } from '../buttons/MRT_ColumnPinningButtons';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
 import { getPrimaryColor, reorderColumn } from '../column.utils';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
+import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_ShowHideColumnsMenuItems.module.css';
 
@@ -104,10 +105,11 @@ export const MRT_ShowHideColumnsMenuItems = <
         }}
         onDragEnter={handleDragEnter}
         className={classes.root}
-        data-dragging={isDragging || undefined}
-        data-hovered={
-          (!isDragging && hoveredColumn?.id === column.id) || undefined
-        }
+        {...dataVariable('dragging', isDragging)}
+        {...dataVariable(
+          'hovered',
+          !isDragging && hoveredColumn?.id === column.id,
+        )}
       >
         <Box className={classes.menu}>
           {!isSubMenu &&

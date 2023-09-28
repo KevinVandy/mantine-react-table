@@ -1,39 +1,50 @@
-.MRT_Column-common-styles {
+.MRT_Column_Common {
   --min-width: max(calc(var(--header-id) * 1px), var(--col-size));
   --width: calc(var(--header-id) * 1px);
-  --bg-color: color-mix(in srgb, var(--mantine-color-dark-7) .2%, var(--mantine-color-black));
+  --bg-color: color-mix(
+    in srgb,
+    var(--mantine-color-dark-7) 0.2%,
+    var(--mantine-color-black)
+  );
   background-color: inherit;
   /* Not very sure about these attribute gymnastics... */
-  [data-selected="true"] {
-      background-color: rgba(var(--mantine-primary-color-filled), 0.1);
+  [data-selected='true'] {
+    background-color: rgba(var(--mantine-primary-color-filled), 0.1);
   }
-  :is([data-ispinned="left"], [data-ispinned="right"])[data-selected="false"][data-columndef="group"] {
-      @mixin light {
-        background-color: rgba(var(--mantine-color-white), 0.97);
-      }
-      @mixin dark {
-        --bg-color: color-mix(in srgb, var(--mantine-color-dark-7) .2%, var(--mantine-color-black));
-        background-color: rgba(var(--bg-color) ,0.97);
-      }
+  :is(
+      [data-ispinned='left'],
+      [data-ispinned='right']
+    )[data-selected='false'][data-columndef='group'] {
+    @mixin light {
+      background-color: rgba(var(--mantine-color-white), 0.97);
+    }
+    @mixin dark {
+      --bg-color: color-mix(
+        in srgb,
+        var(--mantine-color-dark-7) 0.2%,
+        var(--mantine-color-black)
+      );
+      background-color: rgba(var(--bg-color), 0.97);
+    }
   }
-  [data-striped="true"][data-selected="false"][data-ispinned="false"] {
+  [data-striped='true'][data-selected='false'][data-ispinned='false'] {
     background-color: inherit;
   }
-  [data-striped="true"][data-selected="false"][data-ispinned="false"] {
+  [data-striped='true'][data-selected='false'][data-ispinned='false'] {
     @mixin light {
       background-color: var(--mantine-color-white);
     }
     @mixin dark {
-      background-color: rgba(var(--bg-color) ,0.97);
+      background-color: rgba(var(--bg-color), 0.97);
     }
   }
-  [data-ispinned="left"] {
+  [data-ispinned='left'] {
     left: var(--left);
   }
-  :is([data-ispinned="left"], [data-ispinned="right"])[data-columndef="group"] {
+  :is([data-ispinned='left'], [data-ispinned='right'])[data-columndef='group'] {
     position: sticky;
   }
-  [data-ispinned="right"]{
+  [data-ispinned='right'] {
     right: var(--right);
   }
   margin-left: var(--ml);

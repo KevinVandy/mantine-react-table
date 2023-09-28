@@ -29,11 +29,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
     ...funcValue(columnDef.mantineTableFooterCellProps, arg),
   };
 
-  const {
-    className: commonClassName,
-    __vars,
-    style,
-  } = getCommonCellStyles({
+  const { className: commonClassName, style } = getCommonCellStyles({
     column,
     table,
     theme,
@@ -59,7 +55,6 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
       {...tableCellProps}
       className={clsx(commonClassName, classes.MRT_TableFooterCell, className)}
       __vars={{
-        ...__vars,
         '--z-index':
           column.getIsPinned() && columnDefType !== 'group' ? '2' : '1',
         '--display': layoutMode === 'grid' ? 'grid' : 'table-cell',

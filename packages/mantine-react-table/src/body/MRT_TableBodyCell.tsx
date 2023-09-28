@@ -182,7 +182,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
     }
   };
 
-  const { style, className, __vars } = getCommonCellStyles({
+  const { style, className } = getCommonCellStyles({
     column,
     // isStriped,  TODO: why were these here?
     // row,
@@ -206,7 +206,6 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       }}
       {...tableCellProps}
       __vars={{
-        ...__vars,
         '--align-items': layoutMode === 'grid' ? 'center' : undefined,
         '--cursor':
           isEditable && editDisplayMode === 'cell' ? 'pointer' : 'inherit',

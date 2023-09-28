@@ -11,7 +11,6 @@ import { type MRT_SortingFns } from './sortingFns';
 import {
   type BoxProps,
   type CssVariable,
-  type CssVariables,
   type MantineStyleProp,
   type MantineTheme,
 } from '@mantine/core';
@@ -29,8 +28,9 @@ import {
   type MRT_TableInstance,
   type MRT_TableOptions,
 } from './types';
-import classes from './columns.utils.module.css';
 import { funcValue } from './funcValue';
+
+import classes from './columns.utils.module.css';
 
 export const getColumnId = <TData extends Record<string, any> = {}>(
   columnDef: MRT_ColumnDef<TData>,
@@ -302,18 +302,17 @@ export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
   table: MRT_TableInstance<TData>;
   tableCellProps: BoxProps;
   theme: MantineTheme;
-}): { __vars: CssVariables; className: string; style: MantineStyleProp } => {
+}): { className: string; style: MantineStyleProp } => {
   const __vars: Record<CssVariable, string | undefined> = {};
-  const headerId = `--${header ? 'header' : 'col'}-${parseCSSVarId(
+  __vars['--header-id'] = `var(--${header ? 'header' : 'col'}-${parseCSSVarId(
     header?.id ?? column.id,
-  )}-size`;
+  )}-size)`;
   const widthStyles = {
     minWidth: `max(calc(var(--header-id) * 1px), ${
       column.columnDef.minSize ?? 30
     }px)`,
     width: `calc(var(--header-id) * 1px)`,
   };
-  __vars['--header-id'] = headerId;
   __vars['--col-size'] = `${column.columnDef.minSize ?? 30}px`;
   __vars['--box-shadow'] = getIsLastLeftPinnedColumn(table, column)
     ? '-4px 0 8px -6px rgba(var(--mantine-color-black, 0.2)) inset'
@@ -357,14 +356,15 @@ export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
     ? 'none'
     : `padding 100ms ease-in-out`;
 
+  const style = {
+    ...__vars,
+    ...(!table.options.enableColumnResizing && widthStyles), //let devs pass in width styles if column resizing is disabled
+    ...funcValue(tableCellProps?.style, theme),
+    ...(table.options.enableColumnResizing && widthStyles), //do not let devs pass in width styles if column resizing is enabled
+  };
   return {
-    className: classes.MRT_ColumnCommonStyles,
-    style: {
-      ...(!table.options.enableColumnResizing && widthStyles), //let devs pass in width styles if column resizing is disabled
-      ...funcValue(tableCellProps?.style, theme),
-      ...(table.options.enableColumnResizing && widthStyles), //do not let devs pass in width styles if column resizing is enabled
-    },
-    __vars,
+    className: classes.MRT_Column_Common,
+    style,
   };
 };
 

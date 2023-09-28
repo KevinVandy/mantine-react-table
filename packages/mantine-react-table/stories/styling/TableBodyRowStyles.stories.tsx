@@ -2,6 +2,8 @@ import { type Meta } from '@storybook/react';
 import { MantineReactTable, type MRT_ColumnDef } from '../../src';
 import { faker } from '@faker-js/faker';
 
+import classes from './TableBodyRowStyles.module.css';
+
 const meta: Meta = {
   title: 'Styling/Style Table Body Rows',
 };
@@ -65,13 +67,8 @@ export const StyleCustomStripedRows = () => (
     columns={columns}
     data={data}
     mantineTableBodyProps={{
-      style: () => ({
-        '& tr:nth-of-type(odd)': {
-          backgroundColor: 'limegreen',
-        },
-      }),
+      className: classes.striped,
     }}
-    mantineTableBodyCellProps={{ style: { border: 'none' } }}
   />
 );
 
@@ -80,11 +77,7 @@ export const StyleCustomStripedRowsDetailPanel = () => (
     columns={columns}
     data={data}
     mantineTableBodyProps={{
-      style: () => ({
-        '& tr:nth-child(4n+3)': {
-          backgroundColor: 'limegreen',
-        },
-      }),
+      className: classes.stripeddetails,
     }}
     mantineTableBodyCellProps={{ style: { border: 'none' } }}
     renderDetailPanel={() => <div>Detail Panel</div>}
