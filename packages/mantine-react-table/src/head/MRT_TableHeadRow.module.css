@@ -1,10 +1,6 @@
 .MRT_TableHeadRow {
-  box-shadow: 0 4px rgba(var(--mantine-color-black, 0.1));
+  box-shadow: 0 4px var(--box-shadow);
   display: var(--display);
-  &--sticky {
-    position: sticky;
-    top: 0;
-  };
   @mixin dark {
     background-color: var(--mantine-color-dark-7);
   }
@@ -12,4 +8,9 @@
   @mixin light {
     background-color: var(--mantine-color-white);
   }
+}
+
+.MRT_TableHeadRowSticky {
+  position: sticky;
+  top: 0;
 }

@@ -1,5 +1,5 @@
 import { type DragEvent, memo, useRef } from 'react';
-import { Box } from '@mantine/core';
+import { Box, useMantineTheme, rgba } from '@mantine/core';
 import clsx from 'clsx';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
@@ -58,6 +58,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
   } = table;
   const { draggingColumn, draggingRow, editingCell, editingRow, hoveredRow } =
     getState();
+  const theme = useMantineTheme();
 
   const tableRowProps = funcValue(mantineTableBodyRowProps, {
     row,
@@ -77,10 +78,8 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
     <>
       <Box
         className={clsx(
-          enableHover && classes.MRT_TableBodyRowHover,
-          layoutMode === 'grid'
-            ? classes.MRT_TableBodyRowLayoutGrid
-            : classes.MRT_TableBodyRowLayoutTableRow,
+          classes.MRT_TableBodyRow,
+          enableHover !== false && classes.MRT_TableBodyRowHover,
           virtualRow && classes.MRT_TableBodyRowVirtual,
           className,
         )}
@@ -95,6 +94,12 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           }
         }}
         {...tableRowProps}
+        __vars={{
+          ...tableRowProps?.__vars,
+          '--display': layoutMode === 'grid' ? 'flex' : 'table-row',
+          '--light-bg-color': rgba(theme.colors.dark[7], 0.12),
+          '--dark-bg-color': rgba(theme.white, 0.05),
+        }}
         style={(theme) => ({
           opacity:
             draggingRow?.id === row.id || hoveredRow?.id === row.id ? 0.5 : 1,

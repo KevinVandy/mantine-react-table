@@ -1,16 +1,10 @@
 .MRT_TableFooterRow {
   width: 100%;
-  @mixin light {
-    background-color: rgba(var(--mantine-color-white), 0.06);
-  }
+  display: var(--display);
   @mixin dark {
-    background-color: rgba(var(--mantine-color-dark-7), 0.06);
+    background-color: var(--dark-bg-color);
   }
-
-  &--grid {
-    display: grid;
-  }
-  &--table-row {
-    display: table-row;
+  @mixin light {
+    background-color: var(--light-bg-color);
   }
 }
