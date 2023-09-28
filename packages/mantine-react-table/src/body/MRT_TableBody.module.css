@@ -1,0 +1,6 @@
+.root {
+  display: var(--mrt-table-body-display);
+  height: var(--mrt-table-body-height);
+  minheight: var(--mrt-table-body-minHeight);
+  position: relative;
+}

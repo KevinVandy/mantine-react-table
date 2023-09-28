@@ -52,3 +52,22 @@ pnpm lib:build
 ```
 
 > Note: After building the library, if you are running the docs site locally, it will use the compiled output of the dist folder. This can be annoying if you are trying to test changes to the library in the docs site itself. Just delete the `/dist` folder to test lib changes in the docs site.
+
+## Library Code Style Guide
+
+1. All styles should be written in `.module.css` files with a file name that matches the `component.tsx` file name.
+2. All dynamic styles should be handed with CSS variables (`__vars` prop)
+3. CSS variables should be named `--mrt-<component/element-name>-<property-name>` (e.g. `--mrt-tbody-display`) in order to avoid name collisions with elements down the tree.
+4. Class names in `.module.css` files don't really matter since they get compiled away, but just use all lowercase and hyphenated (e.g. `table-cell`). Just use `.root` for the root element, and use other names that make sense for sub-elements.
+5. All major elements in internal MRT components should have an `mrt-<component/element-name>` class name (e.g. `mrt-table-body-cell`).
+6. Always use the `clsx` utility to assign class names to elements. Always allow for `mantine*Props.className` to be passed in and merged with the internal class names. For example 
+```tsx
+className={clsx('mrt-table-body', classes.root, tableBodyProps.className)}`
+```
+7. When assigning `__vars`, don't forget to spread `...mantine*Props.__vars` in order to allow for external variables to be passed in and merged with internal variables. For example
+```tsx
+__vars={{
+  '--mrt-table-body-cell-padding': '10px',
+  ...tableBodyProps?.__vars,
+}}
+```

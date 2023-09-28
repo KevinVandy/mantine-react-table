@@ -10,7 +10,9 @@ import {
   type MRT_VirtualItem,
   type MRT_Virtualizer,
 } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { funcValue } from '../funcValue';
+import classes from './MRT_TableBody.module.css';
+import clsx from 'clsx';
 
 interface Props<TData extends Record<string, any> = {}> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
@@ -133,15 +135,16 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     <Box
       component="tbody"
       {...tableBodyProps}
-      style={(theme) => ({
-        display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
-        height: rowVirtualizer
+      className={clsx('mrt-table-body', classes.root)}
+      __vars={{
+        '--mrt-table-body-display':
+          layoutMode === 'grid' ? 'grid' : undefined,
+        '--mrt-table-body-height': rowVirtualizer
           ? `${rowVirtualizer.getTotalSize()}px`
-          : 'inherit',
-        minHeight: !rows.length ? '100px' : undefined,
-        position: 'relative',
-        ...styleValue(tableBodyProps, theme),
-      })}
+          : '',
+        '--mrt-table-body-min-height': !rows.length ? '100px' : undefined,
+        ...tableBodyProps?.__vars,
+      }}
     >
       {creatingRow && createDisplayMode === 'row' && (
         <MRT_TableBodyRow table={table} row={creatingRow} rowIndex={-1} />

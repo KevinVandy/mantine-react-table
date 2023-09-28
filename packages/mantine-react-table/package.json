@@ -115,9 +115,9 @@
     "clsx": "^2.0.0"
   },
   "peerDependencies": {
-    "@mantine/core": "^7",
-    "@mantine/dates": "^7",
-    "@mantine/hooks": "^7",
+    "@mantine/core": "^7.1",
+    "@mantine/dates": "^7.1",
+    "@mantine/hooks": "^7.1",
     "@tabler/icons-react": ">=2.23.0",
     "react": ">=18.0",
     "react-dom": ">=18.0"
