@@ -2,20 +2,21 @@
   cursor: col-resize;
   margin-right: var(--margin-right);
   position: absolute;
-  rigth: rem(4px);
-  padding-left: rem(1px);
-  padding-right: rem(2px);
-  transfor: var(--transform);
+  right: 4px;
+  padding-left: 1px;
+  padding-right: 2px;
+  transform: var(--transform);
   &:active > .mantine-Divider-vertical {
     border-left-color: var(--mantine-color-default);
   }
-  &-divider {
-    border-radius: rem(2px);
-    border-width: rem(4px);
-    height: rem(24px);
-    touch-action: none;
-    transition: var(--transition);
-    user-select: none;
-    z-index: 4;
-  }
+}
+
+.MRT_TableHeadCellResizeHandleDivider {
+  border-radius: 2px;
+  border-width: 4px;
+  height: 24px;
+  touch-action: none;
+  transition: var(--transition);
+  user-select: none;
+  z-index: 4;
 }

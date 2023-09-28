@@ -1,9 +1,7 @@
-.MRT_TableHeadCellFilterLabel {
-  &-action-icon {
-    opacity: var(--opacity);
-    padding: rem(2px);
-    @mixin hover {
-      opacity: 1;
-    }
+.MRT_TableHeadCellFilterLabelActionIcon {
+  opacity: var(--opacity);
+  padding: 2px;
+  @mixin hover {
+    opacity: 1;
   }
 }

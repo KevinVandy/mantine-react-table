@@ -1,4 +1,4 @@
-import { Box, rgba } from '@mantine/core';
+import { Box, rgba, useMantineTheme } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import {
@@ -24,6 +24,7 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
   virtualPaddingLeft,
   virtualPaddingRight,
 }: Props<TData>) => {
+  const theme = useMantineTheme();
   const {
     getState,
     options: { enableStickyHeader, layoutMode, mantineTableHeadRowProps },
@@ -47,6 +48,7 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
       )}
       __vars={{
         '--display': layoutMode === 'grid' ? 'flex' : 'table-row',
+        '--box-shadow': rgba(theme.black, 0.1),
       }}
       style={(theme) => ({
         ...(tableRowProps?.style instanceof Function

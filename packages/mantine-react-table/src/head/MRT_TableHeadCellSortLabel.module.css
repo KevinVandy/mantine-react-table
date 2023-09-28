@@ -2,7 +2,7 @@
   opacity: var(--opacity);
   transform: var(--transform);
   transition: opacity 100ms ease-in-out;
-  @mixin hover{
+  @mixin hover {
     opacity: 1;
   }
 }
