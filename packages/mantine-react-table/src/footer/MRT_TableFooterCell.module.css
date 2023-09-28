@@ -1,6 +1,6 @@
 .MRT_TableFooterCell {
   font-weight: bold;
-  padding: rem(9px);
+  padding: 1rem;
   vertical-align: top;
   z-index: var(--z-index);
   display: var(--display);

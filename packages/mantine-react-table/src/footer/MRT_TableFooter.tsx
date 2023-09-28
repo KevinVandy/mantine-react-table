@@ -36,12 +36,8 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
     <Box
       component="tfoot"
       {...tableFooterProps}
-      className={clsx(
-        stickFooter && classes.MRT_TableFooterSticky,
-        layoutMode === 'grid'
-          ? classes.MRT_TableFooterGrid
-          : classes.MRT_TableFooterTableRowGroup,
-      )}
+      display={layoutMode === 'grid' ? 'grid' : 'table-row-group'}
+      className={clsx(stickFooter && classes.MRT_TableFooterSticky)}
       style={(theme) => ({
         ...(tableFooterProps?.style instanceof Function
           ? tableFooterProps?.style(theme)

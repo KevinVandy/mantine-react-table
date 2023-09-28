@@ -1,5 +1,4 @@
-import { Box } from '@mantine/core';
-import clsx from 'clsx';
+import { Box, lighten, useMantineTheme } from '@mantine/core';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
 import {
   type MRT_Header,
@@ -24,6 +23,7 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
   virtualPaddingLeft,
   virtualPaddingRight,
 }: Props<TData>) => {
+  const theme = useMantineTheme();
   const {
     options: { layoutMode, mantineTableFooterRowProps },
   } = table;
@@ -47,13 +47,13 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
   return (
     <Box
       component="tr"
-      className={clsx(
-        classes.MRT_TableFooterRow,
-        layoutMode === 'grid'
-          ? classes.MRT_TableFooterRowGrid
-          : classes.MRT_TableFooterRowTableRow,
-      )}
+      className={classes.MRT_TableFooterRow}
       {...tableRowProps}
+      __vars={{
+        '--display': layoutMode === 'grid' ? 'grid' : 'table-row',
+        '--light-bg-color': lighten(theme.white, 0.06),
+        '--dark-bg-color': lighten(theme.colors.dark[7], 0.06),
+      }}
       style={(theme) => ({
         ...(tableRowProps?.style instanceof Function
           ? tableRowProps?.style(theme)
