@@ -44,7 +44,9 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
     >
       <ActionIcon
         aria-label={localization.expand}
+        color="gray"
         disabled={!canExpand && !renderDetailPanel}
+        variant="transparent"
         {...actionIconProps}
         onClick={handleToggleExpand}
         style={(theme) => ({

@@ -40,8 +40,10 @@ export const MRT_ExpandAllButton = <TData extends Record<string, any> = {}>({
     >
       <ActionIcon
         aria-label={localization.expandAll}
+        color="gray"
         disabled={isLoading || (!renderDetailPanel && !getCanSomeRowsExpand())}
         onClick={() => toggleAllRowsExpanded(!isAllRowsExpanded)}
+        variant="transparent"
         {...actionIconProps}
         style={(theme) => ({
           marginLeft:

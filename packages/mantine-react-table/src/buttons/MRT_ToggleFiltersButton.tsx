@@ -31,8 +31,10 @@ export const MRT_ToggleFiltersButton = <
     <Tooltip withinPortal label={rest?.title ?? localization.showHideFilters}>
       <ActionIcon
         aria-label={localization.showHideFilters}
+        color="gray"
         onClick={handleToggleShowFilters}
         size="lg"
+        variant="transparent"
         {...rest}
         title={undefined}
       >

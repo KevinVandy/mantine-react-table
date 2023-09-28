@@ -9,7 +9,15 @@ import {
   type MRT_ColumnDef,
   MRT_TableContainer,
 } from 'mantine-react-table';
-import { ActionIcon, Box, Button, Flex, Text, Tooltip, rgba } from '@mantine/core';
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Flex,
+  Text,
+  Tooltip,
+  rgba,
+} from '@mantine/core';
 import { IconPrinter } from '@tabler/icons-react';
 import { data, type Person } from './makeData';
 

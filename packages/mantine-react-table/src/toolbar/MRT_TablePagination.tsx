@@ -134,6 +134,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
                 disabled={pageIndex <= 0}
                 onClick={() => setPageIndex(0)}
                 style={commonActionButtonStyles}
+                variant="transparent"
               >
                 <IconChevronLeftPipe />
               </ActionIcon>
@@ -143,6 +144,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
               disabled={pageIndex <= 0}
               onClick={() => setPageIndex(pageIndex - 1)}
               style={commonActionButtonStyles}
+              variant="transparent"
             >
               <IconChevronLeft />
             </ActionIcon>
@@ -151,6 +153,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
               disabled={lastRowIndex >= totalRowCount}
               onClick={() => setPageIndex(pageIndex + 1)}
               style={commonActionButtonStyles}
+              variant="transparent"
             >
               <IconChevronRight />
             </ActionIcon>
@@ -160,6 +163,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
                 disabled={lastRowIndex >= totalRowCount}
                 onClick={() => setPageIndex(numberOfPages - 1)}
                 style={commonActionButtonStyles}
+                variant="transparent"
               >
                 <IconChevronRightPipe />
               </ActionIcon>

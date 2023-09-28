@@ -57,7 +57,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
             --docsearch-highlight-color: ${theme.colors[theme.primaryColor][8]};
             --docsearch-logo-color: ${theme.colors[theme.primaryColor][8]};
             ${!isLightTheme
-            ? `--docsearch-container-background: rgba(11, 11, 11, 0.8);
+              ? `--docsearch-container-background: rgba(11, 11, 11, 0.8);
             --docsearch-footer-background: #222;
             --docsearch-hit-background: #333;
             --docsearch-hit-color: #fff;
@@ -68,7 +68,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
             --docsearch-searchbox-focus-background: #000;
             --docsearch-text-color: #fff;
            `
-            : ''}
+              : ''}
           }
         `}
       </style>

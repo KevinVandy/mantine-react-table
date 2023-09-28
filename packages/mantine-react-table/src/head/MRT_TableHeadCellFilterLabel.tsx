@@ -112,7 +112,7 @@ export const MRT_TableHeadCellFilterLabel = <
               >
                 <ActionIcon
                   variant="transparent"
-                  color={isFilterActive ? getPrimaryColor(theme) : undefined}
+                  color={isFilterActive ? getPrimaryColor(theme) : 'gray'}
                   onClick={(event: MouseEvent<HTMLButtonElement>) => {
                     event.stopPropagation();
                     if (columnFilterDisplayMode === 'popover') {
