@@ -1,6 +1,7 @@
 import { type MouseEvent } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   row: MRT_Row<TData>;
@@ -20,11 +21,7 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
     },
   } = table;
 
-  const actionIconProps =
-    mantineExpandButtonProps instanceof Function
-      ? mantineExpandButtonProps({ table, row })
-      : mantineExpandButtonProps;
-
+  const actionIconProps = funcValue(mantineExpandButtonProps, { table, row });
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();
 
@@ -47,7 +44,9 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
     >
       <ActionIcon
         aria-label={localization.expand}
+        color="gray"
         disabled={!canExpand && !renderDetailPanel}
+        variant="transparent"
         {...actionIconProps}
         onClick={handleToggleExpand}
         style={(theme) => ({
@@ -59,9 +58,7 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
           '&:hover': {
             opacity: 1,
           },
-          ...(actionIconProps?.style instanceof Function
-            ? actionIconProps.style(theme)
-            : (actionIconProps?.style as any)),
+          ...styleValue(actionIconProps, theme),
         })}
         title={undefined}
       >

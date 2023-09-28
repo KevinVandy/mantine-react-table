@@ -293,43 +293,24 @@ Mantine's Table component has a `striped` prop that you can use to stripe the ro
 
 But if you want to stripe the rows yourself, you can do something like this:
 
-```jsx
-<MantineReactTable
-  columns={columns}
-  data={data}
-  mantineTableBodyProps={{
-    style: {
-      //stripe the rows, make odd rows a darker color
-      '& tr:nth-of-type(odd)': {
-        backgroundColor: '#f5f5f5',
-      },
-    },
-  }}
-/>
+```CSS
+.striped {
+  & tr:nth-of-type(odd) {
+    background-color: '#f5f5f5';
+  }
+}
 ```
 
-#### Stripe Columns Example
-
-Similarly, if you want to stripe the columns, you can do something like this:
+```jsx
+import classes from './styles.module.css';
+```
 
 ```jsx
 <MantineReactTable
   columns={columns}
   data={data}
   mantineTableBodyProps={{
-    style: {
-      //stripe the rows, make odd rows a darker color
-      '& td:nth-of-type(odd)': {
-        backgroundColor: '#f5f5f5',
-      },
-    },
-  }}
-  mantineTableBodyCellProps={{
-    style: {
-      borderRight: '2px solid #e0e0e0', //add a border between columns
-    },
+    className: classes.striped,
   }}
 />
 ```
-
-<CustomizeStylesExample />

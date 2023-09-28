@@ -35,7 +35,11 @@ const Example = () => {
             Oldest by{' '}
             {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
             <Box
-              style={{ color: 'skyblue', display: 'inline', fontWeight: 'bold' }}
+              style={{
+                color: 'skyblue',
+                display: 'inline',
+                fontWeight: 'bold',
+              }}
             >
               {cell.getValue<number>()}
             </Box>

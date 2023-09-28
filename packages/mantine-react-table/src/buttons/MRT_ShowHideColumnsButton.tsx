@@ -12,24 +12,23 @@ export const MRT_ShowHideColumnsButton = <
   TData extends Record<string, any> = {},
 >({
   table,
+  title,
   ...rest
 }: Props<TData>) => {
   const {
-    options: {
-      icons: { IconColumns },
-      localization,
-    },
-  } = table;
+    icons: { IconColumns },
+    localization: { showHideColumns },
+  } = table.options;
 
   return (
     <Menu closeOnItemClick={false} withinPortal>
-      <Tooltip withinPortal label={rest?.title ?? localization.showHideColumns}>
+      <Tooltip withinPortal label={title ?? showHideColumns}>
         <Menu.Target>
           <ActionIcon
-            aria-label={localization.showHideColumns}
             size="lg"
+            variant="default"
+            aria-label={title ?? showHideColumns}
             {...rest}
-            title={undefined}
           >
             <IconColumns />
           </ActionIcon>

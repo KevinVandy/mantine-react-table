@@ -10,31 +10,27 @@ interface Props<TData extends Record<string, any> = {}>
 export const MRT_ToggleFiltersButton = <
   TData extends Record<string, any> = {},
 >({
-  table,
-  ...rest
-}: Props<TData>) => {
-  const {
+  table: {
     getState,
     options: {
       icons: { IconFilter, IconFilterOff },
-      localization,
+      localization: { showHideFilters },
     },
     setShowColumnFilters,
-  } = table;
+  },
+  title,
+  ...rest
+}: Props<TData>) => {
   const { showColumnFilters } = getState();
 
-  const handleToggleShowFilters = () => {
-    setShowColumnFilters(!showColumnFilters);
-  };
-
   return (
-    <Tooltip withinPortal label={rest?.title ?? localization.showHideFilters}>
+    <Tooltip withinPortal label={title ?? showHideFilters}>
       <ActionIcon
-        aria-label={localization.showHideFilters}
-        onClick={handleToggleShowFilters}
         size="lg"
+        variant="default"
+        aria-label={title ?? showHideFilters}
+        onClick={() => setShowColumnFilters((current) => !current)}
         {...rest}
-        title={undefined}
       >
         {showColumnFilters ? <IconFilterOff /> : <IconFilter />}
       </ActionIcon>

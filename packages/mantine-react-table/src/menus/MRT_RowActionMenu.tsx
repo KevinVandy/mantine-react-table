@@ -40,8 +40,10 @@ export const MRT_RowActionMenu = <TData extends Record<string, any> = {}>({
         <Menu.Target>
           <ActionIcon
             aria-label={localization.rowActions}
+            color="gray"
             onClick={(event) => event.stopPropagation()}
             size="sm"
+            variant="transparent"
           >
             <IconDots />
           </ActionIcon>

@@ -6,6 +6,7 @@ import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { commonToolbarStyles } from './MRT_TopToolbar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -30,10 +31,7 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
 
   const isMobile = useMediaQuery('(max-width: 720px)');
 
-  const toolbarProps =
-    mantineBottomToolbarProps instanceof Function
-      ? mantineBottomToolbarProps({ table })
-      : mantineBottomToolbarProps;
+  const toolbarProps = funcValue(mantineBottomToolbarProps, { table });
 
   const stackAlertBanner = isMobile || !!renderBottomToolbarCustomActions;
 
@@ -55,9 +53,7 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
         left: 0,
         position: isFullScreen ? 'fixed' : 'relative',
         right: 0,
-        ...(toolbarProps?.style instanceof Function
-          ? toolbarProps.style(theme)
-          : (toolbarProps?.style as any)),
+        ...(styleValue(toolbarProps, theme) as any),
       })}
     >
       <MRT_ProgressBar isTopToolbar={false} table={table} />

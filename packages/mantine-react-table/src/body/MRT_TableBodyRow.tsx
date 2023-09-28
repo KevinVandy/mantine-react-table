@@ -10,13 +10,14 @@ import {
   type MRT_VirtualItem,
   type MRT_Virtualizer,
 } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
 import classes from './MRT_TableBodyRow.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
-  isStriped?: boolean;
+  isStriped?: boolean | 'odd' | 'even';
   measureElement?: (element: HTMLTableRowElement) => void;
   numRows?: number;
   row: MRT_Row<TData>;
@@ -59,10 +60,11 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
     getState();
   const theme = useMantineTheme();
 
-  const tableRowProps =
-    mantineTableBodyRowProps instanceof Function
-      ? mantineTableBodyRowProps({ row, staticRowIndex: rowIndex, table })
-      : mantineTableBodyRowProps;
+  const tableRowProps = funcValue(mantineTableBodyRowProps, {
+    row,
+    staticRowIndex: rowIndex,
+    table,
+  });
 
   const handleDragEnter = (_e: DragEvent) => {
     if (enableRowOrdering && draggingRow) {
@@ -104,9 +106,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           transform: virtualRow
             ? `translateY(${virtualRow?.start}px)`
             : undefined,
-          ...(tableRowProps?.style instanceof Function
-            ? tableRowProps.style(theme)
-            : (tableRowProps?.style as any)),
+          ...styleValue(tableRowProps, theme),
         })}
       >
         {virtualPaddingLeft ? (

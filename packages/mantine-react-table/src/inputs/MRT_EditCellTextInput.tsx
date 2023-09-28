@@ -1,6 +1,7 @@
 import { type FocusEvent, type KeyboardEvent, useState } from 'react';
 import { Select, TextInput } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
@@ -34,44 +35,15 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
 
   const [value, setValue] = useState(() => cell.getValue<any>());
 
-  const mTableBodyCellEditTextInputProps =
-    mantineEditTextInputProps instanceof Function
-      ? mantineEditTextInputProps({ cell, column, row, table })
-      : mantineEditTextInputProps;
-
-  const mcTableBodyCellEditTextInputProps =
-    columnDef.mantineEditTextInputProps instanceof Function
-      ? columnDef.mantineEditTextInputProps({
-          cell,
-          column,
-          row,
-          table,
-        })
-      : columnDef.mantineEditTextInputProps;
-
+  const arg = { cell, column, row, table };
   const textInputProps = {
-    ...mTableBodyCellEditTextInputProps,
-    ...mcTableBodyCellEditTextInputProps,
+    ...funcValue(mantineEditTextInputProps, arg),
+    ...funcValue(columnDef.mantineEditTextInputProps, arg),
   };
 
-  const mTableBodyCellEditSelectProps =
-    mantineEditSelectProps instanceof Function
-      ? mantineEditSelectProps({ cell, column, row, table })
-      : mantineEditSelectProps;
-
-  const mcTableBodyCellEditSelectProps =
-    columnDef.mantineEditSelectProps instanceof Function
-      ? columnDef.mantineEditSelectProps({
-          cell,
-          column,
-          row,
-          table,
-        })
-      : columnDef.mantineEditSelectProps;
-
   const selectProps = {
-    ...mTableBodyCellEditSelectProps,
-    ...mcTableBodyCellEditSelectProps,
+    ...funcValue(mantineEditSelectProps, arg),
+    ...funcValue(columnDef.mantineEditSelectProps, arg),
   };
 
   const saveInputValueToRowCache = (newValue: string | null) => {
@@ -102,10 +74,7 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
   }
 
   const commonProps = {
-    disabled:
-      (columnDef.enableEditing instanceof Function
-        ? columnDef.enableEditing(row)
-        : columnDef.enableEditing) === false,
+    disabled: funcValue(columnDef.enableEditing, row) === false,
     label: ['modal', 'custom'].includes(
       (isCreating ? createDisplayMode : editDisplayMode) as string,
     )

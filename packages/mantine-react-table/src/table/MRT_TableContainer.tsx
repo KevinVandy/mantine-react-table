@@ -3,6 +3,7 @@ import { Box, LoadingOverlay } from '@mantine/core';
 import { MRT_Table } from './MRT_Table';
 import { MRT_EditRowModal } from '../modals';
 import { type MRT_TableInstance } from '../types';
+import { funcValue, styleValue } from '../funcValue';
 
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
@@ -35,15 +36,8 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
 
   const [totalToolbarHeight, setTotalToolbarHeight] = useState(0);
 
-  const tableContainerProps =
-    mantineTableContainerProps instanceof Function
-      ? mantineTableContainerProps({ table })
-      : mantineTableContainerProps;
-
-  const loadingOverlayProps =
-    mantineLoadingOverlayProps instanceof Function
-      ? mantineLoadingOverlayProps({ table })
-      : mantineLoadingOverlayProps;
+  const tableContainerProps = funcValue(mantineTableContainerProps, { table });
+  const loadingOverlayProps = funcValue(mantineLoadingOverlayProps, { table });
 
   useIsomorphicLayoutEffect(() => {
     const topToolbarHeight =
@@ -78,19 +72,13 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
         maxWidth: '100%',
         maxHeight: enableStickyHeader
           ? `clamp(350px, calc(100vh - ${totalToolbarHeight}px), 9999px)`
+          : isFullScreen
+          ? `calc(100vh - ${totalToolbarHeight}px)`
           : undefined,
         overflow: 'auto',
         position: 'relative',
-        ...(tableContainerProps?.style instanceof Function
-          ? tableContainerProps.style(theme)
-          : (tableContainerProps?.style as any)),
+        ...styleValue(tableContainerProps, theme),
       })}
-      style={{
-        maxHeight: isFullScreen
-          ? `calc(100vh - ${totalToolbarHeight}px)`
-          : undefined,
-        ...tableContainerProps?.style,
-      }}
     >
       <LoadingOverlay
         visible={isLoading || showLoadingOverlay}

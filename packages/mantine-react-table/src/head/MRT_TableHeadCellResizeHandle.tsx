@@ -1,5 +1,6 @@
 import { Box, Divider } from '@mantine/core';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
+
 import classes from './MRT_TableHeadCellResizeHandle.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -35,7 +36,11 @@ export const MRT_TableHeadCellResizeHandle = <
       className={classes.MRT_TableHeadCellResizeHandle}
       __vars={{
         '--margin-right':
-          density === 'xl' ? '-24px' : density === 'md' ? '-20px' : '-14px',
+          density === 'xl'
+            ? 'rem(-24px)'
+            : density === 'md'
+            ? 'rem(-20px)'
+            : 'rem(-14px)',
         '--transform':
           column.getIsResizing() && columnResizeMode === 'onEnd'
             ? `translateX(${getState().columnSizingInfo.deltaOffset ?? 0}px)`

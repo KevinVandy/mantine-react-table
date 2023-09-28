@@ -14,6 +14,8 @@ import clsx from 'clsx';
 import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
+
 import classes from './MRT_FilterTextInput.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -65,99 +67,30 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
   const { column } = header;
   const { columnDef } = column;
 
-  const mFilterTextInputProps =
-    mantineFilterTextInputProps instanceof Function
-      ? mantineFilterTextInputProps({
-          column,
-          table,
-          rangeFilterIndex,
-        })
-      : mantineFilterTextInputProps;
-
-  const mcFilterTextInputProps =
-    columnDef.mantineFilterTextInputProps instanceof Function
-      ? columnDef.mantineFilterTextInputProps({
-          column,
-          table,
-          rangeFilterIndex,
-        })
-      : columnDef.mantineFilterTextInputProps;
-
+  const arg = { column, table, rangeFilterIndex };
   const textInputProps = {
-    ...mFilterTextInputProps,
-    ...mcFilterTextInputProps,
+    ...funcValue(mantineFilterTextInputProps, arg),
+    ...funcValue(columnDef.mantineFilterTextInputProps, arg),
   };
-
-  const mSelectProps =
-    mantineFilterSelectProps instanceof Function
-      ? mantineFilterSelectProps({ column, table, rangeFilterIndex })
-      : mantineFilterSelectProps;
-
-  const mcSelectProps =
-    columnDef.mantineFilterSelectProps instanceof Function
-      ? columnDef.mantineFilterSelectProps({ column, table, rangeFilterIndex })
-      : columnDef.mantineFilterSelectProps;
 
   const selectProps = {
-    ...mSelectProps,
-    ...mcSelectProps,
+    ...funcValue(mantineFilterSelectProps, arg),
+    ...funcValue(columnDef.mantineFilterSelectProps, arg),
   };
-
-  const mMultiSelectProps =
-    mantineFilterMultiSelectProps instanceof Function
-      ? mantineFilterMultiSelectProps({ column, table, rangeFilterIndex })
-      : mantineFilterMultiSelectProps;
-
-  const mcMultiSelectProps =
-    columnDef.mantineFilterMultiSelectProps instanceof Function
-      ? columnDef.mantineFilterMultiSelectProps({
-          column,
-          table,
-          rangeFilterIndex,
-        })
-      : columnDef.mantineFilterMultiSelectProps;
 
   const multiSelectProps = {
-    ...mMultiSelectProps,
-    ...mcMultiSelectProps,
+    ...funcValue(mantineFilterMultiSelectProps, arg),
+    ...funcValue(columnDef.mantineFilterMultiSelectProps, arg),
   };
-
-  const mDateInputProps =
-    mantineFilterDateInputProps instanceof Function
-      ? mantineFilterDateInputProps({ column, table, rangeFilterIndex })
-      : mantineFilterDateInputProps;
-
-  const mcDateInputProps =
-    columnDef.mantineFilterDateInputProps instanceof Function
-      ? columnDef.mantineFilterDateInputProps({
-          column,
-          table,
-          rangeFilterIndex,
-        })
-      : columnDef.mantineFilterDateInputProps;
 
   const dateInputProps = {
-    ...mDateInputProps,
-    ...mcDateInputProps,
+    ...funcValue(mantineFilterDateInputProps, arg),
+    ...funcValue(columnDef.mantineFilterDateInputProps, arg),
   };
 
-  const mAutoCompleteProps =
-    mantineFilterAutocompleteProps instanceof Function
-      ? mantineFilterAutocompleteProps({ column, table, rangeFilterIndex })
-      : mantineFilterAutocompleteProps;
-
-  const mcAutoCompleteProps =
-    columnDef.mantineFilterAutocompleteProps instanceof Function
-      ? columnDef.mantineFilterAutocompleteProps({
-          column,
-          table,
-          rangeFilterIndex,
-        })
-      : columnDef.mantineFilterAutocompleteProps;
-
   const autoCompleteProps = {
-    ...mAutoCompleteProps,
-    ...mcAutoCompleteProps,
+    ...funcValue(mantineFilterAutocompleteProps, arg),
+    ...funcValue(columnDef.mantineFilterAutocompleteProps, arg),
   };
 
   const isRangeFilter =
@@ -336,9 +269,11 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
   const ClearButton = filterValue ? (
     <ActionIcon
       aria-label={localization.clearFilter}
+      color="gray"
       onClick={handleClear}
       size="sm"
       title={localization.clearFilter ?? ''}
+      variant="transparent"
     >
       <IconX />
     </ActionIcon>

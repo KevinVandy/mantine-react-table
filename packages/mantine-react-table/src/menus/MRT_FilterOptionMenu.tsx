@@ -246,13 +246,16 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
                   handleSelectFilterMode(option as MRT_FilterOption)
                 }
                 color={option === filterOption ? 'blue' : undefined}
-                style={{
-                  '& > .mantine-Menu-itemLabel': {
-                    display: 'flex',
-                    flexWrap: 'nowrap',
-                    gap: '1ch',
-                  },
-                }}
+                style={
+                  {
+                    // TODO: move to module
+                    // '& > .mantine-Menu-itemLabel': {
+                    //   display: 'flex',
+                    //   flexWrap: 'nowrap',
+                    //   gap: '1ch',
+                    // },
+                  }
+                }
                 value={option}
               >
                 <Flex

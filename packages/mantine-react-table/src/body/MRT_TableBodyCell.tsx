@@ -22,11 +22,13 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
+import { funcValue } from '../funcValue';
+
 import classes from './MRT_TableBodyCell.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
-  isStriped?: boolean;
+  isStriped?: boolean | 'odd' | 'even';
   measureElement?: (element: HTMLTableCellElement) => void;
   numRows?: number;
   rowIndex: number;
@@ -81,25 +83,13 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
   const { columnDef } = column;
   const { columnDefType } = columnDef;
 
-  const mTableCellBodyProps =
-    mantineTableBodyCellProps instanceof Function
-      ? mantineTableBodyCellProps({ cell, column, row, table })
-      : mantineTableBodyCellProps;
-
-  const mcTableCellBodyProps =
-    columnDef.mantineTableBodyCellProps instanceof Function
-      ? columnDef.mantineTableBodyCellProps({ cell, column, row, table })
-      : columnDef.mantineTableBodyCellProps;
-
+  const arg = { cell, column, row, table };
   const tableCellProps = {
-    ...mTableCellBodyProps,
-    ...mcTableCellBodyProps,
+    ...funcValue(mantineTableBodyCellProps, arg),
+    ...funcValue(columnDef.mantineTableBodyCellProps, arg),
   };
 
-  const skeletonProps =
-    mantineSkeletonProps instanceof Function
-      ? mantineSkeletonProps({ cell, column, row, table })
-      : mantineSkeletonProps;
+  const skeletonProps = funcValue(mantineSkeletonProps, arg);
 
   const [skeletonWidth, setSkeletonWidth] = useState(100);
   useEffect(() => {
@@ -152,10 +142,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
   }, [draggingColumn, draggingRow, hoveredColumn, hoveredRow, rowIndex]);
 
   const isEditable =
-    (enableEditing instanceof Function ? enableEditing(row) : enableEditing) &&
-    (columnDef.enableEditing instanceof Function
-      ? columnDef.enableEditing(row)
-      : columnDef.enableEditing) !== false;
+    (funcValue(enableEditing, row) &&
+      funcValue(columnDef.enableEditing, row)) !== false;
 
   const isEditing =
     isEditable &&
@@ -193,8 +181,11 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       );
     }
   };
-  const { style, className, __vars } = getCommonCellStyles({
+
+  const { style, className } = getCommonCellStyles({
     column,
+    // isStriped,  TODO: why were these here?
+    // row,
     table,
     theme,
     tableCellProps,
@@ -215,16 +206,14 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       }}
       {...tableCellProps}
       __vars={{
-        ...__vars,
-        ...tableCellProps.__vars,
-        '--align-items': layoutMode === 'grid' ? 'center' : '',
+        '--align-items': layoutMode === 'grid' ? 'center' : undefined,
         '--cursor':
           isEditable && editDisplayMode === 'cell' ? 'pointer' : 'inherit',
-        '--align': layoutMode === 'grid' ? tableCellProps.align : '',
+        '--align': layoutMode === 'grid' ? tableCellProps.align : undefined,
         '--padding-left':
           column.id === 'mrt-row-expand'
             ? `${row.depth + 1}rem !important`
-            : '',
+            : undefined,
         '--white-space': density === 'xs' ? 'nowrap' : 'normal',
         '--z-index':
           draggingColumn?.id === column.id
@@ -237,7 +226,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
           ['table', 'cell'].includes(editDisplayMode ?? '') &&
           columnDefType !== 'display'
             ? `1px solid var(--mantine-color-gray-7)`
-            : '',
+            : undefined,
+        ...tableCellProps.__vars,
       }}
       className={clsx(
         className,

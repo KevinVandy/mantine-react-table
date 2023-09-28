@@ -1,5 +1,5 @@
 import { type DragEvent, type ReactNode, useMemo } from 'react';
-import { Box, Flex, type MantineTheme, useMantineTheme } from '@mantine/core';
+import { Box, Flex, useMantineTheme } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
@@ -9,6 +9,7 @@ import { MRT_TableHeadCellResizeHandle } from './MRT_TableHeadCellResizeHandle';
 import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
 import { getCommonCellStyles } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
+import { funcValue } from '../funcValue';
 
 import classes from './MRT_TableHeadCell.module.css';
 
@@ -42,19 +43,10 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
   const { columnDef } = column;
   const { columnDefType } = columnDef;
 
-  const mTableHeadCellProps =
-    mantineTableHeadCellProps instanceof Function
-      ? mantineTableHeadCellProps({ column, table })
-      : mantineTableHeadCellProps;
-
-  const mcTableHeadCellProps =
-    columnDef.mantineTableHeadCellProps instanceof Function
-      ? columnDef.mantineTableHeadCellProps({ column, table })
-      : columnDef.mantineTableHeadCellProps;
-
+  const arg = { column, table };
   const tableCellProps = {
-    ...mTableHeadCellProps,
-    ...mcTableHeadCellProps,
+    ...funcValue(mantineTableHeadCellProps, arg),
+    ...funcValue(columnDef.mantineTableHeadCellProps, arg),
   };
 
   const showColumnActions =
@@ -108,14 +100,13 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
   };
 
   const headerElement =
-    columnDef?.Header instanceof Function
-      ? columnDef?.Header?.({
-          column,
-          header,
-          table,
-        })
-      : columnDef?.Header ?? (columnDef.header as ReactNode);
-  const { className, __vars, style } = getCommonCellStyles({
+    funcValue(columnDef?.Header, {
+      column,
+      header,
+      table,
+    }) ?? (columnDef.header as ReactNode);
+
+  const { className, style } = getCommonCellStyles({
     column,
     header,
     table,
@@ -145,7 +136,6 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
         tableCellProps.className,
       )}
       __vars={{
-        ...__vars,
         '--flex-direction': layoutMode === 'grid' ? 'column' : undefined,
         '--padding':
           density === 'xl' ? '23px' : density === 'md' ? '16px' : '10px',

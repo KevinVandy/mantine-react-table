@@ -2,4 +2,10 @@
   min-width: 70px;
   align-content: center;
   justify-content: center;
+  .left {
+    transform: rotate(90deg);
+  }
+  .right {
+    transform: rotate(-90deg);
+  }
 }

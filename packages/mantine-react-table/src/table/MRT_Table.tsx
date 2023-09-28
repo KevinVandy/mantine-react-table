@@ -10,6 +10,10 @@ import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
 import { parseCSSVarId } from '../column.utils';
 import { type MRT_TableInstance, type MRT_Virtualizer } from '../types';
+import { funcValue, styleValue } from '../funcValue';
+import { dataVariable } from '../dataVariable';
+
+import classes from './MRT_Table.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -44,15 +48,8 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
     density,
   } = getState();
 
-  const tableProps =
-    mantineTableProps instanceof Function
-      ? mantineTableProps({ table })
-      : mantineTableProps;
-
-  const vProps =
-    columnVirtualizerProps instanceof Function
-      ? columnVirtualizerProps({ table })
-      : columnVirtualizerProps;
+  const tableProps = funcValue(mantineTableProps, { table });
+  const vProps = funcValue(columnVirtualizerProps, { table });
 
   const columnSizeVars = useMemo(() => {
     const headers = getFlatHeaders();
@@ -148,29 +145,17 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
 
   return (
     <Table
+      className={classes.root}
       highlightOnHover
       horizontalSpacing={density}
       verticalSpacing={density}
       {...tableProps}
+      {...dataVariable('layout', layoutMode)}
+      {...dataVariable('column-resizing', enableColumnResizing)}
       style={(theme) => ({
-        display: layoutMode === 'grid' ? 'grid' : 'table',
-        tableLayout:
-          layoutMode !== 'grid' && enableColumnResizing ? 'fixed' : undefined,
-        '& tr:first-of-type td': {
-          borderTop: `1px solid ${
-            theme.colors.gray[theme.colorScheme === 'dark' ? 8 : 3]
-          }`,
-        },
-        '& tr:last-of-type td': {
-          borderBottom: `1px solid ${
-            theme.colors.gray[theme.colorScheme === 'dark' ? 8 : 3]
-          }`,
-        },
-        ...(tableProps?.style instanceof Function
-          ? tableProps.style(theme)
-          : (tableProps?.style as any)),
+        ...columnSizeVars,
+        ...styleValue(tableProps, theme),
       })}
-      style={{ ...columnSizeVars, ...tableProps?.style }}
     >
       {enableTableHead && <MRT_TableHead {...props} />}
       {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (
