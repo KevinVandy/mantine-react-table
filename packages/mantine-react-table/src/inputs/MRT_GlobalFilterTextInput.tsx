@@ -108,7 +108,7 @@ export const MRT_GlobalFilterTextInput = <
           }
         }}
         className={clsx(
-          classes.MRT_GlobalFilterTextInputTextInput,
+          classes.MRT_GlobalFilterTextInput,
           textFieldProps?.className,
         )}
         style={(theme) => ({
