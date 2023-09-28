@@ -1,5 +1,9 @@
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
-import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
+import {
+  type MRT_DensityState,
+  type HTMLPropsRef,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends Record<string, any> = {}>
   extends ActionIconProps,
@@ -7,15 +11,16 @@ interface Props<TData extends Record<string, any> = {}>
   table: MRT_TableInstance<TData>;
 }
 
-const sizes = ['xs', 'md', 'xl'] as const;
+const next: Record<MRT_DensityState, MRT_DensityState> = {
+  xs: 'md',
+  md: 'xl',
+  xl: 'xs',
+};
 
 export const MRT_ToggleDensePaddingButton = <
   TData extends Record<string, any> = {},
 >({
-  table,
-  ...rest
-}: Props<TData>) => {
-  const {
+  table: {
     getState,
     options: {
       icons: {
@@ -23,26 +28,23 @@ export const MRT_ToggleDensePaddingButton = <
         IconBaselineDensityMedium,
         IconBaselineDensitySmall,
       },
-      localization,
+      localization: { toggleDensity },
     },
     setDensity,
-  } = table;
+  },
+  title,
+  ...rest
+}: Props<TData>) => {
   const { density } = getState();
 
-  const handleToggleDensePadding = () => {
-    setDensity(sizes[(sizes.indexOf(density) - 1) % sizes.length] ?? 'xl');
-  };
-
   return (
-    <Tooltip withinPortal label={rest?.title ?? localization.toggleDensity}>
+    <Tooltip withinPortal label={title ?? toggleDensity}>
       <ActionIcon
-        aria-label={localization.toggleDensity}
-        color="gray"
-        onClick={handleToggleDensePadding}
         size="lg"
-        variant="transparent"
+        variant="default"
+        aria-label={title ?? toggleDensity}
+        onClick={() => setDensity((current) => next[current])}
         {...rest}
-        title={undefined}
       >
         {density === 'xs' ? (
           <IconBaselineDensitySmall />

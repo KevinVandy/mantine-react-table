@@ -1,0 +1,12 @@
+.ai {
+  color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-3));
+  background-color: transparent;
+  transition: all 100ms ease;
+  @mixin hover {
+    color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-dark-0));
+    background: light-dark(
+      var(--mantine-color-gray-1),
+      var(--mantine-color-dark-6)
+    );
+  }
+}
