@@ -58,8 +58,6 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
     ...funcValue(columnDef.mantineColumnActionsButtonProps, arg),
   };
 
-  console.log('aiprops', actionIconProps);
-
   const handleClearSort = () => {
     column.clearSorting();
   };
@@ -253,8 +251,8 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
         label={actionIconProps?.title ?? localization.columnActions}
       >
         <Menu.Target>
+          {/* without this extra div around the icon, Menu.Target screws up... */}
           <div>
-            {/* i have no idea why i need this div, because of Menu.Target? */}
             <MRT_ActionIcon
               aria-label={localization.columnActions}
               {...actionIconProps}

@@ -10,19 +10,18 @@ interface Props<TData extends Record<string, any> = {}>
 export const MRT_ToggleGlobalFilterButton = <
   TData extends Record<string, any> = {},
 >({
-  table,
-  ...rest
-}: Props<TData>) => {
-  const {
+  table: {
     getState,
     options: {
       icons: { IconSearch, IconSearchOff },
-
-      localization,
+      localization: { showHideSearch },
     },
     refs: { searchInputRef },
     setShowGlobalFilter,
-  } = table;
+  },
+  title,
+  ...rest
+}: Props<TData>) => {
   const { globalFilter, showGlobalFilter } = getState();
 
   const handleToggleSearch = () => {
@@ -31,16 +30,14 @@ export const MRT_ToggleGlobalFilterButton = <
   };
 
   return (
-    <Tooltip withinPortal label={rest?.title ?? localization.showHideSearch}>
+    <Tooltip withinPortal label={title ?? showHideSearch}>
       <ActionIcon
-        aria-label={rest?.title ?? localization.showHideSearch}
-        color="gray"
+        size="lg"
+        variant="default"
+        aria-label={title ?? showHideSearch}
         disabled={!!globalFilter}
         onClick={handleToggleSearch}
-        size="lg"
-        variant="transparent"
         {...rest}
-        title={undefined}
       >
         {showGlobalFilter ? <IconSearchOff /> : <IconSearch />}
       </ActionIcon>
