@@ -12,6 +12,8 @@ import { parseCSSVarId } from '../column.utils';
 import { type MRT_TableInstance, type MRT_Virtualizer } from '../types';
 import { funcValue, styleValue } from '../funcValue';
 
+import classes from './MRT_Table.module.css';
+
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
@@ -142,24 +144,14 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
 
   return (
     <Table
+      className={classes.root}
       highlightOnHover
       horizontalSpacing={density}
       verticalSpacing={density}
       {...tableProps}
+      data-layout={layoutMode}
+      {...(enableColumnResizing ? { 'data-column-resizing': true } : null)}
       style={(theme) => ({
-        display: layoutMode === 'grid' ? 'grid' : 'table',
-        tableLayout:
-          layoutMode !== 'grid' && enableColumnResizing ? 'fixed' : undefined,
-        '& tr:first-of-type td': {
-          borderTop: `1px solid ${
-            theme.colors.gray[8] // TODO: [theme.colorScheme === 'dark' ? 8 : 3]
-          }`,
-        },
-        '& tr:last-of-type td': {
-          borderBottom: `1px solid ${
-            theme.colors.gray[8] // TODO: [theme.colorScheme === 'dark' ? 8 : 3]
-          }`,
-        },
         ...columnSizeVars,
         ...styleValue(tableProps, theme),
       })}

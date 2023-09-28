@@ -1,0 +1,19 @@
+.root {
+  --first-last-color: light-dark(
+    var(--mantine-color-gray-3),
+    var(--mantine-color-gray-8)
+  );
+  & tr:first-of-type td {
+    border-top: 1px solid var(--first-last-color);
+  }
+  & tr:last-of-type td {
+    border-bottom: 1px solid var(--first-last-color);
+  }
+  display: table;
+  [data-layout='grid'] {
+    display: grid;
+  }
+  :not([data-layout='grid'])[data-column-resizing] {
+    table-layout: fixed;
+  }
+}
