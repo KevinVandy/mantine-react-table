@@ -7,7 +7,7 @@ import {
   Text,
 } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
-import { funcValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   position?: 'top' | 'bottom';
@@ -51,7 +51,9 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
     showGlobalFilter,
   } = getState();
 
-  const paginationProps = funcValue(mantinePaginationProps, { table });
+  const paginationProps = parseFromValuesOrFunc(mantinePaginationProps, {
+    table,
+  });
 
   const totalRowCount = rowCount ?? getPrePaginationRowModel().rows.length;
   const numberOfPages = Math.ceil(totalRowCount / pageSize);

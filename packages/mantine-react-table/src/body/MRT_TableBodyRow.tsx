@@ -10,7 +10,7 @@ import {
   type MRT_VirtualItem,
   type MRT_Virtualizer,
 } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableBodyRow.module.css';
 
@@ -60,7 +60,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
     getState();
   const theme = useMantineTheme();
 
-  const tableRowProps = funcValue(mantineTableBodyRowProps, {
+  const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     row,
     staticRowIndex: rowIndex,
     table,
@@ -106,7 +106,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           transform: virtualRow
             ? `translateY(${virtualRow?.start}px)`
             : undefined,
-          ...styleValue(tableRowProps, theme),
+          ...parseFromValuesOrFunc(tableRowProps?.style, theme) as any,
         })}
       >
         {virtualPaddingLeft ? (

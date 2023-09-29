@@ -2,7 +2,7 @@ import { Box } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableFooter.module.css';
 
@@ -26,7 +26,9 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
   } = table;
   const { isFullScreen } = getState();
 
-  const tableFooterProps = funcValue(mantineTableFooterProps, { table });
+  const tableFooterProps = parseFromValuesOrFunc(mantineTableFooterProps, {
+    table,
+  });
 
   const stickFooter =
     (isFullScreen || enableStickyFooter) && enableStickyFooter !== false;
@@ -41,9 +43,9 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
           ? classes.MRT_TableFooterGrid
           : classes.MRT_TableFooterTableRowGroup,
       )}
-      style={(theme) => ({
-        ...styleValue(tableFooterProps, theme),
-      })}
+      // style={(theme) => ({
+      //   ...styleValue(tableFooterProps, theme),
+      // })}
     >
       {getFooterGroups().map((footerGroup) => (
         <MRT_TableFooterRow

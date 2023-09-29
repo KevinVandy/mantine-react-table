@@ -2,7 +2,7 @@ import { Box } from '@mantine/core';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import { MRT_ToolbarAlertBanner } from '../toolbar';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -30,7 +30,9 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
   } = table;
   const { isFullScreen, showAlertBanner } = getState();
 
-  const tableHeadProps = funcValue(mantineTableHeadProps, { table });
+  const tableHeadProps = parseFromValuesOrFunc(mantineTableHeadProps, {
+    table,
+  });
 
   const stickyHeader = enableStickyHeader || isFullScreen;
 
@@ -44,7 +46,7 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
         opacity: 0.97,
         top: stickyHeader ? 0 : undefined,
         zIndex: stickyHeader ? 2 : undefined,
-        ...styleValue(tableHeadProps, theme),
+        // ...styleValue(tableHeadProps, theme),
       })}
     >
       {positionToolbarAlertBanner === 'head-overlay' &&

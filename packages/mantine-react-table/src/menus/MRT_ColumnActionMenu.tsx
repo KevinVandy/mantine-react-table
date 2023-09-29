@@ -1,7 +1,7 @@
 import { Menu, Tooltip } from '@mantine/core';
 
 import { type MRT_Header, type MRT_TableInstance } from '../types';
-import { funcValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 import { MRT_ActionIcon } from '../buttons/MRT_ActionIcon';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -54,8 +54,8 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
 
   const arg = { column, table };
   const actionIconProps = {
-    ...funcValue(mantineColumnActionsButtonProps, arg),
-    ...funcValue(columnDef.mantineColumnActionsButtonProps, arg),
+    ...parseFromValuesOrFunc(mantineColumnActionsButtonProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineColumnActionsButtonProps, arg),
   };
 
   const handleClearSort = () => {

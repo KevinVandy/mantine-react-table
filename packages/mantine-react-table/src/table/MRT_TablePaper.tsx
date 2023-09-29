@@ -3,7 +3,7 @@ import { MRT_TopToolbar } from '../toolbar/MRT_TopToolbar';
 import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';
 import { MRT_TableContainer } from './MRT_TableContainer';
 import { type MRT_TableInstance } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -25,7 +25,7 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
   } = table;
   const { isFullScreen } = getState();
 
-  const tablePaperProps = funcValue(mantinePaperProps, { table });
+  const tablePaperProps = parseFromValuesOrFunc(mantinePaperProps, { table });
 
   return (
     <Paper
@@ -57,16 +57,16 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
               zIndex: 100,
             }
           : null),
-        ...styleValue(tablePaperProps, theme),
+        // ...styleValue(tablePaperProps, theme),
       })}
     >
       {enableTopToolbar &&
-        (funcValue(renderTopToolbar, { table }) ?? (
+        (parseFromValuesOrFunc(renderTopToolbar, { table }) ?? (
           <MRT_TopToolbar table={table} />
         ))}
       <MRT_TableContainer table={table} />
       {enableBottomToolbar &&
-        (funcValue(renderBottomToolbar, { table }) ?? (
+        (parseFromValuesOrFunc(renderBottomToolbar, { table }) ?? (
           <MRT_BottomToolbar table={table} />
         ))}
     </Paper>

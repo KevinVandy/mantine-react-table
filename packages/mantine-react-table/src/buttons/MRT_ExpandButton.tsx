@@ -1,7 +1,7 @@
 import { type MouseEvent } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   row: MRT_Row<TData>;
@@ -21,7 +21,10 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
     },
   } = table;
 
-  const actionIconProps = funcValue(mantineExpandButtonProps, { table, row });
+  const actionIconProps = parseFromValuesOrFunc(mantineExpandButtonProps, {
+    table,
+    row,
+  });
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();
 
@@ -58,7 +61,7 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
           '&:hover': {
             opacity: 1,
           },
-          ...styleValue(actionIconProps, theme),
+          // ...styleValue(actionIconProps, theme),
         })}
         title={undefined}
       >

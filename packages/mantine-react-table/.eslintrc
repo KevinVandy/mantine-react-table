@@ -8,6 +8,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "no-duplicate-imports": "warn",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-explicit-any": "off",

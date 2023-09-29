@@ -3,7 +3,7 @@ import { Box, LoadingOverlay } from '@mantine/core';
 import { MRT_Table } from './MRT_Table';
 import { MRT_EditRowModal } from '../modals';
 import { type MRT_TableInstance } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
@@ -36,8 +36,14 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
 
   const [totalToolbarHeight, setTotalToolbarHeight] = useState(0);
 
-  const tableContainerProps = funcValue(mantineTableContainerProps, { table });
-  const loadingOverlayProps = funcValue(mantineLoadingOverlayProps, { table });
+  const tableContainerProps = parseFromValuesOrFunc(
+    mantineTableContainerProps,
+    { table },
+  );
+  const loadingOverlayProps = parseFromValuesOrFunc(
+    mantineLoadingOverlayProps,
+    { table },
+  );
 
   useIsomorphicLayoutEffect(() => {
     const topToolbarHeight =
@@ -77,7 +83,7 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
           : undefined,
         overflow: 'auto',
         position: 'relative',
-        ...styleValue(tableContainerProps, theme),
+        // ...styleValue(tableContainerProps, theme),
       })}
     >
       <LoadingOverlay

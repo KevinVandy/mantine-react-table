@@ -8,7 +8,7 @@ import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 export const commonToolbarStyles = ({
   theme,
@@ -55,7 +55,7 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
 
   const isMobile = useMediaQuery('(max-width: 720px)');
 
-  const toolbarProps = funcValue(mantineTopToolbarProps, { table });
+  const toolbarProps = parseFromValuesOrFunc(mantineTopToolbarProps, { table });
 
   const stackAlertBanner =
     isMobile || !!renderTopToolbarCustomActions || showGlobalFilter;
@@ -75,7 +75,7 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
         position: isFullScreen ? 'sticky' : 'relative',
         top: isFullScreen ? '0' : undefined,
         ...commonToolbarStyles({ theme }),
-        ...styleValue(toolbarProps, theme),
+        // ...styleValue(toolbarProps, theme),
       })}
     >
       {positionToolbarAlertBanner === 'top' && (

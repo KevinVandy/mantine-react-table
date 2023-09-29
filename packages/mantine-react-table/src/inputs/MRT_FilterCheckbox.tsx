@@ -1,6 +1,6 @@
 import { Checkbox, type CheckboxProps, Tooltip } from '@mantine/core';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   column: MRT_Column<TData>;
@@ -20,8 +20,8 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
 
   const arg = { column, table };
   const checkboxProps = {
-    ...funcValue(mantineFilterCheckboxProps, arg),
-    ...funcValue(columnDef.mantineFilterCheckboxProps, arg),
+    ...parseFromValuesOrFunc(mantineFilterCheckboxProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineFilterCheckboxProps, arg),
   } as CheckboxProps;
 
   const filterLabel = localization.filterByColumn?.replace(
@@ -59,7 +59,7 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
         style={(theme) => ({
           fontWeight: 'normal',
           marginTop: '8px',
-          ...styleValue(checkboxProps, theme),
+          // ...styleValue(checkboxProps, theme),
         })}
         title={undefined}
       />

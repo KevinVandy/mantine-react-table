@@ -5,7 +5,7 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
@@ -34,14 +34,17 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
   } = table;
   const { isLoading } = getState();
 
-  const tableRowProps = funcValue(mantineTableBodyRowProps, {
+  const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     isDetailPanel: true,
     row,
     staticRowIndex: rowIndex,
     table,
   });
 
-  const tableCellProps = funcValue(mantineDetailPanelProps, { row, table });
+  const tableCellProps = parseFromValuesOrFunc(mantineDetailPanelProps, {
+    row,
+    table,
+  });
 
   return (
     <Box
@@ -59,7 +62,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
           : undefined,
         width: '100%',
         zIndex: virtualRow ? 2 : undefined,
-        ...styleValue(tableRowProps, theme),
+        ...parseFromValuesOrFunc(tableRowProps?.style, theme) as any,
       })}
     >
       <Box
@@ -79,7 +82,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
           paddingTop: row.getIsExpanded() ? '16px !important' : '0 !important',
           transition: 'all 100ms ease-in-out',
           width: `${table.getTotalSize()}px`,
-          ...styleValue(tableCellProps, theme),
+          ...parseFromValuesOrFunc(tableCellProps?.style, theme) as any,
         })}
       >
         {renderDetailPanel && (

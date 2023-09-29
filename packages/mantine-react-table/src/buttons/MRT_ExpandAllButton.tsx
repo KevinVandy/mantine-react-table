@@ -1,6 +1,6 @@
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -24,7 +24,9 @@ export const MRT_ExpandAllButton = <TData extends Record<string, any> = {}>({
   } = table;
   const { density, isLoading } = getState();
 
-  const actionIconProps = funcValue(mantineExpandAllButtonProps, { table });
+  const actionIconProps = parseFromValuesOrFunc(mantineExpandAllButtonProps, {
+    table,
+  });
 
   const isAllRowsExpanded = getIsAllRowsExpanded();
 
@@ -56,7 +58,7 @@ export const MRT_ExpandAllButton = <TData extends Record<string, any> = {}>({
           '&:hover': {
             opacity: 1,
           },
-          ...styleValue(actionIconProps, theme),
+          // ...styleValue(actionIconProps, theme),
         })}
         title={undefined}
       >

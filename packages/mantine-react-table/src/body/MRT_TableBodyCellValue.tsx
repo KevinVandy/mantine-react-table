@@ -1,6 +1,6 @@
 import { Highlight, type HighlightProps } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
-import { funcValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 const allowedTypes = ['string', 'number'];
 const allowedFilterVariants = ['text', 'autocomplete'];
@@ -23,7 +23,7 @@ export const MRT_TableBodyCellValue = <TData extends Record<string, any> = {}>({
   const { globalFilter, globalFilterFn } = getState();
   const filterValue = column.getFilterValue();
 
-  const highlightProps = funcValue(mantineHighlightProps, {
+  const highlightProps = parseFromValuesOrFunc(mantineHighlightProps, {
     cell,
     column,
     row,
