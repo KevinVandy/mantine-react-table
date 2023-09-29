@@ -3,14 +3,13 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import { Box, Text } from '@mantine/core';
 import { Memo_MRT_TableBodyRow, MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { rankGlobalFuzzy } from '../sortingFns';
-import { getCanRankRows } from '../column.utils';
+import { getCanRankRows, parseFromValuesOrFunc } from '../column.utils';
 import {
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_VirtualItem,
   type MRT_Virtualizer,
 } from '../types';
-import { funcValue } from '../funcValue';
 import classes from './MRT_TableBody.module.css';
 import clsx from 'clsx';
 
@@ -67,9 +66,11 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     sorting,
   } = getState();
 
-  const tableBodyProps = funcValue(mantineTableBodyProps, { table });
+  const tableBodyProps = parseFromValuesOrFunc(mantineTableBodyProps, {
+    table,
+  });
 
-  const vProps = funcValue(rowVirtualizerProps, { table });
+  const vProps = parseFromValuesOrFunc(rowVirtualizerProps, { table });
 
   const shouldRankRows = useMemo(
     () =>
@@ -145,7 +146,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
       )}
       __vars={{
         '--mrt-table-body-height': rowVirtualizer
-          ? `${rowVirtualizer.getTotalSize()}px`
+          ? `${rowVirtualizer.getTotalSize()}`
           : undefined,
         ...tableBodyProps?.__vars,
       }}
@@ -171,8 +172,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
               <Text
                 className={clsx(classes['empty-row-td-content'])}
                 __vars={{
-                  '--mrt-paper-width':
-                    tablePaperRef.current?.clientWidth.toString(),
+                  '--mrt-paper-width': `${tablePaperRef.current?.clientWidth}`,
                 }}
               >
                 {globalFilter || columnFilters.length

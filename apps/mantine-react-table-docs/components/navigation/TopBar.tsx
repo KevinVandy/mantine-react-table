@@ -131,9 +131,9 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            '@media (max-width: 480px)': {
-              gap: '4px',
-            },
+            // '@media (max-width: 480px)': {
+            //   gap: '4px',
+            // },
           }}
         >
           <Tooltip label="Github">
@@ -172,7 +172,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
               onClick={toggleColorScheme}
               size={isMobile ? 'sm' : 'lg'}
             >
-              {true ? <IconSun /> : <IconMoonStars />}
+              {/* {true ? <IconSun /> : <IconMoonStars />} */}
             </ActionIcon>
           </Tooltip>
         </Box>

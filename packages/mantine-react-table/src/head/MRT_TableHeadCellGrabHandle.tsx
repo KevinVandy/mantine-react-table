@@ -1,8 +1,7 @@
 import { type DragEvent, type RefObject } from 'react';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
-import { reorderColumn } from '../column.utils';
+import { reorderColumn, parseFromValuesOrFunc } from '../column.utils';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
-import { funcValue } from '../funcValue';
 
 interface Props<TData extends Record<string, any> = {}> {
   column: MRT_Column<TData>;
@@ -29,8 +28,8 @@ export const MRT_TableHeadCellGrabHandle = <
 
   const arg = { column, table };
   const actionIconProps = {
-    ...funcValue(mantineColumnDragHandleProps, arg),
-    ...funcValue(columnDef.mantineColumnDragHandleProps, arg),
+    ...parseFromValuesOrFunc(mantineColumnDragHandleProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineColumnDragHandleProps, arg),
   };
 
   const handleDragStart = (event: DragEvent<HTMLButtonElement>) => {

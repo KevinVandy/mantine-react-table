@@ -1,4 +1,3 @@
-import { useCallback, useMemo } from 'react';
 import {
   defaultRangeExtractor,
   type Range,
@@ -6,14 +5,14 @@ import {
 } from '@tanstack/react-virtual';
 import { Table } from '@mantine/core';
 import { MRT_TableHead } from '../head/MRT_TableHead';
+import { useCallback, useMemo } from 'react';
 import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
-import { parseCSSVarId } from '../column.utils';
+import { parseCSSVarId, parseFromValuesOrFunc } from '../column.utils';
 import { type MRT_TableInstance, type MRT_Virtualizer } from '../types';
-import { funcValue, styleValue } from '../funcValue';
-import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_Table.module.css';
+import clsx from 'clsx';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -48,8 +47,8 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
     density,
   } = getState();
 
-  const tableProps = funcValue(mantineTableProps, { table });
-  const vProps = funcValue(columnVirtualizerProps, { table });
+  const tableProps = parseFromValuesOrFunc(mantineTableProps, { table });
+  const vProps = parseFromValuesOrFunc(columnVirtualizerProps, { table });
 
   const columnSizeVars = useMemo(() => {
     const headers = getFlatHeaders();
@@ -145,17 +144,23 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
 
   return (
     <Table
-      className={classes.root}
+      className={clsx(
+        'mrt-table',
+        classes.root,
+        layoutMode === 'grid' && classes['root-grid'],
+        enableColumnResizing &&
+          layoutMode !== 'grid' &&
+          classes['root-semantic-not-resizing'],
+        tableProps?.className,
+      )}
       highlightOnHover
       horizontalSpacing={density}
       verticalSpacing={density}
       {...tableProps}
-      {...dataVariable('layout', layoutMode)}
-      {...dataVariable('column-resizing', enableColumnResizing)}
-      style={(theme) => ({
+      __vars={{
         ...columnSizeVars,
-        ...styleValue(tableProps, theme),
-      })}
+        ...tableProps?.__vars,
+      }}
     >
       {enableTableHead && <MRT_TableHead {...props} />}
       {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (

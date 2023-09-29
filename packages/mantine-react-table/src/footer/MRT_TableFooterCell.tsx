@@ -1,8 +1,7 @@
 import { Box, useMantineTheme } from '@mantine/core';
 import clsx from 'clsx';
-import { getCommonCellStyles } from '../column.utils';
+import { getCommonCellStyles, parseFromValuesOrFunc } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
-import { funcValue } from '../funcValue';
 
 import classes from './MRT_TableFooterCell.module.css';
 
@@ -25,8 +24,8 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
 
   const arg = { column, table };
   const { className, ...tableCellProps } = {
-    ...funcValue(mantineTableFooterCellProps, arg),
-    ...funcValue(columnDef.mantineTableFooterCellProps, arg),
+    ...parseFromValuesOrFunc(mantineTableFooterCellProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineTableFooterCellProps, arg),
   };
 
   const { className: commonClassName, style } = getCommonCellStyles({
@@ -38,7 +37,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
 
   const footerProps = footer.isPlaceholder
     ? null
-    : funcValue(columnDef.Footer, {
+    : parseFromValuesOrFunc(columnDef.Footer, {
         column,
         footer,
         table,

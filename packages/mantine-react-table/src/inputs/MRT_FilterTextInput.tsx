@@ -14,7 +14,7 @@ import clsx from 'clsx';
 import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
-import { funcValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_FilterTextInput.module.css';
 
@@ -69,28 +69,28 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
 
   const arg = { column, table, rangeFilterIndex };
   const textInputProps = {
-    ...funcValue(mantineFilterTextInputProps, arg),
-    ...funcValue(columnDef.mantineFilterTextInputProps, arg),
+    ...parseFromValuesOrFunc(mantineFilterTextInputProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineFilterTextInputProps, arg),
   };
 
   const selectProps = {
-    ...funcValue(mantineFilterSelectProps, arg),
-    ...funcValue(columnDef.mantineFilterSelectProps, arg),
+    ...parseFromValuesOrFunc(mantineFilterSelectProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineFilterSelectProps, arg),
   };
 
   const multiSelectProps = {
-    ...funcValue(mantineFilterMultiSelectProps, arg),
-    ...funcValue(columnDef.mantineFilterMultiSelectProps, arg),
+    ...parseFromValuesOrFunc(mantineFilterMultiSelectProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineFilterMultiSelectProps, arg),
   };
 
   const dateInputProps = {
-    ...funcValue(mantineFilterDateInputProps, arg),
-    ...funcValue(columnDef.mantineFilterDateInputProps, arg),
+    ...parseFromValuesOrFunc(mantineFilterDateInputProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineFilterDateInputProps, arg),
   };
 
   const autoCompleteProps = {
-    ...funcValue(mantineFilterAutocompleteProps, arg),
-    ...funcValue(columnDef.mantineFilterAutocompleteProps, arg),
+    ...parseFromValuesOrFunc(mantineFilterAutocompleteProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineFilterAutocompleteProps, arg),
   };
 
   const isRangeFilter =

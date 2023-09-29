@@ -7,9 +7,8 @@ import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
 import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
 import { MRT_TableHeadCellResizeHandle } from './MRT_TableHeadCellResizeHandle';
 import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
-import { getCommonCellStyles } from '../column.utils';
+import { getCommonCellStyles, parseFromValuesOrFunc } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
-import { funcValue } from '../funcValue';
 
 import classes from './MRT_TableHeadCell.module.css';
 
@@ -45,8 +44,8 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
 
   const arg = { column, table };
   const tableCellProps = {
-    ...funcValue(mantineTableHeadCellProps, arg),
-    ...funcValue(columnDef.mantineTableHeadCellProps, arg),
+    ...parseFromValuesOrFunc(mantineTableHeadCellProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineTableHeadCellProps, arg),
   };
 
   const showColumnActions =
@@ -100,7 +99,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
   };
 
   const headerElement =
-    funcValue(columnDef?.Header, {
+    parseFromValuesOrFunc(columnDef?.Header, {
       column,
       header,
       table,
