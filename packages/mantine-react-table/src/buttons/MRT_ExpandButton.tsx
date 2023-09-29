@@ -1,7 +1,10 @@
+import clsx from 'clsx';
 import { type MouseEvent } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
+
+import classes from './MRT_ExpandButton.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   row: MRT_Row<TData>;
@@ -21,7 +24,10 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
     },
   } = table;
 
-  const actionIconProps = funcValue(mantineExpandButtonProps, { table, row });
+  const actionIconProps = parseFromValuesOrFunc(mantineExpandButtonProps, {
+    table,
+    row,
+  });
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();
 
@@ -49,27 +55,24 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
         variant="transparent"
         {...actionIconProps}
         onClick={handleToggleExpand}
-        style={(theme) => ({
-          opacity: 0.8,
-          '&:disabled': {
-            backgroundColor: 'transparent',
-            border: 'none',
-          },
-          '&:hover': {
-            opacity: 1,
-          },
-          ...styleValue(actionIconProps, theme),
-        })}
+        className={clsx(
+          'mrt-expand-button',
+          classes.root,
+          actionIconProps?.className,
+        )}
         title={undefined}
       >
         {actionIconProps?.children ?? (
           <IconChevronDown
-            style={{
-              transform: `rotate(${
-                !canExpand && !renderDetailPanel ? -90 : isExpanded ? -180 : 0
-              }deg)`,
-              transition: 'transform 100ms',
-            }}
+            className={clsx(
+              'mrt-expand-button-chevron',
+              classes.chevron,
+              !canExpand && !renderDetailPanel
+                ? classes.right
+                : isExpanded
+                ? classes.up
+                : undefined,
+            )}
           />
         )}
       </ActionIcon>

@@ -33,8 +33,13 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
   } = table;
   const { grouping, showAlertBanner, density } = getState();
 
-  const alertProps = funcValue(mantineToolbarAlertBannerProps, { table });
-  const badgeProps = funcValue(mantineToolbarAlertBannerBadgeProps, { table });
+  const alertProps = parseFromValuesOrFunc(mantineToolbarAlertBannerProps, {
+    table,
+  });
+  const badgeProps = parseFromValuesOrFunc(
+    mantineToolbarAlertBannerBadgeProps,
+    { table },
+  );
 
   const selectedAlert =
     getSelectedRowModel().rows.length > 0

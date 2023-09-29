@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Flex, Tooltip } from '@mantine/core';
 
 import { type MRT_Column, type MRT_TableInstance } from '../types';
@@ -22,7 +23,7 @@ export const MRT_ColumnPinningButtons = <
   },
 }: Props<TData>) => {
   return (
-    <Flex className={classes.container}>
+    <Flex className={clsx('mrt-column-pinning-buttons', classes.root)}>
       {column.getIsPinned() ? (
         <Tooltip withinPortal label={localization.unpin}>
           <MRT_ActionIcon onClick={() => column.pin(false)} size="md">

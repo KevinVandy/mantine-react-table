@@ -7,7 +7,7 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableHeadRow.module.css';
 
@@ -32,7 +32,7 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
   } = table;
   const { isFullScreen } = getState();
 
-  const tableRowProps = funcValue(mantineTableHeadRowProps, {
+  const tableRowProps = parseFromValuesOrFunc(mantineTableHeadRowProps, {
     headerGroup,
     table,
   });
@@ -50,9 +50,9 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
       __vars={{
         '--display': layoutMode === 'grid' ? 'flex' : 'table-row',
       }}
-      style={(theme) => ({
-        ...styleValue(tableRowProps, theme),
-      })}
+      // style={(theme) => ({
+      //   ...styleValue(tableRowProps, theme),
+      // })}
     >
       {virtualPaddingLeft ? (
         <th style={{ display: 'flex', width: virtualPaddingLeft }} />

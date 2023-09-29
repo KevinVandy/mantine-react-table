@@ -16,13 +16,13 @@ import {
   getCommonCellStyles,
   getIsFirstColumn,
   getIsLastColumn,
+  parseFromValuesOrFunc,
 } from '../column.utils';
 import {
   type MRT_Cell,
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
-import { funcValue } from '../funcValue';
 
 import classes from './MRT_TableBodyCell.module.css';
 
@@ -85,11 +85,11 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
 
   const arg = { cell, column, row, table };
   const tableCellProps = {
-    ...funcValue(mantineTableBodyCellProps, arg),
-    ...funcValue(columnDef.mantineTableBodyCellProps, arg),
+    ...parseFromValuesOrFunc(mantineTableBodyCellProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineTableBodyCellProps, arg),
   };
 
-  const skeletonProps = funcValue(mantineSkeletonProps, arg);
+  const skeletonProps = parseFromValuesOrFunc(mantineSkeletonProps, arg);
 
   const [skeletonWidth, setSkeletonWidth] = useState(100);
   useEffect(() => {
@@ -142,8 +142,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
   }, [draggingColumn, draggingRow, hoveredColumn, hoveredRow, rowIndex]);
 
   const isEditable =
-    (funcValue(enableEditing, row) &&
-      funcValue(columnDef.enableEditing, row)) !== false;
+    (parseFromValuesOrFunc(enableEditing, row) &&
+      parseFromValuesOrFunc(columnDef.enableEditing, row)) !== false;
 
   const isEditing =
     isEditable &&

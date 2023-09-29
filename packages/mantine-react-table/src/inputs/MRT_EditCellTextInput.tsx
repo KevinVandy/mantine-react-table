@@ -1,7 +1,7 @@
 import { type FocusEvent, type KeyboardEvent, useState } from 'react';
 import { Select, TextInput } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
-import { funcValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
@@ -37,13 +37,13 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
 
   const arg = { cell, column, row, table };
   const textInputProps = {
-    ...funcValue(mantineEditTextInputProps, arg),
-    ...funcValue(columnDef.mantineEditTextInputProps, arg),
+    ...parseFromValuesOrFunc(mantineEditTextInputProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineEditTextInputProps, arg),
   };
 
   const selectProps = {
-    ...funcValue(mantineEditSelectProps, arg),
-    ...funcValue(columnDef.mantineEditSelectProps, arg),
+    ...parseFromValuesOrFunc(mantineEditSelectProps, arg),
+    ...parseFromValuesOrFunc(columnDef.mantineEditSelectProps, arg),
   };
 
   const saveInputValueToRowCache = (newValue: string | null) => {
@@ -74,7 +74,7 @@ export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
   }
 
   const commonProps = {
-    disabled: funcValue(columnDef.enableEditing, row) === false,
+    disabled: parseFromValuesOrFunc(columnDef.enableEditing, row) === false,
     label: ['modal', 'custom'].includes(
       (isCreating ? createDisplayMode : editDisplayMode) as string,
     )

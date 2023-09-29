@@ -6,9 +6,7 @@ import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
-import { funcValue, styleValue } from '../funcValue';
-import commonClasses from './common.styles.module.css';
-import classes from './MRT_BottomToolbar.module.css';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -33,7 +31,9 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
 
   const isMobile = useMediaQuery('(max-width: 720px)');
 
-  const toolbarProps = funcValue(mantineBottomToolbarProps, { table });
+  const toolbarProps = parseFromValuesOrFunc(mantineBottomToolbarProps, {
+    table,
+  });
 
   const stackAlertBanner = isMobile || !!renderBottomToolbarCustomActions;
 
@@ -55,10 +55,13 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
         toolbarProps?.className,
       )}
       style={(theme) => ({
-        '--mantine-color-dark-7': isFullScreen ? '0' : undefined,
-        '--mrt-bottom-toolbar-box-shadow-color': rgba(theme.black, 0.1),
-        '--mrt-bottom-toolbar-position': isFullScreen ? 'fixed' : 'relative',
-        ...(styleValue(toolbarProps, theme) as any),
+        ...commonToolbarStyles({ theme }),
+        bottom: isFullScreen ? '0' : undefined,
+        boxShadow: `0 1px 2px -1px ${rgba(theme.black, 0.1)} inset`,
+        left: 0,
+        position: isFullScreen ? 'fixed' : 'relative',
+        right: 0,
+        // ...(styleValue(toolbarProps, theme) as any),
       })}
       __vars={toolbarProps?.__vars}
     >

@@ -1,7 +1,10 @@
+import clsx from 'clsx';
 import { type DragEventHandler } from 'react';
-import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
+import { type ActionIconProps, Tooltip } from '@mantine/core';
 import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
-import { styleValue } from '../funcValue';
+import { MRT_ActionIcon } from './MRT_ActionIcon';
+
+import classes from './MRT_GrabHandleButton.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   actionIconProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;
@@ -14,26 +17,22 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
   actionIconProps,
   onDragEnd,
   onDragStart,
-  table,
-}: Props<TData>) => {
-  const {
+  table: {
     options: {
       icons: { IconGripHorizontal },
-      localization,
+      localization: { move },
     },
-  } = table;
-
+  },
+}: Props<TData>) => {
   return (
     <Tooltip
       withinPortal
       openDelay={1000}
-      label={actionIconProps?.title ?? localization.move}
+      label={actionIconProps?.title ?? move}
     >
-      <ActionIcon
-        draggable="true"
-        color="gray"
-        size="sm"
-        variant="transparent"
+      <MRT_ActionIcon
+        aria-label={actionIconProps?.title ?? move}
+        draggable
         {...actionIconProps}
         onClick={(e) => {
           e.stopPropagation();
@@ -41,25 +40,15 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
         }}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
-        style={(theme) => ({
-          cursor: 'grab',
-          margin: '0 -0.16px',
-          opacity: 0.5,
-          padding: '2px',
-          transition: 'opacity 100ms ease-in-out',
-          '&:hover': {
-            backgroundColor: 'transparent',
-            opacity: 1,
-          },
-          '&:active': {
-            cursor: 'grabbing',
-          },
-          ...styleValue(actionIconProps, theme),
-        })}
+        className={clsx(
+          'mrt-grab-handle-button',
+          classes.root,
+          actionIconProps?.className,
+        )}
         title={undefined}
       >
         <IconGripHorizontal />
-      </ActionIcon>
+      </MRT_ActionIcon>
     </Tooltip>
   );
 };

@@ -1,0 +1,19 @@
+.root {
+  opacity: 0.8;
+  &:disabled {
+    background-color: transparent;
+    border: none;
+  }
+  &:hover {
+    opacity: 1;
+  }
+  .chevron {
+    transition: transform 100ms;
+    &.right {
+      transform: rotate(-90deg);
+    }
+    &.up {
+      transform: rotate(180deg);
+    }
+  }
+}

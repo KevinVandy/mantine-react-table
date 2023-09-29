@@ -88,6 +88,7 @@
     "@vitejs/plugin-react": "^4.1.0",
     "dayjs": "^1.11.10",
     "eslint": "^8.50.0",
+    "eslint-plugin-perfectionist": "^2.1.0",
     "postcss": "^8.4.30",
     "postcss-preset-mantine": "^1.7.0",
     "postcss-simple-vars": "^7.0.1",
@@ -115,9 +116,9 @@
     "clsx": "^2.0.0"
   },
   "peerDependencies": {
-    "@mantine/core": "^7",
-    "@mantine/dates": "^7",
-    "@mantine/hooks": "^7",
+    "@mantine/core": "^7.1",
+    "@mantine/dates": "^7.1",
+    "@mantine/hooks": "^7.1",
     "@tabler/icons-react": ">=2.23.0",
     "react": ">=18.0",
     "react-dom": ">=18.0"

@@ -3,14 +3,15 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import { Box, Text } from '@mantine/core';
 import { Memo_MRT_TableBodyRow, MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { rankGlobalFuzzy } from '../sortingFns';
-import { getCanRankRows } from '../column.utils';
+import { getCanRankRows, parseFromValuesOrFunc } from '../column.utils';
 import {
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_VirtualItem,
   type MRT_Virtualizer,
 } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import classes from './MRT_TableBody.module.css';
+import clsx from 'clsx';
 
 interface Props<TData extends Record<string, any> = {}> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
@@ -65,9 +66,11 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     sorting,
   } = getState();
 
-  const tableBodyProps = funcValue(mantineTableBodyProps, { table });
+  const tableBodyProps = parseFromValuesOrFunc(mantineTableBodyProps, {
+    table,
+  });
 
-  const vProps = funcValue(rowVirtualizerProps, { table });
+  const vProps = parseFromValuesOrFunc(rowVirtualizerProps, { table });
 
   const shouldRankRows = useMemo(
     () =>
@@ -133,37 +136,43 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     <Box
       component="tbody"
       {...tableBodyProps}
-      style={(theme) => ({
-        display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
-        height: rowVirtualizer
-          ? `${rowVirtualizer.getTotalSize()}px`
-          : 'inherit',
-        minHeight: !rows.length ? '100px' : undefined,
-        position: 'relative',
-        ...styleValue(tableBodyProps, theme),
-      })}
+      className={clsx(
+        'mrt-table-body',
+        classes.root,
+        layoutMode === 'grid' && classes['root-grid'],
+        !rows.length && classes['root-no-rows'],
+        rowVirtualizer && classes['root-virtualized'],
+        tableBodyProps?.className,
+      )}
+      __vars={{
+        '--mrt-table-body-height': rowVirtualizer
+          ? `${rowVirtualizer.getTotalSize()}`
+          : undefined,
+        ...tableBodyProps?.__vars,
+      }}
     >
       {creatingRow && createDisplayMode === 'row' && (
         <MRT_TableBodyRow table={table} row={creatingRow} rowIndex={-1} />
       )}
       {!rows.length ? (
-        <tr style={{ display: layoutMode === 'grid' ? 'grid' : 'table-row' }}>
+        <tr
+          className={clsx(
+            'mrt-table-body-row',
+            layoutMode === 'grid' && classes['empty-row-tr-grid'],
+          )}
+        >
           <td
             colSpan={table.getVisibleLeafColumns().length}
-            style={{ display: layoutMode === 'grid' ? 'grid' : 'table-cell' }}
+            className={clsx(
+              'mrt-table-body-cell',
+              layoutMode === 'grid' && classes['empty-row-td-grid'],
+            )}
           >
             {renderEmptyRowsFallback?.({ table }) ?? (
               <Text
-                style={{
-                  color: 'gray',
-                  fontStyle: 'italic',
-                  maxWidth: `min(100vw, ${
-                    tablePaperRef.current?.clientWidth ?? 360
-                  }px)`,
-                  paddingTop: '2rem',
-                  paddingBottom: '2rem',
-                  textAlign: 'center',
-                  width: '100%',
+                className={clsx(classes['empty-row-td-content'])}
+                __vars={{
+                  '--mrt-paper-width': `${tablePaperRef.current?.clientWidth}`,
                 }}
               >
                 {globalFilter || columnFilters.length

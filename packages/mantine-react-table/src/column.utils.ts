@@ -28,7 +28,6 @@ import {
   type MRT_TableInstance,
   type MRT_TableOptions,
 } from './types';
-import { funcValue } from './funcValue';
 
 import classes from './columns.utils.module.css';
 
@@ -359,7 +358,7 @@ export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
   const style = {
     ...__vars,
     ...(!table.options.enableColumnResizing && widthStyles), //let devs pass in width styles if column resizing is disabled
-    ...funcValue(tableCellProps?.style, theme),
+    ...parseFromValuesOrFunc(tableCellProps?.style, theme),
     ...(table.options.enableColumnResizing && widthStyles), //do not let devs pass in width styles if column resizing is enabled
   };
   return {
@@ -389,6 +388,13 @@ export const MRT_DefaultDisplayColumn = {
   enableResizing: false,
   enableSorting: false,
 } as const;
+
+export function parseFromValuesOrFunc<T, U>(
+  fn: T | ((arg: U) => T) | undefined,
+  arg: U,
+): T | undefined {
+  return fn instanceof Function ? fn(arg) : fn;
+}
 
 export const parseCSSVarId = (id: string) => id.replace(/[^a-zA-Z0-9]/g, '_');
 

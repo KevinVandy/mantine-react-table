@@ -39,7 +39,7 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
 
   const isMobile = useMediaQuery('(max-width: 720px)');
 
-  const toolbarProps = funcValue(mantineTopToolbarProps, { table });
+  const toolbarProps = parseFromValuesOrFunc(mantineTopToolbarProps, { table });
 
   const stackAlertBanner =
     isMobile || !!renderTopToolbarCustomActions || showGlobalFilter;

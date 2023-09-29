@@ -10,7 +10,7 @@ import {
   type MRT_VirtualItem,
   type MRT_Virtualizer,
 } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableBodyRow.module.css';
 
@@ -27,7 +27,6 @@ interface Props<TData extends Record<string, any> = {}> {
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
   virtualRow?: MRT_VirtualItem;
-  className?: string | string[];
 }
 
 export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
@@ -43,7 +42,6 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
   virtualPaddingLeft,
   virtualPaddingRight,
   virtualRow,
-  className,
 }: Props<TData>) => {
   const {
     getState,
@@ -60,7 +58,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
     getState();
   const theme = useMantineTheme();
 
-  const tableRowProps = funcValue(mantineTableBodyRowProps, {
+  const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     row,
     staticRowIndex: rowIndex,
     table,
@@ -77,16 +75,10 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
   return (
     <>
       <Box
-        className={clsx(
-          classes.MRT_TableBodyRow,
-          enableHover !== false && classes.MRT_TableBodyRowHover,
-          virtualRow && classes.MRT_TableBodyRowVirtual,
-          className,
-        )}
         component="tr"
         data-index={virtualRow?.index}
-        onDragEnter={handleDragEnter}
         data-selected={row.getIsSelected()}
+        onDragEnter={handleDragEnter}
         ref={(node: HTMLTableRowElement) => {
           if (node) {
             rowRef.current = node;
@@ -94,19 +86,21 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           }
         }}
         {...tableRowProps}
-        __vars={{
-          ...tableRowProps?.__vars,
-          '--display': layoutMode === 'grid' ? 'flex' : 'table-row',
-          '--light-bg-color': rgba(theme.colors.dark[7], 0.12),
-          '--dark-bg-color': rgba(theme.white, 0.05),
-        }}
+        className={clsx(
+          'mrt-table-body-row',
+          classes.root,
+          layoutMode === 'grid' && classes['root-grid'],
+          virtualRow && classes['root-virtualized'],
+          draggingRow?.id === row.id ||
+            (hoveredRow?.id === row.id && classes['root-dragging']),
+          enableHover !== false && classes['root-hover'],
+          tableRowProps?.className,
+        )}
         style={(theme) => ({
-          opacity:
-            draggingRow?.id === row.id || hoveredRow?.id === row.id ? 0.5 : 1,
           transform: virtualRow
             ? `translateY(${virtualRow?.start}px)`
             : undefined,
-          ...styleValue(tableRowProps, theme),
+          ...(parseFromValuesOrFunc(tableRowProps?.style, theme) as any),
         })}
       >
         {virtualPaddingLeft ? (
