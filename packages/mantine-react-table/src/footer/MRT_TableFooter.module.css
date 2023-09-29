@@ -1,16 +1,16 @@
-.MRT_TableFooterSticky {
+.root {
+  display: table-row-group;
+}
+
+.grid {
+  display: grid;
+}
+
+.sticky {
   bottom: 0;
   opacity: 0.97;
   position: sticky;
   z-index: 1;
-
-  @mixin light {
-    outline: 1px solid var(--mantine-color-gray-3);
-  }
-
-  @mixin dark {
-    outline: 1px solid var(--mantine-color-gray-7);
-  }
+  outline: 1px solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-gray-7));
 }
-
-
