@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "pakwoon.css-modules-intellisense",
+    "henriiik.vscode-sort",
+    "csstools.postcss",
+    "unifiedjs.vscode-mdx",
+    "dbaeumer.vscode-eslint"
+  ]
+}
