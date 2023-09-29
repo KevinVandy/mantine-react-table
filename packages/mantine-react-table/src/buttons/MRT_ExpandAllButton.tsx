@@ -64,12 +64,14 @@ export const MRT_ExpandAllButton = <TData extends Record<string, any> = {}>({
       >
         {actionIconProps?.children ?? (
           <IconChevronsDown
-            style={{
-              transform: `rotate(${
-                isAllRowsExpanded ? -180 : getIsSomeRowsExpanded() ? -90 : 0
-              }deg)`,
-              transition: 'transform 100ms',
-            }}
+            className={clsx(
+              classes.chevron,
+              isAllRowsExpanded
+                ? classes.up
+                : getIsSomeRowsExpanded()
+                ? classes.right
+                : undefined,
+            )}
           />
         )}
       </ActionIcon>

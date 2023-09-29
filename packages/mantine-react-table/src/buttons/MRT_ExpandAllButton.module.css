@@ -1,17 +1,26 @@
 .root {
-  marginleft: 6px;
+  margin-left: 6px;
   opacity: 0.8;
   &:disabled {
-    backgroundcolor: transparent;
+    background-color: transparent;
     border: none;
   }
   &:hover {
     opacity: 1;
   }
-}
-.xl {
-  margin-left: -6px;
-}
-.md {
-  margin-left: 0;
+  &.xl {
+    margin-left: -6px;
+  }
+  &.md {
+    margin-left: 0;
+  }
+  .chevron {
+    transition: transform 100ms;
+    &.up {
+      transform: rotate(-180deg);
+    }
+    &.right {
+      transform: rotate(-90deg);
+    }
+  }
 }
