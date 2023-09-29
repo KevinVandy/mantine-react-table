@@ -1,7 +1,9 @@
 import { type DragEvent, useEffect } from 'react';
 import { Flex, Text, Transition, rgba } from '@mantine/core';
+import clsx from 'clsx';
 import { type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
+import classes from './MRT_ToolbarDropZone.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -39,19 +41,15 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
     <Transition mounted={showToolbarDropZone} transition="fade">
       {(styles) => (
         <Flex
-          className="mantine-ToolbarDropZone"
+          className={clsx(
+            'mantine-ToolbarDropZone',
+            classes['dropzone-container'],
+          )}
           style={(theme) => ({
-            alignItems: 'center',
-            backgroundColor: rgba(
+            '--mrt-dropzone-bg-color': rgba(
               getPrimaryColor(theme),
               hoveredColumn?.id === 'drop-zone' ? 0.2 : 0.1,
             ),
-            border: `dashed ${getPrimaryColor(theme)} 2px`,
-            justifyContent: 'center',
-            height: 'calc(100%)',
-            position: 'absolute',
-            width: 'calc(100%)',
-            zIndex: 2,
             ...styles,
           })}
           onDragEnter={handleDragEnter}

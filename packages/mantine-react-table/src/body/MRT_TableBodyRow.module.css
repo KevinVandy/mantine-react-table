@@ -2,6 +2,8 @@
   box-sizing: border-box;
   width: 100%;
   transition: all 100ms ease-in-out;
+  display: var(--display);
+}
 
   &[data-selected='true'] {
     background-color: var(--mantine-primary-color-light);

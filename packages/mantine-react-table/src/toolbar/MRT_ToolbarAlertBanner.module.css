@@ -1,0 +1,24 @@
+.alert {
+  border-radius: 0;
+  font-size: 1rem;
+  left: 0;
+  position: relative;
+  padding: rem(8px);
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.alert-stacked {
+  margin-bottom: 0;
+}
+
+.alert-bottom {
+  margin-bottom: -16px;
+}
+
+.toolbar-alert {
+  gap: var(--mantine-spacing-sm);
+  padding: var(--mrt-toolbar-alert-padding);
+}

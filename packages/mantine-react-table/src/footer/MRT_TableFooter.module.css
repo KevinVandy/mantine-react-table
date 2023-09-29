@@ -11,6 +11,5 @@
   opacity: 0.97;
   position: sticky;
   z-index: 1;
-  outline: 1px solid
-    light-dark(var(--mantine-color-gray-3), var(--mantine-color-gray-7));
+  outline: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-gray-7));
 }

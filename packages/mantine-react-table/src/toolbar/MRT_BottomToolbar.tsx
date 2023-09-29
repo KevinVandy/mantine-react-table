@@ -1,12 +1,14 @@
 import { Box, rgba } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import clsx from 'clsx';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
-import { commonToolbarStyles } from './MRT_TopToolbar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+import commonClasses from './common.styles.module.css';
+import classes from './MRT_BottomToolbar.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -48,15 +50,19 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
           }
         }
       }}
+      className={clsx(
+        commonClasses['common-toolbar-styles'],
+        classes['bottom-toolbar'],
+        isFullScreen && classes['bottom-toolbar-fullscreen'],
+        toolbarProps?.className,
+      )}
       style={(theme) => ({
-        ...commonToolbarStyles({ theme }),
-        bottom: isFullScreen ? '0' : undefined,
-        boxShadow: `0 1px 2px -1px ${rgba(theme.black, 0.1)} inset`,
-        left: 0,
-        position: isFullScreen ? 'fixed' : 'relative',
-        right: 0,
-        // ...(styleValue(toolbarProps, theme) as any),
+        '--mantine-color-dark-7': isFullScreen ? '0' : undefined,
+        '--mrt-bottom-toolbar-box-shadow-color': rgba(theme.black, 0.1),
+        '--mrt-bottom-toolbar-position': isFullScreen ? 'fixed' : 'relative',
+        ...(parseFromValuesOrFunc(toolbarProps, theme) as any),
       })}
+      __vars={toolbarProps?.__vars}
     >
       <MRT_ProgressBar isTopToolbar={false} table={table} />
       {positionToolbarAlertBanner === 'bottom' && (
@@ -68,29 +74,17 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
       {['both', 'bottom'].includes(positionToolbarDropZone ?? '') && (
         <MRT_ToolbarDropZone table={table} />
       )}
-      <Box
-        style={{
-          alignItems: 'center',
-          boxSizing: 'border-box',
-          display: 'flex',
-          justifyContent: 'space-between',
-          padding: '8px',
-          width: '100%',
-        }}
-      >
+      <Box className={classes['custom-toolbar-container']}>
         {renderBottomToolbarCustomActions ? (
           renderBottomToolbarCustomActions({ table })
         ) : (
           <span />
         )}
         <Box
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            position: stackAlertBanner ? 'relative' : 'absolute',
-            right: 0,
-            top: 0,
-          }}
+          className={clsx(
+            classes['paginator-container'],
+            stackAlertBanner && classes['paginator-container-alert-banner'],
+          )}
         >
           {enablePagination &&
             ['bottom', 'both'].includes(positionPagination ?? '') && (
