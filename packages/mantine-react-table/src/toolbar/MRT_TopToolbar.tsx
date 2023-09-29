@@ -8,9 +8,10 @@ import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
-import { funcValue, styleValue } from '../funcValue';
+
 import classes from './MRT_TopToolbar.module.css';
 import commonClasses from './common.styles.module.css';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -62,7 +63,7 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
         }
       }}
       style={(theme) => ({
-        ...styleValue(toolbarProps, theme),
+        ...parseFromValuesOrFunc(toolbarProps, theme),
       })}
       __vars={toolbarProps?.__vars}
     >

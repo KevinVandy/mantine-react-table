@@ -19,6 +19,6 @@
 }
 
 .toolbar-alert {
-  gap: rem(12px);
+  gap: var(--mantine-spacing-sm);
   padding: var(--mrt-toolbar-alert-padding);
 }

@@ -2,6 +2,7 @@ import { Collapse, Progress } from '@mantine/core';
 import clsx from 'clsx';
 import { type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+import classes from './MRT_ProgressBar.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   isTopToolbar: boolean;

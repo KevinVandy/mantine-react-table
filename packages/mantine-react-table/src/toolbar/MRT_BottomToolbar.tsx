@@ -7,6 +7,8 @@ import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+import commonClasses from './common.styles.module.css';
+import classes from './MRT_BottomToolbar.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -55,13 +57,10 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
         toolbarProps?.className,
       )}
       style={(theme) => ({
-        ...commonToolbarStyles({ theme }),
-        bottom: isFullScreen ? '0' : undefined,
-        boxShadow: `0 1px 2px -1px ${rgba(theme.black, 0.1)} inset`,
-        left: 0,
-        position: isFullScreen ? 'fixed' : 'relative',
-        right: 0,
-        // ...(styleValue(toolbarProps, theme) as any),
+        '--mantine-color-dark-7': isFullScreen ? '0' : undefined,
+        '--mrt-bottom-toolbar-box-shadow-color': rgba(theme.black, 0.1),
+        '--mrt-bottom-toolbar-position': isFullScreen ? 'fixed' : 'relative',
+        ...(parseFromValuesOrFunc(toolbarProps, theme) as any),
       })}
       __vars={toolbarProps?.__vars}
     >

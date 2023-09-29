@@ -3,8 +3,8 @@ import { ActionIcon, Alert, Badge, Collapse, Flex, Stack } from '@mantine/core';
 import clsx from 'clsx';
 import { type MRT_TableInstance } from '../types';
 import { MRT_SelectCheckbox } from '../inputs';
-import { funcValue, styleValue } from '../funcValue';
 import classes from './MRT_ToolbarAlertBanner.module.css';
+import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends Record<string, any> = {}> {
   stackAlertBanner?: boolean;
@@ -101,7 +101,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           alertProps?.className,
         )}
         style={(theme) => ({
-          ...styleValue(alertProps, theme),
+          ...parseFromValuesOrFunc(alertProps, theme),
         })}
         __vars={alertProps?.__vars}
       >
