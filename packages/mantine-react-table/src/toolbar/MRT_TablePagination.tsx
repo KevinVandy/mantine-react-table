@@ -1,27 +1,12 @@
-import {
-  ActionIcon,
-  Flex,
-  type MantineStyleProp,
-  Pagination,
-  Select,
-  Text,
-} from '@mantine/core';
+import { ActionIcon, Flex, Pagination, Select, Text } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 import { funcValue } from '../funcValue';
+import classes from './MRT_TablePagination.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   position?: 'top' | 'bottom';
   table: MRT_TableInstance<TData>;
 }
-
-const commonActionButtonStyles: MantineStyleProp = {
-  userSelect: 'none',
-  // TODO: move to module
-  // '&:disabled': {
-  //   backgroundColor: 'transparent',
-  //   border: 'none',
-  // },
-};
 
 export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
   table,
@@ -62,6 +47,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
 
   return (
     <Flex
+      className={classes['paginator-container']}
       align="center"
       justify="space-between"
       gap="lg"
@@ -73,7 +59,6 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           : undefined
       }
       p="relative"
-      style={{ zIndex: 2 }}
     >
       {paginationProps?.showRowsPerPage !== false && (
         <Select
@@ -92,20 +77,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           label={localization.rowsPerPage}
           onChange={(value: string) => setPageSize(+value)}
           value={pageSize.toString()}
-          style={
-            {
-              // TODO: move to module
-              // '@media (min-width: 720px)': {
-              //   display: 'flex',
-              //   alignItems: 'center',
-              //   gap: '8px',
-              // },
-              // '& .mantine-Select-input': {
-              //   width: '80px',
-              // },
-            }
-          }
-          // withinPortal // TODO: doesn't exist anymore.
+          className={classes['paginator-select']}
         />
       )}
       {paginationDisplayMode === 'pages' ? (
@@ -133,7 +105,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
                 aria-label={localization.goToFirstPage}
                 disabled={pageIndex <= 0}
                 onClick={() => setPageIndex(0)}
-                style={commonActionButtonStyles}
+                className={classes['action-buttons']}
                 variant="transparent"
               >
                 <IconChevronLeftPipe />
@@ -143,7 +115,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
               aria-label={localization.goToPreviousPage}
               disabled={pageIndex <= 0}
               onClick={() => setPageIndex(pageIndex - 1)}
-              style={commonActionButtonStyles}
+              className={classes['action-buttons']}
               variant="transparent"
             >
               <IconChevronLeft />
@@ -152,7 +124,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
               aria-label={localization.goToNextPage}
               disabled={lastRowIndex >= totalRowCount}
               onClick={() => setPageIndex(pageIndex + 1)}
-              style={commonActionButtonStyles}
+              className={classes['action-buttons']}
               variant="transparent"
             >
               <IconChevronRight />
@@ -162,7 +134,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
                 aria-label={localization.goToLastPage}
                 disabled={lastRowIndex >= totalRowCount}
                 onClick={() => setPageIndex(numberOfPages - 1)}
-                style={commonActionButtonStyles}
+                className={classes['action-buttons']}
                 variant="transparent"
               >
                 <IconChevronRightPipe />

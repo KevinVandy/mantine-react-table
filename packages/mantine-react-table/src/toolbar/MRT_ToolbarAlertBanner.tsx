@@ -1,8 +1,10 @@
 import { Fragment } from 'react';
 import { ActionIcon, Alert, Badge, Collapse, Flex, Stack } from '@mantine/core';
+import clsx from 'clsx';
 import { type MRT_TableInstance } from '../types';
 import { MRT_SelectCheckbox } from '../inputs';
 import { funcValue, styleValue } from '../funcValue';
+import classes from './MRT_ToolbarAlertBanner.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   stackAlertBanner?: boolean;
@@ -83,23 +85,20 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
         color="blue"
         icon={false}
         {...alertProps}
+        className={clsx(
+          classes['alert'],
+          stackAlertBanner &&
+            !positionToolbarAlertBanner &&
+            classes['alert-stacked'],
+          !stackAlertBanner &&
+            positionToolbarAlertBanner &&
+            classes['alert-bottom'],
+          alertProps?.className,
+        )}
         style={(theme) => ({
-          borderRadius: 0,
-          fontSize: '16px',
-          left: 0,
-          position: 'relative',
-          marginBottom: stackAlertBanner
-            ? 0
-            : positionToolbarAlertBanner === 'bottom'
-            ? '-16px'
-            : undefined,
-          padding: '8px',
-          right: 0,
-          top: 0,
-          width: '100%',
-          zIndex: 2,
           ...styleValue(alertProps, theme),
         })}
+        __vars={alertProps?.__vars}
       >
         {renderToolbarAlertBannerContent?.({
           groupedAlert,
@@ -107,9 +106,9 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           table,
         }) ?? (
           <Flex
+            className={classes['toolbar-alert']}
             style={{
-              gap: '12px',
-              padding:
+              '--mrt-toolbar-alert-padding':
                 positionToolbarAlertBanner === 'head-overlay'
                   ? density === 'xl'
                     ? '16px'

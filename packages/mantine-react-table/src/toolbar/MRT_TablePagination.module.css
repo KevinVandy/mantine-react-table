@@ -1,0 +1,22 @@
+.paginator-container {
+  z-index: 2;
+}
+
+.paginator-select {
+  @media (min-width: 720px) {
+    display: flex;
+    align-items: center;
+    gap: rem(8px);
+  }
+  & .mantine-Select-input {
+    width: rem(80px);
+  }
+}
+
+.action-buttons {
+  user-select: none;
+  &:disabled {
+    background-color: transparent;
+    border: none;
+  }
+}

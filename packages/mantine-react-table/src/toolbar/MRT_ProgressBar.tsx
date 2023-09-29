@@ -1,6 +1,8 @@
 import { Collapse, Progress } from '@mantine/core';
+import clsx from 'clsx';
 import { type MRT_TableInstance } from '../types';
 import { funcValue } from '../funcValue';
+import classes from './MRT_ProgressBar.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   isTopToolbar: boolean;
@@ -25,12 +27,10 @@ export const MRT_ProgressBar = <TData extends Record<string, any> = {}>({
   return (
     <Collapse
       in={isSaving || showProgressBars}
-      style={{
-        bottom: isTopToolbar ? 0 : undefined,
-        position: 'absolute',
-        top: !isTopToolbar ? 0 : undefined,
-        width: '100%',
-      }}
+      className={clsx(
+        classes.collapse,
+        isTopToolbar && classes['collapse-top'],
+      )}
     >
       <Progress
         animated

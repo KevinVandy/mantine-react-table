@@ -1,6 +1,6 @@
-import { type CSSProperties } from 'react';
-import { Box, Flex, type MantineTheme } from '@mantine/core';
+import { Box, Flex } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import clsx from 'clsx';
 import { MRT_GlobalFilterTextInput } from '../inputs/MRT_GlobalFilterTextInput';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_TablePagination } from './MRT_TablePagination';
@@ -9,24 +9,8 @@ import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
 import { funcValue, styleValue } from '../funcValue';
-
-export const commonToolbarStyles = ({
-  theme,
-}: {
-  theme: MantineTheme;
-}): CSSProperties => ({
-  alignItems: 'flex-start',
-  backgroundColor: theme.colors.dark[7],
-  // TODO: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-  backgroundImage: 'none',
-  display: 'grid',
-  flexWrap: 'wrap-reverse',
-  minHeight: '3.5rem',
-  overflow: 'visible',
-  padding: '0',
-  transition: 'all 100ms ease-in-out',
-  zIndex: 3,
-});
+import classes from './MRT_TopToolbar.module.css';
+import commonClasses from './common.styles.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -63,6 +47,12 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
   return (
     <Box
       {...toolbarProps}
+      className={clsx(
+        commonClasses['common-toolbar-styles'],
+        classes['top-toolbar'],
+        isFullScreen && classes['top-toolbar-fullscreen'],
+        toolbarProps?.className,
+      )}
       ref={(node: HTMLDivElement) => {
         if (node) {
           topToolbarRef.current = node;
@@ -72,11 +62,9 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
         }
       }}
       style={(theme) => ({
-        position: isFullScreen ? 'sticky' : 'relative',
-        top: isFullScreen ? '0' : undefined,
-        ...commonToolbarStyles({ theme }),
         ...styleValue(toolbarProps, theme),
       })}
+      __vars={toolbarProps?.__vars}
     >
       {positionToolbarAlertBanner === 'top' && (
         <MRT_ToolbarAlertBanner
@@ -88,28 +76,17 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
         <MRT_ToolbarDropZone table={table} />
       )}
       <Flex
-        style={{
-          alignItems: 'flex-start',
-          boxSizing: 'border-box',
-          justifyContent: 'space-between',
-          padding: '8px',
-          position: stackAlertBanner ? 'relative' : 'absolute',
-          right: 0,
-          top: 0,
-          width: '100%',
-        }}
+        className={clsx(
+          classes['actions-container'],
+          stackAlertBanner && classes['actions-container-stack-alert'],
+        )}
       >
         {enableGlobalFilter && positionGlobalFilter === 'left' && (
           <MRT_GlobalFilterTextInput table={table} />
         )}
         {renderTopToolbarCustomActions?.({ table }) ?? <span />}
         {enableToolbarInternalActions ? (
-          <Flex
-            style={{
-              flexWrap: 'wrap-reverse',
-              justifyContent: 'flex-end',
-            }}
-          >
+          <Flex wrap={'wrap-reverse'} justify={'end'}>
             {enableGlobalFilter && positionGlobalFilter === 'right' && (
               <MRT_GlobalFilterTextInput table={table} />
             )}

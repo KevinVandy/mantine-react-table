@@ -1,0 +1,10 @@
+.dropzone-container {
+  align-items: center;
+  background-color: var(--mrt-dropzone-bg-color);
+  border: dashed var(--mantine-primary-color-filled) 2px;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+}

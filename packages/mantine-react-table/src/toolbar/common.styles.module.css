@@ -1,0 +1,12 @@
+.common-toolbar-styles {
+  align-items: flex-start;
+  background-color: var(--mantine-color-dark-7);
+  background-image: none;
+  display: grid;
+  flex-wrap: wrap-reverse;
+  min-height: 3.5rem;
+  overflow: visible;
+  padding: 0;
+  transition: all 100ms ease-in-out;
+  z-index: 3;
+}

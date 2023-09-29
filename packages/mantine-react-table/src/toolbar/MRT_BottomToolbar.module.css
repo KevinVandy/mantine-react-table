@@ -1,0 +1,33 @@
+.bottom-toolbar {
+  bottom: var(--mrt-bottom-toolbar-bottom);
+  box-shadow: 0 1px 2px -1px var(--mrt-bottom-toolbar-box-shadow-color) inset;
+  left: 0;
+  right: 0;
+  position: relative;
+}
+
+.bottom-toolbar-fullscreen {
+  position: fixed !important;
+  bottom: 0;
+}
+
+.custom-toolbar-container {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: rem(8px);
+  width: 100%;
+}
+
+.paginator-container {
+  display: flex;
+  justify-content: flex-end;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+.paginator-container-alert-banner {
+  position: relative !important;
+}
