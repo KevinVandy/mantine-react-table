@@ -135,14 +135,18 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     <Box
       component="tbody"
       {...tableBodyProps}
-      className={clsx('mrt-table-body', classes.root)}
+      className={clsx(
+        'mrt-table-body',
+        classes.root,
+        layoutMode === 'grid' && classes['root-grid'],
+        !rows.length && classes['root-no-rows'],
+        rowVirtualizer && classes['root-virtualized'],
+        tableBodyProps?.className,
+      )}
       __vars={{
-        '--mrt-table-body-display':
-          layoutMode === 'grid' ? 'grid' : undefined,
         '--mrt-table-body-height': rowVirtualizer
           ? `${rowVirtualizer.getTotalSize()}px`
-          : '',
-        '--mrt-table-body-min-height': !rows.length ? '100px' : undefined,
+          : undefined,
         ...tableBodyProps?.__vars,
       }}
     >
@@ -150,23 +154,25 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
         <MRT_TableBodyRow table={table} row={creatingRow} rowIndex={-1} />
       )}
       {!rows.length ? (
-        <tr style={{ display: layoutMode === 'grid' ? 'grid' : 'table-row' }}>
+        <tr
+          className={clsx(
+            'mrt-table-body-row',
+            layoutMode === 'grid' && classes['empty-row-tr-grid'],
+          )}
+        >
           <td
             colSpan={table.getVisibleLeafColumns().length}
-            style={{ display: layoutMode === 'grid' ? 'grid' : 'table-cell' }}
+            className={clsx(
+              'mrt-table-body-cell',
+              layoutMode === 'grid' && classes['empty-row-td-grid'],
+            )}
           >
             {renderEmptyRowsFallback?.({ table }) ?? (
               <Text
-                style={{
-                  color: 'gray',
-                  fontStyle: 'italic',
-                  maxWidth: `min(100vw, ${
-                    tablePaperRef.current?.clientWidth ?? 360
-                  }px)`,
-                  paddingTop: '2rem',
-                  paddingBottom: '2rem',
-                  textAlign: 'center',
-                  width: '100%',
+                className={clsx(classes['empty-row-td-content'])}
+                __vars={{
+                  '--mrt-paper-width':
+                    tablePaperRef.current?.clientWidth.toString(),
                 }}
               >
                 {globalFilter || columnFilters.length

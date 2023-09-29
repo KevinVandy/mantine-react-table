@@ -1,6 +1,33 @@
 .root {
-  display: var(--mrt-table-body-display);
-  height: var(--mrt-table-body-height);
-  minheight: var(--mrt-table-body-minHeight);
   position: relative;
+}
+
+.root-grid {
+  display: grid;
+}
+
+.root-no-rows {
+  min-height: 100px;
+}
+
+.root-virtualized {
+  height: var(--mrt-table-body-height);
+}
+
+.empty-row-tr-grid {
+  display: grid;
+}
+
+.empty-row-td-grid {
+  display: grid;
+}
+
+.empty-row-td-content {
+  color: var(--mantine-color-gray);
+  font-style: italic;
+  max-width: min(100vw, var(--mrt-paper-width)px);
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  text-align: center;
+  width: 100%;
 }
