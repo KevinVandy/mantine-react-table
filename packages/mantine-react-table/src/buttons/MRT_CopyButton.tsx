@@ -18,7 +18,10 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
   table,
 }: Props<TData>) => {
   const {
-    options: { localization, mantineCopyButtonProps },
+    options: {
+      localization: { copiedToClipboard, clickToCopy },
+      mantineCopyButtonProps,
+    },
   } = table;
   const { column, row } = cell;
   const { columnDef } = column;
@@ -37,15 +40,14 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
           withinPortal
           openDelay={1000}
           label={
-            buttonProps?.title ??
-            (copied ? localization.copiedToClipboard : localization.clickToCopy)
+            buttonProps?.title ?? (copied ? copiedToClipboard : clickToCopy)
           }
         >
           <UnstyledButton
             {...buttonProps}
             className={clsx(
               'mrt-copy-button',
-              classes.button,
+              classes.root,
               buttonProps?.className,
             )}
             style={(theme) => ({
