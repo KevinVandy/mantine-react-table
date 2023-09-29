@@ -1,18 +1,20 @@
+import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 import { Button, Divider, Flex, Menu } from '@mantine/core';
+
 import { MRT_ShowHideColumnsMenuItems } from './MRT_ShowHideColumnsMenuItems';
 import { getDefaultColumnOrderIds } from '../column.utils';
 import { type MRT_Column, type MRT_TableInstance } from '../types';
 
+import classes from './MRT_ShowHideColumnsMenu.module.css';
+
 interface Props<TData extends Record<string, any> = {}> {
-  isSubMenu?: boolean;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_ShowHideColumnsMenu = <
   TData extends Record<string, any> = {},
 >({
-  isSubMenu,
   table,
 }: Props<TData>) => {
   const {
@@ -70,20 +72,9 @@ export const MRT_ShowHideColumnsMenu = <
   );
 
   return (
-    <Menu.Dropdown
-      style={{
-        maxHeight: 'calc(80vh - 100px)',
-        overflowY: 'auto',
-      }}
-    >
-      <Flex
-        style={{
-          justifyContent: isSubMenu ? 'center' : 'space-between',
-          padding: '8px',
-          gap: '8px',
-        }}
-      >
-        {!isSubMenu && enableHiding && (
+    <Menu.Dropdown className={clsx('mrt-show-hide-columns-menu', classes.root)}>
+      <Flex className={clsx(classes.content)}>
+        {enableHiding && (
           <Button
             disabled={!getIsSomeColumnsVisible()}
             onClick={hideAllColumns}
@@ -92,7 +83,7 @@ export const MRT_ShowHideColumnsMenu = <
             {localization.hideAll}
           </Button>
         )}
-        {!isSubMenu && enableColumnOrdering && (
+        {enableColumnOrdering && (
           <Button
             onClick={() =>
               table.setColumnOrder(
@@ -104,7 +95,7 @@ export const MRT_ShowHideColumnsMenu = <
             {localization.resetOrder}
           </Button>
         )}
-        {!isSubMenu && enablePinning && (
+        {enablePinning && (
           <Button
             disabled={!getIsSomeColumnsPinned()}
             onClick={() => table.resetColumnPinning(true)}
@@ -129,7 +120,6 @@ export const MRT_ShowHideColumnsMenu = <
           allColumns={allColumns}
           column={column}
           hoveredColumn={hoveredColumn}
-          isSubMenu={isSubMenu}
           key={`${index}-${column.id}`}
           setHoveredColumn={setHoveredColumn}
           table={table}
