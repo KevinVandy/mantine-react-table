@@ -38,10 +38,11 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
       component="tfoot"
       {...tableFooterProps}
       className={clsx(
-        stickFooter && classes.MRT_TableFooterSticky,
-        layoutMode === 'grid'
-          ? classes.MRT_TableFooterGrid
-          : classes.MRT_TableFooterTableRowGroup,
+        'mrt-table-footer',
+        classes.root,
+        tableFooterProps?.className,
+        stickFooter && classes.sticky,
+        layoutMode === 'grid' && classes.grid,
       )}
       // style={(theme) => ({
       //   ...styleValue(tableFooterProps, theme),
