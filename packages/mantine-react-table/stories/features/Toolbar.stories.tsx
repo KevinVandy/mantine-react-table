@@ -126,7 +126,7 @@ export const CustomTopToolbarActions = () => (
       return (
         <div>
           <Tooltip label="Create New User">
-            <ActionIcon onClick={handleCreateNewUser}>
+            <ActionIcon onClick={handleCreateNewUser} variant={'default'}>
               <IconPlus />
             </ActionIcon>
           </Tooltip>
