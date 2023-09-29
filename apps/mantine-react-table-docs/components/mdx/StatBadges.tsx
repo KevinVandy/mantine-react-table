@@ -54,7 +54,7 @@ export const StatBadges = () => {
         />
       </a>
       <a
-        href="https://github.com/KevinVandy/mantine-react-table/blob/main/LICENSE"
+        href="https://github.com/KevinVandy/mantine-react-table/blob/v1/LICENSE"
         target="_blank"
         rel="noopener"
       >

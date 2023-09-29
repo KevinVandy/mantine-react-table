@@ -124,7 +124,7 @@ export const SourceCodeSnippet = ({
                   }}
                 >
                   <a
-                    href={`https://stackblitz.com/github/KevinVandy/mantine-react-table/tree/main/apps/mantine-react-table-docs/examples/${tableId}/sandbox?file=src/TS.tsx`}
+                    href={`https://stackblitz.com/github/KevinVandy/mantine-react-table/tree/v1/apps/mantine-react-table-docs/examples/${tableId}/sandbox?file=src/TS.tsx`}
                     rel="noopener"
                     target="_blank"
                   >
@@ -139,7 +139,7 @@ export const SourceCodeSnippet = ({
                     </Button>
                   </a>
                   <a
-                    href={`https://codesandbox.io/s/github/KevinVandy/mantine-react-table/tree/main/apps/mantine-react-table-docs/examples/${tableId}/sandbox?file=/src/TS.tsx`}
+                    href={`https://codesandbox.io/s/github/KevinVandy/mantine-react-table/tree/v1/apps/mantine-react-table-docs/examples/${tableId}/sandbox?file=/src/TS.tsx`}
                     rel="noopener"
                     target="_blank"
                   >
@@ -154,7 +154,7 @@ export const SourceCodeSnippet = ({
                     </Button>
                   </a>
                   <a
-                    href={`https://github.com/KevinVandy/mantine-react-table/tree/main/apps/mantine-react-table-docs/examples/${tableId}/sandbox/src/${
+                    href={`https://github.com/KevinVandy/mantine-react-table/tree/v1/apps/mantine-react-table-docs/examples/${tableId}/sandbox/src/${
                       defaultTS ? 'TS.tsx' : 'JS.js'
                     }`}
                     rel="noopener"
