@@ -16,7 +16,7 @@ export function MRT_ActionIcon({
 }: Props) {
   return (
     <ActionIcon
-      className={clsx(className, classes.ai)}
+      className={clsx(className, classes.root)}
       size="sm"
       {...actionIconProps}
     >
