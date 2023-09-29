@@ -1,11 +1,13 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    // "plugin:perfectionist/recommended-natural"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    // "perfectionist"
   ],
   "rules": {
     "no-duplicate-imports": "warn",
@@ -20,7 +22,40 @@
         "disallowTypeAnnotations": true,
         "fixStyle": "inline-type-imports"
       }
-    ]
+    ],
+    // "perfectionist/sort-imports": [
+    //   "error",
+    //   {
+    //     "type": "natural",
+    //     "order": "asc",
+    //     "groups": [
+    //       "react",
+    //       "clsx",
+    //       "tanstack",
+    //       "mantine",
+    //       "siblings",
+    //       "sibling-type",
+    //       "parent",
+    //       "parent-type",
+    //       "style"
+    //     ],
+    //     "custom-groups": {
+    //       "value": {
+    //         "react": [
+    //           "react",
+    //           "react-*"
+    //         ],
+    //         "clsx": "clsx",
+    //         "tanstack": "@tanstack/**",
+    //         "mantine": "@mantine/**"
+    //       },
+    //       "type": {
+    //         "react": "react"
+    //       }
+    //     },
+    //     "newlines-between": "never"
+    //   }
+    // ]
   },
   "root": true,
   "ignorePatterns": [

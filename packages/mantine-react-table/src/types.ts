@@ -89,7 +89,9 @@ export type HTMLPropsRef<T extends HTMLElement> = Omit<
 
 export type MantineShade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
-export type ColumnAlignment = { align?: 'left' | 'center' | 'right' };
+export type ColumnAlignment = {
+  align?: 'left' | 'center' | 'right';
+};
 
 export type MRT_PaginationProps = Partial<PaginationProps> & {
   rowsPerPageOptions?: string[];
@@ -151,9 +153,10 @@ export interface MRT_Localization {
   filterFuzzy: string;
   filterGreaterThan: string;
   filterGreaterThanOrEqualTo: string;
-  filterInNumberRange: string;
   filterIncludesString: string;
   filterIncludesStringSensitive: string;
+  filteringByColumn: string;
+  filterInNumberRange: string;
   filterLessThan: string;
   filterLessThanOrEqualTo: string;
   filterMode: string;
@@ -161,7 +164,6 @@ export interface MRT_Localization {
   filterNotEquals: string;
   filterStartsWith: string;
   filterWeakEquals: string;
-  filteringByColumn: string;
   goToFirstPage: string;
   goToLastPage: string;
   goToNextPage: string;
@@ -642,10 +644,10 @@ export type MRT_FilterFn<TData extends Record<string, any> = {}> =
   | MRT_FilterOption;
 
 export type MRT_InternalFilterOption = {
+  divider: boolean;
+  label: string;
   option: string;
   symbol: string;
-  label: string;
-  divider: boolean;
 };
 
 export type MRT_DisplayColumnIds =
@@ -696,12 +698,6 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
    * @link https://www.mantine-react-table.com/docs/api/column-options
    */
   columns: MRT_ColumnDef<TData>[];
-  /**
-   * Pass your data as an array of objects. Objects can theoretically be any shape, but it's best to keep them consistent.
-   *
-   * See the usage guide for more info on creating columns and data:
-   * @link https://www.mantine-react-table.com/docs/getting-started/usage
-   */
   columnVirtualizerInstanceRef?: MutableRefObject<Virtualizer<
     HTMLDivElement,
     HTMLTableCellElement
@@ -711,6 +707,12 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
     | ((props: {
         table: MRT_TableInstance<TData>;
       }) => Partial<VirtualizerOptions<HTMLDivElement, HTMLTableCellElement>>);
+  /**
+   * Pass your data as an array of objects. Objects can theoretically be any shape, but it's best to keep them consistent.
+   *
+   * See the usage guide for more info on creating columns and data:
+   * @link https://www.mantine-react-table.com/docs/getting-started/usage
+   */
   data: TData[];
   /**
    * Instead of specifying a bunch of the same options for each column, you can just change an option in the `defaultColumn` prop to change a default option for all columns.
