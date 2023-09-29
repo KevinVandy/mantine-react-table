@@ -26,7 +26,6 @@ interface Props<TData extends Record<string, any> = {}> {
   allColumns: MRT_Column<TData>[];
   column: MRT_Column<TData>;
   hoveredColumn: MRT_Column<TData> | null;
-  isSubMenu?: boolean;
   setHoveredColumn: Dispatch<SetStateAction<MRT_Column<TData> | null>>;
   table: MRT_TableInstance<TData>;
 }
@@ -38,7 +37,6 @@ export const MRT_ShowHideColumnsMenuItems = <
   hoveredColumn,
   setHoveredColumn,
   column,
-  isSubMenu,
   table,
 }: Props<TData>) => {
   const theme = useMantineTheme();
@@ -112,8 +110,7 @@ export const MRT_ShowHideColumnsMenuItems = <
         )}
       >
         <Box className={classes.menu}>
-          {!isSubMenu &&
-            columnDefType !== 'group' &&
+          {columnDefType !== 'group' &&
             enableColumnOrdering &&
             !allColumns.some(
               (col) => col.columnDef.columnDefType === 'group',
@@ -127,8 +124,7 @@ export const MRT_ShowHideColumnsMenuItems = <
             ) : (
               <Box className={classes.grab} />
             ))}
-          {!isSubMenu &&
-            enablePinning &&
+          {enablePinning &&
             (column.getCanPin() ? (
               <MRT_ColumnPinningButtons column={column} table={table} />
             ) : (
@@ -142,7 +138,7 @@ export const MRT_ShowHideColumnsMenuItems = <
             >
               <Switch
                 checked={switchChecked}
-                disabled={(isSubMenu && switchChecked) || !column.getCanHide()}
+                disabled={!column.getCanHide()}
                 label={columnDef.header}
                 onChange={() => handleToggleColumnHidden(column)}
                 className={classes.switch}
@@ -158,7 +154,6 @@ export const MRT_ShowHideColumnsMenuItems = <
           allColumns={allColumns}
           column={c}
           hoveredColumn={hoveredColumn}
-          isSubMenu={isSubMenu}
           key={`${i}-${c.id}`}
           setHoveredColumn={setHoveredColumn}
           table={table}

@@ -1,5 +1,5 @@
 import { Fragment, useMemo } from 'react';
-import { Flex, Menu } from '@mantine/core';
+import { Menu } from '@mantine/core';
 import {
   type MRT_FilterOption,
   type MRT_Header,
@@ -7,6 +7,8 @@ import {
   type MRT_Localization,
   type MRT_TableInstance,
 } from '../types';
+
+import classes from './MRT_FilterOptionMenu.module.css';
 
 export const mrtFilterOptions = (
   localization: MRT_Localization,
@@ -246,28 +248,10 @@ export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
                   handleSelectFilterMode(option as MRT_FilterOption)
                 }
                 color={option === filterOption ? 'blue' : undefined}
-                style={
-                  {
-                    // TODO: move to module
-                    // '& > .mantine-Menu-itemLabel': {
-                    //   display: 'flex',
-                    //   flexWrap: 'nowrap',
-                    //   gap: '1ch',
-                    // },
-                  }
-                }
                 value={option}
+                leftSection={<span className={classes.symbol}>{symbol}</span>}
               >
-                <Flex
-                  style={{
-                    fontSize: '20px',
-                    transform: 'translateY(-2px)',
-                    width: '2ch',
-                  }}
-                >
-                  {symbol}
-                </Flex>
-                <Flex align="center">{label}</Flex>
+                {label}
               </Menu.Item>
               {divider && <Menu.Divider />}
             </Fragment>
