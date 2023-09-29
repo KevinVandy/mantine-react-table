@@ -70,8 +70,8 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
       className={clsx(
         'mrt-table-container',
         classes.root,
-        enableStickyHeader && classes['root--sticky'],
-        isFullScreen && classes['root--fullscreen'],
+        enableStickyHeader && classes['root-sticky'],
+        isFullScreen && classes['root-fullscreen'],
         tableContainerProps?.className,
       )}
       ref={(node: HTMLDivElement) => {

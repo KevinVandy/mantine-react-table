@@ -11,7 +11,7 @@
 }
 
 .root-virtualized {
-  height: var(--mrt-table-body-height);
+  height: calc(var(--mrt-table-body-height) * 1px);
 }
 
 .empty-row-tr-grid {
@@ -25,7 +25,7 @@
 .empty-row-td-content {
   color: var(--mantine-color-gray-3);
   font-style: italic;
-  max-width: min(100vw, var(--mrt-paper-width)px);
+  max-width: min(100vw, calc(var(--mrt-paper-width) * 1px));
   padding-bottom: 2rem;
   padding-top: 2rem;
   text-align: center;

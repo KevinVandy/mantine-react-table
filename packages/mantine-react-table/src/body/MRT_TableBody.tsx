@@ -146,7 +146,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
       )}
       __vars={{
         '--mrt-table-body-height': rowVirtualizer
-          ? `${rowVirtualizer.getTotalSize()}px`
+          ? `${rowVirtualizer.getTotalSize()}`
           : undefined,
         ...tableBodyProps?.__vars,
       }}
@@ -172,8 +172,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
               <Text
                 className={clsx(classes['empty-row-td-content'])}
                 __vars={{
-                  '--mrt-paper-width':
-                    tablePaperRef.current?.clientWidth.toString(),
+                  '--mrt-paper-width': `${tablePaperRef.current?.clientWidth}`,
                 }}
               >
                 {globalFilter || columnFilters.length

@@ -151,6 +151,7 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
         enableColumnResizing &&
           layoutMode !== 'grid' &&
           classes['root-semantic-not-resizing'],
+        tableProps?.className,
       )}
       highlightOnHover
       horizontalSpacing={density}

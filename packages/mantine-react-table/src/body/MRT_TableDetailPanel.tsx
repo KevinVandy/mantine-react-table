@@ -62,7 +62,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
           : undefined,
         width: '100%',
         zIndex: virtualRow ? 2 : undefined,
-        ...parseFromValuesOrFunc(tableRowProps?.style, theme) as any,
+        ...(parseFromValuesOrFunc(tableRowProps?.style, theme) as any),
       })}
     >
       <Box
@@ -82,7 +82,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
           paddingTop: row.getIsExpanded() ? '16px !important' : '0 !important',
           transition: 'all 100ms ease-in-out',
           width: `${table.getTotalSize()}px`,
-          ...parseFromValuesOrFunc(tableCellProps?.style, theme) as any,
+          ...(parseFromValuesOrFunc(tableCellProps?.style, theme) as any),
         })}
       >
         {renderDetailPanel && (
