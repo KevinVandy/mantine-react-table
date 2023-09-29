@@ -4,6 +4,8 @@ import { MRT_Table } from './MRT_Table';
 import { MRT_EditRowModal } from '../modals';
 import { type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+import clsx from 'clsx';
+import classes from './MRT_TableContainer.module.css';
 
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
@@ -65,6 +67,13 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
   return (
     <Box
       {...tableContainerProps}
+      className={clsx(
+        'mrt-table-container',
+        classes.root,
+        enableStickyHeader && classes['root--sticky'],
+        isFullScreen && classes['root--fullscreen'],
+        tableContainerProps?.className,
+      )}
       ref={(node: HTMLDivElement) => {
         if (node) {
           tableContainerRef.current = node;
@@ -74,17 +83,10 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      style={(theme) => ({
-        maxWidth: '100%',
-        maxHeight: enableStickyHeader
-          ? `clamp(350px, calc(100vh - ${totalToolbarHeight}px), 9999px)`
-          : isFullScreen
-          ? `calc(100vh - ${totalToolbarHeight}px)`
-          : undefined,
-        overflow: 'auto',
-        position: 'relative',
-        // ...styleValue(tableContainerProps, theme),
-      })}
+      __vars={{
+        '--mrt-top-toolbar-height': `${totalToolbarHeight}`,
+        ...tableContainerProps?.__vars,
+      }}
     >
       <LoadingOverlay
         visible={isLoading || showLoadingOverlay}

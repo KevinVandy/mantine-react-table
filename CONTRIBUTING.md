@@ -64,7 +64,7 @@ pnpm lib:build
 ```tsx
 className={clsx('mrt-table-body', classes.root, tableBodyProps.className)}`
 ```
-7. When assigning `__vars`, don't forget to spread `...mantine*Props.__vars` in order to allow for external variables to be passed in and merged with internal variables. For example
+7. When assigning `__vars` or `styles`, don't forget to spread `...mantine*Props.__vars` in order to allow for external variables to be passed in and merged with internal variables. For example
 ```tsx
 __vars={{
   '--mrt-table-body-cell-padding': '10px',

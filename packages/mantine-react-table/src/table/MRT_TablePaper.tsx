@@ -5,6 +5,9 @@ import { MRT_TableContainer } from './MRT_TableContainer';
 import { type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
+import classes from './MRT_TablePaper.module.css';
+import clsx from 'clsx';
+
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
@@ -32,15 +35,19 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
       shadow="xs"
       withBorder
       {...tablePaperProps}
+      className={clsx(
+        'mrt-table-paper',
+        classes.root,
+        tablePaperProps?.className,
+      )}
       ref={(ref: HTMLDivElement) => {
         tablePaperRef.current = ref;
         if (tablePaperProps?.ref) {
           tablePaperProps.ref.current = ref;
         }
       }}
+      //rare case where we should use inline styles to guarantee highest specificity
       style={(theme) => ({
-        overflow: 'hidden',
-        transition: 'all 100ms ease-in-out',
         ...(isFullScreen
           ? {
               bottom: 0,
@@ -57,7 +64,7 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
               zIndex: 100,
             }
           : null),
-        // ...styleValue(tablePaperProps, theme),
+        ...(parseFromValuesOrFunc(tablePaperProps?.style, theme) as any),
       })}
     >
       {enableTopToolbar &&
