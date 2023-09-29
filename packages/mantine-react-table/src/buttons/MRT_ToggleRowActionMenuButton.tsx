@@ -1,11 +1,11 @@
 import { type MouseEvent } from 'react';
-import { ActionIcon, Tooltip } from '@mantine/core';
+import { Tooltip } from '@mantine/core';
 import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
 import { MRT_EditActionButtons } from './MRT_EditActionButtons';
 import { type MRT_Cell, type MRT_Row, type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
-import classes from './MRT_ToggleRowActionMenuButton.module.css';
+import { MRT_ActionIcon } from './MRT_ActionIcon';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
@@ -27,7 +27,7 @@ export const MRT_ToggleRowActionMenuButton = <
       editDisplayMode,
       enableEditing,
       icons: { IconEdit },
-      localization,
+      localization: { edit },
       renderRowActionMenuItems,
       renderRowActions,
     },
@@ -56,17 +56,15 @@ export const MRT_ToggleRowActionMenuButton = <
         <MRT_EditActionButtons row={row} table={table} />
       ) : !renderRowActionMenuItems &&
         parseFromValuesOrFunc(enableEditing, row) ? (
-        <Tooltip withinPortal position="right" label={localization.edit}>
-          <ActionIcon
-            aria-label={localization.edit}
-            className={classes.MRT_ToggleRowActionMenuButton}
-            color="gray"
+        <Tooltip withinPortal position="right" label={edit}>
+          <MRT_ActionIcon
+            aria-label={edit}
             disabled={!!editingRow && editingRow.id !== row.id}
             onClick={handleStartEditMode}
-            variant="transparent"
+            size="md"
           >
             <IconEdit />
-          </ActionIcon>
+          </MRT_ActionIcon>
         </Tooltip>
       ) : renderRowActionMenuItems ? (
         <MRT_RowActionMenu

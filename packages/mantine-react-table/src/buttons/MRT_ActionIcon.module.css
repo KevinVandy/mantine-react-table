@@ -9,4 +9,8 @@
       var(--mantine-color-dark-6)
     );
   }
+  &:disabled {
+    background-color: transparent;
+    border: none;
+  }
 }
