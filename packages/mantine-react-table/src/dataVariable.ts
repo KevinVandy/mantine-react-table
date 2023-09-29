@@ -5,7 +5,7 @@ export function dataVariable(
   const key = `data-${name}`;
   switch (typeof value) {
     case 'boolean':
-      return { [key]: '' };
+      return value ? { [key]: '' } : null;
     case 'number':
       return { [key]: `${value}` };
     case 'string':
