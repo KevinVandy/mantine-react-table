@@ -1,6 +1,9 @@
+import clsx from 'clsx';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+
+import classes from './MRT_ExpandAllButton.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -43,23 +46,20 @@ export const MRT_ExpandAllButton = <TData extends Record<string, any> = {}>({
       <ActionIcon
         aria-label={localization.expandAll}
         color="gray"
-        disabled={isLoading || (!renderDetailPanel && !getCanSomeRowsExpand())}
-        onClick={() => toggleAllRowsExpanded(!isAllRowsExpanded)}
         variant="transparent"
         {...actionIconProps}
-        style={(theme) => ({
-          marginLeft:
-            density === 'xl' ? '-6px' : density === 'md' ? '0' : '6px',
-          opacity: 0.8,
-          '&:disabled': {
-            backgroundColor: 'transparent',
-            border: 'none',
-          },
-          '&:hover': {
-            opacity: 1,
-          },
-          // ...styleValue(actionIconProps, theme),
-        })}
+        disabled={isLoading || (!renderDetailPanel && !getCanSomeRowsExpand())}
+        onClick={() => toggleAllRowsExpanded(!isAllRowsExpanded)}
+        className={clsx(
+          'mrt-expand-all-button',
+          classes.root,
+          actionIconProps?.className,
+          density === 'xl'
+            ? classes.xl
+            : density === 'md'
+            ? classes.md
+            : undefined,
+        )}
         title={undefined}
       >
         {actionIconProps?.children ?? (

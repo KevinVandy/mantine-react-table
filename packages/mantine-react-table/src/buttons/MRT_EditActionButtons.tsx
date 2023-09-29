@@ -1,5 +1,8 @@
+import clsx from 'clsx';
 import { ActionIcon, Box, Button, Tooltip } from '@mantine/core';
 import { type MRT_Row, type MRT_TableInstance } from '../types';
+
+import classes from './MRT_EditActionButtons.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   row: MRT_Row<TData>;
@@ -75,7 +78,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
   return (
     <Box
       onClick={(e) => e.stopPropagation()}
-      style={{ display: 'flex', gap: '12px' }}
+      className={clsx('mrt-edit-action-buttons', classes.root)}
     >
       {variant === 'icon' ? (
         <>
@@ -84,7 +87,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
               color="red"
               aria-label={localization.cancel}
               onClick={handleCancel}
-              variant="transparent"
+              variant="subtle"
             >
               <IconCircleX />
             </ActionIcon>
@@ -95,7 +98,7 @@ export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
               color="blue"
               onClick={handleSubmitRow}
               loading={isSaving}
-              variant="transparent"
+              variant="subtle"
             >
               <IconDeviceFloppy />
             </ActionIcon>

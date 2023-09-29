@@ -1,0 +1,17 @@
+.root {
+  marginleft: 6px;
+  opacity: 0.8;
+  &:disabled {
+    backgroundcolor: transparent;
+    border: none;
+  }
+  &:hover {
+    opacity: 1;
+  }
+}
+.xl {
+  margin-left: -6px;
+}
+.md {
+  margin-left: 0;
+}

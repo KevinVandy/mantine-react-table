@@ -1,7 +1,10 @@
+import clsx from 'clsx';
 import { type ReactNode } from 'react';
-import { UnstyledButton, CopyButton, Tooltip, rgba } from '@mantine/core';
+import { UnstyledButton, CopyButton, Tooltip } from '@mantine/core';
 import { type MRT_Cell, type MRT_TableInstance } from '../types';
-import { getPrimaryColor, parseFromValuesOrFunc } from '../column.utils';
+import { parseFromValuesOrFunc } from '../column.utils';
+
+import classes from './MRT_CopyButton.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   cell: MRT_Cell<TData>;
@@ -40,35 +43,20 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
         >
           <UnstyledButton
             {...buttonProps}
+            className={clsx(
+              'mrt-copy-button',
+              classes.button,
+              buttonProps?.className,
+            )}
+            style={(theme) => ({
+              ...(parseFromValuesOrFunc(buttonProps?.style, theme) as any),
+            })}
+            title={undefined}
+            aria-role="presentation"
             onClick={(e) => {
               e.stopPropagation();
               copy();
             }}
-            style={(theme) => ({
-              backgroundColor: 'transparent',
-              border: 'none',
-              borderRadius: '4px',
-              color: 'inherit',
-              cursor: 'copy',
-              fontFamily: 'inherit',
-              fontSize: 'inherit',
-              fontWeight: 'inherit',
-              justifyContent: 'inherit',
-              letterSpacing: 'inherit',
-              margin: '-4px',
-              minWidth: 'unset',
-              padding: '4px',
-              textAlign: 'inherit',
-              textTransform: 'inherit',
-              '&:active': {
-                transform: 'translateY(1px)',
-              },
-              '&:hover': {
-                backgroundColor: rgba(getPrimaryColor(theme), 0.1),
-              },
-              ...(parseFromValuesOrFunc(buttonProps?.style, theme) as any),
-            })}
-            title={undefined}
           >
             {children}
           </UnstyledButton>
