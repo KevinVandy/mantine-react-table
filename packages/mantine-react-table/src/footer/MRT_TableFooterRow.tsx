@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, Table, TableTr } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
 import {
@@ -47,8 +47,7 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
   });
 
   return (
-    <Box
-      component="tr"
+    <TableTr
       className={clsx(
         classes.MRT_TableFooterRow,
         layoutMode === 'grid'
@@ -75,6 +74,6 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
       {virtualPaddingRight ? (
         <th style={{ display: 'flex', width: virtualPaddingRight }} />
       ) : null}
-    </Box>
+    </TableTr>
   );
 };

@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, Table, TableTfoot } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
@@ -34,8 +34,7 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
     (isFullScreen || enableStickyFooter) && enableStickyFooter !== false;
 
   return (
-    <Box
-      component="tfoot"
+    <TableTfoot
       {...tableFooterProps}
       className={clsx(
         'mrt-table-footer',
@@ -58,6 +57,6 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
           virtualPaddingRight={virtualPaddingRight}
         />
       ))}
-    </Box>
+    </TableTfoot>
   );
 };

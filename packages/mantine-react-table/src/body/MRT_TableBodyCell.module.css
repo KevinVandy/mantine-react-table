@@ -1,17 +1,102 @@
-.MRT_TableBodyCell {
-  align-items: var(--align-items);
-  cursor: var(--cursor);
-  justify-content: var(--align);
+.root {
+  background-clip: padding-box;
   overflow: hidden;
-  padding-left: var(--padding-left);
-  white-space: var(--white-space);
-  z-index: var(--z-index);
-  :is([data-columndef="data"], [data-columndef="group"]) {
-    text-overflow: ellipsis;
-  }
+  transition: padding 100ms ease-in-out;
   @mixin hover {
-    outline: var(--outline);
     outline-offset: -1px;
     text-overflow: clip;
   }
+}
+
+.root-default-background {
+  @mixin light {
+    background-color: var(--mantine-color-white);
+  }
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
+}
+
+.root-inherit-background-color {
+  background-color: inherit;
+}
+
+.root-grid {
+  align-items: center;
+  justify-content: var(--mrt-table-cell-justify, flex-start);
+  display: flex;
+}
+
+.root-data-col {
+  text-overflow: ellipsis;
+}
+
+.root-nowrap {
+  white-space: nowrap;
+}
+
+.root-cursor-pointer {
+  cursor: pointer;
+}
+
+.root-editable-hover {
+  @mixin hover {
+    outline: 1px solid var(--mantine-color-gray-7);
+  }
+}
+
+.root-virtualized {
+  transition: none;
+}
+
+.root-pinned-color {
+  @mixin light {
+    background-color: var(--mantine-color-white);
+  }
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
+}
+
+.root-pinned {
+  z-index: 1;
+  position: sticky;
+}
+
+.root-pinned-left {
+  left: calc(var(--mrt-table-cell-left, 0) * 1px);
+}
+
+.root-pinned-right {
+  right: calc(var(--mrt-table-cell-right, 0) * 1px);
+}
+
+.root-pinned-left-last {
+  @mixin light {
+    box-shadow: -4px 0 8px -6px var(--mantine-color-gray-outline) inset;
+  }
+  @mixin dark {
+    box-shadow: -4px 0 8px -6px var(--mantine-color-dark-outline) inset;
+  }
+}
+
+.root-pinned-right-first {
+  @mixin light {
+    box-shadow: 4px 0 8px -6px var(--mantine-color-gray-outline) inset;
+  }
+  @mixin dark {
+    box-shadow: 4px 0 8px -6px var(--mantine-color-dark-outline) inset;
+  }
+}
+
+.root-expand-depth {
+  padding-left: calc(calc(var(--mrt-row-depth, 0) + 1) * 1rem);
+}
+
+.root-opacity {
+  opacity: 0.5;
+}
+
+.root-dragging {
+  z-index: 2;
 }

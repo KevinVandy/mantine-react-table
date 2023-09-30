@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, Table, TableThead } from '@mantine/core';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import { MRT_ToolbarAlertBanner } from '../toolbar';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
@@ -37,8 +37,7 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
   const stickyHeader = enableStickyHeader || isFullScreen;
 
   return (
-    <Box
-      component="thead"
+    <TableThead
       {...tableHeadProps}
       style={(theme) => ({
         display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
@@ -75,6 +74,6 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
         ))
       )}
       {}
-    </Box>
+    </TableThead>
   );
 };

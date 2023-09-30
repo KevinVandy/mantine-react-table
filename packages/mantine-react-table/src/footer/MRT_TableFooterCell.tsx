@@ -1,6 +1,6 @@
-import { Box, useMantineTheme } from '@mantine/core';
+import { Box, Table, TableTh, useMantineTheme } from '@mantine/core';
 import clsx from 'clsx';
-import { getCommonCellStyles, parseFromValuesOrFunc } from '../column.utils';
+import {  parseFromValuesOrFunc } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
 import classes from './MRT_TableFooterCell.module.css';
@@ -28,12 +28,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
     ...parseFromValuesOrFunc(columnDef.mantineTableFooterCellProps, arg),
   };
 
-  const { className: commonClassName, style } = getCommonCellStyles({
-    column,
-    table,
-    theme,
-    tableCellProps,
-  });
+
 
   const footerProps = footer.isPlaceholder
     ? null
@@ -44,24 +39,22 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
       });
 
   return (
-    <Box
-      component="th"
+    <TableTh
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={footer.colSpan}
       data-selected={'false'}
       data-ispinned={column?.getIsPinned() ?? 'false'}
       data-columndef={columnDefType}
       {...tableCellProps}
-      className={clsx(commonClassName, classes.MRT_TableFooterCell, className)}
+      className={clsx( classes.MRT_TableFooterCell, className)}
       __vars={{
         '--z-index':
           column.getIsPinned() && columnDefType !== 'group' ? '2' : '1',
         '--display': layoutMode === 'grid' ? 'grid' : 'table-cell',
         ...tableCellProps.__vars,
       }}
-      style={style}
     >
       <>{footerProps}</>
-    </Box>
+    </TableTh>
   );
 };

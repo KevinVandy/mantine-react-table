@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { TableTr } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import {
@@ -40,8 +40,7 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
   const stickyHeader = enableStickyHeader || isFullScreen;
 
   return (
-    <Box
-      component="tr"
+    <TableTr
       {...tableRowProps}
       className={clsx(
         classes.MRT_TableHeadRow,
@@ -69,6 +68,6 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
       {virtualPaddingRight ? (
         <th style={{ display: 'flex', width: virtualPaddingRight }} />
       ) : null}
-    </Box>
+    </TableTr>
   );
 };

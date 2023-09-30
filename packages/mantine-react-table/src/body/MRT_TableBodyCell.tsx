@@ -1,21 +1,25 @@
 import {
-  type DragEvent,
   memo,
+  type CSSProperties,
+  type DragEvent,
   type MouseEvent,
   type RefObject,
   useEffect,
   useMemo,
   useState,
 } from 'react';
-import { Box, Skeleton, useMantineTheme } from '@mantine/core';
+import { Skeleton, TableTd } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
 import {
-  getCommonCellStyles,
   getIsFirstColumn,
+  getIsFirstRightPinnedColumn,
   getIsLastColumn,
+  getIsLastLeftPinnedColumn,
+  getTotalRight,
+  parseCSSVarId,
   parseFromValuesOrFunc,
 } from '../column.utils';
 import {
@@ -47,7 +51,6 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
   table,
   virtualCell,
 }: Props<TData>) => {
-  const theme = useMantineTheme();
   const {
     getState,
     options: {
@@ -55,12 +58,13 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       editDisplayMode,
       enableClickToCopy,
       enableColumnOrdering,
+      enableColumnVirtualization,
       enableEditing,
       enableGrouping,
       enableRowNumbers,
       layoutMode,
-      mantineTableBodyCellProps,
       mantineSkeletonProps,
+      mantineTableBodyCellProps,
       rowNumberMode,
     },
     refs: { editInputRefs },
@@ -101,6 +105,21 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
         : Math.round(Math.random() * (size - size / 3) + size / 3),
     );
   }, [isLoading, showSkeletons]);
+
+  const widthStyles = useMemo(() => {
+    const styles: CSSProperties = {
+      minWidth: `max(calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px), ${
+        column.columnDef.minSize ?? 30
+      }px)`,
+      width: `calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px)`,
+    };
+
+    if (layoutMode === 'grid') {
+      styles.flex = `${column.getSize()} 0 auto`;
+    }
+
+    return styles;
+  }, [column]);
 
   const draggingBorders = useMemo(() => {
     const isDraggingColumn = draggingColumn?.id === column.id;
@@ -182,23 +201,9 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
     }
   };
 
-  const { style, className } = getCommonCellStyles({
-    column,
-    // isStriped,  TODO: why were these here?
-    // row,
-    table,
-    theme,
-    tableCellProps,
-  });
-
   return (
-    <Box
-      component="td"
+    <TableTd
       data-index={virtualCell?.index}
-      data-selected={row?.getIsSelected() ?? 'false'}
-      data-ispinned={column?.getIsPinned() ?? 'false'}
-      data-striped={isStriped}
-      data-columndef={columnDefType}
       ref={(node: HTMLTableCellElement) => {
         if (node) {
           measureElement?.(node);
@@ -206,40 +211,66 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       }}
       {...tableCellProps}
       __vars={{
-        '--align-items': layoutMode === 'grid' ? 'center' : undefined,
-        '--cursor':
-          isEditable && editDisplayMode === 'cell' ? 'pointer' : 'inherit',
-        '--align': layoutMode === 'grid' ? tableCellProps.align : undefined,
-        '--padding-left':
-          column.id === 'mrt-row-expand'
-            ? `${row.depth + 1}rem !important`
+        '--mrt-table-cell-justify': tableCellProps.align,
+        '--mrt-table-cell-left':
+          column.getIsPinned() === 'left'
+            ? `${column.getStart('left')}`
             : undefined,
-        '--white-space': density === 'xs' ? 'nowrap' : 'normal',
-        '--z-index':
-          draggingColumn?.id === column.id
-            ? '2'
-            : column.getIsPinned()
-            ? '1'
-            : '0',
-        '--outline':
-          isEditing &&
-          ['table', 'cell'].includes(editDisplayMode ?? '') &&
-          columnDefType !== 'display'
-            ? `1px solid var(--mantine-color-gray-7)`
+        '--mrt-table-cell-right':
+          column.getIsPinned() === 'right'
+            ? `${getTotalRight(table, column)}`
             : undefined,
+        '--mrt-row-depth':
+          column.id === 'mrt-row-expand' ? `${row.depth}` : undefined,
         ...tableCellProps.__vars,
       }}
       className={clsx(
-        className,
-        classes.MRT_TableBodyCell,
-        tableCellProps.className,
+        'mrt-table-body-cell',
+        classes.root,
+        isStriped || row.getIsSelected()
+          ? classes['root-inherit-background-color']
+          : classes['root-default-background'],
+        layoutMode === 'grid' && classes['root-grid'],
+        isEditable &&
+          editDisplayMode === 'cell' &&
+          classes['root-cursor-pointer'],
+        isEditable &&
+          ['table', 'cell'].includes(editDisplayMode ?? '') &&
+          columnDefType !== 'display' &&
+          classes['root-editable-hover'],
+        enableColumnVirtualization && classes['root-virtualized'],
+        column.getIsPinned() &&
+          column.columnDef.columnDefType !== 'group' &&
+          classes['root-pinned'],
+        column.getIsPinned() &&
+          column.columnDef.columnDefType !== 'group' &&
+          !row.getIsSelected() &&
+          classes['root-pinned-color'],
+        draggingColumn?.id === column.id ||
+          (table.getState().hoveredColumn?.id === column.id &&
+            classes['root-opacity']),
+        column.getIsPinned() &&
+          column.columnDef.columnDefType !== 'group' &&
+          classes['root-pinned'],
+        column.getIsPinned() === 'left' && classes['root-pinned-left'],
+        column.getIsPinned() === 'right' && classes['root-pinned-right'],
+        getIsLastLeftPinnedColumn(table, column) &&
+          classes['root-pinned-left-last'],
+        getIsFirstRightPinnedColumn(column) &&
+          classes['root-pinned-right-first'],
+        column.id === 'mrt-row-expand' && classes['root-expand-depth'],
+        columnDefType === 'data' && classes['root-data-col'],
+        density === 'xs' && classes['root-nowrap'],
+        draggingColumn?.id === column.id && classes['root-dragging'],
+        tableCellProps?.className,
       )}
+      style={(theme) => ({
+        ...draggingBorders,
+        ...widthStyles,
+        ...parseFromValuesOrFunc(tableCellProps.style, theme),
+      })}
       onDragEnter={handleDragEnter}
       onDoubleClick={handleDoubleClick}
-      style={{
-        ...style,
-        ...draggingBorders,
-      }}
     >
       <>
         {cell.getIsPlaceholder() ? (
@@ -278,7 +309,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       {cell.getIsGrouped() && !columnDef.GroupedCell && (
         <> ({row.subRows?.length})</>
       )}
-    </Box>
+    </TableTd>
   );
 };
 

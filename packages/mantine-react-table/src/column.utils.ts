@@ -29,8 +29,6 @@ import {
   type MRT_TableOptions,
 } from './types';
 
-import classes from './columns.utils.module.css';
-
 export const getColumnId = <TData extends Record<string, any> = {}>(
   columnDef: MRT_ColumnDef<TData>,
 ): string =>
@@ -289,84 +287,6 @@ export const getCanRankRows = <TData extends Record<string, any> = {}>(
   );
 };
 
-export const getCommonCellStyles = <TData extends Record<string, any> = {}>({
-  column,
-  header,
-  table,
-  tableCellProps,
-  theme,
-}: {
-  column: MRT_Column<TData>;
-  header?: MRT_Header<TData>;
-  table: MRT_TableInstance<TData>;
-  tableCellProps: BoxProps;
-  theme: MantineTheme;
-}): { className: string; style: MantineStyleProp } => {
-  const __vars: Record<CssVariable, string | undefined> = {};
-  __vars['--header-id'] = `var(--${header ? 'header' : 'col'}-${parseCSSVarId(
-    header?.id ?? column.id,
-  )}-size)`;
-  const widthStyles = {
-    minWidth: `max(calc(var(--header-id) * 1px), ${
-      column.columnDef.minSize ?? 30
-    }px)`,
-    width: `calc(var(--header-id) * 1px)`,
-  };
-  __vars['--col-size'] = `${column.columnDef.minSize ?? 30}px`;
-  __vars['--box-shadow'] = getIsLastLeftPinnedColumn(table, column)
-    ? '-4px 0 8px -6px rgba(var(--mantine-color-black, 0.2)) inset'
-    : getIsFirstRightPinnedColumn(column)
-    ? `4px 0 8px -6px rgba(var(--mantine-color-black, 0.2)) inset`
-    : 'transparent';
-  __vars['--display'] =
-    table.options.layoutMode === 'grid' ? 'flex' : 'table-cell';
-
-  __vars['--flex'] =
-    table.options.layoutMode === 'grid' ? 'var(--header-id) 0 auto' : '';
-  __vars['--left'] = `${column.getStart('left')}px`;
-  __vars['--ml'] =
-    table.options.enableColumnVirtualization &&
-    column.getIsPinned() === 'left' &&
-    column.getPinnedIndex() === 0
-      ? `-${
-          column.getSize() * (table.getState().columnPinning.left?.length ?? 1)
-        }px`
-      : undefined;
-  __vars['--mr'] =
-    table.options.enableColumnVirtualization &&
-    column.getIsPinned() === 'right' &&
-    column.getPinnedIndex() === table.getVisibleLeafColumns().length - 1
-      ? `-${
-          column.getSize() *
-          (table.getState().columnPinning.right?.length ?? 1) *
-          1.2
-        }px`
-      : undefined;
-  __vars['--opacity'] =
-    table.getState().draggingColumn?.id === column.id ||
-    table.getState().hoveredColumn?.id === column.id
-      ? '0.5'
-      : '1';
-  __vars['--right'] =
-    column.getIsPinned() === 'right'
-      ? `${getTotalRight(table, column)}px`
-      : undefined;
-  __vars['--transition'] = table.options.enableColumnVirtualization
-    ? 'none'
-    : `padding 100ms ease-in-out`;
-
-  const style = {
-    ...__vars,
-    ...(!table.options.enableColumnResizing && widthStyles), //let devs pass in width styles if column resizing is disabled
-    ...parseFromValuesOrFunc(tableCellProps?.style, theme),
-    ...(table.options.enableColumnResizing && widthStyles), //do not let devs pass in width styles if column resizing is enabled
-  };
-  return {
-    className: classes.MRT_Column_Common,
-    style,
-  };
-};
-
 export const MRT_DefaultColumn = {
   filterVariant: 'text',
   minSize: 40,
@@ -402,12 +322,6 @@ export const getPrimaryShade = (theme: MantineTheme): number =>
   typeof theme.primaryShade === 'number'
     ? theme.primaryShade
     : theme.primaryShade?.dark ?? 7;
-// TODO: where is colorScheme?
-// (theme.colorScheme === 'dark'
-//   ? // @ts-ignore
-//     theme.primaryShade?.dark ?? theme.primaryShade
-//   : // @ts-ignore
-//     theme.primaryShade?.light ?? theme.primaryShade) ?? 7;
 
 export const getPrimaryColor = (
   theme: MantineTheme,

@@ -1,5 +1,5 @@
 import { type DragEvent, memo, useRef } from 'react';
-import { Box, useMantineTheme, rgba } from '@mantine/core';
+import { TableTr } from '@mantine/core';
 import clsx from 'clsx';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
@@ -56,7 +56,6 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
   } = table;
   const { draggingColumn, draggingRow, editingCell, editingRow, hoveredRow } =
     getState();
-  const theme = useMantineTheme();
 
   const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     row,
@@ -74,10 +73,9 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
 
   return (
     <>
-      <Box
-        component="tr"
+      <TableTr
         data-index={virtualRow?.index}
-        data-selected={row.getIsSelected()}
+        data-selected={row.getIsSelected() || undefined}
         onDragEnter={handleDragEnter}
         ref={(node: HTMLTableRowElement) => {
           if (node) {
@@ -144,7 +142,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
         {virtualPaddingRight ? (
           <td style={{ display: 'flex', width: virtualPaddingRight }} />
         ) : null}
-      </Box>
+      </TableTr>
       {renderDetailPanel && !row.getIsGrouped() && (
         <MRT_TableDetailPanel
           parentRowRef={rowRef}

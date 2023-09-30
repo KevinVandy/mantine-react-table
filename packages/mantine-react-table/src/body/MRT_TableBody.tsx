@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Box, Text } from '@mantine/core';
+import { TableTbody, Text } from '@mantine/core';
 import { Memo_MRT_TableBodyRow, MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { rankGlobalFuzzy } from '../sortingFns';
 import { getCanRankRows, parseFromValuesOrFunc } from '../column.utils';
@@ -133,8 +133,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     : undefined;
 
   return (
-    <Box
-      component="tbody"
+    <TableTbody
       {...tableBodyProps}
       className={clsx(
         'mrt-table-body',
@@ -215,7 +214,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
           })}
         </>
       )}
-    </Box>
+    </TableTbody>
   );
 };
 

@@ -2,8 +2,6 @@
   box-sizing: border-box;
   width: 100%;
   transition: all 100ms ease-in-out;
-  display: var(--display);
-}
 
   &[data-selected='true'] {
     background-color: var(--mantine-primary-color-light);
@@ -16,16 +14,17 @@
 
 .root-hover {
   &:hover td {
-    &[data-selected='true'] {
-      background-color: var(--mantine-primary-color-light-hover);
+    @mixin dark {
+      background-color: var(--mantine-color-gray-light-hover);
     }
-    &[data-selected='false'] {
-      @mixin dark {
-        background-color: var(--mantine-color-gray-light-hover);
-      }
-      @mixin light {
-        background-color: var(--mantine-color-dark-light-hover);
-      }
+    @mixin light {
+      background-color: var(--mantine-color-dark-light-hover);
+    }
+  }
+
+  &[data-selected='true'] {
+    &:hover td {
+      background-color: var(--mantine-primary-color-light-hover);
     }
   }
 }
@@ -34,8 +33,4 @@
   position: absolute;
   top: 0;
   transition: none !important;
-}
-
-.root-dragging {
-  opacity: 0.5;
 }
