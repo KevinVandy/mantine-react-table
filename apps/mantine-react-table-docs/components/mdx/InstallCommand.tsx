@@ -44,9 +44,8 @@ export function InstallCommand() {
             <SampleCodeSnippet
               className="language-bash"
               style={{ overflowX: 'hidden' }}
-            >
-              {tabValue.command}
-            </SampleCodeSnippet>
+              code={tabValue.command}
+            />
           </Tabs.Panel>
         ))}
       </Tabs>

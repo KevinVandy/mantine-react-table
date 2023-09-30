@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, Anchor, Text } from '@mantine/core';
+import { Box, Anchor, Text, useMantineColorScheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 
@@ -7,6 +7,7 @@ export const MiniNav = () => {
   const { pathname } = useRouter();
   const isXLDesktop = useMediaQuery('(min-width: 1800px)');
   const [headings, setHeadings] = useState<NodeListOf<HTMLElement>>();
+  const { colorScheme } = useMantineColorScheme();
 
   useEffect(() => {
     setHeadings(
@@ -54,12 +55,12 @@ export const MiniNav = () => {
                 href={`#${heading.id}`}
                 style={(theme) => ({
                   color:
-                    theme.colorScheme === 'dark'
+                    colorScheme === 'dark'
                       ? theme.colors.gray[3]
                       : theme.colors.gray[7],
                 })}
               >
-                <Text underline component="span">
+                <Text td="underline" component="span">
                   {heading.innerText}
                 </Text>
               </Anchor>

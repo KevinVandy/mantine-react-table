@@ -7,6 +7,7 @@ import {
 } from 'mantine-react-table';
 import { Box, Title } from '@mantine/core';
 import { data, type Person } from './makeData';
+import { useMediaQuery } from '@mantine/hooks';
 
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
@@ -33,6 +34,8 @@ const Example = () => {
   const [draggingRow, setDraggingRow] = useState<MRT_Row<Person> | null>(null);
   const [hoveredTable, setHoveredTable] = useState<string | null>(null);
 
+  const isMobile = useMediaQuery(`(max-width: 960px)`);
+
   const commonTableProps: Partial<MRT_TableOptions<Person>> & {
     columns: MRT_ColumnDef<Person>[];
   } = {
@@ -52,13 +55,10 @@ const Example = () => {
     <Box
       style={{
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: isMobile ? 'auto' : '1fr 1fr',
         gap: '16px',
         overflow: 'auto',
         padding: '4px',
-        '@media (max-width: 960px)': {
-          gridTemplateColumns: 'auto',
-        },
       }}
     >
       <MantineReactTable
@@ -83,7 +83,7 @@ const Example = () => {
           },
         }}
         renderTopToolbarCustomActions={() => (
-          <Title color="green" order={4}>
+          <Title c="green" order={4}>
             Nice List
           </Title>
         )}
@@ -113,7 +113,7 @@ const Example = () => {
           },
         }}
         renderTopToolbarCustomActions={() => (
-          <Title color="red" order={4}>
+          <Title c="red" order={4}>
             Naughty List
           </Title>
         )}

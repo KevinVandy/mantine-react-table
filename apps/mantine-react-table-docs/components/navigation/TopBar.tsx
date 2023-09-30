@@ -15,7 +15,6 @@ import {
 } from '@mantine/core';
 import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
-import { IconSun, IconMoonStars } from '@tabler/icons-react';
 import docsearch from '@docsearch/js';
 import '@docsearch/css';
 import { getPrimaryColor } from 'mantine-react-table/src/column.utils';

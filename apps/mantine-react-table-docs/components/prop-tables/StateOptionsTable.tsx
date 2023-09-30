@@ -34,9 +34,11 @@ const StateOptionsTable = ({ onlyOptions }: Props) => {
           header: 'Type',
           enableGlobalFilter: false,
           Cell: ({ cell }) => (
-            <SampleCodeSnippet language="typescript" noCopy>
-              {cell.getValue<string>()}
-            </SampleCodeSnippet>
+            <SampleCodeSnippet
+              language="typescript"
+              withCopyButton={false}
+              code={cell.getValue<string>()}
+            />
           ),
         },
         {
@@ -44,9 +46,11 @@ const StateOptionsTable = ({ onlyOptions }: Props) => {
           enableGlobalFilter: false,
           header: 'Default Value',
           Cell: ({ cell }) => (
-            <SampleCodeSnippet language="typescript" noCopy>
-              {cell.getValue<string>()}
-            </SampleCodeSnippet>
+            <SampleCodeSnippet
+              language="typescript"
+              withCopyButton={false}
+              code={cell.getValue<string>()}
+            />
           ),
         },
         {
