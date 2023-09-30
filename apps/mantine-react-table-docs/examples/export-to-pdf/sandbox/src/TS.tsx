@@ -78,7 +78,7 @@ const Example = () => {
           onClick={() =>
             handleExportRows(table.getPrePaginationRowModel().rows)
           }
-          leftIcon={<IconDownload />}
+          leftSection={<IconDownload />}
           variant="filled"
         >
           Export All Rows
@@ -87,7 +87,7 @@ const Example = () => {
           disabled={table.getRowModel().rows.length === 0}
           //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
           onClick={() => handleExportRows(table.getRowModel().rows)}
-          leftIcon={<IconDownload />}
+          leftSection={<IconDownload />}
           variant="filled"
         >
           Export Page Rows
@@ -98,7 +98,7 @@ const Example = () => {
           }
           //only export selected rows
           onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
-          leftIcon={<IconDownload />}
+          leftSection={<IconDownload />}
           variant="filled"
         >
           Export Selected Rows

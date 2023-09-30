@@ -77,6 +77,11 @@ export const SourceCodeSnippet = ({
     [defaultTS],
   );
 
+  function filterUndefined<TValue>(value: TValue | undefined): value is TValue {
+    if (value === null || value === undefined) return false;
+    return true;
+  }
+
   return (
     <Box className={classes.wrapper}>
       {Component && (
@@ -188,25 +193,31 @@ export const SourceCodeSnippet = ({
             language: 'tsx',
             icon: <IconBrandTypescript />,
           },
-          javaScriptCode && {
-            fileName: 'JS',
-            code: javaScriptCode,
-            language: 'jsx',
-            icon: <IconBrandJavascript />,
-          },
-          legacyCode && {
-            fileName: 'Legacy',
-            code: legacyCode,
-            language: 'tsx',
-            icon: <IconCode />,
-          },
-          apiCode && {
-            fileName: 'API',
-            code: apiCode,
-            language: 'typescript',
-            icon: <IconApi />,
-          },
-        ].filter(Boolean)}
+          javaScriptCode
+            ? {
+                fileName: 'JS',
+                code: javaScriptCode,
+                language: 'jsx',
+                icon: <IconBrandJavascript />,
+              }
+            : undefined,
+          legacyCode
+            ? {
+                fileName: 'Legacy',
+                code: legacyCode,
+                language: 'tsx',
+                icon: <IconCode />,
+              }
+            : undefined,
+          apiCode
+            ? {
+                fileName: 'API',
+                code: apiCode,
+                language: 'typescript',
+                icon: <IconApi />,
+              }
+            : undefined,
+        ].filter(filterUndefined)}
       />
     </Box>
   );

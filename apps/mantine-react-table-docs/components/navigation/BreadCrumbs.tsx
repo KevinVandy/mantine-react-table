@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Anchor, Breadcrumbs } from '@mantine/core';
 import { useRouter } from 'next/router';
+import classes from './BreadCrumbs.module.css';
 
 export const BreadCrumbs = () => {
   const { route } = useRouter();
@@ -51,15 +52,7 @@ export const BreadCrumbs = () => {
       <Breadcrumbs aria-label="breadcrumb" style={{ paddingBottom: '16px' }}>
         {breadCrumbLinks.map((link, index) => (
           <Link key={index} href={link} passHref legacyBehavior>
-            <Anchor
-              color="inherit"
-              style={{
-                cursor: 'pointer',
-                textTransform: 'capitalize',
-                textDecoration: 'none',
-                '&:hover': { textDecoration: 'hover' },
-              }}
-            >
+            <Anchor c="inherit" className={classes.wrapper}>
               {link === '/'
                 ? 'Home'
                 : link

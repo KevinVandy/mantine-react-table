@@ -74,7 +74,7 @@ const LocaleExamples = () => {
   return (
     <>
       <Box style={{ width: '100%' }}>
-        <Tabs onTabChange={setCurrentLocale} value={currentLocale}>
+        <Tabs onChange={setCurrentLocale} value={currentLocale}>
           <Tabs.List>
             {supportedLocales.map((locale) => (
               <Tabs.Tab key={locale} value={locale}>

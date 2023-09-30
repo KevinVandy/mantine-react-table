@@ -64,12 +64,12 @@ const Example = () => {
       {/* Using Vanilla Mantine Table component here */}
       <Table
         captionSide="top"
-        fontSize="md"
+        fz="md"
         highlightOnHover
         horizontalSpacing="xl"
         striped
         verticalSpacing="xs"
-        withBorder
+        withTableBorder
         withColumnBorders
         m="0"
       >

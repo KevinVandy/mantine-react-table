@@ -1,7 +1,12 @@
 import { Fragment, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { UnstyledButton, Flex, rgba } from '@mantine/core';
+import {
+  UnstyledButton,
+  Flex,
+  rgba,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconExternalLink } from '@tabler/icons-react';
 import { type RouteItem } from './routes';
@@ -26,6 +31,8 @@ export const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
       node.scrollIntoView({ behavior: 'smooth' });
     }
   }, []);
+
+  const { colorScheme } = useMantineColorScheme();
 
   return (
     <>
@@ -53,15 +60,12 @@ export const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
                         ? rgba(getPrimaryColor(theme), 0.2)
                         : 'transparent',
                     color: !items
-                      ? getPrimaryColor(
-                          theme,
-                          theme.colorScheme === 'dark' ? 3 : 8,
-                        )
+                      ? getPrimaryColor(theme, colorScheme === 'dark' ? 3 : 8)
                       : depth === 1
-                      ? theme.colorScheme === 'dark'
+                      ? colorScheme === 'dark'
                         ? theme.white
                         : theme.black
-                      : theme.colorScheme === 'dark'
+                      : colorScheme === 'dark'
                       ? theme.colors.gray[3]
                       : theme.colors.gray[7],
                     display: 'block',
