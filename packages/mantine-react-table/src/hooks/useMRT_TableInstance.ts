@@ -254,11 +254,12 @@ export const useMRT_TableInstance: <TData extends Record<string, any> = {}>(
   };
 
   const setCreatingRow = (row: MRT_Updater<MRT_Row<TData> | null | true>) => {
+    let _row = row;
     if (row === true) {
-      table.setCreatingRow(createRow(table));
-    } else {
-      _setCreatingRow(row as MRT_Row<TData> | null);
+      _row = createRow(table);
     }
+    tableOptions?.onCreatingRowChange?.(_row as MRT_Row<TData> | null) ??
+      _setCreatingRow(_row as MRT_Row<TData> | null);
   };
 
   table.setCreatingRow = setCreatingRow;
