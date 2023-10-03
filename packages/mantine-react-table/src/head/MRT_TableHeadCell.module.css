@@ -1,11 +1,19 @@
-.MRT_TableHeadCell {
-  flex-direction: var(--flex-direction);
+.root {
+  background-clip: padding-box;
+  transition: padding 100ms ease-in-out;
   font-weight: bold;
   overflow: visible;
-  padding: var(--padding);
-  user-select: var(--user-select);
+  padding: calc(var(--mrt-table-head-cell-padding) * 1px);
   vertical-align: top;
-  z-index: var(--z-index);
+  z-index: var(--mrt-table-head-cell-z-index);
+
+  @mixin light {
+    background-color: var(--mantine-color-white);
+  }
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
+
   @mixin hover {
     .mantine-ActionIcon-root {
       opacity: 1;
@@ -13,29 +21,111 @@
   }
 }
 
+.root-grid {
+  display: flex;
+  flexdirection: column;
+}
+
+.root-virtualized {
+  transition: none;
+}
+
+.root-no-select {
+  user-select: none;
+}
+
+.root-pinned {
+  position: sticky;
+  @mixin light {
+    background-color: var(--mantine-color-white);
+  }
+  @mixin dark {
+    background-color: var(--mantine-color-dark-7);
+  }
+}
+
+.root-pinned-left {
+  left: calc(var(--mrt-table-cell-left, 0) * 1px);
+}
+
+.root-pinned-right {
+  right: calc(var(--mrt-table-cell-right, 0) * 1px);
+}
+
+.root-pinned-left-last {
+  @mixin light {
+    box-shadow: -4px 0 8px -6px var(--mantine-color-gray-outline) inset;
+  }
+  @mixin dark {
+    box-shadow: -4px 0 8px -6px var(--mantine-color-dark-outline) inset;
+  }
+}
+
+.root-pinned-right-first {
+  @mixin light {
+    box-shadow: 4px 0 8px -6px var(--mantine-color-gray-outline) inset;
+  }
+  @mixin dark {
+    box-shadow: 4px 0 8px -6px var(--mantine-color-dark-outline) inset;
+  }
+}
+
+.root-opacity {
+  opacity: 0.5;
+}
+
 .content {
   align-items: flex-start;
+  justify-content: flex-start;
   position: relative;
   width: 100%;
-  justify-content: var(--justify-content);
-  flex-direction: var(--flex-direction);
+}
+
+.content-spaced {
+  justify-content: space-between;
+}
+
+.content-center {
+  justify-content: center;
+}
+
+.content-right {
+  flex-direction: row-reverse;
+}
+
+.content-wrapper {
+  text-overflow: ellipsis;
+}
+
+.content-wrapper-hidden-overflow {
+  overflow: hidden;
+}
+
+.content-wrapper-nowrap {
+  white-space: nowrap;
 }
 
 .labels {
   align-items: center;
-  cursor: var(--labels-cursor);
-  flexdirection: var(--labels-flex-direction);
-  overflow: var(--labels-overflow);
-  padding-left: var(--labels-padding-left);
 }
 
-.wrapper {
-  text-overflow: ellipsis;
-  overflow: var(--wrapper-overflow);
-  white-space: var(--wrapper-whitespace);
+.labels-right {
+  flex-direction: row-reverse;
 }
 
-.actions {
+.labels-center {
+  padding-left: calc(var(--mrt-table-head-cell-labels-padding-left) * 1rem);
+}
+
+.labels-sortable {
+  cursor: pointer;
+}
+
+.labels-data {
+  overflow: hidden;
+}
+
+.content-actions {
   align-items: center;
   align-self: center;
   whitespace: nowrap;
