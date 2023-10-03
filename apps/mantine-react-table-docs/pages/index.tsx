@@ -1,7 +1,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Anchor, Box, Button, Paper, Stack, Text, Title } from '@mantine/core';
-import { IconChevronRight } from '@tabler/icons-react';
+import {
+  Alert,
+  Anchor,
+  Box,
+  Button,
+  Paper,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
+import { IconChevronRight, IconInfoCircle } from '@tabler/icons-react';
 import { HomeCards } from '../components/mdx/HomeCards';
 import { LinkCards } from '../components/mdx/LinkCards';
 import { StatBadges } from '../components/mdx/StatBadges';
@@ -17,6 +26,19 @@ import BasicExamples from '../example-groups/BasicExamples';
 const HomePage = () => {
   return (
     <Stack sx={{ maxWidth: '1240px', margin: 'auto', paddingTop: '2rem' }}>
+      <Alert variant="light" color="blue" icon={<IconInfoCircle />}>
+        {
+          'Mantine React Table V2 for Mantine V7 is currently in development. See '
+        }
+        <Anchor
+          sx={{ display: 'inline' }}
+          href="https://v2.mantine-react-table.com"
+          target="_blank"
+        >
+          {'v2.mantine-react-table.com'}
+        </Anchor>
+        {' for more info.'}
+      </Alert>
       <Title
         sx={{
           textAlign: 'center',

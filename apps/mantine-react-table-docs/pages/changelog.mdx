@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import { Alert, Anchor } from '@mantine/core';
+import { IconInfoCircle } from '@tabler/icons-react';
 
 <Head>
   <title>Changelog and Roadmap - Mantine React Table Docs</title>
@@ -10,7 +12,35 @@ import Head from 'next/head';
 
 ## Changelog
 
+<Alert
+  variant="light"
+  color="blue"
+  title="Mantine React Table V2 is Coming"
+  icon={<IconInfoCircle />}
+>
+  {'Mantine React Table V2 for Mantine V7 is currently in development. See '}
+  <Anchor
+    sx={{ display: 'inline' }}
+    href="https://v2.mantine-react-table.com"
+    target="_blank"
+  >
+    {'v2.mantine-react-table.com'}
+  </Anchor>
+  {' for more info.'}
+  <br />
+  {'Or join the '}
+  <Anchor sx={{ display: 'inline' }} href="https://discord.gg/5wqyRx6fnm" target="_blank">
+    {'MRT Discord'}
+  </Anchor>
+  {' to follow along with development.'}
+</Alert>
+
 ### V1
+
+#### V1.3.2 - 2023-10-03
+
+- Fixed `creatingRow` state not able to be properly self managed when using `onCreatingRowChange`
+- Fixed French selected rows translation error
 
 #### V1.3.1 - 2023-09-25
 
@@ -176,4 +206,4 @@ import Head from 'next/head';
 
 ## Roadmap
 
-Mantine React Table v1 is slated to release a stable v1.0 based on Mantine v6.0+ by the end of June 2023.
+Mantine React Table V2 will be released by the end of 2023 and will be compatible with Mantine V7.
