@@ -1,0 +1,14 @@
+.root {
+  opacity: 0.97;
+  position: relative;
+}
+
+.root-grid {
+  display: grid;
+}
+
+.root-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}

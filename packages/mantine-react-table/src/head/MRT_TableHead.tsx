@@ -1,8 +1,11 @@
-import { Box, Table, TableThead } from '@mantine/core';
+import clsx from 'clsx';
+import { TableThead } from '@mantine/core';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import { MRT_ToolbarAlertBanner } from '../toolbar';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+
+import classes from './MRT_TableHead.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -39,14 +42,13 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
   return (
     <TableThead
       {...tableHeadProps}
-      style={(theme) => ({
-        display: layoutMode === 'grid' ? 'grid' : 'table-row-group',
-        position: stickyHeader && layoutMode === 'grid' ? 'sticky' : 'relative',
-        opacity: 0.97,
-        top: stickyHeader ? 0 : undefined,
-        zIndex: stickyHeader ? 2 : undefined,
-        // ...styleValue(tableHeadProps, theme),
-      })}
+      className={clsx(
+        'mrt-table-head',
+        classes.root,
+        layoutMode === 'grid' && classes['root-grid'],
+        stickyHeader && classes['root-sticky'],
+        tableHeadProps?.className,
+      )}
     >
       {positionToolbarAlertBanner === 'head-overlay' &&
       (showAlertBanner || getSelectedRowModel().rows.length > 0) ? (
@@ -73,7 +75,6 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
           />
         ))
       )}
-      {}
     </TableThead>
   );
 };
