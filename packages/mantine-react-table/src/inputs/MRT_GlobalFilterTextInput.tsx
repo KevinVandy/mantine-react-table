@@ -64,10 +64,7 @@ export const MRT_GlobalFilterTextInput = <
   }, [globalFilter]);
 
   return (
-    <Collapse
-      in={showGlobalFilter}
-      className={classes.MRT_GlobalFilterTextInputCollapse}
-    >
+    <Collapse in={showGlobalFilter} className={classes.collapse}>
       {enableGlobalFilterModes && (
         <Menu withinPortal>
           <Menu.Target>
@@ -116,12 +113,10 @@ export const MRT_GlobalFilterTextInput = <
           }
         }}
         className={clsx(
-          classes.MRT_GlobalFilterTextInput,
+          'mrt-global-filter-text-input',
+          classes.root,
           textFieldProps?.className,
         )}
-        // style={(theme) => ({
-        //   ...styleValue(textFieldProps, theme),
-        // })}
       />
     </Collapse>
   );

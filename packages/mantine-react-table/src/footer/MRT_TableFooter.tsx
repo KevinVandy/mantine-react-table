@@ -43,9 +43,6 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
         stickFooter && classes.sticky,
         layoutMode === 'grid' && classes.grid,
       )}
-      // style={(theme) => ({
-      //   ...styleValue(tableFooterProps, theme),
-      // })}
     >
       {getFooterGroups().map((footerGroup) => (
         <MRT_TableFooterRow

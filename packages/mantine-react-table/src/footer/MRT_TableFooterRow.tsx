@@ -1,5 +1,5 @@
-import { Box, Table, TableTr } from '@mantine/core';
 import clsx from 'clsx';
+import { TableTr } from '@mantine/core';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
 import {
   type MRT_Header,
@@ -49,15 +49,11 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
   return (
     <TableTr
       className={clsx(
-        classes.MRT_TableFooterRow,
-        layoutMode === 'grid'
-          ? classes.MRT_TableFooterRowGrid
-          : classes.MRT_TableFooterRowTableRow,
+        'mrt-table-footer-row',
+        classes.root,
+        layoutMode === 'grid' && classes['layout-mode-grid'],
       )}
       {...tableRowProps}
-      // style={(theme) => ({
-      //   ...styleValue(tableRowProps, theme),
-      // })}
     >
       {virtualPaddingLeft ? (
         <th style={{ display: 'flex', width: virtualPaddingLeft }} />

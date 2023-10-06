@@ -73,7 +73,7 @@ export const MRT_ShowHideColumnsMenu = <
 
   return (
     <Menu.Dropdown className={clsx('mrt-show-hide-columns-menu', classes.root)}>
-      <Flex className={clsx(classes.content)}>
+      <Flex className={classes.content}>
         {enableHiding && (
           <Button
             disabled={!getIsSomeColumnsVisible()}

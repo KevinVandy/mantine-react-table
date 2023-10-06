@@ -1,6 +1,10 @@
+import clsx from 'clsx';
 import { Checkbox, type CheckboxProps, Tooltip } from '@mantine/core';
+
 import { type MRT_Column, type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+
+import classes from './MRT_FilterCheckBox.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   column: MRT_Column<TData>;
@@ -29,6 +33,8 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
     columnDef.header,
   );
 
+  const value = column.getFilterValue();
+
   return (
     <Tooltip
       withinPortal
@@ -36,9 +42,10 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
       label={checkboxProps?.title ?? filterLabel}
     >
       <Checkbox
-        checked={column.getFilterValue() === 'true'}
-        indeterminate={column.getFilterValue() === undefined}
-        color={column.getFilterValue() === undefined ? 'default' : 'primary'}
+        className={clsx('mrt-filter-checkbox', classes.root)}
+        checked={value === 'true'}
+        indeterminate={value === undefined}
+        color={value === undefined ? 'default' : 'primary'}
         size={density === 'xs' ? 'sm' : 'md'}
         label={checkboxProps.title ?? filterLabel}
         {...checkboxProps}
@@ -56,11 +63,6 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
           );
           checkboxProps?.onChange?.(e);
         }}
-        style={(theme) => ({
-          fontWeight: 'normal',
-          marginTop: '8px',
-          // ...styleValue(checkboxProps, theme),
-        })}
         title={undefined}
       />
     </Tooltip>

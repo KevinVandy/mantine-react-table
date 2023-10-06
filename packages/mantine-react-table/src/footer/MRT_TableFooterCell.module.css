@@ -1,11 +1,18 @@
-.MRT_TableFooterCell {
+.root {
   font-weight: bold;
   padding: 1rem;
   vertical-align: top;
-  z-index: var(--z-index);
-  display: var(--display);
-
-  [data-columndef="group"] {
+  z-index: 1;
+  &.pinned {
+    z-index: 2;
+  }
+  display: table-row;
+  &.grid {
+    display: grid;
+  }
+  align: left;
+  &.group {
+    align: center;
     justify-content: center;
   }
 }

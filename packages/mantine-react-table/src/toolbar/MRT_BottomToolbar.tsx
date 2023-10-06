@@ -1,12 +1,14 @@
+import clsx from 'clsx';
 import { Box, rgba } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import clsx from 'clsx';
+
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+
 import commonClasses from './common.styles.module.css';
 import classes from './MRT_BottomToolbar.module.css';
 
@@ -51,8 +53,9 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
         }
       }}
       className={clsx(
+        'mrt-bottom-toolbar',
+        classes.root,
         commonClasses['common-toolbar-styles'],
-        classes['bottom-toolbar'],
         isFullScreen && classes['bottom-toolbar-fullscreen'],
         toolbarProps?.className,
       )}

@@ -12,3 +12,16 @@
   top: 0;
   z-index: 2;
 }
+
+.banner-tr {
+  display: table-row;
+}
+
+.banner-th {
+  display: table-cell;
+  padding: 0;
+}
+
+.grid {
+  display: grid;
+}

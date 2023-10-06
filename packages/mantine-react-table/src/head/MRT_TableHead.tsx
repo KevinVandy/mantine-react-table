@@ -52,13 +52,18 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
     >
       {positionToolbarAlertBanner === 'head-overlay' &&
       (showAlertBanner || getSelectedRowModel().rows.length > 0) ? (
-        <tr style={{ display: layoutMode === 'grid' ? 'grid' : 'table-row' }}>
+        <tr
+          className={clsx(
+            classes['banner-tr'],
+            layoutMode === 'grid' && classes.grid,
+          )}
+        >
           <th
             colSpan={table.getVisibleLeafColumns().length}
-            style={{
-              display: layoutMode === 'grid' ? 'grid' : 'table-cell',
-              padding: 0,
-            }}
+            className={clsx(
+              classes['banner-th'],
+              layoutMode === 'grid' && classes.grid,
+            )}
           >
             <MRT_ToolbarAlertBanner table={table} />
           </th>

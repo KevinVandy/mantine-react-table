@@ -83,7 +83,7 @@ const preview: Preview = {
               >
                 Looking for the main docs site? Click{' '}
                 <Anchor
-                  underline
+                  underline="always"
                   href="https://www.mantine-react-table.com"
                   target="_blank"
                   rel="noopener"

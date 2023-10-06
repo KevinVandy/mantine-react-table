@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import {
   ActionIcon,
   Box,
@@ -6,11 +7,11 @@ import {
   Select,
   Text,
 } from '@mantine/core';
+
 import { type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TablePagination.module.css';
-import clsx from 'clsx';
 
 interface Props<TData extends Record<string, any> = {}> {
   position?: 'top' | 'bottom';
@@ -61,7 +62,11 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
 
   return (
     <Box
-      className={clsx(classes.root, needsTopMargin && classes.withTopMargin)}
+      className={clsx(
+        'mrt-table-pagination',
+        classes.root,
+        needsTopMargin && classes['with-top-margin'],
+      )}
     >
       {paginationProps?.showRowsPerPage !== false && (
         <Group gap="xs">

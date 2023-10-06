@@ -1,4 +1,4 @@
-.bottom-toolbar {
+.root {
   bottom: var(--mrt-bottom-toolbar-bottom);
   box-shadow: 0 1px 2px -1px var(--mrt-bottom-toolbar-box-shadow-color) inset;
   left: 0;

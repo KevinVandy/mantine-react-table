@@ -1,10 +1,14 @@
+import clsx from 'clsx';
 import { ActionIcon, Flex } from '@mantine/core';
-import { MRT_ToggleFullScreenButton } from '../buttons/MRT_ToggleFullScreenButton';
+
 import { MRT_ShowHideColumnsButton } from '../buttons/MRT_ShowHideColumnsButton';
 import { MRT_ToggleDensePaddingButton } from '../buttons/MRT_ToggleDensePaddingButton';
 import { MRT_ToggleFiltersButton } from '../buttons/MRT_ToggleFiltersButton';
+import { MRT_ToggleFullScreenButton } from '../buttons/MRT_ToggleFullScreenButton';
 import { MRT_ToggleGlobalFilterButton } from '../buttons/MRT_ToggleGlobalFilterButton';
 import { type MRT_TableInstance } from '../types';
+
+import classes from './MRT_ToolbarInternalButtons.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
@@ -32,16 +36,8 @@ export const MRT_ToolbarInternalButtons = <
   } = table;
 
   return (
-    <Flex
-      style={{
-        alignItems: 'center',
-        gap: '2px',
-        zIndex: 3,
-      }}
-    >
-      {renderToolbarInternalActions?.({
-        table,
-      }) ?? (
+    <Flex className={clsx('mrt-toolbar-internal-buttons', classes.root)}>
+      {renderToolbarInternalActions?.({ table }) ?? (
         <ActionIcon.Group>
           {enableFilters &&
             enableGlobalFilter &&

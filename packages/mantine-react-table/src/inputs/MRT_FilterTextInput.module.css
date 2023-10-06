@@ -1,11 +1,16 @@
-.MRT_FilterTextInput {
-  @mixin light {
-    border-bottom: 2px solid var(--mantine-color-gray-3);
+.root {
+  border-bottom: 2px solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-gray-7));
+  min-width: auto;
+  &.date-filter {
+    min-width: rem(125px);
   }
-  @mixin dark {
-    border-bottom: 2px solid var(--mantine-color-gray-7);
+  &.range-filter {
+    min-width: rem(80px);
   }
-  min-width: var(--min-width);
+  &.not-filter-chip {
+    min-width: rem(100px);
+  }
   width: 100%;
   & .mantine-TextInput-input {
     overflow: hidden;
@@ -14,4 +19,8 @@
   & .mantine-DateInput-input {
     height: 2.1rem;
   }
+}
+
+.filter-chip-badge {
+  margin: 5px;
 }
