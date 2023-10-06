@@ -100,8 +100,8 @@ export const MRT_TableHeadCellFilterLabel = <
             (!!column.getFilterValue()?.[0] || !!column.getFilterValue()?.[1]))
         }
       >
-        {(styles) => (
-          <Box component="span" style={{ ...styles, flex: '0 0' }}>
+        {(style) => (
+          <Box component="span" style={{ ...style, flex: '0 0' }}>
             <Popover.Target>
               <Tooltip
                 disabled={popoverOpened}

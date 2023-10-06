@@ -37,21 +37,15 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
     table,
   });
 
-  const stickyHeader = enableStickyHeader || isFullScreen;
-
   return (
     <TableTr
       {...tableRowProps}
       className={clsx(
-        classes.MRT_TableHeadRow,
-        stickyHeader && classes.MRT_TableHeadRowSticky,
+        'mrt-table-head-row',
+        classes.root,
+        (enableStickyHeader || isFullScreen) && classes.sticky,
+        layoutMode === 'grid' && classes['layout-mode-grid'],
       )}
-      __vars={{
-        '--display': layoutMode === 'grid' ? 'flex' : 'table-row',
-      }}
-      // style={(theme) => ({
-      //   ...styleValue(tableRowProps, theme),
-      // })}
     >
       {virtualPaddingLeft ? (
         <th style={{ display: 'flex', width: virtualPaddingLeft }} />

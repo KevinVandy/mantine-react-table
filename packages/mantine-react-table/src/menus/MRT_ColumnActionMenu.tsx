@@ -4,6 +4,8 @@ import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 import { MRT_ActionIcon } from '../buttons/MRT_ActionIcon';
 
+import classes from './MRT_ColumnActionMenu.module.css';
+
 interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
@@ -179,14 +181,14 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
         <>
           <Menu.Item
             disabled={column.getIsPinned() === 'left' || !column.getCanPin()}
-            leftSection={<IconPinned style={{ transform: 'rotate(90deg)' }} />}
+            leftSection={<IconPinned className={classes.left} />}
             onClick={() => handlePinColumn('left')}
           >
             {localization.pinToLeft}
           </Menu.Item>
           <Menu.Item
             disabled={column.getIsPinned() === 'right' || !column.getCanPin()}
-            leftSection={<IconPinned style={{ transform: 'rotate(-90deg)' }} />}
+            leftSection={<IconPinned className={classes.right} />}
             onClick={() => handlePinColumn('right')}
           >
             {localization.pinToRight}

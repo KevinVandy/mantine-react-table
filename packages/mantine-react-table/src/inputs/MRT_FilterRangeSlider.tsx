@@ -1,7 +1,10 @@
+import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 import { RangeSlider, type RangeSliderProps } from '@mantine/core';
 import { type MRT_TableInstance, type MRT_Header } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+
+import classes from './MRT_FilterRangeSlider.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
@@ -59,6 +62,7 @@ export const MRT_FilterRangeSlider = <TData extends Record<string, any> = {}>({
 
   return (
     <RangeSlider
+      className={clsx('mrt-filter-range-slider', classes.root)}
       min={min}
       max={max}
       onChange={(values) => {
@@ -87,13 +91,6 @@ export const MRT_FilterRangeSlider = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      style={(theme) => ({
-        margin: 'auto',
-        marginTop: '16px',
-        marginBottom: '6px',
-        width: 'calc(100% - 8px)',
-        // ...styleValue(rangeSliderProps, theme),
-      })}
     />
   );
 };

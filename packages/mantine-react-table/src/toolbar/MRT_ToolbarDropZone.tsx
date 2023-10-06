@@ -1,8 +1,10 @@
+import clsx from 'clsx';
 import { type DragEvent, useEffect } from 'react';
 import { Flex, Text, Transition, rgba } from '@mantine/core';
-import clsx from 'clsx';
+
 import { type MRT_TableInstance } from '../types';
 import { getPrimaryColor } from '../column.utils';
+
 import classes from './MRT_ToolbarDropZone.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -41,10 +43,8 @@ export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
     <Transition mounted={showToolbarDropZone} transition="fade">
       {(styles) => (
         <Flex
-          className={clsx(
-            'mantine-ToolbarDropZone',
-            classes['dropzone-container'],
-          )}
+          className={clsx('mrt-toolbar-dropzone', classes.root)}
+          // TODO: inline style variable with theme color
           style={(theme) => ({
             '--mrt-dropzone-bg-color': rgba(
               getPrimaryColor(theme),

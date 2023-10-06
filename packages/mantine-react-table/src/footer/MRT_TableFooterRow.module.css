@@ -1,10 +1,8 @@
-.MRT_TableFooterRow {
+.root {
   width: 100%;
-  display: var(--display);
-  @mixin dark {
-    background-color: var(--dark-bg-color);
+  display: table-row;
+  &.layout-mode-grid {
+    display: flex;
   }
-  @mixin light {
-    background-color: var(--light-bg-color);
-  }
+  background-color: light-dark(var(--light-bg-color), var(--dark-bg-color));
 }

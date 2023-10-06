@@ -1,10 +1,12 @@
+import clsx from 'clsx';
 import { Fragment } from 'react';
 import { ActionIcon, Alert, Badge, Collapse, Flex, Stack } from '@mantine/core';
-import clsx from 'clsx';
+
 import { type MRT_TableInstance } from '../types';
 import { MRT_SelectCheckbox } from '../inputs';
-import classes from './MRT_ToolbarAlertBanner.module.css';
 import { parseFromValuesOrFunc } from '../column.utils';
+
+import classes from './MRT_ToolbarAlertBanner.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   stackAlertBanner?: boolean;
@@ -70,7 +72,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
                   <IconX />
                 </ActionIcon>
               }
-              style={{ marginLeft: '1ch' }}
+              className={classes['alert-badge']}
               variant="filled"
               {...badgeProps}
             >
@@ -91,7 +93,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
         icon={false}
         {...alertProps}
         className={clsx(
-          classes['alert'],
+          classes.alert,
           stackAlertBanner &&
             !positionToolbarAlertBanner &&
             classes['alert-stacked'],
@@ -111,17 +113,12 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
           table,
         }) ?? (
           <Flex
-            className={classes['toolbar-alert']}
-            style={{
-              '--mrt-toolbar-alert-padding':
-                positionToolbarAlertBanner === 'head-overlay'
-                  ? density === 'xl'
-                    ? '16px'
-                    : density === 'md'
-                    ? '8px'
-                    : '2px'
-                  : '8px 16px',
-            }}
+            className={clsx(
+              classes['toolbar-alert'],
+              positionToolbarAlertBanner === 'head-overlay' &&
+                classes['head-overlay'],
+              density,
+            )}
           >
             {enableRowSelection &&
               enableSelectAll &&

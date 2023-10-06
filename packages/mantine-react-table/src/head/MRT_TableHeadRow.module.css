@@ -1,16 +1,16 @@
-.MRT_TableHeadRow {
-  box-shadow: 0 4px var(--box-shadow);
-  display: var(--display);
-  @mixin dark {
-    background-color: var(--mantine-color-dark-7);
-  }
-
-  @mixin light {
-    background-color: var(--mantine-color-white);
+.root {
+  box-shadow: 0 4px var(--box-shadow); // TODO: where is --box-shadow defined?
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+  display: table-row;
+  &.layout-mode-grid {
+    display: flex;
   }
 }
 
-.MRT_TableHeadRowSticky {
+.sticky {
   position: sticky;
   top: 0;
 }

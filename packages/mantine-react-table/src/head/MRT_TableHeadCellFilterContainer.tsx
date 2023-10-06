@@ -92,7 +92,7 @@ export const MRT_TableHeadCellFilterContainer = <
         {showChangeModeButton ? (
           <Text
             component="label"
-            color="dimmed"
+            c="dimmed"
             style={{ whiteSpace: 'nowrap', marginTop: '4px', fontSize: '10px' }}
           >
             {localization.filterMode.replace(

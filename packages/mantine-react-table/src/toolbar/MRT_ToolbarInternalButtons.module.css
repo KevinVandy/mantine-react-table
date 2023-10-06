@@ -1,0 +1,5 @@
+.root {
+  align-items: 'center';
+  gap: '2px';
+  z-index: 3;
+}

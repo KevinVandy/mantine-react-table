@@ -1,8 +1,8 @@
-.MRT_GlobalFilterTextInput {
+.root {
   min-width: 250px;
 }
 
-.MRT_GlobalFilterTextInputCollapse {
+.collapse {
   & > div {
     display: flex;
     align-items: center;

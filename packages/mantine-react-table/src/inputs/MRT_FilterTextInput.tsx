@@ -243,26 +243,23 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
     onChange: setFilterValue,
     value: filterValue,
     variant: 'unstyled',
-    className: classes.MRT_FilterTextInput,
-    __vars: {
-      '--min-width': isDateFilter
-        ? 'rem(125px)'
+    className: clsx(
+      'mrt-filter-text-input',
+      classes.root,
+      isDateFilter
+        ? classes['date-filter']
         : isRangeFilter
-        ? 'rem(80px)'
-        : !filterChipLabel
-        ? 'rem(100px)'
-        : 'auto',
-    },
+        ? classes['range-filter']
+        : !filterChipLabel && classes['not-filter-chip'],
+    ),
     style: {
-      ...{
-        ...(isMultiSelectFilter
-          ? multiSelectProps?.style
-          : isSelectFilter
-          ? selectProps?.style
-          : isDateFilter
-          ? dateInputProps?.style
-          : textInputProps?.style),
-      },
+      ...(isMultiSelectFilter
+        ? multiSelectProps?.style
+        : isSelectFilter
+        ? selectProps?.style
+        : isDateFilter
+        ? dateInputProps?.style
+        : textInputProps?.style),
     },
   } as const;
 
@@ -284,7 +281,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       <Badge
         size="lg"
         onClick={handleClearEmptyFilterChip}
-        style={{ margin: '5px' }}
+        className={classes['filter-chip-badge']}
         rightSection={ClearButton}
       >
         {filterChipLabel}
@@ -296,7 +293,6 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       searchable
       {...multiSelectProps}
       className={clsx(className, multiSelectProps.className)}
-      __vars={{ ...commonProps.__vars, ...multiSelectProps.__vars }}
       data={filterSelectOptions}
       ref={(node) => {
         if (node) {
@@ -321,7 +317,6 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       searchable
       {...selectProps}
       className={clsx(className, selectProps.className)}
-      __vars={{ ...commonProps.__vars, ...selectProps.__vars }}
       data={filterSelectOptions}
       ref={(node) => {
         if (node) {
@@ -348,7 +343,6 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       popoverProps={{ withinPortal: columnFilterDisplayMode !== 'popover' }}
       {...dateInputProps}
       className={clsx(className, dateInputProps.className)}
-      __vars={{ ...commonProps.__vars, ...dateInputProps.__vars }}
       ref={(node) => {
         if (node) {
           filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
@@ -367,7 +361,6 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       onChange={(value) => setFilterValue(value)}
       {...autoCompleteProps}
       className={clsx(className, autoCompleteProps.className)}
-      __vars={{ ...commonProps.__vars, ...autoCompleteProps.__vars }}
       data={filterSelectOptions}
       ref={(node) => {
         if (node) {
@@ -387,10 +380,6 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       onChange={(e) => setFilterValue(e.target.value)}
       {...textInputProps}
       className={clsx(className, textInputProps.className)}
-      __vars={{
-        ...commonProps.__vars,
-        ...textInputProps.__vars,
-      }}
       ref={(node) => {
         if (node) {
           filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =

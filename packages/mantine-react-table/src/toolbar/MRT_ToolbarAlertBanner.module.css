@@ -18,7 +18,20 @@
   margin-bottom: -16px;
 }
 
+.alert-badge {
+  margin-left: 1ch;
+}
+
 .toolbar-alert {
   gap: var(--mantine-spacing-sm);
-  padding: var(--mrt-toolbar-alert-padding);
+  padding: 8px 16px;
+  &.head-overlay {
+    padding: 2px;
+    &.xl {
+      padding: 16px;
+    }
+    &.md {
+      padding: 8px;
+    }
+  }
 }

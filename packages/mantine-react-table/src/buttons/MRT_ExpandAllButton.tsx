@@ -54,11 +54,7 @@ export const MRT_ExpandAllButton = <TData extends Record<string, any> = {}>({
           'mrt-expand-all-button',
           classes.root,
           actionIconProps?.className,
-          density === 'xl'
-            ? classes.xl
-            : density === 'md'
-            ? classes.md
-            : undefined,
+          density,
         )}
         title={undefined}
       >
