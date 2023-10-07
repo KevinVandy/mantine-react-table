@@ -1,8 +1,8 @@
-# Mantine React Table
+# Mantine React Table <sup>V1</sup>
 
 View the [Docs Site](https://www.mantine-react-table.com/)
 
-A fork of [Material React Table](https://www.material-react-table.com)
+An official fork of [Material React Table](https://www.material-react-table.com)
 
 V1 released July 18, 2023
 
