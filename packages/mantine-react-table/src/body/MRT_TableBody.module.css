@@ -11,7 +11,7 @@
 }
 
 .root-virtualized {
-  height: calc(var(--mrt-table-body-height) * 1px);
+  height: var(--mrt-table-body-height);
 }
 
 .empty-row-tr-grid {

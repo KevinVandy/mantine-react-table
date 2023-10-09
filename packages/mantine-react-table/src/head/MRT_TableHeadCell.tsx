@@ -183,9 +183,9 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
             classes['root-opacity']),
       )}
       style={(theme) => ({
-        ...parseFromValuesOrFunc(tableCellProps?.style, theme),
-        ...widthStyles,
         ...draggingBorders,
+        ...widthStyles,
+        ...parseFromValuesOrFunc(tableCellProps?.style, theme),
       })}
     >
       {header.isPlaceholder ? null : (

@@ -9,12 +9,10 @@
 }
 
 .root-default-background {
-  @mixin light {
-    background-color: var(--mantine-color-white);
-  }
-  @mixin dark {
-    background-color: var(--mantine-color-dark-7);
-  }
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
 }
 
 .root-inherit-background-color {
@@ -50,12 +48,10 @@
 }
 
 .root-pinned-color {
-  @mixin light {
-    background-color: var(--mantine-color-white);
-  }
-  @mixin dark {
-    background-color: var(--mantine-color-dark-7);
-  }
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
 }
 
 .root-pinned {
@@ -72,21 +68,17 @@
 }
 
 .root-pinned-left-last {
-  @mixin light {
-    box-shadow: -4px 0 8px -6px var(--mantine-color-gray-outline) inset;
-  }
-  @mixin dark {
-    box-shadow: -4px 0 8px -6px var(--mantine-color-dark-outline) inset;
-  }
+  box-shadow: -4px 0 8px -6px light-dark(
+      var(--mantine-color-gray-outline),
+      var(--mantine-color-dark-outline)
+    ) inset;
 }
 
 .root-pinned-right-first {
-  @mixin light {
-    box-shadow: 4px 0 8px -6px var(--mantine-color-gray-outline) inset;
-  }
-  @mixin dark {
-    box-shadow: 4px 0 8px -6px var(--mantine-color-dark-outline) inset;
-  }
+  box-shadow: 4px 0 8px -6px light-dark(
+      var(--mantine-color-gray-outline),
+      var(--mantine-color-dark-outline)
+    ) inset;
 }
 
 .root-expand-depth {

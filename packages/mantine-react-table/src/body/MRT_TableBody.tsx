@@ -145,7 +145,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
       )}
       __vars={{
         '--mrt-table-body-height': rowVirtualizer
-          ? `${rowVirtualizer.getTotalSize()}`
+          ? `${rowVirtualizer.getTotalSize()}px`
           : undefined,
         ...tableBodyProps?.__vars,
       }}

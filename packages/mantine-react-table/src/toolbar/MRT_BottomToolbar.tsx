@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Box, rgba } from '@mantine/core';
+import { Box } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
 import { MRT_TablePagination } from './MRT_TablePagination';
@@ -59,13 +59,6 @@ export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
         isFullScreen && classes['bottom-toolbar-fullscreen'],
         toolbarProps?.className,
       )}
-      style={(theme) => ({
-        '--mantine-color-dark-7': isFullScreen ? '0' : undefined,
-        '--mrt-bottom-toolbar-box-shadow-color': rgba(theme.black, 0.1),
-        '--mrt-bottom-toolbar-position': isFullScreen ? 'fixed' : 'relative',
-        ...(parseFromValuesOrFunc(toolbarProps, theme) as any),
-      })}
-      __vars={toolbarProps?.__vars}
     >
       <MRT_ProgressBar isTopToolbar={false} table={table} />
       {positionToolbarAlertBanner === 'bottom' && (
