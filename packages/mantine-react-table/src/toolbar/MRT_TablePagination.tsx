@@ -72,7 +72,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
         <Group gap="xs">
           <Text id="rpp-label">{localization.rowsPerPage}</Text>
           <Select
-            aria-labelledBy="rpp-label"
+            aria-labelledby="rpp-label"
             className={classes.pagesize}
             data={paginationProps?.rowsPerPageOptions ?? defaultPageSizeOptions}
             onChange={(value: string) => setPageSize(+value)}

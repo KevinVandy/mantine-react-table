@@ -1,11 +1,14 @@
-import * as React from 'react';
-import { Box, Collapse, lighten } from '@mantine/core';
+import clsx from 'clsx';
+import { Box, Collapse } from '@mantine/core';
+
 import {
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+
+import classes from './MRT_TableDetailPanel.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
@@ -46,44 +49,43 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
     table,
   });
 
+  const parentRowHeight = virtualRow
+    ? parentRowRef.current?.getBoundingClientRect()?.height
+    : 0;
   return (
     <Box
       component="tr"
-      className="mantine-TableBodyCell-DetailPanel"
       {...tableRowProps}
-      style={(theme) => ({
-        display: layoutMode === 'grid' ? 'flex' : 'table-row',
-        position: virtualRow ? 'absolute' : undefined,
-        top: virtualRow
-          ? `${parentRowRef.current?.getBoundingClientRect()?.height}px`
+      __vars={{
+        '--mrt-parent-row-height':
+          virtualRow && parentRowHeight ? `${parentRowHeight}px` : undefined,
+        '--mrt-virtual-row-start': virtualRow
+          ? `${virtualRow.start}px`
           : undefined,
-        transform: virtualRow
-          ? `translateY(${virtualRow?.start}px)`
-          : undefined,
-        width: '100%',
-        zIndex: virtualRow ? 2 : undefined,
-        ...(parseFromValuesOrFunc(tableRowProps?.style, theme) as any),
-      })}
+        ...tableRowProps?.__vars,
+      }}
+      className={clsx(
+        'mrt-table-detail-panel',
+        classes.root,
+        layoutMode === 'grid' && classes['root-grid'],
+        virtualRow && classes['root-virtual-row'],
+        tableRowProps?.className,
+      )}
     >
       <Box
         component="td"
-        className="mantine-TableBodyCell-DetailPanel"
         colSpan={getVisibleLeafColumns().length}
         {...tableCellProps}
-        style={(theme) => ({
-          backgroundColor: virtualRow
-            ? lighten(theme.colors.dark[7], 0.06)
-            : undefined,
-          borderBottom: !row.getIsExpanded() ? 'none' : undefined,
-          display: layoutMode === 'grid' ? 'flex' : 'table-cell',
-          paddingBottom: row.getIsExpanded()
-            ? '16px !important'
-            : '0 !important',
-          paddingTop: row.getIsExpanded() ? '16px !important' : '0 !important',
-          transition: 'all 100ms ease-in-out',
-          width: `${table.getTotalSize()}px`,
-          ...(parseFromValuesOrFunc(tableCellProps?.style, theme) as any),
-        })}
+        __vars={{
+          '--mrt-inner-width': `${table.getTotalSize()}px`,
+        }}
+        className={clsx(
+          'mrt-table-detail-panel-cell',
+          classes.inner,
+          layoutMode === 'grid' && classes['inner-grid'],
+          row.getIsExpanded() && classes['inner-expanded'],
+          virtualRow && classes['inner-virtual'],
+        )}
       >
         {renderDetailPanel && (
           <Collapse in={row.getIsExpanded()}>

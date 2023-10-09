@@ -1,6 +1,10 @@
 .root {
   bottom: var(--mrt-bottom-toolbar-bottom);
-  box-shadow: 0 1px 2px -1px var(--mrt-bottom-toolbar-box-shadow-color) inset;
+  box-shadow: 0 1px 2px -1px color-mix(
+      in srgb,
+      var(--mantine-color-black) 10%,
+      transparent
+    ) inset;
   left: 0;
   right: 0;
   position: relative;

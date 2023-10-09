@@ -1,5 +1,4 @@
 .root {
-  box-shadow: 0 4px var(--box-shadow); // TODO: where is --box-shadow defined?
   background-color: light-dark(
     var(--mantine-color-white),
     var(--mantine-color-dark-7)

@@ -7,12 +7,10 @@
   vertical-align: top;
   z-index: var(--mrt-table-head-cell-z-index);
 
-  @mixin light {
-    background-color: var(--mantine-color-white);
-  }
-  @mixin dark {
-    background-color: var(--mantine-color-dark-7);
-  }
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
 
   @mixin hover {
     .mantine-ActionIcon-root {
@@ -36,12 +34,10 @@
 
 .root-pinned {
   position: sticky;
-  @mixin light {
-    background-color: var(--mantine-color-white);
-  }
-  @mixin dark {
-    background-color: var(--mantine-color-dark-7);
-  }
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
 }
 
 .root-pinned-left {
@@ -53,21 +49,17 @@
 }
 
 .root-pinned-left-last {
-  @mixin light {
-    box-shadow: -4px 0 8px -6px var(--mantine-color-gray-outline) inset;
-  }
-  @mixin dark {
-    box-shadow: -4px 0 8px -6px var(--mantine-color-dark-outline) inset;
-  }
+  box-shadow: -4px 0 8px -6px light-dark(
+      var(--mantine-color-gray-outline),
+      var(--mantine-color-dark-outline)
+    ) inset;
 }
 
 .root-pinned-right-first {
-  @mixin light {
-    box-shadow: 4px 0 8px -6px var(--mantine-color-gray-outline) inset;
-  }
-  @mixin dark {
-    box-shadow: 4px 0 8px -6px var(--mantine-color-dark-outline) inset;
-  }
+  box-shadow: 4px 0 8px -6px light-dark(
+      var(--mantine-color-gray-outline),
+      var(--mantine-color-dark-outline)
+    ) inset;
 }
 
 .root-opacity {

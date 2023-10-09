@@ -46,7 +46,7 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
           tablePaperProps.ref.current = ref;
         }
       }}
-      //rare case where we should use inline styles to guarantee highest specificity
+      // rare case where we should use inline styles to guarantee highest specificity
       style={(theme) => ({
         ...(isFullScreen
           ? {

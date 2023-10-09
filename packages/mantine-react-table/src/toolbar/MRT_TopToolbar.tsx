@@ -62,10 +62,6 @@ export const MRT_TopToolbar = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      style={(theme) => ({
-        ...parseFromValuesOrFunc(toolbarProps, theme),
-      })}
-      __vars={toolbarProps?.__vars}
     >
       {positionToolbarAlertBanner === 'top' && (
         <MRT_ToolbarAlertBanner

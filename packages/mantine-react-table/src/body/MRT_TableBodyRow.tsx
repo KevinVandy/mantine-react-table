@@ -84,22 +84,22 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           }
         }}
         {...tableRowProps}
+        __vars={{
+          ...tableRowProps?.__vars,
+          '--mrt-virtual-row-start': virtualRow
+            ? `${virtualRow.start}px`
+            : undefined,
+        }}
         className={clsx(
           'mrt-table-body-row',
           classes.root,
           layoutMode === 'grid' && classes['root-grid'],
           virtualRow && classes['root-virtualized'],
-          draggingRow?.id === row.id ||
-            (hoveredRow?.id === row.id && classes['root-dragging']),
+          (draggingRow?.id === row.id || hoveredRow?.id === row.id) &&
+            classes['root-dragging'],
           enableHover !== false && classes['root-hover'],
           tableRowProps?.className,
         )}
-        style={(theme) => ({
-          transform: virtualRow
-            ? `translateY(${virtualRow?.start}px)`
-            : undefined,
-          ...(parseFromValuesOrFunc(tableRowProps?.style, theme) as any),
-        })}
       >
         {virtualPaddingLeft ? (
           <td style={{ display: 'flex', width: virtualPaddingLeft }} />

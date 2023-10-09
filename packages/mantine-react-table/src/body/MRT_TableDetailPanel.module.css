@@ -1,0 +1,38 @@
+.root {
+  display: table-row;
+  width: 100%;
+}
+
+.root-grid {
+  display: flex;
+}
+
+.root-virtual-row {
+  position: absolute;
+  top: var(--mrt-parent-row-height);
+  transform: translateY(var(--mrt-virtual-row-start));
+  z-index: 2;
+}
+
+.inner {
+  display: table-cell;
+  transition: all 100ms ease-in-out;
+  width: var(--mrt-inner-width);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: none;
+}
+
+.inner-grid {
+  display: flex;
+}
+
+.inner-expanded {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+  border-bottom: unset;
+}
+
+.inner-virtual {
+  background-color: var(--mantine-color-dark-7);
+}

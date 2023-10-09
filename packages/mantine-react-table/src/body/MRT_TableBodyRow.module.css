@@ -14,12 +14,10 @@
 
 .root-hover {
   &:hover td {
-    @mixin dark {
-      background-color: var(--mantine-color-gray-light-hover);
-    }
-    @mixin light {
-      background-color: var(--mantine-color-dark-light-hover);
-    }
+    background-color: light-dark(
+      var(--mantine-color-dark-light-hover),
+      var(--mantine-color-gray-light-hover)
+    );
   }
 
   &[data-selected='true'] {
@@ -33,4 +31,5 @@
   position: absolute;
   top: 0;
   transition: none !important;
+  transform: translateY(var(--mrt-virtual-row-start));
 }

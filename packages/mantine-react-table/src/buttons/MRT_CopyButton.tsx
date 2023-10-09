@@ -50,9 +50,6 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
               classes.root,
               buttonProps?.className,
             )}
-            style={(theme) => ({
-              ...(parseFromValuesOrFunc(buttonProps?.style, theme) as any),
-            })}
             title={undefined}
             aria-role="presentation"
             onClick={(e) => {

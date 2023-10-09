@@ -102,10 +102,6 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
             classes['alert-bottom'],
           alertProps?.className,
         )}
-        style={(theme) => ({
-          ...parseFromValuesOrFunc(alertProps, theme),
-        })}
-        __vars={alertProps?.__vars}
       >
         {renderToolbarAlertBannerContent?.({
           groupedAlert,
