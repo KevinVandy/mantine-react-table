@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { type MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActionIcon,
@@ -10,11 +11,11 @@ import {
   Select,
   TextInput,
 } from '@mantine/core';
-import clsx from 'clsx';
 import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+import { localizedFilterOption } from '../filterFns';
 
 import classes from './MRT_FilterTextInput.module.css';
 
@@ -108,13 +109,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
 
   const currentFilterOption = columnDef._filterFn;
   const filterChipLabel = ['empty', 'notEmpty'].includes(currentFilterOption)
-    ? //@ts-ignore
-      localization[
-        `filter${
-          currentFilterOption?.charAt?.(0)?.toUpperCase() +
-          currentFilterOption?.slice(1)
-        }`
-      ]
+    ? localizedFilterOption(localization, currentFilterOption)
     : '';
   const filterPlaceholder = !isRangeFilter
     ? textInputProps?.placeholder ??

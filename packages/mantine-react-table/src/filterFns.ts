@@ -4,6 +4,7 @@ import {
   type RankingInfo,
 } from '@tanstack/match-sorter-utils';
 import { filterFns, type Row } from '@tanstack/react-table';
+import type { MRT_FilterOption, MRT_Localization } from './types';
 
 const fuzzy = <TData extends Record<string, any> = {}>(
   row: Row<TData>,
@@ -191,3 +192,11 @@ export const MRT_FilterFns = {
   notEquals,
   startsWith,
 };
+
+export function localizedFilterOption(
+  localization: MRT_Localization,
+  option: MRT_FilterOption,
+) {
+  const key = `filter${option[0].toUpperCase()}${option.slice(1)}`;
+  return localization[key as keyof MRT_Localization] ?? '';
+}

@@ -1,6 +1,14 @@
-.MRT_TableHeadCellFilterLabelActionIcon {
-  opacity: var(--opacity);
+.root {
+  opacity: 0.5;
   padding: 2px;
+  color: gray;
+  &.active {
+    opacity: 1;
+    color: var(--mantine-primary-color-filled);
+    @mixin hover {
+      color: var(--mantine-primary-color-filled-hover);
+    }
+  }
   @mixin hover {
     opacity: 1;
   }

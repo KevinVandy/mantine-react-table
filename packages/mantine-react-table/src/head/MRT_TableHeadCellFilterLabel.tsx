@@ -1,15 +1,11 @@
+import clsx from 'clsx';
 import { useState, type MouseEvent } from 'react';
-import {
-  ActionIcon,
-  Box,
-  Transition,
-  Tooltip,
-  Popover,
-  useMantineTheme,
-} from '@mantine/core';
-import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
+import { ActionIcon, Box, Popover, Tooltip, Transition } from '@mantine/core';
+
 import { type MRT_Header, type MRT_TableInstance } from '../types';
-import { getPrimaryColor } from '../column.utils';
+import { localizedFilterOption } from '../filterFns';
+import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
+
 import classes from './MRT_TableHeadCellFilterLabel.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
@@ -35,8 +31,6 @@ export const MRT_TableHeadCellFilterLabel = <
   const { column } = header;
   const { columnDef } = column;
 
-  const theme = useMantineTheme();
-
   const filterValue = column.getFilterValue();
 
   const [popoverOpened, setPopoverOpened] = useState(false);
@@ -61,13 +55,7 @@ export const MRT_TableHeadCellFilterLabel = <
           .replace('{column}', String(columnDef.header))
           .replace(
             '{filterType}',
-            // @ts-ignore
-            localization[
-              `filter${
-                currentFilterOption?.charAt(0)?.toUpperCase() +
-                currentFilterOption?.slice(1)
-              }`
-            ],
+            localizedFilterOption(localization, currentFilterOption),
           )
           .replace(
             '{filterValue}',
@@ -100,8 +88,8 @@ export const MRT_TableHeadCellFilterLabel = <
             (!!column.getFilterValue()?.[0] || !!column.getFilterValue()?.[1]))
         }
       >
-        {(style) => (
-          <Box component="span" style={{ ...style, flex: '0 0' }}>
+        {() => (
+          <Box component="span">
             <Popover.Target>
               <Tooltip
                 disabled={popoverOpened}
@@ -111,8 +99,13 @@ export const MRT_TableHeadCellFilterLabel = <
                 withinPortal
               >
                 <ActionIcon
+                  size="sm"
                   variant="transparent"
-                  color={isFilterActive ? getPrimaryColor(theme) : 'gray'}
+                  className={clsx(
+                    'mrt-table-head-cell-filter-label-icon',
+                    classes.root,
+                    isFilterActive && classes.active,
+                  )}
                   onClick={(event: MouseEvent<HTMLButtonElement>) => {
                     event.stopPropagation();
                     if (columnFilterDisplayMode === 'popover') {
@@ -121,14 +114,10 @@ export const MRT_TableHeadCellFilterLabel = <
                       setShowColumnFilters(true);
                     }
                     setTimeout(() => {
-                      filterInputRefs.current[`${column.id}-0`]?.focus();
-                      filterInputRefs.current[`${column.id}-0`]?.select();
+                      const input = filterInputRefs.current[`${column.id}-0`];
+                      input?.focus();
+                      input?.select();
                     }, 100);
-                  }}
-                  size="sm"
-                  className={classes.MRT_TableHeadCellFilterLabelActionIcon}
-                  __vars={{
-                    '--opacity': isFilterActive ? '1' : '0.5',
                   }}
                 >
                   <IconFilter />
