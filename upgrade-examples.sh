@@ -20,7 +20,7 @@ for file in *; do
       cd sandbox
 
       ## Update dependency versions
-      npx npm-check-updates -u mantine-react-table
+      npx npm-check-updates -u mantine-react-table -t greatest
 
       # Run npm install
       npm install --package-lock-only --force
