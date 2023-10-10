@@ -1,4 +1,4 @@
-import { TableTr } from '@mantine/core';
+import { Box, TableTr } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import {
@@ -48,7 +48,7 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
       )}
     >
       {virtualPaddingLeft ? (
-        <th style={{ display: 'flex', width: virtualPaddingLeft }} />
+        <Box component="th" display="flex" w={virtualPaddingLeft} />
       ) : null}
       {(virtualColumns ?? headerGroup.headers).map((headerOrVirtualHeader) => {
         const header = virtualColumns
@@ -60,7 +60,7 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
         );
       })}
       {virtualPaddingRight ? (
-        <th style={{ display: 'flex', width: virtualPaddingRight }} />
+        <Box component="th" display="flex" w={virtualPaddingRight} />
       ) : null}
     </TableTr>
   );

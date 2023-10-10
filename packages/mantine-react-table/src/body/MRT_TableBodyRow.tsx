@@ -1,5 +1,5 @@
 import { type DragEvent, memo, useRef } from 'react';
-import { TableTr } from '@mantine/core';
+import { Box, TableTr } from '@mantine/core';
 import clsx from 'clsx';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
@@ -102,7 +102,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
         )}
       >
         {virtualPaddingLeft ? (
-          <td style={{ display: 'flex', width: virtualPaddingLeft }} />
+          <Box component="td" display="flex" w={virtualPaddingLeft} />
         ) : null}
         {(virtualColumns ?? row.getVisibleCells()).map((cellOrVirtualCell) => {
           const cell = columnVirtualizer
@@ -140,7 +140,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           );
         })}
         {virtualPaddingRight ? (
-          <td style={{ display: 'flex', width: virtualPaddingRight }} />
+          <Box component="td" display="flex" w={virtualPaddingRight} />
         ) : null}
       </TableTr>
       {renderDetailPanel && !row.getIsGrouped() && (

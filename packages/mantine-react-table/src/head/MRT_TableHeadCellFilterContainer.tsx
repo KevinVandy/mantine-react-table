@@ -5,6 +5,9 @@ import { MRT_FilterCheckbox } from '../inputs/MRT_FilterCheckbox';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { MRT_FilterRangeSlider } from '../inputs/MRT_FilterRangeSlider';
+import { localizedFilterOption } from '../filterFns';
+
+import classes from './MRT_TableHeadCellFilterContainer.module.css';
 
 interface Props<TData extends Record<string, any> = {}> {
   header: MRT_Header<TData>;
@@ -70,7 +73,6 @@ export const MRT_TableHeadCellFilterContainer = <
                     variant="transparent"
                     aria-label={localization.changeFilterMode}
                     size="md"
-                    style={{ transform: 'translateY(-2px)' }}
                   >
                     <IconFilterCog />
                   </ActionIcon>
@@ -92,18 +94,12 @@ export const MRT_TableHeadCellFilterContainer = <
         {showChangeModeButton ? (
           <Text
             component="label"
+            className={classes['filter-mode-label']}
             c="dimmed"
-            style={{ whiteSpace: 'nowrap', marginTop: '4px', fontSize: '10px' }}
           >
             {localization.filterMode.replace(
               '{filterType}',
-              // @ts-ignore
-              localization[
-                `filter${
-                  currentFilterOption?.charAt(0)?.toUpperCase() +
-                  currentFilterOption?.slice(1)
-                }`
-              ],
+              localizedFilterOption(localization, currentFilterOption),
             )}
           </Text>
         ) : null}
