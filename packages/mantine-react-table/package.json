@@ -98,6 +98,7 @@
     "react-is": "^18.2.0",
     "rollup": "^3.29.4",
     "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^6.0.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
@@ -111,8 +112,8 @@
   },
   "dependencies": {
     "@tanstack/match-sorter-utils": "8.8.4",
-    "@tanstack/react-table": "8.10.3",
-    "@tanstack/react-virtual": "3.0.0-beta.61",
+    "@tanstack/react-table": "8.10.6",
+    "@tanstack/react-virtual": "3.0.0-beta.65",
     "clsx": "^2.0.0"
   },
   "peerDependencies": {
