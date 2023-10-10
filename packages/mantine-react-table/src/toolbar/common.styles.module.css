@@ -1,6 +1,9 @@
 .common-toolbar-styles {
   align-items: flex-start;
-  background-color: var(--mantine-color-dark-7);
+  background-color: light-dark(
+    var(--mantine-color-default),
+    var(--mantine-color-dark-7)
+  );
   background-image: none;
   display: grid;
   flex-wrap: wrap-reverse;
