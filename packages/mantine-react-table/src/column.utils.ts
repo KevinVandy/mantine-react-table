@@ -9,9 +9,6 @@ import { type MRT_AggregationFns } from './aggregationFns';
 import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
 import {
-  type BoxProps,
-  type CssVariable,
-  type MantineStyleProp,
   type MantineTheme,
 } from '@mantine/core';
 import {
@@ -23,7 +20,6 @@ import {
   type MRT_DisplayColumnIds,
   type MRT_FilterOption,
   type MRT_GroupingState,
-  type MRT_Header,
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_TableOptions,

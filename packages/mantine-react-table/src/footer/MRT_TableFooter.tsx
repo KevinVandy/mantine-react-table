@@ -1,4 +1,4 @@
-import { Box, Table, TableTfoot } from '@mantine/core';
+import { TableTfoot } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';

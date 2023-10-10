@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { TableTh, useMantineTheme } from '@mantine/core';
+import { TableTh } from '@mantine/core';
 
 import { parseFromValuesOrFunc } from '../column.utils';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
@@ -15,7 +15,6 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
   footer,
   table,
 }: Props<TData>) => {
-  const theme = useMantineTheme();
   const {
     options: { layoutMode, mantineTableFooterCellProps },
   } = table;
