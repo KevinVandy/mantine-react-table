@@ -12,10 +12,11 @@ coverage
 .next/
 out/
 build
-packages/mantine-react-table/locales
+*.log
 
 # mrt
-*.log
+packages/mantine-react-table/locales
+packages/mantine-react-table/mrt.css
 .cache
 /dist
 dist

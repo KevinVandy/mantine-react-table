@@ -62,7 +62,7 @@ export default [
     plugins: [
       copy({
         targets: [
-          { src: 'dist/cjs/index.css', dest: 'dist', rename: 'mrt.css' },
+          { src: 'dist/cjs/index.css', dest: './', rename: 'mrt.css' },
         ],
         verbose: true,
         hook: 'buildStart',
