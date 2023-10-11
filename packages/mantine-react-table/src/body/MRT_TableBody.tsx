@@ -33,6 +33,10 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
   virtualPaddingRight,
 }: Props<TData>) => {
   const {
+    getCenterRows,
+    getBottomRows,
+    getTopRows,
+    getIsSomeRowsPinned,
     getRowModel,
     getPrePaginationRowModel,
     getState,
@@ -40,6 +44,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
       createDisplayMode,
       enableGlobalFilterRankedResults,
       enablePagination,
+      enableRowPinning,
       enableRowVirtualization,
       layoutMode,
       localization,
@@ -51,10 +56,13 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
       manualSorting,
       memoMode,
       renderEmptyRowsFallback,
+      rowPinningDisplayMode,
       rowVirtualizerInstanceRef,
-      rowVirtualizerProps,
+      rowVirtualizerOptions,
+      enableStickyFooter,
+      enableStickyHeader,
     },
-    refs: { tableContainerRef, tablePaperRef },
+    refs: { tableContainerRef, tablePaperRef, tableHeadRef, tableFooterRef },
   } = table;
   const {
     creatingRow,
@@ -63,14 +71,24 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     expanded,
     globalFilter,
     pagination,
+    rowPinning,
+    isFullScreen,
     sorting,
   } = getState();
 
   const tableBodyProps = parseFromValuesOrFunc(mantineTableBodyProps, {
     table,
   });
+  const rowVirtualizerProps = parseFromValuesOrFunc(rowVirtualizerOptions, {
+    table,
+  });
 
-  const vProps = parseFromValuesOrFunc(rowVirtualizerProps, { table });
+  const tableHeadHeight =
+    ((enableStickyHeader || isFullScreen) &&
+      tableHeadRef.current?.clientHeight) ||
+    0;
+  const tableFooterHeight =
+    (enableStickyFooter && tableFooterRef.current?.clientHeight) || 0;
 
   const shouldRankRows = useMemo(
     () =>
@@ -89,21 +107,45 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     ],
   );
 
+  const pinnedRowIds = useMemo(
+    () =>
+      getRowModel()
+        .rows.filter((row) => row.getIsPinned())
+        .map((r) => r.id),
+    [rowPinning, table.getRowModel().rows],
+  );
+
   const rows = useMemo(() => {
-    if (!shouldRankRows) return getRowModel().rows;
-    const rankedRows = getPrePaginationRowModel().rows.sort((a, b) =>
-      rankGlobalFuzzy(a, b),
-    );
-    if (enablePagination && !manualPagination) {
-      const start = pagination.pageIndex * pagination.pageSize;
-      return rankedRows.slice(start, start + pagination.pageSize);
+    let rows: MRT_Row<TData>[] = [];
+    if (!shouldRankRows) {
+      rows =
+        !enableRowPinning || rowPinningDisplayMode?.includes('sticky')
+          ? getRowModel().rows
+          : getCenterRows();
+    } else {
+      rows = getPrePaginationRowModel().rows.sort((a, b) =>
+        rankGlobalFuzzy(a, b),
+      );
+      if (enablePagination && !manualPagination) {
+        const start = pagination.pageIndex * pagination.pageSize;
+        rows = rows.slice(start, start + pagination.pageSize);
+      }
     }
-    return rankedRows;
+    if (enableRowPinning && rowPinningDisplayMode?.includes('sticky')) {
+      rows = [
+        ...getTopRows().filter((row) => !pinnedRowIds.includes(row.id)),
+        ...rows,
+        ...getBottomRows().filter((row) => !pinnedRowIds.includes(row.id)),
+      ];
+    }
+
+    return rows;
   }, [
     shouldRankRows,
     shouldRankRows ? getPrePaginationRowModel().rows : getRowModel().rows,
     pagination.pageIndex,
     pagination.pageSize,
+    rowPinning,
   ]);
 
   const rowVirtualizer:
@@ -120,7 +162,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
             ? (element) => element?.getBoundingClientRect().height
             : undefined,
         overscan: 4,
-        ...vProps,
+        ...rowVirtualizerProps,
       })
     : undefined;
 
@@ -133,88 +175,157 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     : undefined;
 
   return (
-    <TableTbody
-      {...tableBodyProps}
-      className={clsx(
-        'mrt-table-body',
-        classes.root,
-        layoutMode === 'grid' && classes['root-grid'],
-        !rows.length && classes['root-no-rows'],
-        rowVirtualizer && classes['root-virtualized'],
-        tableBodyProps?.className,
-      )}
-      __vars={{
-        '--mrt-table-body-height': rowVirtualizer
-          ? `${rowVirtualizer.getTotalSize()}px`
-          : undefined,
-        ...tableBodyProps?.__vars,
-      }}
-    >
-      {creatingRow && createDisplayMode === 'row' && (
-        <MRT_TableBodyRow table={table} row={creatingRow} rowIndex={-1} />
-      )}
-      {!rows.length ? (
-        <tr
-          className={clsx(
-            'mrt-table-body-row',
-            layoutMode === 'grid' && classes['empty-row-tr-grid'],
-          )}
-        >
-          <td
-            colSpan={table.getVisibleLeafColumns().length}
+    <>
+    {!rowPinningDisplayMode?.includes('sticky') &&
+        getIsSomeRowsPinned('top') && (
+          <TableTbody
+            {...tableBodyProps}
+            style={(theme) => ({
+              display: layoutMode === 'grid' ? 'grid' : undefined,
+              position: 'sticky',
+              top: tableHeadHeight - 1,
+              zIndex: 1,
+              ...(parseFromValuesOrFunc(tableBodyProps?.style, theme) as any),
+            })}
+          >
+            {getTopRows().map((row, rowIndex) => {
+              const props = {
+                columnVirtualizer,
+                measureElement: rowVirtualizer?.measureElement,
+                numRows: rows.length,
+                row,
+                rowIndex,
+                table,
+                virtualColumns,
+                virtualPaddingLeft,
+                virtualPaddingRight,
+              };
+              return memoMode === 'rows' ? (
+                <Memo_MRT_TableBodyRow key={row.id} {...props} />
+              ) : (
+                <MRT_TableBodyRow key={row.id} {...props} />
+              );
+            })}
+          </TableTbody>
+        )}
+      <TableTbody
+        {...tableBodyProps}
+        className={clsx(
+          classes.root,
+          layoutMode === 'grid' && classes['root-grid'],
+          !rows.length && classes['root-no-rows'],
+          rowVirtualizer && classes['root-virtualized'],
+          tableBodyProps?.className,
+        )}
+        __vars={{
+          '--mrt-table-body-height': rowVirtualizer
+            ? `${rowVirtualizer.getTotalSize()}px`
+            : undefined,
+          ...tableBodyProps?.__vars,
+        }}
+      >
+        {creatingRow && createDisplayMode === 'row' && (
+          <MRT_TableBodyRow table={table} row={creatingRow} rowIndex={-1} />
+        )}
+        {!rows.length ? (
+          <tr
             className={clsx(
-              'mrt-table-body-cell',
-              layoutMode === 'grid' && classes['empty-row-td-grid'],
+              'mrt-table-body-row',
+              layoutMode === 'grid' && classes['empty-row-tr-grid'],
             )}
           >
-            {renderEmptyRowsFallback?.({ table }) ?? (
-              <Text
-                className={clsx(classes['empty-row-td-content'])}
-                __vars={{
-                  '--mrt-paper-width': `${tablePaperRef.current?.clientWidth}`,
-                }}
-              >
-                {globalFilter || columnFilters.length
-                  ? localization.noResultsFound
-                  : localization.noRecordsToDisplay}
-              </Text>
-            )}
-          </td>
-        </tr>
-      ) : (
-        <>
-          {(virtualRows ?? rows).map((rowOrVirtualRow, rowIndex) => {
-            const row = rowVirtualizer
-              ? rows[rowOrVirtualRow.index]
-              : (rowOrVirtualRow as MRT_Row<TData>);
-            const props = {
-              columnVirtualizer,
-              enableHover,
-              isStriped,
-              measureElement: rowVirtualizer?.measureElement,
-              numRows: rows.length,
-              row,
-              rowIndex: rowVirtualizer ? rowOrVirtualRow.index : rowIndex,
-              table,
-              virtualColumns,
-              virtualPaddingLeft,
-              virtualPaddingRight,
-              virtualRow: rowVirtualizer
-                ? (rowOrVirtualRow as MRT_VirtualItem)
-                : undefined,
-            };
-            return memoMode === 'rows' ? (
-              <Memo_MRT_TableBodyRow
-                key={row.id || `mrt-${row.index}`}
-                {...props}
-              />
-            ) : (
-              <MRT_TableBodyRow key={row.id || `mrt-${row.index}`} {...props} />
-            );
-          })}
-        </>
-      )}
-    </TableTbody>
+            <td
+              colSpan={table.getVisibleLeafColumns().length}
+              className={clsx(
+                'mrt-table-body-cell',
+                layoutMode === 'grid' && classes['empty-row-td-grid'],
+              )}
+            >
+              {renderEmptyRowsFallback?.({ table }) ?? (
+                <Text
+                  className={clsx(classes['empty-row-td-content'])}
+                  __vars={{
+                    '--mrt-paper-width': `${tablePaperRef.current?.clientWidth}`,
+                  }}
+                >
+                  {globalFilter || columnFilters.length
+                    ? localization.noResultsFound
+                    : localization.noRecordsToDisplay}
+                </Text>
+              )}
+            </td>
+          </tr>
+        ) : (
+          <>
+            {(virtualRows ?? rows).map((rowOrVirtualRow, rowIndex) => {
+              const row = rowVirtualizer
+                ? rows[rowOrVirtualRow.index]
+                : (rowOrVirtualRow as MRT_Row<TData>);
+              const props = {
+                columnVirtualizer,
+                enableHover,
+                isStriped,
+                measureElement: rowVirtualizer?.measureElement,
+                numRows: rows.length,
+                pinnedRowIds,
+                row,
+                rowIndex: rowVirtualizer ? rowOrVirtualRow.index : rowIndex,
+                table,
+                virtualColumns,
+                virtualPaddingLeft,
+                virtualPaddingRight,
+                virtualRow: rowVirtualizer
+                  ? (rowOrVirtualRow as MRT_VirtualItem)
+                  : undefined,
+              };
+              return memoMode === 'rows' ? (
+                <Memo_MRT_TableBodyRow
+                  key={row.id || `mrt-${row.index}`}
+                  {...props}
+                />
+              ) : (
+                <MRT_TableBodyRow
+                  key={row.id || `mrt-${row.index}`}
+                  {...props}
+                />
+              );
+            })}
+          </>
+        )}
+      </TableTbody>
+      {!rowPinningDisplayMode?.includes('sticky') &&
+        getIsSomeRowsPinned('bottom') && (
+          <TableTbody
+            {...tableBodyProps}
+            style={(theme) => ({
+              bottom: tableFooterHeight - 1,
+              display: layoutMode === 'grid' ? 'grid' : undefined,
+              position: 'sticky',
+              zIndex: 1,
+              ...(parseFromValuesOrFunc(tableBodyProps?.style, theme) as any),
+            })}
+          >
+            {getBottomRows().map((row, rowIndex) => {
+              const props = {
+                columnVirtualizer,
+                measureElement: rowVirtualizer?.measureElement,
+                numRows: rows.length,
+                row,
+                rowIndex,
+                table,
+                virtualColumns,
+                virtualPaddingLeft,
+                virtualPaddingRight,
+              };
+              return memoMode === 'rows' ? (
+                <Memo_MRT_TableBodyRow key={row.id} {...props} />
+              ) : (
+                <MRT_TableBodyRow key={row.id} {...props} />
+              );
+            })}
+          </TableTbody>
+        )}
+    </>
   );
 };
 

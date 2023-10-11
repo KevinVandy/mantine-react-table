@@ -23,6 +23,7 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
     getFooterGroups,
     getState,
     options: { enableStickyFooter, layoutMode, mantineTableFooterProps },
+    refs: { tableFooterRef },
   } = table;
   const { isFullScreen } = getState();
 
@@ -36,8 +37,15 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
   return (
     <TableTfoot
       {...tableFooterProps}
+      {...tableFooterProps}
+      ref={(ref: HTMLTableSectionElement) => {
+        tableFooterRef.current = ref;
+        if (tableFooterProps?.ref) {
+          // @ts-ignore
+          tableFooterProps.ref.current = ref;
+        }
+      }}
       className={clsx(
-        'mrt-table-footer',
         classes.root,
         tableFooterProps?.className,
         stickFooter && classes.sticky,

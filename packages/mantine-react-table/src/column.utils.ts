@@ -8,9 +8,7 @@ import {
 import { type MRT_AggregationFns } from './aggregationFns';
 import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
-import {
-  type MantineTheme,
-} from '@mantine/core';
+import { type MantineTheme } from '@mantine/core';
 import {
   type MantineShade,
   type MRT_Column,
@@ -153,6 +151,9 @@ export const getLeadingDisplayColumnIds = <
   props: MRT_TableOptions<TData>,
 ) =>
   [
+    props.enableRowPinning &&
+      !props.rowPinningDisplayMode?.startsWith('select') &&
+      'mrt-row-pin',
     (props.enableRowDragging || props.enableRowOrdering) && 'mrt-row-drag',
     props.positionActionsColumn === 'first' &&
       (props.enableRowActions ||

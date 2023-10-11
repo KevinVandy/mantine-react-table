@@ -17,6 +17,7 @@ export default [
       '@tanstack/match-sorter-utils',
       '@tanstack/react-table',
       '@tanstack/react-virtual',
+      'clsx',
       'dayjs',
       'react',
     ],
@@ -62,7 +63,7 @@ export default [
     plugins: [
       copy({
         targets: [
-          { src: 'dist/cjs/index.css', dest: './', rename: 'mrt.css' },
+          { src: 'dist/cjs/index.css', dest: './', rename: 'styles.css' },
         ],
         verbose: true,
         hook: 'buildStart',

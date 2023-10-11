@@ -143,7 +143,7 @@ const Example = () => {
       sorting,
     },
     rowVirtualizerInstanceRef, //get access to the virtualizer instance
-    rowVirtualizerProps: { overscan: 10 },
+    rowVirtualizerOptions: { overscan: 10 },
   });
 
   return <MantineReactTable table={table} />;

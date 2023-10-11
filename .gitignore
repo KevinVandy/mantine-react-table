@@ -16,7 +16,7 @@ build
 
 # mrt
 packages/mantine-react-table/locales
-packages/mantine-react-table/mrt.css
+packages/mantine-react-table/styles.css
 .cache
 /dist
 dist

@@ -90,7 +90,7 @@ const Example = () => {
     mantineTableContainerProps: { style: { maxHeight: '600px' } },
     onSortingChange: setSorting,
     state: { isLoading, sorting },
-    rowVirtualizerProps: { overscan: 8 }, //optionally customize the virtualizer
+    rowVirtualizerOptions: { overscan: 8 }, //optionally customize the virtualizer
   });
 
   return <MantineReactTable table={table} />;

@@ -27,9 +27,32 @@
   }
 }
 
+.root-pinned {
+  opacity: 0.98;
+  td {
+    background-color: light-dark(
+      var(--mantine-color-dark-0),
+      var(--mantine-color-dark-8)
+    );
+  }
+}
+
+.root-sticky-pinned {
+  z-index: 2;
+  position: sticky;
+}
+
+.root-sticky-pinned-top {
+  top: calc(var(--mrt-pinned-row-top, 0) * 1px);
+}
+
+.root-sticky-pinned-bottom {
+  bottom: calc(var(--mrt-pinned-row-bottom, 0) * 1px);
+}
+
 .root-virtualized {
   position: absolute;
   top: 0;
   transition: none !important;
-  transform: translateY(var(--mrt-virtual-row-start));
+  transform: translateY(calc(var(--mrt-virtual-row-start) * 1px));
 }

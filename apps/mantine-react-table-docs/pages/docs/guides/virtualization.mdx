@@ -23,11 +23,11 @@ Virtualization is useful when you have a lot of data you want to display client-
   onlyOptions={
     new Set([
       'columnVirtualizerInstanceRef',
-      'columnVirtualizerProps',
+      'columnVirtualizerOptions',
       'enableColumnVirtualization',
       'enableRowVirtualization',
       'rowVirtualizerInstanceRef',
-      'rowVirtualizerProps',
+      'rowVirtualizerOptions',
     ])
   }
 />
@@ -95,7 +95,7 @@ The `enableStickyHeader` table option is automatically set to `true` when row vi
 
 ### Customize Virtualizer Props
 
-You can adjust some of the virtualizer props that are used internally with the `rowVirtualizerProps` and `columnVirtualizerProps` table options. The most useful virtualizer props are the `overscan` and `estimateSize` options. You may want to adjust these values if you have unusual row heights or column widths that are causing the default scrolling to act weirdly.
+You can adjust some of the virtualizer props that are used internally with the `rowVirtualizerOptions` and `columnVirtualizerOptions` table options. The most useful virtualizer props are the `overscan` and `estimateSize` options. You may want to adjust these values if you have unusual row heights or column widths that are causing the default scrolling to act weirdly.
 
 ```jsx
 const table = useMantineReactTable({
@@ -104,11 +104,11 @@ const table = useMantineReactTable({
   enableColumnVirtualization: true,
   enablePagination: false,
   enableRowVirtualization: true,
-  columnVirtualizerProps: {
+  columnVirtualizerOptions: {
     overscan: 5, //adjust the number of columns that are rendered to the left and right of the visible area of the table
     estimateSize: () => 400, //if your columns are wider or , try tweaking this value to make scrollbar size more accurate
   },
-  rowVirtualizerProps: {
+  rowVirtualizerOptions: {
     overscan: 10, //adjust the number or rows that are rendered above and below the visible area of the table
     estimateSize: () => 100, //if your rows are taller than normal, try tweaking this value to make scrollbar size more accurate
   },

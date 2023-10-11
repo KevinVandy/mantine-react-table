@@ -180,6 +180,7 @@ export interface MRT_Localization {
   noResultsFound: string;
   of: string;
   or: string;
+  pin?: string;
   pinToLeft: string;
   pinToRight: string;
   resetColumnSize: string;
@@ -223,7 +224,9 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> = Omit<
   | 'getAllColumns'
   | 'getAllFlatColumns'
   | 'getAllLeafColumns'
+  | 'getBottomRows'
   | 'getCenterLeafColumns'
+  | 'getCenterRows'
   | 'getColumn'
   | 'getExpandedRowModel'
   | 'getFlatHeaders'
@@ -236,12 +239,15 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> = Omit<
   | 'getRowModel'
   | 'getSelectedRowModel'
   | 'getState'
+  | 'getTopRows'
   | 'options'
 > & {
   getAllColumns: () => MRT_Column<TData>[];
   getAllFlatColumns: () => MRT_Column<TData>[];
   getAllLeafColumns: () => MRT_Column<TData>[];
+  getBottomRows: () => MRT_Row<TData>[];
   getCenterLeafColumns: () => MRT_Column<TData>[];
+  getCenterRows: () => MRT_Row<TData>[];
   getColumn: (columnId: string) => MRT_Column<TData>;
   getExpandedRowModel: () => MRT_RowModel<TData>;
   getFlatHeaders: () => MRT_Header<TData>[];
@@ -254,6 +260,7 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> = Omit<
   getRowModel: () => MRT_RowModel<TData>;
   getSelectedRowModel: () => MRT_RowModel<TData>;
   getState: () => MRT_TableState<TData>;
+  getTopRows: () => MRT_Row<TData>[];
   options: MRT_DefinedTableOptions<TData>;
   refs: {
     bottomToolbarRef: MutableRefObject<HTMLDivElement>;
@@ -264,6 +271,8 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> = Omit<
     tableHeadCellRefs: MutableRefObject<Record<string, HTMLTableCellElement>>;
     tablePaperRef: MutableRefObject<HTMLDivElement>;
     topToolbarRef: MutableRefObject<HTMLDivElement>;
+    tableFooterRef: MutableRefObject<HTMLTableSectionElement>;
+    tableHeadRef: MutableRefObject<HTMLTableSectionElement>;
   };
   setCreatingRow: Dispatch<SetStateAction<MRT_Row<TData> | null | true>>;
   setColumnFilterFns: Dispatch<SetStateAction<MRT_ColumnFilterFnsState>>;
@@ -655,6 +664,7 @@ export type MRT_DisplayColumnIds =
   | 'mrt-row-drag'
   | 'mrt-row-expand'
   | 'mrt-row-numbers'
+  | 'mrt-row-pin'
   | 'mrt-row-select';
 
 export type MRT_CreateTableFeature<
@@ -702,7 +712,7 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
     HTMLDivElement,
     HTMLTableCellElement
   > | null>;
-  columnVirtualizerProps?:
+  columnVirtualizerOptions?:
     | Partial<VirtualizerOptions<HTMLDivElement, HTMLTableCellElement>>
     | ((props: {
         table: MRT_TableInstance<TData>;
@@ -1153,11 +1163,19 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
   }) => ReactNode;
   rowCount?: number;
   rowNumberMode?: 'original' | 'static';
+  rowPinningDisplayMode?:
+    | 'bottom'
+    | 'select-bottom'
+    | 'select-sticky'
+    | 'select-top'
+    | 'sticky'
+    | 'top'
+    | 'top-and-bottom';
   rowVirtualizerInstanceRef?: MutableRefObject<Virtualizer<
     HTMLDivElement,
     HTMLTableRowElement
   > | null>;
-  rowVirtualizerProps?:
+  rowVirtualizerOptions?:
     | Partial<VirtualizerOptions<HTMLDivElement, HTMLTableRowElement>>
     | ((props: {
         table: MRT_TableInstance<TData>;

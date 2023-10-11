@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "license": "MIT",
   "name": "mantine-react-table",
   "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",
@@ -29,17 +29,17 @@
   "files": [
     "dist",
     "locales",
-    "mrt.css",
+    "styles.css",
     "src"
   ],
   "size-limit": [
     {
       "path": "dist/cjs/index.js",
-      "limit": "53 KB"
+      "limit": "58 KB"
     },
     {
       "path": "dist/esm/mantine-react-table.esm.js",
-      "limit": "52 KB"
+      "limit": "56 KB"
     }
   ],
   "engines": {

@@ -41,7 +41,6 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
       colSpan={footer.colSpan}
       {...tableCellProps}
       className={clsx(
-        'mrt-table-footer-cell',
         classes.root,
         layoutMode === 'grid' && classes.grid,
         column.getIsPinned() && columnDefType !== 'group' && classes.pinned,

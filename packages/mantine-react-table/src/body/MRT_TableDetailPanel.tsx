@@ -65,7 +65,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
         ...tableRowProps?.__vars,
       }}
       className={clsx(
-        'mrt-table-detail-panel',
+        'mantine-Table-tr-detail-panel',
         classes.root,
         layoutMode === 'grid' && classes['root-grid'],
         virtualRow && classes['root-virtual-row'],
@@ -80,7 +80,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
           '--mrt-inner-width': `${table.getTotalSize()}px`,
         }}
         className={clsx(
-          'mrt-table-detail-panel-cell',
+          'mantine-Table-td-detail-panel',
           classes.inner,
           layoutMode === 'grid' && classes['inner-grid'],
           row.getIsExpanded() && classes['inner-expanded'],
