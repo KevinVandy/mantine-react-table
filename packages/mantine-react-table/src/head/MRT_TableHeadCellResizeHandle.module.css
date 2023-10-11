@@ -1,22 +1,23 @@
-.MRT_TableHeadCellResizeHandle {
+.root {
   cursor: col-resize;
-  margin-right: var(--margin-right);
   position: absolute;
-  right: 4px;
-  padding-left: 1px;
-  padding-right: 2px;
-  transform: var(--transform);
-  &:active > .mantine-Divider-vertical {
-    border-left-color: var(--mantine-color-default);
-  }
-}
-
-.MRT_TableHeadCellResizeHandleDivider {
   border-radius: 2px;
-  border-width: 4px;
+  right: 0px;
+  width: 3px;
   height: 24px;
-  touch-action: none;
-  transition: var(--transition);
-  user-select: none;
-  z-index: 4;
+  margin-right: -10px;
+  &:global(.md) {
+    margin-right: -16px;
+  }
+  &:global(.xl) {
+    margin-right: -22px;
+  }
+  background: var(--mantine-color-placeholder);
+  &:hover {
+    background: var(--mantine-primary-color-filled-hover);
+  }
+  &:active {
+    background: var(--mantine-primary-color-filled);
+  }
+  transform: var(--mrt-transform);
 }

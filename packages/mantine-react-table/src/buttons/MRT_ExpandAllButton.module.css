@@ -8,10 +8,10 @@
   &:hover {
     opacity: 1;
   }
-  &.xl {
+  &:global(.xl) {
     margin-left: -6px;
   }
-  &.md {
+  &:global(.md) {
     margin-left: 0;
   }
   .chevron {
