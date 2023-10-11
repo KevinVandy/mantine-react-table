@@ -782,7 +782,7 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
   /**
    * Changes which kind of CSS layout is used to render the table. `semantic` uses default semantic HTML elements, while `grid` adds CSS grid and flexbox styles
    */
-  layoutMode?: 'semantic' | 'grid';
+  layoutMode?: 'semantic' | 'grid' | 'grid-no-grow';
   /**
    * Pass in either a locale imported from `mantine-react-table/locales/*` or a custom locale object.
    *

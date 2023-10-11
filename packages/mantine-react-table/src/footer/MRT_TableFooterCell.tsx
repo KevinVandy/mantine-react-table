@@ -42,7 +42,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
       {...tableCellProps}
       className={clsx(
         classes.root,
-        layoutMode === 'grid' && classes.grid,
+        layoutMode?.startsWith('grid') && classes.grid,
         column.getIsPinned() && columnDefType !== 'group' && classes.pinned,
         columnDefType === 'group' && classes.group,
         className,

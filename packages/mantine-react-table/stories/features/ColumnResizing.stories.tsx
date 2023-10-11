@@ -167,7 +167,7 @@ export const ColumnResizingWithHeaderGroups = () => (
   />
 );
 
-export const ColumnResizingWithHeaderGroupsGrid = () => (
+export const ColumnResizingWithHeaderGroupsGrowGrid = () => (
   <MantineReactTable
     columns={[
       {
@@ -216,22 +216,12 @@ export const ColumnResizingWithHeaderGroupsGrid = () => (
   />
 );
 
-export const ColumnResizingLayoutGridNoFlexGrow = () => (
+export const ColumnResizingLayoutGridGrow = () => (
   <MantineReactTable
     columns={columns.slice(0, 3)}
     data={data}
     layoutMode="grid"
     enableRowSelection
     enableColumnResizing
-    mantineTableHeadCellProps={{
-      style: {
-        flex: '0 0 auto',
-      },
-    }}
-    mantineTableBodyCellProps={{
-      style: {
-        flex: '0 0 auto',
-      },
-    }}
   />
 );

@@ -150,7 +150,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
         }}
         className={clsx(
           classes.root,
-          layoutMode === 'grid' && classes['root-grid'],
+          layoutMode?.startsWith('grid') && classes['root-grid'],
           virtualRow && classes['root-virtualized'],
           (draggingRow?.id === row.id || hoveredRow?.id === row.id) &&
             classes['root-dragging'],
