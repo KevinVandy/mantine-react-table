@@ -13,6 +13,10 @@ import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TablePagination.module.css';
 
+const defaultRowsPerPage = [5, 10, 15, 20, 25, 30, 50, 100].map((x) =>
+  x.toString(),
+);
+
 interface Props<TData extends Record<string, any> = {}> {
   position?: 'top' | 'bottom';
   table: MRT_TableInstance<TData>;
@@ -52,10 +56,16 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
 
   const totalRowCount = rowCount ?? getPrePaginationRowModel().rows.length;
   const numberOfPages = Math.ceil(totalRowCount / pageSize);
-  const showFirstLastPageButtons =
-    numberOfPages > 2 && paginationProps?.withEdges !== false;
+  const showFirstLastPageButtons = numberOfPages > 2;
   const firstRowIndex = pageIndex * pageSize;
   const lastRowIndex = Math.min(pageIndex * pageSize + pageSize, totalRowCount);
+
+  const {
+    rowsPerPageOptions = defaultRowsPerPage,
+    showRowsPerPage = true,
+    withEdges = showFirstLastPageButtons,
+    ...rest
+  } = paginationProps ?? {};
 
   const needsTopMargin =
     position === 'top' && enableToolbarInternalActions && !showGlobalFilter;
@@ -74,7 +84,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           <Select
             aria-labelledby="rpp-label"
             className={classes.pagesize}
-            data={paginationProps?.rowsPerPageOptions ?? defaultPageSizeOptions}
+            data={paginationProps?.rowsPerPageOptions ?? defaultRowsPerPage}
             onChange={(value: string) => setPageSize(+value)}
             value={pageSize.toString()}
           />
@@ -85,12 +95,12 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           onChange={(newPageIndex) => setPageIndex(newPageIndex - 1)}
           total={numberOfPages}
           value={pageIndex + 1}
-          withEdges={showFirstLastPageButtons}
+          withEdges={withEdges}
           nextIcon={IconChevronRight}
           previousIcon={IconChevronLeft}
           firstIcon={IconChevronLeftPipe}
           lastIcon={IconChevronRightPipe}
-          {...paginationProps}
+          {...rest}
         />
       ) : paginationDisplayMode === 'default' ? (
         <>
@@ -99,8 +109,8 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
           }-${lastRowIndex.toLocaleString()} ${
             localization.of
           } ${totalRowCount.toLocaleString()}`}</Text>
-          <Group gap={3}>
-            {showFirstLastPageButtons && (
+          <Group gap={6}>
+            {withEdges && (
               <ActionIcon
                 aria-label={localization.goToFirstPage}
                 disabled={pageIndex <= 0}
@@ -129,7 +139,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
             >
               <IconChevronRight />
             </ActionIcon>
-            {showFirstLastPageButtons && (
+            {withEdges && (
               <ActionIcon
                 aria-label={localization.goToLastPage}
                 disabled={lastRowIndex >= totalRowCount}
@@ -146,7 +156,3 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
     </Box>
   );
 };
-
-const defaultPageSizeOptions = [5, 10, 15, 20, 25, 30, 50, 100].map((x) =>
-  x.toString(),
-);

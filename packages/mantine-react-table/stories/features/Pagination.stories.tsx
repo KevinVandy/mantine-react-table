@@ -26,7 +26,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
     accessorKey: 'address',
   },
 ];
-const data = [...Array(3333)].map(() => ({
+const data = [...Array(333)].map(() => ({
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
   age: faker.number.int(80),
@@ -74,17 +74,25 @@ export const PaginationPositionTopAndBottomNoInternalActions = () => (
   />
 );
 
+export const PaginationHideRowsPerPageSwitcher = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    initialState={{ pagination: { pageSize: 5, pageIndex: 0 } }}
+    mantinePaginationProps={{
+      showRowsPerPage: false,
+    }}
+  />
+);
+
 export const CustomizePaginationComponents = () => (
   <MantineReactTable
     columns={columns}
     data={data}
     initialState={{ pagination: { pageSize: 5, pageIndex: 0 } }}
-    // mantinePaginationProps={{
-    //   rowsPerPageOptions: [5, 10, 20],
-    //   showFirstButton: false,
-    //   showLastButton: false,
-    //   SelectProps: { native: true },
-    //   labelRowsPerPage: 'Number of rows visible',
-    // }}
+    mantinePaginationProps={{
+      rowsPerPageOptions: ['5', '10', '20'],
+      withEdges: false,
+    }}
   />
 );
