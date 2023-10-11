@@ -41,7 +41,6 @@ export const MRT_TableHeadRow = <TData extends Record<string, any> = {}>({
     <TableTr
       {...tableRowProps}
       className={clsx(
-        'mrt-table-head-row',
         classes.root,
         (enableStickyHeader || isFullScreen) && classes.sticky,
         layoutMode === 'grid' && classes['layout-mode-grid'],

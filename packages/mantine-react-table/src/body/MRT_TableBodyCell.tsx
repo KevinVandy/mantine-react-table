@@ -232,7 +232,6 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
         ...tableCellProps.__vars,
       }}
       className={clsx(
-        'mrt-table-body-cell',
         classes.root,
         isStriped || row.getIsSelected()
           ? classes['root-inherit-background-color']

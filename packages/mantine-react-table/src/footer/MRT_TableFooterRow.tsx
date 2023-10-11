@@ -49,7 +49,6 @@ export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
   return (
     <TableTr
       className={clsx(
-        'mrt-table-footer-row',
         classes.root,
         layoutMode === 'grid' && classes['layout-mode-grid'],
       )}

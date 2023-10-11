@@ -164,7 +164,6 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
             : undefined,
       }}
       className={clsx(
-        'mrt-table-head-cell',
         classes.root,
         layoutMode === 'grid' && classes['root-grid'],
         enableMultiSort && column.getCanSort() && classes['root-no-select'],

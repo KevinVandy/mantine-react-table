@@ -136,7 +136,6 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     <TableTbody
       {...tableBodyProps}
       className={clsx(
-        'mrt-table-body',
         classes.root,
         layoutMode === 'grid' && classes['root-grid'],
         !rows.length && classes['root-no-rows'],

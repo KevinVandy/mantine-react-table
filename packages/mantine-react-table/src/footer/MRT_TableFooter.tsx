@@ -37,7 +37,6 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
     <TableTfoot
       {...tableFooterProps}
       className={clsx(
-        'mrt-table-footer',
         classes.root,
         tableFooterProps?.className,
         stickFooter && classes.sticky,

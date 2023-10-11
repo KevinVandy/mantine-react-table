@@ -91,7 +91,6 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
             : undefined,
         }}
         className={clsx(
-          'mrt-table-body-row',
           classes.root,
           layoutMode === 'grid' && classes['root-grid'],
           virtualRow && classes['root-virtualized'],

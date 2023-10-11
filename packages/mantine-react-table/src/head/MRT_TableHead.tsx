@@ -43,7 +43,6 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
     <TableThead
       {...tableHeadProps}
       className={clsx(
-        'mrt-table-head',
         classes.root,
         layoutMode === 'grid' && classes['root-grid'],
         stickyHeader && classes['root-sticky'],
