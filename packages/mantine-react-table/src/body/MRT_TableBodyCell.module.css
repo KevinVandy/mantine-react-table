@@ -94,42 +94,42 @@
 
 .dragging-column {
   z-index: 2;
-  border-left: var(--drag-thickness) dashed var(--drag-color) !important;
-  border-right: var(--drag-thickness) dashed var(--drag-color) !important;
+  border-left: var(--drag-thickness) dashed var(--drag-color);
+  border-right: var(--drag-thickness) dashed var(--drag-color);
   &.last-row {
-    border-bottom: var(--drag-thickness) dashed var(--drag-color) !important;
+    border-bottom: var(--drag-thickness) dashed var(--drag-color);
   }
 }
 
 .hovered-column {
   opacity: 0.5;
-  border-left: var(--hover-thickness) dashed var(--hover-color) !important;
-  border-right: var(--hover-thickness) dashed var(--hover-color) !important;
+  border-left: var(--hover-thickness) dashed var(--hover-color);
+  border-right: var(--hover-thickness) dashed var(--hover-color);
   &.last-row {
-    border-bottom: var(--hover-thickness) dashed var(--hover-color) !important;
+    border-bottom: var(--hover-thickness) dashed var(--hover-color);
   }
 }
 
 .dragging-row {
   z-index: 2;
-  border-top: var(--drag-thickness) dashed var(--drag-color) !important;
-  border-bottom: var(--drag-thickness) dashed var(--drag-color) !important;
+  border-top: var(--drag-thickness) dashed var(--drag-color);
+  border-bottom: var(--drag-thickness) dashed var(--drag-color);
   &.last-column {
-    border-right: var(--drag-thickness) dashed var(--drag-color) !important;
+    border-right: var(--drag-thickness) dashed var(--drag-color);
   }
   &.first-column {
-    border-left: var(--drag-thickness) dashed var(--drag-color) !important;
+    border-left: var(--drag-thickness) dashed var(--drag-color);
   }
 }
 
 .hovered-row {
   opacity: 0.5;
-  border-top: var(--hover-thickness) dashed var(--hover-color) !important;
-  border-bottom: var(--hover-thickness) dashed var(--hover-color) !important;
+  border-top: var(--hover-thickness) dashed var(--hover-color);
+  border-bottom: var(--hover-thickness) dashed var(--hover-color);
   &.last-column {
-    border-right: var(--hover-thickness) dashed var(--hover-color) !important;
+    border-right: var(--hover-thickness) dashed var(--hover-color);
   }
   &.first-column {
-    border-left: var(--hover-thickness) dashed var(--hover-color) !important;
+    border-left: var(--hover-thickness) dashed var(--hover-color);
   }
 }

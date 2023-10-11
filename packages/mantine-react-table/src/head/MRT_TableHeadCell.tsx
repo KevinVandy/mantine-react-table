@@ -157,7 +157,9 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
           classes['root-pinned-right-first'],
         tableCellProps?.className,
         draggingColumn?.id === column.id && classes['dragging'],
-        hoveredColumn?.id === column.id && classes['hovered'],
+        draggingColumn?.id !== column.id &&
+          hoveredColumn?.id === column.id &&
+          classes['hovered'],
       )}
       style={(theme) => ({
         ...parseFromValuesOrFunc(tableCellProps?.style, theme),

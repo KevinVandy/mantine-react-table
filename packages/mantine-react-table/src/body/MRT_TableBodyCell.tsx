@@ -228,12 +228,16 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
         columnDefType === 'data' && classes['root-data-col'],
         density === 'xs' && classes['root-nowrap'],
         draggingColumn?.id === column.id && classes['dragging-column'],
-        hoveredColumn?.id === column.id && classes['hovered-column'],
+        draggingColumn?.id !== column.id &&
+          hoveredColumn?.id === column.id &&
+          classes['hovered-column'],
         draggingRow?.id === row.id && classes['dragging-row'],
-        hoveredRow?.id === row.id && classes['hovered-row'],
+        draggingRow?.id !== row.id &&
+          hoveredRow?.id === row.id &&
+          classes['hovered-row'],
         getIsFirstColumn(column, table) && classes['first-column'],
         getIsLastColumn(column, table) && classes['last-column'],
-        rowIndex === numRows && numRows - 1 && classes['last-row'],
+        numRows && rowIndex === numRows - 1 && classes['last-row'],
         rowIndex === 0 && classes['first-row'],
         tableCellProps?.className,
       )}
