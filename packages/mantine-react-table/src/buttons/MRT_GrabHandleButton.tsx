@@ -41,7 +41,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
         onDragEnd={onDragEnd}
         className={clsx(
           'mrt-grab-handle-button',
-          classes.root,
+          classes['grab-icon'],
           actionIconProps?.className,
         )}
         title={undefined}
