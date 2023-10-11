@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ActionIcon, Indicator, Tooltip } from '@mantine/core';
 
 import { type MRT_Header, type MRT_TableInstance } from '../types';
@@ -56,9 +57,8 @@ export const MRT_TableHeadCellSortLabel = <
         offset={3}
       >
         <ActionIcon
-          className={classes['sort-icon']}
+          className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
           aria-label={sortTooltip}
-          size="sm"
           {...dataVariable('sorted', sorted)}
         >
           {icon}
