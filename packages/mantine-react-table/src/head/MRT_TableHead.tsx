@@ -30,6 +30,7 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
       mantineTableHeadProps,
       positionToolbarAlertBanner,
     },
+    refs: { tableHeadRef },
   } = table;
   const { isFullScreen, showAlertBanner } = getState();
 
@@ -42,6 +43,13 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
   return (
     <TableThead
       {...tableHeadProps}
+      ref={(ref: HTMLTableSectionElement) => {
+        tableHeadRef.current = ref;
+        if (tableHeadProps?.ref) {
+          // @ts-ignore
+          tableHeadProps.ref.current = ref;
+        }
+      }}
       className={clsx(
         classes.root,
         layoutMode === 'grid' && classes['root-grid'],

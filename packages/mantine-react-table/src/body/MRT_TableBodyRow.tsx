@@ -1,4 +1,4 @@
-import { type DragEvent, memo, useRef } from 'react';
+import { type DragEvent, memo, useRef, useMemo } from 'react';
 import { Box, TableTr } from '@mantine/core';
 import clsx from 'clsx';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
@@ -20,6 +20,7 @@ interface Props<TData extends Record<string, any> = {}> {
   isStriped?: boolean | 'odd' | 'even';
   measureElement?: (element: HTMLTableRowElement) => void;
   numRows?: number;
+  pinnedRowIds?: string[];
   row: MRT_Row<TData>;
   rowIndex: number;
   table: MRT_TableInstance<TData>;
@@ -38,6 +39,7 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
   row,
   rowIndex,
   table,
+  pinnedRowIds,
   virtualColumns,
   virtualPaddingLeft,
   virtualPaddingRight,
@@ -46,22 +48,63 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
   const {
     getState,
     options: {
+      enableRowPinning,
+      enableStickyFooter,
+      enableStickyHeader,
+      rowPinningDisplayMode,
       enableRowOrdering,
       layoutMode,
       memoMode,
       mantineTableBodyRowProps,
       renderDetailPanel,
     },
+    refs: { tableFooterRef, tableHeadRef },
     setHoveredRow,
   } = table;
-  const { draggingColumn, draggingRow, editingCell, editingRow, hoveredRow } =
-    getState();
+  const {
+    density,
+    draggingColumn,
+    draggingRow,
+    editingCell,
+    editingRow,
+    hoveredRow,
+    isFullScreen,
+    rowPinning,
+  } = getState();
+
+  const isPinned = enableRowPinning && row.getIsPinned();
 
   const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     row,
     staticRowIndex: rowIndex,
     table,
   });
+
+  const [bottomPinnedIndex, topPinnedIndex] = useMemo(() => {
+    if (
+      !enableRowPinning ||
+      !rowPinningDisplayMode?.includes('sticky') ||
+      !pinnedRowIds ||
+      !row.getIsPinned()
+    )
+      return [];
+    return [
+      [...pinnedRowIds].reverse().indexOf(row.id),
+      pinnedRowIds.indexOf(row.id),
+    ];
+  }, [pinnedRowIds, rowPinning]);
+
+  const tableHeadHeight =
+    ((enableStickyHeader || isFullScreen) &&
+      tableHeadRef.current?.clientHeight) ||
+    0;
+  const tableFooterHeight =
+    (enableStickyFooter && tableFooterRef.current?.clientHeight) || 0;
+
+  const rowHeight =
+    // @ts-ignore
+    parseInt(tableRowProps?.style?.height, 10) ||
+    (density === 'xs' ? 37 : density === 'md' ? 53 : 69);
 
   const handleDragEnter = (_e: DragEvent) => {
     if (enableRowOrdering && draggingRow) {
@@ -87,8 +130,23 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
         __vars={{
           ...tableRowProps?.__vars,
           '--mrt-virtual-row-start': virtualRow
-            ? `${virtualRow.start}px`
+            ? `${virtualRow.start}`
             : undefined,
+          '--mrt-pinned-row-top': virtualRow
+            ? '0'
+            : topPinnedIndex !== undefined && isPinned
+            ? `${
+                topPinnedIndex * rowHeight +
+                (enableStickyHeader || isFullScreen ? tableHeadHeight - 1 : 0)
+              }`
+            : undefined,
+          '--mrt-pinned-row-bottom':
+            !virtualRow && bottomPinnedIndex !== undefined && isPinned
+              ? `${
+                  bottomPinnedIndex * rowHeight +
+                  (enableStickyFooter ? tableFooterHeight - 1 : 0)
+                }`
+              : undefined,
         }}
         className={clsx(
           classes.root,
@@ -98,6 +156,21 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
             classes['root-dragging'],
           enableHover !== false && classes['root-hover'],
           tableRowProps?.className,
+          isPinned && classes['root-pinned'],
+          !virtualRow &&
+            isPinned &&
+            rowPinningDisplayMode?.includes('sticky') &&
+            classes['root-sticky-pinned'],
+          !virtualRow &&
+            isPinned &&
+            rowPinningDisplayMode?.includes('sticky') &&
+            bottomPinnedIndex !== undefined &&
+            classes['root-sticky-pinned-top'],
+          !virtualRow &&
+            isPinned &&
+            rowPinningDisplayMode?.includes('sticky') &&
+            topPinnedIndex !== undefined &&
+            classes['root-sticky-pinned-bottom'],
         )}
       >
         {virtualPaddingLeft ? (

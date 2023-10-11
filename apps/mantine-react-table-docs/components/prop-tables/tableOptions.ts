@@ -88,7 +88,7 @@ export const tableOptions: TableOption[] = [
     type: 'Array<MRT_ColumnDef<TData>>',
   },
   {
-    tableOption: 'columnVirtualizerProps',
+    tableOption: 'columnVirtualizerOptions',
     defaultValue: '',
     description: '',
     link: '',
@@ -2090,7 +2090,7 @@ export const tableOptions: TableOption[] = [
     type: 'Partial<MRT_TableState<TData>>',
   },
   {
-    tableOption: 'rowVirtualizerProps',
+    tableOption: 'rowVirtualizerOptions',
     defaultValue: '',
     description: '',
     link: '',

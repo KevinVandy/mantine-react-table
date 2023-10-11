@@ -13,7 +13,7 @@ const Example = () => {
 
   const table = useMantineReactTable({
     columnVirtualizerInstanceRef, //optional
-    columnVirtualizerProps: { overscan: 4 }, //optionally customize the virtualizer
+    columnVirtualizerOptions: { overscan: 4 }, //optionally customize the virtualizer
     columns: fakeColumns, //500 columns
     data: fakeData,
     enableColumnVirtualization: true,

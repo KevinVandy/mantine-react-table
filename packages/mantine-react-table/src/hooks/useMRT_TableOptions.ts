@@ -61,6 +61,7 @@ export const useMRT_TableOptions: <TData extends Record<string, any> = {}>(
   positionToolbarAlertBanner = 'top',
   positionToolbarDropZone = 'top',
   rowNumberMode = 'static',
+  rowPinningDisplayMode = 'sticky',
   selectAllMode = 'page',
   sortingFns,
   ...rest
@@ -162,6 +163,7 @@ export const useMRT_TableOptions: <TData extends Record<string, any> = {}>(
     positionToolbarAlertBanner,
     positionToolbarDropZone,
     rowNumberMode,
+    rowPinningDisplayMode,
     selectAllMode,
     sortingFns: _sortingFns,
     ...rest,
