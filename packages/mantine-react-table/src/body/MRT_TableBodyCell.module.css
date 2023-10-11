@@ -57,6 +57,7 @@
 .root-pinned {
   z-index: 1;
   position: sticky;
+  opacity: 0.95
 }
 
 .root-pinned-left {
