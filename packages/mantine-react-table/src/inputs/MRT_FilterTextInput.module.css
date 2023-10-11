@@ -12,11 +12,11 @@
     min-width: rem(100px);
   }
   width: 100%;
-  & .mantine-TextInput-input {
+  & :global(.mantine-TextInput-input) {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  & .mantine-DateInput-input {
+  & :global(.mantine-DateInput-input) {
     height: 2.1rem;
   }
 }

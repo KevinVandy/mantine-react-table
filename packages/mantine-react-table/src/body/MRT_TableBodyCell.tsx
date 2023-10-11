@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import {
   memo,
   type CSSProperties,
@@ -9,7 +10,7 @@ import {
   useState,
 } from 'react';
 import { Skeleton, TableTd } from '@mantine/core';
-import clsx from 'clsx';
+
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
@@ -123,45 +124,6 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
     return styles;
   }, [column]);
 
-  const draggingBorders = useMemo(() => {
-    const isDraggingColumn = draggingColumn?.id === column.id;
-    const isHoveredColumn = hoveredColumn?.id === column.id;
-    const isDraggingRow = draggingRow?.id === row.id;
-    const isHoveredRow = hoveredRow?.id === row.id;
-    const isFirstColumn = getIsFirstColumn(column, table);
-    const isLastColumn = getIsLastColumn(column, table);
-    const isLastRow = rowIndex === numRows && numRows - 1;
-
-    const borderStyle =
-      isDraggingColumn || isDraggingRow
-        ? '1px dashed var(--mantine-color-gray-7) !important'
-        : isHoveredColumn || isHoveredRow
-        ? '2px dashed var(--mantine-primary-color-filled) !important'
-        : undefined;
-
-    return borderStyle
-      ? {
-          borderLeft:
-            isDraggingColumn ||
-            isHoveredColumn ||
-            ((isDraggingRow || isHoveredRow) && isFirstColumn)
-              ? borderStyle
-              : undefined,
-          borderRight:
-            isDraggingColumn ||
-            isHoveredColumn ||
-            ((isDraggingRow || isHoveredRow) && isLastColumn)
-              ? borderStyle
-              : undefined,
-          borderBottom:
-            isDraggingRow || isHoveredRow || isLastRow
-              ? borderStyle
-              : undefined,
-          borderTop: isDraggingRow || isHoveredRow ? borderStyle : undefined,
-        }
-      : undefined;
-  }, [draggingColumn, draggingRow, hoveredColumn, hoveredRow, rowIndex]);
-
   const isEditable =
     (parseFromValuesOrFunc(enableEditing, row) &&
       parseFromValuesOrFunc(columnDef.enableEditing, row)) !== false;
@@ -253,9 +215,6 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
           column.columnDef.columnDefType !== 'group' &&
           !row.getIsSelected() &&
           classes['root-pinned-color'],
-        draggingColumn?.id === column.id ||
-          (table.getState().hoveredColumn?.id === column.id &&
-            classes['root-opacity']),
         column.getIsPinned() &&
           column.columnDef.columnDefType !== 'group' &&
           classes['root-pinned'],
@@ -268,11 +227,21 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
         column.id === 'mrt-row-expand' && classes['root-expand-depth'],
         columnDefType === 'data' && classes['root-data-col'],
         density === 'xs' && classes['root-nowrap'],
-        draggingColumn?.id === column.id && classes['root-dragging'],
+        draggingColumn?.id === column.id && classes['dragging-column'],
+        draggingColumn?.id !== column.id &&
+          hoveredColumn?.id === column.id &&
+          classes['hovered-column'],
+        draggingRow?.id === row.id && classes['dragging-row'],
+        draggingRow?.id !== row.id &&
+          hoveredRow?.id === row.id &&
+          classes['hovered-row'],
+        getIsFirstColumn(column, table) && classes['first-column'],
+        getIsLastColumn(column, table) && classes['last-column'],
+        numRows && rowIndex === numRows - 1 && classes['last-row'],
+        rowIndex === 0 && classes['first-row'],
         tableCellProps?.className,
       )}
       style={(theme) => ({
-        ...draggingBorders,
         ...widthStyles,
         ...parseFromValuesOrFunc(tableCellProps.style, theme),
       })}

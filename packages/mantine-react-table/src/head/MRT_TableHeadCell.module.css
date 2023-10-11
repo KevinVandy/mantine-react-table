@@ -13,7 +13,7 @@
   );
 
   @mixin hover {
-    .mantine-ActionIcon-root {
+    :global(.mantine-ActionIcon-root) {
       opacity: 1;
     }
   }
@@ -62,8 +62,25 @@
     ) inset;
 }
 
-.root-opacity {
+:root {
+  --hover-color: var(--mantine-primary-color-filled);
+  --drag-color: var(--mantine-color-gray-7);
+  --hover-thickness: 2px;
+  --drag-thickness: 1px;
+}
+
+.dragging {
   opacity: 0.5;
+  border-left: var(--drag-thickness) dashed var(--drag-color);
+  border-right: var(--drag-thickness) dashed var(--drag-color);
+  border-top: var(--drag-thickness) dashed var(--drag-color);
+}
+
+.hovered {
+  z-index: 2;
+  border-left: var(--hover-thickness) dashed var(--hover-color);
+  border-right: var(--hover-thickness) dashed var(--hover-color);
+  border-top: var(--hover-thickness) dashed var(--hover-color);
 }
 
 .content {
