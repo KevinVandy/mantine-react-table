@@ -116,6 +116,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
 
     if (layoutMode === 'grid') {
       styles.flex = `${column.getSize()} 0 auto`;
+    } else if (layoutMode === 'grid-no-grow') {
+      styles.flex = '0 0 auto';
     }
 
     return styles;
@@ -211,14 +213,13 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       }}
       {...tableCellProps}
       __vars={{
-        '--mrt-table-cell-justify':
-          layoutMode === 'grid'
-            ? tableCellProps.align === 'left'
-              ? 'flex-start'
-              : tableCellProps.align === 'right'
-              ? 'flex-end'
-              : tableCellProps.align
-            : undefined,
+        '--mrt-table-cell-justify': layoutMode?.startsWith('grid')
+          ? tableCellProps.align === 'left'
+            ? 'flex-start'
+            : tableCellProps.align === 'right'
+            ? 'flex-end'
+            : tableCellProps.align
+          : undefined,
         '--mrt-table-cell-left':
           column.getIsPinned() === 'left'
             ? `${column.getStart('left')}`
@@ -236,7 +237,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
         isStriped || row.getIsSelected()
           ? classes['root-inherit-background-color']
           : classes['root-default-background'],
-        layoutMode === 'grid' && classes['root-grid'],
+        layoutMode?.startsWith('grid') && classes['root-grid'],
         isEditable &&
           editDisplayMode === 'cell' &&
           classes['root-cursor-pointer'],

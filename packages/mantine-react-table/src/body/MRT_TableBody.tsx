@@ -181,7 +181,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
           <TableTbody
             {...tableBodyProps}
             style={(theme) => ({
-              display: layoutMode === 'grid' ? 'grid' : undefined,
+              display: layoutMode?.startsWith('grid') ? 'grid' : undefined,
               position: 'sticky',
               top: tableHeadHeight - 1,
               zIndex: 1,
@@ -212,7 +212,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
         {...tableBodyProps}
         className={clsx(
           classes.root,
-          layoutMode === 'grid' && classes['root-grid'],
+          layoutMode?.startsWith('grid') && classes['root-grid'],
           !rows.length && classes['root-no-rows'],
           rowVirtualizer && classes['root-virtualized'],
           tableBodyProps?.className,
@@ -231,14 +231,14 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
           <tr
             className={clsx(
               'mrt-table-body-row',
-              layoutMode === 'grid' && classes['empty-row-tr-grid'],
+              layoutMode?.startsWith('grid') && classes['empty-row-tr-grid'],
             )}
           >
             <td
               colSpan={table.getVisibleLeafColumns().length}
               className={clsx(
                 'mrt-table-body-cell',
-                layoutMode === 'grid' && classes['empty-row-td-grid'],
+                layoutMode?.startsWith('grid') && classes['empty-row-td-grid'],
               )}
             >
               {renderEmptyRowsFallback?.({ table }) ?? (
@@ -299,7 +299,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
             {...tableBodyProps}
             style={(theme) => ({
               bottom: tableFooterHeight - 1,
-              display: layoutMode === 'grid' ? 'grid' : undefined,
+              display: layoutMode?.startsWith('grid') ? 'grid' : undefined,
               position: 'sticky',
               zIndex: 1,
               ...(parseFromValuesOrFunc(tableBodyProps?.style, theme) as any),

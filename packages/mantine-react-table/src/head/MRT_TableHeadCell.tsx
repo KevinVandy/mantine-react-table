@@ -69,6 +69,8 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
 
     if (layoutMode === 'grid') {
       styles.flex = `${column.getSize()} 0 auto`;
+    } else if (layoutMode === 'grid-no-grow') {
+      styles.flex = '0 0 auto';
     }
 
     return styles;
@@ -165,7 +167,7 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
       }}
       className={clsx(
         classes.root,
-        layoutMode === 'grid' && classes['root-grid'],
+        layoutMode?.startsWith('grid') && classes['root-grid'],
         enableMultiSort && column.getCanSort() && classes['root-no-select'],
         column.getIsPinned() &&
           column.columnDef.columnDefType !== 'group' &&

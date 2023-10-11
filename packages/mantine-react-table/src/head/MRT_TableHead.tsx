@@ -52,7 +52,7 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
       }}
       className={clsx(
         classes.root,
-        layoutMode === 'grid' && classes['root-grid'],
+        layoutMode?.startsWith('grid') && classes['root-grid'],
         stickyHeader && classes['root-sticky'],
         tableHeadProps?.className,
       )}
@@ -62,14 +62,14 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
         <tr
           className={clsx(
             classes['banner-tr'],
-            layoutMode === 'grid' && classes.grid,
+            layoutMode?.startsWith('grid') && classes.grid,
           )}
         >
           <th
             colSpan={table.getVisibleLeafColumns().length}
             className={clsx(
               classes['banner-th'],
-              layoutMode === 'grid' && classes.grid,
+              layoutMode?.startsWith('grid') && classes.grid,
             )}
           >
             <MRT_ToolbarAlertBanner table={table} />

@@ -49,7 +49,7 @@ export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
         classes.root,
         tableFooterProps?.className,
         stickFooter && classes.sticky,
-        layoutMode === 'grid' && classes.grid,
+        layoutMode?.startsWith('grid') && classes.grid,
       )}
     >
       {getFooterGroups().map((footerGroup) => (
