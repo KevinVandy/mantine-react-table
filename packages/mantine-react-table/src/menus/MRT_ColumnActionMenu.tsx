@@ -1,8 +1,7 @@
-import { Menu, Tooltip } from '@mantine/core';
+import { ActionIcon, Menu, Tooltip } from '@mantine/core';
 
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
-import { MRT_ActionIcon } from '../buttons/MRT_ActionIcon';
 
 import classes from './MRT_ColumnActionMenu.module.css';
 
@@ -253,15 +252,15 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
         label={actionIconProps?.title ?? localization.columnActions}
       >
         <Menu.Target>
-          {/* without this extra div around the icon, Menu.Target screws up... */}
-          <div>
-            <MRT_ActionIcon
-              aria-label={localization.columnActions}
-              {...actionIconProps}
-            >
-              <IconDotsVertical />
-            </MRT_ActionIcon>
-          </div>
+          <ActionIcon
+            aria-label={localization.columnActions}
+            {...actionIconProps}
+            size="sm"
+            color="gray"
+            variant="transparent"
+          >
+            <IconDotsVertical />
+          </ActionIcon>
         </Menu.Target>
       </Tooltip>
       <Menu.Dropdown>

@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 import { type DragEventHandler } from 'react';
-import { type ActionIconProps, Tooltip } from '@mantine/core';
+import { type ActionIconProps, Tooltip, ActionIcon } from '@mantine/core';
 import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
-import { MRT_ActionIcon } from './MRT_ActionIcon';
 
 import classes from './MRT_GrabHandleButton.module.css';
 
@@ -30,7 +29,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
       openDelay={1000}
       label={actionIconProps?.title ?? move}
     >
-      <MRT_ActionIcon
+      <ActionIcon
         aria-label={actionIconProps?.title ?? move}
         draggable
         {...actionIconProps}
@@ -48,7 +47,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
         title={undefined}
       >
         <IconGripHorizontal />
-      </MRT_ActionIcon>
+      </ActionIcon>
     </Tooltip>
   );
 };

@@ -1,7 +1,6 @@
-import { Indicator, Tooltip } from '@mantine/core';
+import { ActionIcon, Indicator, Tooltip } from '@mantine/core';
 
 import { type MRT_Header, type MRT_TableInstance } from '../types';
-import { MRT_ActionIcon } from '../buttons/MRT_ActionIcon';
 import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_TableHeadCellSortLabel.module.css';
@@ -14,7 +13,7 @@ interface Props<TData extends Record<string, any> = {}> {
 export const MRT_TableHeadCellSortLabel = <
   TData extends Record<string, any> = {},
 >({
-  header: { column },
+  header,
   table: {
     getState,
     options: {
@@ -23,6 +22,7 @@ export const MRT_TableHeadCellSortLabel = <
     },
   },
 }: Props<TData>) => {
+  const column = header.column;
   const { columnDef } = column;
   const { sorting } = getState();
   const sorted = column.getIsSorted();
@@ -46,7 +46,7 @@ export const MRT_TableHeadCellSortLabel = <
     );
 
   return (
-    <Tooltip withinPortal label={sortTooltip}>
+    <Tooltip withinPortal openDelay={1000} label={sortTooltip}>
       <Indicator
         color="transparent"
         disabled={sorting.length < 2 || sortIndex === -1}
@@ -55,13 +55,14 @@ export const MRT_TableHeadCellSortLabel = <
         label={sortIndex + 1}
         offset={3}
       >
-        <MRT_ActionIcon
-          className={classes.MRT_TableHeadCellSortLabel}
+        <ActionIcon
+          className={classes['sort-icon']}
           aria-label={sortTooltip}
+          size="sm"
           {...dataVariable('sorted', sorted)}
         >
           {icon}
-        </MRT_ActionIcon>
+        </ActionIcon>
       </Indicator>
     </Tooltip>
   );
