@@ -197,6 +197,9 @@ export function localizedFilterOption(
   localization: MRT_Localization,
   option: MRT_FilterOption,
 ) {
+  if (!option) {
+    return '';
+  }
   const key = `filter${option[0].toUpperCase()}${option.slice(1)}`;
   return localization[key as keyof MRT_Localization] ?? '';
 }
