@@ -1,10 +1,5 @@
-import {
-  type DragEvent,
-  type ReactNode,
-  useMemo,
-  type CSSProperties,
-} from 'react';
-import { Box, Flex, useMantineTheme } from '@mantine/core';
+import { type ReactNode, useMemo, type CSSProperties } from 'react';
+import { Box, Flex } from '@mantine/core';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
@@ -14,7 +9,6 @@ import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
 import {
   getIsFirstRightPinnedColumn,
   getIsLastLeftPinnedColumn,
-  getPrimaryColor,
   getTotalRight,
   parseCSSVarId,
   parseFromValuesOrFunc,
@@ -32,7 +26,6 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
   header,
   table,
 }: Props<TData>) => {
-  const theme = useMantineTheme();
   const {
     getState,
     options: {
@@ -95,35 +88,6 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
     return pl;
   }, [showColumnActions, showDragHandle]);
 
-  const draggingBorder = useMemo(
-    () =>
-      draggingColumn?.id === column.id
-        ? `1px dashed ${theme.colors.gray[7]} !important`
-        : hoveredColumn?.id === column.id
-        ? `2px dashed ${getPrimaryColor(theme)} !important`
-        : undefined,
-    [draggingColumn, hoveredColumn],
-  );
-
-  const draggingBorders = draggingBorder
-    ? {
-        borderLeft: draggingBorder,
-        borderRight: draggingBorder,
-        borderTop: draggingBorder,
-      }
-    : undefined;
-
-  const handleDragEnter = (_e: DragEvent) => {
-    if (enableGrouping && hoveredColumn?.id === 'drop-zone') {
-      setHoveredColumn(null);
-    }
-    if (enableColumnOrdering && draggingColumn && columnDefType !== 'group') {
-      setHoveredColumn(
-        columnDef.enableColumnOrdering !== false ? column : null,
-      );
-    }
-  };
-
   const headerElement =
     columnDef?.Header instanceof Function
       ? columnDef?.Header?.({
@@ -135,16 +99,29 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
 
   return (
     <Box
+      {...tableCellProps}
       component="th"
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={header.colSpan}
-      onDragEnter={handleDragEnter}
+      onDragEnter={() => {
+        if (enableGrouping && hoveredColumn?.id === 'drop-zone') {
+          setHoveredColumn(null);
+        }
+        if (
+          enableColumnOrdering &&
+          draggingColumn &&
+          columnDefType !== 'group'
+        ) {
+          setHoveredColumn(
+            columnDef.enableColumnOrdering !== false ? column : null,
+          );
+        }
+      }}
       ref={(node: HTMLTableCellElement) => {
         if (node) {
           tableHeadCellRefs.current[column.id] = node;
         }
       }}
-      {...tableCellProps}
       __vars={{
         '--mrt-table-head-cell-padding':
           density === 'xl' ? '23' : density === 'md' ? '16' : '10',
@@ -177,14 +154,12 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
         getIsFirstRightPinnedColumn(column) &&
           classes['root-pinned-right-first'],
         tableCellProps?.className,
-        draggingColumn?.id === column.id ||
-          (table.getState().hoveredColumn?.id === column.id &&
-            classes['root-opacity']),
+        draggingColumn?.id === column.id && classes['dragging'],
+        hoveredColumn?.id === column.id && classes['hovered'],
       )}
       style={(theme) => ({
-        ...draggingBorders,
-        ...widthStyles,
         ...parseFromValuesOrFunc(tableCellProps?.style, theme),
+        ...widthStyles,
       })}
     >
       {header.isPlaceholder ? null : (

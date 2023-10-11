@@ -62,8 +62,18 @@
     ) inset;
 }
 
-.root-opacity {
+.dragging {
   opacity: 0.5;
+  border-left: 1px dashed var(--mantine-color-gray-7) !important;
+  border-right: 1px dashed var(--mantine-color-gray-7) !important;
+  border-top: 1px dashed var(--mantine-color-gray-7) !important;
+}
+
+.hovered {
+  z-index: 2;
+  border-left: 2px dashed var(--mantine-primary-color-filled) !important;
+  border-right: 2px dashed var(--mantine-primary-color-filled) !important;
+  border-top: 2px dashed var(--mantine-primary-color-filled) !important;
 }
 
 .content {
