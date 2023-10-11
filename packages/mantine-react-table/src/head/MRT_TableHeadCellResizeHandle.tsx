@@ -1,4 +1,5 @@
-import { Box, Divider } from '@mantine/core';
+import clsx from 'clsx';
+import { Box } from '@mantine/core';
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 
 import classes from './MRT_TableHeadCellResizeHandle.module.css';
@@ -21,9 +22,18 @@ export const MRT_TableHeadCellResizeHandle = <
   } = table;
   const { density } = getState();
   const { column } = header;
+  const handler = header.getResizeHandler();
+
+  const offset =
+    columnResizeMode === 'onEnd' && column.getIsResizing()
+      ? `translateX(${getState().columnSizingInfo.deltaOffset ?? 0}px)`
+      : undefined;
 
   return (
     <Box
+      role="separator"
+      onMouseDown={handler}
+      onTouchStart={handler}
       onDoubleClick={() => {
         setColumnSizingInfo((old) => ({
           ...old,
@@ -31,32 +41,12 @@ export const MRT_TableHeadCellResizeHandle = <
         }));
         column.resetSize();
       }}
-      onMouseDown={header.getResizeHandler()}
-      onTouchStart={header.getResizeHandler()}
-      className={classes.MRT_TableHeadCellResizeHandle}
-      __vars={{
-        '--margin-right':
-          density === 'xl'
-            ? 'rem(-24px)'
-            : density === 'md'
-            ? 'rem(-20px)'
-            : 'rem(-14px)',
-        '--transform':
-          column.getIsResizing() && columnResizeMode === 'onEnd'
-            ? `translateX(${getState().columnSizingInfo.deltaOffset ?? 0}px)`
-            : undefined,
-      }}
-    >
-      <Divider
-        orientation="vertical"
-        size="lg"
-        className={classes.MRT_TableHeadCellResizeHandleDivider}
-        __vars={{
-          '--transition': column.getIsResizing()
-            ? undefined
-            : 'all 100ms ease-in-out',
-        }}
-      />
-    </Box>
+      className={clsx(
+        'mrt-table-head-cell-resize-handle',
+        classes.root,
+        density,
+      )}
+      __vars={{ '--mrt-transform': offset }}
+    ></Box>
   );
 };
