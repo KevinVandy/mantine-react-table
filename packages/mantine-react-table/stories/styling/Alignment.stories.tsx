@@ -61,6 +61,20 @@ export const CenterCells = () => (
   />
 );
 
+export const CenterGridCells = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    layoutMode='grid'
+    mantineTableHeadCellProps={{
+      align: 'center',
+    }}
+    mantineTableBodyCellProps={{
+      align: 'center',
+    }}
+  />
+);
+
 export const CenterCellsWithGrabHandle = () => (
   <MantineReactTable
     columns={columns}
@@ -100,6 +114,33 @@ export const CenterCellsNoColumnActions = () => (
     }}
     mantineTableBodyCellProps={{
       align: 'center',
+    }}
+  />
+);
+
+export const RightCells = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    mantineTableHeadCellProps={{
+      align: 'right',
+    }}
+    mantineTableBodyCellProps={{
+      align: 'right',
+    }}
+  />
+);
+
+export const RightGridCells = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    layoutMode='grid'
+    mantineTableHeadCellProps={{
+      align: 'right',
+    }}
+    mantineTableBodyCellProps={{
+      align: 'right',
     }}
   />
 );

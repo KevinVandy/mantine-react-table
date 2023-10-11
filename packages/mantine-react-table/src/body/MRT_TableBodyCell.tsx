@@ -211,7 +211,14 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       }}
       {...tableCellProps}
       __vars={{
-        '--mrt-table-cell-justify': tableCellProps.align,
+        '--mrt-table-cell-justify':
+          layoutMode === 'grid'
+            ? tableCellProps.align === 'left'
+              ? 'flex-start'
+              : tableCellProps.align === 'right'
+              ? 'flex-end'
+              : tableCellProps.align
+            : undefined,
         '--mrt-table-cell-left':
           column.getIsPinned() === 'left'
             ? `${column.getStart('left')}`
