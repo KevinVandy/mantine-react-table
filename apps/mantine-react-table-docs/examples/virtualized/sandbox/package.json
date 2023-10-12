@@ -9,7 +9,6 @@
     "start": "vite"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
     "@faker-js/faker": "^8.0.2",
     "@mantine/core": "^6.0.21",
     "@mantine/dates": "^6.0.21",
