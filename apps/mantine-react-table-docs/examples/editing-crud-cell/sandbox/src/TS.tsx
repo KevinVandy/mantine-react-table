@@ -92,7 +92,7 @@ const Example = () => {
         accessorKey: 'firstName',
         header: 'First Name',
         mantineEditTextInputProps: ({ cell, row }) => ({
-          type: 'email',
+          type: 'text',
           required: true,
           error: validationErrors?.[cell.id],
           //store edited user in state to be saved later
@@ -112,7 +112,7 @@ const Example = () => {
         accessorKey: 'lastName',
         header: 'Last Name',
         mantineEditTextInputProps: ({ cell, row }) => ({
-          type: 'email',
+          type: 'text',
           required: true,
           error: validationErrors?.[cell.id],
           //store edited user in state to be saved later
@@ -170,7 +170,7 @@ const Example = () => {
     columns,
     data: fetchedUsers,
     createDisplayMode: 'row', // ('modal', and 'custom' are also available)
-    editDisplayMode: 'cell', // ('modal', 'row', 'cell', and 'custom' are also available)
+    editDisplayMode: 'cell', // ('modal', 'row', 'table', and 'custom' are also available)
     enableEditing: true,
     enableRowActions: true,
     positionActionsColumn: 'last',
