@@ -26,7 +26,7 @@
 
 .root-grid {
   display: flex;
-  flexdirection: column;
+  flex-direction: column;
 }
 
 .root-virtualized {
@@ -135,5 +135,5 @@
 .content-actions {
   align-items: center;
   align-self: center;
-  whitespace: nowrap;
+  white-space: nowrap;
 }
