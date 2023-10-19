@@ -1,6 +1,6 @@
 import { type MRT_Localization } from '..';
 
-export const MRT_Localization_TR: MRT_Localization = {
+export const MRT_Localization_AZ: MRT_Localization = {
   actions: 'Əməliyyatlar',
   and: 'və',
   cancel: 'Ləğv Et',
