@@ -1,7 +1,7 @@
 import '../styles/globals.css';
-import '@mantine/code-highlight/styles.css';
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
+import '@mantine/code-highlight/styles.css';
 import 'mantine-react-table/styles.css';
 import { useState } from 'react';
 import { type AppProps } from 'next/app';

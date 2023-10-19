@@ -43,7 +43,7 @@ If you don't see any styles applied to the mantine table components, you may hav
 
 If you get an error like this:
 
-```bsh
+```bash
 "Error: Element type is invalid: expected a string (for built-in components)
 or a class/function (for composite components) but got: undefined.
 You likely forgot to export your component from the file it's defined in,
@@ -58,21 +58,13 @@ Make sure that the `@tabler/icons-react` package is at least v2.23.0.
 
 If you are using an older version of `webpack` or `create-react-app` and get an error like this:
 
-```bsh
+```bash
 ./node_modules/@tanstack/virtual-core/build/lib/index.esm.js 147:92
 Module parse failed: Unexpected token (147:92)
 File was processed with these loaders:
 ```
 
 Then try upgrading either `webpack` or `react-scripts` to the latest versions.
-
-If you are using the Next.js App Directory and get an error like this:
-
-```bsh
-Attempted import error: 'useState' is not exported from 'react'
-```
-
-Mantine itself does not work with React Server components and will require `"use-client"` on all components from both Mantine and MRT. The creator of Mantine recommends not using Mantine in the Next.js App Directory at all. Mantine V7 and MRT V2 should address this issue by the end of 2023.
 
 ### FAQs
 

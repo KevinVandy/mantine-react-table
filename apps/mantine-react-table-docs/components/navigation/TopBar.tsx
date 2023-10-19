@@ -13,7 +13,12 @@ import {
   AppShell,
   useMantineColorScheme,
 } from '@mantine/core';
-import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons-react';
+import {
+  IconBrandGithub,
+  IconBrandDiscord,
+  IconSun,
+  IconMoonStars,
+} from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
 import docsearch from '@docsearch/js';
 import '@docsearch/css';
@@ -171,7 +176,7 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
               onClick={toggleColorScheme}
               size={isMobile ? 'sm' : 'lg'}
             >
-              {/* {true ? <IconSun /> : <IconMoonStars />} */}
+              {colorScheme == 'dark' ? <IconSun /> : <IconMoonStars />}
             </ActionIcon>
           </Tooltip>
         </Box>

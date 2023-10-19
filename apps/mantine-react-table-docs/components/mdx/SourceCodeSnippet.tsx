@@ -146,7 +146,8 @@ export const SourceCodeSnippet = ({
                     <Select
                       aria-label="Select theme shade"
                       data={['1', '2', '3', '4', '5', '6', '7', '8', '9']}
-                      value={primaryShade.toString()}
+                      /*Hack for a weird SSG error in which primaryShade is not available (it is undefined) so hydration/compiling breaks*/
+                      value={(primaryShade ?? 7).toString()}
                       onChange={(value) => {
                         setPrimaryShade(+(value as string) as MantineShade);
                         plausible('change-shade');

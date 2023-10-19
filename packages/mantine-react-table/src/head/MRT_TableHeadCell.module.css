@@ -1,4 +1,9 @@
 .root {
+  --hover-color: var(--mantine-primary-color-filled);
+  --drag-color: var(--mantine-color-gray-7);
+  --hover-thickness: 2px;
+  --drag-thickness: 1px;
+
   background-clip: padding-box;
   transition: padding 100ms ease-in-out;
   font-weight: bold;
@@ -60,13 +65,6 @@
       var(--mantine-color-gray-outline),
       var(--mantine-color-dark-outline)
     ) inset;
-}
-
-:root {
-  --hover-color: var(--mantine-primary-color-filled);
-  --drag-color: var(--mantine-color-gray-7);
-  --hover-thickness: 2px;
-  --drag-thickness: 1px;
 }
 
 .dragging {

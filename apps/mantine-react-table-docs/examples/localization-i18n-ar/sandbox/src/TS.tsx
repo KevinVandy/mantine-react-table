@@ -6,7 +6,11 @@ import { MRT_Localization_AR } from 'mantine-react-table/locales/ar';
 
 //mock data
 import { data, type Person } from './makeData';
-import { MantineProvider, useMantineTheme } from '@mantine/core';
+import {
+  DirectionProvider,
+  MantineProvider,
+  useMantineTheme,
+} from '@mantine/core';
 
 const columns: MRT_ColumnDef<Person>[] = [
   {
@@ -27,28 +31,25 @@ const columns: MRT_ColumnDef<Person>[] = [
 const Example = () => {
   const theme = useMantineTheme();
   return (
-    <MantineProvider
-      theme={{
-        ...theme,
-        dir: 'rtl',
-      }}
-    >
-      <div style={{ direction: 'rtl' }}>
-        <MantineReactTable
-          columns={columns}
-          data={data}
-          enableColumnFilterModes
-          enableColumnOrdering
-          enableEditing
-          enablePinning
-          enableRowActions
-          enableRowSelection
-          enableSelectAll={false}
-          initialState={{ showColumnFilters: true, showGlobalFilter: true }}
-          localization={MRT_Localization_AR}
-        />
-      </div>
-    </MantineProvider>
+    <DirectionProvider detectDirection={false} initialDirection={'rtl'}>
+      <MantineProvider theme={theme}>
+        <div style={{ direction: 'rtl' }}>
+          <MantineReactTable
+            columns={columns}
+            data={data}
+            enableColumnFilterModes
+            enableColumnOrdering
+            enableEditing
+            enablePinning
+            enableRowActions
+            enableRowSelection
+            enableSelectAll={false}
+            initialState={{ showColumnFilters: true, showGlobalFilter: true }}
+            localization={MRT_Localization_AR}
+          />
+        </div>
+      </MantineProvider>
+    </DirectionProvider>
   );
 };
 
