@@ -2,7 +2,12 @@
   width: 100%;
   border-collapse: collapse;
   caption-side: top;
-  color: #c1c2c5;
+  @mixin dark {
+    color: var(--mantine-color-white);
+  }
+  @mixin light {
+    color: var(--mantine-color-black);
+  }
   line-height: 1.55;
   display: table;
 }

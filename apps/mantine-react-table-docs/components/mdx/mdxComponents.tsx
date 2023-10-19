@@ -8,7 +8,9 @@ import { Paragraph } from './Paragraph';
 export const mdxComponents = {
   a: (props: any) => <AnchorLink {...props} />,
   blockquote: (props: any) => <Blockquote {...props} />,
-  code: (props: any) => <SampleCodeSnippet {...props} />,
+  code: ({ children, ...props }: any) => (
+    <SampleCodeSnippet {...props} code={children} />
+  ),
   h1: (props: any) => <Title order={1} my="lg" {...props} />,
   h2: (props: any) => <LinkHeading order={2} my="lg" {...props} />,
   h3: (props: any) => (
