@@ -238,7 +238,6 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
         getIsFirstColumn(column, table) && classes['first-column'],
         getIsLastColumn(column, table) && classes['last-column'],
         numRows && rowIndex === numRows - 1 && classes['last-row'],
-        rowIndex === 0 && classes['first-row'],
         tableCellProps?.className,
       )}
       style={(theme) => ({

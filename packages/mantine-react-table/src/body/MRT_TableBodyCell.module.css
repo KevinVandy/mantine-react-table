@@ -1,4 +1,8 @@
 .root {
+  --hover-color: var(--mantine-primary-color-filled);
+  --drag-color: var(--mantine-color-gray-7);
+  --hover-thickness: 2px;
+  --drag-thickness: 1px;
   background-clip: padding-box;
   overflow: hidden;
   transition: padding 100ms ease-in-out;
@@ -84,13 +88,6 @@
 
 .root-expand-depth {
   padding-left: calc(calc(var(--mrt-row-depth, 0) + 1) * 1rem);
-}
-
-:root {
-  --hover-color: var(--mantine-primary-color-filled);
-  --drag-color: var(--mantine-color-gray-7);
-  --hover-thickness: 2px;
-  --drag-thickness: 1px;
 }
 
 .dragging-column {
