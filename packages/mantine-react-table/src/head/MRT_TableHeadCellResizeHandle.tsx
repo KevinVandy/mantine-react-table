@@ -47,6 +47,6 @@ export const MRT_TableHeadCellResizeHandle = <
         density,
       )}
       __vars={{ '--mrt-transform': offset }}
-    ></Box>
+    />
   );
 };

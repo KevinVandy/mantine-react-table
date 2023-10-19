@@ -10,9 +10,9 @@
   &.grid {
     display: grid;
   }
-  align: left;
+  text-align: left;
   &.group {
-    align: center;
+    text-align: center;
     justify-content: center;
   }
 }
