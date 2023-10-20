@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import { ActionIcon, Indicator, Tooltip } from '@mantine/core';
+import type { SortDirection } from '@tanstack/react-table';
 
-import { type MRT_Header, type MRT_TableInstance } from '../types';
+import type { MRT_Icons, MRT_Header, MRT_TableInstance } from '../types';
 import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_TableHeadCellSortLabel.module.css';
@@ -17,10 +18,7 @@ export const MRT_TableHeadCellSortLabel = <
   header,
   table: {
     getState,
-    options: {
-      icons: { IconSortDescending, IconSortAscending, IconArrowsSort },
-      localization,
-    },
+    options: { icons, localization },
   },
 }: Props<TData>) => {
   const column = header.column;
@@ -37,33 +35,51 @@ export const MRT_TableHeadCellSortLabel = <
     ? localization.sortByColumnDesc.replace('{column}', columnDef.header)
     : localization.sortByColumnAsc.replace('{column}', columnDef.header);
 
-  const icon =
-    sorted === 'desc' ? (
-      <IconSortDescending />
-    ) : sorted === 'asc' ? (
-      <IconSortAscending />
-    ) : (
-      <IconArrowsSort />
-    );
-
   return (
     <Tooltip withinPortal openDelay={1000} label={sortTooltip}>
-      <Indicator
-        color="transparent"
-        disabled={sorting.length < 2 || sortIndex === -1}
-        inline
-        processing
-        label={sortIndex + 1}
-        offset={3}
-      >
-        <ActionIcon
-          className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
-          aria-label={sortTooltip}
-          {...dataVariable('sorted', sorted)}
+      {sorting.length < 2 || sortIndex === -1 ? (
+        <SortIcon sorted={sorted} label={sortTooltip} icons={icons} />
+      ) : (
+        <Indicator
+          className={clsx(
+            'mrt-table-head-multi-sort-indicator',
+            classes['multi-sort-indicator'],
+          )}
+          color="transparent"
+          label={sortIndex + 1}
+          offset={4}
+          inline
         >
-          {icon}
-        </ActionIcon>
-      </Indicator>
+          <SortIcon sorted={sorted} label={sortTooltip} icons={icons} />
+        </Indicator>
+      )}
     </Tooltip>
   );
 };
+
+function SortIcon({
+  sorted,
+  label,
+  icons: { IconSortDescending, IconSortAscending, IconArrowsSort },
+}: {
+  sorted: false | SortDirection;
+  label: string;
+  icons: Partial<MRT_Icons>;
+}) {
+  return (
+    <ActionIcon
+      className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
+      aria-label={label}
+      size={18}
+      {...dataVariable('sorted', sorted)}
+    >
+      {sorted === 'desc' ? (
+        <IconSortDescending />
+      ) : sorted === 'asc' ? (
+        <IconSortAscending />
+      ) : (
+        <IconArrowsSort />
+      )}
+    </ActionIcon>
+  );
+}
