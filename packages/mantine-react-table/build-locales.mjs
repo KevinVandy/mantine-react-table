@@ -4,6 +4,7 @@ import typescript from '@rollup/plugin-typescript';
 
 const supportedLocales = [
   'ar',
+  'az',
   'bg',
   'cs',
   'da',

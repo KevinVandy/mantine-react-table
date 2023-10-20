@@ -208,11 +208,11 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
             >
               {headerElement}
             </Flex>
-            {column.getCanSort() && (
-              <MRT_TableHeadCellSortLabel header={header} table={table} />
-            )}
             {column.getCanFilter() && (
               <MRT_TableHeadCellFilterLabel header={header} table={table} />
+            )}
+            {column.getCanSort() && (
+              <MRT_TableHeadCellSortLabel header={header} table={table} />
             )}
           </Flex>
           {columnDefType !== 'group' && (
