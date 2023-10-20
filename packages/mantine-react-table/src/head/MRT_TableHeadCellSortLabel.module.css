@@ -14,3 +14,7 @@
     --ai-color: var(--mantine-primary-color-filled);
   }
 }
+
+.multi-sort-indicator {
+  height: 18px;
+}
