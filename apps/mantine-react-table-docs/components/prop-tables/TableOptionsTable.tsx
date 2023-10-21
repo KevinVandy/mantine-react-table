@@ -9,7 +9,7 @@ import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type TableOption, tableOptions } from './tableOptions';
-import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table';
 
 interface Props {
   onlyOptions?: Set<keyof MRT_TableOptions<TableOption>>;

@@ -1,6 +1,6 @@
-import { rollup } from 'rollup';
-import copy from 'rollup-plugin-copy';
 import typescript from '@rollup/plugin-typescript';
+import fs from 'fs';
+import { rollup } from 'rollup';
 
 const supportedLocales = [
   'ar',
@@ -23,6 +23,7 @@ const supportedLocales = [
   'ko',
   'nl',
   'no',
+  'np',
   'pl',
   'pt',
   'pt-BR',
@@ -47,31 +48,59 @@ async function build(locale) {
         declaration: false,
         declarationDir: undefined,
         rootDir: './src',
-      }),
-      copy({
-        targets: [
-          ...['cjs', 'esm'].map((format) => ({
-            src: `./dist/esm/types/locales/${locale}.d.ts`,
-            dest: './locales',
-            rename: () =>
-              format === 'esm' ? `${locale}.${format}.d.ts` : `${locale}.d.ts`,
-          })),
-        ],
+        sourceMap: false,
       }),
     ],
   });
 
   await bundle.write({
-    file: `./locales/${locale}.js`,
+    file: `./locales/${locale}/index.js`,
     format: 'cjs',
-    sourcemap: true,
+    sourcemap: false,
   });
 
   await bundle.write({
-    file: `./locales/${locale}.esm.js`,
+    file: `./locales/${locale}/index.esm.js`,
     format: 'esm',
-    sourcemap: true,
+    sourcemap: false,
   });
+
+  const typeFile = `import { type MRT_Localization } from '../..';
+  export declare const MRT_Localization_${locale
+    .toUpperCase()
+    .replaceAll('-', '_')}: MRT_Localization;
+  `;
+
+  await fs.writeFile(`./locales/${locale}/index.d.ts`, typeFile, (err) => {
+    // eslint-disable-next-line
+    if (err) console.log(err);
+  });
+
+  await fs.writeFile(`./locales/${locale}/index.esm.d.ts`, typeFile, (err) => {
+    // eslint-disable-next-line
+    if (err) console.log(err);
+  });
+
+  await fs.writeFile(
+    `./locales/${locale}/package.json`,
+    JSON.stringify(
+      {
+        main: './index.js',
+        module: './index.esm.js',
+        sideEffects: false,
+        types: './index.d.ts',
+      },
+      null,
+      2,
+    ),
+    (err) => {
+      // eslint-disable-next-line
+      if (err) console.log(err);
+    },
+  );
+
+  // eslint-disable-next-line
+  console.log(`Built ${locale} locale`);
 }
 
 async function run() {

@@ -10,7 +10,7 @@ import {
 import { useMediaQuery } from '@mantine/hooks';
 import { IconExternalLink } from '@tabler/icons-react';
 import { type RouteItem } from './routes';
-import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table';
 
 interface Props {
   depth?: number;

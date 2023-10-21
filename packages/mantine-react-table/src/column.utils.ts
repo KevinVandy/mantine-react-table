@@ -330,6 +330,7 @@ export const getPrimaryColor = (
   theme: MantineTheme,
   shade?: MantineShade,
 ): string => theme.colors[theme.primaryColor][shade ?? getPrimaryShade(theme)];
+
 export const flexRender = _flexRender as (
   Comp: Renderable<any>,
   props: any,

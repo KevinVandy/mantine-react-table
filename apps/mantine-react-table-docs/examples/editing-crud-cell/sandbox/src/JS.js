@@ -22,7 +22,7 @@ const Example = () => {
   const [editedUsers, setEditedUsers] = useState({});
 
   //call CREATE hook
-  const { mutateAsync: createUser, isLoading: isCreatingUser } =
+  const { mutateAsync: createUser, isPending: isCreatingUser } =
     useCreateUser();
   //call READ hook
   const {
@@ -32,10 +32,10 @@ const Example = () => {
     isLoading: isLoadingUsers,
   } = useGetUsers();
   //call UPDATE hook
-  const { mutateAsync: updateUsers, isLoading: isUpdatingUser } =
+  const { mutateAsync: updateUsers, isPending: isUpdatingUser } =
     useUpdateUsers();
   //call DELETE hook
-  const { mutateAsync: deleteUser, isLoading: isDeletingUser } =
+  const { mutateAsync: deleteUser, isPending: isDeletingUser } =
     useDeleteUser();
 
   //CREATE action

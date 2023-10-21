@@ -22,7 +22,7 @@ import {
 import { useMediaQuery } from '@mantine/hooks';
 import docsearch from '@docsearch/js';
 import '@docsearch/css';
-import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table';
 import { useRouter } from 'next/router';
 
 interface Props {

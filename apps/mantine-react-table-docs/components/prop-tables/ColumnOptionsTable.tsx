@@ -5,7 +5,7 @@ import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type ColumnOption, columnOptions } from './columnOptions';
-import { getPrimaryColor } from 'mantine-react-table/src/column.utils';
+import { getPrimaryColor } from 'mantine-react-table';
 
 interface Props {
   onlyOptions?: Set<keyof MRT_ColumnDef<ColumnOption>>;

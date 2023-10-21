@@ -46,7 +46,7 @@
     "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
-    "eslint": "8.51.0",
+    "eslint": "8.52.0",
     "eslint-config-next": "13.5.6",
     "next-plausible": "^3.11.2",
     "postcss": "^8.4.31",

@@ -61,7 +61,7 @@ const Example = () => {
         return json;
       },
       getNextPageParam: (_lastGroup, groups) => groups.length,
-      keepPreviousData: true,
+      initialPageParam: 0,
       refetchOnWindowFocus: false,
     });
 

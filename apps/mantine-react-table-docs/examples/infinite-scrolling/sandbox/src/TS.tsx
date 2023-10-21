@@ -73,7 +73,7 @@ const Example = () => {
   const [sorting, setSorting] = useState<MRT_SortingState>([]);
 
   const { data, fetchNextPage, isError, isFetching, isLoading } =
-    useInfiniteQuery<UserApiResponse>({
+    useInfiniteQuery({
       queryKey: ['table-data', columnFilters, globalFilter, sorting],
       queryFn: async ({ pageParam = 0 }) => {
         const url = new URL(
@@ -93,7 +93,7 @@ const Example = () => {
         return json;
       },
       getNextPageParam: (_lastGroup, groups) => groups.length,
-      keepPreviousData: true,
+      initialPageParam: 0,
       refetchOnWindowFocus: false,
     });
 
