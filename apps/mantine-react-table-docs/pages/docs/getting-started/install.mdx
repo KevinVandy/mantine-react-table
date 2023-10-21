@@ -1,13 +1,19 @@
 import Head from 'next/head';
 import { InstallCommand } from '../../../components/mdx/InstallCommand';
 import { FAQs } from '../../../components/mdx/FAQs';
+import { Alert } from '@mantine/core';
+import { IconInfoCircle } from '@tabler/icons-react';
 
 <Head>
   <title>Installation - Mantine React Table Docs</title>
   <meta name="description" content="How to install Mantine React Table" />
 </Head>
 
-> This is the install guide for `mantine-react-table` **V1** and `@mantine/` packages **V6**. MRT V1 will not work with Mantine V7. MRT V2 will be released by the end of 2023 and will work with Mantine V7.
+> This is the install guide for `mantine-react-table` **V2** and `@mantine/` packages **V7**. MRT V2 will not work with Mantine V6.
+
+<Alert variant="light" color="orange" title="Alert title" icon={<IconInfoCircle />}>
+  Mantine React Table V2 is still a work in progress, but we are making good progress every day.
+</Alert>
 
 ## Installation
 
@@ -17,11 +23,10 @@ import { FAQs } from '../../../components/mdx/FAQs';
 >
 > Just double-check that you have the following in your package.json, or use the [full install commands](<#install-with-required-peer-dependencies-(recommended)>) below.
 >
-> 1.  `@mantine/core` (^v6.0)
-> 2.  `@mantine/hooks` (^v6.0)
-> 3.  `@mantine/dates` (^v6.0)
+> 1.  `@mantine/core` (^v7.1+)
+> 2.  `@mantine/hooks` (^v7.1+)
+> 3.  `@mantine/dates` (^v7.1+)
 > 4.  `@tabler/icons-react` (2.23.0+)
-> 5.  `@emotion/react` (v11)
 > 6.  `dayjs` (v1.11+)
 > 7.  `react` and `react-dom` (v18)
 
@@ -36,6 +41,16 @@ import { FAQs } from '../../../components/mdx/FAQs';
 > You do NOT need to install `@tanstack/react-table`, as it is already an internal dependency of `mantine-react-table`, and must use an exact version already specified internally.
 >
 > All internal dependencies: `@tanstack/react-table`, `@tanstack/react-virtual`, and `@tanstack/match-sorter-utils`
+
+### Import CSS Styles
+
+After you install mantine-react-table, you will need to import the CSS styles from `mantine-react-table/styles.css` at the root of your project. (Where you import your other Mantine CSS styles.)
+
+```js
+import '@mantine/core/styles.css'; //import Mantine V7 styles needed by MRT
+import '@mantine/dates/styles.css';
+import 'mantine-react-table/styles.css'; //import MRT styles
+```
 
 ### Common Errors
 
