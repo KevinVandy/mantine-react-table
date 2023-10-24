@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 import { useState, type MouseEvent } from 'react';
-import { ActionIcon, Box, Popover, Tooltip, Transition } from '@mantine/core';
+import { ActionIcon, Popover, Tooltip, Transition } from '@mantine/core';
 
 import { type MRT_Header, type MRT_TableInstance } from '../types';
 import { localizedFilterOption } from '../filterFns';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
+import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_TableHeadCellFilterLabel.module.css';
 
@@ -89,42 +90,39 @@ export const MRT_TableHeadCellFilterLabel = <
         }
       >
         {() => (
-          <Box component="span">
-            <Popover.Target>
-              <Tooltip
-                disabled={popoverOpened}
-                label={filterTooltip}
-                multiline
-                w={filterTooltip.length > 40 ? 300 : undefined}
-                withinPortal
+          <Popover.Target>
+            <Tooltip
+              disabled={popoverOpened}
+              label={filterTooltip}
+              multiline
+              w={filterTooltip.length > 40 ? 300 : undefined}
+              withinPortal
+            >
+              <ActionIcon
+                className={clsx(
+                  'mrt-table-head-cell-filter-label-icon',
+                  classes.root,
+                )}
+                size={18}
+                {...dataVariable('active', isFilterActive)}
+                onClick={(event: MouseEvent<HTMLButtonElement>) => {
+                  event.stopPropagation();
+                  if (columnFilterDisplayMode === 'popover') {
+                    setPopoverOpened((opened) => !opened);
+                  } else {
+                    setShowColumnFilters(true);
+                  }
+                  setTimeout(() => {
+                    const input = filterInputRefs.current[`${column.id}-0`];
+                    input?.focus();
+                    input?.select();
+                  }, 100);
+                }}
               >
-                <ActionIcon
-                  size="sm"
-                  variant="transparent"
-                  className={clsx(
-                    'mrt-table-head-cell-filter-label-icon',
-                    classes.root,
-                    isFilterActive && classes.active,
-                  )}
-                  onClick={(event: MouseEvent<HTMLButtonElement>) => {
-                    event.stopPropagation();
-                    if (columnFilterDisplayMode === 'popover') {
-                      setPopoverOpened((opened) => !opened);
-                    } else {
-                      setShowColumnFilters(true);
-                    }
-                    setTimeout(() => {
-                      const input = filterInputRefs.current[`${column.id}-0`];
-                      input?.focus();
-                      input?.select();
-                    }, 100);
-                  }}
-                >
-                  <IconFilter />
-                </ActionIcon>
-              </Tooltip>
-            </Popover.Target>
-          </Box>
+                <IconFilter />
+              </ActionIcon>
+            </Tooltip>
+          </Popover.Target>
         )}
       </Transition>
       {columnFilterDisplayMode === 'popover' && (
