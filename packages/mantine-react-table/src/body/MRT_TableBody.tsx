@@ -94,7 +94,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
     () =>
       getCanRankRows(table) &&
       !Object.values(sorting).some(Boolean) &&
-      globalFilter,
+      (globalFilter as string),
     [
       enableGlobalFilterRankedResults,
       expanded,
@@ -176,7 +176,7 @@ export const MRT_TableBody = <TData extends Record<string, any> = {}>({
 
   return (
     <>
-    {!rowPinningDisplayMode?.includes('sticky') &&
+      {!rowPinningDisplayMode?.includes('sticky') &&
         getIsSomeRowsPinned('top') && (
           <TableTbody
             {...tableBodyProps}

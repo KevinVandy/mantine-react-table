@@ -278,7 +278,7 @@ export const getCanRankRows = <TData extends Record<string, any> = {}>(
   } = options;
   const { globalFilterFn, expanded } = getState();
 
-  return (
+  return !!(
     !manualExpanding &&
     !manualFiltering &&
     !manualGrouping &&
