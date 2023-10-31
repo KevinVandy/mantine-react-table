@@ -31,6 +31,7 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
       <ActionIcon
         draggable="true"
         size="sm"
+        aria-label={actionIconProps?.title ?? localization.move}
         {...actionIconProps}
         onClick={(e) => {
           e.stopPropagation();
