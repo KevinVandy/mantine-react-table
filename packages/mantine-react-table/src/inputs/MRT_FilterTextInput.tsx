@@ -284,6 +284,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
   const commonProps = {
     disabled: !!filterChipLabel,
     placeholder: filterPlaceholder,
+    'aria-label': filterPlaceholder,
     title: filterPlaceholder,
     onClick: (event: MouseEvent<HTMLInputElement>) => event.stopPropagation(),
     onChange: setFilterValue,
