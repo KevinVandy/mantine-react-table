@@ -51,7 +51,7 @@ export const MRT_CopyButton = <TData extends Record<string, any> = {}>({
               buttonProps?.className,
             )}
             title={undefined}
-            aria-role="presentation"
+            role="presentation"
             onClick={(e) => {
               e.stopPropagation();
               copy();
