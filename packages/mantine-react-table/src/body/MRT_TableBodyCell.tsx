@@ -250,8 +250,7 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
       <>
         {cell.getIsPlaceholder() ? (
           columnDef.PlaceholderCell?.({ cell, column, row, table }) ?? null
-        ) : (isLoading || showSkeletons) &&
-          [undefined, null].includes(cell.getValue<any>()) ? (
+        ) : isLoading || showSkeletons ? (
           <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />
         ) : enableRowNumbers &&
           rowNumberMode === 'static' &&
