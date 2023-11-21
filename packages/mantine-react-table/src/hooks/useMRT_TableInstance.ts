@@ -55,8 +55,8 @@ export const useMRT_TableInstance: <TData extends Record<string, any> = {}>(
 
   const initialState: Partial<MRT_TableState<TData>> = useMemo(() => {
     const initState = tableOptions.initialState ?? {};
-    initState.columnOrder =
-      initState.columnOrder ?? getDefaultColumnOrderIds(tableOptions);
+    // initState.columnOrder =
+    //   initState.columnOrder ?? getDefaultColumnOrderIds(tableOptions);
     initState.globalFilterFn = tableOptions.globalFilterFn ?? 'fuzzy';
     return initState;
   }, []);

@@ -7,7 +7,7 @@ import {
   type MRT_TableOptions,
 } from '../../src';
 import { faker } from '@faker-js/faker';
-import { Flex, Stack, Title } from '@mantine/core';
+import { Flex, Stack, Switch, Title } from '@mantine/core';
 
 const meta: Meta = {
   title: 'Features/Editing Examples',
@@ -90,7 +90,8 @@ const data: Person[] = [...Array(100)].map(() => ({
 
 export const EditingEnabledEditModeModalDefault = () => {
   const [tableData, setTableData] = useState(data);
-
+  const [enableRowNumbers, setEnableRowNumbers] = useState(false);
+  const [enableEditing, setEnableEditing] = useState(false);
   const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     exitEditingMode,
     row,
@@ -102,34 +103,47 @@ export const EditingEnabledEditModeModalDefault = () => {
   };
 
   return (
-    <MantineReactTable
-      columns={[
-        {
-          header: 'First Name',
-          accessorKey: 'firstName',
-        },
-        {
-          header: 'Last Name',
-          accessorKey: 'lastName',
-        },
-        {
-          header: 'Address',
-          accessorKey: 'address',
-        },
-        {
-          header: 'State',
-          accessorKey: 'state',
-        },
-        {
-          header: 'Phone Number',
-          accessorKey: 'phoneNumber',
-          enableEditing: false,
-        },
-      ]}
-      data={tableData}
-      enableEditing
-      onEditingRowSave={handleSaveRow}
-    />
+    <Stack>
+      <Switch
+        checked={enableEditing}
+        onChange={(e) => setEnableEditing(e.currentTarget.checked)}
+        label="Enable Editing"
+      />{' '}
+      <Switch
+        checked={enableRowNumbers}
+        onChange={(e) => setEnableRowNumbers(e.currentTarget.checked)}
+        label="Enable Row Numbers"
+      />
+      <MantineReactTable
+        columns={[
+          {
+            header: 'First Name',
+            accessorKey: 'firstName',
+          },
+          {
+            header: 'Last Name',
+            accessorKey: 'lastName',
+          },
+          {
+            header: 'Address',
+            accessorKey: 'address',
+          },
+          {
+            header: 'State',
+            accessorKey: 'state',
+          },
+          {
+            header: 'Phone Number',
+            accessorKey: 'phoneNumber',
+            enableEditing: false,
+          },
+        ]}
+        data={tableData}
+        enableEditing={enableEditing}
+        enableRowNumbers={enableRowNumbers}
+        onEditingRowSave={handleSaveRow}
+      />
+    </Stack>
   );
 };
 
