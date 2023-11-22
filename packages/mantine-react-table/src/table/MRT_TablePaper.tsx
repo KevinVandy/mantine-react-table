@@ -17,6 +17,7 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
       enableBottomToolbar,
       enableTopToolbar,
       mantinePaperProps,
+      mantinePaperFullscreenStyles,
       renderBottomToolbar,
       renderTopToolbar,
     },
@@ -28,6 +29,13 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
     mantinePaperProps instanceof Function
       ? mantinePaperProps({ table })
       : mantinePaperProps;
+
+  const tablePaperFullScreenStyles =
+    mantinePaperFullscreenStyles instanceof Function
+      ? mantinePaperFullscreenStyles({ table })
+      : mantinePaperFullscreenStyles;
+
+  console.log('MRT_TablePaper', tablePaperFullScreenStyles);
 
   return (
     <Paper
@@ -62,6 +70,7 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
               top: 0,
               width: '100vw',
               zIndex: 100,
+              ...tablePaperFullScreenStyles,
             }
           : {}),
         ...tablePaperProps?.style,

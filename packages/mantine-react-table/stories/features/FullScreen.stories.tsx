@@ -94,3 +94,14 @@ export const ControlledFullScreen = () => {
     />
   );
 };
+
+export const FullScreenWithCustomStyles = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    mantinePaperFullscreenStyles={{
+      width: 'auto',
+      inset: '0px 120px 0px 0px',
+    }}
+  />
+);
