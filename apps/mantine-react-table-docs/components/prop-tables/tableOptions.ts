@@ -1401,6 +1401,17 @@ export const tableOptions: TableOption[] = [
     type: 'PaperProps | ({ table }} => PaperProps',
   },
   {
+    tableOption: 'mantinePaperFullscreenStyles',
+    defaultValue: '',
+    description:
+      'Additional Styles to add to the Mantine Paper component when in full screen mode',
+    link: 'https://mantine.dev/core/paper/?t=props',
+    linkText: 'Mantine Paper Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'React.CSSProperties | undefined',
+  },
+  {
     tableOption: 'mantineTableProps',
     defaultValue: '',
     description: '',

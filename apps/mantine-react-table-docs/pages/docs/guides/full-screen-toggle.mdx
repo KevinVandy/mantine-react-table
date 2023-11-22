@@ -15,7 +15,13 @@ import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable
 ### Relevant Table Options
 
 <TableOptionsTable
-  onlyOptions={new Set(['enableFullScreenToggle', 'onIsFullScreenChange'])}
+  onlyOptions={
+    new Set([
+      'enableFullScreenToggle',
+      'onIsFullScreenChange',
+      'mantinePaperFullscreenStyles',
+    ])
+  }
 />
 
 ### Relevant State
@@ -31,5 +37,23 @@ const table = useMantineReactTable({
   columns,
   data,
   enableFullScreenToggle: false,
+});
+```
+
+### Tweaking Full Screen Toggle Button Styles
+
+Use the `mantinePaperFullscreenStyles` table option to tweak the styles of the full screen toggle button.
+These props are passed to the `style` prop of the `MantinePaper` component that wraps the full Paper component.
+
+This example allows room for a sidebar on the right side of the screen.
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantinePaperFullscreenStyles: {
+    width: 'auto',
+    inset: '0px 120px 0px 0px',
+  },
 });
 ```

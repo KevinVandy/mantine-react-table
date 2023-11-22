@@ -925,6 +925,9 @@ export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
     | ((props: {
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLDivElement> & PaperProps);
+  mantinePaperFullscreenStyles?:
+    | React.CSSProperties
+    | ((props: { table: MRT_TableInstance<TData> }) => React.CSSProperties);
   mantineRowDragHandleProps?:
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
     | ((props: {
