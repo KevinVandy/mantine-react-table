@@ -35,8 +35,6 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
       ? mantinePaperFullscreenStyles({ table })
       : mantinePaperFullscreenStyles;
 
-  console.log('MRT_TablePaper', tablePaperFullScreenStyles);
-
   return (
     <Paper
       shadow="xs"
