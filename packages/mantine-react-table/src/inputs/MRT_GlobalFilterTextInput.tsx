@@ -85,6 +85,7 @@ export const MRT_GlobalFilterTextInput = <
         onChange={(event) => setSearchValue(event.target.value)}
         value={searchValue ?? ''}
         variant="filled"
+        mt={0}
         leftSection={!enableGlobalFilterModes && <IconSearch />}
         rightSection={
           searchValue ? (
