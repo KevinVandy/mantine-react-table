@@ -5,8 +5,6 @@ import {
   Autocomplete,
   Badge,
   Box,
-  CloseButton,
-  Combobox,
   MultiSelect,
   Select,
   TextInput,
@@ -24,25 +22,6 @@ interface Props<TData extends Record<string, any> = {}> {
   rangeFilterIndex?: number;
   table: MRT_TableInstance<TData>;
 }
-
-const SelectClearButton = ({
-  value,
-  onChange,
-}: {
-  value: unknown;
-  onChange: (value: any) => void;
-}) => {
-  return value !== null ? (
-    <CloseButton
-      size="sm"
-      onMouseDown={(event) => event.preventDefault()}
-      onClick={() => onChange(null)}
-      aria-label="Clear value"
-    />
-  ) : (
-    <Combobox.Chevron />
-  );
-};
 
 export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
   header,
@@ -313,6 +292,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       {...selectProps}
       className={clsx(className, selectProps.className)}
       data={filterSelectOptions}
+      style={commonProps.style}
       ref={(node) => {
         if (node) {
           filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
