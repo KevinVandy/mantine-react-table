@@ -272,6 +272,8 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
     </ActionIcon>
   ) : null;
 
+  console.log(multiSelectProps)
+
   return filterChipLabel ? (
     <Box style={commonProps.style}>
       <Badge
@@ -288,6 +290,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       {...commonProps}
       searchable
       {...multiSelectProps}
+      onChange={(value) => setFilterValue(value)}
       className={clsx(className, multiSelectProps.className)}
       data={filterSelectOptions}
       ref={(node) => {
@@ -300,17 +303,13 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
         }
       }}
       style={commonProps.style}
-      rightSection={
-        <SelectClearButton
-          value={multiSelectProps.value}
-          onChange={multiSelectProps.onChange!}
-        />
-      }
+      rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
     />
   ) : isSelectFilter ? (
     <Select
       {...commonProps}
       searchable
+      clearable
       {...selectProps}
       className={clsx(className, selectProps.className)}
       data={filterSelectOptions}
@@ -323,13 +322,6 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      style={commonProps.style}
-      rightSection={
-        <SelectClearButton
-          value={multiSelectProps.value}
-          onChange={multiSelectProps.onChange!}
-        />
-      }
     />
   ) : isDateFilter ? (
     <DateInput
