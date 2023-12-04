@@ -59,6 +59,7 @@ export const MRT_Localization_AZ: MRT_Localization = {
   noResultsFound: 'Heç Bir Nəticə Tapılmadı',
   of: 'of',
   or: 'və ya',
+  pin: 'Sabitlə',
   pinToLeft: 'Sola Sabitlə',
   pinToRight: 'Sağa Sabitlə',
   resetColumnSize: 'Sütun Ölçüsünü Sıfırla',
