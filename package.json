@@ -1,5 +1,6 @@
 {
   "name": "mantine-react-table-turbo",
+  "author": "Kevin Vandy",
   "private": true,
   "workspaces": [
     "apps/*",
