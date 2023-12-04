@@ -5,8 +5,6 @@ import {
   Autocomplete,
   Badge,
   Box,
-  CloseButton,
-  Combobox,
   MultiSelect,
   Select,
   TextInput,
@@ -24,25 +22,6 @@ interface Props<TData extends Record<string, any> = {}> {
   rangeFilterIndex?: number;
   table: MRT_TableInstance<TData>;
 }
-
-const SelectClearButton = ({
-  value,
-  onChange,
-}: {
-  value: unknown;
-  onChange: (value: any) => void;
-}) => {
-  return value !== null ? (
-    <CloseButton
-      size="sm"
-      onMouseDown={(event) => event.preventDefault()}
-      onClick={() => onChange(null)}
-      aria-label="Clear value"
-    />
-  ) : (
-    <Combobox.Chevron />
-  );
-};
 
 export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
   header,
@@ -288,6 +267,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       {...commonProps}
       searchable
       {...multiSelectProps}
+      onChange={(value) => setFilterValue(value)}
       className={clsx(className, multiSelectProps.className)}
       data={filterSelectOptions}
       ref={(node) => {
@@ -300,20 +280,17 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
         }
       }}
       style={commonProps.style}
-      rightSection={
-        <SelectClearButton
-          value={multiSelectProps.value}
-          onChange={multiSelectProps.onChange!}
-        />
-      }
+      rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
     />
   ) : isSelectFilter ? (
     <Select
       {...commonProps}
       searchable
+      clearable
       {...selectProps}
       className={clsx(className, selectProps.className)}
       data={filterSelectOptions}
+      style={commonProps.style}
       ref={(node) => {
         if (node) {
           filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
@@ -323,13 +300,6 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
           }
         }
       }}
-      style={commonProps.style}
-      rightSection={
-        <SelectClearButton
-          value={multiSelectProps.value}
-          onChange={multiSelectProps.onChange!}
-        />
-      }
     />
   ) : isDateFilter ? (
     <DateInput
