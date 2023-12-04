@@ -251,8 +251,6 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
     </ActionIcon>
   ) : null;
 
-  console.log(multiSelectProps)
-
   return filterChipLabel ? (
     <Box style={commonProps.style}>
       <Badge
