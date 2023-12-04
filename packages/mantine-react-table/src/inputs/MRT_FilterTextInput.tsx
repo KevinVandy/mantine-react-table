@@ -346,6 +346,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       onChange={(e) => setFilterValue(e.target.value)}
       {...textInputProps}
       className={clsx(className, textInputProps.className)}
+      mt={0}
       ref={(node) => {
         if (node) {
           filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
