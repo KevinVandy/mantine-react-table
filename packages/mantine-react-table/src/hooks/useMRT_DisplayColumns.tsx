@@ -29,7 +29,7 @@ export const useMRT_DisplayColumns = <TData extends Record<string, any> = {}>(
   const { creatingRow, columnOrder, grouping, tableOptions } = params;
   return useMemo(() => {
     const order = tableOptions.state?.columnOrder ?? columnOrder;
-    const ret = [
+    const displayColumns = [
       makePinColumn(params, order),
       makeDragColumn(params, order),
       makeRowActionsColumn(params, order),
@@ -37,8 +37,7 @@ export const useMRT_DisplayColumns = <TData extends Record<string, any> = {}>(
       makeRowSelectColumn(params, order),
       makeRowNumbersColumn(params, order),
     ].filter((x) => x) as MRT_ColumnDef<TData>[];
-    console.log('displayColumns', ret);
-    return ret;
+    return displayColumns;
   }, [
     creatingRow,
     columnOrder,

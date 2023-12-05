@@ -5,6 +5,7 @@ import {
   MRT_EditActionButtons,
   type MRT_Cell,
   type MRT_TableOptions,
+  type MRT_ColumnOrderState,
 } from '../../src';
 import { faker } from '@faker-js/faker';
 import { Flex, Stack, Switch, Title } from '@mantine/core';
@@ -90,8 +91,6 @@ const data: Person[] = [...Array(100)].map(() => ({
 
 export const EditingEnabledEditModeModalDefault = () => {
   const [tableData, setTableData] = useState(data);
-  const [enableRowNumbers, setEnableRowNumbers] = useState(false);
-  const [enableEditing, setEnableEditing] = useState(false);
   const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
     exitEditingMode,
     row,
@@ -102,48 +101,38 @@ export const EditingEnabledEditModeModalDefault = () => {
     exitEditingMode();
   };
 
+  const columns = [
+    {
+      header: 'First Name',
+      accessorKey: 'firstName',
+    },
+    {
+      header: 'Last Name',
+      accessorKey: 'lastName',
+    },
+    {
+      header: 'Address',
+      accessorKey: 'address',
+    },
+    {
+      header: 'State',
+      accessorKey: 'state',
+    },
+    {
+      header: 'Phone Number',
+      accessorKey: 'phoneNumber',
+      enableEditing: false,
+    },
+  ];
+
   return (
-    <Stack>
-      <Switch
-        checked={enableEditing}
-        onChange={(e) => setEnableEditing(e.currentTarget.checked)}
-        label="Enable Editing"
-      />{' '}
-      <Switch
-        checked={enableRowNumbers}
-        onChange={(e) => setEnableRowNumbers(e.currentTarget.checked)}
-        label="Enable Row Numbers"
-      />
-      <MantineReactTable
-        columns={[
-          {
-            header: 'First Name',
-            accessorKey: 'firstName',
-          },
-          {
-            header: 'Last Name',
-            accessorKey: 'lastName',
-          },
-          {
-            header: 'Address',
-            accessorKey: 'address',
-          },
-          {
-            header: 'State',
-            accessorKey: 'state',
-          },
-          {
-            header: 'Phone Number',
-            accessorKey: 'phoneNumber',
-            enableEditing: false,
-          },
-        ]}
-        data={tableData}
-        enableEditing={enableEditing}
-        enableRowNumbers={enableRowNumbers}
-        onEditingRowSave={handleSaveRow}
-      />
-    </Stack>
+    <MantineReactTable
+      columns={columns}
+      data={tableData}
+      enableEditing
+      enableRowNumbers
+      onEditingRowSave={handleSaveRow}
+    />
   );
 };
 
@@ -1054,5 +1043,118 @@ export const EnableEditingConditionallyTable = () => {
       editDisplayMode="table"
       onEditingRowSave={handleSaveRow}
     />
+  );
+};
+
+export const EditingTurnedOnDynamically = () => {
+  const [tableData, setTableData] = useState(data);
+  const handleSaveRow: MRT_TableOptions<Person>['onEditingRowSave'] = ({
+    exitEditingMode,
+    row,
+    values,
+  }) => {
+    tableData[row.index] = values;
+    setTableData([...tableData]);
+    exitEditingMode();
+  };
+
+  const columns = [
+    {
+      header: 'First Name',
+      accessorKey: 'firstName',
+    },
+    {
+      header: 'Last Name',
+      accessorKey: 'lastName',
+    },
+    {
+      header: 'Address',
+      accessorKey: 'address',
+    },
+    {
+      header: 'State',
+      accessorKey: 'state',
+    },
+    {
+      header: 'Phone Number',
+      accessorKey: 'phoneNumber',
+      enableEditing: false,
+    },
+  ];
+
+  const [enableRowNumbers, _setEnableRowNumbers] = useState(false);
+  const [enableEditing, _setEnableEditing] = useState(false);
+
+  const [columnOrder, setColumnOrder] = useState<MRT_ColumnOrderState>(() => {
+    return [
+      enableEditing && 'mrt-row-actions',
+      enableRowNumbers && 'mrt-row-numbers',
+      ...columns.map((c) => c.accessorKey),
+    ].filter(Boolean) as MRT_ColumnOrderState;
+  });
+
+  const updateColumnOrder = ({
+    enableEditing,
+    enableRowNumbers,
+  }: {
+    enableEditing: boolean;
+    enableRowNumbers: boolean;
+  }) => {
+    let newColumnOrder = columnOrder;
+    if (enableRowNumbers) {
+      newColumnOrder = ['mrt-row-numbers', ...newColumnOrder];
+    } else {
+      newColumnOrder = newColumnOrder.filter(
+        (col) => col !== 'mrt-row-numbers',
+      );
+    }
+    if (enableEditing) {
+      newColumnOrder = ['mrt-row-actions', ...newColumnOrder];
+    } else {
+      newColumnOrder = newColumnOrder.filter(
+        (col) => col !== 'mrt-row-actions',
+      );
+    }
+    setColumnOrder(newColumnOrder);
+  };
+
+  const setEnableEditing = (value: boolean) => {
+    _setEnableEditing(value);
+    updateColumnOrder({
+      enableEditing: value,
+      enableRowNumbers,
+    });
+  };
+
+  const setEnableRowNumbers = (value: boolean) => {
+    _setEnableRowNumbers(value);
+    updateColumnOrder({
+      enableEditing,
+      enableRowNumbers: value,
+    });
+  };
+
+  return (
+    <Stack>
+      <Switch
+        checked={enableEditing}
+        onChange={(e) => setEnableEditing(e.currentTarget.checked)}
+        label="Enable Editing"
+      />{' '}
+      <Switch
+        checked={enableRowNumbers}
+        onChange={(e) => setEnableRowNumbers(e.currentTarget.checked)}
+        label="Enable Row Numbers"
+      />
+      <MantineReactTable
+        columns={columns}
+        data={tableData}
+        enableEditing={enableEditing}
+        enableRowNumbers={enableRowNumbers}
+        onEditingRowSave={handleSaveRow}
+        state={{ columnOrder }}
+        onColumnOrderChange={setColumnOrder}
+      />
+    </Stack>
   );
 };
