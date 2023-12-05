@@ -146,7 +146,6 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
     <Table
       className={clsx(
         'mrt-table',
-        classes.root,
         layoutMode?.startsWith('grid') && classes['root-grid'],
         enableColumnResizing &&
           layoutMode === 'semantic' &&

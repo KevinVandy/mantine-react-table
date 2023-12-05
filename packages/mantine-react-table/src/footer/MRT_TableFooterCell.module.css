@@ -3,16 +3,28 @@
   padding: 1rem;
   vertical-align: top;
   z-index: 1;
+  border-top: var(--_paper-border);
+
   &.pinned {
     z-index: 2;
   }
-  display: table-row;
+
   &.grid {
     display: grid;
   }
+
   text-align: left;
+
   &.group {
     text-align: center;
     justify-content: center;
+  }
+
+  @mixin light {
+    background-color: var(--mantine-color-white);
+  }
+
+  @mixin dark {
+    background-color: var(--mantine-color-dark-6);
   }
 }
