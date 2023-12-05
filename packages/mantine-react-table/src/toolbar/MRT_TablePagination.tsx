@@ -85,7 +85,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
             aria-labelledby="rpp-label"
             className={classes.pagesize}
             data={paginationProps?.rowsPerPageOptions ?? defaultRowsPerPage}
-            onChange={(value: string) => setPageSize(+value)}
+            onChange={(value: string | null) => setPageSize(+(value as string))}
             value={pageSize.toString()}
           />
         </Group>

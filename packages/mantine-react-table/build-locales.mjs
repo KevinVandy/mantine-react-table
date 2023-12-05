@@ -1,8 +1,10 @@
+/* eslint-disable */
 import typescript from '@rollup/plugin-typescript';
 import fs from 'fs';
 import { rollup } from 'rollup';
 
 const supportedLocales = [
+  'am',
   'ar',
   'az',
   'bg',
@@ -66,18 +68,16 @@ async function build(locale) {
   });
 
   const typeFile = `import { type MRT_Localization } from '../..';
-  export declare const MRT_Localization_${locale
+export declare const MRT_Localization_${locale
     .toUpperCase()
     .replaceAll('-', '_')}: MRT_Localization;
   `;
 
   await fs.writeFile(`./locales/${locale}/index.d.ts`, typeFile, (err) => {
-    // eslint-disable-next-line
     if (err) console.log(err);
   });
 
   await fs.writeFile(`./locales/${locale}/index.esm.d.ts`, typeFile, (err) => {
-    // eslint-disable-next-line
     if (err) console.log(err);
   });
 
@@ -85,21 +85,19 @@ async function build(locale) {
     `./locales/${locale}/package.json`,
     JSON.stringify(
       {
-        main: './index.js',
-        module: './index.esm.js',
+        main: 'index.js',
+        module: 'index.esm.js',
         sideEffects: false,
-        types: './index.d.ts',
+        types: 'index.d.ts',
       },
       null,
       2,
     ),
     (err) => {
-      // eslint-disable-next-line
       if (err) console.log(err);
     },
   );
 
-  // eslint-disable-next-line
   console.log(`Built ${locale} locale`);
 }
 
@@ -109,5 +107,4 @@ async function run() {
   }
 }
 
-// eslint-disable-next-line
 run().catch((error) => console.error(error));

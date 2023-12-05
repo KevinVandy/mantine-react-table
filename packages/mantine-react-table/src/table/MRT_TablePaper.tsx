@@ -38,6 +38,7 @@ export const MRT_TablePaper = <TData extends Record<string, any> = {}>({
       className={clsx(
         'mrt-table-paper',
         classes.root,
+        isFullScreen && 'mrt-table-paper-fullscreen',
         tablePaperProps?.className,
       )}
       ref={(ref: HTMLDivElement) => {

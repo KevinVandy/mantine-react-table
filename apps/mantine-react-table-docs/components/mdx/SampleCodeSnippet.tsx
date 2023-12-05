@@ -2,13 +2,17 @@ import {
   CodeHighlight,
   type CodeHighlightProps,
 } from '@mantine/code-highlight';
-import { Code, Paper, useMantineTheme } from '@mantine/core';
+import { Code, Paper, rgba, useMantineTheme } from '@mantine/core';
 
 export function SampleCodeSnippet(props: CodeHighlightProps) {
-  const { primaryColor } = useMantineTheme();
+  const theme = useMantineTheme();
 
   if (!props.language && !props.className) {
-    return <Code color={primaryColor} fz="0.9em" {...props} />;
+    return (
+      <Code color={rgba(theme.colors[theme.primaryColor][7], 0.2)} fz="0.9em">
+        {props.code}
+      </Code>
+    );
   }
 
   return (
