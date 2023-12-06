@@ -1,4 +1,5 @@
 .root {
+  font-weight: normal;
   border-bottom: 2px solid
     light-dark(var(--mantine-color-gray-3), var(--mantine-color-gray-7));
   min-width: auto;
