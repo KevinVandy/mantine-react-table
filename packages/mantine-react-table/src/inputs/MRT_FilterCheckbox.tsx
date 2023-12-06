@@ -45,7 +45,6 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
         className={clsx('mrt-filter-checkbox', classes.root)}
         checked={value === 'true'}
         indeterminate={value === undefined}
-        color={value === undefined ? 'default' : 'primary'}
         size={density === 'xs' ? 'sm' : 'md'}
         label={checkboxProps.title ?? filterLabel}
         {...checkboxProps}
