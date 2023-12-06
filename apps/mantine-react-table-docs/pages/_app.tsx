@@ -71,7 +71,7 @@ function App({ Component, pageProps }: AppProps) {
         )}
       </Head>
       <PlausibleProvider
-        domain="mantine-react-table.com"
+        domain="v2.mantine-react-table.com"
         enabled={process.env.NODE_ENV === 'production'}
       >
         <ThemeContextProvider>
@@ -92,8 +92,8 @@ function App({ Component, pageProps }: AppProps) {
                     isMobile
                       ? '16px'
                       : showMiniNav && isXLDesktop
-                      ? '300px'
-                      : '36px'
+                        ? '300px'
+                        : '36px'
                   } 0 ${isMobile ? '16px' : isNavOpen ? '300px' : '36px'}`,
                   transition: 'all 100ms ease-in-out',
                   width: '100%',
