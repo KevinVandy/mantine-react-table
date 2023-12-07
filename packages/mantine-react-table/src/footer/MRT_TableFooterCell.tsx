@@ -34,7 +34,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
         column,
         footer,
         table,
-      });
+      }) ?? columnDef?.footer;
 
   return (
     <TableTh
@@ -48,7 +48,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
         className,
       )}
     >
-      <>{footerProps}</>
+      {footerProps}
     </TableTh>
   );
 };
