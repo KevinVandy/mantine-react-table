@@ -87,6 +87,7 @@ export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
             data={paginationProps?.rowsPerPageOptions ?? defaultRowsPerPage}
             onChange={(value: string | null) => setPageSize(+(value as string))}
             value={pageSize.toString()}
+            allowDeselect={false}
           />
         </Group>
       )}
