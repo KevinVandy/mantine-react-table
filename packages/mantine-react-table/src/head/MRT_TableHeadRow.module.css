@@ -4,6 +4,7 @@
     var(--mantine-color-dark-7)
   );
   display: table-row;
+  box-shadow: 0 rem(4) rem(8) var(--mantine-color-dark-2);
   &.layout-mode-grid {
     display: flex;
   }
