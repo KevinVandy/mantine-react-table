@@ -257,7 +257,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
             {...actionIconProps}
             size="sm"
             color="gray"
-            variant="transparent"
+            variant="subtle"
           >
             <IconDotsVertical />
           </ActionIcon>

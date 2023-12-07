@@ -45,7 +45,7 @@ export const MRT_RowPinButton = <TData extends Record<string, any>>({
         onMouseEnter={() => setTooltipOpened(true)}
         onMouseLeave={() => setTooltipOpened(false)}
         size="xs"
-        variant="transparent"
+        variant="subtle"
         style={{
           height: '24px',
           width: '24px',
