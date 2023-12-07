@@ -241,7 +241,7 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
   const ClearButton = filterValue ? (
     <ActionIcon
       aria-label={localization.clearFilter}
-      color="gray"
+      color="var(--mantine-color-gray-7)"
       onClick={handleClear}
       size="sm"
       title={localization.clearFilter ?? ''}
@@ -299,6 +299,9 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
             selectProps.ref.current = node;
           }
         }
+      }}
+      clearButtonProps={{
+        size: 'md',
       }}
     />
   ) : isDateFilter ? (

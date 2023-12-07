@@ -43,7 +43,7 @@ export const MRT_RowActionMenu = <TData extends Record<string, any> = {}>({
             color="gray"
             onClick={(event) => event.stopPropagation()}
             size="sm"
-            variant="transparent"
+            variant="subtle"
           >
             <IconDots />
           </ActionIcon>
