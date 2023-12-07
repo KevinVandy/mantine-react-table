@@ -97,17 +97,14 @@ export const MRT_ShowHideColumnsMenuItems = <
       <Menu.Item
         component="span"
         ref={menuItemRef as any}
-        __vars={{
-          '--_column-depth': rem(column.depth),
+        style={{
+          '--_column-depth': `${(column.depth + 0.5) * 2}rem`,
           '--_hover-color': getPrimaryColor(theme),
         }}
         onDragEnter={handleDragEnter}
         className={classes.root}
         {...dataVariable('dragging', isDragging)}
-        {...dataVariable(
-          'hovered',
-          !isDragging && hoveredColumn?.id === column.id,
-        )}
+        {...dataVariable('order-hovered', hoveredColumn?.id === column.id)}
       >
         <Box className={classes.menu}>
           {columnDefType !== 'group' &&
