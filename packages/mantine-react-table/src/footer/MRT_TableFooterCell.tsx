@@ -48,7 +48,7 @@ export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
         className,
       )}
     >
-      {footerProps}
+      <>{footerProps}</>
     </TableTh>
   );
 };
