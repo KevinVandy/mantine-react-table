@@ -98,7 +98,7 @@ export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
             !positionToolbarAlertBanner &&
             classes['alert-stacked'],
           !stackAlertBanner &&
-            positionToolbarAlertBanner &&
+            positionToolbarAlertBanner ==='bottom' &&
             classes['alert-bottom'],
           alertProps?.className,
         )}
