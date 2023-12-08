@@ -87,7 +87,8 @@ export const MRT_TableHeadCellFilterLabel = <
             columnFilterDisplayMode === 'popover' ||
             (!!column.getFilterValue() && !isRangeFilter) ||
             (isRangeFilter && // @ts-ignore
-              (!!column.getFilterValue()?.[0] || !!column.getFilterValue()?.[1]))
+              (!!column.getFilterValue()?.[0] ||
+                !!column.getFilterValue()?.[1]))
           }
         >
           {() => (

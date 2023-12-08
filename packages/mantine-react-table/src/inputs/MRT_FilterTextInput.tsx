@@ -94,10 +94,10 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
     ? textInputProps?.placeholder ??
       localization.filterByColumn?.replace('{column}', String(columnDef.header))
     : rangeFilterIndex === 0
-    ? localization.min
-    : rangeFilterIndex === 1
-    ? localization.max
-    : '';
+      ? localization.min
+      : rangeFilterIndex === 1
+        ? localization.max
+        : '';
 
   const facetedUniqueValues = column.getFacetedUniqueValues();
 
@@ -133,10 +133,10 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
     isMultiSelectFilter
       ? (column.getFilterValue() as string[]) || []
       : isRangeFilter
-      ? (column.getFilterValue() as [string, string])?.[
-          rangeFilterIndex as number
-        ] || ''
-      : (column.getFilterValue() as string) ?? '',
+        ? (column.getFilterValue() as [string, string])?.[
+            rangeFilterIndex as number
+          ] || ''
+        : (column.getFilterValue() as string) ?? '',
   );
 
   const [debouncedFilterValue] = useDebouncedValue(
@@ -224,17 +224,17 @@ export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
       isDateFilter
         ? classes['date-filter']
         : isRangeFilter
-        ? classes['range-filter']
-        : !filterChipLabel && classes['not-filter-chip'],
+          ? classes['range-filter']
+          : !filterChipLabel && classes['not-filter-chip'],
     ),
     style: {
       ...(isMultiSelectFilter
         ? multiSelectProps?.style
         : isSelectFilter
-        ? selectProps?.style
-        : isDateFilter
-        ? dateInputProps?.style
-        : textInputProps?.style),
+          ? selectProps?.style
+          : isDateFilter
+            ? dateInputProps?.style
+            : textInputProps?.style),
     },
   } as const;
 

@@ -61,8 +61,8 @@ export const MRT_RowPinButton = <TData extends Record<string, any>>({
                 rowPinningDisplayMode === 'sticky'
                   ? 135
                   : pinningPosition === 'top'
-                  ? 180
-                  : 0
+                    ? 180
+                    : 0
               }deg)`,
             }}
           />

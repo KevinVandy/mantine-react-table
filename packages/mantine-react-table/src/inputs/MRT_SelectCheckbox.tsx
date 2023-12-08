@@ -54,8 +54,8 @@ export const MRT_SelectCheckbox = <TData extends Record<string, any> = {}>({
     onChange: row
       ? row.getToggleSelectedHandler()
       : selectAllMode === 'all'
-      ? table.getToggleAllRowsSelectedHandler()
-      : table.getToggleAllPageRowsSelectedHandler(),
+        ? table.getToggleAllRowsSelectedHandler()
+        : table.getToggleAllPageRowsSelectedHandler(),
     size: density === 'xs' ? 'sm' : 'md',
     ...checkboxProps,
     onClick: (e: MouseEvent<HTMLInputElement>) => {

@@ -25,8 +25,9 @@ export const MRT_ShowHideColumnsButton = <
       <Tooltip withinPortal label={title ?? showHideColumns}>
         <Menu.Target>
           <ActionIcon
+            color="gray"
             size="lg"
-            variant="default"
+            variant="subtle"
             aria-label={title ?? showHideColumns}
             {...rest}
           >

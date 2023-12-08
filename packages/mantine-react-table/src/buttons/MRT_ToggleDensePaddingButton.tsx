@@ -12,9 +12,9 @@ interface Props<TData extends Record<string, any> = {}>
 }
 
 const next: Record<MRT_DensityState, MRT_DensityState> = {
-  xs: 'md',
-  md: 'xl',
-  xl: 'xs',
+  xs: 'xl',
+  md: 'xs',
+  xl: 'md',
 };
 
 export const MRT_ToggleDensePaddingButton = <
@@ -40,8 +40,9 @@ export const MRT_ToggleDensePaddingButton = <
   return (
     <Tooltip withinPortal label={title ?? toggleDensity}>
       <ActionIcon
+        color="gray"
         size="lg"
-        variant="default"
+        variant="subtle"
         aria-label={title ?? toggleDensity}
         onClick={() => setDensity((current) => next[current])}
         {...rest}

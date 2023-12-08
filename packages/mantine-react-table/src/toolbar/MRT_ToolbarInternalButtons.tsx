@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ActionIcon, Flex } from '@mantine/core';
+import { Flex } from '@mantine/core';
 
 import { MRT_ShowHideColumnsButton } from '../buttons/MRT_ShowHideColumnsButton';
 import { MRT_ToggleDensePaddingButton } from '../buttons/MRT_ToggleDensePaddingButton';
@@ -38,7 +38,7 @@ export const MRT_ToolbarInternalButtons = <
   return (
     <Flex className={clsx('mrt-toolbar-internal-buttons', classes.root)}>
       {renderToolbarInternalActions?.({ table }) ?? (
-        <ActionIcon.Group>
+        <>
           {enableFilters &&
             enableGlobalFilter &&
             !initialState?.showGlobalFilter && (
@@ -58,7 +58,7 @@ export const MRT_ToolbarInternalButtons = <
           {enableFullScreenToggle && (
             <MRT_ToggleFullScreenButton table={table} />
           )}
-        </ActionIcon.Group>
+        </>
       )}
     </Flex>
   );

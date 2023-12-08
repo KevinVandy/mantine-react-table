@@ -65,7 +65,7 @@ export const CenterGridCells = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    layoutMode='grid'
+    layoutMode="grid"
     mantineTableHeadCellProps={{
       align: 'center',
     }}
@@ -135,7 +135,7 @@ export const RightGridCells = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    layoutMode='grid'
+    layoutMode="grid"
     mantineTableHeadCellProps={{
       align: 'right',
     }}

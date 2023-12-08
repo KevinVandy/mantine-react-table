@@ -37,6 +37,8 @@ export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
           e.stopPropagation();
           actionIconProps?.onClick?.(e);
         }}
+        color="gray"
+        variant="transparent"
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         className={clsx(

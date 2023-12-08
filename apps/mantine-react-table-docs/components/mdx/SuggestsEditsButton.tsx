@@ -15,10 +15,10 @@ export const SuggestsEditsButton = () => {
           ['/'].includes(pathname)
             ? 'index.tsx'
             : ['/docs', '/docs/api', '/docs/examples', '/docs/guides'].includes(
-                pathname,
-              )
-            ? '/index.mdx'
-            : '.mdx'
+                  pathname,
+                )
+              ? '/index.mdx'
+              : '.mdx'
         }`}
         rel="noopener"
         target="_blank"

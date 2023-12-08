@@ -12,7 +12,6 @@ import {
   Tooltip,
   Text,
   useMantineTheme,
-  rem,
 } from '@mantine/core';
 import { MRT_ColumnPinningButtons } from '../buttons/MRT_ColumnPinningButtons';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';

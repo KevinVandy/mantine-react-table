@@ -65,8 +65,8 @@ export const MRT_ExpandAllButton = <TData extends Record<string, any> = {}>({
               isAllRowsExpanded
                 ? classes.up
                 : getIsSomeRowsExpanded()
-                ? classes.right
-                : undefined,
+                  ? classes.right
+                  : undefined,
             )}
           />
         )}

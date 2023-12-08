@@ -135,11 +135,11 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           '--mrt-pinned-row-top': virtualRow
             ? '0'
             : topPinnedIndex !== undefined && isPinned
-            ? `${
-                topPinnedIndex * rowHeight +
-                (enableStickyHeader || isFullScreen ? tableHeadHeight - 1 : 0)
-              }`
-            : undefined,
+              ? `${
+                  topPinnedIndex * rowHeight +
+                  (enableStickyHeader || isFullScreen ? tableHeadHeight - 1 : 0)
+                }`
+              : undefined,
           '--mrt-pinned-row-bottom':
             !virtualRow && bottomPinnedIndex !== undefined && isPinned
               ? `${

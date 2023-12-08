@@ -179,8 +179,8 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
           ? tableCellProps.align === 'left'
             ? 'flex-start'
             : tableCellProps.align === 'right'
-            ? 'flex-end'
-            : tableCellProps.align
+              ? 'flex-end'
+              : tableCellProps.align
           : undefined,
         '--mrt-table-cell-left':
           column.getIsPinned() === 'left'

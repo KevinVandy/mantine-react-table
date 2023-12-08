@@ -34,8 +34,8 @@ export const MRT_TableHeadCellSortLabel = <
       ? localization.sortedByColumnDesc.replace('{column}', columnDef.header)
       : localization.sortedByColumnAsc.replace('{column}', columnDef.header)
     : column.getNextSortingOrder() === 'desc'
-    ? localization.sortByColumnDesc.replace('{column}', columnDef.header)
-    : localization.sortByColumnAsc.replace('{column}', columnDef.header);
+      ? localization.sortByColumnDesc.replace('{column}', columnDef.header)
+      : localization.sortByColumnAsc.replace('{column}', columnDef.header);
 
   return (
     <Tooltip withinPortal openDelay={1000} label={sortTooltip}>

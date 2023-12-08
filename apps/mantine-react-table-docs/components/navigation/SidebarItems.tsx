@@ -62,12 +62,12 @@ export const SideBarItems = ({ depth = 1, routes, setNavOpen }: Props) => {
                     color: !items
                       ? getPrimaryColor(theme, colorScheme === 'dark' ? 3 : 8)
                       : depth === 1
-                      ? colorScheme === 'dark'
-                        ? theme.white
-                        : theme.black
-                      : colorScheme === 'dark'
-                      ? theme.colors.gray[3]
-                      : theme.colors.gray[7],
+                        ? colorScheme === 'dark'
+                          ? theme.white
+                          : theme.black
+                        : colorScheme === 'dark'
+                          ? theme.colors.gray[3]
+                          : theme.colors.gray[7],
                     display: 'block',
                     fontSize: !items ? '0.9rem' : depth === 1 ? '20px' : '16px',
                     height: items ? '32px' : '2rem',

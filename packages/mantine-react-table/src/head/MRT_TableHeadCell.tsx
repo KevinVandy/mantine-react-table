@@ -131,8 +131,8 @@ export const MRT_TableHeadCell = <TData extends Record<string, any> = {}>({
           column.getIsResizing() || draggingColumn?.id === column.id
             ? '3'
             : column.getIsPinned() && columnDefType !== 'group'
-            ? '2'
-            : '1',
+              ? '2'
+              : '1',
         '--mrt-table-cell-left':
           column.getIsPinned() === 'left'
             ? `${column.getStart('left')}`

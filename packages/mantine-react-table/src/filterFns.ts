@@ -93,9 +93,9 @@ const greaterThan = <TData extends Record<string, any> = {}>(
   filterValue === null
     ? true
     : !isNaN(+filterValue) && !isNaN(+row.getValue<string | number>(id))
-    ? +row.getValue<string | number>(id) > +filterValue
-    : row.getValue<string | number>(id).toString().toLowerCase().trim() >
-      filterValue.toString().toLowerCase().trim();
+      ? +row.getValue<string | number>(id) > +filterValue
+      : row.getValue<string | number>(id).toString().toLowerCase().trim() >
+        filterValue.toString().toLowerCase().trim();
 
 greaterThan.autoRemove = (val: any) => !val;
 
@@ -115,9 +115,9 @@ const lessThan = <TData extends Record<string, any> = {}>(
   filterValue === null
     ? true
     : !isNaN(+filterValue) && !isNaN(+row.getValue<string | number>(id))
-    ? +row.getValue<string | number>(id) < +filterValue
-    : row.getValue<string | number>(id).toString().toLowerCase().trim() <
-      filterValue.toString().toLowerCase().trim();
+      ? +row.getValue<string | number>(id) < +filterValue
+      : row.getValue<string | number>(id).toString().toLowerCase().trim() <
+        filterValue.toString().toLowerCase().trim();
 
 lessThan.autoRemove = (val: any) => !val;
 

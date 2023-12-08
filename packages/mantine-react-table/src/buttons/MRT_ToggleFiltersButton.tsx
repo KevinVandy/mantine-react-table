@@ -26,8 +26,9 @@ export const MRT_ToggleFiltersButton = <
   return (
     <Tooltip withinPortal label={title ?? showHideFilters}>
       <ActionIcon
+        color="gray"
         size="lg"
-        variant="default"
+        variant="subtle"
         aria-label={title ?? showHideFilters}
         onClick={() => setShowColumnFilters((current) => !current)}
         {...rest}

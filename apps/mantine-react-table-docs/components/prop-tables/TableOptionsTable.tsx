@@ -89,10 +89,10 @@ const TableOptionsTable = ({ onlyOptions }: Props) => {
                   row.original.source === 'MRT'
                     ? 'dimmed'
                     : row.original.source === 'Mantine'
-                    ? 'teal'
-                    : row.original.source === 'TanStack Table'
-                    ? 'blue'
-                    : undefined
+                      ? 'teal'
+                      : row.original.source === 'TanStack Table'
+                        ? 'blue'
+                        : undefined
                 }
                 target={
                   (cell.getValue() as string).startsWith('http')

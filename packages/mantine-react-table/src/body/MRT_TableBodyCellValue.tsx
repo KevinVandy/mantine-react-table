@@ -39,15 +39,15 @@ export const MRT_TableBodyCellValue = <TData extends Record<string, any> = {}>({
           table,
         })
       : row.getIsGrouped() && !cell.getIsGrouped()
-      ? null
-      : cell.getIsGrouped() && columnDef.GroupedCell
-      ? columnDef.GroupedCell({
-          cell,
-          column,
-          row,
-          table,
-        })
-      : undefined;
+        ? null
+        : cell.getIsGrouped() && columnDef.GroupedCell
+          ? columnDef.GroupedCell({
+              cell,
+              column,
+              row,
+              table,
+            })
+          : undefined;
 
   const isGroupedValue = renderedCellValue !== undefined;
 

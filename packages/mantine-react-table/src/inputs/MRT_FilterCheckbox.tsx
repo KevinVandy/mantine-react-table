@@ -57,8 +57,8 @@ export const MRT_FilterCheckbox = <TData extends Record<string, any> = {}>({
             column.getFilterValue() === undefined
               ? 'true'
               : column.getFilterValue() === 'true'
-              ? 'false'
-              : undefined,
+                ? 'false'
+                : undefined,
           );
           checkboxProps?.onChange?.(e);
         }}

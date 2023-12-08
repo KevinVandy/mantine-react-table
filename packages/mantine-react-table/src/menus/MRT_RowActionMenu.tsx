@@ -30,8 +30,8 @@ export const MRT_RowActionMenu = <TData extends Record<string, any> = {}>({
         positionActionsColumn === 'first'
           ? 'bottom-start'
           : positionActionsColumn === 'last'
-          ? 'bottom-end'
-          : undefined
+            ? 'bottom-end'
+            : undefined
       }
       closeOnItemClick
       withinPortal

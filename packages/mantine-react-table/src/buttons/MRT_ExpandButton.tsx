@@ -70,8 +70,8 @@ export const MRT_ExpandButton = <TData extends Record<string, any> = {}>({
               !canExpand && !renderDetailPanel
                 ? classes.right
                 : isExpanded
-                ? classes.up
-                : undefined,
+                  ? classes.up
+                  : undefined,
             )}
           />
         )}
