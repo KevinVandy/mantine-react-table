@@ -83,7 +83,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
           'mantine-Table-td-detail-panel',
           classes.inner,
           layoutMode?.startsWith('grid') && classes['inner-grid'],
-          row.getIsExpanded() && classes['inner-expanded'],
+          row.getIsExpanded() ? classes['inner-expanded'] : classes['inner-collapsed'],
           virtualRow && classes['inner-virtual'],
         )}
       >
