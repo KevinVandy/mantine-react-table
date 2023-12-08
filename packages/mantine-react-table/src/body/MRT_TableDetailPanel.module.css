@@ -18,9 +18,6 @@
   display: table-cell;
   transition: all 100ms ease-in-out;
   width: var(--mrt-inner-width);
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  border-bottom: none;
 }
 
 .inner-grid {
@@ -28,9 +25,7 @@
 }
 
 .inner-expanded {
-  padding-top: 16px !important;
-  padding-bottom: 16px !important;
-  border-bottom: unset;
+  border-bottom: rem(1px) solid var(--_table-border-color);
 }
 
 .inner-virtual {
