@@ -25,12 +25,7 @@
 }
 
 .inner-expanded {
-  padding: 16px !important;
-  border-bottom: rem(1px) solid var(--_table-border-color) !important;
-}
-
-.inner-collapsed {
-  padding: 0 !important;
+  border-bottom: rem(1px) solid var(--_table-border-color);
 }
 
 .inner-virtual {
