@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { TableThead } from '@mantine/core';
+import { TableThead, TableTr, TableTh } from '@mantine/core';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import { MRT_ToolbarAlertBanner } from '../toolbar';
 import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
@@ -52,20 +52,23 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
       }}
       className={clsx(
         classes.root,
-        layoutMode?.startsWith('grid') && classes['root-grid'],
+        layoutMode?.startsWith('grid')
+          ? classes['root-grid']
+          : classes['root-table-row-group'],
         stickyHeader && classes['root-sticky'],
         tableHeadProps?.className,
       )}
+      pos={stickyHeader && layoutMode === 'grid' ? 'sticky' : 'relative'}
     >
       {positionToolbarAlertBanner === 'head-overlay' &&
       (showAlertBanner || getSelectedRowModel().rows.length > 0) ? (
-        <tr
+        <TableTr
           className={clsx(
             classes['banner-tr'],
             layoutMode?.startsWith('grid') && classes.grid,
           )}
         >
-          <th
+          <TableTh
             colSpan={table.getVisibleLeafColumns().length}
             className={clsx(
               classes['banner-th'],
@@ -73,8 +76,8 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
             )}
           >
             <MRT_ToolbarAlertBanner table={table} />
-          </th>
-        </tr>
+          </TableTh>
+        </TableTr>
       ) : (
         getHeaderGroups().map((headerGroup) => (
           <MRT_TableHeadRow
