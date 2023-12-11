@@ -90,7 +90,7 @@ export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
     >
       <LoadingOverlay
         visible={isLoading || showLoadingOverlay}
-        zIndex={1}
+        zIndex={2}
         {...loadingOverlayProps}
       />
       <MRT_Table table={table} />
