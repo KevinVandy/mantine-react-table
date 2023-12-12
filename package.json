@@ -16,7 +16,7 @@
     "docs:start": "turbo run docs:start",
     "lib:build": "cp README.md packages/mantine-react-table/README.md && turbo run lib:build",
     "lib:build-locales": "turbo run lib:build-locales",
-    "lib:build-no-locales": "turbo run lib:build-no-locales",
+    "lib:build-lib": "turbo run lib:build-lib",
     "lib:dev": "turbo run lib:dev",
     "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
     "lint": "turbo run lint",
@@ -26,7 +26,7 @@
     "storybook:dev": "turbo run storybook"
   },
   "devDependencies": {
-    "prettier": "^3.1.0",
+    "prettier": "^3.1.1",
     "turbo": "^1.11.1"
   },
   "engines": {
