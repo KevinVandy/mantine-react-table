@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Tabs } from '@mantine/core';
 import { SampleCodeSnippet } from './SampleCodeSnippet';
 
-const packagesString =
-  'mantine-react-table @mantine/core @mantine/hooks @mantine/dates @tabler/icons-react dayjs';
+const defaultPackageString =
+  'mantine-react-table @mantine/core @mantine/hooks @mantine/dates @tabler/icons-react dayjs clsx';
 
-export function InstallCommand() {
+export function InstallCommand({ packagesString = defaultPackageString }) {
   const tabValues = [
     {
       value: 'npm',
@@ -31,7 +31,7 @@ export function InstallCommand() {
 
   return (
     <>
-      <Tabs defaultValue="npm">
+      <Tabs defaultValue="npm" p="0" mt="-2rem">
         <Tabs.List>
           {tabValues.map((tabValue) => (
             <Tabs.Tab key={tabValue.value} value={tabValue.value}>

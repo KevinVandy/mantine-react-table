@@ -1,3 +1,5 @@
+import classes from './CSS.module.css';
+import clsx from 'clsx';
 import { useMemo } from 'react';
 import {
   type MRT_ColumnDef,
@@ -48,17 +50,7 @@ export const Example = () => {
       withColumnBorders: true,
       withTableBorder: colorScheme === 'light',
       withRowBorders: colorScheme === 'light',
-      style: {
-        'thead > tr': {
-          backgroundColor: 'inherit',
-        },
-        'thead > tr > th': {
-          backgroundColor: 'inherit',
-        },
-        'tbody > tr > td': {
-          backgroundColor: 'inherit',
-        },
-      },
+      className: clsx(classes.table),
     },
   });
 

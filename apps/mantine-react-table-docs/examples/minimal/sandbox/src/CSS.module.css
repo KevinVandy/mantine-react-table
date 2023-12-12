@@ -1,0 +1,19 @@
+.table {
+  thead {
+    tr {
+      background-color: inherit;
+
+      th {
+        background-color: inherit;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        background-color: inherit;
+      }
+    }
+  }
+}

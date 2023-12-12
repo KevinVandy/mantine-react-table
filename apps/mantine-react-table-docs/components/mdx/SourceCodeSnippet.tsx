@@ -10,6 +10,7 @@ import {
   IconBrandCodesandbox,
   IconExternalLink,
   IconCode,
+  IconBrandCss3,
 } from '@tabler/icons-react';
 import { LinkHeading } from './LinkHeading';
 import { usePlausible } from 'next-plausible';
@@ -37,6 +38,7 @@ const mantineColors = [
 export interface Props {
   Component?;
   apiCode?: string;
+  cssCode?: string;
   javaScriptCode?: string;
   legacyCode?: string;
   tableId: string;
@@ -47,6 +49,7 @@ export interface Props {
 export const SourceCodeSnippet = ({
   Component,
   apiCode,
+  cssCode,
   javaScriptCode,
   legacyCode,
   tableId,
@@ -200,6 +203,14 @@ export const SourceCodeSnippet = ({
                 code: javaScriptCode,
                 language: 'jsx',
                 icon: <IconBrandJavascript />,
+              }
+            : undefined,
+          cssCode
+            ? {
+                fileName: 'CSS',
+                code: cssCode,
+                language: 'css',
+                icon: <IconBrandCss3 />,
               }
             : undefined,
           legacyCode

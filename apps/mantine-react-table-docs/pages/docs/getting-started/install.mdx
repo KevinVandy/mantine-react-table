@@ -5,19 +5,25 @@ import { Alert } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
 
 <Head>
-  <title>Installation - Mantine React Table Docs V2</title>
+  <title>{'Installation - Mantine React Table Docs V2'}</title>
   <meta name="description" content="How to install Mantine React Table" />
 </Head>
 
 > This is the install guide for `mantine-react-table` **V2** and `@mantine/` packages **V7**. MRT V2 will not work with Mantine V6.
 
-<Alert variant="light" color="orange" title="Alert title" icon={<IconInfoCircle />}>
-  Mantine React Table V2 is still a work in progress, but we are making good progress every day.
+<Alert
+  variant="light"
+  color="orange"
+  title="Alert title"
+  icon={<IconInfoCircle />}
+>
+  Mantine React Table V2 is still a work in progress, but we are making good
+  progress every day.
 </Alert>
 
 ## Installation
 
-> `mantine-react-table` V1 requires **Mantine V6.0+** packages as dependencies in your project.
+> `mantine-react-table` V1\2 requires **Mantine V7.3+** packages as dependencies in your project.
 >
 > If you are already using Mantine, you probably already have most of these peer dependencies installed.
 >
@@ -27,20 +33,76 @@ import { IconInfoCircle } from '@tabler/icons-react';
 > 2.  `@mantine/hooks` (^v7.3+)
 > 3.  `@mantine/dates` (^v7.3+)
 > 4.  `@tabler/icons-react` (2.23.0+)
-> 6.  `dayjs` (v1.11+)
+> 5.  `dayjs` (v1.11+)
+> 6.  `clsx` (v2.0+)
 > 7.  `react` and `react-dom` (v18)
 
 ### Quick Install
+
+The Quick Install instructions here assume you already have Mantine V7 installed and correctly configured with postcss in your project.
 
 <InstallCommand packagesString="mantine-react-table" />
 
 ### Install With Required Peer Dependencies (Recommended)
 
+It is best to refer to the [Mantine V7 installation guide](https://mantine.dev/getting-started/) for the most up-to-date instructions on how to install Mantine V7 for your specific React meta framework. (Next.js, Remix, Vite, etc.)
+
+#### Install Mantine React Table with Mantine required peer dependencies:
+
 <InstallCommand />
+<br />
 
 > You do NOT need to install `@tanstack/react-table`, as it is already an internal dependency of `mantine-react-table`, and must use an exact version already specified internally.
 >
 > All internal dependencies: `@tanstack/react-table`, `@tanstack/react-virtual`, and `@tanstack/match-sorter-utils`
+
+#### Install PostCSS dev dependencies (Optional)
+
+If you are using Mantine V7, it is common to use CSS modules for advanced custom styling. You may want to install and configure PostCSS like down below, but it is not required if you are using a different styling solution.
+
+<InstallCommand packagesString="-D postcss postcss-preset-mantine postcss-simple-vars" />
+<br />
+
+Create a `postcss.config.cjs` file in the root of your project with the following contents:
+
+```js
+module.exports = {
+  plugins: {
+    'postcss-preset-mantine': {},
+    'postcss-simple-vars': {
+      variables: {
+        'mantine-breakpoint-xs': '36em',
+        'mantine-breakpoint-sm': '48em',
+        'mantine-breakpoint-md': '62em',
+        'mantine-breakpoint-lg': '75em',
+        'mantine-breakpoint-xl': '88em',
+      },
+    },
+  },
+};
+```
+
+<br />
+
+### Setup Mantine Theme
+
+The [Mantine V7 installation guide](https://mantine.dev/getting-started/) has much better instructions for how to set up your Mantine theme, but you should have something like this in your project:
+
+```tsx
+import { MantineProvider, createTheme } from '@mantine/core';
+
+const theme = createTheme({
+  /** Put your mantine theme override here */
+});
+
+function Demo() {
+  return (
+    <MantineProvider theme={theme}>
+      <App />
+    </MantineProvider>
+  );
+}
+```
 
 ### Import CSS Styles
 
@@ -56,6 +118,8 @@ import 'mantine-react-table/styles.css'; //import MRT styles
 
 If you don't see any styles applied to the mantine table components, you may have mismatching versions of `mantine-react-table` and `@mantine/core`. MRT v1 requires Mantine v6 and will not work with Mantine v7. MRT v2 will be released by the end of 2023 and will work with Mantine v7.
 
+Also, if the Action Icon Buttons all have a filled color, that is a good sign that you simply forgot to import the MRT CSS file in the step above.
+
 If you get an error like this:
 
 ```bash
@@ -67,7 +131,7 @@ or you might have mixed up default and named imports.
 
 You probably do not have the correct version of Mantine or Tabler Icons installed.
 
-Make sure all mantine packages are at least v6.
+Make sure all mantine packages are at least v7.3.
 
 Make sure that the `@tabler/icons-react` package is at least v2.23.0.
 
