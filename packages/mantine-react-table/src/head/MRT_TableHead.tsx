@@ -58,7 +58,7 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
         stickyHeader && classes['root-sticky'],
         tableHeadProps?.className,
       )}
-      pos={stickyHeader && layoutMode === 'grid' ? 'sticky' : 'relative'}
+      pos={stickyHeader && layoutMode?.startsWith('grid') ? 'sticky' : 'relative'}
     >
       {positionToolbarAlertBanner === 'head-overlay' &&
       (showAlertBanner || getSelectedRowModel().rows.length > 0) ? (
