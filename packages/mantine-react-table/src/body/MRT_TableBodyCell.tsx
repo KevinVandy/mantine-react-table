@@ -168,6 +168,9 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
   return (
     <TableTd
       data-index={virtualCell?.index}
+      data-pinned={
+        column.getIsPinned() && column.columnDef.columnDefType !== 'group'
+      }
       ref={(node: HTMLTableCellElement) => {
         if (node) {
           measureElement?.(node);
@@ -208,13 +211,6 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
           columnDefType !== 'display' &&
           classes['root-editable-hover'],
         enableColumnVirtualization && classes['root-virtualized'],
-        column.getIsPinned() &&
-          column.columnDef.columnDefType !== 'group' &&
-          classes['root-pinned'],
-        column.getIsPinned() &&
-          column.columnDef.columnDefType !== 'group' &&
-          !row.getIsSelected() &&
-          classes['root-pinned-color'],
         column.getIsPinned() &&
           column.columnDef.columnDefType !== 'group' &&
           classes['root-pinned'],
