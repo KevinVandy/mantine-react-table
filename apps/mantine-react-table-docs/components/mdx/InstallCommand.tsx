@@ -3,7 +3,7 @@ import { Tabs } from '@mantine/core';
 import { SampleCodeSnippet } from './SampleCodeSnippet';
 
 const defaultPackageString =
-  'mantine-react-table @mantine/core @mantine/hooks @mantine/dates @tabler/icons-react dayjs clsx';
+  'mantine-react-table@alpha @mantine/core @mantine/hooks @mantine/dates @tabler/icons-react dayjs clsx';
 
 export function InstallCommand({ packagesString = defaultPackageString }) {
   const tabValues = [
