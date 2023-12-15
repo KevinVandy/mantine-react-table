@@ -1,15 +1,17 @@
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
-import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type HTMLPropsRef,
+  type MRT_TableInstance,
+} from '../types';
 
-interface Props<TData extends Record<string, any> = {}>
+interface Props<TData extends MRT_RowData>
   extends ActionIconProps,
     HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ToggleGlobalFilterButton = <
-  TData extends Record<string, any> = {},
->({
+export const MRT_ToggleGlobalFilterButton = <TData extends MRT_RowData>({
   table: {
     getState,
     options: {

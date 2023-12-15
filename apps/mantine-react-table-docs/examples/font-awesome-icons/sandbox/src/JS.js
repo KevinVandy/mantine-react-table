@@ -135,7 +135,7 @@ const Example = () => {
       enableColumnResizing
       enableEditing
       enableGrouping
-      enablePinning
+      enableColumnPinning
       icons={fontAwesomeIcons}
       initialState={{ pagination: { pageSize: 5, pageIndex: 0 } }}
     />

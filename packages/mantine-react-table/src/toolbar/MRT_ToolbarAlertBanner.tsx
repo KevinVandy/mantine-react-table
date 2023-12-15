@@ -2,18 +2,18 @@ import clsx from 'clsx';
 import { Fragment } from 'react';
 import { ActionIcon, Alert, Badge, Collapse, Flex, Stack } from '@mantine/core';
 
-import { type MRT_TableInstance } from '../types';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 import { MRT_SelectCheckbox } from '../inputs';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_ToolbarAlertBanner.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   stackAlertBanner?: boolean;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ToolbarAlertBanner = <TData extends Record<string, any> = {}>({
+export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
   stackAlertBanner,
   table,
 }: Props<TData>) => {

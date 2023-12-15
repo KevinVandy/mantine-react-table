@@ -75,7 +75,7 @@ const Example = () => {
         data={data}
         enableRowSelection
         enableColumnOrdering
-        enablePinning
+        enableColumnPinning
       />
     </MantineProvider>
   );

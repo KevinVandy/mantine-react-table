@@ -9,16 +9,20 @@ import { useCallback, useMemo } from 'react';
 import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
 import { parseCSSVarId, parseFromValuesOrFunc } from '../column.utils';
-import { type MRT_TableInstance, type MRT_Virtualizer } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_TableInstance,
+  type MRT_Virtualizer,
+} from '../types';
 
 import classes from './MRT_Table.module.css';
 import clsx from 'clsx';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_Table = <TData extends Record<string, any> = {}>({
+export const MRT_Table = <TData extends MRT_RowData>({
   table,
 }: Props<TData>) => {
   const {
@@ -30,7 +34,7 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
       columns,
       enableColumnResizing,
       enableColumnVirtualization,
-      enablePinning,
+      enableColumnPinning,
       enableTableFooter,
       enableTableHead,
       layoutMode,
@@ -76,7 +80,7 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
 
   const [leftPinnedIndexes, rightPinnedIndexes] = useMemo(
     () =>
-      enableColumnVirtualization && enablePinning
+      enableColumnVirtualization && enableColumnPinning
         ? [
             table.getLeftLeafColumns().map((c) => c.getPinnedIndex()),
             table
@@ -87,7 +91,7 @@ export const MRT_Table = <TData extends Record<string, any> = {}>({
               ),
           ]
         : [[], []],
-    [columnPinning, enableColumnVirtualization, enablePinning],
+    [columnPinning, enableColumnVirtualization, enableColumnPinning],
   );
 
   const columnVirtualizer:

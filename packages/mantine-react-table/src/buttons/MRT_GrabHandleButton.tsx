@@ -1,18 +1,22 @@
 import clsx from 'clsx';
 import { type DragEventHandler } from 'react';
 import { type ActionIconProps, Tooltip, ActionIcon } from '@mantine/core';
-import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type HTMLPropsRef,
+  type MRT_TableInstance,
+} from '../types';
 
 import classes from './MRT_GrabHandleButton.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   actionIconProps?: ActionIconProps & HTMLPropsRef<HTMLButtonElement>;
   onDragStart: DragEventHandler<HTMLButtonElement>;
   onDragEnd: DragEventHandler<HTMLButtonElement>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_GrabHandleButton = <TData extends Record<string, any> = {}>({
+export const MRT_GrabHandleButton = <TData extends MRT_RowData>({
   actionIconProps,
   onDragEnd,
   onDragStart,

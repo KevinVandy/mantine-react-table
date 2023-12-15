@@ -1,8 +1,8 @@
 import { compareItems, type RankingInfo } from '@tanstack/match-sorter-utils';
 import { type Row, sortingFns } from '@tanstack/react-table';
-import { type MRT_Row } from './types';
+import { type MRT_RowData, type MRT_Row } from './types';
 
-const fuzzy = <TData extends Record<string, any> = {}>(
+const fuzzy = <TData extends MRT_RowData>(
   rowA: Row<TData>,
   rowB: Row<TData>,
   columnId: string,
@@ -25,7 +25,7 @@ export const MRT_SortingFns = {
   fuzzy,
 };
 
-export const rankGlobalFuzzy = <TData extends Record<string, any> = {}>(
+export const rankGlobalFuzzy = <TData extends MRT_RowData>(
   rowA: MRT_Row<TData>,
   rowB: MRT_Row<TData>,
 ) =>

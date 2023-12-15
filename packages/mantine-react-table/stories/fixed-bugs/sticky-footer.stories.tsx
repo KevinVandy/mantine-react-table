@@ -134,7 +134,7 @@ export const PinnedColumnsWithStickyFooter = () => {
     <MantineReactTable
       columns={mockColumns}
       data={mockData}
-      enablePinning
+      enableColumnPinning
       enableStickyHeader
       enableStickyFooter
       mantineTableContainerProps={{

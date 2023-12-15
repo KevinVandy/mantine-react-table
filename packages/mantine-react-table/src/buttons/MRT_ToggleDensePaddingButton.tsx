@@ -3,9 +3,10 @@ import {
   type MRT_DensityState,
   type HTMLPropsRef,
   type MRT_TableInstance,
+  type MRT_RowData,
 } from '../types';
 
-interface Props<TData extends Record<string, any> = {}>
+interface Props<TData extends MRT_RowData>
   extends ActionIconProps,
     HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
@@ -17,9 +18,7 @@ const next: Record<MRT_DensityState, MRT_DensityState> = {
   xl: 'md',
 };
 
-export const MRT_ToggleDensePaddingButton = <
-  TData extends Record<string, any> = {},
->({
+export const MRT_ToggleDensePaddingButton = <TData extends MRT_RowData>({
   table: {
     getState,
     options: {

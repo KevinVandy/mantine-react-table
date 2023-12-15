@@ -1,6 +1,7 @@
 import { Fragment, useMemo } from 'react';
 import { Menu } from '@mantine/core';
 import {
+  type MRT_RowData,
   type MRT_FilterOption,
   type MRT_Header,
   type MRT_InternalFilterOption,
@@ -104,13 +105,13 @@ const emptyModes = ['empty', 'notEmpty'];
 const arrModes = ['arrIncludesSome', 'arrIncludesAll', 'arrIncludes'];
 const rangeVariants = ['range-slider', 'date-range', 'range'];
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   header?: MRT_Header<TData>;
   onSelect?: () => void;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_FilterOptionMenu = <TData extends Record<string, any> = {}>({
+export const MRT_FilterOptionMenu = <TData extends MRT_RowData>({
   header,
   onSelect,
   table,

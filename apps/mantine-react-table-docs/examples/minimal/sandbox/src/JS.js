@@ -1,10 +1,7 @@
 import classes from './CSS.module.css';
 import clsx from 'clsx';
 import { useMemo } from 'react';
-import {
-  MRT_Table,
-  useMantineReactTable,
-} from 'mantine-react-table';
+import { MRT_Table, useMantineReactTable } from 'mantine-react-table';
 import { useMantineColorScheme } from '@mantine/core';
 import { data } from './makeData';
 

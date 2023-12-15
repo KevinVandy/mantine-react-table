@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { Box, LoadingOverlay } from '@mantine/core';
 import { MRT_Table } from './MRT_Table';
 import { MRT_EditRowModal } from '../modals';
-import { type MRT_TableInstance } from '../types';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 import clsx from 'clsx';
 import classes from './MRT_TableContainer.module.css';
@@ -10,11 +10,11 @@ import classes from './MRT_TableContainer.module.css';
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableContainer = <TData extends Record<string, any> = {}>({
+export const MRT_TableContainer = <TData extends MRT_RowData>({
   table,
 }: Props<TData>) => {
   const {

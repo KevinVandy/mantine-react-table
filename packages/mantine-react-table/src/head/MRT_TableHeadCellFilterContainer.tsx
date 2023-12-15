@@ -3,20 +3,22 @@ import { MRT_FilterRangeFields } from '../inputs/MRT_FilterRangeFields';
 import { MRT_FilterTextInput } from '../inputs/MRT_FilterTextInput';
 import { MRT_FilterCheckbox } from '../inputs/MRT_FilterCheckbox';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
-import { type MRT_Header, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Header,
+  type MRT_TableInstance,
+} from '../types';
 import { MRT_FilterRangeSlider } from '../inputs/MRT_FilterRangeSlider';
 import { localizedFilterOption } from '../filterFns';
 
 import classes from './MRT_TableHeadCellFilterContainer.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableHeadCellFilterContainer = <
-  TData extends Record<string, any> = {},
->({
+export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
   header,
   table,
 }: Props<TData>) => {

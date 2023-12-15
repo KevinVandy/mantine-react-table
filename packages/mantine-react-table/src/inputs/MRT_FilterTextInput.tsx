@@ -11,19 +11,23 @@ import {
 } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
-import { type MRT_Header, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Header,
+  type MRT_TableInstance,
+} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 import { localizedFilterOption } from '../filterFns';
 
 import classes from './MRT_FilterTextInput.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
   rangeFilterIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_FilterTextInput = <TData extends Record<string, any> = {}>({
+export const MRT_FilterTextInput = <TData extends MRT_RowData>({
   header,
   rangeFilterIndex,
   table,

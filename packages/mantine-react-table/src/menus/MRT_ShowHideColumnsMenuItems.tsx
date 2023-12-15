@@ -16,12 +16,16 @@ import {
 import { MRT_ColumnPinningButtons } from '../buttons/MRT_ColumnPinningButtons';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
 import { getPrimaryColor, reorderColumn } from '../column.utils';
-import { type MRT_Column, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Column,
+  type MRT_TableInstance,
+} from '../types';
 import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_ShowHideColumnsMenuItems.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   allColumns: MRT_Column<TData>[];
   column: MRT_Column<TData>;
   hoveredColumn: MRT_Column<TData> | null;
@@ -29,9 +33,7 @@ interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ShowHideColumnsMenuItems = <
-  TData extends Record<string, any> = {},
->({
+export const MRT_ShowHideColumnsMenuItems = <TData extends MRT_RowData>({
   allColumns,
   hoveredColumn,
   setHoveredColumn,
@@ -44,7 +46,7 @@ export const MRT_ShowHideColumnsMenuItems = <
     options: {
       enableColumnOrdering,
       enableHiding,
-      enablePinning,
+      enableColumnPinning,
       localization,
     },
     setColumnOrder,
@@ -120,7 +122,7 @@ export const MRT_ShowHideColumnsMenuItems = <
             ) : (
               <Box className={classes.grab} />
             ))}
-          {enablePinning &&
+          {enableColumnPinning &&
             (column.getCanPin() ? (
               <MRT_ColumnPinningButtons column={column} table={table} />
             ) : (

@@ -1,17 +1,19 @@
 import { type DragEvent, type RefObject } from 'react';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
-import { type MRT_Row, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Row,
+  type MRT_TableInstance,
+} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   row: MRT_Row<TData>;
   rowRef: RefObject<HTMLTableRowElement>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableBodyRowGrabHandle = <
-  TData extends Record<string, any> = {},
->({
+export const MRT_TableBodyRowGrabHandle = <TData extends MRT_RowData>({
   row,
   rowRef,
   table,

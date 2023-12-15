@@ -480,7 +480,7 @@ export const tableOptions: TableOption[] = [
     type: 'boolean',
   },
   {
-    tableOption: 'enablePinning',
+    tableOption: 'enableColumnPinning',
     defaultValue: '',
     description: '',
     link: '',

@@ -1,15 +1,19 @@
 import { type MouseEvent, useState } from 'react';
 import { type RowPinningPosition } from '@tanstack/react-table';
 import { ActionIcon, Tooltip } from '@mantine/core';
-import { type MRT_Row, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Row,
+  type MRT_TableInstance,
+} from '../types';
 
-interface Props<TData extends Record<string, any>> {
+interface Props<TData extends MRT_RowData> {
   pinningPosition: RowPinningPosition;
   row: MRT_Row<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_RowPinButton = <TData extends Record<string, any>>({
+export const MRT_RowPinButton = <TData extends MRT_RowData>({
   pinningPosition,
   row,
   table,

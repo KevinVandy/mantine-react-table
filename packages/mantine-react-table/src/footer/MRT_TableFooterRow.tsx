@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Box, TableTr } from '@mantine/core';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
 import {
+  type MRT_RowData,
   type MRT_Header,
   type MRT_HeaderGroup,
   type MRT_TableInstance,
@@ -11,7 +12,7 @@ import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableFooterRow.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   footerGroup: MRT_HeaderGroup<TData>;
   table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
@@ -19,7 +20,7 @@ interface Props<TData extends Record<string, any> = {}> {
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableFooterRow = <TData extends Record<string, any> = {}>({
+export const MRT_TableFooterRow = <TData extends MRT_RowData>({
   footerGroup,
   table,
   virtualColumns,

@@ -4,17 +4,19 @@ import { Button, Divider, Flex, Menu } from '@mantine/core';
 
 import { MRT_ShowHideColumnsMenuItems } from './MRT_ShowHideColumnsMenuItems';
 import { getDefaultColumnOrderIds } from '../column.utils';
-import { type MRT_Column, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Column,
+  type MRT_TableInstance,
+} from '../types';
 
 import classes from './MRT_ShowHideColumnsMenu.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ShowHideColumnsMenu = <
-  TData extends Record<string, any> = {},
->({
+export const MRT_ShowHideColumnsMenu = <TData extends MRT_RowData>({
   table,
 }: Props<TData>) => {
   const {
@@ -31,7 +33,7 @@ export const MRT_ShowHideColumnsMenu = <
     options: {
       enableColumnOrdering,
       enableHiding,
-      enablePinning,
+      enableColumnPinning,
       localization,
     },
   } = table;
@@ -95,7 +97,7 @@ export const MRT_ShowHideColumnsMenu = <
             {localization.resetOrder}
           </Button>
         )}
-        {enablePinning && (
+        {enableColumnPinning && (
           <Button
             disabled={!getIsSomeColumnsPinned()}
             onClick={() => table.resetColumnPinning(true)}

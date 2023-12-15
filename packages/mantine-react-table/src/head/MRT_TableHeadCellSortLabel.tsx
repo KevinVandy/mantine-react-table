@@ -1,19 +1,17 @@
 import clsx from 'clsx';
 import { ActionIcon, Indicator, Tooltip } from '@mantine/core';
 
-import type { MRT_Header, MRT_TableInstance } from '../types';
+import type { MRT_Header, MRT_RowData, MRT_TableInstance } from '../types';
 import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_TableHeadCellSortLabel.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableHeadCellSortLabel = <
-  TData extends Record<string, any> = {},
->({
+export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
   header,
   table: {
     getState,

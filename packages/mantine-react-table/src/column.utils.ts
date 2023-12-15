@@ -10,6 +10,7 @@ import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
 import { type MantineTheme } from '@mantine/core';
 import {
+  type MRT_RowData,
   type MantineShade,
   type MRT_Column,
   type MRT_ColumnDef,
@@ -23,12 +24,12 @@ import {
   type MRT_TableOptions,
 } from './types';
 
-export const getColumnId = <TData extends Record<string, any> = {}>(
+export const getColumnId = <TData extends MRT_RowData>(
   columnDef: MRT_ColumnDef<TData>,
 ): string =>
   columnDef.id ?? columnDef.accessorKey?.toString?.() ?? columnDef.header;
 
-export const getAllLeafColumnDefs = <TData extends Record<string, any> = {}>(
+export const getAllLeafColumnDefs = <TData extends MRT_RowData>(
   columns: MRT_ColumnDef<TData>[],
 ) => {
   const allLeafColumnDefs: MRT_ColumnDef<TData>[] = [];
@@ -45,7 +46,7 @@ export const getAllLeafColumnDefs = <TData extends Record<string, any> = {}>(
   return allLeafColumnDefs;
 };
 
-export const prepareColumns = <TData extends Record<string, any> = {}>({
+export const prepareColumns = <TData extends MRT_RowData>({
   aggregationFns,
   columnDefs,
   columnFilterFns,
@@ -119,7 +120,7 @@ export const prepareColumns = <TData extends Record<string, any> = {}>({
     return columnDef;
   }) as MRT_DefinedColumnDef<TData>[];
 
-export const reorderColumn = <TData extends Record<string, any> = {}>(
+export const reorderColumn = <TData extends MRT_RowData>(
   draggedColumn: MRT_Column<TData>,
   targetColumn: MRT_Column<TData>,
   columnOrder: MRT_ColumnOrderState,
@@ -135,7 +136,7 @@ export const reorderColumn = <TData extends Record<string, any> = {}>(
   return [...columnOrder];
 };
 
-export const showExpandColumn = <TData extends Record<string, any> = {}>(
+export const showExpandColumn = <TData extends MRT_RowData>(
   props: MRT_TableOptions<TData>,
   grouping?: MRT_GroupingState,
 ) =>
@@ -145,9 +146,7 @@ export const showExpandColumn = <TData extends Record<string, any> = {}>(
     props.renderDetailPanel
   );
 
-export const getLeadingDisplayColumnIds = <
-  TData extends Record<string, any> = {},
->(
+export const getLeadingDisplayColumnIds = <TData extends MRT_RowData>(
   props: MRT_TableOptions<TData>,
 ) =>
   [
@@ -167,25 +166,22 @@ export const getLeadingDisplayColumnIds = <
     props.enableRowNumbers && 'mrt-row-numbers',
   ].filter(Boolean) as MRT_DisplayColumnIds[];
 
-export const getTrailingDisplayColumnIds = <
-  TData extends Record<string, any> = {},
->(
+export const getTrailingDisplayColumnIds = <TData extends MRT_RowData>(
   props: MRT_TableOptions<TData>,
 ) =>
   [
     props.positionActionsColumn === 'last' &&
       (props.enableRowActions ||
         (props.enableEditing &&
-          ['row', 'modal'].includes(props.editDisplayMode ?? ''))) &&
+          ['modal', 'row'].includes(props.editDisplayMode ?? ''))) &&
       'mrt-row-actions',
     props.positionExpandColumn === 'last' &&
       showExpandColumn(props) &&
       'mrt-row-expand',
+    props.layoutMode === 'grid-no-grow' && 'mrt-row-spacer',
   ].filter(Boolean) as MRT_DisplayColumnIds[];
 
-export const getDefaultColumnOrderIds = <
-  TData extends Record<string, any> = {},
->(
+export const getDefaultColumnOrderIds = <TData extends MRT_RowData>(
   props: MRT_TableOptions<TData>,
 ) => {
   const leadingDisplayCols: string[] = getLeadingDisplayColumnIds(props);
@@ -200,9 +196,7 @@ export const getDefaultColumnOrderIds = <
   return [...leadingDisplayCols, ...allLeafColumnDefs, ...trailingDisplayCols];
 };
 
-export const getDefaultColumnFilterFn = <
-  TData extends Record<string, any> = {},
->(
+export const getDefaultColumnFilterFn = <TData extends MRT_RowData>(
   columnDef: MRT_ColumnDef<TData>,
 ): MRT_FilterOption => {
   const { filterVariant } = columnDef;
@@ -214,7 +208,7 @@ export const getDefaultColumnFilterFn = <
   return 'fuzzy';
 };
 
-export const getIsFirstColumn = <TData extends Record<string, any>>(
+export const getIsFirstColumn = <TData extends MRT_RowData>(
   column: MRT_Column<TData>,
   table: MRT_TableInstance<TData>,
 ) => {
@@ -224,7 +218,7 @@ export const getIsFirstColumn = <TData extends Record<string, any>>(
     : table.getVisibleLeafColumns()[0].id === column.id;
 };
 
-export const getIsLastColumn = <TData extends Record<string, any>>(
+export const getIsLastColumn = <TData extends MRT_RowData>(
   column: MRT_Column<TData>,
   table: MRT_TableInstance<TData>,
 ) => {
@@ -235,9 +229,7 @@ export const getIsLastColumn = <TData extends Record<string, any>>(
     : columns[columns.length - 1].id === column.id;
 };
 
-export const getIsLastLeftPinnedColumn = <
-  TData extends Record<string, any> = {},
->(
+export const getIsLastLeftPinnedColumn = <TData extends MRT_RowData>(
   table: MRT_TableInstance<TData>,
   column: MRT_Column<TData>,
 ) => {
@@ -247,15 +239,13 @@ export const getIsLastLeftPinnedColumn = <
   );
 };
 
-export const getIsFirstRightPinnedColumn = <
-  TData extends Record<string, any> = {},
->(
+export const getIsFirstRightPinnedColumn = <TData extends MRT_RowData>(
   column: MRT_Column<TData>,
 ) => {
   return column.getIsPinned() === 'right' && column.getPinnedIndex() === 0;
 };
 
-export const getTotalRight = <TData extends Record<string, any> = {}>(
+export const getTotalRight = <TData extends MRT_RowData>(
   table: MRT_TableInstance<TData>,
   column: MRT_Column<TData>,
 ) => {
@@ -265,7 +255,7 @@ export const getTotalRight = <TData extends Record<string, any> = {}>(
     .reduce((acc, col) => acc + col.getSize(), 0);
 };
 
-export const getCanRankRows = <TData extends Record<string, any> = {}>(
+export const getCanRankRows = <TData extends MRT_RowData>(
   table: MRT_TableInstance<TData>,
 ) => {
   const { options, getState } = table;
@@ -336,7 +326,7 @@ export const flexRender = _flexRender as (
   props: any,
 ) => ReactNode | JSX.Element;
 
-export const createRow = <TData extends Record<string, any> = {}>(
+export const createRow = <TData extends MRT_RowData>(
   table: MRT_TableInstance<TData>,
   originalRow?: TData,
 ): MRT_Row<TData> =>

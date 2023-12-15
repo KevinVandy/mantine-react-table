@@ -17,7 +17,7 @@ const Example = () => {
     columns: fakeColumns, //500 columns
     data: fakeData,
     enableColumnVirtualization: true,
-    enablePinning: true,
+    enableColumnPinning: true,
     enableRowNumbers: true,
   });
 

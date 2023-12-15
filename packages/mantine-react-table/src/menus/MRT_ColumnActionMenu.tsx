@@ -1,16 +1,20 @@
 import { ActionIcon, Menu, Tooltip } from '@mantine/core';
 
-import { type MRT_Header, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Header,
+  type MRT_TableInstance,
+} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_ColumnActionMenu.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
+export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
   header,
   table,
 }: Props<TData>) => {
@@ -24,7 +28,7 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
       enableColumnResizing,
       enableGrouping,
       enableHiding,
-      enablePinning,
+      enableColumnPinning,
       enableSorting,
       enableSortingRemoval,
       icons: {
@@ -173,10 +177,10 @@ export const MRT_ColumnActionMenu = <TData extends Record<string, any> = {}>({
               column.getIsGrouped() ? 'ungroupByColumn' : 'groupByColumn'
             ]?.replace('{column}', String(columnDef.header))}
           </Menu.Item>
-          {enablePinning && <Menu.Divider />}
+          {enableColumnPinning && <Menu.Divider />}
         </>
       )}
-      {enablePinning && column.getCanPin() && (
+      {enableColumnPinning && column.getCanPin() && (
         <>
           <Menu.Item
             disabled={column.getIsPinned() === 'left' || !column.getCanPin()}

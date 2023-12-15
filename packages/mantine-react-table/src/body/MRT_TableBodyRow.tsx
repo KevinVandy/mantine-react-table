@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import {
+  type MRT_RowData,
   type MRT_Cell,
   type MRT_Row,
   type MRT_TableInstance,
@@ -14,7 +15,7 @@ import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableBodyRow.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
   isStriped?: boolean | 'odd' | 'even';
@@ -30,7 +31,7 @@ interface Props<TData extends Record<string, any> = {}> {
   virtualRow?: MRT_VirtualItem;
 }
 
-export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
+export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   columnVirtualizer,
   enableHover,
   isStriped,

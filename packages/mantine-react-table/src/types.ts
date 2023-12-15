@@ -102,6 +102,8 @@ export type MRT_DensityState = 'xs' | 'md' | 'xl';
 
 export type MRT_ColumnFilterFnsState = Record<string, MRT_FilterOption>;
 
+export type MRT_RowData = Record<string, any>;
+
 export type {
   ColumnFiltersState as MRT_ColumnFiltersState,
   ColumnOrderState as MRT_ColumnOrderState,
@@ -213,13 +215,13 @@ export interface MRT_Localization {
   unpinAll: string;
 }
 
-export interface MRT_RowModel<TData extends Record<string, any> = {}> {
+export interface MRT_RowModel<TData extends MRT_RowData> {
   flatRows: MRT_Row<TData>[];
   rows: MRT_Row<TData>[];
   rowsById: { [key: string]: MRT_Row<TData> };
 }
 
-export type MRT_TableInstance<TData extends Record<string, any> = {}> = Omit<
+export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
   Table<TData>,
   | 'getAllColumns'
   | 'getAllFlatColumns'
@@ -295,13 +297,13 @@ export type MRT_TableInstance<TData extends Record<string, any> = {}> = Omit<
   setShowToolbarDropZone: Dispatch<SetStateAction<boolean>>;
 };
 
-export type MRT_DefinedTableOptions<TData extends Record<string, any> = {}> =
+export type MRT_DefinedTableOptions<TData extends MRT_RowData> =
   MRT_TableOptions<TData> & {
     localization: MRT_Localization;
     icons: MRT_Icons;
   };
 
-export type MRT_TableState<TData extends Record<string, any> = {}> = Prettify<
+export type MRT_TableState<TData extends MRT_RowData> = Prettify<
   TableState & {
     columnFilterFns: MRT_ColumnFilterFnsState;
     creatingRow: MRT_Row<TData> | null;
@@ -326,7 +328,7 @@ export type MRT_TableState<TData extends Record<string, any> = {}> = Prettify<
   }
 >;
 
-export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
+export type MRT_ColumnDef<TData extends MRT_RowData> = Omit<
   ColumnDef<TData, unknown>,
   | 'accessorKey'
   | 'aggregatedCell'
@@ -406,7 +408,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
    * @example accessorKey: 'username' //simple
    * @example accessorKey: 'name.firstName' //deep key dot notation
    */
-  accessorKey?: (string & {}) | DeepKeys<TData>;
+  accessorKey?: DeepKeys<TData> | (string & {});
   aggregationFn?: MRT_AggregationFn<TData> | Array<MRT_AggregationFn<TData>>;
   /**
    * Specify what type of column this is. Either `data`, `display`, or `group`. Defaults to `data`.
@@ -576,7 +578,7 @@ export type MRT_ColumnDef<TData extends Record<string, any> = {}> = Omit<
   sortingFn?: MRT_SortingFn<TData>;
 };
 
-export type MRT_DefinedColumnDef<TData extends Record<string, any> = {}> = Omit<
+export type MRT_DefinedColumnDef<TData extends MRT_RowData> = Omit<
   MRT_ColumnDef<TData>,
   'id' | 'defaultDisplayColumn'
 > & {
@@ -587,7 +589,7 @@ export type MRT_DefinedColumnDef<TData extends Record<string, any> = {}> = Omit<
   _filterFn: MRT_FilterOption;
 };
 
-export type MRT_Column<TData extends Record<string, any> = {}> = Omit<
+export type MRT_Column<TData extends MRT_RowData> = Omit<
   Column<TData, unknown>,
   'header' | 'footer' | 'columns' | 'columnDef' | 'filterFn'
 > & {
@@ -598,21 +600,21 @@ export type MRT_Column<TData extends Record<string, any> = {}> = Omit<
   header: string;
 };
 
-export type MRT_Header<TData extends Record<string, any> = {}> = Omit<
+export type MRT_Header<TData extends MRT_RowData> = Omit<
   Header<TData, unknown>,
   'column'
 > & {
   column: MRT_Column<TData>;
 };
 
-export type MRT_HeaderGroup<TData extends Record<string, any> = {}> = Omit<
+export type MRT_HeaderGroup<TData extends MRT_RowData> = Omit<
   HeaderGroup<TData>,
   'headers'
 > & {
   headers: MRT_Header<TData>[];
 };
 
-export type MRT_Row<TData extends Record<string, any> = {}> = Omit<
+export type MRT_Row<TData extends MRT_RowData> = Omit<
   Row<TData>,
   'getVisibleCells' | 'getAllCells' | 'subRows' | '_valuesCache'
 > & {
@@ -622,7 +624,7 @@ export type MRT_Row<TData extends Record<string, any> = {}> = Omit<
   _valuesCache: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
 };
 
-export type MRT_Cell<TData extends Record<string, any> = {}> = Omit<
+export type MRT_Cell<TData extends MRT_RowData> = Omit<
   Cell<TData, unknown>,
   'column' | 'row'
 > & {
@@ -632,7 +634,7 @@ export type MRT_Cell<TData extends Record<string, any> = {}> = Omit<
 
 export type MRT_AggregationOption = string & keyof typeof MRT_AggregationFns;
 
-export type MRT_AggregationFn<TData extends Record<string, any> = {}> =
+export type MRT_AggregationFn<TData extends MRT_RowData> =
   | AggregationFn<TData>
   | MRT_AggregationOption;
 
@@ -640,7 +642,7 @@ export type MRT_SortingOption = LiteralUnion<
   string & keyof typeof MRT_SortingFns
 >;
 
-export type MRT_SortingFn<TData extends Record<string, any> = {}> =
+export type MRT_SortingFn<TData extends MRT_RowData> =
   | SortingFn<TData>
   | MRT_SortingOption;
 
@@ -648,7 +650,7 @@ export type MRT_FilterOption = LiteralUnion<
   string & keyof typeof MRT_FilterFns
 >;
 
-export type MRT_FilterFn<TData extends Record<string, any> = {}> =
+export type MRT_FilterFn<TData extends MRT_RowData> =
   | FilterFn<TData>
   | MRT_FilterOption;
 
@@ -665,10 +667,11 @@ export type MRT_DisplayColumnIds =
   | 'mrt-row-expand'
   | 'mrt-row-numbers'
   | 'mrt-row-pin'
-  | 'mrt-row-select';
+  | 'mrt-row-select'
+  | 'mrt-row-spacer';
 
 export type MRT_CreateTableFeature<
-  TData extends Record<string, any> = {},
+  TData extends MRT_RowData,
   TFeature = any,
 > = (table: MRT_TableInstance<TData>) => TFeature;
 
@@ -681,7 +684,7 @@ export type MRT_CreateTableFeature<
  * See the full props list on the official docs site:
  * @link https://www.mantine-react-table.com/docs/api/table-options
  */
-export type MRT_TableOptions<TData extends Record<string, any> = {}> = Omit<
+export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   Partial<TableOptions<TData>>,
   | 'columns'
   | 'data'

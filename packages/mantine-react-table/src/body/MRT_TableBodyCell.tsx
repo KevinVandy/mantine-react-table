@@ -24,6 +24,7 @@ import {
   parseFromValuesOrFunc,
 } from '../column.utils';
 import {
+  type MRT_RowData,
   type MRT_Cell,
   type MRT_TableInstance,
   type MRT_VirtualItem,
@@ -31,7 +32,7 @@ import {
 
 import classes from './MRT_TableBodyCell.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   cell: MRT_Cell<TData>;
   isStriped?: boolean | 'odd' | 'even';
   measureElement?: (element: HTMLTableCellElement) => void;
@@ -42,7 +43,7 @@ interface Props<TData extends Record<string, any> = {}> {
   virtualCell?: MRT_VirtualItem;
 }
 
-export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
+export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   cell,
   isStriped,
   measureElement,

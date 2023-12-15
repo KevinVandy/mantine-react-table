@@ -8,7 +8,7 @@ import {
   Text,
 } from '@mantine/core';
 
-import { type MRT_TableInstance } from '../types';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TablePagination.module.css';
@@ -17,12 +17,12 @@ const defaultRowsPerPage = [5, 10, 15, 20, 25, 30, 50, 100].map((x) =>
   x.toString(),
 );
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   position?: 'top' | 'bottom';
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TablePagination = <TData extends Record<string, any> = {}>({
+export const MRT_TablePagination = <TData extends MRT_RowData>({
   table,
   position = 'bottom',
 }: Props<TData>) => {

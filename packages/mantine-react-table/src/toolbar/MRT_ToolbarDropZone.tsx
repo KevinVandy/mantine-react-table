@@ -2,15 +2,15 @@ import clsx from 'clsx';
 import { type DragEvent, useEffect } from 'react';
 import { Flex, Text, Transition } from '@mantine/core';
 
-import { type MRT_TableInstance } from '../types';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 
 import classes from './MRT_ToolbarDropZone.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ToolbarDropZone = <TData extends Record<string, any> = {}>({
+export const MRT_ToolbarDropZone = <TData extends MRT_RowData>({
   table,
 }: Props<TData>) => {
   const {

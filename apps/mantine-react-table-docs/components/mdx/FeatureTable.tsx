@@ -215,7 +215,7 @@ export const FeatureTable = () => {
       enableColumnActions={false}
       enableBottomToolbar={false}
       enableTopToolbar={false}
-      enablePinning
+      enableColumnPinning
       initialState={{
         sorting: [{ id: 'feature', desc: false }],
         density: 'xs',

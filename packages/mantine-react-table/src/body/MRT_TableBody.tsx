@@ -5,6 +5,7 @@ import { Memo_MRT_TableBodyRow, MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { rankGlobalFuzzy } from '../sortingFns';
 import { getCanRankRows, parseFromValuesOrFunc } from '../column.utils';
 import {
+  type MRT_RowData,
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_VirtualItem,
@@ -13,7 +14,7 @@ import {
 import classes from './MRT_TableBody.module.css';
 import clsx from 'clsx';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
   enableHover?: boolean;
   isStriped?: boolean | 'odd' | 'even';
@@ -23,7 +24,7 @@ interface Props<TData extends Record<string, any> = {}> {
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableBody = <TData extends Record<string, any> = {}>({
+export const MRT_TableBody = <TData extends MRT_RowData>({
   columnVirtualizer,
   enableHover,
   isStriped,

@@ -2,16 +2,20 @@ import clsx from 'clsx';
 import { TableTh } from '@mantine/core';
 
 import { parseFromValuesOrFunc } from '../column.utils';
-import { type MRT_Header, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Header,
+  type MRT_TableInstance,
+} from '../types';
 
 import classes from './MRT_TableFooterCell.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   footer: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableFooterCell = <TData extends Record<string, any> = {}>({
+export const MRT_TableFooterCell = <TData extends MRT_RowData>({
   footer,
   table,
 }: Props<TData>) => {

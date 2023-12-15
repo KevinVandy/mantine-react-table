@@ -1,16 +1,18 @@
 import { ActionIcon, type ActionIconProps, Menu, Tooltip } from '@mantine/core';
 import { MRT_ShowHideColumnsMenu } from '../menus/MRT_ShowHideColumnsMenu';
-import { type HTMLPropsRef, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type HTMLPropsRef,
+  type MRT_TableInstance,
+} from '../types';
 
-interface Props<TData extends Record<string, any> = {}>
+interface Props<TData extends MRT_RowData>
   extends ActionIconProps,
     HTMLPropsRef<HTMLButtonElement> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ShowHideColumnsButton = <
-  TData extends Record<string, any> = {},
->({
+export const MRT_ShowHideColumnsButton = <TData extends MRT_RowData>({
   table,
   title,
   ...rest

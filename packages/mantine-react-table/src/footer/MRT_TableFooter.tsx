@@ -1,19 +1,23 @@
 import { TableTfoot } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
-import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_TableInstance,
+  type MRT_VirtualItem,
+} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableFooter.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableFooter = <TData extends Record<string, any> = {}>({
+export const MRT_TableFooter = <TData extends MRT_RowData>({
   table,
   virtualColumns,
   virtualPaddingLeft,

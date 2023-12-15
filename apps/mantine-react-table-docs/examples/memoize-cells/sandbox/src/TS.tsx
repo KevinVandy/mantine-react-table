@@ -46,7 +46,7 @@ export const Example = () => {
       enableColumnOrdering
       enableDensityToggle={false} //density toggle is not compatible with memoization
       enableEditing
-      enablePinning
+      enableColumnPinning
       enableRowSelection
       enableStickyHeader
       initialState={{ pagination: { pageSize: 20, pageIndex: 0 } }}

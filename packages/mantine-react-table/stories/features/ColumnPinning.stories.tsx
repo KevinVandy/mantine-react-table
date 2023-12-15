@@ -45,14 +45,14 @@ const data = [...Array(100)].map(() => ({
 }));
 
 export const ColumnPinningEnabled = () => (
-  <MantineReactTable columns={columns} data={data} enablePinning />
+  <MantineReactTable columns={columns} data={data} enableColumnPinning />
 );
 
 export const ColumnPinningInitial = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    enablePinning
+    enableColumnPinning
     initialState={{ columnPinning: { left: ['email'], right: ['state'] } }}
   />
 );
@@ -63,7 +63,7 @@ export const ColumnPinningDisabledPerColumn = () => (
       {
         header: 'First Name',
         accessorKey: 'firstName',
-        enablePinning: false,
+        enableColumnPinning: false,
       },
       {
         header: 'Last Name',
@@ -87,7 +87,7 @@ export const ColumnPinningDisabledPerColumn = () => (
       },
     ]}
     data={data}
-    enablePinning
+    enableColumnPinning
   />
 );
 
@@ -95,7 +95,7 @@ export const ColumnPinningWithSelect = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    enablePinning
+    enableColumnPinning
     enableRowSelection
   />
 );
@@ -104,7 +104,7 @@ export const ColumnPinningWithDetailPanel = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    enablePinning
+    enableColumnPinning
     enableExpanding
     renderDetailPanel={({ row: _row }) => <h1>Hi</h1>}
   />

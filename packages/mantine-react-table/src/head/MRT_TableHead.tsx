@@ -2,19 +2,23 @@ import clsx from 'clsx';
 import { TableThead, TableTr, TableTh } from '@mantine/core';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import { MRT_ToolbarAlertBanner } from '../toolbar';
-import { type MRT_TableInstance, type MRT_VirtualItem } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_TableInstance,
+  type MRT_VirtualItem,
+} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableHead.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
   virtualColumns?: MRT_VirtualItem[];
   virtualPaddingLeft?: number;
   virtualPaddingRight?: number;
 }
 
-export const MRT_TableHead = <TData extends Record<string, any> = {}>({
+export const MRT_TableHead = <TData extends MRT_RowData>({
   table,
   virtualColumns,
   virtualPaddingLeft,
@@ -58,7 +62,9 @@ export const MRT_TableHead = <TData extends Record<string, any> = {}>({
         stickyHeader && classes['root-sticky'],
         tableHeadProps?.className,
       )}
-      pos={stickyHeader && layoutMode?.startsWith('grid') ? 'sticky' : 'relative'}
+      pos={
+        stickyHeader && layoutMode?.startsWith('grid') ? 'sticky' : 'relative'
+      }
     >
       {positionToolbarAlertBanner === 'head-overlay' &&
       (showAlertBanner || getSelectedRowModel().rows.length > 0) ? (

@@ -104,7 +104,7 @@ const RowInstanceAPIsTable = ({ onlyOptions }: Props) => {
       enableColumnActions={!onlyOptions}
       enableColumnFilterModes
       enablePagination={false}
-      enablePinning
+      enableColumnPinning
       enableRowNumbers
       enableBottomToolbar={false}
       enableTopToolbar={!onlyOptions}

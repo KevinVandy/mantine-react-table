@@ -6,17 +6,17 @@ import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
-import { type MRT_TableInstance } from '../types';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import commonClasses from './common.styles.module.css';
 import classes from './MRT_BottomToolbar.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_BottomToolbar = <TData extends Record<string, any> = {}>({
+export const MRT_BottomToolbar = <TData extends MRT_RowData>({
   table,
 }: Props<TData>) => {
   const {

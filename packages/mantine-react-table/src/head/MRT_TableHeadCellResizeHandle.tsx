@@ -1,17 +1,19 @@
 import clsx from 'clsx';
 import { Box } from '@mantine/core';
-import { type MRT_Header, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Header,
+  type MRT_TableInstance,
+} from '../types';
 
 import classes from './MRT_TableHeadCellResizeHandle.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_TableHeadCellResizeHandle = <
-  TData extends Record<string, any> = {},
->({
+export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
   header,
   table,
 }: Props<TData>) => {

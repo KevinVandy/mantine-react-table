@@ -5,11 +5,15 @@ import { MRT_SortingFns } from '../sortingFns';
 import { MRT_DefaultColumn, MRT_DefaultDisplayColumn } from '../column.utils';
 import { MRT_Localization_EN } from '../locales/en';
 import { MRT_Default_Icons } from '../icons';
-import { type MRT_DefinedTableOptions, type MRT_TableOptions } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_DefinedTableOptions,
+  type MRT_TableOptions,
+} from '../types';
 
-export const useMRT_TableOptions: <TData extends Record<string, any> = {}>(
+export const useMRT_TableOptions: <TData extends MRT_RowData>(
   tableOptions: MRT_TableOptions<TData>,
-) => MRT_DefinedTableOptions<TData> = <TData extends Record<string, any> = {}>({
+) => MRT_DefinedTableOptions<TData> = <TData extends MRT_RowData>({
   aggregationFns,
   autoResetExpanded = false,
   columnFilterDisplayMode = 'subheader',
@@ -36,7 +40,7 @@ export const useMRT_TableOptions: <TData extends Record<string, any> = {}>(
   enableMultiRowSelection = true,
   enableMultiSort = true,
   enablePagination = true,
-  enablePinning = false,
+  enableColumnPinning = false,
   enableRowSelection = false,
   enableSelectAll = true,
   enableSorting = true,
@@ -47,7 +51,7 @@ export const useMRT_TableOptions: <TData extends Record<string, any> = {}>(
   enableTopToolbar = true,
   filterFns,
   icons,
-  layoutMode = 'semantic',
+  layoutMode,
   localization,
   manualFiltering,
   manualGrouping,
@@ -92,13 +96,13 @@ export const useMRT_TableOptions: <TData extends Record<string, any> = {}>(
     [defaultDisplayColumn],
   );
 
-  if (layoutMode === 'semantic') {
-    if (rest.enableRowVirtualization || rest.enableColumnVirtualization) {
-      layoutMode = 'grid';
-    }
-    if (enableColumnResizing) {
-      layoutMode = 'grid-no-grow';
-    }
+  layoutMode =
+    layoutMode || (enableColumnResizing ? 'grid-no-grow' : 'semantic');
+  if (
+    layoutMode === 'semantic' &&
+    (rest.enableRowVirtualization || rest.enableColumnVirtualization)
+  ) {
+    layoutMode = 'grid';
   }
 
   if (rest.enableRowVirtualization) {
@@ -115,6 +119,8 @@ export const useMRT_TableOptions: <TData extends Record<string, any> = {}>(
     manualPagination = true;
     manualSorting = true;
   }
+
+  console.log(layoutMode);
 
   return {
     aggregationFns: _aggregationFns,
@@ -143,7 +149,7 @@ export const useMRT_TableOptions: <TData extends Record<string, any> = {}>(
     enableMultiRowSelection,
     enableMultiSort,
     enablePagination,
-    enablePinning,
+    enableColumnPinning,
     enableRowSelection,
     enableSelectAll,
     enableSorting,

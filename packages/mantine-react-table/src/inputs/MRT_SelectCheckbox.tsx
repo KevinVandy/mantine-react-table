@@ -8,16 +8,20 @@ import {
   type RadioProps,
   type SwitchProps,
 } from '@mantine/core';
-import { type MRT_Row, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Row,
+  type MRT_TableInstance,
+} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   row?: MRT_Row<TData>;
   selectAll?: boolean;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_SelectCheckbox = <TData extends Record<string, any> = {}>({
+export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
   row,
   selectAll,
   table,

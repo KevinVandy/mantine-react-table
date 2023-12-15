@@ -128,7 +128,7 @@ export const RowOrderingWithPinning = () => {
       columns={columns}
       data={data}
       enableRowOrdering
-      enablePinning
+      enableColumnPinning
       enableSorting={false}
       mantineRowDragHandleProps={{
         onDragEnd: () => {
@@ -163,7 +163,7 @@ export const RowAndColumnOrdering = () => {
       columns={columns}
       data={data}
       enableColumnOrdering
-      enablePinning
+      enableColumnPinning
       enableRowOrdering
       enableSorting={false}
       mantineRowDragHandleProps={{

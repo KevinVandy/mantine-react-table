@@ -35,11 +35,12 @@ import {
   type MRT_TableInstance,
   type MRT_TableState,
   type MRT_Updater,
+  type MRT_RowData,
 } from '../types';
 
-export const useMRT_TableInstance: <TData extends Record<string, any> = {}>(
+export const useMRT_TableInstance: <TData extends MRT_RowData>(
   tableOptions: MRT_DefinedTableOptions<TData>,
-) => MRT_TableInstance<TData> = <TData extends Record<string, any> = {}>(
+) => MRT_TableInstance<TData> = <TData extends MRT_RowData>(
   tableOptions: MRT_DefinedTableOptions<TData>,
 ) => {
   const bottomToolbarRef = useRef<HTMLDivElement>(null);

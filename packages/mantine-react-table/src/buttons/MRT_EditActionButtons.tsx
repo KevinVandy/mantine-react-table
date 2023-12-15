@@ -1,16 +1,20 @@
 import clsx from 'clsx';
 import { ActionIcon, Box, Button, Tooltip } from '@mantine/core';
-import { type MRT_Row, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Row,
+  type MRT_TableInstance,
+} from '../types';
 
 import classes from './MRT_EditActionButtons.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   row: MRT_Row<TData>;
   table: MRT_TableInstance<TData>;
   variant?: 'icon' | 'text';
 }
 
-export const MRT_EditActionButtons = <TData extends Record<string, any> = {}>({
+export const MRT_EditActionButtons = <TData extends MRT_RowData>({
   row,
   table,
   variant = 'icon',

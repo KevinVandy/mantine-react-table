@@ -1,15 +1,15 @@
 import { Collapse, Progress } from '@mantine/core';
 import clsx from 'clsx';
-import { type MRT_TableInstance } from '../types';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 import classes from './MRT_ProgressBar.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   isTopToolbar: boolean;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_ProgressBar = <TData extends Record<string, any> = {}>({
+export const MRT_ProgressBar = <TData extends MRT_RowData>({
   isTopToolbar,
   table,
 }: Props<TData>) => {

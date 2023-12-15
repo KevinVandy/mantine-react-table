@@ -139,7 +139,7 @@ const Example = () => {
     enableColumnOrdering: true,
     enableFacetedValues: true,
     enableGrouping: true,
-    enablePinning: true,
+    enableColumnPinning: true,
     enableRowActions: true,
     enableRowSelection: true,
     initialState: { showColumnFilters: true, showGlobalFilter: true },

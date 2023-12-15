@@ -119,7 +119,7 @@ const Example = () => {
     enableColumnVirtualization: true,
     enableGlobalFilterModes: true,
     enablePagination: false,
-    enablePinning: true,
+    enableColumnPinning: true,
     enableRowNumbers: true,
     enableRowVirtualization: true,
     mantineTableContainerProps: { style: { maxHeight: '600px' } },

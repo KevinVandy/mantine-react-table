@@ -1,14 +1,18 @@
 import { type FocusEvent, type KeyboardEvent, useState } from 'react';
 import { Select, TextInput } from '@mantine/core';
-import { type MRT_Cell, type MRT_TableInstance } from '../types';
+import {
+  type MRT_RowData,
+  type MRT_Cell,
+  type MRT_TableInstance,
+} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   cell: MRT_Cell<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_EditCellTextInput = <TData extends Record<string, any> = {}>({
+export const MRT_EditCellTextInput = <TData extends MRT_RowData>({
   cell,
   table,
 }: Props<TData>) => {

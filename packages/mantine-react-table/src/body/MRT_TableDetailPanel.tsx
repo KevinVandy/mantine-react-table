@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Box, Collapse } from '@mantine/core';
 
 import {
+  type MRT_RowData,
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_VirtualItem,
@@ -10,7 +11,7 @@ import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableDetailPanel.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
   row: MRT_Row<TData>;
   rowIndex: number;
@@ -18,7 +19,7 @@ interface Props<TData extends Record<string, any> = {}> {
   virtualRow?: MRT_VirtualItem;
 }
 
-export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
+export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
   parentRowRef,
   row,
   rowIndex,
@@ -86,7 +87,7 @@ export const MRT_TableDetailPanel = <TData extends Record<string, any> = {}>({
           row.getIsExpanded() && classes['inner-expanded'],
           virtualRow && classes['inner-virtual'],
         )}
-        p={row.getIsExpanded() ? "md" : 0}
+        p={row.getIsExpanded() ? 'md' : 0}
       >
         {renderDetailPanel && (
           <Collapse in={row.getIsExpanded()}>

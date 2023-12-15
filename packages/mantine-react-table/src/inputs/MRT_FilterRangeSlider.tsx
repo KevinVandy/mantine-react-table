@@ -1,17 +1,21 @@
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 import { RangeSlider, type RangeSliderProps } from '@mantine/core';
-import { type MRT_TableInstance, type MRT_Header } from '../types';
+import {
+  type MRT_TableInstance,
+  type MRT_Header,
+  type MRT_RowData,
+} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_FilterRangeSlider.module.css';
 
-interface Props<TData extends Record<string, any> = {}> {
+interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
-export const MRT_FilterRangeSlider = <TData extends Record<string, any> = {}>({
+export const MRT_FilterRangeSlider = <TData extends MRT_RowData>({
   header,
   table,
 }: Props<TData>) => {
