@@ -51,17 +51,24 @@
   transition: none;
 }
 
-.root-pinned-color {
+.root-pinned {
+  z-index: 1;
+  position: sticky;
   background-color: light-dark(
     var(--mantine-color-white),
     var(--mantine-color-dark-7)
   );
-}
+  opacity: 0.98;
 
-.root-pinned {
-  z-index: 1;
-  position: sticky;
-  opacity: 0.95
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
 }
 
 .root-pinned-left {

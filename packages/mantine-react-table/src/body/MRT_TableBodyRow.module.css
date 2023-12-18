@@ -5,6 +5,19 @@
 
   &[data-selected='true'] {
     background-color: var(--mantine-primary-color-light);
+
+    td {
+      &[data-pinned='true'] {
+        background-color: light-dark(
+          var(--mantine-color-white),
+          var(--mantine-color-dark-7)
+        );
+
+        &:before {
+          background-color: var(--mantine-primary-color-light);
+        }
+      }
+    }
   }
 }
 
@@ -13,16 +26,45 @@
 }
 
 .root-hover {
-  &:hover td {
-    background-color: light-dark(
-      var(--mantine-color-dark-light-hover),
-      var(--mantine-color-gray-light-hover)
-    );
+  &:hover {
+    td {
+      background-color: light-dark(
+        var(--mantine-color-dark-light-hover),
+        var(--mantine-color-gray-light-hover)
+      );
+
+      &[data-pinned='true'] {
+        background-color: light-dark(
+          var(--mantine-color-white),
+          var(--mantine-color-dark-7)
+        );
+  
+        &:before {
+          background-color: light-dark(
+            var(--mantine-color-dark-light-hover),
+            var(--mantine-color-gray-light-hover)
+          );
+        }
+      }
+    }
   }
 
   &[data-selected='true'] {
-    &:hover td {
-      background-color: var(--mantine-primary-color-light-hover);
+    &:hover {
+      td {
+        background-color: var(--mantine-primary-color-light-hover);
+
+        &[data-pinned='true'] {
+          background-color: light-dark(
+            var(--mantine-color-white),
+            var(--mantine-color-dark-7)
+          );
+  
+          &:before {
+            background-color: var(--mantine-primary-color-light-hover);
+          }
+        }
+      }
     }
   }
 }
