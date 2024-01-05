@@ -1,3 +1,4 @@
+import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
 import { useMemo } from 'react';
 import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 import { Menu } from '@mantine/core';

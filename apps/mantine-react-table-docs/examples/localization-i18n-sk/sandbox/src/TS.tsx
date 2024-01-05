@@ -1,3 +1,4 @@
+import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
 //Import Mantine React Table and its Types
 import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 

@@ -1,3 +1,4 @@
+import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
 import { useMemo, useState } from 'react';
 import { MantineReactTable, MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
 import { data as initData, Person } from './makeData';

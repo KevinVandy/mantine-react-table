@@ -1,3 +1,5 @@
+import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
+import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root
 import { useMemo } from 'react';
 import {
   MantineReactTable,
