@@ -2,14 +2,13 @@ import { useRef } from 'react';
 import {
   MantineReactTable,
   useMantineReactTable,
-  type MRT_Virtualizer,
+  type MRT_ColumnVirtualizer,
 } from 'mantine-react-table';
 import { fakeColumns, fakeData } from './makeData';
 
 const Example = () => {
   //optionally access the underlying virtualizer instance
-  const columnVirtualizerInstanceRef =
-    useRef<MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>>(null);
+  const columnVirtualizerInstanceRef = useRef<MRT_ColumnVirtualizer>(null);
 
   const table = useMantineReactTable({
     columnVirtualizerInstanceRef, //optional

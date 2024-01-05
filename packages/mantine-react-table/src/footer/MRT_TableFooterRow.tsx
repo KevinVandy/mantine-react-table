@@ -6,7 +6,7 @@ import {
   type MRT_Header,
   type MRT_HeaderGroup,
   type MRT_TableInstance,
-  type MRT_VirtualItem,
+  type MRT_ColumnVirtualizer,
 } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
@@ -15,21 +15,20 @@ import classes from './MRT_TableFooterRow.module.css';
 interface Props<TData extends MRT_RowData> {
   footerGroup: MRT_HeaderGroup<TData>;
   table: MRT_TableInstance<TData>;
-  virtualColumns?: MRT_VirtualItem[];
-  virtualPaddingLeft?: number;
-  virtualPaddingRight?: number;
+  columnVirtualizer?: MRT_ColumnVirtualizer;
 }
 
 export const MRT_TableFooterRow = <TData extends MRT_RowData>({
   footerGroup,
   table,
-  virtualColumns,
-  virtualPaddingLeft,
-  virtualPaddingRight,
+  columnVirtualizer,
 }: Props<TData>) => {
   const {
     options: { layoutMode, mantineTableFooterRowProps },
   } = table;
+
+  const { virtualColumns, virtualPaddingLeft, virtualPaddingRight } =
+    columnVirtualizer ?? {};
 
   // if no content in row, skip row
   if (

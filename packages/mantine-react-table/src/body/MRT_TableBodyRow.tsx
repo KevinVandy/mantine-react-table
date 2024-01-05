@@ -9,14 +9,14 @@ import {
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_VirtualItem,
-  type MRT_Virtualizer,
+  type MRT_ColumnVirtualizer,
 } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_TableBodyRow.module.css';
 
 interface Props<TData extends MRT_RowData> {
-  columnVirtualizer?: MRT_Virtualizer<HTMLDivElement, HTMLTableCellElement>;
+  columnVirtualizer?: MRT_ColumnVirtualizer;
   enableHover?: boolean;
   isStriped?: boolean | 'odd' | 'even';
   measureElement?: (element: HTMLTableRowElement) => void;
@@ -25,9 +25,6 @@ interface Props<TData extends MRT_RowData> {
   row: MRT_Row<TData>;
   rowIndex: number;
   table: MRT_TableInstance<TData>;
-  virtualColumns?: MRT_VirtualItem[];
-  virtualPaddingLeft?: number;
-  virtualPaddingRight?: number;
   virtualRow?: MRT_VirtualItem;
 }
 
@@ -41,9 +38,6 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   rowIndex,
   table,
   pinnedRowIds,
-  virtualColumns,
-  virtualPaddingLeft,
-  virtualPaddingRight,
   virtualRow,
 }: Props<TData>) => {
   const {
@@ -72,6 +66,9 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
     isFullScreen,
     rowPinning,
   } = getState();
+
+  const { virtualColumns, virtualPaddingLeft, virtualPaddingRight } =
+    columnVirtualizer ?? {};
 
   const isPinned = enableRowPinning && row.getIsPinned();
 
@@ -118,7 +115,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   return (
     <>
       <TableTr
-        data-index={virtualRow?.index}
+        data-index={rowIndex}
         data-selected={row.getIsSelected() || undefined}
         onDragEnter={handleDragEnter}
         ref={(node: HTMLTableRowElement) => {

@@ -5,10 +5,11 @@ import {
   type MRT_RowData,
   type MRT_Column,
   type MRT_TableInstance,
+  type MRT_CellValue,
 } from '../types';
 
-interface Props<TData extends MRT_RowData> {
-  column: MRT_Column<TData>;
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
+  column: MRT_Column<TData, TValue>;
   table: MRT_TableInstance<TData>;
   tableHeadCellRef: RefObject<HTMLTableCellElement>;
 }

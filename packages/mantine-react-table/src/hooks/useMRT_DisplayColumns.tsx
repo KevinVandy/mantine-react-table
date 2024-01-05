@@ -1,5 +1,5 @@
 import { type RefObject, useMemo } from 'react';
-import { showExpandColumn } from '../column.utils';
+import { MRT_DefaultDisplayColumn, showExpandColumn } from '../column.utils';
 import { MRT_TableBodyRowPinButton } from '../body/MRT_TableBodyRowPinButton';
 import { MRT_TableBodyRowGrabHandle } from '../body';
 import { MRT_ExpandAllButton } from '../buttons/MRT_ExpandAllButton';
@@ -18,16 +18,16 @@ import type {
 } from '../types';
 
 interface Params<TData extends MRT_RowData> {
-  creatingRow: MRT_Row<TData> | null;
   columnOrder: MRT_ColumnOrderState;
+  creatingRow: MRT_Row<TData> | null;
   grouping: MRT_GroupingState;
   tableOptions: MRT_DefinedTableOptions<TData>;
 }
 
 export const useMRT_DisplayColumns = <TData extends MRT_RowData>(
   params: Params<TData>,
-) => {
-  const { creatingRow, columnOrder, grouping, tableOptions } = params;
+): MRT_ColumnDef<TData>[] => {
+  const { columnOrder, creatingRow, grouping, tableOptions } = params;
   const order = tableOptions.state?.columnOrder ?? columnOrder;
 
   return useMemo(
@@ -44,8 +44,8 @@ export const useMRT_DisplayColumns = <TData extends MRT_RowData>(
         .map((makeCol) => makeCol(params, order))
         .filter(Boolean) as MRT_ColumnDef<TData>[],
     [
-      creatingRow,
       columnOrder,
+      creatingRow,
       grouping,
       tableOptions.displayColumnDefOptions,
       tableOptions.editDisplayMode,
@@ -217,6 +217,7 @@ function makeSpacerColumn<TData extends MRT_RowData>(
   if (order.includes(id)) {
     return {
       ...defaultDisplayColumnProps(tableOptions, id, undefined, 0),
+      ...MRT_DefaultDisplayColumn,
       mantineTableBodyCellProps: blankColProps,
       mantineTableFooterCellProps: blankColProps,
       mantineTableHeadCellProps: blankColProps,

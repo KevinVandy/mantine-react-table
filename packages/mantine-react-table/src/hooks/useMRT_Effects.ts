@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { getCanRankRows } from '../column.utils';
 import {
   type MRT_RowData,
@@ -10,18 +10,21 @@ export const useMRT_Effects = <TData extends MRT_RowData>(
   table: MRT_TableInstance<TData>,
 ) => {
   const {
+    getIsSomeRowsPinned,
     getState,
-    options: { enablePagination, rowCount },
+    options: { enablePagination, enableRowPinning, rowCount },
   } = table;
   const {
+    density,
     globalFilter,
     isFullScreen,
-    pagination,
-    sorting,
     isLoading,
+    pagination,
     showSkeletons,
+    sorting,
   } = getState();
 
+  const rerender = useReducer(() => ({}), {})[1];
   const isMounted = useRef(false);
   const initialBodyHeight = useRef<string>();
   const previousTop = useRef<number>();
@@ -42,8 +45,8 @@ export const useMRT_Effects = <TData extends MRT_RowData>(
         if (!previousTop.current) return;
         //restore scroll position
         window.scrollTo({
-          top: -1 * (previousTop.current as number),
           behavior: 'instant',
+          top: -1 * (previousTop.current as number),
         });
       }
     }
@@ -78,4 +81,12 @@ export const useMRT_Effects = <TData extends MRT_RowData>(
       table.setSorting(() => appliedSort.current || []);
     }
   }, [globalFilter]);
+
+  useEffect(() => {
+    if (enableRowPinning && getIsSomeRowsPinned()) {
+      setTimeout(() => {
+        rerender();
+      }, 150);
+    }
+  }, [density]);
 };

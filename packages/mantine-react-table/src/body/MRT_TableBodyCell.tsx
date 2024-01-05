@@ -28,12 +28,13 @@ import {
   type MRT_Cell,
   type MRT_TableInstance,
   type MRT_VirtualItem,
+  type MRT_CellValue,
 } from '../types';
 
 import classes from './MRT_TableBodyCell.module.css';
 
-interface Props<TData extends MRT_RowData> {
-  cell: MRT_Cell<TData>;
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
+  cell: MRT_Cell<TData, TValue>;
   isStriped?: boolean | 'odd' | 'even';
   measureElement?: (element: HTMLTableCellElement) => void;
   numRows?: number;

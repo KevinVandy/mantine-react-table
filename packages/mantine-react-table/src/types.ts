@@ -31,6 +31,8 @@ import {
 } from '@mantine/core';
 import { type DateInputProps } from '@mantine/dates';
 import {
+  type AccessorFn,
+  type DeepValue,
   type AggregationFn,
   type Cell,
   type Column,
@@ -104,22 +106,57 @@ export type MRT_ColumnFilterFnsState = Record<string, MRT_FilterOption>;
 
 export type MRT_RowData = Record<string, any>;
 
-export type {
-  ColumnFiltersState as MRT_ColumnFiltersState,
-  ColumnOrderState as MRT_ColumnOrderState,
-  ColumnPinningState as MRT_ColumnPinningState,
-  ColumnSizingInfoState as MRT_ColumnSizingInfoState,
-  ColumnSizingState as MRT_ColumnSizingState,
-  ExpandedState as MRT_ExpandedState,
-  GroupingState as MRT_GroupingState,
-  PaginationState as MRT_PaginationState,
-  RowSelectionState as MRT_RowSelectionState,
-  SortingState as MRT_SortingState,
-  Updater as MRT_Updater,
-  VirtualItem as MRT_VirtualItem,
-  Virtualizer as MRT_Virtualizer,
-  VirtualizerOptions as MRT_VirtualizerOptions,
-  VisibilityState as MRT_VisibilityState,
+export type MRT_CellValue = unknown;
+
+export type MRT_ColumnFiltersState = ColumnFiltersState;
+export type MRT_ColumnOrderState = ColumnOrderState;
+export type MRT_ColumnPinningState = ColumnPinningState;
+export type MRT_ColumnSizingInfoState = ColumnSizingInfoState;
+export type MRT_ColumnSizingState = ColumnSizingState;
+export type MRT_ExpandedState = ExpandedState;
+export type MRT_GroupingState = GroupingState;
+export type MRT_PaginationState = PaginationState;
+export type MRT_RowSelectionState = RowSelectionState;
+export type MRT_SortingState = SortingState;
+export type MRT_Updater<T> = Updater<T>;
+export type MRT_VirtualItem = VirtualItem;
+export type MRT_VisibilityState = VisibilityState;
+
+export type MRT_VirtualizerOptions<
+  TScrollElement extends Element | Window = Element | Window,
+  TItemElement extends Element = Element,
+> = VirtualizerOptions<TScrollElement, TItemElement>;
+
+export type MRT_ColumnVirtualizer<
+  TScrollElement extends Element | Window = HTMLDivElement,
+  TItemElement extends Element = HTMLTableCellElement,
+> = Virtualizer<TScrollElement, TItemElement> & {
+  virtualColumns: MRT_VirtualItem[];
+  virtualPaddingLeft?: number;
+  virtualPaddingRight?: number;
+};
+
+export type MRT_RowVirtualizer<
+  TScrollElement extends Element | Window = HTMLDivElement,
+  TItemElement extends Element = HTMLTableRowElement,
+> = Virtualizer<TScrollElement, TItemElement> & {
+  virtualRows: MRT_VirtualItem[];
+};
+
+export type MRT_ColumnHelper<TData extends MRT_RowData> = {
+  accessor: <
+    TAccessor extends AccessorFn<TData> | DeepKeys<TData>,
+    TValue extends TAccessor extends AccessorFn<TData, infer TReturn>
+      ? TReturn
+      : TAccessor extends DeepKeys<TData>
+        ? DeepValue<TData, TAccessor>
+        : never,
+  >(
+    accessor: TAccessor,
+    column: MRT_DisplayColumnDef<TData, TValue>,
+  ) => MRT_ColumnDef<TData, TValue>;
+  display: (column: MRT_DisplayColumnDef<TData>) => MRT_ColumnDef<TData>;
+  group: (column: MRT_GroupColumnDef<TData>) => MRT_ColumnDef<TData>;
 };
 
 export interface MRT_Localization {
@@ -328,8 +365,8 @@ export type MRT_TableState<TData extends MRT_RowData> = Prettify<
   }
 >;
 
-export type MRT_ColumnDef<TData extends MRT_RowData> = Omit<
-  ColumnDef<TData, unknown>,
+export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
+  ColumnDef<TData, TValue>,
   | 'accessorKey'
   | 'aggregatedCell'
   | 'aggregationFn'
@@ -342,27 +379,27 @@ export type MRT_ColumnDef<TData extends MRT_RowData> = Omit<
   | 'sortingFn'
 > & {
   AggregatedCell?: (props: {
-    cell: MRT_Cell<TData>;
-    column: MRT_Column<TData>;
+    cell: MRT_Cell<TData, TValue>;
+    column: MRT_Column<TData, TValue>;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   Cell?: (props: {
-    cell: MRT_Cell<TData>;
+    cell: MRT_Cell<TData, TValue>;
     renderedCellValue: number | string | ReactNode;
-    column: MRT_Column<TData>;
+    column: MRT_Column<TData, TValue>;
     row: MRT_Row<TData>;
     rowRef?: RefObject<HTMLTableRowElement>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   Edit?: (props: {
-    cell: MRT_Cell<TData>;
-    column: MRT_Column<TData>;
+    cell: MRT_Cell<TData, TValue>;
+    column: MRT_Column<TData, TValue>;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   Filter?: (props: {
-    column: MRT_Column<TData>;
+    column: MRT_Column<TData, TValue>;
     header: MRT_Header<TData>;
     rangeFilterIndex?: number;
     table: MRT_TableInstance<TData>;
@@ -370,26 +407,26 @@ export type MRT_ColumnDef<TData extends MRT_RowData> = Omit<
   Footer?:
     | ReactNode
     | ((props: {
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
         footer: MRT_Header<TData>;
         table: MRT_TableInstance<TData>;
       }) => ReactNode);
   GroupedCell?: (props: {
-    cell: MRT_Cell<TData>;
-    column: MRT_Column<TData>;
+    cell: MRT_Cell<TData, TValue>;
+    column: MRT_Column<TData, TValue>;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   Header?:
     | ReactNode
     | ((props: {
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
         header: MRT_Header<TData>;
         table: MRT_TableInstance<TData>;
       }) => ReactNode);
   PlaceholderCell?: (props: {
-    cell: MRT_Cell<TData>;
-    column: MRT_Column<TData>;
+    cell: MRT_Cell<TData, TValue>;
+    column: MRT_Column<TData, TValue>;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
@@ -464,55 +501,55 @@ export type MRT_ColumnDef<TData extends MRT_RowData> = Omit<
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
   mantineColumnDragHandleProps?:
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
   mantineCopyButtonProps?:
     | (HTMLPropsRef<HTMLButtonElement> & Partial<UnstyledButtonProps>)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, TValue>;
+        column: MRT_Column<TData, TValue>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<UnstyledButtonProps>);
   mantineEditSelectProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, TValue>;
+        column: MRT_Column<TData, TValue>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>);
   mantineEditTextInputProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, TValue>;
+        column: MRT_Column<TData, TValue>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
   mantineFilterAutocompleteProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>)
     | ((props: {
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
         table: MRT_TableInstance<TData>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>);
   mantineFilterCheckboxProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | ((props: {
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
   mantineFilterDateInputProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<DateInputProps>)
     | ((props: {
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
         rangeFilterIndex?: number;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<DateInputProps>);
@@ -520,35 +557,35 @@ export type MRT_ColumnDef<TData extends MRT_RowData> = Omit<
     | (HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>);
   mantineFilterRangeSliderProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<RangeSliderProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<RangeSliderProps>);
   mantineFilterSelectProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>);
   mantineFilterTextInputProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
   mantineTableBodyCellProps?:
     | (HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, TValue>;
+        column: MRT_Column<TData, TValue>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment);
@@ -556,55 +593,64 @@ export type MRT_ColumnDef<TData extends MRT_RowData> = Omit<
     | (HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
       }) => HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment);
   mantineTableHeadCellProps?:
     | (HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, TValue>;
       }) => HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment);
   renderColumnActionsMenuItems?: (props: {
-    column: MRT_Column<TData>;
+    column: MRT_Column<TData, TValue>;
     table: MRT_TableInstance<TData>;
     internalColumnMenuItems: ReactNode;
   }) => ReactNode;
   renderColumnFilterModeMenuItems?: (props: {
-    column: MRT_Column<TData>;
+    column: MRT_Column<TData, TValue>;
     internalFilterOptions: MRT_InternalFilterOption[];
     onSelectFilterMode: (filterMode: MRT_FilterOption) => void;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   sortingFn?: MRT_SortingFn<TData>;
+  visibleInShowHideMenu?: boolean;
 };
 
-export type MRT_DefinedColumnDef<TData extends MRT_RowData> = Omit<
-  MRT_ColumnDef<TData>,
-  'id' | 'defaultDisplayColumn'
-> & {
-  defaultDisplayColumn: Partial<MRT_ColumnDef<TData>>;
-  id: string;
-  cell: ColumnDef<TData, unknown>['cell'];
-  header: ColumnDef<TData, unknown>['header'];
+export type MRT_DisplayColumnDef<
+  TData extends MRT_RowData,
+  TValue = unknown,
+> = Omit<MRT_ColumnDef<TData, TValue>, 'accessorFn' | 'accessorKey'>;
+
+export type MRT_GroupColumnDef<TData extends MRT_RowData> =
+  MRT_DisplayColumnDef<TData, any> & {
+    columns: MRT_ColumnDef<TData>[];
+  };
+
+export type MRT_DefinedColumnDef<
+  TData extends MRT_RowData,
+  TValue = unknown,
+> = Omit<MRT_ColumnDef<TData, TValue>, 'defaultDisplayColumn' | 'id'> & {
   _filterFn: MRT_FilterOption;
+  defaultDisplayColumn: Partial<MRT_ColumnDef<TData, TValue>>;
+  id: string;
 };
 
-export type MRT_Column<TData extends MRT_RowData> = Omit<
+export type MRT_Column<TData extends MRT_RowData, TValue = unknown> = Omit<
   Column<TData, unknown>,
   'header' | 'footer' | 'columns' | 'columnDef' | 'filterFn'
 > & {
-  columnDef: MRT_DefinedColumnDef<TData>;
+  columnDef: MRT_DefinedColumnDef<TData, TValue>;
   columns?: MRT_Column<TData>[];
   filterFn?: MRT_FilterFn<TData>;
   footer: string;
   header: string;
 };
 
-export type MRT_Header<TData extends MRT_RowData> = Omit<
+export type MRT_Header<TData extends MRT_RowData, TValue = unknown> = Omit<
   Header<TData, unknown>,
   'column'
 > & {
-  column: MRT_Column<TData>;
+  column: MRT_Column<TData, TValue>;
 };
 
 export type MRT_HeaderGroup<TData extends MRT_RowData> = Omit<
@@ -624,11 +670,11 @@ export type MRT_Row<TData extends MRT_RowData> = Omit<
   _valuesCache: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
 };
 
-export type MRT_Cell<TData extends MRT_RowData> = Omit<
-  Cell<TData, unknown>,
+export type MRT_Cell<TData extends MRT_RowData, TValue = unknown> = Omit<
+  Cell<TData, TValue>,
   'column' | 'row'
 > & {
-  column: MRT_Column<TData>;
+  column: MRT_Column<TData, TValue>;
   row: MRT_Row<TData>;
 };
 
@@ -802,19 +848,19 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
   mantineColumnDragHandleProps?:
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
   mantineCopyButtonProps?:
     | (HTMLPropsRef<HTMLButtonElement> & Partial<UnstyledButtonProps>)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, unknown>;
+        column: MRT_Column<TData, unknown>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<UnstyledButtonProps>);
@@ -839,16 +885,16 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineEditSelectProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, unknown>;
+        column: MRT_Column<TData, unknown>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>);
   mantineEditTextInputProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, unknown>;
+        column: MRT_Column<TData, unknown>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
@@ -866,20 +912,20 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineFilterAutocompleteProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>)
     | ((props: {
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
         table: MRT_TableInstance<TData>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<AutocompleteProps>);
   mantineFilterCheckboxProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<CheckboxProps>)
     | ((props: {
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<CheckboxProps>);
   mantineFilterDateInputProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<DateInputProps>)
     | ((props: {
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
         rangeFilterIndex?: number;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<DateInputProps>);
@@ -887,35 +933,35 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | (HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<MultiSelectProps>);
   mantineFilterRangeSliderProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<RangeSliderProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<RangeSliderProps>);
   mantineFilterSelectProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<SelectProps>);
   mantineFilterTextInputProps?:
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
         rangeFilterIndex?: number;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
   mantineHighlightProps?:
     | (HTMLPropsRef<HTMLSpanElement> & Partial<HighlightProps>)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, unknown>;
+        column: MRT_Column<TData, unknown>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLSpanElement> & Partial<HighlightProps>);
@@ -969,16 +1015,16 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineSkeletonProps?:
     | (HTMLPropsRef<HTMLDivElement> & SkeletonProps)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, unknown>;
+        column: MRT_Column<TData, unknown>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLDivElement> & SkeletonProps);
   mantineTableBodyCellProps?:
     | (HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment)
     | ((props: {
-        cell: MRT_Cell<TData>;
-        column: MRT_Column<TData>;
+        cell: MRT_Cell<TData, unknown>;
+        column: MRT_Column<TData, unknown>;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment);
@@ -1004,7 +1050,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | (HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
       }) => HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment);
   mantineTableFooterProps?:
     | (HTMLPropsRef<HTMLTableSectionElement> & BoxProps)
@@ -1021,7 +1067,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | (HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment)
     | ((props: {
         table: MRT_TableInstance<TData>;
-        column: MRT_Column<TData>;
+        column: MRT_Column<TData, unknown>;
       }) => HTMLPropsRef<HTMLTableCellElement> & BoxProps & ColumnAlignment);
   mantineTableHeadProps?:
     | (HTMLPropsRef<HTMLTableSectionElement> & BoxProps)
@@ -1114,12 +1160,12 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderColumnActionsMenuItems?: (props: {
-    column: MRT_Column<TData>;
+    column: MRT_Column<TData, unknown>;
     table: MRT_TableInstance<TData>;
     internalColumnMenuItems: ReactNode;
   }) => ReactNode;
   renderColumnFilterModeMenuItems?: (props: {
-    column: MRT_Column<TData>;
+    column: MRT_Column<TData, unknown>;
     internalFilterOptions: MRT_InternalFilterOption[];
     onSelectFilterMode: (filterMode: MRT_FilterOption) => void;
     table: MRT_TableInstance<TData>;
@@ -1146,7 +1192,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderRowActions?: (props: {
-    cell: MRT_Cell<TData>;
+    cell: MRT_Cell<TData, unknown>;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;

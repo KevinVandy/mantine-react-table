@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   MantineReactTable,
+  type MRT_RowVirtualizer,
   type MRT_ColumnDef,
   type MRT_SortingState,
-  type MRT_Virtualizer,
 } from 'mantine-react-table';
 import { makeData, type Person } from './makeData';
 
@@ -87,8 +87,7 @@ const Example = () => {
   );
 
   //optionally access the underlying virtualizer instance
-  const rowVirtualizerInstanceRef =
-    useRef<MRT_Virtualizer<HTMLDivElement, HTMLTableRowElement>>(null);
+  const rowVirtualizerInstanceRef = useRef<MRT_RowVirtualizer>(null);
 
   const [data, setData] = useState<Person[]>([]);
   const [isLoading, setIsLoading] = useState(true);

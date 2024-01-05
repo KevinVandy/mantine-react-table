@@ -6,7 +6,7 @@ import {
   type MRT_Header,
   type MRT_HeaderGroup,
   type MRT_TableInstance,
-  type MRT_VirtualItem,
+  type MRT_ColumnVirtualizer,
 } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
@@ -15,23 +15,22 @@ import classes from './MRT_TableHeadRow.module.css';
 interface Props<TData extends MRT_RowData> {
   headerGroup: MRT_HeaderGroup<TData>;
   table: MRT_TableInstance<TData>;
-  virtualColumns?: MRT_VirtualItem[];
-  virtualPaddingLeft?: number;
-  virtualPaddingRight?: number;
+  columnVirtualizer?: MRT_ColumnVirtualizer;
 }
 
 export const MRT_TableHeadRow = <TData extends MRT_RowData>({
   headerGroup,
   table,
-  virtualColumns,
-  virtualPaddingLeft,
-  virtualPaddingRight,
+  columnVirtualizer,
 }: Props<TData>) => {
   const {
     getState,
     options: { enableStickyHeader, layoutMode, mantineTableHeadRowProps },
   } = table;
   const { isFullScreen } = getState();
+
+  const { virtualColumns, virtualPaddingLeft, virtualPaddingRight } =
+    columnVirtualizer ?? {};
 
   const tableRowProps = parseFromValuesOrFunc(mantineTableHeadRowProps, {
     headerGroup,

@@ -20,14 +20,15 @@ import {
   type MRT_RowData,
   type MRT_Column,
   type MRT_TableInstance,
+  type MRT_CellValue,
 } from '../types';
 import { dataVariable } from '../dataVariable';
 
 import classes from './MRT_ShowHideColumnsMenuItems.module.css';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   allColumns: MRT_Column<TData>[];
-  column: MRT_Column<TData>;
+  column: MRT_Column<TData, TValue>;
   hoveredColumn: MRT_Column<TData> | null;
   setHoveredColumn: Dispatch<SetStateAction<MRT_Column<TData> | null>>;
   table: MRT_TableInstance<TData>;

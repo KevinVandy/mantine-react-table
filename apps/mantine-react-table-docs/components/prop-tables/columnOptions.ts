@@ -258,7 +258,7 @@ export const columnOptions: ColumnOption[] = [
     type: 'boolean',
   },
   {
-    columnOption: 'enableColumnPinning',
+    columnOption: 'enablePinning',
     defaultValue: '',
     description: '',
     link: '',

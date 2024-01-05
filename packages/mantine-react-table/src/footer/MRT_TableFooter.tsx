@@ -2,9 +2,9 @@ import { TableTfoot } from '@mantine/core';
 import clsx from 'clsx';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
 import {
+  type MRT_ColumnVirtualizer,
   type MRT_RowData,
   type MRT_TableInstance,
-  type MRT_VirtualItem,
 } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
@@ -12,16 +12,12 @@ import classes from './MRT_TableFooter.module.css';
 
 interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
-  virtualColumns?: MRT_VirtualItem[];
-  virtualPaddingLeft?: number;
-  virtualPaddingRight?: number;
+  columnVirtualizer?: MRT_ColumnVirtualizer;
 }
 
 export const MRT_TableFooter = <TData extends MRT_RowData>({
   table,
-  virtualColumns,
-  virtualPaddingLeft,
-  virtualPaddingRight,
+  columnVirtualizer,
 }: Props<TData>) => {
   const {
     getFooterGroups,
@@ -40,7 +36,6 @@ export const MRT_TableFooter = <TData extends MRT_RowData>({
 
   return (
     <TableTfoot
-      {...tableFooterProps}
       {...tableFooterProps}
       ref={(ref: HTMLTableSectionElement) => {
         tableFooterRef.current = ref;
@@ -61,9 +56,7 @@ export const MRT_TableFooter = <TData extends MRT_RowData>({
           footerGroup={footerGroup as any}
           key={footerGroup.id}
           table={table}
-          virtualColumns={virtualColumns}
-          virtualPaddingLeft={virtualPaddingLeft}
-          virtualPaddingRight={virtualPaddingRight}
+          columnVirtualizer={columnVirtualizer}
         />
       ))}
     </TableTfoot>

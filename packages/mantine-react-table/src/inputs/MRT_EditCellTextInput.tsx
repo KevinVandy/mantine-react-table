@@ -4,11 +4,12 @@ import {
   type MRT_RowData,
   type MRT_Cell,
   type MRT_TableInstance,
+  type MRT_CellValue,
 } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
-interface Props<TData extends MRT_RowData> {
-  cell: MRT_Cell<TData>;
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
+  cell: MRT_Cell<TData, TValue>;
   table: MRT_TableInstance<TData>;
 }
 

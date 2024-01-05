@@ -3,9 +3,9 @@ import { TableThead, TableTr, TableTh } from '@mantine/core';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import { MRT_ToolbarAlertBanner } from '../toolbar';
 import {
+  type MRT_ColumnVirtualizer,
   type MRT_RowData,
   type MRT_TableInstance,
-  type MRT_VirtualItem,
 } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
@@ -13,16 +13,12 @@ import classes from './MRT_TableHead.module.css';
 
 interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
-  virtualColumns?: MRT_VirtualItem[];
-  virtualPaddingLeft?: number;
-  virtualPaddingRight?: number;
+  columnVirtualizer?: MRT_ColumnVirtualizer;
 }
 
 export const MRT_TableHead = <TData extends MRT_RowData>({
   table,
-  virtualColumns,
-  virtualPaddingLeft,
-  virtualPaddingRight,
+  columnVirtualizer,
 }: Props<TData>) => {
   const {
     getHeaderGroups,
@@ -90,9 +86,7 @@ export const MRT_TableHead = <TData extends MRT_RowData>({
             headerGroup={headerGroup as any}
             key={headerGroup.id}
             table={table}
-            virtualColumns={virtualColumns}
-            virtualPaddingLeft={virtualPaddingLeft}
-            virtualPaddingRight={virtualPaddingRight}
+            columnVirtualizer={columnVirtualizer}
           />
         ))
       )}

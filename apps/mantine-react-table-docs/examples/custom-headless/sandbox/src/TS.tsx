@@ -5,6 +5,7 @@ import {
   MRT_ToolbarAlertBanner,
   type MRT_ColumnDef,
   useMantineReactTable,
+  MRT_TableBodyCellValue,
 } from 'mantine-react-table';
 import { Divider, Flex, Stack, Table, Title } from '@mantine/core';
 import { type Person, data } from './makeData';
@@ -96,10 +97,7 @@ const Example = () => {
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>
-                  {flexRender(
-                    cell.column.columnDef.Cell ?? cell.column.columnDef.cell,
-                    cell.getContext(),
-                  )}
+                  <MRT_TableBodyCellValue cell={cell} table={table} />
                 </td>
               ))}
             </tr>

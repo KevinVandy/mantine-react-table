@@ -5,6 +5,7 @@ import {
   type Renderable,
   type Row,
 } from '@tanstack/react-table';
+import { defaultRangeExtractor, type Range } from '@tanstack/react-virtual';
 import { type MRT_AggregationFns } from './aggregationFns';
 import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
@@ -22,6 +23,9 @@ import {
   type MRT_Row,
   type MRT_TableInstance,
   type MRT_TableOptions,
+  type MRT_ColumnHelper,
+  type MRT_DisplayColumnDef,
+  type MRT_GroupColumnDef,
 } from './types';
 
 export const getColumnId = <TData extends MRT_RowData>(
@@ -128,12 +132,13 @@ export const reorderColumn = <TData extends MRT_RowData>(
   if (draggedColumn.getCanPin()) {
     draggedColumn.pin(targetColumn.getIsPinned());
   }
-  columnOrder.splice(
-    columnOrder.indexOf(targetColumn.id),
+  const newColumnOrder = [...columnOrder];
+  newColumnOrder.splice(
+    newColumnOrder.indexOf(targetColumn.id),
     0,
-    columnOrder.splice(columnOrder.indexOf(draggedColumn.id), 1)[0],
+    newColumnOrder.splice(newColumnOrder.indexOf(draggedColumn.id), 1)[0],
   );
-  return [...columnOrder];
+  return newColumnOrder;
 };
 
 export const showExpandColumn = <TData extends MRT_RowData>(
@@ -258,17 +263,17 @@ export const getTotalRight = <TData extends MRT_RowData>(
 export const getCanRankRows = <TData extends MRT_RowData>(
   table: MRT_TableInstance<TData>,
 ) => {
-  const { options, getState } = table;
+  const { getState, options } = table;
   const {
+    enableGlobalFilterRankedResults,
     manualExpanding,
     manualFiltering,
     manualGrouping,
     manualSorting,
-    enableGlobalFilterRankedResults,
   } = options;
-  const { globalFilterFn, expanded } = getState();
+  const { expanded, globalFilterFn } = getState();
 
-  return !!(
+  return (
     !manualExpanding &&
     !manualFiltering &&
     !manualGrouping &&
@@ -345,3 +350,58 @@ export const createRow = <TData extends MRT_RowData>(
     -1,
     0,
   ) as MRT_Row<TData>;
+
+export const extraIndexRangeExtractor = (
+  range: Range,
+  draggingIndex?: number,
+) => {
+  const newIndexes = defaultRangeExtractor(range);
+  if (draggingIndex === undefined) return newIndexes;
+  if (
+    draggingIndex >= 0 &&
+    draggingIndex < Math.max(range.startIndex - range.overscan, 0)
+  ) {
+    newIndexes.unshift(draggingIndex);
+  }
+  if (draggingIndex >= 0 && draggingIndex > range.endIndex + range.overscan) {
+    newIndexes.push(draggingIndex);
+  }
+  return newIndexes;
+};
+
+export function createMRTColumnHelper<
+  TData extends MRT_RowData,
+>(): MRT_ColumnHelper<TData> {
+  return {
+    accessor: (accessor, column) => {
+      return typeof accessor === 'function'
+        ? ({
+            ...column,
+            accessorFn: accessor,
+          } as any)
+        : {
+            ...column,
+            accessorKey: accessor,
+          };
+    },
+    display: (column) => column as MRT_DisplayColumnDef<TData>,
+    group: (column) => column as MRT_GroupColumnDef<TData>,
+  };
+}
+
+export const getValueAndLabel = (
+  option: { label?: string; text?: string; value: string } | string,
+): { label: string; value: string } => {
+  let label: string = '';
+  let value: string = '';
+  if (option) {
+    if (typeof option !== 'object') {
+      label = option;
+      value = option;
+    } else {
+      label = option.label ?? option.text ?? option.value;
+      value = option.value ?? label;
+    }
+  }
+  return { label, value };
+};

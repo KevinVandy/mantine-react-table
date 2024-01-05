@@ -5,13 +5,14 @@ import {
   type MRT_RowData,
   type MRT_Cell,
   type MRT_TableInstance,
+  type MRT_CellValue,
 } from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_CopyButton.module.css';
 
-interface Props<TData extends MRT_RowData> {
-  cell: MRT_Cell<TData>;
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
+  cell: MRT_Cell<TData, TValue>;
   children: ReactNode;
   table: MRT_TableInstance<TData>;
 }
