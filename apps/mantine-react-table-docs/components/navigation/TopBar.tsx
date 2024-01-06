@@ -11,6 +11,7 @@ import {
   Flex,
   Burger,
   useMantineTheme,
+  Select,
 } from '@mantine/core';
 import { IconBrandGithub, IconBrandDiscord } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
@@ -119,6 +120,19 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
               {!isMobile && 'Mantine React Table'}
             </Text>
           </Link>
+          <Select
+            data={[
+              { value: 'www.mantine-react-table.com', label: 'V1' },
+              { value: 'v2.mantine-react-table.com', label: 'V2' },
+            ]}
+            onChange={(value) =>
+              (location.href = `https://${value}/${pathname}`)
+            }
+            onClick={() => plausible('version-select')}
+            value="www.mantine-react-table.com"
+            size="xs"
+            maw="60px"
+          />
         </Flex>
         <Box
           onClick={() => plausible('open-search')}
