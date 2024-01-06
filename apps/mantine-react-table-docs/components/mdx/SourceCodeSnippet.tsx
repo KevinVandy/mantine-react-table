@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Box, Flex, Button, Select, Tooltip } from '@mantine/core';
+import {
+  Box,
+  Flex,
+  Button,
+  Select,
+  Tooltip,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
 import {
   IconBrandTypescript,
@@ -57,13 +64,14 @@ export const SourceCodeSnippet = ({
   showTopRow = true,
 }: Props) => {
   const plausible = usePlausible();
+  const { setColorScheme, colorScheme } = useMantineColorScheme();
   const {
     primaryColor,
     setPrimaryColor,
-    isLightTheme,
-    setIsLightTheme,
     primaryShade,
     setPrimaryShade,
+    darkDark,
+    setDarkDark,
   } = useThemeContext();
   const [defaultTS, setDefaultTS] = useState(true);
 
@@ -173,10 +181,28 @@ export const SourceCodeSnippet = ({
                   <Tooltip label="Select Theme Color Scheme">
                     <Select
                       aria-label="Select light/dark theme"
-                      data={['light', 'dark']}
-                      value={isLightTheme ? 'light' : 'dark'}
+                      data={[
+                        {
+                          label: 'Light',
+                          value: 'light',
+                        },
+                        {
+                          label: 'Dark 1',
+                          value: 'dark',
+                        },
+                        {
+                          label: 'Dark 2',
+                          value: 'darkDark',
+                        },
+                      ]}
+                      value={darkDark ? 'darkDark' : colorScheme}
                       onChange={(value) => {
-                        setIsLightTheme(value === 'light');
+                        setColorScheme(
+                          value?.startsWith('dark') ? 'dark' : 'light',
+                        );
+                        value === 'darkDark'
+                          ? setDarkDark(true)
+                          : setDarkDark(false);
                         plausible(`toggle-theme-${value}-mode`);
                       }}
                       className={classes.colorSchemeSelect}
