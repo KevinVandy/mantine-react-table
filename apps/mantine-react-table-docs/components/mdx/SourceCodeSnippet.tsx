@@ -187,11 +187,11 @@ export const SourceCodeSnippet = ({
                           value: 'light',
                         },
                         {
-                          label: 'Dark 1',
+                          label: 'Dark V7',
                           value: 'dark',
                         },
                         {
-                          label: 'Dark 2',
+                          label: 'Dark V6',
                           value: 'darkDark',
                         },
                       ]}
