@@ -33,19 +33,19 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(@fortawesome/fontawesome-svg-core@6.5.1)(react@18.2.0)
       '@mantine/code-highlight':
-        specifier: ^7.4.0
+        specifier: ^7.3.2
         version: 7.4.0(@mantine/core@7.4.0)(@mantine/hooks@7.4.0)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/core':
-        specifier: ^7.4.0
+        specifier: ^7.3.2
         version: 7.4.0(@mantine/hooks@7.4.0)(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/dates':
-        specifier: ^7.4.0
+        specifier: ^7.3.2
         version: 7.4.0(@mantine/core@7.4.0)(@mantine/hooks@7.4.0)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks':
-        specifier: ^7.4.0
+        specifier: ^7.3.2
         version: 7.4.0(react@18.2.0)
       '@mantine/modals':
-        specifier: ^7.4.0
+        specifier: ^7.3.2
         version: 7.4.0(@mantine/core@7.4.0)(@mantine/hooks@7.4.0)(react-dom@18.2.0)(react@18.2.0)
       '@mdx-js/loader':
         specifier: ^3.0.0
@@ -161,13 +161,13 @@ importers:
         specifier: ^8.3.1
         version: 8.3.1
       '@mantine/core':
-        specifier: ^7.4.0
+        specifier: ^7.3.2
         version: 7.4.0(@mantine/hooks@7.4.0)(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/dates':
-        specifier: ^7.4.0
+        specifier: ^7.3.2
         version: 7.4.0(@mantine/core@7.4.0)(@mantine/hooks@7.4.0)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks':
-        specifier: ^7.4.0
+        specifier: ^7.3.2
         version: 7.4.0(react@18.2.0)
       '@rollup/plugin-babel':
         specifier: ^6.0.4
