@@ -1,5 +1,10 @@
-import { type ReactNode, useMemo, type CSSProperties } from 'react';
-import { Box, Flex } from '@mantine/core';
+import {
+  type ReactNode,
+  useMemo,
+  type CSSProperties,
+  type DragEventHandler,
+} from 'react';
+import { Flex, TableTh } from '@mantine/core';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
@@ -94,6 +99,17 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
     return pl;
   }, [showColumnActions, showDragHandle]);
 
+  const handleDragEnter: DragEventHandler<HTMLTableCellElement> = (_e) => {
+    if (enableGrouping && hoveredColumn?.id === 'drop-zone') {
+      setHoveredColumn(null);
+    }
+    if (enableColumnOrdering && draggingColumn && columnDefType !== 'group') {
+      setHoveredColumn(
+        columnDef.enableColumnOrdering !== false ? column : null,
+      );
+    }
+  };
+
   const headerElement =
     columnDef?.Header instanceof Function
       ? columnDef?.Header?.({
@@ -104,25 +120,11 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
       : columnDef?.Header ?? (columnDef.header as ReactNode);
 
   return (
-    <Box
+    <TableTh
       {...tableCellProps}
-      component="th"
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={header.colSpan}
-      onDragEnter={() => {
-        if (enableGrouping && hoveredColumn?.id === 'drop-zone') {
-          setHoveredColumn(null);
-        }
-        if (
-          enableColumnOrdering &&
-          draggingColumn &&
-          columnDefType !== 'group'
-        ) {
-          setHoveredColumn(
-            columnDef.enableColumnOrdering !== false ? column : null,
-          );
-        }
-      }}
+      onDragEnter={handleDragEnter}
       ref={(node: HTMLTableCellElement) => {
         if (node) {
           tableHeadCellRefs.current[column.id] = node;
@@ -248,6 +250,6 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
       {columnFilterDisplayMode === 'subheader' && column.getCanFilter() && (
         <MRT_TableHeadCellFilterContainer header={header} table={table} />
       )}
-    </Box>
+    </TableTh>
   );
 };

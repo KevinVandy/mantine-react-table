@@ -30,7 +30,7 @@ export const ThemeContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('isLightTheme', darkDark.toString());
+      localStorage.setItem('darkDark', darkDark.toString());
     }
   }, [darkDark]);
 
