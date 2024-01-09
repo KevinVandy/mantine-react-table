@@ -1,17 +1,16 @@
+import classes from './MRT_TableHeadCellFilterContainer.module.css';
 import { ActionIcon, Collapse, Flex, Menu, Text, Tooltip } from '@mantine/core';
-import { MRT_FilterRangeFields } from '../inputs/MRT_FilterRangeFields';
-import { MRT_FilterTextInput } from '../inputs/MRT_FilterTextInput';
+import { localizedFilterOption } from '../filterFns';
 import { MRT_FilterCheckbox } from '../inputs/MRT_FilterCheckbox';
+import { MRT_FilterRangeFields } from '../inputs/MRT_FilterRangeFields';
+import { MRT_FilterRangeSlider } from '../inputs/MRT_FilterRangeSlider';
+import { MRT_FilterTextInput } from '../inputs/MRT_FilterTextInput';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import {
-  type MRT_RowData,
   type MRT_Header,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-import { MRT_FilterRangeSlider } from '../inputs/MRT_FilterRangeSlider';
-import { localizedFilterOption } from '../filterFns';
-
-import classes from './MRT_TableHeadCellFilterContainer.module.css';
 
 interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
@@ -26,8 +25,8 @@ export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
     getState,
     options: {
       columnFilterDisplayMode,
-      enableColumnFilterModes,
       columnFilterModeOptions,
+      enableColumnFilterModes,
       icons: { IconFilterCog },
       localization,
     },
@@ -54,7 +53,7 @@ export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
             <MRT_FilterCheckbox column={column} table={table} />
           ) : columnDef.filterVariant === 'range-slider' ? (
             <MRT_FilterRangeSlider header={header} table={table} />
-          ) : ['range', 'date-range'].includes(columnDef.filterVariant ?? '') ||
+          ) : ['date-range', 'range'].includes(columnDef.filterVariant ?? '') ||
             ['between', 'betweenInclusive', 'inNumberRange'].includes(
               columnDef._filterFn,
             ) ? (
@@ -71,10 +70,10 @@ export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
               >
                 <Menu.Target>
                   <ActionIcon
-                    color="gray"
-                    variant="subtle"
                     aria-label={localization.changeFilterMode}
+                    color="gray"
                     size="md"
+                    variant="subtle"
                   >
                     <IconFilterCog />
                   </ActionIcon>
@@ -82,22 +81,22 @@ export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
               </Tooltip>
               <MRT_FilterOptionMenu
                 header={header}
-                table={table}
                 onSelect={() =>
                   setTimeout(
                     () => filterInputRefs.current[`${column.id}-0`]?.focus(),
                     100,
                   )
                 }
+                table={table}
               />
             </Menu>
           )}
         </Flex>
         {showChangeModeButton ? (
           <Text
-            component="label"
-            className={classes['filter-mode-label']}
             c="dimmed"
+            className={classes['filter-mode-label']}
+            component="label"
           >
             {localization.filterMode.replace(
               '{filterType}',

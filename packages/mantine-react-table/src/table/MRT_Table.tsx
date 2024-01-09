@@ -1,14 +1,13 @@
-import { Table } from '@mantine/core';
-import { MRT_TableHead } from '../head/MRT_TableHead';
-import { useMemo } from 'react';
-import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
-import { MRT_TableFooter } from '../footer/MRT_TableFooter';
-import { parseCSSVarId, parseFromValuesOrFunc } from '../column.utils';
-import { type MRT_RowData, type MRT_TableInstance } from '../types';
-import { useMRT_ColumnVirtualizer } from '../hooks/useMRT_ColumnVirtualizer';
-
-import classes from './MRT_Table.module.css';
 import clsx from 'clsx';
+import classes from './MRT_Table.module.css';
+import { useMemo } from 'react';
+import { Table } from '@mantine/core';
+import { MRT_TableBody, Memo_MRT_TableBody } from '../body/MRT_TableBody';
+import { parseCSSVarId, parseFromValuesOrFunc } from '../column.utils';
+import { MRT_TableFooter } from '../footer/MRT_TableFooter';
+import { MRT_TableHead } from '../head/MRT_TableHead';
+import { useMRT_ColumnVirtualizer } from '../hooks/useMRT_ColumnVirtualizer';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;

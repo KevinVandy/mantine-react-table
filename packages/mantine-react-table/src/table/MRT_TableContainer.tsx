@@ -1,11 +1,11 @@
+import clsx from 'clsx';
+import classes from './MRT_TableContainer.module.css';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { Box, LoadingOverlay } from '@mantine/core';
 import { MRT_Table } from './MRT_Table';
+import { parseFromValuesOrFunc } from '../column.utils';
 import { MRT_EditRowModal } from '../modals';
 import { type MRT_RowData, type MRT_TableInstance } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-import clsx from 'clsx';
-import classes from './MRT_TableContainer.module.css';
 
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
@@ -26,14 +26,14 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
       mantineLoadingOverlayProps,
       mantineTableContainerProps,
     },
-    refs: { tableContainerRef, bottomToolbarRef, topToolbarRef },
+    refs: { bottomToolbarRef, tableContainerRef, topToolbarRef },
   } = table;
   const {
+    creatingRow,
+    editingRow,
     isFullScreen,
     isLoading,
     showLoadingOverlay,
-    creatingRow,
-    editingRow,
   } = getState();
 
   const [totalToolbarHeight, setTotalToolbarHeight] = useState(0);
@@ -67,6 +67,10 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
   return (
     <Box
       {...tableContainerProps}
+      __vars={{
+        '--mrt-top-toolbar-height': `${totalToolbarHeight}`,
+        ...tableContainerProps?.__vars,
+      }}
       className={clsx(
         'mrt-table-container',
         classes.root,
@@ -82,10 +86,6 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
             tableContainerProps.ref.current = node;
           }
         }
-      }}
-      __vars={{
-        '--mrt-top-toolbar-height': `${totalToolbarHeight}`,
-        ...tableContainerProps?.__vars,
       }}
     >
       <LoadingOverlay

@@ -1,19 +1,19 @@
 import { type ChangeEvent, type MouseEvent } from 'react';
 import {
   Checkbox,
-  Radio,
-  Switch,
-  Tooltip,
   type CheckboxProps,
+  Radio,
   type RadioProps,
+  Switch,
   type SwitchProps,
+  Tooltip,
 } from '@mantine/core';
+import { parseFromValuesOrFunc } from '../column.utils';
 import {
-  type MRT_RowData,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends MRT_RowData> {
   row?: MRT_Row<TData>;
@@ -25,20 +25,20 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
   row,
   selectAll,
-  table,
   staticRowIndex,
+  table,
 }: Props<TData>) => {
   const {
     getState,
     options: {
       enableMultiRowSelection,
+      enableRowPinning,
       localization,
       mantineSelectAllCheckboxProps,
       mantineSelectCheckboxProps,
+      rowPinningDisplayMode,
       selectAllMode,
       selectDisplayMode,
-      rowPinningDisplayMode,
-      enableRowPinning,
     },
   } = table;
   const { density, isLoading } = getState();
@@ -47,8 +47,8 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
     ? parseFromValuesOrFunc(mantineSelectAllCheckboxProps, { table })
     : parseFromValuesOrFunc(mantineSelectCheckboxProps, {
         row,
-        table,
         staticRowIndex,
+        table,
       });
 
   const isStickySelection =
@@ -112,14 +112,14 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
 
   return (
     <Tooltip
-      withinPortal
-      openDelay={1000}
       label={
         checkboxProps?.title ??
         (selectAll
           ? localization.toggleSelectAll
           : localization.toggleSelectRow)
       }
+      openDelay={1000}
+      withinPortal
     >
       <span>
         {selectDisplayMode === 'switch' ? (

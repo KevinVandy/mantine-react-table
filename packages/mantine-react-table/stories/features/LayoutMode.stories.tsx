@@ -1,6 +1,6 @@
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Features/Layout Mode Examples',
@@ -10,42 +10,42 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
   {
-    header: 'Phone Number',
     accessorKey: 'phoneNumber',
+    header: 'Phone Number',
   },
 ];
 
 const data = [...Array(100)].map(() => ({
+  address: faker.location.streetAddress(),
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
-  address: faker.location.streetAddress(),
-  state: faker.location.state(),
   phoneNumber: faker.phone.number(),
+  state: faker.location.state(),
 }));
 
 export const DefaultSemantic = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    layoutMode="semantic"
-    enableRowSelection
     enableColumnOrdering
+    enableRowSelection
+    layoutMode="semantic"
   />
 );
 
@@ -53,9 +53,9 @@ export const Grid = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    layoutMode="grid"
-    enableRowSelection
     enableColumnOrdering
+    enableRowSelection
+    layoutMode="grid"
   />
 );
 
@@ -63,9 +63,9 @@ export const GridWithResizing = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    layoutMode="grid"
-    enableRowSelection
     enableColumnOrdering
     enableColumnResizing
+    enableRowSelection
+    layoutMode="grid"
   />
 );

@@ -1,16 +1,14 @@
 import clsx from 'clsx';
+import classes from './MRT_ShowHideColumnsMenu.module.css';
 import { useMemo, useState } from 'react';
 import { Button, Divider, Flex, Menu } from '@mantine/core';
-
 import { MRT_ShowHideColumnsMenuItems } from './MRT_ShowHideColumnsMenuItems';
 import { getDefaultColumnOrderIds } from '../column.utils';
 import {
-  type MRT_RowData,
   type MRT_Column,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-
-import classes from './MRT_ShowHideColumnsMenu.module.css';
 
 interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
@@ -31,8 +29,8 @@ export const MRT_ShowHideColumnsMenu = <TData extends MRT_RowData>({
     getState,
     options: {
       enableColumnOrdering,
-      enableHiding,
       enableColumnPinning,
+      enableHiding,
       localization,
     },
   } = table;

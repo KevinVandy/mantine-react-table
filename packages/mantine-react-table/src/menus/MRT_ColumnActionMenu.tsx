@@ -1,13 +1,11 @@
+import classes from './MRT_ColumnActionMenu.module.css';
 import { ActionIcon, Menu, Tooltip } from '@mantine/core';
-
+import { parseFromValuesOrFunc } from '../column.utils';
 import {
-  type MRT_RowData,
   type MRT_Header,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
-import classes from './MRT_ColumnActionMenu.module.css';
 
 interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
@@ -20,15 +18,13 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     getState,
-    toggleAllColumnsVisible,
-    setColumnOrder,
     options: {
       columnFilterDisplayMode,
       enableColumnFilters,
+      enableColumnPinning,
       enableColumnResizing,
       enableGrouping,
       enableHiding,
-      enableColumnPinning,
       enableSorting,
       enableSortingRemoval,
       icons: {
@@ -50,8 +46,10 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
       renderColumnActionsMenuItems,
     },
     refs: { filterInputRefs },
+    setColumnOrder,
     setColumnSizingInfo,
     setShowColumnFilters,
+    toggleAllColumnsVisible,
   } = table;
   const { column } = header;
   const { columnDef } = column;
@@ -130,8 +128,8 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
             )}
           </Menu.Item>
           <Menu.Item
-            leftSection={<IconSortDescending />}
             disabled={column.getIsSorted() === 'desc'}
+            leftSection={<IconSortDescending />}
             onClick={handleSortDesc}
           >
             {localization.sortByColumnDesc?.replace(
@@ -209,8 +207,8 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
       {enableColumnResizing && column.getCanResize() && (
         <Menu.Item
           disabled={!columnSizing[column.id]}
-          leftSection={<IconArrowAutofitContent />}
           key={0}
+          leftSection={<IconArrowAutofitContent />}
           onClick={handleResetColumnSize}
         >
           {localization.resetColumnSize}
@@ -220,8 +218,8 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
         <>
           <Menu.Item
             disabled={!column.getCanHide()}
-            leftSection={<IconEyeOff />}
             key={0}
+            leftSection={<IconEyeOff />}
             onClick={handleHideColumn}
           >
             {localization.hideColumn?.replace(
@@ -234,8 +232,8 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
               !Object.values(columnVisibility).filter((visible) => !visible)
                 .length
             }
-            leftSection={<IconColumns />}
             key={1}
+            leftSection={<IconColumns />}
             onClick={handleShowAllColumns}
           >
             {localization.showAllColumns?.replace(
@@ -249,18 +247,18 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
   );
 
   return (
-    <Menu closeOnItemClick withinPortal position="bottom-start">
+    <Menu closeOnItemClick position="bottom-start" withinPortal>
       <Tooltip
-        withinPortal
-        openDelay={1000}
         label={actionIconProps?.title ?? localization.columnActions}
+        openDelay={1000}
+        withinPortal
       >
         <Menu.Target>
           <ActionIcon
             aria-label={localization.columnActions}
             {...actionIconProps}
-            size="sm"
             color="gray"
+            size="sm"
             variant="subtle"
           >
             <IconDotsVertical />
@@ -270,13 +268,13 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
       <Menu.Dropdown>
         {columnDef.renderColumnActionsMenuItems?.({
           column,
-          table,
           internalColumnMenuItems,
+          table,
         }) ??
           renderColumnActionsMenuItems?.({
             column,
-            table,
             internalColumnMenuItems,
+            table,
           }) ??
           internalColumnMenuItems}
       </Menu.Dropdown>

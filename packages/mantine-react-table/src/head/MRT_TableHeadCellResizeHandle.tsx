@@ -1,12 +1,11 @@
 import clsx from 'clsx';
+import classes from './MRT_TableHeadCellResizeHandle.module.css';
 import { Box } from '@mantine/core';
 import {
-  type MRT_RowData,
   type MRT_Header,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-
-import classes from './MRT_TableHeadCellResizeHandle.module.css';
 
 interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
@@ -33,9 +32,12 @@ export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
 
   return (
     <Box
-      role="separator"
-      onMouseDown={handler}
-      onTouchStart={handler}
+      __vars={{ '--mrt-transform': offset }}
+      className={clsx(
+        'mrt-table-head-cell-resize-handle',
+        classes.root,
+        density,
+      )}
       onDoubleClick={() => {
         setColumnSizingInfo((old) => ({
           ...old,
@@ -43,12 +45,9 @@ export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
         }));
         column.resetSize();
       }}
-      className={clsx(
-        'mrt-table-head-cell-resize-handle',
-        classes.root,
-        density,
-      )}
-      __vars={{ '--mrt-transform': offset }}
+      onMouseDown={handler}
+      onTouchStart={handler}
+      role="separator"
     />
   );
 };

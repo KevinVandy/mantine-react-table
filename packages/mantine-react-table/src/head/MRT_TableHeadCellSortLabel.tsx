@@ -1,10 +1,8 @@
 import clsx from 'clsx';
-import { ActionIcon, Indicator, Tooltip } from '@mantine/core';
-
-import type { MRT_Header, MRT_RowData, MRT_TableInstance } from '../types';
-import { dataVariable } from '../dataVariable';
-
 import classes from './MRT_TableHeadCellSortLabel.module.css';
+import { ActionIcon, Indicator, Tooltip } from '@mantine/core';
+import { dataVariable } from '../dataVariable';
+import type { MRT_Header, MRT_RowData, MRT_TableInstance } from '../types';
 
 interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
@@ -16,7 +14,7 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
   table: {
     getState,
     options: {
-      icons: { IconSortDescending, IconSortAscending, IconArrowsSort },
+      icons: { IconArrowsSort, IconSortAscending, IconSortDescending },
       localization,
     },
   },
@@ -36,11 +34,11 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
       : localization.sortByColumnAsc.replace('{column}', columnDef.header);
 
   return (
-    <Tooltip withinPortal openDelay={1000} label={sortTooltip}>
+    <Tooltip label={sortTooltip} openDelay={1000} withinPortal>
       {sorting.length < 2 || sortIndex === -1 ? (
         <ActionIcon
-          className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
           aria-label={sortTooltip}
+          className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
           size={18}
           {...dataVariable('sorted', sorted)}
         >
@@ -59,13 +57,13 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
             classes['multi-sort-indicator'],
           )}
           color="transparent"
+          inline
           label={sortIndex + 1}
           offset={4}
-          inline
         >
           <ActionIcon
-            className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
             aria-label={sortTooltip}
+            className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
             {...dataVariable('sorted', sorted)}
           >
             {sorted === 'desc' ? (

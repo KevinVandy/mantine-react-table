@@ -1,7 +1,7 @@
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
-import { faker } from '@faker-js/faker';
 import { Button, Menu } from '@mantine/core';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
+import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 import { IconSend, IconUserCircle } from '@tabler/icons-react';
 
 const meta: Meta = {
@@ -11,10 +11,10 @@ const meta: Meta = {
 export default meta;
 
 type Person = {
-  firstName: string;
-  lastName: string;
   address: string;
   city: string;
+  firstName: string;
+  lastName: string;
   state: string;
 };
 
@@ -42,10 +42,10 @@ const columns: MRT_ColumnDef<Person>[] = [
 ];
 
 const data = [...Array(6)].map(() => ({
-  firstName: faker.person.firstName(),
-  lastName: faker.person.lastName(),
   address: faker.location.streetAddress(),
   city: faker.location.city(),
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
   state: faker.location.state(),
 }));
 
@@ -54,19 +54,19 @@ export const RowClickAndRowMenuActions = () => {
     <MantineReactTable
       columns={columns}
       data={data}
-      enableRowActions
       enableEditing
+      enableRowActions
+      mantineTableBodyRowProps={{
+        onClick: () => {
+          alert('row click');
+        },
+      }}
       renderRowActionMenuItems={() => (
         <>
           <Menu.Item leftSection={<IconUserCircle />}>View Profile</Menu.Item>
           <Menu.Item leftSection={<IconSend />}>Send Email</Menu.Item>
         </>
       )}
-      mantineTableBodyRowProps={{
-        onClick: () => {
-          alert('row click');
-        },
-      }}
     />
   );
 };
@@ -76,16 +76,16 @@ export const RowClickAndRowButtonctions = () => {
     <MantineReactTable
       columns={columns}
       data={data}
-      enableRowActions
       enableEditing
-      renderRowActions={() => (
-        <Button onClick={(e) => e.stopPropagation()}>Test</Button>
-      )}
+      enableRowActions
       mantineTableBodyRowProps={{
         onClick: () => {
           alert('row click');
         },
       }}
+      renderRowActions={() => (
+        <Button onClick={(e) => e.stopPropagation()}>Test</Button>
+      )}
     />
   );
 };

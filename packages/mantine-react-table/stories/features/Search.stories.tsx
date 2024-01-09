@@ -1,6 +1,6 @@
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Features/Search Examples',
@@ -10,38 +10,38 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Age',
     accessorKey: 'age',
+    header: 'Age',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
   {
-    header: 'Phone Number',
     accessorKey: 'phoneNumber',
+    header: 'Phone Number',
   },
 ];
 
 const data = [...Array(200)].map(() => ({
+  address: faker.location.streetAddress(),
+  age: +faker.number.float({ max: 100, min: 0 }),
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
-  address: faker.location.streetAddress(),
-  state: faker.location.state(),
   phoneNumber: faker.phone.number(),
-  age: +faker.number.float({ min: 0, max: 100 }),
+  state: faker.location.state(),
 }));
 
 export const SearchEnabledDefault = () => (
@@ -85,8 +85,8 @@ export const SearchDisableRankedResults = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    enableRowNumbers
     enableGlobalFilterRankedResults={false}
+    enableRowNumbers
   />
 );
 
@@ -121,8 +121,8 @@ export const JustASearchBox = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    initialState={{ showGlobalFilter: true }}
     enableToolbarInternalActions={false}
+    initialState={{ showGlobalFilter: true }}
   />
 );
 
@@ -136,9 +136,9 @@ export const CustomizeSearchTextBox = () => (
     data={data}
     initialState={{ showGlobalFilter: true }}
     mantineSearchTextInputProps={{
-      variant: 'filled',
-      placeholder: 'Search 100 rows',
       label: 'Search',
+      placeholder: 'Search 100 rows',
+      variant: 'filled',
     }}
   />
 );

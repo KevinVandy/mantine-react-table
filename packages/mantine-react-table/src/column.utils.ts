@@ -5,27 +5,27 @@ import {
   type Renderable,
   type Row,
 } from '@tanstack/react-table';
-import { defaultRangeExtractor, type Range } from '@tanstack/react-virtual';
+import { type Range, defaultRangeExtractor } from '@tanstack/react-virtual';
+import { type MantineTheme } from '@mantine/core';
 import { type MRT_AggregationFns } from './aggregationFns';
 import { type MRT_FilterFns } from './filterFns';
 import { type MRT_SortingFns } from './sortingFns';
-import { type MantineTheme } from '@mantine/core';
 import {
-  type MRT_RowData,
-  type MantineShade,
   type MRT_Column,
   type MRT_ColumnDef,
+  type MRT_ColumnHelper,
   type MRT_ColumnOrderState,
   type MRT_DefinedColumnDef,
+  type MRT_DisplayColumnDef,
   type MRT_DisplayColumnIds,
   type MRT_FilterOption,
+  type MRT_GroupColumnDef,
   type MRT_GroupingState,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
   type MRT_TableOptions,
-  type MRT_ColumnHelper,
-  type MRT_DisplayColumnDef,
-  type MRT_GroupColumnDef,
+  type MantineShade,
 } from './types';
 
 export const getColumnId = <TData extends MRT_RowData>(
@@ -162,7 +162,7 @@ export const getLeadingDisplayColumnIds = <TData extends MRT_RowData>(
     props.positionActionsColumn === 'first' &&
       (props.enableRowActions ||
         (props.enableEditing &&
-          ['row', 'modal', 'custom'].includes(props.editDisplayMode ?? ''))) &&
+          ['custom', 'modal', 'row'].includes(props.editDisplayMode ?? ''))) &&
       'mrt-row-actions',
     props.positionExpandColumn === 'first' &&
       showExpandColumn(props) &&
@@ -206,9 +206,9 @@ export const getDefaultColumnFilterFn = <TData extends MRT_RowData>(
 ): MRT_FilterOption => {
   const { filterVariant } = columnDef;
   if (filterVariant === 'multi-select') return 'arrIncludesSome';
-  if (['range', 'date-range', 'range-slider'].includes(filterVariant || ''))
+  if (['date-range', 'range', 'range-slider'].includes(filterVariant || ''))
     return 'betweenInclusive';
-  if (['select', 'checkbox', 'date'].includes(filterVariant || ''))
+  if (['checkbox', 'date', 'select'].includes(filterVariant || ''))
     return 'equals';
   return 'fuzzy';
 };
@@ -287,8 +287,8 @@ export const getCanRankRows = <TData extends MRT_RowData>(
 
 export const MRT_DefaultColumn = {
   filterVariant: 'text',
-  minSize: 40,
   maxSize: 1000,
+  minSize: 40,
   size: 180,
 } as const;
 
@@ -308,7 +308,7 @@ export const MRT_DefaultDisplayColumn = {
 } as const;
 
 export function parseFromValuesOrFunc<T, U>(
-  fn: T | ((arg: U) => T) | undefined,
+  fn: ((arg: U) => T) | T | undefined,
   arg: U,
 ): T | undefined {
   return fn instanceof Function ? fn(arg) : fn;
@@ -329,7 +329,7 @@ export const getPrimaryColor = (
 export const flexRender = _flexRender as (
   Comp: Renderable<any>,
   props: any,
-) => ReactNode | JSX.Element;
+) => JSX.Element | ReactNode;
 
 export const createRow = <TData extends MRT_RowData>(
   table: MRT_TableInstance<TData>,

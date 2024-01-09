@@ -1,8 +1,8 @@
 import { type MouseEvent } from 'react';
 import { ActionIcon, Menu, Tooltip } from '@mantine/core';
 import {
-  type MRT_RowData,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
 
@@ -21,7 +21,7 @@ export const MRT_RowActionMenu = <TData extends MRT_RowData>({
     options: {
       editDisplayMode,
       enableEditing,
-      icons: { IconEdit, IconDots },
+      icons: { IconDots, IconEdit },
       localization,
       positionActionsColumn,
       renderRowActionMenuItems,
@@ -30,6 +30,7 @@ export const MRT_RowActionMenu = <TData extends MRT_RowData>({
 
   return (
     <Menu
+      closeOnItemClick
       position={
         positionActionsColumn === 'first'
           ? 'bottom-start'
@@ -37,10 +38,9 @@ export const MRT_RowActionMenu = <TData extends MRT_RowData>({
             ? 'bottom-end'
             : undefined
       }
-      closeOnItemClick
       withinPortal
     >
-      <Tooltip withinPortal openDelay={1000} label={localization.rowActions}>
+      <Tooltip label={localization.rowActions} openDelay={1000} withinPortal>
         <Menu.Target>
           <ActionIcon
             aria-label={localization.rowActions}

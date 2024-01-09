@@ -1,14 +1,13 @@
 import clsx from 'clsx';
+import classes from './MRT_ExpandButton.module.css';
 import { type MouseEvent } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
+import { parseFromValuesOrFunc } from '../column.utils';
 import {
-  type MRT_RowData,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
-import classes from './MRT_ExpandButton.module.css';
 
 interface Props<TData extends MRT_RowData> {
   row: MRT_Row<TData>;
@@ -29,8 +28,8 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
   } = table;
 
   const actionIconProps = parseFromValuesOrFunc(mantineExpandButtonProps, {
-    table,
     row,
+    table,
   });
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();
@@ -43,14 +42,14 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
 
   return (
     <Tooltip
-      withinPortal
       disabled={!canExpand && !renderDetailPanel}
-      openDelay={1000}
       label={
         actionIconProps?.title ?? isExpanded
           ? localization.collapse
           : localization.expand
       }
+      openDelay={1000}
+      withinPortal
     >
       <ActionIcon
         aria-label={localization.expand}
@@ -58,12 +57,12 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
         disabled={!canExpand && !renderDetailPanel}
         variant="subtle"
         {...actionIconProps}
-        onClick={handleToggleExpand}
         className={clsx(
           'mrt-expand-button',
           classes.root,
           actionIconProps?.className,
         )}
+        onClick={handleToggleExpand}
         title={undefined}
       >
         {actionIconProps?.children ?? (

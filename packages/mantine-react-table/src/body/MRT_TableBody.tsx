@@ -1,23 +1,23 @@
+import clsx from 'clsx';
+import classes from './MRT_TableBody.module.css';
 import { memo, useMemo } from 'react';
 import { TableTbody, Text } from '@mantine/core';
-import { Memo_MRT_TableBodyRow, MRT_TableBodyRow } from './MRT_TableBodyRow';
+import { MRT_TableBodyRow, Memo_MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { parseFromValuesOrFunc } from '../column.utils';
+import { useMRT_RowVirtualizer } from '../hooks/useMRT_RowVirtualizer';
+import { useMRT_Rows } from '../hooks/useMRT_Rows';
 import {
-  type MRT_RowData,
+  type MRT_ColumnVirtualizer,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
   type MRT_VirtualItem,
-  type MRT_ColumnVirtualizer,
 } from '../types';
-import classes from './MRT_TableBody.module.css';
-import clsx from 'clsx';
-import { useMRT_Rows } from '../hooks/useMRT_Rows';
-import { useMRT_RowVirtualizer } from '../hooks/useMRT_RowVirtualizer';
 
 interface Props<TData extends MRT_RowData> {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   enableHover?: boolean;
-  isStriped?: boolean | 'odd' | 'even';
+  isStriped?: 'even' | 'odd' | boolean;
   table: MRT_TableInstance<TData>;
 }
 
@@ -29,24 +29,24 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     getBottomRows,
-    getTopRows,
     getIsSomeRowsPinned,
     getRowModel,
     getState,
+    getTopRows,
     options: {
       createDisplayMode,
+      enableStickyFooter,
+      enableStickyHeader,
       layoutMode,
       localization,
       mantineTableBodyProps,
       memoMode,
       renderEmptyRowsFallback,
       rowPinningDisplayMode,
-      enableStickyFooter,
-      enableStickyHeader,
     },
-    refs: { tablePaperRef, tableHeadRef, tableFooterRef },
+    refs: { tableFooterRef, tableHeadRef, tablePaperRef },
   } = table;
-  const { creatingRow, columnFilters, globalFilter, rowPinning, isFullScreen } =
+  const { columnFilters, creatingRow, globalFilter, isFullScreen, rowPinning } =
     getState();
 
   const tableBodyProps = parseFromValuesOrFunc(mantineTableBodyProps, {
@@ -124,6 +124,12 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
       )}
       <TableTbody
         {...tableBodyProps}
+        __vars={{
+          '--mrt-table-body-height': rowVirtualizer
+            ? `${rowVirtualizer.getTotalSize()}px`
+            : undefined,
+          ...tableBodyProps?.__vars,
+        }}
         className={clsx(
           classes.root,
           layoutMode?.startsWith('grid') && classes['root-grid'],
@@ -131,12 +137,6 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
           rowVirtualizer && classes['root-virtualized'],
           tableBodyProps?.className,
         )}
-        __vars={{
-          '--mrt-table-body-height': rowVirtualizer
-            ? `${rowVirtualizer.getTotalSize()}px`
-            : undefined,
-          ...tableBodyProps?.__vars,
-        }}
       >
         {!rowVirtualizer && CreatingRow}
         {tableBodyProps?.children ??
@@ -148,19 +148,19 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
               )}
             >
               <td
-                colSpan={table.getVisibleLeafColumns().length}
                 className={clsx(
                   'mrt-table-body-cell',
                   layoutMode?.startsWith('grid') &&
                     classes['empty-row-td-grid'],
                 )}
+                colSpan={table.getVisibleLeafColumns().length}
               >
                 {renderEmptyRowsFallback?.({ table }) ?? (
                   <Text
-                    className={clsx(classes['empty-row-td-content'])}
                     __vars={{
                       '--mrt-paper-width': `${tablePaperRef.current?.clientWidth}`,
                     }}
+                    className={clsx(classes['empty-row-td-content'])}
                   >
                     {globalFilter || columnFilters.length
                       ? localization.noResultsFound

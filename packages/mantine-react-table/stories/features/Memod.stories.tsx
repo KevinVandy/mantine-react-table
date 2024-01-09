@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
-import { faker } from '@faker-js/faker';
 import { Button } from '@mantine/core';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
+import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Features/Memo Mode Examples',
@@ -11,59 +11,59 @@ const meta: Meta = {
 export default meta;
 
 type Person = {
-  firstName: string;
-  lastName: string;
-  gender: string;
-  age: number;
   address: string;
+  age: number;
   city: string;
+  firstName: string;
+  gender: string;
+  lastName: string;
   state: string;
   zipCode: string;
 };
 
 const columns: MRT_ColumnDef<Person>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'gender',
     accessorKey: 'gender',
+    header: 'gender',
   },
   {
-    header: 'Age',
     accessorKey: 'age',
+    header: 'Age',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
   {
-    header: 'City',
     accessorKey: 'city',
+    header: 'City',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
   {
-    header: 'Zip',
     accessorKey: 'zipCode',
+    header: 'Zip',
   },
 ];
 
 const generateData = () =>
   [...Array(55)].map(() => ({
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    gender: faker.person.sex(),
-    age: faker.number.int(80),
     address: faker.location.streetAddress(),
+    age: faker.number.int(80),
     city: faker.location.city(),
+    firstName: faker.person.firstName(),
+    gender: faker.person.sex(),
+    lastName: faker.person.lastName(),
     state: faker.location.state(),
     zipCode: faker.location.zipCode(),
   }));
@@ -79,14 +79,14 @@ export const NoMemos = () => {
       data={tableData}
       editDisplayMode="row"
       enableColumnOrdering
+      enableColumnPinning
       enableEditing
       enableGrouping
-      enableColumnPinning
       enableRowNumbers
       enableRowOrdering
       enableRowSelection
       enableStickyHeader
-      initialState={{ pagination: { pageSize: 100, pageIndex: 0 } }}
+      initialState={{ pagination: { pageIndex: 0, pageSize: 100 } }}
       renderTopToolbarCustomActions={() => (
         <Button onClick={handleRegenerateData} variant="filled">
           Regenerate Data
@@ -107,14 +107,14 @@ export const MemoCells = () => {
       data={tableData}
       editDisplayMode="row"
       enableColumnOrdering
+      enableColumnPinning
       enableEditing
       enableGrouping
-      enableColumnPinning
       enableRowNumbers
       enableRowOrdering
       enableRowSelection
       enableStickyHeader
-      initialState={{ pagination: { pageSize: 100, pageIndex: 0 } }}
+      initialState={{ pagination: { pageIndex: 0, pageSize: 100 } }}
       memoMode="cells"
       renderTopToolbarCustomActions={() => (
         <Button onClick={handleRegenerateData} variant="filled">
@@ -136,14 +136,14 @@ export const MemoRows = () => {
       data={tableData}
       editDisplayMode="row"
       enableColumnOrdering
+      enableColumnPinning
       enableEditing
       enableGrouping
-      enableColumnPinning
       enableRowNumbers
       enableRowOrdering
       enableRowSelection
       enableStickyHeader
-      initialState={{ pagination: { pageSize: 100, pageIndex: 0 } }}
+      initialState={{ pagination: { pageIndex: 0, pageSize: 100 } }}
       memoMode="rows"
       renderTopToolbarCustomActions={() => (
         <Button onClick={handleRegenerateData} variant="filled">
@@ -165,14 +165,14 @@ export const MemoTableBody = () => {
       data={tableData}
       editDisplayMode="row"
       enableColumnOrdering
+      enableColumnPinning
       enableEditing
       enableGrouping
-      enableColumnPinning
       enableRowNumbers
       enableRowOrdering
       enableRowSelection
       enableStickyHeader
-      initialState={{ pagination: { pageSize: 100, pageIndex: 0 } }}
+      initialState={{ pagination: { pageIndex: 0, pageSize: 100 } }}
       memoMode="table-body"
       renderTopToolbarCustomActions={() => (
         <Button onClick={handleRegenerateData} variant="filled">

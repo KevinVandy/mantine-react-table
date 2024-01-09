@@ -1,11 +1,11 @@
 import { type DragEvent, type RefObject } from 'react';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
-import { reorderColumn, parseFromValuesOrFunc } from '../column.utils';
+import { parseFromValuesOrFunc, reorderColumn } from '../column.utils';
 import {
-  type MRT_RowData,
-  type MRT_Column,
-  type MRT_TableInstance,
   type MRT_CellValue,
+  type MRT_Column,
+  type MRT_RowData,
+  type MRT_TableInstance,
 } from '../types';
 
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
@@ -27,7 +27,7 @@ export const MRT_TableHeadCellGrabHandle = <TData extends MRT_RowData>({
     setHoveredColumn,
   } = table;
   const { columnDef } = column;
-  const { hoveredColumn, draggingColumn, columnOrder } = getState();
+  const { columnOrder, draggingColumn, hoveredColumn } = getState();
 
   const arg = { column, table };
   const actionIconProps = {
@@ -65,8 +65,8 @@ export const MRT_TableHeadCellGrabHandle = <TData extends MRT_RowData>({
   return (
     <MRT_GrabHandleButton
       actionIconProps={actionIconProps}
-      onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
+      onDragStart={handleDragStart}
       table={table}
     />
   );

@@ -1,12 +1,11 @@
-import { Paper } from '@mantine/core';
-import { MRT_TopToolbar } from '../toolbar/MRT_TopToolbar';
-import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';
-import { MRT_TableContainer } from './MRT_TableContainer';
-import { type MRT_RowData, type MRT_TableInstance } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
-import classes from './MRT_TablePaper.module.css';
 import clsx from 'clsx';
+import classes from './MRT_TablePaper.module.css';
+import { Paper } from '@mantine/core';
+import { MRT_TableContainer } from './MRT_TableContainer';
+import { parseFromValuesOrFunc } from '../column.utils';
+import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';
+import { MRT_TopToolbar } from '../toolbar/MRT_TopToolbar';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;

@@ -1,15 +1,14 @@
 import clsx from 'clsx';
-import { type ReactNode } from 'react';
-import { UnstyledButton, CopyButton, Tooltip } from '@mantine/core';
-import {
-  type MRT_RowData,
-  type MRT_Cell,
-  type MRT_TableInstance,
-  type MRT_CellValue,
-} from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
 import classes from './MRT_CopyButton.module.css';
+import { type ReactNode } from 'react';
+import { CopyButton, Tooltip, UnstyledButton } from '@mantine/core';
+import { parseFromValuesOrFunc } from '../column.utils';
+import {
+  type MRT_Cell,
+  type MRT_CellValue,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   cell: MRT_Cell<TData, TValue>;
@@ -24,7 +23,7 @@ export const MRT_CopyButton = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     options: {
-      localization: { copiedToClipboard, clickToCopy },
+      localization: { clickToCopy, copiedToClipboard },
       mantineCopyButtonProps,
     },
   } = table;
@@ -42,11 +41,11 @@ export const MRT_CopyButton = <TData extends MRT_RowData>({
       {({ copied, copy }) => (
         <Tooltip
           color={copied ? 'green' : undefined}
-          withinPortal
-          openDelay={1000}
           label={
             buttonProps?.title ?? (copied ? copiedToClipboard : clickToCopy)
           }
+          openDelay={1000}
+          withinPortal
         >
           <UnstyledButton
             {...buttonProps}
@@ -55,12 +54,12 @@ export const MRT_CopyButton = <TData extends MRT_RowData>({
               classes.root,
               buttonProps?.className,
             )}
-            title={undefined}
-            role="presentation"
             onClick={(e) => {
               e.stopPropagation();
               copy();
             }}
+            role="presentation"
+            title={undefined}
           >
             {children}
           </UnstyledButton>

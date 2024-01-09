@@ -1,15 +1,15 @@
 import {
+  type RankingInfo,
   rankItem,
   rankings,
-  type RankingInfo,
 } from '@tanstack/match-sorter-utils';
-import { filterFns, type Row } from '@tanstack/react-table';
+import { type Row, filterFns } from '@tanstack/react-table';
 import type { MRT_FilterOption, MRT_Localization, MRT_RowData } from './types';
 
 const fuzzy = <TData extends MRT_RowData>(
   row: Row<TData>,
   columnId: string,
-  filterValue: string | number,
+  filterValue: number | string,
   addMeta: (item: RankingInfo) => void,
 ) => {
   const itemRank = rankItem(row.getValue(columnId), filterValue as string, {
@@ -24,10 +24,10 @@ fuzzy.autoRemove = (val: any) => !val;
 const contains = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number,
+  filterValue: number | string,
 ) =>
   row
-    .getValue<string | number>(id)
+    .getValue<number | string>(id)
     .toString()
     .toLowerCase()
     .trim()
@@ -38,10 +38,10 @@ contains.autoRemove = (val: any) => !val;
 const startsWith = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number,
+  filterValue: number | string,
 ) =>
   row
-    .getValue<string | number>(id)
+    .getValue<number | string>(id)
     .toString()
     .toLowerCase()
     .trim()
@@ -52,10 +52,10 @@ startsWith.autoRemove = (val: any) => !val;
 const endsWith = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number,
+  filterValue: number | string,
 ) =>
   row
-    .getValue<string | number>(id)
+    .getValue<number | string>(id)
     .toString()
     .toLowerCase()
     .trim()
@@ -66,11 +66,11 @@ endsWith.autoRemove = (val: any) => !val;
 const equals = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number | null,
+  filterValue: null | number | string,
 ) =>
   filterValue === null
     ? true
-    : row.getValue<string | number>(id).toString().toLowerCase().trim() ===
+    : row.getValue<number | string>(id).toString().toLowerCase().trim() ===
       filterValue.toString().toLowerCase().trim();
 
 equals.autoRemove = (val: any) => !val;
@@ -78,9 +78,9 @@ equals.autoRemove = (val: any) => !val;
 const notEquals = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number,
+  filterValue: number | string,
 ) =>
-  row.getValue<string | number>(id).toString().toLowerCase().trim() !==
+  row.getValue<number | string>(id).toString().toLowerCase().trim() !==
   filterValue.toString().toLowerCase().trim();
 
 notEquals.autoRemove = (val: any) => !val;
@@ -88,13 +88,13 @@ notEquals.autoRemove = (val: any) => !val;
 const greaterThan = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number | null,
+  filterValue: null | number | string,
 ) =>
   filterValue === null
     ? true
-    : !isNaN(+filterValue) && !isNaN(+row.getValue<string | number>(id))
-      ? +row.getValue<string | number>(id) > +filterValue
-      : row.getValue<string | number>(id).toString().toLowerCase().trim() >
+    : !isNaN(+filterValue) && !isNaN(+row.getValue<number | string>(id))
+      ? +row.getValue<number | string>(id) > +filterValue
+      : row.getValue<number | string>(id).toString().toLowerCase().trim() >
         filterValue.toString().toLowerCase().trim();
 
 greaterThan.autoRemove = (val: any) => !val;
@@ -102,7 +102,7 @@ greaterThan.autoRemove = (val: any) => !val;
 const greaterThanOrEqualTo = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number,
+  filterValue: number | string,
 ) => equals(row, id, filterValue) || greaterThan(row, id, filterValue);
 
 greaterThanOrEqualTo.autoRemove = (val: any) => !val;
@@ -110,13 +110,13 @@ greaterThanOrEqualTo.autoRemove = (val: any) => !val;
 const lessThan = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number | null,
+  filterValue: null | number | string,
 ) =>
   filterValue === null
     ? true
-    : !isNaN(+filterValue) && !isNaN(+row.getValue<string | number>(id))
-      ? +row.getValue<string | number>(id) < +filterValue
-      : row.getValue<string | number>(id).toString().toLowerCase().trim() <
+    : !isNaN(+filterValue) && !isNaN(+row.getValue<number | string>(id))
+      ? +row.getValue<number | string>(id) < +filterValue
+      : row.getValue<number | string>(id).toString().toLowerCase().trim() <
         filterValue.toString().toLowerCase().trim();
 
 lessThan.autoRemove = (val: any) => !val;
@@ -124,7 +124,7 @@ lessThan.autoRemove = (val: any) => !val;
 const lessThanOrEqualTo = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValue: string | number,
+  filterValue: number | string,
 ) => equals(row, id, filterValue) || lessThan(row, id, filterValue);
 
 lessThanOrEqualTo.autoRemove = (val: any) => !val;
@@ -132,7 +132,7 @@ lessThanOrEqualTo.autoRemove = (val: any) => !val;
 const between = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValues: [string | number, string | number],
+  filterValues: [number | string, number | string],
 ) =>
   ((['', undefined] as any[]).includes(filterValues[0]) ||
     greaterThan(row, id, filterValues[0])) &&
@@ -147,7 +147,7 @@ between.autoRemove = (val: any) => !val;
 const betweenInclusive = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  filterValues: [string | number, string | number],
+  filterValues: [number | string, number | string],
 ) =>
   ((['', undefined] as any[]).includes(filterValues[0]) ||
     greaterThanOrEqualTo(row, id, filterValues[0])) &&
@@ -162,16 +162,16 @@ betweenInclusive.autoRemove = (val: any) => !val;
 const empty = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  _filterValue: string | number,
-) => !row.getValue<string | number>(id).toString().trim();
+  _filterValue: number | string,
+) => !row.getValue<number | string>(id).toString().trim();
 
 empty.autoRemove = (val: any) => !val;
 
 const notEmpty = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
-  _filterValue: string | number,
-) => !!row.getValue<string | number>(id).toString().trim();
+  _filterValue: number | string,
+) => !!row.getValue<number | string>(id).toString().trim();
 
 notEmpty.autoRemove = (val: any) => !val;
 

@@ -1,15 +1,15 @@
 import { type MouseEvent } from 'react';
 import { ActionIcon, Tooltip } from '@mantine/core';
-import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
 import { MRT_EditActionButtons } from './MRT_EditActionButtons';
-import {
-  type MRT_RowData,
-  type MRT_Cell,
-  type MRT_Row,
-  type MRT_TableInstance,
-  type MRT_CellValue,
-} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
+import {
+  type MRT_Cell,
+  type MRT_CellValue,
+  type MRT_Row,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   cell: MRT_Cell<TData, TValue>;
@@ -58,7 +58,7 @@ export const MRT_ToggleRowActionMenuButton = <TData extends MRT_RowData>({
         <MRT_EditActionButtons row={row} table={table} />
       ) : !renderRowActionMenuItems &&
         parseFromValuesOrFunc(enableEditing, row) ? (
-        <Tooltip withinPortal openDelay={1000} position="right" label={edit}>
+        <Tooltip label={edit} openDelay={1000} position="right" withinPortal>
           <ActionIcon
             aria-label={edit}
             disabled={!!editingRow && editingRow.id !== row.id}

@@ -1,11 +1,12 @@
+import clsx from 'clsx';
+import classes from './MRT_TableHeadCell.module.css';
 import {
-  type ReactNode,
-  useMemo,
   type CSSProperties,
   type DragEventHandler,
+  type ReactNode,
+  useMemo,
 } from 'react';
 import { Flex, TableTh } from '@mantine/core';
-import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
 import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
@@ -18,13 +19,12 @@ import {
   parseCSSVarId,
   parseFromValuesOrFunc,
 } from '../column.utils';
+import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 import {
-  type MRT_RowData,
   type MRT_Header,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-import clsx from 'clsx';
-import classes from './MRT_TableHeadCell.module.css';
 
 interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
@@ -122,23 +122,7 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   return (
     <TableTh
       {...tableCellProps}
-      align={columnDefType === 'group' ? 'center' : 'left'}
-      colSpan={header.colSpan}
-      onDragEnter={handleDragEnter}
-      ref={(node: HTMLTableCellElement) => {
-        if (node) {
-          tableHeadCellRefs.current[column.id] = node;
-        }
-      }}
       __vars={{
-        '--mrt-table-head-cell-padding':
-          density === 'xl' ? '23' : density === 'md' ? '16' : '10',
-        '--mrt-table-head-cell-z-index':
-          column.getIsResizing() || draggingColumn?.id === column.id
-            ? '3'
-            : column.getIsPinned() && columnDefType !== 'group'
-              ? '2'
-              : '1',
         '--mrt-table-cell-left':
           column.getIsPinned() === 'left'
             ? `${column.getStart('left')}`
@@ -147,7 +131,16 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
           column.getIsPinned() === 'right'
             ? `${getTotalRight(table, column)}`
             : undefined,
+        '--mrt-table-head-cell-padding':
+          density === 'xl' ? '23' : density === 'md' ? '16' : '10',
+        '--mrt-table-head-cell-z-index':
+          column.getIsResizing() || draggingColumn?.id === column.id
+            ? '3'
+            : column.getIsPinned() && columnDefType !== 'group'
+              ? '2'
+              : '1',
       }}
+      align={columnDefType === 'group' ? 'center' : 'left'}
       className={clsx(
         classes.root,
         layoutMode?.startsWith('grid') && classes['root-grid'],
@@ -167,6 +160,13 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
           hoveredColumn?.id === column.id &&
           classes['hovered'],
       )}
+      colSpan={header.colSpan}
+      onDragEnter={handleDragEnter}
+      ref={(node: HTMLTableCellElement) => {
+        if (node) {
+          tableHeadCellRefs.current[column.id] = node;
+        }
+      }}
       style={(theme) => ({
         ...parseFromValuesOrFunc(tableCellProps?.style, theme),
         ...widthStyles,

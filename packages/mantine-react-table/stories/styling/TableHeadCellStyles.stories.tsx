@@ -1,8 +1,8 @@
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
-import { faker } from '@faker-js/faker';
 import { Box } from '@mantine/core';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { getPrimaryColor } from '../../src/column.utils';
+import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Styling/Style Table Head Cells',
@@ -12,27 +12,27 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Age',
     accessorKey: 'age',
+    header: 'Age',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
 ];
 const data = [...Array(21)].map(() => ({
+  address: faker.location.streetAddress(),
+  age: faker.number.int(80),
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
-  age: faker.number.int(80),
-  address: faker.location.streetAddress(),
 }));
 
 export const DefaultTableHeadCellStyles = () => (
@@ -57,12 +57,12 @@ export const StyleTableHeadCellsIndividually = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
         mantineTableHeadCellProps: {
           style: (theme) => ({
             color: getPrimaryColor(theme),
@@ -70,8 +70,8 @@ export const StyleTableHeadCellsIndividually = () => (
         },
       },
       {
-        header: 'Age',
         accessorKey: 'age',
+        header: 'Age',
         mantineTableHeadCellProps: {
           style: {
             color: 'red',
@@ -79,8 +79,8 @@ export const StyleTableHeadCellsIndividually = () => (
         },
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
     ]}
     data={data}
@@ -91,25 +91,25 @@ export const CustomHeadCellRenders = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
-        accessorKey: 'firstName',
         Header: <em>First Name</em>,
+        accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
-        accessorKey: 'lastName',
         Header: () => <em>Last Name</em>,
+        accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Current Age',
-        accessorKey: 'age',
         Header: ({ column }) => (
           <Box color="primary.main">{column.columnDef.header}</Box>
         ),
+        accessorKey: 'age',
+        header: 'Current Age',
       },
       {
-        header: 'Address of Residence (Permanent)',
         accessorKey: 'address',
+        header: 'Address of Residence (Permanent)',
       },
     ]}
     data={data}

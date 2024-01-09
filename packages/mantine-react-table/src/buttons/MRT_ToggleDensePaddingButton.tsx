@@ -1,9 +1,9 @@
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
 import {
-  type MRT_DensityState,
   type HTMLPropsRef,
-  type MRT_TableInstance,
+  type MRT_DensityState,
   type MRT_RowData,
+  type MRT_TableInstance,
 } from '../types';
 
 interface Props<TData extends MRT_RowData>
@@ -13,9 +13,9 @@ interface Props<TData extends MRT_RowData>
 }
 
 const next: Record<MRT_DensityState, MRT_DensityState> = {
-  xs: 'xl',
   md: 'xs',
   xl: 'md',
+  xs: 'xl',
 };
 
 export const MRT_ToggleDensePaddingButton = <TData extends MRT_RowData>({
@@ -37,13 +37,13 @@ export const MRT_ToggleDensePaddingButton = <TData extends MRT_RowData>({
   const { density } = getState();
 
   return (
-    <Tooltip withinPortal label={title ?? toggleDensity}>
+    <Tooltip label={title ?? toggleDensity} withinPortal>
       <ActionIcon
+        aria-label={title ?? toggleDensity}
         color="gray"
+        onClick={() => setDensity((current) => next[current])}
         size="lg"
         variant="subtle"
-        aria-label={title ?? toggleDensity}
-        onClick={() => setDensity((current) => next[current])}
         {...rest}
       >
         {density === 'xs' ? (

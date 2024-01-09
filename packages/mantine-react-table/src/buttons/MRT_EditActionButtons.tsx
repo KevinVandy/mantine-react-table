@@ -1,12 +1,11 @@
 import clsx from 'clsx';
+import classes from './MRT_EditActionButtons.module.css';
 import { ActionIcon, Box, Button, Tooltip } from '@mantine/core';
 import {
-  type MRT_RowData,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-
-import classes from './MRT_EditActionButtons.module.css';
 
 interface Props<TData extends MRT_RowData> {
   row: MRT_Row<TData>;
@@ -26,8 +25,8 @@ export const MRT_EditActionButtons = <TData extends MRT_RowData>({
       localization,
       onCreatingRowCancel,
       onCreatingRowSave,
-      onEditingRowSave,
       onEditingRowCancel,
+      onEditingRowSave,
     },
     refs: { editInputRefs },
     setCreatingRow,
@@ -81,27 +80,27 @@ export const MRT_EditActionButtons = <TData extends MRT_RowData>({
 
   return (
     <Box
-      onClick={(e) => e.stopPropagation()}
       className={clsx('mrt-edit-action-buttons', classes.root)}
+      onClick={(e) => e.stopPropagation()}
     >
       {variant === 'icon' ? (
         <>
-          <Tooltip withinPortal label={localization.cancel}>
+          <Tooltip label={localization.cancel} withinPortal>
             <ActionIcon
-              color="red"
               aria-label={localization.cancel}
+              color="red"
               onClick={handleCancel}
               variant="subtle"
             >
               <IconCircleX />
             </ActionIcon>
           </Tooltip>
-          <Tooltip withinPortal label={localization.save}>
+          <Tooltip label={localization.save} withinPortal>
             <ActionIcon
               aria-label={localization.save}
               color="blue"
-              onClick={handleSubmitRow}
               loading={isSaving}
+              onClick={handleSubmitRow}
               variant="subtle"
             >
               <IconDeviceFloppy />
@@ -113,7 +112,7 @@ export const MRT_EditActionButtons = <TData extends MRT_RowData>({
           <Button onClick={handleCancel} variant="subtle">
             {localization.cancel}
           </Button>
-          <Button onClick={handleSubmitRow} variant="filled" loading={isSaving}>
+          <Button loading={isSaving} onClick={handleSubmitRow} variant="filled">
             {localization.save}
           </Button>
         </>

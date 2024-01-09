@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
 
 const meta: Meta = {
   title: 'Fixed Bugs/Loading Data',
@@ -9,12 +9,12 @@ const meta: Meta = {
 export default meta;
 
 type Person = {
+  address: string;
+  city: string;
   name: {
     firstName: string;
     lastName: string;
   };
-  address: string;
-  city: string;
   state: string;
 };
 
@@ -167,8 +167,8 @@ export const NestedLoadingDataWithInitialPage = () => {
       columns={columns}
       data={[]}
       state={{
-        pagination: { pageIndex: 2, pageSize: 5 },
         isLoading: true,
+        pagination: { pageIndex: 2, pageSize: 5 },
       }}
     />
   );
@@ -206,8 +206,8 @@ export const NestedLoadingDataWithInitialSort = () => {
       columns={columns}
       data={[]}
       state={{
-        sorting: [{ id: 'name.lastName', desc: false }],
         isLoading: true,
+        sorting: [{ desc: false, id: 'name.lastName' }],
       }}
     />
   );

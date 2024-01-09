@@ -2,13 +2,10 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    // "plugin:perfectionist/recommended-natural"
+    "plugin:perfectionist/recommended-natural"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    // "perfectionist"
-  ],
+  "plugins": ["@typescript-eslint", "perfectionist"],
   "rules": {
     "no-duplicate-imports": "warn",
     "@typescript-eslint/ban-ts-comment": "off",
@@ -23,44 +20,42 @@
         "fixStyle": "inline-type-imports"
       }
     ],
-    // "perfectionist/sort-imports": [
-    //   "error",
-    //   {
-    //     "type": "natural",
-    //     "order": "asc",
-    //     "groups": [
-    //       "react",
-    //       "clsx",
-    //       "tanstack",
-    //       "mantine",
-    //       "siblings",
-    //       "sibling-type",
-    //       "parent",
-    //       "parent-type",
-    //       "style"
-    //     ],
-    //     "custom-groups": {
-    //       "value": {
-    //         "react": [
-    //           "react",
-    //           "react-*"
-    //         ],
-    //         "clsx": "clsx",
-    //         "tanstack": "@tanstack/**",
-    //         "mantine": "@mantine/**"
-    //       },
-    //       "type": {
-    //         "react": "react"
-    //       }
-    //     },
-    //     "newlines-between": "never"
-    //   }
-    // ]
+    "perfectionist/sort-imports": [
+      "warn",
+      {
+        "type": "natural",
+        "order": "asc",
+        "groups": [
+          "clsx",
+          "style",
+          "react",
+          "tanstack",
+          "mantine",
+          "mrt",
+          "siblings",
+          "sibling-type",
+          "parent",
+          "parent-type"
+        ],
+        "custom-groups": {
+          "value": {
+            "clsx": "clsx",
+            "style": ["./**.module.css"],
+            "react": ["react", "react-*"],
+            "storybook": ["@storybook/**"],
+            "tanstack": "@tanstack/**",
+            "mantine": "@mantine/**",
+            "mrt": ["./MRT_**", "../**MRT_**", "../../src"],
+            "faker": "@faker/**"
+          },
+          "type": {
+            "react": "react"
+          }
+        },
+        "newlines-between": "never"
+      }
+    ]
   },
   "root": true,
-  "ignorePatterns": [
-    "dist/",
-    "locales/",
-    "node_modules/"
-  ]
+  "ignorePatterns": ["dist/", "locales/", "node_modules/"]
 }

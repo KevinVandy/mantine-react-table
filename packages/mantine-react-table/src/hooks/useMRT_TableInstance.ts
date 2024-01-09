@@ -19,24 +19,24 @@ import {
   getDefaultColumnOrderIds,
   prepareColumns,
 } from '../column.utils';
-import { useMRT_DisplayColumns } from './useMRT_DisplayColumns';
-import { useMRT_Effects } from './useMRT_Effects';
 import {
   type MRT_Cell,
   type MRT_Column,
   type MRT_ColumnDef,
+  type MRT_ColumnFilterFnsState,
   type MRT_ColumnOrderState,
   type MRT_DefinedTableOptions,
   type MRT_DensityState,
-  type MRT_ColumnFilterFnsState,
   type MRT_FilterOption,
   type MRT_GroupingState,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
   type MRT_TableState,
   type MRT_Updater,
-  type MRT_RowData,
 } from '../types';
+import { useMRT_DisplayColumns } from './useMRT_DisplayColumns';
+import { useMRT_Effects } from './useMRT_Effects';
 
 export const useMRT_TableInstance: <TData extends MRT_RowData>(
   tableOptions: MRT_DefinedTableOptions<TData>,
@@ -105,10 +105,10 @@ export const useMRT_TableInstance: <TData extends MRT_RowData>(
     initialState.grouping ?? [],
   );
   const [hoveredColumn, setHoveredColumn] = useState<
-    MRT_Column<TData> | { id: string } | null
+    { id: string } | MRT_Column<TData> | null
   >(initialState.hoveredColumn ?? null);
   const [hoveredRow, setHoveredRow] = useState<
-    MRT_Row<TData> | { id: string } | null
+    { id: string } | MRT_Row<TData> | null
   >(initialState.hoveredRow ?? null);
   const [isFullScreen, setIsFullScreen] = useState<boolean>(
     initialState?.isFullScreen ?? false,
@@ -208,9 +208,9 @@ export const useMRT_TableInstance: <TData extends MRT_RowData>(
     getSortedRowModel: tableOptions.enableSorting
       ? getSortedRowModel()
       : undefined,
+    getSubRows: (row) => row?.subRows,
     onColumnOrderChange: setColumnOrder,
     onGroupingChange: setGrouping,
-    getSubRows: (row) => row?.subRows,
     ...tableOptions,
     //@ts-ignore
     columns: columnDefs,
@@ -218,9 +218,9 @@ export const useMRT_TableInstance: <TData extends MRT_RowData>(
     globalFilterFn: tableOptions.filterFns?.[globalFilterFn ?? 'fuzzy'],
     initialState,
     state: {
-      creatingRow,
       columnFilterFns,
       columnOrder,
+      creatingRow,
       density,
       draggingColumn,
       draggingRow,

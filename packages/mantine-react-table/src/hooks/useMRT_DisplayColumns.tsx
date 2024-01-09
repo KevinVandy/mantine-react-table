@@ -1,10 +1,11 @@
-import { type RefObject, useMemo, type ReactNode } from 'react';
-import { MRT_DefaultDisplayColumn, showExpandColumn } from '../column.utils';
-import { MRT_TableBodyRowPinButton } from '../body/MRT_TableBodyRowPinButton';
+import { type ReactNode, type RefObject, useMemo } from 'react';
+import { Flex, Tooltip } from '@mantine/core';
 import { MRT_TableBodyRowGrabHandle } from '../body';
+import { MRT_TableBodyRowPinButton } from '../body/MRT_TableBodyRowPinButton';
 import { MRT_ExpandAllButton } from '../buttons/MRT_ExpandAllButton';
 import { MRT_ExpandButton } from '../buttons/MRT_ExpandButton';
 import { MRT_ToggleRowActionMenuButton } from '../buttons/MRT_ToggleRowActionMenuButton';
+import { MRT_DefaultDisplayColumn, showExpandColumn } from '../column.utils';
 import { MRT_SelectCheckbox } from '../inputs/MRT_SelectCheckbox';
 import type {
   MRT_ColumnDef,
@@ -16,7 +17,6 @@ import type {
   MRT_Row,
   MRT_RowData,
 } from '../types';
-import { Flex, Tooltip } from '@mantine/core';
 
 interface Params<TData extends MRT_RowData> {
   columnOrder: MRT_ColumnOrderState;
@@ -169,9 +169,9 @@ function makeRowExpandColumn<TData extends MRT_RowData>(
             <Flex align="center" gap="0.25rem">
               <MRT_ExpandButton {...expandButtonProps} />
               <Tooltip
+                label={table.getColumn(row.groupingColumnId).columnDef.header}
                 openDelay={1000}
                 position="right"
-                label={table.getColumn(row.groupingColumnId).columnDef.header}
               >
                 <span>{row.groupingValue as ReactNode}</span>
               </Tooltip>

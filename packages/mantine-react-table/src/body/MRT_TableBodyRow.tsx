@@ -1,24 +1,23 @@
-import { type DragEvent, memo, useRef, useMemo } from 'react';
-import { Box, TableTr } from '@mantine/core';
 import clsx from 'clsx';
-import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
+import classes from './MRT_TableBodyRow.module.css';
+import { type DragEvent, memo, useMemo, useRef } from 'react';
+import { Box, TableTr } from '@mantine/core';
+import { MRT_TableBodyCell, Memo_MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
+import { parseFromValuesOrFunc } from '../column.utils';
 import {
-  type MRT_RowData,
   type MRT_Cell,
+  type MRT_ColumnVirtualizer,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
   type MRT_VirtualItem,
-  type MRT_ColumnVirtualizer,
 } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
-import classes from './MRT_TableBodyRow.module.css';
 
 interface Props<TData extends MRT_RowData> {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   enableHover?: boolean;
-  isStriped?: boolean | 'odd' | 'even';
+  isStriped?: 'even' | 'odd' | boolean;
   measureElement?: (element: HTMLTableRowElement) => void;
   numRows?: number;
   pinnedRowIds?: string[];
@@ -34,24 +33,24 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   isStriped,
   measureElement,
   numRows,
+  pinnedRowIds,
   row,
   rowIndex,
   table,
-  pinnedRowIds,
   virtualRow,
 }: Props<TData>) => {
   const {
     getState,
     options: {
+      enableRowOrdering,
       enableRowPinning,
       enableStickyFooter,
       enableStickyHeader,
-      rowPinningDisplayMode,
-      enableRowOrdering,
       layoutMode,
-      memoMode,
       mantineTableBodyRowProps,
+      memoMode,
       renderDetailPanel,
+      rowPinningDisplayMode,
     },
     refs: { tableFooterRef, tableHeadRef },
     setHoveredRow,
@@ -127,9 +126,13 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
         {...tableRowProps}
         __vars={{
           ...tableRowProps?.__vars,
-          '--mrt-virtual-row-start': virtualRow
-            ? `${virtualRow.start}`
-            : undefined,
+          '--mrt-pinned-row-bottom':
+            !virtualRow && bottomPinnedIndex !== undefined && isPinned
+              ? `${
+                  bottomPinnedIndex * rowHeight +
+                  (enableStickyFooter ? tableFooterHeight - 1 : 0)
+                }`
+              : undefined,
           '--mrt-pinned-row-top': virtualRow
             ? '0'
             : topPinnedIndex !== undefined && isPinned
@@ -138,13 +141,9 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
                   (enableStickyHeader || isFullScreen ? tableHeadHeight - 1 : 0)
                 }`
               : undefined,
-          '--mrt-pinned-row-bottom':
-            !virtualRow && bottomPinnedIndex !== undefined && isPinned
-              ? `${
-                  bottomPinnedIndex * rowHeight +
-                  (enableStickyFooter ? tableFooterHeight - 1 : 0)
-                }`
-              : undefined,
+          '--mrt-virtual-row-start': virtualRow
+            ? `${virtualRow.start}`
+            : undefined,
         }}
         className={clsx(
           classes.root,

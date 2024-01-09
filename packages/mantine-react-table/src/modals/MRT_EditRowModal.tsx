@@ -1,12 +1,12 @@
 import { Flex, Modal, Stack } from '@mantine/core';
 import { MRT_EditActionButtons } from '../buttons/MRT_EditActionButtons';
+import { parseFromValuesOrFunc } from '../column.utils';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import {
-  type MRT_RowData,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
 
 interface Props<TData extends MRT_RowData> {
   open: boolean;
@@ -20,15 +20,15 @@ export const MRT_EditRowModal = <TData extends MRT_RowData>({
   const {
     getState,
     options: {
-      onEditingRowCancel,
-      onCreatingRowCancel,
-      renderEditRowModalContent,
-      renderCreateRowModalContent,
       mantineCreateRowModalProps,
       mantineEditRowModalProps,
+      onCreatingRowCancel,
+      onEditingRowCancel,
+      renderCreateRowModalContent,
+      renderEditRowModalContent,
     },
-    setEditingRow,
     setCreatingRow,
+    setEditingRow,
   } = table;
   const { creatingRow, editingRow } = getState();
   const row = (creatingRow ?? editingRow) as MRT_Row<TData>;
@@ -63,23 +63,23 @@ export const MRT_EditRowModal = <TData extends MRT_RowData>({
       opened={open}
       withCloseButton={false}
       {...modalProps}
-      onClose={handleCancel}
       key={row.id}
+      onClose={handleCancel}
     >
       {((creatingRow &&
         renderCreateRowModalContent?.({
+          internalEditComponents,
           row,
           table,
-          internalEditComponents,
         })) ||
         renderEditRowModalContent?.({
+          internalEditComponents,
           row,
           table,
-          internalEditComponents,
         })) ?? (
         <>
           <form onSubmit={(e) => e.preventDefault()}>
-            <Stack gap="lg" pt={16} pb={24}>
+            <Stack gap="lg" pb={24} pt={16}>
               {internalEditComponents}
             </Stack>
           </form>

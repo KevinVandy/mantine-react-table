@@ -1,7 +1,7 @@
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
 import {
-  type MRT_RowData,
   type HTMLPropsRef,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
 
@@ -32,14 +32,14 @@ export const MRT_ToggleGlobalFilterButton = <TData extends MRT_RowData>({
   };
 
   return (
-    <Tooltip withinPortal label={title ?? showHideSearch}>
+    <Tooltip label={title ?? showHideSearch} withinPortal>
       <ActionIcon
-        color="gray"
-        size="lg"
-        variant="subtle"
         aria-label={title ?? showHideSearch}
+        color="gray"
         disabled={!!globalFilter}
         onClick={handleToggleSearch}
+        size="lg"
+        variant="subtle"
         {...rest}
       >
         {showGlobalFilter ? <IconSearchOff /> : <IconSearch />}

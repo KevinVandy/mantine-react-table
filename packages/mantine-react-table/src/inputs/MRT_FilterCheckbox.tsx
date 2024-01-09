@@ -1,15 +1,13 @@
 import clsx from 'clsx';
-import { Checkbox, type CheckboxProps, Tooltip } from '@mantine/core';
-
-import {
-  type MRT_RowData,
-  type MRT_Column,
-  type MRT_TableInstance,
-  type MRT_CellValue,
-} from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
 import classes from './MRT_FilterCheckBox.module.css';
+import { Checkbox, type CheckboxProps, Tooltip } from '@mantine/core';
+import { parseFromValuesOrFunc } from '../column.utils';
+import {
+  type MRT_CellValue,
+  type MRT_Column,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   column: MRT_Column<TData, TValue>;
@@ -42,21 +40,17 @@ export const MRT_FilterCheckbox = <TData extends MRT_RowData>({
 
   return (
     <Tooltip
-      withinPortal
-      openDelay={1000}
       label={checkboxProps?.title ?? filterLabel}
+      openDelay={1000}
+      withinPortal
     >
       <Checkbox
-        className={clsx('mrt-filter-checkbox', classes.root)}
         checked={value === 'true'}
+        className={clsx('mrt-filter-checkbox', classes.root)}
         indeterminate={value === undefined}
-        size={density === 'xs' ? 'sm' : 'md'}
         label={checkboxProps.title ?? filterLabel}
+        size={density === 'xs' ? 'sm' : 'md'}
         {...checkboxProps}
-        onClick={(e) => {
-          e.stopPropagation();
-          checkboxProps?.onClick?.(e);
-        }}
         onChange={(e) => {
           column.setFilterValue(
             column.getFilterValue() === undefined
@@ -66,6 +60,10 @@ export const MRT_FilterCheckbox = <TData extends MRT_RowData>({
                 : undefined,
           );
           checkboxProps?.onChange?.(e);
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+          checkboxProps?.onClick?.(e);
         }}
         title={undefined}
       />

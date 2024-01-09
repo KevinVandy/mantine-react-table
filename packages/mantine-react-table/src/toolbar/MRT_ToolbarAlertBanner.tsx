@@ -1,12 +1,10 @@
 import clsx from 'clsx';
+import classes from './MRT_ToolbarAlertBanner.module.css';
 import { Fragment } from 'react';
 import { ActionIcon, Alert, Badge, Collapse, Flex, Stack } from '@mantine/core';
-
-import { type MRT_RowData, type MRT_TableInstance } from '../types';
-import { MRT_SelectCheckbox } from '../inputs';
 import { parseFromValuesOrFunc } from '../column.utils';
-
-import classes from './MRT_ToolbarAlertBanner.module.css';
+import { MRT_SelectCheckbox } from '../inputs';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends MRT_RowData> {
   stackAlertBanner?: boolean;
@@ -33,7 +31,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
       rowCount,
     },
   } = table;
-  const { grouping, showAlertBanner, density } = getState();
+  const { density, grouping, showAlertBanner } = getState();
 
   const alertProps = parseFromValuesOrFunc(mantineToolbarAlertBannerProps, {
     table,
@@ -64,6 +62,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
           <Fragment key={`${index}-${columnId}`}>
             {index > 0 ? localization.thenBy : ''}
             <Badge
+              className={classes['alert-badge']}
               rightSection={
                 <ActionIcon
                   onClick={() => table.getColumn(columnId).toggleGrouping()}
@@ -72,7 +71,6 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
                   <IconX />
                 </ActionIcon>
               }
-              className={classes['alert-badge']}
               variant="filled"
               {...badgeProps}
             >

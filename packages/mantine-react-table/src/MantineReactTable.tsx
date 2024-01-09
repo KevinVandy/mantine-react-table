@@ -1,11 +1,11 @@
-import { useMantineReactTable } from './useMantineReactTable';
 import { MRT_TablePaper } from './table/MRT_TablePaper';
 import {
-  type MRT_TableOptions,
-  type MRT_TableInstance,
-  type Xor,
   type MRT_RowData,
+  type MRT_TableInstance,
+  type MRT_TableOptions,
+  type Xor,
 } from './types';
+import { useMantineReactTable } from './useMantineReactTable';
 
 type TableInstanceProp<TData extends MRT_RowData> = {
   table: MRT_TableInstance<TData>;

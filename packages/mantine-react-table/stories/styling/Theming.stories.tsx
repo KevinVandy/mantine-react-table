@@ -1,7 +1,7 @@
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
-import { faker } from '@faker-js/faker';
 import { MantineProvider } from '@mantine/core';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
+import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Styling/Theming',
@@ -11,28 +11,28 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Age',
     accessorKey: 'age',
+    header: 'Age',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
 ];
 
 const data = [...Array(21)].map(() => ({
+  address: faker.location.streetAddress(),
+  age: faker.number.int(80),
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
-  age: faker.number.int(80),
-  address: faker.location.streetAddress(),
 }));
 
 export const DefaultTheme = () => (

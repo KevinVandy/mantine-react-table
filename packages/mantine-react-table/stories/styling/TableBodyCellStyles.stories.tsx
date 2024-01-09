@@ -1,6 +1,6 @@
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Styling/Style Table Body Cells',
@@ -10,27 +10,27 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Age',
     accessorKey: 'age',
+    header: 'Age',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
 ];
 const data = [...Array(21)].map(() => ({
+  address: faker.location.streetAddress(),
+  age: faker.number.int(80),
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
-  age: faker.number.int(80),
-  address: faker.location.streetAddress(),
 }));
 
 export const DefaultTableBodyCellStyles = () => (
@@ -54,16 +54,16 @@ export const StyleMantineTableBodyCellConditionallyIn1Column = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
+        header: 'Age',
         mantineTableBodyCellProps: ({ cell }) => ({
           style: {
             backgroundColor:
@@ -78,8 +78,8 @@ export const StyleMantineTableBodyCellConditionallyIn1Column = () => (
         }),
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
     ]}
     data={data}
@@ -90,40 +90,40 @@ export const CustomCellRender = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
-        accessorKey: 'firstName',
         Cell: ({ cell }) => (
           <span style={{ fontStyle: 'italic' }}>{cell.getValue<string>()}</span>
         ),
+        accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
-        accessorKey: 'lastName',
         Cell: ({ cell }) => (
           <span style={{ color: 'red' }}>{cell.getValue<string>()}</span>
         ),
+        accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
-        accessorKey: 'age',
         Cell: ({ cell }) => (
           <span
             style={{
-              fontStyle: 'italic',
-              padding: '8px',
               backgroundColor:
                 cell.column.id === 'age' && cell.getValue<number>() > 40
                   ? 'rgba(22, 184, 44, 0.5)'
                   : undefined,
+              fontStyle: 'italic',
+              padding: '8px',
             }}
           >
             {cell.getValue<string>()}
           </span>
         ),
+        accessorKey: 'age',
+        header: 'Age',
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
     ]}
     data={data}

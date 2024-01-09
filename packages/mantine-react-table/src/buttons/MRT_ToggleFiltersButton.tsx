@@ -1,7 +1,7 @@
 import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
 import {
-  type MRT_RowData,
   type HTMLPropsRef,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
 
@@ -26,13 +26,13 @@ export const MRT_ToggleFiltersButton = <TData extends MRT_RowData>({
   const { showColumnFilters } = getState();
 
   return (
-    <Tooltip withinPortal label={title ?? showHideFilters}>
+    <Tooltip label={title ?? showHideFilters} withinPortal>
       <ActionIcon
+        aria-label={title ?? showHideFilters}
         color="gray"
+        onClick={() => setShowColumnFilters((current) => !current)}
         size="lg"
         variant="subtle"
-        aria-label={title ?? showHideFilters}
-        onClick={() => setShowColumnFilters((current) => !current)}
         {...rest}
       >
         {showColumnFilters ? <IconFilterOff /> : <IconFilter />}

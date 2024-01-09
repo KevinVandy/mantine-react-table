@@ -241,9 +241,9 @@ export const RowAndColumnPinning = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    enableRowPinning
     enableColumnPinning
     enablePagination={false}
+    enableRowPinning
     initialState={{
       columnPinning: {
         left: ['firstName'],

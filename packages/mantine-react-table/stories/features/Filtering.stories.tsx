@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { type Meta } from '@storybook/react';
+import { Button, Flex } from '@mantine/core';
 import {
-  MantineReactTable,
   type MRT_ColumnDef,
   type MRT_ColumnFiltersState,
+  MantineReactTable,
 } from '../../src';
-import { Button, Flex } from '@mantine/core';
 import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Features/Filtering Examples',
@@ -16,56 +16,56 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'Is Active',
-    accessorKey: 'isActive',
     Cell: ({ cell }) => (cell.getValue() ? 'Yes' : 'No'),
+    accessorKey: 'isActive',
+    header: 'Is Active',
     size: 110,
   },
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Age',
     accessorKey: 'age',
     filterVariant: 'range',
+    header: 'Age',
   },
   {
     Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(), //transform data to readable format for cell render
     accessorFn: (row) => new Date(row.birthDate), //transform data before processing so sorting works
     accessorKey: 'birthDate',
-    header: 'Birth Date',
     filterVariant: 'date',
+    header: 'Birth Date',
     sortingFn: 'datetime',
   },
   {
-    header: 'Gender',
     accessorKey: 'gender',
+    header: 'Gender',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
 ];
 
 const data = [...Array(120)].map(() => ({
-  isActive: faker.datatype.boolean(),
-  firstName: faker.person.firstName(),
-  lastName: faker.person.lastName(),
-  age: faker.number.int(100),
-  salary: faker.number.int(1000) * 1000,
-  birthDate: faker.date.birthdate({ min: 1990, max: 2020 }),
-  hireDate: faker.date.past(),
-  gender: faker.person.sex(),
   address: faker.location.streetAddress(),
+  age: faker.number.int(100),
+  birthDate: faker.date.birthdate({ max: 2020, min: 1990 }),
+  firstName: faker.person.firstName(),
+  gender: faker.person.sex(),
+  hireDate: faker.date.past(),
+  isActive: faker.datatype.boolean(),
+  lastName: faker.person.lastName(),
+  salary: faker.number.int(1000) * 1000,
   state: faker.location.state(),
 }));
 
@@ -75,9 +75,9 @@ export const FilteringEnabledDefault = () => (
 
 export const PopoverDisplayMode = () => (
   <MantineReactTable
+    columnFilterDisplayMode="popover"
     columns={columns}
     data={data}
-    columnFilterDisplayMode="popover"
   />
 );
 
@@ -105,56 +105,57 @@ export const FilterFnAndFilterVariants = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'Is Active',
-        accessorFn: (originalRow) => (originalRow.isActive ? 'true' : 'false'),
-        id: 'isActive',
-        filterVariant: 'checkbox',
         Cell: ({ cell }) => (cell.getValue() === 'true' ? 'Yes' : 'No'),
+        accessorFn: (originalRow) => (originalRow.isActive ? 'true' : 'false'),
+        filterVariant: 'checkbox',
+        header: 'Is Active',
+        id: 'isActive',
         size: 200,
       },
       {
-        header: 'First Name',
         accessorKey: 'firstName',
         filterFn: 'fuzzy', // default
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
         filterFn: 'contains',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
         filterVariant: 'range',
+        header: 'Age',
       },
       {
-        header: 'Salary',
-        accessorKey: 'salary',
         Cell: ({ cell }) =>
           cell.getValue<number>().toLocaleString('en-US', {
             currency: 'USD',
             style: 'currency',
           }),
+        accessorKey: 'salary',
         filterVariant: 'range-slider',
+        header: 'Salary',
         mantineFilterRangeSliderProps: {
-          min: 1000,
           max: 100000,
+          min: 1000,
         },
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
-        mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
         filterVariant: 'select',
+        header: 'Gender',
+        mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
       },
       {
-        header: 'Address',
         accessorKey: 'address',
         filterFn: 'includesStringSensitive',
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        filterVariant: 'multi-select',
+        header: 'State',
         mantineFilterMultiSelectProps: {
           data: [
             'Alabama',
@@ -171,33 +172,32 @@ export const FilterFnAndFilterVariants = () => (
             'Washington',
           ] as any,
         },
-        filterVariant: 'multi-select',
       },
       {
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         accessorFn: (row) => {
           const bDay = new Date(row.birthDate);
           bDay.setHours(0, 0, 0, 0); // remove time from date
           return bDay;
         },
-        id: 'birthDate',
-        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         filterVariant: 'date',
         header: 'Birth Date',
-        sortingFn: 'datetime',
+        id: 'birthDate',
         size: 200,
+        sortingFn: 'datetime',
       },
       {
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         accessorFn: (row) => {
           const hDay = new Date(row.hireDate);
           hDay.setHours(0, 0, 0, 0); // remove time from date
           return hDay;
         },
-        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
-        id: 'hireDate',
         filterVariant: 'date-range',
         header: 'Hire Date',
-        sortingFn: 'datetime',
+        id: 'hireDate',
         size: 200,
+        sortingFn: 'datetime',
       },
     ]}
     data={data}
@@ -207,58 +207,60 @@ export const FilterFnAndFilterVariants = () => (
 
 export const FilterFnAndFilterVariantsPopover = () => (
   <MantineReactTable
+    columnFilterDisplayMode="popover"
     columns={[
       {
-        header: 'Is Active',
-        accessorFn: (originalRow) => (originalRow.isActive ? 'true' : 'false'),
-        id: 'isActive',
-        filterVariant: 'checkbox',
         Cell: ({ cell }) => (cell.getValue() === 'true' ? 'Yes' : 'No'),
+        accessorFn: (originalRow) => (originalRow.isActive ? 'true' : 'false'),
+        filterVariant: 'checkbox',
+        header: 'Is Active',
+        id: 'isActive',
         size: 200,
       },
       {
-        header: 'First Name',
         accessorKey: 'firstName',
         filterFn: 'fuzzy', // default
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
         filterFn: 'contains',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
         filterVariant: 'range',
+        header: 'Age',
       },
       {
-        header: 'Salary',
-        accessorKey: 'salary',
         Cell: ({ cell }) =>
           cell.getValue<number>().toLocaleString('en-US', {
             currency: 'USD',
             style: 'currency',
           }),
+        accessorKey: 'salary',
         filterVariant: 'range-slider',
+        header: 'Salary',
         mantineFilterRangeSliderProps: {
-          min: 1000,
           max: 100000,
+          min: 1000,
         },
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
-        mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
         filterVariant: 'select',
+        header: 'Gender',
+        mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
       },
       {
-        header: 'Address',
         accessorKey: 'address',
         filterFn: 'includesStringSensitive',
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        filterVariant: 'multi-select',
+        header: 'State',
         mantineFilterMultiSelectProps: {
           data: [
             'Alabama',
@@ -275,37 +277,35 @@ export const FilterFnAndFilterVariantsPopover = () => (
             'Washington',
           ] as any,
         },
-        filterVariant: 'multi-select',
       },
       {
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         accessorFn: (row) => {
           const bDay = new Date(row.birthDate);
           bDay.setHours(0, 0, 0, 0); // remove time from date
           return bDay;
         },
-        id: 'birthDate',
-        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         filterVariant: 'date',
         header: 'Birth Date',
-        sortingFn: 'datetime',
+        id: 'birthDate',
         size: 200,
+        sortingFn: 'datetime',
       },
       {
+        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
         accessorFn: (row) => {
           const hDay = new Date(row.hireDate);
           hDay.setHours(0, 0, 0, 0); // remove time from date
           return hDay;
         },
-        Cell: ({ cell }) => cell.getValue<Date>().toLocaleDateString(),
-        id: 'hireDate',
         filterVariant: 'date-range',
         header: 'Hire Date',
-        sortingFn: 'datetime',
+        id: 'hireDate',
         size: 200,
+        sortingFn: 'datetime',
       },
     ]}
     data={data}
-    columnFilterDisplayMode="popover"
   />
 );
 
@@ -313,29 +313,29 @@ export const FilterFnAndFilterVariantsFaceted = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
         filterVariant: 'autocomplete',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
         filterVariant: 'select',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
         filterVariant: 'range-slider',
+        header: 'Age',
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
         filterVariant: 'select',
+        header: 'Gender',
       },
       {
-        header: 'State',
         accessorKey: 'state',
         filterVariant: 'multi-select',
+        header: 'State',
       },
     ]}
     data={data}
@@ -348,44 +348,44 @@ export const EnableFilterModes = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
         filterFn: 'between',
+        header: 'Age',
       },
       {
-        header: 'Salary',
-        accessorKey: 'salary',
         Cell: ({ cell }) =>
           cell.getValue<number>().toLocaleString('en-US', {
             currency: 'USD',
             style: 'currency',
           }),
+        accessorKey: 'salary',
         filterVariant: 'range-slider',
+        header: 'Salary',
         mantineFilterRangeSliderProps: {
-          min: 1000,
           max: 100000,
+          min: 1000,
         },
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
+        header: 'Gender',
         mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        header: 'State',
       },
     ]}
     data={data}
@@ -396,50 +396,50 @@ export const EnableFilterModes = () => (
 
 export const EnableFilterModesPopover = () => (
   <MantineReactTable
+    columnFilterDisplayMode="popover"
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
         filterFn: 'between',
+        header: 'Age',
       },
       {
-        header: 'Salary',
-        accessorKey: 'salary',
         Cell: ({ cell }) =>
           cell.getValue<number>().toLocaleString('en-US', {
             currency: 'USD',
             style: 'currency',
           }),
+        accessorKey: 'salary',
         filterVariant: 'range-slider',
+        header: 'Salary',
         mantineFilterRangeSliderProps: {
-          min: 1000,
           max: 100000,
+          min: 1000,
         },
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
+        header: 'Gender',
         mantineFilterSelectProps: { data: ['Male', 'Female', 'Other'] as any },
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        header: 'State',
       },
     ]}
     data={data}
-    columnFilterDisplayMode="popover"
     enableColumnFilterModes
   />
 );
@@ -448,32 +448,32 @@ export const DisableSomeFilterTypesForCertainColumns = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
         columnFilterModeOptions: ['startsWith', 'endsWith'],
         filterFn: 'startsWith',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
+        header: 'Age',
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
         columnFilterModeOptions: ['equals', 'notEquals'],
         filterFn: 'equals',
+        header: 'Gender',
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        header: 'State',
       },
     ]}
     data={data}
@@ -486,30 +486,30 @@ export const FilteringDisabledForCertainColumns = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
         enableColumnFilter: false,
+        header: 'Age',
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
+        header: 'Gender',
       },
       {
-        header: 'Address',
         accessorKey: 'address',
         enableColumnFilter: false,
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        header: 'State',
       },
     ]}
     data={data}
@@ -521,38 +521,38 @@ export const CustomFilterFunctionPerColumn = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
+        header: 'Age',
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
         filterFn: (row, _columnIds, filterValue) =>
           row
             .getValue<string>('gender')
             .toLowerCase()
             .startsWith(filterValue.toLowerCase()),
+        header: 'Gender',
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
         filterFn: (row, _columnIds, filterValue) =>
           row
             .getValue<string>('state')
             .toLowerCase()
             .startsWith(filterValue.toLowerCase()),
+        header: 'State',
       },
     ]}
     data={data}
@@ -564,34 +564,33 @@ export const CustomFilterFns = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
+        header: 'Age',
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
         filterFn: 'customFn',
+        header: 'Gender',
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
         filterFn: 'customFn',
+        header: 'State',
       },
     ]}
     data={data}
-    initialState={{ showColumnFilters: true }}
     filterFns={{
       customFn: (row, _columnIds, filterValue) => {
         console.info('customFn', row, _columnIds, filterValue);
@@ -601,6 +600,7 @@ export const CustomFilterFns = () => (
           .startsWith(filterValue.toLowerCase());
       },
     }}
+    initialState={{ showColumnFilters: true }}
   />
 );
 
@@ -608,20 +608,23 @@ export const CustomFilterComponent = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
+        header: 'Age',
       },
       {
-        header: 'Gender',
         accessorKey: 'gender',
+        // ),
+        filterFn: (row, _columnIds, filterValue) =>
+          row.getValue<string>('gender').toLowerCase() ===
+          filterValue.toLowerCase(),
         // Filter: ({ header }) => (
         //   <TextField
         //     onChange={(e) =>
@@ -640,18 +643,15 @@ export const CustomFilterComponent = () => (
         //     <MenuItem value="Female">Female</MenuItem>
         //     <MenuItem value="Other">Other</MenuItem>
         //   </TextField>
-        // ),
-        filterFn: (row, _columnIds, filterValue) =>
-          row.getValue<string>('gender').toLowerCase() ===
-          filterValue.toLowerCase(),
+        header: 'Gender',
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        header: 'State',
       },
     ]}
     data={data}
@@ -686,10 +686,10 @@ export const ManualFiltering = () => {
 
   return (
     <MantineReactTable
+      columnFilterModeOptions={null}
       columns={columns}
       data={rows}
       manualFiltering
-      columnFilterModeOptions={null}
       onColumnFiltersChange={setColumnFilters}
       state={{ columnFilters }}
     />

@@ -1,6 +1,6 @@
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Styling/Table Alignment Examples',
@@ -10,38 +10,38 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Age',
     accessorKey: 'age',
+    header: 'Age',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
   {
-    header: 'Phone Number',
     accessorKey: 'phoneNumber',
+    header: 'Phone Number',
   },
 ];
 
 const data = [...Array(25)].map(() => ({
+  address: faker.location.streetAddress(),
+  age: faker.number.int({ max: 60, min: 20 }),
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
-  age: faker.number.int({ min: 20, max: 60 }),
-  address: faker.location.streetAddress(),
-  state: faker.location.state(),
   phoneNumber: faker.phone.number(),
+  state: faker.location.state(),
 }));
 
 export const DefaultLeft = () => (
@@ -52,10 +52,10 @@ export const CenterCells = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    mantineTableHeadCellProps={{
+    mantineTableBodyCellProps={{
       align: 'center',
     }}
-    mantineTableBodyCellProps={{
+    mantineTableHeadCellProps={{
       align: 'center',
     }}
   />
@@ -66,10 +66,10 @@ export const CenterGridCells = () => (
     columns={columns}
     data={data}
     layoutMode="grid"
-    mantineTableHeadCellProps={{
+    mantineTableBodyCellProps={{
       align: 'center',
     }}
-    mantineTableBodyCellProps={{
+    mantineTableHeadCellProps={{
       align: 'center',
     }}
   />
@@ -80,10 +80,10 @@ export const CenterCellsWithGrabHandle = () => (
     columns={columns}
     data={data}
     enableColumnDragging
-    mantineTableHeadCellProps={{
+    mantineTableBodyCellProps={{
       align: 'center',
     }}
-    mantineTableBodyCellProps={{
+    mantineTableHeadCellProps={{
       align: 'center',
     }}
   />
@@ -95,10 +95,10 @@ export const CenterCellsWithGrabHandleNoSorting = () => (
     data={data}
     enableColumnDragging
     enableSorting={false}
-    mantineTableHeadCellProps={{
+    mantineTableBodyCellProps={{
       align: 'center',
     }}
-    mantineTableBodyCellProps={{
+    mantineTableHeadCellProps={{
       align: 'center',
     }}
   />
@@ -109,10 +109,10 @@ export const CenterCellsNoColumnActions = () => (
     columns={columns}
     data={data}
     enableColumnActions={false}
-    mantineTableHeadCellProps={{
+    mantineTableBodyCellProps={{
       align: 'center',
     }}
-    mantineTableBodyCellProps={{
+    mantineTableHeadCellProps={{
       align: 'center',
     }}
   />
@@ -122,10 +122,10 @@ export const RightCells = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    mantineTableHeadCellProps={{
+    mantineTableBodyCellProps={{
       align: 'right',
     }}
-    mantineTableBodyCellProps={{
+    mantineTableHeadCellProps={{
       align: 'right',
     }}
   />
@@ -136,10 +136,10 @@ export const RightGridCells = () => (
     columns={columns}
     data={data}
     layoutMode="grid"
-    mantineTableHeadCellProps={{
+    mantineTableBodyCellProps={{
       align: 'right',
     }}
-    mantineTableBodyCellProps={{
+    mantineTableHeadCellProps={{
       align: 'right',
     }}
   />
@@ -149,16 +149,16 @@ export const RightAlignNumberColumn = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Age',
         accessorKey: 'age',
+        header: 'Age',
         mantineTableBodyCellProps: {
           align: 'right',
         },
@@ -167,16 +167,16 @@ export const RightAlignNumberColumn = () => (
         },
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        header: 'State',
       },
       {
-        header: 'Phone Number',
         accessorKey: 'phoneNumber',
+        header: 'Phone Number',
       },
     ]}
     data={data}

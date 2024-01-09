@@ -1,6 +1,6 @@
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Styling/Table Dimensions Examples',
@@ -10,33 +10,33 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
   {
-    header: 'Phone Number',
     accessorKey: 'phoneNumber',
+    header: 'Phone Number',
   },
 ];
 
 const data = [...Array(25)].map(() => ({
+  address: faker.location.streetAddress(),
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
-  address: faker.location.streetAddress(),
-  state: faker.location.state(),
   phoneNumber: faker.phone.number(),
+  state: faker.location.state(),
 }));
 
 export const MaxWidthAndCentered = () => (
@@ -45,8 +45,8 @@ export const MaxWidthAndCentered = () => (
     data={data}
     mantinePaperProps={{
       style: {
-        maxWidth: '800px',
         margin: 'auto',
+        maxWidth: '800px',
       },
     }}
   />
@@ -81,16 +81,16 @@ export const minHeightParent = () => (
     <MantineReactTable
       columns={columns}
       data={data.slice(0, 5)}
-      mantineTableContainerProps={({ table }) => ({
-        style: {
-          height: `calc(100% - ${table.refs.topToolbarRef.current?.offsetHeight}px - ${table.refs.bottomToolbarRef.current?.offsetHeight}px)`,
-        },
-      })}
       mantinePaperProps={{
         style: {
           height: '100%',
         },
       }}
+      mantineTableContainerProps={({ table }) => ({
+        style: {
+          height: `calc(100% - ${table.refs.topToolbarRef.current?.offsetHeight}px - ${table.refs.bottomToolbarRef.current?.offsetHeight}px)`,
+        },
+      })}
     />
   </div>
 );

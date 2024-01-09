@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import classes from './MRT_GlobalFilterTextInput.module.css';
+import { useEffect, useRef, useState } from 'react';
 import {
   ActionIcon,
   Collapse,
@@ -9,11 +10,9 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
+import { parseFromValuesOrFunc } from '../column.utils';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_RowData, type MRT_TableInstance } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
-import classes from './MRT_GlobalFilterTextInput.module.css';
 
 interface Props<TData extends MRT_RowData> extends TextInputProps {
   table: MRT_TableInstance<TData>;
@@ -25,15 +24,15 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     getState,
-    setGlobalFilter,
     options: {
       enableGlobalFilterModes,
       icons: { IconSearch, IconX },
       localization,
-      manualFiltering,
       mantineSearchTextInputProps,
+      manualFiltering,
     },
     refs: { searchInputRef },
+    setGlobalFilter,
   } = table;
   const { globalFilter, showGlobalFilter } = getState();
 
@@ -73,7 +72,7 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
   }, [globalFilter]);
 
   return (
-    <Collapse in={showGlobalFilter} className={classes.collapse}>
+    <Collapse className={classes.collapse} in={showGlobalFilter}>
       {enableGlobalFilterModes && (
         <Menu withinPortal>
           <Menu.Target>
@@ -86,16 +85,14 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
               <IconSearch />
             </ActionIcon>
           </Menu.Target>
-          <MRT_FilterOptionMenu table={table} onSelect={handleClear} />
+          <MRT_FilterOptionMenu onSelect={handleClear} table={table} />
         </Menu>
       )}
       <TextInput
-        placeholder={localization.search}
-        onChange={(event) => setSearchValue(event.target.value)}
-        value={searchValue ?? ''}
-        variant="filled"
-        mt={0}
         leftSection={!enableGlobalFilterModes && <IconSearch />}
+        mt={0}
+        onChange={(event) => setSearchValue(event.target.value)}
+        placeholder={localization.search}
         rightSection={
           searchValue ? (
             <ActionIcon
@@ -106,13 +103,20 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
               size="sm"
               variant="transparent"
             >
-              <Tooltip withinPortal label={localization.clearSearch}>
+              <Tooltip label={localization.clearSearch} withinPortal>
                 <IconX />
               </Tooltip>
             </ActionIcon>
           ) : null
         }
+        value={searchValue ?? ''}
+        variant="filled"
         {...textFieldProps}
+        className={clsx(
+          'mrt-global-filter-text-input',
+          classes.root,
+          textFieldProps?.className,
+        )}
         ref={(node) => {
           if (node) {
             searchInputRef.current = node;
@@ -122,11 +126,6 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
             }
           }
         }}
-        className={clsx(
-          'mrt-global-filter-text-input',
-          classes.root,
-          textFieldProps?.className,
-        )}
       />
     </Collapse>
   );

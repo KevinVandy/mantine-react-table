@@ -1,12 +1,12 @@
 import { type FocusEvent, type KeyboardEvent, useState } from 'react';
 import { Select, TextInput } from '@mantine/core';
-import {
-  type MRT_RowData,
-  type MRT_Cell,
-  type MRT_TableInstance,
-  type MRT_CellValue,
-} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+import {
+  type MRT_Cell,
+  type MRT_CellValue,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   cell: MRT_Cell<TData, TValue>;
@@ -22,13 +22,13 @@ export const MRT_EditCellTextInput = <TData extends MRT_RowData>({
     options: {
       createDisplayMode,
       editDisplayMode,
-      mantineEditTextInputProps,
       mantineEditSelectProps,
+      mantineEditTextInputProps,
     },
     refs: { editInputRefs },
+    setCreatingRow,
     setEditingCell,
     setEditingRow,
-    setCreatingRow,
   } = table;
   const { column, row } = cell;
   const { columnDef } = column;
@@ -51,7 +51,7 @@ export const MRT_EditCellTextInput = <TData extends MRT_RowData>({
     ...parseFromValuesOrFunc(columnDef.mantineEditSelectProps, arg),
   };
 
-  const saveInputValueToRowCache = (newValue: string | null) => {
+  const saveInputValueToRowCache = (newValue: null | string) => {
     //@ts-ignore
     row._valuesCache[column.id] = newValue;
     if (isCreating) {
@@ -80,23 +80,23 @@ export const MRT_EditCellTextInput = <TData extends MRT_RowData>({
 
   const commonProps = {
     disabled: parseFromValuesOrFunc(columnDef.enableEditing, row) === false,
-    label: ['modal', 'custom'].includes(
+    label: ['custom', 'modal'].includes(
       (isCreating ? createDisplayMode : editDisplayMode) as string,
     )
       ? column.columnDef.header
       : undefined,
     name: cell.id,
-    placeholder: !['modal', 'custom'].includes(
+    onClick: (e: any) => {
+      e.stopPropagation();
+      textInputProps?.onClick?.(e);
+    },
+    placeholder: !['custom', 'modal'].includes(
       (isCreating ? createDisplayMode : editDisplayMode) as string,
     )
       ? columnDef.header
       : undefined,
     value,
     variant: editDisplayMode === 'table' ? 'unstyled' : 'default',
-    onClick: (e: any) => {
-      e.stopPropagation();
-      textInputProps?.onClick?.(e);
-    },
   } as const;
 
   if (isSelectEdit) {

@@ -1,8 +1,8 @@
 import { ActionIcon, type ActionIconProps, Menu, Tooltip } from '@mantine/core';
 import { MRT_ShowHideColumnsMenu } from '../menus/MRT_ShowHideColumnsMenu';
 import {
-  type MRT_RowData,
   type HTMLPropsRef,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
 
@@ -24,13 +24,13 @@ export const MRT_ShowHideColumnsButton = <TData extends MRT_RowData>({
 
   return (
     <Menu closeOnItemClick={false} withinPortal>
-      <Tooltip withinPortal label={title ?? showHideColumns}>
+      <Tooltip label={title ?? showHideColumns} withinPortal>
         <Menu.Target>
           <ActionIcon
+            aria-label={title ?? showHideColumns}
             color="gray"
             size="lg"
             variant="subtle"
-            aria-label={title ?? showHideColumns}
             {...rest}
           >
             <IconColumns />

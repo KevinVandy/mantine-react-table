@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import classes from './MRT_FilterTextInput.module.css';
 import { type MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActionIcon,
@@ -11,15 +12,13 @@ import {
 } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
-import {
-  type MRT_RowData,
-  type MRT_Header,
-  type MRT_TableInstance,
-} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
 import { localizedFilterOption } from '../filterFns';
-
-import classes from './MRT_FilterTextInput.module.css';
+import {
+  type MRT_Header,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
@@ -51,7 +50,7 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
   const { column } = header;
   const { columnDef } = column;
 
-  const arg = { column, table, rangeFilterIndex };
+  const arg = { column, rangeFilterIndex, table };
   const textInputProps = {
     ...parseFromValuesOrFunc(mantineFilterTextInputProps, arg),
     ...parseFromValuesOrFunc(columnDef.mantineFilterTextInputProps, arg),
@@ -214,14 +213,7 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
   };
 
   const { className, ...commonProps } = {
-    disabled: !!filterChipLabel,
-    placeholder: filterPlaceholder,
-    title: filterPlaceholder,
     'aria-label': filterPlaceholder,
-    onClick: (event: MouseEvent<HTMLInputElement>) => event.stopPropagation(),
-    onChange: setFilterValue,
-    value: filterValue,
-    variant: 'unstyled',
     className: clsx(
       'mrt-filter-text-input',
       classes.root,
@@ -231,6 +223,10 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
           ? classes['range-filter']
           : !filterChipLabel && classes['not-filter-chip'],
     ),
+    disabled: !!filterChipLabel,
+    onChange: setFilterValue,
+    onClick: (event: MouseEvent<HTMLInputElement>) => event.stopPropagation(),
+    placeholder: filterPlaceholder,
     style: {
       ...(isMultiSelectFilter
         ? multiSelectProps?.style
@@ -240,6 +236,9 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
             ? dateInputProps?.style
             : textInputProps?.style),
     },
+    title: filterPlaceholder,
+    value: filterValue,
+    variant: 'unstyled',
   } as const;
 
   const ClearButton = filterValue ? (
@@ -258,10 +257,10 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
   return filterChipLabel ? (
     <Box style={commonProps.style}>
       <Badge
-        size="lg"
-        onClick={handleClearEmptyFilterChip}
         className={classes['filter-chip-badge']}
+        onClick={handleClearEmptyFilterChip}
         rightSection={ClearButton}
+        size="lg"
       >
         {filterChipLabel}
       </Badge>
@@ -271,9 +270,9 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
       {...commonProps}
       searchable
       {...multiSelectProps}
-      onChange={(value) => setFilterValue(value)}
       className={clsx(className, multiSelectProps.className)}
       data={filterSelectOptions}
+      onChange={(value) => setFilterValue(value)}
       ref={(node) => {
         if (node) {
           filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
@@ -283,18 +282,20 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
           }
         }
       }}
-      style={commonProps.style}
       rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
+      style={commonProps.style}
     />
   ) : isSelectFilter ? (
     <Select
       {...commonProps}
-      searchable
       clearable
+      searchable
       {...selectProps}
       className={clsx(className, selectProps.className)}
+      clearButtonProps={{
+        size: 'md',
+      }}
       data={filterSelectOptions}
-      style={commonProps.style}
       ref={(node) => {
         if (node) {
           filterInputRefs.current[`${column.id}-${rangeFilterIndex ?? 0}`] =
@@ -304,9 +305,7 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
           }
         }
       }}
-      clearButtonProps={{
-        size: 'md',
-      }}
+      style={commonProps.style}
     />
   ) : isDateFilter ? (
     <DateInput
@@ -330,8 +329,8 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
   ) : isAutoCompleteFilter ? (
     <Autocomplete
       {...commonProps}
-      rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
       onChange={(value) => setFilterValue(value)}
+      rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
       {...autoCompleteProps}
       className={clsx(className, autoCompleteProps.className)}
       data={filterSelectOptions}
@@ -349,8 +348,8 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
   ) : (
     <TextInput
       {...commonProps}
-      rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
       onChange={(e) => setFilterValue(e.target.value)}
+      rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
       {...textInputProps}
       className={clsx(className, textInputProps.className)}
       mt={0}

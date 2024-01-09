@@ -1,5 +1,5 @@
-import { useMRT_TableOptions } from './hooks/useMRT_TableOptions';
 import { useMRT_TableInstance } from './hooks/useMRT_TableInstance';
+import { useMRT_TableOptions } from './hooks/useMRT_TableOptions';
 import {
   type MRT_RowData,
   type MRT_TableInstance,

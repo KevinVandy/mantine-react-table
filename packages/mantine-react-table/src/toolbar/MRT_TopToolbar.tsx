@@ -1,17 +1,16 @@
+import clsx from 'clsx';
+import classes from './MRT_TopToolbar.module.css';
+import commonClasses from './common.styles.module.css';
 import { Box, Flex } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import clsx from 'clsx';
-import { MRT_GlobalFilterTextInput } from '../inputs/MRT_GlobalFilterTextInput';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_TablePagination } from './MRT_TablePagination';
 import { MRT_ToolbarAlertBanner } from './MRT_ToolbarAlertBanner';
-import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
-import { type MRT_RowData, type MRT_TableInstance } from '../types';
-
-import classes from './MRT_TopToolbar.module.css';
-import commonClasses from './common.styles.module.css';
+import { MRT_ToolbarInternalButtons } from './MRT_ToolbarInternalButtons';
 import { parseFromValuesOrFunc } from '../column.utils';
+import { MRT_GlobalFilterTextInput } from '../inputs/MRT_GlobalFilterTextInput';
+import { type MRT_RowData, type MRT_TableInstance } from '../types';
 
 interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
@@ -95,7 +94,7 @@ export const MRT_TopToolbar = <TData extends MRT_RowData>({
         )}
         {renderTopToolbarCustomActions?.({ table }) ?? <span />}
         {enableToolbarInternalActions ? (
-          <Flex wrap={'wrap-reverse'} justify={'end'}>
+          <Flex justify={'end'} wrap={'wrap-reverse'}>
             {enableGlobalFilter && positionGlobalFilter === 'right' && (
               <MRT_GlobalFilterTextInput {...globalFilterProps} />
             )}
@@ -109,9 +108,9 @@ export const MRT_TopToolbar = <TData extends MRT_RowData>({
         )}
       </Flex>
       {enablePagination &&
-        ['top', 'both'].includes(positionPagination ?? '') && (
+        ['both', 'top'].includes(positionPagination ?? '') && (
           <Flex justify="end">
-            <MRT_TablePagination table={table} position="top" />
+            <MRT_TablePagination position="top" table={table} />
           </Flex>
         )}
       <MRT_ProgressBar isTopToolbar table={table} />

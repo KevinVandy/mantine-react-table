@@ -1,11 +1,11 @@
-import { type Meta } from '@storybook/react';
+import { ActionIcon, Box, Button, Title, Tooltip } from '@mantine/core';
 import {
-  MantineReactTable,
   type MRT_ColumnDef,
   MRT_ToggleFullScreenButton,
+  MantineReactTable,
 } from '../../src';
 import { faker } from '@faker-js/faker';
-import { Box, Button, ActionIcon, Tooltip, Title } from '@mantine/core';
+import { type Meta } from '@storybook/react';
 import { IconPlus, IconTrash } from '@tabler/icons-react';
 
 const meta: Meta = {
@@ -16,32 +16,32 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Age',
     accessorKey: 'age',
+    header: 'Age',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
   {
-    header: 'Phone Number',
     accessorKey: 'phoneNumber',
+    header: 'Phone Number',
   },
 ];
 
 const data = [...Array(5)].map(() => ({
+  address: faker.location.streetAddress(),
+  age: faker.number.int(80),
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
-  age: faker.number.int(80),
-  address: faker.location.streetAddress(),
   phoneNumber: faker.phone.number(),
 }));
 
@@ -62,8 +62,8 @@ export const BottomToolbarHidden = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    enableRowSelection
     enableBottomToolbar={false}
+    enableRowSelection
   />
 );
 
@@ -71,9 +71,9 @@ export const NoToolbars = () => (
   <MantineReactTable
     columns={columns}
     data={data}
+    enableBottomToolbar={false}
     enableRowSelection
     enableTopToolbar={false}
-    enableBottomToolbar={false}
   />
 );
 
@@ -90,8 +90,8 @@ export const CustomToolbarInternalActions = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    enableRowSelection
     enableGrouping
+    enableRowSelection
     renderToolbarInternalActions={({ table }) => {
       return (
         <>

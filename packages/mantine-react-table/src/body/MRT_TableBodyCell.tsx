@@ -1,19 +1,18 @@
 import clsx from 'clsx';
+import classes from './MRT_TableBodyCell.module.css';
 import {
-  memo,
   type CSSProperties,
   type DragEvent,
   type MouseEvent,
   type RefObject,
+  memo,
   useEffect,
   useMemo,
   useState,
 } from 'react';
 import { Skeleton, TableTd } from '@mantine/core';
-
-import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
-import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
+import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import {
   getIsFirstColumn,
   getIsFirstRightPinnedColumn,
@@ -23,19 +22,18 @@ import {
   parseCSSVarId,
   parseFromValuesOrFunc,
 } from '../column.utils';
+import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import {
-  type MRT_RowData,
   type MRT_Cell,
+  type MRT_CellValue,
+  type MRT_RowData,
   type MRT_TableInstance,
   type MRT_VirtualItem,
-  type MRT_CellValue,
 } from '../types';
-
-import classes from './MRT_TableBodyCell.module.css';
 
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   cell: MRT_Cell<TData, TValue>;
-  isStriped?: boolean | 'odd' | 'even';
+  isStriped?: 'even' | 'odd' | boolean;
   measureElement?: (element: HTMLTableCellElement) => void;
   numRows?: number;
   rowIndex: number;
@@ -130,7 +128,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
 
   const isEditing =
     isEditable &&
-    !['modal', 'custom'].includes(editDisplayMode as string) &&
+    !['custom', 'modal'].includes(editDisplayMode as string) &&
     (editDisplayMode === 'table' ||
       editingRow?.id === row.id ||
       editingCell?.id === cell.id) &&
@@ -178,6 +176,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       }}
       {...tableCellProps}
       __vars={{
+        '--mrt-row-depth':
+          column.id === 'mrt-row-expand' ? `${row.depth}` : undefined,
         '--mrt-table-cell-justify': layoutMode?.startsWith('grid')
           ? tableCellProps.align === 'left'
             ? 'flex-start'
@@ -193,8 +193,6 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           column.getIsPinned() === 'right'
             ? `${getTotalRight(table, column)}`
             : undefined,
-        '--mrt-row-depth':
-          column.id === 'mrt-row-expand' ? `${row.depth}` : undefined,
         ...tableCellProps.__vars,
       }}
       className={clsx(
@@ -207,7 +205,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           editDisplayMode === 'cell' &&
           classes['root-cursor-pointer'],
         isEditable &&
-          ['table', 'cell'].includes(editDisplayMode ?? '') &&
+          ['cell', 'table'].includes(editDisplayMode ?? '') &&
           columnDefType !== 'display' &&
           classes['root-editable-hover'],
         enableColumnVirtualization && classes['root-virtualized'],
@@ -236,12 +234,12 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
         numRows && rowIndex === numRows - 1 && classes['last-row'],
         tableCellProps?.className,
       )}
+      onDoubleClick={handleDoubleClick}
+      onDragEnter={handleDragEnter}
       style={(theme) => ({
         ...widthStyles,
         ...parseFromValuesOrFunc(tableCellProps.style, theme),
       })}
-      onDragEnter={handleDragEnter}
-      onDoubleClick={handleDoubleClick}
     >
       <>
         {cell.getIsPlaceholder() ? (

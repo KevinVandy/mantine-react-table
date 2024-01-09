@@ -1,3 +1,4 @@
+import classes from './MRT_ShowHideColumnsMenuItems.module.css';
 import {
   type Dispatch,
   type DragEvent,
@@ -9,22 +10,20 @@ import {
   Box,
   Menu,
   Switch,
-  Tooltip,
   Text,
+  Tooltip,
   useMantineTheme,
 } from '@mantine/core';
 import { MRT_ColumnPinningButtons } from '../buttons/MRT_ColumnPinningButtons';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
 import { getPrimaryColor, reorderColumn } from '../column.utils';
-import {
-  type MRT_RowData,
-  type MRT_Column,
-  type MRT_TableInstance,
-  type MRT_CellValue,
-} from '../types';
 import { dataVariable } from '../dataVariable';
-
-import classes from './MRT_ShowHideColumnsMenuItems.module.css';
+import {
+  type MRT_CellValue,
+  type MRT_Column,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   allColumns: MRT_Column<TData>[];
@@ -36,9 +35,9 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
 
 export const MRT_ShowHideColumnsMenuItems = <TData extends MRT_RowData>({
   allColumns,
+  column,
   hoveredColumn,
   setHoveredColumn,
-  column,
   table,
 }: Props<TData>) => {
   const theme = useMantineTheme();
@@ -46,8 +45,8 @@ export const MRT_ShowHideColumnsMenuItems = <TData extends MRT_RowData>({
     getState,
     options: {
       enableColumnOrdering,
-      enableHiding,
       enableColumnPinning,
+      enableHiding,
       localization,
     },
     setColumnOrder,
@@ -101,14 +100,14 @@ export const MRT_ShowHideColumnsMenuItems = <TData extends MRT_RowData>({
   return (
     <>
       <Menu.Item
+        className={classes.root}
         component="span"
+        onDragEnter={handleDragEnter}
         ref={menuItemRef as any}
         style={{
           '--_column-depth': `${(column.depth + 0.5) * 2}rem`,
           '--_hover-color': getPrimaryColor(theme),
         }}
-        onDragEnter={handleDragEnter}
-        className={classes.root}
         {...dataVariable('dragging', isDragging)}
         {...dataVariable('order-hovered', hoveredColumn?.id === column.id)}
       >
@@ -135,16 +134,16 @@ export const MRT_ShowHideColumnsMenuItems = <TData extends MRT_RowData>({
             ))}
           {enableHiding ? (
             <Tooltip
-              withinPortal
-              openDelay={1000}
               label={localization.toggleVisibility}
+              openDelay={1000}
+              withinPortal
             >
               <Switch
                 checked={switchChecked}
+                className={classes.switch}
                 disabled={!column.getCanHide()}
                 label={columnDef.header}
                 onChange={() => handleToggleColumnHidden(column)}
-                className={classes.switch}
               />
             </Tooltip>
           ) : (

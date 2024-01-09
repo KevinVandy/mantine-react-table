@@ -1,14 +1,12 @@
 import clsx from 'clsx';
+import classes from './MRT_ToolbarInternalButtons.module.css';
 import { Flex } from '@mantine/core';
-
 import { MRT_ShowHideColumnsButton } from '../buttons/MRT_ShowHideColumnsButton';
 import { MRT_ToggleDensePaddingButton } from '../buttons/MRT_ToggleDensePaddingButton';
 import { MRT_ToggleFiltersButton } from '../buttons/MRT_ToggleFiltersButton';
 import { MRT_ToggleFullScreenButton } from '../buttons/MRT_ToggleFullScreenButton';
 import { MRT_ToggleGlobalFilterButton } from '../buttons/MRT_ToggleGlobalFilterButton';
 import { type MRT_RowData, type MRT_TableInstance } from '../types';
-
-import classes from './MRT_ToolbarInternalButtons.module.css';
 
 interface Props<TData extends MRT_RowData> {
   table: MRT_TableInstance<TData>;
@@ -22,12 +20,12 @@ export const MRT_ToolbarInternalButtons = <TData extends MRT_RowData>({
       columnFilterDisplayMode,
       enableColumnFilters,
       enableColumnOrdering,
+      enableColumnPinning,
       enableDensityToggle,
       enableFilters,
       enableFullScreenToggle,
       enableGlobalFilter,
       enableHiding,
-      enableColumnPinning,
       initialState,
       renderToolbarInternalActions,
     },

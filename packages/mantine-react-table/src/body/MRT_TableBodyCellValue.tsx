@@ -1,11 +1,11 @@
 import { Highlight, type HighlightProps } from '@mantine/core';
-import {
-  type MRT_RowData,
-  type MRT_Cell,
-  type MRT_TableInstance,
-  type MRT_CellValue,
-} from '../types';
 import { parseFromValuesOrFunc } from '../column.utils';
+import {
+  type MRT_Cell,
+  type MRT_CellValue,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../types';
 
 const allowedTypes = ['string', 'number'];
 const allowedFilterVariants = ['text', 'autocomplete'];
@@ -91,8 +91,8 @@ export const MRT_TableBodyCellValue = <TData extends MRT_RowData>({
   if (columnDef.Cell && !isGroupedValue) {
     renderedCellValue = columnDef.Cell({
       cell,
-      renderedCellValue,
       column,
+      renderedCellValue,
       row,
       table,
     });

@@ -1,14 +1,12 @@
 import clsx from 'clsx';
-import { ActionIcon, Flex, Tooltip } from '@mantine/core';
-
-import {
-  type MRT_RowData,
-  type MRT_Column,
-  type MRT_TableInstance,
-  type MRT_CellValue,
-} from '../types';
-
 import classes from './MRT_ColumnPinningButtons.module.css';
+import { ActionIcon, Flex, Tooltip } from '@mantine/core';
+import {
+  type MRT_CellValue,
+  type MRT_Column,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   column: MRT_Column<TData, TValue>;
@@ -27,34 +25,34 @@ export const MRT_ColumnPinningButtons = <TData extends MRT_RowData>({
   return (
     <Flex className={clsx('mrt-column-pinning-buttons', classes.root)}>
       {column.getIsPinned() ? (
-        <Tooltip withinPortal label={localization.unpin}>
+        <Tooltip label={localization.unpin} withinPortal>
           <ActionIcon
-            onClick={() => column.pin(false)}
             color="gray"
-            variant="default"
+            onClick={() => column.pin(false)}
             size="md"
+            variant="default"
           >
             <IconPinnedOff />
           </ActionIcon>
         </Tooltip>
       ) : (
         <>
-          <Tooltip withinPortal label={localization.pinToLeft}>
+          <Tooltip label={localization.pinToLeft} withinPortal>
             <ActionIcon
-              onClick={() => column.pin('left')}
               color="gray"
-              variant="default"
+              onClick={() => column.pin('left')}
               size="md"
+              variant="default"
             >
               <IconPinned className={classes.left} />
             </ActionIcon>
           </Tooltip>
-          <Tooltip withinPortal label={localization.pinToRight}>
+          <Tooltip label={localization.pinToRight} withinPortal>
             <ActionIcon
-              onClick={() => column.pin('right')}
               color="gray"
-              variant="default"
+              onClick={() => column.pin('right')}
               size="md"
+              variant="default"
             >
               <IconPinned className={classes.right} />
             </ActionIcon>

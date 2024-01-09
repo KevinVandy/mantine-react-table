@@ -1,6 +1,6 @@
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Features/Column Ordering Examples',
@@ -10,37 +10,37 @@ export default meta;
 
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Email Address',
     accessorKey: 'email',
+    header: 'Email Address',
   },
   {
-    header: 'Address',
     accessorKey: 'address',
+    header: 'Address',
   },
   {
-    header: 'City',
     accessorKey: 'city',
+    header: 'City',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
 ];
 
 const data = [...Array(100)].map(() => ({
-  firstName: faker.person.firstName(),
-  lastName: faker.person.lastName(),
-  email: faker.internet.email(),
   address: faker.location.streetAddress(),
   city: faker.location.city(),
+  email: faker.internet.email(),
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
   state: faker.location.state(),
 }));
 
@@ -52,29 +52,29 @@ export const ColumnOrderingDisabledPerColumn = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Email Address',
         accessorKey: 'email',
+        header: 'Email Address',
       },
       {
-        header: 'Address',
         accessorKey: 'address',
+        header: 'Address',
       },
       {
-        header: 'City',
         accessorKey: 'city',
+        header: 'City',
       },
       {
-        header: 'State',
         accessorKey: 'state',
         enableColumnOrdering: false,
+        header: 'State',
       },
     ]}
     data={data}

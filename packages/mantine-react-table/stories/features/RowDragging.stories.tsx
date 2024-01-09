@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { type Meta } from '@storybook/react';
-import { MantineReactTable, type MRT_ColumnDef } from '../../src';
+import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Features/Row Dragging Examples',
@@ -15,33 +15,33 @@ const columns: MRT_ColumnDef<(typeof initData)[0]>[] = [
     header: 'ID',
   },
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Email Address',
     accessorKey: 'email',
+    header: 'Email Address',
   },
   {
-    header: 'Age',
     accessorKey: 'age',
+    header: 'Age',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
 ];
 
 const initData = [...Array(25)].map(() => ({
-  id: faker.string.alphanumeric(6),
-  firstName: faker.person.firstName(),
-  lastName: faker.person.lastName(),
-  email: faker.internet.email(),
   age: faker.number.int(20) + 18,
+  email: faker.internet.email(),
+  firstName: faker.person.firstName(),
+  id: faker.string.alphanumeric(6),
+  lastName: faker.person.lastName(),
   state: faker.location.state(),
 }));
 

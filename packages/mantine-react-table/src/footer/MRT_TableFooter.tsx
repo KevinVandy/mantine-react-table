@@ -1,23 +1,22 @@
-import { TableTfoot } from '@mantine/core';
 import clsx from 'clsx';
+import classes from './MRT_TableFooter.module.css';
+import { TableTfoot } from '@mantine/core';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
+import { parseFromValuesOrFunc } from '../column.utils';
 import {
   type MRT_ColumnVirtualizer,
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
-import classes from './MRT_TableFooter.module.css';
 
 interface Props<TData extends MRT_RowData> {
-  table: MRT_TableInstance<TData>;
   columnVirtualizer?: MRT_ColumnVirtualizer;
+  table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TableFooter = <TData extends MRT_RowData>({
-  table,
   columnVirtualizer,
+  table,
 }: Props<TData>) => {
   const {
     getFooterGroups,
@@ -37,6 +36,12 @@ export const MRT_TableFooter = <TData extends MRT_RowData>({
   return (
     <TableTfoot
       {...tableFooterProps}
+      className={clsx(
+        classes.root,
+        tableFooterProps?.className,
+        stickFooter && classes.sticky,
+        layoutMode?.startsWith('grid') && classes.grid,
+      )}
       ref={(ref: HTMLTableSectionElement) => {
         tableFooterRef.current = ref;
         if (tableFooterProps?.ref) {
@@ -44,19 +49,13 @@ export const MRT_TableFooter = <TData extends MRT_RowData>({
           tableFooterProps.ref.current = ref;
         }
       }}
-      className={clsx(
-        classes.root,
-        tableFooterProps?.className,
-        stickFooter && classes.sticky,
-        layoutMode?.startsWith('grid') && classes.grid,
-      )}
     >
       {getFooterGroups().map((footerGroup) => (
         <MRT_TableFooterRow
+          columnVirtualizer={columnVirtualizer}
           footerGroup={footerGroup as any}
           key={footerGroup.id}
           table={table}
-          columnVirtualizer={columnVirtualizer}
         />
       ))}
     </TableTfoot>

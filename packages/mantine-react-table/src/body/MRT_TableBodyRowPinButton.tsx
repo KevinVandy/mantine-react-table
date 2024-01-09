@@ -2,8 +2,8 @@ import { Box } from '@mantine/core';
 import { MRT_RowPinButton } from '../buttons/MRT_RowPinButton';
 import { parseFromValuesOrFunc } from '../column.utils';
 import {
-  type MRT_RowData,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
 

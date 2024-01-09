@@ -1,27 +1,26 @@
 import clsx from 'clsx';
+import classes from './MRT_TableFooterRow.module.css';
 import { Box, TableTr } from '@mantine/core';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
+import { parseFromValuesOrFunc } from '../column.utils';
 import {
-  type MRT_RowData,
+  type MRT_ColumnVirtualizer,
   type MRT_Header,
   type MRT_HeaderGroup,
+  type MRT_RowData,
   type MRT_TableInstance,
-  type MRT_ColumnVirtualizer,
 } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
-import classes from './MRT_TableFooterRow.module.css';
 
 interface Props<TData extends MRT_RowData> {
+  columnVirtualizer?: MRT_ColumnVirtualizer;
   footerGroup: MRT_HeaderGroup<TData>;
   table: MRT_TableInstance<TData>;
-  columnVirtualizer?: MRT_ColumnVirtualizer;
 }
 
 export const MRT_TableFooterRow = <TData extends MRT_RowData>({
+  columnVirtualizer,
   footerGroup,
   table,
-  columnVirtualizer,
 }: Props<TData>) => {
   const {
     options: { layoutMode, mantineTableFooterRowProps },

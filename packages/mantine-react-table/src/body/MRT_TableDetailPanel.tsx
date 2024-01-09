@@ -1,15 +1,13 @@
 import clsx from 'clsx';
+import classes from './MRT_TableDetailPanel.module.css';
 import { Box, Collapse } from '@mantine/core';
-
+import { parseFromValuesOrFunc } from '../column.utils';
 import {
-  type MRT_RowData,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
-import { parseFromValuesOrFunc } from '../column.utils';
-
-import classes from './MRT_TableDetailPanel.module.css';
 
 interface Props<TData extends MRT_RowData> {
   parentRowRef: React.RefObject<HTMLTableRowElement>;
@@ -27,12 +25,12 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
   virtualRow,
 }: Props<TData>) => {
   const {
-    getVisibleLeafColumns,
     getState,
+    getVisibleLeafColumns,
     options: {
       layoutMode,
-      mantineTableBodyRowProps,
       mantineDetailPanelProps,
+      mantineTableBodyRowProps,
       renderDetailPanel,
     },
   } = table;
@@ -74,8 +72,8 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
       )}
     >
       <Box
-        component="td"
         colSpan={getVisibleLeafColumns().length}
+        component="td"
         {...tableCellProps}
         __vars={{
           '--mrt-inner-width': `${table.getTotalSize()}px`,

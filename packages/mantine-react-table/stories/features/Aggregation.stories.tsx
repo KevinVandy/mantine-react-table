@@ -1,11 +1,11 @@
-import { type Meta } from '@storybook/react';
+import { Box, Stack } from '@mantine/core';
 import {
-  MantineReactTable,
   MRT_AggregationFns,
   type MRT_ColumnDef,
+  MantineReactTable,
 } from '../../src';
 import { faker } from '@faker-js/faker';
-import { Box, Stack } from '@mantine/core';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Features/Aggregation Examples',
@@ -14,12 +14,12 @@ const meta: Meta = {
 export default meta;
 
 const data = [...Array(2000)].map(() => ({
+  age: faker.number.int({ max: 65, min: 18 }),
   firstName: faker.person.firstName(),
-  lastName: faker.person.lastName(),
-  age: faker.number.int({ min: 18, max: 65 }),
   gender: faker.person.sex(),
-  state: faker.location.state(),
+  lastName: faker.person.lastName(),
   salary: Number(faker.finance.amount(10000, 100000, 0)),
+  state: faker.location.state(),
 }));
 
 const averageSalary =
@@ -29,19 +29,16 @@ const averageAge = data.reduce((acc, curr) => acc + curr.age, 0) / data.length;
 
 const columns = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
     enableGrouping: false,
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
     enableGrouping: false,
+    header: 'Last Name',
   },
   {
-    header: 'Age',
-    accessorKey: 'age',
-    aggregationFn: 'max',
     AggregatedCell: ({ cell, table }) => (
       <>
         Max by{' '}
@@ -57,33 +54,32 @@ const columns = [
         <Box color="orange">{Math.round(averageAge)}</Box>
       </Stack>
     ),
+    accessorKey: 'age',
+    aggregationFn: 'max',
+    header: 'Age',
   },
   {
-    header: 'Gender',
-    accessorKey: 'gender',
     GroupedCell: ({ cell }) => (
       <Box style={{ color: 'primary.main' }}>{cell.getValue<string>()}</Box>
     ),
+    accessorKey: 'gender',
+    header: 'Gender',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
   {
-    header: 'Salary',
-    accessorKey: 'salary',
-    enableGrouping: false,
-    aggregationFn: 'mean',
     AggregatedCell: ({ cell, table }) => (
       <>
         Average by{' '}
         {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
         <Box style={{ color: 'green', fontWeight: 'bold' }}>
           {cell.getValue<number>()?.toLocaleString?.('en-US', {
-            style: 'currency',
             currency: 'USD',
-            minimumFractionDigits: 0,
             maximumFractionDigits: 0,
+            minimumFractionDigits: 0,
+            style: 'currency',
           })}
         </Box>
       </>
@@ -91,10 +87,10 @@ const columns = [
     Cell: ({ cell }) => (
       <>
         {cell.getValue<number>()?.toLocaleString?.('en-US', {
-          style: 'currency',
           currency: 'USD',
-          minimumFractionDigits: 0,
           maximumFractionDigits: 0,
+          minimumFractionDigits: 0,
+          style: 'currency',
         })}
       </>
     ),
@@ -103,14 +99,18 @@ const columns = [
         Average Salary:
         <Box color="orange">
           {averageSalary?.toLocaleString?.('en-US', {
-            style: 'currency',
             currency: 'USD',
-            minimumFractionDigits: 0,
             maximumFractionDigits: 0,
+            minimumFractionDigits: 0,
+            style: 'currency',
           })}
         </Box>
       </Stack>
     ),
+    accessorKey: 'salary',
+    aggregationFn: 'mean',
+    enableGrouping: false,
+    header: 'Salary',
   },
 ] as MRT_ColumnDef<(typeof data)[0]>[];
 
@@ -145,23 +145,16 @@ export const MultiAggregationPerColumn = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
         enableGrouping: false,
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
         enableGrouping: false,
+        header: 'Last Name',
       },
       {
-        header: 'Age',
-        accessorKey: 'age',
-        //manually set multiple aggregation functions
-        aggregationFn: (columnId, leafRows: any, childRows: any) => [
-          MRT_AggregationFns.min(columnId, leafRows, childRows),
-          MRT_AggregationFns.max(columnId, leafRows, childRows),
-        ],
         AggregatedCell: ({ cell, table }) => (
           <>
             Min by{' '}
@@ -185,23 +178,26 @@ export const MultiAggregationPerColumn = () => (
             <Box color="orange">{Math.round(averageAge)}</Box>
           </Stack>
         ),
+        accessorKey: 'age',
+        //manually set multiple aggregation functions
+        aggregationFn: (columnId, leafRows: any, childRows: any) => [
+          MRT_AggregationFns.min(columnId, leafRows, childRows),
+          MRT_AggregationFns.max(columnId, leafRows, childRows),
+        ],
+        header: 'Age',
       },
       {
-        header: 'Gender',
-        accessorKey: 'gender',
         GroupedCell: ({ cell }) => (
           <Box style={{ color: 'primary.main' }}>{cell.getValue<string>()}</Box>
         ),
+        accessorKey: 'gender',
+        header: 'Gender',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        header: 'State',
       },
       {
-        header: 'Salary',
-        accessorKey: 'salary',
-        enableGrouping: false,
-        aggregationFn: ['count', 'mean'], //multiple aggregation functions
         AggregatedCell: ({ cell, table }) => (
           <>
             Count:{' '}
@@ -217,10 +213,10 @@ export const MultiAggregationPerColumn = () => (
               {cell
                 .getValue<[number, number]>()?.[1]
                 ?.toLocaleString?.('en-US', {
-                  style: 'currency',
                   currency: 'USD',
-                  minimumFractionDigits: 0,
                   maximumFractionDigits: 0,
+                  minimumFractionDigits: 0,
+                  style: 'currency',
                 })}
             </Box>
           </>
@@ -228,10 +224,10 @@ export const MultiAggregationPerColumn = () => (
         Cell: ({ cell }) => (
           <>
             {cell.getValue<number>()?.toLocaleString?.('en-US', {
-              style: 'currency',
               currency: 'USD',
-              minimumFractionDigits: 0,
               maximumFractionDigits: 0,
+              minimumFractionDigits: 0,
+              style: 'currency',
             })}
           </>
         ),
@@ -240,14 +236,18 @@ export const MultiAggregationPerColumn = () => (
             Average Salary:
             <Box color="orange">
               {averageSalary?.toLocaleString?.('en-US', {
-                style: 'currency',
                 currency: 'USD',
-                minimumFractionDigits: 0,
                 maximumFractionDigits: 0,
+                minimumFractionDigits: 0,
+                style: 'currency',
               })}
             </Box>
           </Stack>
         ),
+        accessorKey: 'salary',
+        aggregationFn: ['count', 'mean'], //multiple aggregation functions
+        enableGrouping: false,
+        header: 'Salary',
       },
     ]}
     data={data}

@@ -1,102 +1,101 @@
+import classes from './MRT_FilterOptionMenu.module.css';
 import { Fragment, useMemo } from 'react';
 import { Menu } from '@mantine/core';
 import {
-  type MRT_RowData,
   type MRT_FilterOption,
   type MRT_Header,
   type MRT_InternalFilterOption,
   type MRT_Localization,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-
-import classes from './MRT_FilterOptionMenu.module.css';
 
 export const mrtFilterOptions = (
   localization: MRT_Localization,
 ): MRT_InternalFilterOption[] => [
   {
+    divider: false,
+    label: localization.filterFuzzy,
     option: 'fuzzy',
     symbol: '≈',
-    label: localization.filterFuzzy,
-    divider: false,
   },
   {
+    divider: false,
+    label: localization.filterContains,
     option: 'contains',
     symbol: '*',
-    label: localization.filterContains,
-    divider: false,
   },
   {
+    divider: false,
+    label: localization.filterStartsWith,
     option: 'startsWith',
     symbol: 'a',
-    label: localization.filterStartsWith,
-    divider: false,
   },
   {
+    divider: true,
+    label: localization.filterEndsWith,
     option: 'endsWith',
     symbol: 'z',
-    label: localization.filterEndsWith,
-    divider: true,
   },
   {
+    divider: false,
+    label: localization.filterEquals,
     option: 'equals',
     symbol: '=',
-    label: localization.filterEquals,
-    divider: false,
   },
   {
+    divider: true,
+    label: localization.filterNotEquals,
     option: 'notEquals',
     symbol: '≠',
-    label: localization.filterNotEquals,
-    divider: true,
   },
   {
+    divider: false,
+    label: localization.filterBetween,
     option: 'between',
     symbol: '⇿',
-    label: localization.filterBetween,
-    divider: false,
   },
   {
+    divider: true,
+    label: localization.filterBetweenInclusive,
     option: 'betweenInclusive',
     symbol: '⬌',
-    label: localization.filterBetweenInclusive,
-    divider: true,
   },
   {
+    divider: false,
+    label: localization.filterGreaterThan,
     option: 'greaterThan',
     symbol: '>',
-    label: localization.filterGreaterThan,
-    divider: false,
   },
   {
+    divider: false,
+    label: localization.filterGreaterThanOrEqualTo,
     option: 'greaterThanOrEqualTo',
     symbol: '≥',
-    label: localization.filterGreaterThanOrEqualTo,
-    divider: false,
   },
   {
+    divider: false,
+    label: localization.filterLessThan,
     option: 'lessThan',
     symbol: '<',
-    label: localization.filterLessThan,
-    divider: false,
   },
   {
+    divider: true,
+    label: localization.filterLessThanOrEqualTo,
     option: 'lessThanOrEqualTo',
     symbol: '≤',
-    label: localization.filterLessThanOrEqualTo,
-    divider: true,
   },
   {
+    divider: false,
+    label: localization.filterEmpty,
     option: 'empty',
     symbol: '∅',
-    label: localization.filterEmpty,
-    divider: false,
   },
   {
+    divider: false,
+    label: localization.filterNotEmpty,
     option: 'notEmpty',
     symbol: '!∅',
-    label: localization.filterNotEmpty,
-    divider: false,
   },
 ];
 
@@ -151,7 +150,7 @@ export const MRT_FilterOptionMenu = <TData extends MRT_RowData>({
             allowedColumnFilterOptions?.includes(filterOption.option)
           : (!globalFilterModeOptions ||
               globalFilterModeOptions.includes(filterOption.option)) &&
-            ['fuzzy', 'contains', 'startsWith'].includes(filterOption.option),
+            ['contains', 'fuzzy', 'startsWith'].includes(filterOption.option),
       ),
     [],
   );
@@ -242,15 +241,15 @@ export const MRT_FilterOptionMenu = <TData extends MRT_RowData>({
             table,
           })) ??
         internalFilterOptions.map(
-          ({ option, label, divider, symbol }, index) => (
+          ({ divider, label, option, symbol }, index) => (
             <Fragment key={index}>
               <Menu.Item
+                color={option === filterOption ? 'blue' : undefined}
+                leftSection={<span className={classes.symbol}>{symbol}</span>}
                 onClick={() =>
                   handleSelectFilterMode(option as MRT_FilterOption)
                 }
-                color={option === filterOption ? 'blue' : undefined}
                 value={option}
-                leftSection={<span className={classes.symbol}>{symbol}</span>}
               >
                 {label}
               </Menu.Item>

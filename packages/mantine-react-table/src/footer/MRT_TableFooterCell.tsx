@@ -1,14 +1,12 @@
 import clsx from 'clsx';
+import classes from './MRT_TableFooterCell.module.css';
 import { TableTh } from '@mantine/core';
-
 import { parseFromValuesOrFunc } from '../column.utils';
 import {
-  type MRT_RowData,
   type MRT_Header,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
-
-import classes from './MRT_TableFooterCell.module.css';
 
 interface Props<TData extends MRT_RowData> {
   footer: MRT_Header<TData>;

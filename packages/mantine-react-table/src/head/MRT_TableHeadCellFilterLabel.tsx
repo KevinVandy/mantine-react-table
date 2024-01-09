@@ -1,17 +1,15 @@
 import clsx from 'clsx';
-import { useState, type MouseEvent } from 'react';
+import classes from './MRT_TableHeadCellFilterLabel.module.css';
+import { type MouseEvent, useState } from 'react';
 import { ActionIcon, Popover, Tooltip, Transition } from '@mantine/core';
-
-import {
-  type MRT_RowData,
-  type MRT_Header,
-  type MRT_TableInstance,
-} from '../types';
-import { localizedFilterOption } from '../filterFns';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { dataVariable } from '../dataVariable';
-
-import classes from './MRT_TableHeadCellFilterLabel.module.css';
+import { localizedFilterOption } from '../filterFns';
+import {
+  type MRT_Header,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../types';
 
 interface Props<TData extends MRT_RowData> {
   header: MRT_Header<TData>;
@@ -75,16 +73,15 @@ export const MRT_TableHeadCellFilterLabel = <TData extends MRT_RowData>({
   return (
     <>
       <Popover
+        keepMounted={columnDef.filterVariant === 'range-slider'}
         onClose={() => setPopoverOpened(false)}
         opened={popoverOpened}
         position="top"
-        keepMounted={columnDef.filterVariant === 'range-slider'}
         shadow="xl"
         width={360}
         withinPortal
       >
         <Transition
-          transition="scale"
           mounted={
             columnFilterDisplayMode === 'popover' ||
             (!!column.getFilterValue() && !isRangeFilter) ||
@@ -92,6 +89,7 @@ export const MRT_TableHeadCellFilterLabel = <TData extends MRT_RowData>({
               (!!(column.getFilterValue() as [any, any])?.[0] ||
                 !!(column.getFilterValue() as [any, any])?.[1]))
           }
+          transition="scale"
         >
           {() => (
             <Popover.Target>

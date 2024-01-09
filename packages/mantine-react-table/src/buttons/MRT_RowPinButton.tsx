@@ -2,8 +2,8 @@ import { type MouseEvent, useState } from 'react';
 import { type RowPinningPosition } from '@tanstack/react-table';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import {
-  type MRT_RowData,
   type MRT_Row,
+  type MRT_RowData,
   type MRT_TableInstance,
 } from '../types';
 
@@ -20,7 +20,7 @@ export const MRT_RowPinButton = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     options: {
-      icons: { IconX, IconPinned },
+      icons: { IconPinned, IconX },
       localization,
       rowPinningDisplayMode,
     },
@@ -38,9 +38,9 @@ export const MRT_RowPinButton = <TData extends MRT_RowData>({
 
   return (
     <Tooltip
-      opened={tooltipOpened}
-      openDelay={1000}
       label={isPinned ? localization.unpin : localization.pin}
+      openDelay={1000}
+      opened={tooltipOpened}
     >
       <ActionIcon
         aria-label={localization.pin}
@@ -49,11 +49,11 @@ export const MRT_RowPinButton = <TData extends MRT_RowData>({
         onMouseEnter={() => setTooltipOpened(true)}
         onMouseLeave={() => setTooltipOpened(false)}
         size="xs"
-        variant="subtle"
         style={{
           height: '24px',
           width: '24px',
         }}
+        variant="subtle"
       >
         {isPinned ? (
           <IconX />
