@@ -10,8 +10,13 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/docs/guides/typescript',
+        destination: '/docs/guides/best-practices',
+        permanent: true,
+      },
+      {
         source: '/docs/getting-started/typescript',
-        destination: '/docs/guides/typescript',
+        destination: '/docs/guides/best-practices',
         permanent: true,
       },
       {
