@@ -1,4 +1,4 @@
-import { type RefObject, useMemo } from 'react';
+import { type RefObject, useMemo, type ReactNode } from 'react';
 import { MRT_DefaultDisplayColumn, showExpandColumn } from '../column.utils';
 import { MRT_TableBodyRowPinButton } from '../body/MRT_TableBodyRowPinButton';
 import { MRT_TableBodyRowGrabHandle } from '../body';
@@ -16,6 +16,7 @@ import type {
   MRT_Row,
   MRT_RowData,
 } from '../types';
+import { Flex, Tooltip } from '@mantine/core';
 
 interface Params<TData extends MRT_RowData> {
   columnOrder: MRT_ColumnOrderState;
@@ -23,7 +24,6 @@ interface Params<TData extends MRT_RowData> {
   grouping: MRT_GroupingState;
   tableOptions: MRT_DefinedTableOptions<TData>;
 }
-
 export const useMRT_DisplayColumns = <TData extends MRT_RowData>(
   params: Params<TData>,
 ): MRT_ColumnDef<TData>[] => {
@@ -62,6 +62,7 @@ export const useMRT_DisplayColumns = <TData extends MRT_RowData>(
       tableOptions.enableRowOrdering,
       tableOptions.enableRowSelection,
       tableOptions.enableSelectAll,
+      tableOptions.groupedColumnMode,
       tableOptions.localization,
       tableOptions.positionActionsColumn,
       tableOptions.renderDetailPanel,
@@ -157,11 +158,59 @@ function makeRowExpandColumn<TData extends MRT_RowData>(
     showExpandColumn(tableOptions, tableOptions.state?.grouping ?? grouping)
   ) {
     return {
-      Cell: ({ row, table }) => <MRT_ExpandButton row={row} table={table} />,
+      Cell: ({ cell, column, row, table }) => {
+        const expandButtonProps = { row, table };
+        const subRowsLength = row.subRows?.length;
+        if (
+          tableOptions.groupedColumnMode === 'remove' &&
+          row.groupingColumnId
+        ) {
+          return (
+            <Flex align="center" gap="0.25rem">
+              <MRT_ExpandButton {...expandButtonProps} />
+              <Tooltip
+                openDelay={1000}
+                position="right"
+                label={table.getColumn(row.groupingColumnId).columnDef.header}
+              >
+                <span>{row.groupingValue as ReactNode}</span>
+              </Tooltip>
+              {!!subRowsLength && <span>({subRowsLength})</span>}
+            </Flex>
+          );
+        } else {
+          return (
+            <>
+              <MRT_ExpandButton {...expandButtonProps} />
+              {column.columnDef.GroupedCell?.({ cell, column, row, table })}
+            </>
+          );
+        }
+      },
       Header: tableOptions.enableExpandAll
-        ? ({ table }) => <MRT_ExpandAllButton table={table} />
+        ? ({ table }) => {
+            return (
+              <Flex align="center">
+                <MRT_ExpandAllButton table={table} />
+                {tableOptions.groupedColumnMode === 'remove' &&
+                  grouping
+                    .map(
+                      (groupedColumnId) =>
+                        table.getColumn(groupedColumnId).columnDef.header,
+                    )
+                    .join(', ')}
+              </Flex>
+            );
+          }
         : undefined,
-      ...defaultDisplayColumnProps(tableOptions, id, 'expand'),
+      ...defaultDisplayColumnProps(
+        tableOptions,
+        id,
+        'expand',
+        tableOptions.groupedColumnMode === 'remove'
+          ? tableOptions?.defaultColumn?.size
+          : 60,
+      ),
     };
   }
   return null;
@@ -174,7 +223,13 @@ function makeRowSelectColumn<TData extends MRT_RowData>(
   const id: MRT_DisplayColumnIds = 'mrt-row-select';
   if (order.includes(id)) {
     return {
-      Cell: ({ row, table }) => <MRT_SelectCheckbox row={row} table={table} />,
+      Cell: ({ row, staticRowIndex, table }) => (
+        <MRT_SelectCheckbox
+          row={row}
+          staticRowIndex={staticRowIndex}
+          table={table}
+        />
+      ),
       Header:
         tableOptions.enableSelectAll && tableOptions.enableMultiRowSelection
           ? ({ table }) => <MRT_SelectCheckbox selectAll table={table} />
@@ -192,7 +247,10 @@ function makeRowNumbersColumn<TData extends MRT_RowData>(
   const id: MRT_DisplayColumnIds = 'mrt-row-numbers';
   if (order.includes(id) || tableOptions.enableRowNumbers)
     return {
-      Cell: ({ row }) => row.index + 1,
+      Cell: ({ row, staticRowIndex }) =>
+        ((tableOptions.rowNumberDisplayMode === 'static'
+          ? staticRowIndex
+          : row.index) ?? 0) + 1,
       Header: () => tableOptions.localization.rowNumber,
       ...defaultDisplayColumnProps(tableOptions, id, 'rowNumbers'),
     };

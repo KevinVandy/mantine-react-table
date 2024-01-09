@@ -2027,7 +2027,7 @@ export const tableOptions: TableOption[] = [
     type: 'number',
   },
   {
-    tableOption: 'rowNumberMode',
+    tableOption: 'rowNumberDisplayMode',
     defaultValue: "'static'",
     description: '',
     link: '',

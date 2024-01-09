@@ -38,12 +38,24 @@ export const MRT_TopToolbar = <TData extends MRT_RowData>({
 
   const { isFullScreen, showGlobalFilter } = getState();
 
-  const isMobile = useMediaQuery('(max-width: 720px)');
+  const isMobile = useMediaQuery('(max-width:720px)');
+  const isTablet = useMediaQuery('(max-width:1024px)');
 
   const toolbarProps = parseFromValuesOrFunc(mantineTopToolbarProps, { table });
 
   const stackAlertBanner =
-    isMobile || !!renderTopToolbarCustomActions || showGlobalFilter;
+    isMobile ||
+    !!renderTopToolbarCustomActions ||
+    (showGlobalFilter && isTablet);
+
+  const globalFilterProps = {
+    style: !isTablet
+      ? {
+          zIndex: 3,
+        }
+      : undefined,
+    table,
+  };
 
   return (
     <Box
@@ -79,20 +91,20 @@ export const MRT_TopToolbar = <TData extends MRT_RowData>({
         )}
       >
         {enableGlobalFilter && positionGlobalFilter === 'left' && (
-          <MRT_GlobalFilterTextInput table={table} />
+          <MRT_GlobalFilterTextInput {...globalFilterProps} />
         )}
         {renderTopToolbarCustomActions?.({ table }) ?? <span />}
         {enableToolbarInternalActions ? (
           <Flex wrap={'wrap-reverse'} justify={'end'}>
             {enableGlobalFilter && positionGlobalFilter === 'right' && (
-              <MRT_GlobalFilterTextInput table={table} />
+              <MRT_GlobalFilterTextInput {...globalFilterProps} />
             )}
             <MRT_ToolbarInternalButtons table={table} />
           </Flex>
         ) : (
           enableGlobalFilter &&
           positionGlobalFilter === 'right' && (
-            <MRT_GlobalFilterTextInput table={table} />
+            <MRT_GlobalFilterTextInput {...globalFilterProps} />
           )
         )}
       </Flex>

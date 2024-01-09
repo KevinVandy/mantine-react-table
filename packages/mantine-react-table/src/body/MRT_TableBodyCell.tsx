@@ -64,11 +64,9 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       enableColumnVirtualization,
       enableEditing,
       enableGrouping,
-      enableRowNumbers,
       layoutMode,
       mantineSkeletonProps,
       mantineTableBodyCellProps,
-      rowNumberMode,
     },
     refs: { editInputRefs },
     setEditingCell,
@@ -250,21 +248,18 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           columnDef.PlaceholderCell?.({ cell, column, row, table }) ?? null
         ) : isLoading || showSkeletons ? (
           <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />
-        ) : enableRowNumbers &&
-          rowNumberMode === 'static' &&
-          column.id === 'mrt-row-numbers' ? (
-          rowIndex + 1
         ) : columnDefType === 'display' &&
-          (['mrt-row-drag', 'mrt-row-expand', 'mrt-row-select'].includes(
+          (['mrt-row-expand', 'mrt-row-numbers', 'mrt-row-select'].includes(
             column.id,
           ) ||
             !row.getIsGrouped()) ? (
           columnDef.Cell?.({
             cell,
             column,
+            renderedCellValue: cell.renderValue() as any,
             row,
             rowRef,
-            renderedCellValue: <>{cell.getValue()}</>,
+            staticRowIndex: rowIndex,
             table,
           })
         ) : isCreating || isEditing ? (

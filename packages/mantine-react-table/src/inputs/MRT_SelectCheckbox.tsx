@@ -1,4 +1,4 @@
-import { type MouseEvent } from 'react';
+import { type ChangeEvent, type MouseEvent } from 'react';
 import {
   Checkbox,
   Radio,
@@ -18,6 +18,7 @@ import { parseFromValuesOrFunc } from '../column.utils';
 interface Props<TData extends MRT_RowData> {
   row?: MRT_Row<TData>;
   selectAll?: boolean;
+  staticRowIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
@@ -25,6 +26,7 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
   row,
   selectAll,
   table,
+  staticRowIndex,
 }: Props<TData>) => {
   const {
     getState,
@@ -35,13 +37,22 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
       mantineSelectCheckboxProps,
       selectAllMode,
       selectDisplayMode,
+      rowPinningDisplayMode,
+      enableRowPinning,
     },
   } = table;
   const { density, isLoading } = getState();
 
   const checkboxProps = !row
     ? parseFromValuesOrFunc(mantineSelectAllCheckboxProps, { table })
-    : parseFromValuesOrFunc(mantineSelectCheckboxProps, { row, table });
+    : parseFromValuesOrFunc(mantineSelectCheckboxProps, {
+        row,
+        table,
+        staticRowIndex,
+      });
+
+  const isStickySelection =
+    enableRowPinning && rowPinningDisplayMode?.includes('select');
 
   const allRowsSelected = selectAll
     ? selectAllMode === 'page'
@@ -49,17 +60,47 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
       : table.getIsAllRowsSelected()
     : undefined;
 
+  const onSelectionChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    row: MRT_Row<TData>,
+  ) => {
+    if (row.getIsAllSubRowsSelected()) {
+      row.subRows?.forEach((r) => r.toggleSelected(false));
+    }
+    row.getToggleSelectedHandler()(event);
+
+    if (isStickySelection) {
+      row.pin(
+        !row.getIsPinned() && event.target.checked
+          ? rowPinningDisplayMode?.includes('bottom')
+            ? 'bottom'
+            : 'top'
+          : false,
+      );
+    }
+  };
+
+  const onSelectAllChange = (event: ChangeEvent<HTMLInputElement>) => {
+    selectAllMode === 'all'
+      ? table.getToggleAllRowsSelectedHandler()(event)
+      : table.getToggleAllPageRowsSelectedHandler()(event);
+    if (isStickySelection) {
+      table.setRowPinning({ bottom: [], top: [] });
+    }
+  };
+
   const commonProps = {
     'aria-label': selectAll
       ? localization.toggleSelectAll
       : localization.toggleSelectRow,
-    checked: selectAll ? allRowsSelected : row?.getIsSelected(),
+    checked: selectAll
+      ? allRowsSelected
+      : row?.getIsSelected() || row?.getIsAllSubRowsSelected(),
     disabled: isLoading || (row && !row.getCanSelect()),
-    onChange: row
-      ? row.getToggleSelectedHandler()
-      : selectAllMode === 'all'
-        ? table.getToggleAllRowsSelectedHandler()
-        : table.getToggleAllPageRowsSelectedHandler(),
+    onChange: (event) => {
+      event.stopPropagation();
+      row ? onSelectionChange(event, row) : onSelectAllChange(event);
+    },
     size: density === 'xs' ? 'sm' : 'md',
     ...checkboxProps,
     onClick: (e: MouseEvent<HTMLInputElement>) => {

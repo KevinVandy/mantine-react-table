@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { type Meta } from '@storybook/react';
 import {
-  MantineReactTable,
   type MRT_Column,
   type MRT_ColumnDef,
+  MantineReactTable,
 } from '../../src';
 import { faker } from '@faker-js/faker';
+import { type Meta } from '@storybook/react';
 
 const meta: Meta = {
   title: 'Features/Column Grouping Examples',
@@ -14,54 +14,146 @@ const meta: Meta = {
 export default meta;
 
 interface Person {
-  firstName: string;
-  lastName: string;
-  gender: string;
   city: string;
+  firstName: string;
+  gender: string;
+  lastName: string;
   state: string;
 }
 
 const columns = [
   {
-    header: 'First Name',
     accessorKey: 'firstName',
+    header: 'First Name',
   },
   {
-    header: 'Last Name',
     accessorKey: 'lastName',
+    header: 'Last Name',
   },
   {
-    header: 'Gender',
     accessorKey: 'gender',
+    header: 'Gender',
   },
   {
-    header: 'City',
     accessorKey: 'city',
+    header: 'City',
   },
   {
-    header: 'State',
     accessorKey: 'state',
+    header: 'State',
   },
 ] as MRT_ColumnDef<Person>[];
 
-const data = [...Array(200)].map(() => ({
-  firstName: faker.person.firstName(),
-  lastName: faker.person.lastName(),
-  gender: faker.person.sex(),
+const data = [...Array(300)].map(() => ({
   city: faker.location.city(),
+  firstName: faker.person.firstName(),
+  gender: Math.random() < 0.95 ? faker.person.sex() : faker.person.gender(),
+  lastName: faker.person.lastName(),
   state: faker.location.state(),
 }));
 
 export const ColumnGroupingEnabled = () => (
-  <MantineReactTable columns={columns} data={data} enableGrouping />
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableGrouping
+    groupedColumnMode="reorder"
+    initialState={{ expanded: true, grouping: ['state', 'gender'] }}
+  />
+);
+
+export const GroupingColumnModeRemove = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableGrouping
+    groupedColumnMode="remove"
+    initialState={{ expanded: true, grouping: ['state', 'gender'] }}
+  />
+);
+
+export const GroupingColumnModeFalse = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableGrouping
+    groupedColumnMode={false}
+    initialState={{ expanded: true, grouping: ['state', 'gender'] }}
+  />
+);
+
+export const GroupingColumnModeRemoveCustomHeader = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    displayColumnDefOptions={{
+      'mrt-row-expand': {
+        Header: 'Groups',
+      },
+    }}
+    enableGrouping
+    groupedColumnMode="remove"
+    initialState={{ expanded: true, grouping: ['state', 'gender'] }}
+  />
+);
+
+export const GroupingColumnModeRemovePaginatePreExpand = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableGrouping
+    groupedColumnMode="remove"
+    initialState={{ expanded: true, grouping: ['state', 'gender'] }}
+    paginateExpandedRows={false}
+  />
+);
+
+export const GroupingColumnModeRemoveCustomGroupedCell = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    displayColumnDefOptions={{
+      'mrt-row-expand': {
+        //last item in array of grouping state
+        GroupedCell: ({ row, table }) => {
+          const { grouping } = table.getState();
+          return row.getValue(grouping[grouping.length - 1]);
+        },
+      },
+    }}
+    enableGrouping
+    groupedColumnMode="remove"
+    initialState={{ expanded: true, grouping: ['state', 'gender'] }}
+  />
+);
+
+export const ColumnGroupingEnabledWithSelection = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableGrouping
+    enableRowSelection
+    initialState={{ expanded: true, grouping: ['state'] }}
+  />
+);
+
+export const ColumnGroupingEnabledWithSelectionRemove = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableGrouping
+    enableRowSelection
+    groupedColumnMode="remove"
+    initialState={{ expanded: true, grouping: ['state'] }}
+  />
 );
 
 export const ColumnGroupingNoDragHandles = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    enableGrouping
     enableColumnDragging={false}
+    enableGrouping
   />
 );
 
@@ -78,27 +170,27 @@ export const ColumnGroupingEnabledCustomAggregate = () => (
   <MantineReactTable
     columns={[
       {
-        header: 'First Name',
         accessorKey: 'firstName',
+        header: 'First Name',
       },
       {
-        header: 'Last Name',
         accessorKey: 'lastName',
+        header: 'Last Name',
       },
       {
-        header: 'Gender',
-        accessorKey: 'gender',
         AggregatedCell: ({ cell }) => (
           <div style={{ color: 'red' }}>{cell.renderValue() as string}</div>
         ),
+        accessorKey: 'gender',
+        header: 'Gender',
       },
       {
-        header: 'City',
         accessorKey: 'city',
+        header: 'City',
       },
       {
-        header: 'State',
         accessorKey: 'state',
+        header: 'State',
       },
     ]}
     data={data}
@@ -147,48 +239,48 @@ export const GroupingColumnsSetState = () => {
 
     setData([
       {
+        address: '261 Erdman Ford',
+        city: 'East Daphne',
         name: {
           firstName: 'John',
           lastName: 'Doe',
         },
-        address: '261 Erdman Ford',
-        city: 'East Daphne',
         state: 'Kentucky',
       },
       {
+        address: '769 Dominic Grove',
+        city: 'Columbus',
         name: {
           firstName: 'Jane',
           lastName: 'Doe',
         },
-        address: '769 Dominic Grove',
-        city: 'Columbus',
         state: 'Ohio',
       },
       {
+        address: '566 Brakus Inlet',
+        city: 'South Linda',
         name: {
           firstName: 'Joe',
           lastName: 'Doe',
         },
-        address: '566 Brakus Inlet',
-        city: 'South Linda',
         state: 'West Virginia',
       },
       {
+        address: '722 Emie Stream',
+        city: 'Lincoln',
         name: {
           firstName: 'Kevin',
           lastName: 'Vandy',
         },
-        address: '722 Emie Stream',
-        city: 'Lincoln',
         state: 'Nebraska',
       },
       {
+        address: '32188 Larkin Turnpike',
+        city: 'Charleston',
         name: {
           firstName: 'Joshua',
           lastName: 'Rolluffs',
         },
-        address: '32188 Larkin Turnpike',
-        city: 'Charleston',
         state: 'South Carolina',
       },
     ]);
@@ -218,16 +310,22 @@ export const ColumnGroupingDropZoneAlwaysVisible = () => {
           ? { dropToGroupBy: 'Drag a column here to group by it' }
           : undefined
       }
-      mantineTopToolbarProps={{
-        style: {
-          '& .Mantine-ToolbarDropZone': {
-            border: '1px solid red',
-          },
-        },
-      }}
       onDraggingColumnChange={setDraggingColumn}
       positionToolbarAlertBanner="bottom"
       state={{ draggingColumn, showToolbarDropZone: true }}
+    />
+  );
+};
+
+export const GroupingStateManaged = () => {
+  const [grouping, setGrouping] = useState<string[]>([]);
+  return (
+    <MantineReactTable
+      columns={columns}
+      data={data}
+      enableGrouping
+      onGroupingChange={setGrouping}
+      state={{ grouping }}
     />
   );
 };
@@ -237,8 +335,8 @@ export const GroupingAndDraggingWithSomeDisabledGrouping = () => {
     () => [
       {
         accessorKey: 'firstName',
-        header: 'First Name',
         enableGrouping: false,
+        header: 'First Name',
       },
       {
         accessorKey: 'lastName',

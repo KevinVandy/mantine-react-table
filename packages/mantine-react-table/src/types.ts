@@ -391,6 +391,7 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
     row: MRT_Row<TData>;
     rowRef?: RefObject<HTMLTableRowElement>;
     table: MRT_TableInstance<TData>;
+    staticRowIndex?: number;
   }) => ReactNode;
   Edit?: (props: {
     cell: MRT_Cell<TData, TValue>;
@@ -1009,6 +1010,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
         (CheckboxProps | RadioProps | SwitchProps))
     | ((props: {
         table: MRT_TableInstance<TData>;
+        staticRowIndex?: number;
         row: MRT_Row<TData>;
       }) => HTMLPropsRef<HTMLInputElement> &
         (CheckboxProps | RadioProps | SwitchProps));
@@ -1211,7 +1213,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   rowCount?: number;
-  rowNumberMode?: 'original' | 'static';
+  rowNumberDisplayMode?: 'original' | 'static';
   rowPinningDisplayMode?:
     | 'bottom'
     | 'select-bottom'

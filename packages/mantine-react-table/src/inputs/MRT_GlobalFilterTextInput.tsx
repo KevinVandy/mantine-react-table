@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@mantine/core';
+import {
+  ActionIcon,
+  Collapse,
+  Menu,
+  TextInput,
+  type TextInputProps,
+  Tooltip,
+} from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import { type MRT_RowData, type MRT_TableInstance } from '../types';
@@ -8,12 +15,13 @@ import { parseFromValuesOrFunc } from '../column.utils';
 
 import classes from './MRT_GlobalFilterTextInput.module.css';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends TextInputProps {
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -29,9 +37,12 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
   } = table;
   const { globalFilter, showGlobalFilter } = getState();
 
-  const textFieldProps = parseFromValuesOrFunc(mantineSearchTextInputProps, {
-    table,
-  });
+  const textFieldProps = {
+    ...parseFromValuesOrFunc(mantineSearchTextInputProps, {
+      table,
+    }),
+    ...rest,
+  };
 
   const isMounted = useRef(false);
   const [searchValue, setSearchValue] = useState(globalFilter ?? '');
