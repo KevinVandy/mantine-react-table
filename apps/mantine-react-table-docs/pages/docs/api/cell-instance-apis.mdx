@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import CellInstanceAPIsTable from '../../../components/prop-tables/CellInstanceAPIsTable';
 import SourceCode from '../../../components/prop-tables/CellInstanceAPIsSource';
+import OptionsSwitcher from '../../../example-groups/OptionsSwitcher';
 
 <Head>
-  <title>Cell Instance APIs - Mantine React Table Docs</title>
+  <title>{'Cell Instance APIs - Mantine React Table V2 Docs'}</title>
   <meta
     name="description"
     content="All the cell instance methods and objects that can be accessed from a cell in Mantine React Table"
@@ -19,6 +20,29 @@ import SourceCode from '../../../components/prop-tables/CellInstanceAPIsSource';
 </Head>
 
 ## Cell Instance APIs
+
+<OptionsSwitcher
+  links={[
+    {
+      label: 'Table Instance APIs',
+      value: 'table-instance-apis',
+    },
+    {
+      label: 'Column Instance APIs',
+      value: 'column-instance-apis',
+    },
+    {
+      label: 'Row Instance APIs',
+      value: 'row-instance-apis',
+    },
+    {
+      label: 'Cell Instance APIs',
+      value: 'cell-instance-apis',
+    },
+  ]}
+/>
+
+<br />
 
 Every cell provides a `cell` object that can be used in many props or column definitions that let's you have access to a cell's information and methods.
 
@@ -45,14 +69,14 @@ const columns = [
 const table = useMantineReactTable({
   columns,
   data,
-  //or in the table options callbacks like this
-  mantineEditTextInputProps: ({ cell }) => ({
+  //or in callback props like this
+  mantineEditTextFieldProps: ({ cell }) => ({
     disabled: cell.getValue() === 'admin',
   }),
 });
-
-return <MantineReactTable table={table} />;
 ```
+
+> NOTE: These are NOT [props](/docs/api/props) or [column options](/docs/api/column-options) for Mantine React Table. These are just static methods on a cell instance that you can use.
 
 <CellInstanceAPIsTable />
 

@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
 import SourceCode from '../../../components/prop-tables/TableOptionsSource';
+import OptionsSwitcher from '../../../example-groups/OptionsSwitcher';
 
 <Head>
-  <title>Table Options - Mantine React Table Docs</title>
+  <title>{'Table Options - Mantine React Table V2 Docs'}</title>
   <meta
     name="description"
     content="All the table options that can be used in the useMantineReactTable hook"
@@ -20,18 +21,40 @@ import SourceCode from '../../../components/prop-tables/TableOptionsSource';
 
 ## Table Options (Props)
 
+<OptionsSwitcher
+  links={[
+    {
+      label: 'Table Options',
+      value: 'table-options',
+    },
+    {
+      label: 'Column Options',
+      value: 'column-options',
+    },
+    {
+      label: 'State Options',
+      value: 'state-options',
+    },
+  ]}
+/>
+
 > Many of the options you can pass to `useMantineReactTable` are the same as the ones you can pass to the TanStack Table [useReactTable](https://tanstack.com/table/v8/docs/api/core/table) hook.
 
 Here is a list of all the table options that you can pass to the `useMantineReactTable` hook.
 
 ```jsx
 const table = useMantineReactTable({
-  // all the options that you can pass here
+  // all the options that you can pass here (recommended)
 });
 
-//Note: you can also pass table options directly to the MantineReactTable component instead of the table instance
-//But this will not be encouraged as it will be deprecated in the future
-return <MantineReactTable table={table} />;
+//or all of the props that could be passed to `<MantineReactTable />` IF not using `useMantineReactTable` hook
+return (
+  <MantineReactTable
+  // all of the props that could be passed here if no `table` prop is passed
+  />
+);
+
+return <MantineReactTable table={table} />; //recommended
 ```
 
 <TableOptionsTable />

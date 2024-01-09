@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import StateOptionsTable from '../../../components/prop-tables/StateOptionsTable';
 import SourceCode from '../../../components/prop-tables/StateOptionsSource';
+import OptionsSwitcher from '../../../example-groups/OptionsSwitcher';
 
 <Head>
-  <title>State Options - Mantine React Table Docs</title>
+  <title>{'State Options - Mantine React Table V2 Docs'}</title>
   <meta
     name="description"
     content="All the state options that can be used in Mantine React Table"
@@ -20,6 +21,23 @@ import SourceCode from '../../../components/prop-tables/StateOptionsSource';
 
 ## State Options
 
+<OptionsSwitcher
+  links={[
+    {
+      label: 'Table Options',
+      value: 'table-options',
+    },
+    {
+      label: 'Column Options',
+      value: 'column-options',
+    },
+    {
+      label: 'State Options',
+      value: 'state-options',
+    },
+  ]}
+/>
+
 > Many of the state options you can pass here are the same as the ones you can pass to the [useReactTable](https://tanstack.com/table/v8/docs/api/core/table) useTableInstance hook.
 
 Here is a list of all the state options you can pass to `initialState` or `state`.
@@ -28,15 +46,14 @@ Here is a list of all the state options you can pass to `initialState` or `state
 const table = useMantineReactTable({
   columns,
   data,
+  //note: each individual state must be mutually exclusive to `initial state` or `state`
   initialState: {
     // all the state options you can pass here
   },
   state: {
-    // or here - NOTE: state values will override initialState values
+    // or here
   },
 });
-
-return <MantineReactTable table={table} />;
 ```
 
 <StateOptionsTable />

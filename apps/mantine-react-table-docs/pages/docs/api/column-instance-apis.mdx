@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import ColumnInstanceAPIsTable from '../../../components/prop-tables/ColumnInstanceAPIsTable';
 import SourceCode from '../../../components/prop-tables/ColumnInstanceAPIsSource';
+import OptionsSwitcher from '../../../example-groups/OptionsSwitcher';
 
 <Head>
-  <title>Column Instance APIs - Mantine React Table Docs</title>
+  <title>{'Column Instance APIs - Mantine React Table V2 Docs'}</title>
   <meta
     name="description"
     content="All the column instance methods and objects that can be accessed from a column instance in Mantine React Table"
@@ -19,6 +20,29 @@ import SourceCode from '../../../components/prop-tables/ColumnInstanceAPIsSource
 </Head>
 
 ## Column Instance APIs
+
+<OptionsSwitcher
+  links={[
+    {
+      label: 'Table Instance APIs',
+      value: 'table-instance-apis',
+    },
+    {
+      label: 'Column Instance APIs',
+      value: 'column-instance-apis',
+    },
+    {
+      label: 'Row Instance APIs',
+      value: 'row-instance-apis',
+    },
+    {
+      label: 'Cell Instance APIs',
+      value: 'cell-instance-apis',
+    },
+  ]}
+/>
+
+> NOTE: These are NOT [column options](/docs/api/column-options) for Mantine React Table. These are just static methods on a column instance that you can use.
 
 Each column has a `column` instance object associated with it that can be accessed in callback props and other places in the table.
 
@@ -52,15 +76,14 @@ const columns = [
 const table = useMantineReactTable({
   columns,
   data,
+  //or in callback props like this
   mantineTableBodyCellProps: ({ column }) => ({
-    style: { boxShadow: column.getIsPinned() ? '0 0 0 2px red' : 'none' },
+    style: {
+      boxShadow: column.getIsPinned() ? '0 0 0 2px red' : 'none',
+    },
   }),
 });
-
-return <MantineReactTable table={table} />;
 ```
-
-> NOTE: These are NOT [column options](/docs/api/column-options) for Mantine React Table. These are just static methods on a column instance that you can use.
 
 <ColumnInstanceAPIsTable />
 
