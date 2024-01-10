@@ -54,12 +54,12 @@ const data = [
   {
     feature: 'Column Hiding',
     mrt: true,
-    mdt: false,
+    mdt: true,
   },
   {
     feature: 'Column Ordering (DnD)',
     mrt: true,
-    mdt: false,
+    mdt: true,
   },
   {
     feature: 'Column Pinning (Freezing)',
@@ -69,7 +69,7 @@ const data = [
   {
     feature: 'Column Resizing',
     mrt: true,
-    mdt: false,
+    mdt: true,
   },
   {
     feature: 'Column Spanning',
@@ -129,7 +129,7 @@ const data = [
   {
     feature: 'Header Groups and Footers',
     mrt: true,
-    mdt: false,
+    mdt: true,
   },
   {
     feature: 'Localization (i18n)',
