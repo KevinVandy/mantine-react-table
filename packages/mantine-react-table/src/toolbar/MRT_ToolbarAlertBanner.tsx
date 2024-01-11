@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import classes from './MRT_ToolbarAlertBanner.module.css';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { ActionIcon, Alert, Badge, Collapse, Flex, Stack } from '@mantine/core';
 import { parseFromValuesOrFunc } from '../column.utils';
 import { MRT_SelectCheckbox } from '../inputs';
@@ -17,7 +17,6 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     getPrePaginationRowModel,
-    getSelectedRowModel,
     getState,
     options: {
       enableRowSelection,
@@ -31,7 +30,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
       rowCount,
     },
   } = table;
-  const { density, grouping, showAlertBanner } = getState();
+  const { density, grouping, rowSelection, showAlertBanner } = getState();
 
   const alertProps = parseFromValuesOrFunc(mantineToolbarAlertBannerProps, {
     table,
@@ -41,18 +40,19 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
     { table },
   );
 
-  const selectedAlert =
-    getSelectedRowModel().rows.length > 0
-      ? localization.selectedCountOfRowCountRowsSelected
-          ?.replace(
-            '{selectedCount}',
-            getSelectedRowModel().rows.length.toString(),
-          )
-          ?.replace(
-            '{rowCount}',
-            (rowCount ?? getPrePaginationRowModel().rows.length).toString(),
-          )
-      : null;
+  const selectedRowCount = useMemo(
+    () => Object.values(rowSelection).filter(Boolean).length,
+    [rowSelection],
+  );
+
+  const selectedAlert = selectedRowCount
+    ? localization.selectedCountOfRowCountRowsSelected
+        ?.replace('{selectedCount}', selectedRowCount.toString())
+        ?.replace(
+          '{rowCount}',
+          (rowCount ?? getPrePaginationRowModel().rows.length).toString(),
+        )
+    : null;
 
   const groupedAlert =
     grouping.length > 0 ? (
