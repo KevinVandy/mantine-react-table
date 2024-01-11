@@ -324,9 +324,7 @@ export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
   setHoveredColumn: Dispatch<
     SetStateAction<{ id: string } | MRT_Column<TData> | null>
   >;
-  setHoveredRow: Dispatch<
-    SetStateAction<{ id: string } | MRT_Row<TData> | null>
-  >;
+  setHoveredRow: Dispatch<SetStateAction<Partial<MRT_Row<TData>> | null>>;
   setIsFullScreen: Dispatch<SetStateAction<boolean>>;
   setShowAlertBanner: Dispatch<SetStateAction<boolean>>;
   setShowColumnFilters: Dispatch<SetStateAction<boolean>>;
@@ -351,7 +349,7 @@ export type MRT_TableState<TData extends MRT_RowData> = Prettify<
     editingRow: MRT_Row<TData> | null;
     globalFilterFn: MRT_FilterOption;
     hoveredColumn: { id: string } | MRT_Column<TData> | null;
-    hoveredRow: { id: string } | MRT_Row<TData> | null;
+    hoveredRow: Partial<MRT_Row<TData>> | null;
     isFullScreen: boolean;
     isLoading: boolean;
     isSaving: boolean;
@@ -1136,7 +1134,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   }) => Promise<void> | void;
   onGlobalFilterFnChange?: OnChangeFn<MRT_FilterOption>;
   onHoveredColumnChange?: OnChangeFn<{ id: string } | MRT_Column<TData> | null>;
-  onHoveredRowChange?: OnChangeFn<{ id: string } | MRT_Row<TData> | null>;
+  onHoveredRowChange?: OnChangeFn<Partial<MRT_Row<TData>> | null>;
   onIsFullScreenChange?: OnChangeFn<boolean>;
   onShowAlertBannerChange?: OnChangeFn<boolean>;
   onShowColumnFiltersChange?: OnChangeFn<boolean>;

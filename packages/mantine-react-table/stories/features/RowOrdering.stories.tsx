@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { type MRT_ColumnDef, type MRT_Row, MantineReactTable } from '../../src';
+import {
+  type MRT_ColumnDef,
+  type MRT_Row,
+  MantineReactTable,
+} from '../../src';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
@@ -15,10 +19,15 @@ type Person = {
   email: string;
   firstName: string;
   lastName: string;
+  num: number;
   state: string;
 };
 
 const columns: MRT_ColumnDef<Person>[] = [
+  {
+    accessorKey: 'num',
+    header: '#',
+  },
   {
     accessorKey: 'firstName',
     header: 'First Name',
@@ -45,12 +54,13 @@ const columns: MRT_ColumnDef<Person>[] = [
   },
 ];
 
-const initData = [...Array(100)].map(() => ({
+const initData = [...Array(100)].map((_, i) => ({
   address: faker.location.streetAddress(),
   city: faker.location.city(),
   email: faker.internet.email(),
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
+  num: i,
   state: faker.location.state(),
 }));
 
@@ -84,7 +94,9 @@ export const RowOrderingEnabled = () => {
 export const RowOrderingWithSelect = () => {
   const [data, setData] = useState(() => initData);
   const [draggingRow, setDraggingRow] = useState<MRT_Row<Person> | null>(null);
-  const [hoveredRow, setHoveredRow] = useState<MRT_Row<Person> | null>(null);
+  const [hoveredRow, setHoveredRow] = useState<Partial<MRT_Row<Person>> | null>(
+    null,
+  );
 
   return (
     <MantineReactTable
@@ -99,7 +111,7 @@ export const RowOrderingWithSelect = () => {
         onDragEnd: () => {
           if (hoveredRow && draggingRow) {
             data.splice(
-              hoveredRow.index,
+              hoveredRow?.index ?? 0,
               0,
               data.splice(draggingRow.index, 1)[0],
             );
@@ -120,7 +132,9 @@ export const RowOrderingWithSelect = () => {
 export const RowOrderingWithPinning = () => {
   const [data, setData] = useState(() => initData);
   const [draggingRow, setDraggingRow] = useState<MRT_Row<Person> | null>(null);
-  const [hoveredRow, setHoveredRow] = useState<MRT_Row<Person> | null>(null);
+  const [hoveredRow, setHoveredRow] = useState<Partial<MRT_Row<Person>> | null>(
+    null,
+  );
 
   return (
     <MantineReactTable
@@ -134,7 +148,7 @@ export const RowOrderingWithPinning = () => {
         onDragEnd: () => {
           if (hoveredRow && draggingRow) {
             data.splice(
-              hoveredRow.index,
+              hoveredRow?.index ?? 0,
               0,
               data.splice(draggingRow.index, 1)[0],
             );
@@ -155,7 +169,9 @@ export const RowOrderingWithPinning = () => {
 export const RowAndColumnOrdering = () => {
   const [data, setData] = useState(() => initData);
   const [draggingRow, setDraggingRow] = useState<MRT_Row<Person> | null>(null);
-  const [hoveredRow, setHoveredRow] = useState<MRT_Row<Person> | null>(null);
+  const [hoveredRow, setHoveredRow] = useState<Partial<MRT_Row<Person>> | null>(
+    null,
+  );
 
   return (
     <MantineReactTable
@@ -170,7 +186,7 @@ export const RowAndColumnOrdering = () => {
         onDragEnd: () => {
           if (hoveredRow && draggingRow) {
             data.splice(
-              hoveredRow.index,
+              hoveredRow.index ?? 0,
               0,
               data.splice(draggingRow.index, 1)[0],
             );
@@ -184,6 +200,83 @@ export const RowAndColumnOrdering = () => {
         draggingRow,
         hoveredRow,
       }}
+    />
+  );
+};
+
+export const RowOrderingWithRowVirtualization = () => {
+  const [data, setData] = useState(() => initData);
+
+  return (
+    <MantineReactTable
+      autoResetPageIndex={false}
+      columns={columns}
+      data={data}
+      enablePagination={false}
+      enableRowOrdering
+      enableRowVirtualization
+      enableSorting={false}
+      mantineRowDragHandleProps={({ table }) => ({
+        onDragEnd: () => {
+          const { draggingRow, hoveredRow } = table.getState();
+          if (hoveredRow && draggingRow) {
+            data.splice(
+              (hoveredRow as MRT_Row<Person>).index,
+              0,
+              data.splice(draggingRow.index, 1)[0],
+            );
+            setData([...data]);
+          }
+        },
+      })}
+    />
+  );
+};
+
+const fakeColumns = [...Array(500)].map((_, i) => {
+  return {
+    accessorKey: i.toString(),
+    header: 'Column ' + i.toString(),
+  };
+});
+
+const fakeData = [...Array(500)].map(() => ({
+  ...Object.fromEntries(
+    fakeColumns.map((col) => [col.accessorKey, faker.person.firstName()]),
+  ),
+}));
+
+export const RowOrderingWithColumnVirtualization = () => {
+  const [data, setData] = useState(() => fakeData);
+
+  return (
+    <MantineReactTable
+      autoResetPageIndex={false}
+      columns={fakeColumns}
+      data={data}
+      displayColumnDefOptions={{
+        'mrt-row-drag': {
+          enableColumnDragging: true,
+          enableColumnOrdering: true,
+        },
+      }}
+      enableColumnOrdering
+      enableColumnVirtualization
+      enableRowOrdering
+      enableSorting={false}
+      mantineRowDragHandleProps={({ table }) => ({
+        onDragEnd: () => {
+          const { draggingRow, hoveredRow } = table.getState();
+          if (hoveredRow && draggingRow) {
+            data.splice(
+              (hoveredRow as MRT_Row<any>).index,
+              0,
+              data.splice(draggingRow.index, 1)[0],
+            );
+            setData([...data]);
+          }
+        },
+      })}
     />
   );
 };

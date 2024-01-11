@@ -209,6 +209,11 @@ export const MRT_FilterOptionMenu = <TData extends MRT_RowData>({
         // will now be single value filter mode
         if (Array.isArray(currentFilterValue)) {
           column.setFilterValue('');
+        } else if (
+          currentFilterValue === ' ' &&
+          emptyModes.includes(prevFilterMode)
+        ) {
+          column.setFilterValue(undefined);
         } else {
           column.setFilterValue(currentFilterValue); // perform new filter render
         }

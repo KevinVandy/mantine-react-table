@@ -70,6 +70,8 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
     columnVirtualizer ?? {};
 
   const isPinned = enableRowPinning && row.getIsPinned();
+  const isDraggingRow = draggingRow?.id === row.id;
+  const isHoveredRow = hoveredRow?.id === row.id;
 
   const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     row,
@@ -115,7 +117,9 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
     <>
       <TableTr
         data-index={rowIndex}
-        data-selected={row.getIsSelected() || undefined}
+        data-selected={
+          row.getIsSelected() || row.getIsAllSubRowsSelected() || undefined
+        }
         onDragEnter={handleDragEnter}
         ref={(node: HTMLTableRowElement) => {
           if (node) {
@@ -149,8 +153,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
           classes.root,
           layoutMode?.startsWith('grid') && classes['root-grid'],
           virtualRow && classes['root-virtualized'],
-          (draggingRow?.id === row.id || hoveredRow?.id === row.id) &&
-            classes['root-dragging'],
+          (isDraggingRow || isHoveredRow) && classes['root-dragging'],
           enableHover !== false && classes['root-hover'],
           tableRowProps?.className,
           isPinned && classes['root-pinned'],
@@ -182,7 +185,10 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
           const props = {
             cell,
             isStriped,
-            measureElement: columnVirtualizer?.measureElement,
+            measureElement:
+              !isDraggingRow && !isHoveredRow
+                ? columnVirtualizer?.measureElement
+                : undefined,
             numRows,
             rowIndex,
             rowRef,
