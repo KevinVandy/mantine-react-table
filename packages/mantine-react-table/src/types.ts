@@ -321,9 +321,7 @@ export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
   setEditingCell: Dispatch<SetStateAction<MRT_Cell<TData> | null>>;
   setEditingRow: Dispatch<SetStateAction<MRT_Row<TData> | null>>;
   setGlobalFilterFn: Dispatch<SetStateAction<MRT_FilterOption>>;
-  setHoveredColumn: Dispatch<
-    SetStateAction<{ id: string } | MRT_Column<TData> | null>
-  >;
+  setHoveredColumn: Dispatch<SetStateAction<Partial<MRT_Column<TData>> | null>>;
   setHoveredRow: Dispatch<SetStateAction<Partial<MRT_Row<TData>> | null>>;
   setIsFullScreen: Dispatch<SetStateAction<boolean>>;
   setShowAlertBanner: Dispatch<SetStateAction<boolean>>;
@@ -1133,7 +1131,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     values: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
   }) => Promise<void> | void;
   onGlobalFilterFnChange?: OnChangeFn<MRT_FilterOption>;
-  onHoveredColumnChange?: OnChangeFn<{ id: string } | MRT_Column<TData> | null>;
+  onHoveredColumnChange?: OnChangeFn<Partial<MRT_Column<TData>> | null>;
   onHoveredRowChange?: OnChangeFn<Partial<MRT_Row<TData>> | null>;
   onIsFullScreenChange?: OnChangeFn<boolean>;
   onShowAlertBannerChange?: OnChangeFn<boolean>;
