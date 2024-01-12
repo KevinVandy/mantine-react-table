@@ -36,8 +36,8 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   isStriped?: 'even' | 'odd' | boolean;
   measureElement?: (element: HTMLTableCellElement) => void;
   numRows?: number;
-  rowIndex: number;
   rowRef: RefObject<HTMLTableRowElement>;
+  staticRowIndex: number;
   table: MRT_TableInstance<TData>;
   virtualCell?: MRT_VirtualItem;
 }
@@ -47,8 +47,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   isStriped,
   measureElement,
   numRows,
-  rowIndex,
   rowRef,
+  staticRowIndex,
   table,
   virtualCell,
 }: Props<TData>) => {
@@ -231,7 +231,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           classes['hovered-row'],
         getIsFirstColumn(column, table) && classes['first-column'],
         getIsLastColumn(column, table) && classes['last-column'],
-        numRows && rowIndex === numRows - 1 && classes['last-row'],
+        numRows && staticRowIndex === numRows - 1 && classes['last-row'],
         tableCellProps?.className,
       )}
       onDoubleClick={handleDoubleClick}
@@ -257,7 +257,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
             renderedCellValue: cell.renderValue() as any,
             row,
             rowRef,
-            staticRowIndex: rowIndex,
+            staticRowIndex,
             table,
           })
         ) : isCreating || isEditing ? (

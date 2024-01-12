@@ -1,4 +1,4 @@
-import { MRT_TableOptions, MantineReactTable } from '../../src';
+import { MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
@@ -44,7 +44,93 @@ export const DetailPanelEnabled = () => (
   />
 );
 
+export const CustomExpandRotation = () => (
+  <MantineReactTable
+    columns={[
+      {
+        accessorKey: 'firstName',
+        header: 'First Name',
+      },
+      {
+        accessorKey: 'lastName',
+        header: 'Last Name',
+      },
+      {
+        accessorKey: 'address',
+        header: 'Address',
+      },
+    ]}
+    data={[...Array(5)].map(() => ({
+      address: faker.location.streetAddress(),
+      city: faker.location.city(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      phone: faker.phone.number(),
+      state: faker.location.state(),
+      zipCode: faker.location.zipCode(),
+    }))}
+    enableExpandAll={false}
+    mantineExpandButtonProps={({ row }) => ({
+      style: {
+        transform: row.getIsExpanded() ? 'rotate(0deg)' : 'rotate(-90deg)',
+        transition: 'transform 0.2s',
+      },
+    })}
+    renderDetailPanel={({ row }) => (
+      <div style={{ display: 'grid' }}>
+        <span>City: {row.original.city}</span>
+        <span>State: {row.original.state}</span>
+        <span>Zip: {row.original.zipCode}</span>
+        <span>Phone: {row.original.phone}</span>
+      </div>
+    )}
+  />
+);
+
 export const DetailPanelEnabledConditional = () => (
+  <MantineReactTable
+    columns={[
+      {
+        accessorKey: 'firstName',
+        header: 'First Name',
+      },
+      {
+        accessorKey: 'lastName',
+        header: 'Last Name',
+      },
+      {
+        accessorKey: 'age',
+        header: 'Age',
+      },
+      {
+        accessorKey: 'address',
+        header: 'Address',
+      },
+    ]}
+    data={[...Array(10)].map(() => ({
+      address: faker.location.streetAddress(),
+      age: faker.number.int(100) + 5,
+      city: faker.location.city(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      phone: faker.phone.number(),
+      state: faker.location.state(),
+      zipCode: faker.location.zipCode(),
+    }))}
+    renderDetailPanel={({ row }) =>
+      row.original.age > 50 ? (
+        <div style={{ display: 'grid' }}>
+          <span>City: {row.original.city}</span>
+          <span>State: {row.original.state}</span>
+          <span>Zip: {row.original.zipCode}</span>
+          <span>Phone: {row.original.phone}</span>
+        </div>
+      ) : undefined
+    }
+  />
+);
+
+export const DetailPanelEnabledConditionalHide = () => (
   <MantineReactTable
     columns={[
       {
@@ -88,7 +174,7 @@ export const DetailPanelEnabledConditional = () => (
           <span>Phone: {row.original.phone}</span>
         </div>
       ) : (
-        'Not Enabled'
+        'No details available'
       )
     }
   />

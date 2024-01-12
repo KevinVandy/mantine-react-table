@@ -8,7 +8,7 @@ const meta: Meta = {
 
 export default meta;
 
-const longColumns: MRT_ColumnDef[] = [
+const longColumns: MRT_ColumnDef<any>[] = [
   {
     accessorKey: 'firstName',
     header: 'First Name',
@@ -154,7 +154,7 @@ export const EnableRowVirtualizationWithColumnResizing = () => (
 export const EnableRowVirtualizationWithDetailPanel = () => (
   <MantineReactTable
     columns={longColumns}
-    data={longData.slice(0, 100)}
+    data={longData}
     enableBottomToolbar={false}
     enablePagination={false}
     enableRowNumbers

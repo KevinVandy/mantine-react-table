@@ -10,6 +10,7 @@ import {
   type MRT_ColumnVirtualizer,
   type MRT_Row,
   type MRT_RowData,
+  type MRT_RowVirtualizer,
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
@@ -18,11 +19,11 @@ interface Props<TData extends MRT_RowData> {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   enableHover?: boolean;
   isStriped?: 'even' | 'odd' | boolean;
-  measureElement?: (element: HTMLTableRowElement) => void;
   numRows?: number;
   pinnedRowIds?: string[];
   row: MRT_Row<TData>;
-  rowIndex: number;
+  rowVirtualizer?: MRT_RowVirtualizer;
+  staticRowIndex: number;
   table: MRT_TableInstance<TData>;
   virtualRow?: MRT_VirtualItem;
 }
@@ -31,11 +32,11 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   columnVirtualizer,
   enableHover,
   isStriped,
-  measureElement,
   numRows,
   pinnedRowIds,
   row,
-  rowIndex,
+  rowVirtualizer,
+  staticRowIndex,
   table,
   virtualRow,
 }: Props<TData>) => {
@@ -75,7 +76,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
 
   const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     row,
-    staticRowIndex: rowIndex,
+    staticRowIndex,
     table,
   });
 
@@ -116,15 +117,17 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   return (
     <>
       <TableTr
-        data-index={rowIndex}
+        data-index={renderDetailPanel ? staticRowIndex * 2 : staticRowIndex}
         data-selected={
-          row.getIsSelected() || row.getIsAllSubRowsSelected() || undefined
+          row?.getIsSelected() ||
+          (row?.getIsAllSubRowsSelected() && row.getCanSelectSubRows()) ||
+          undefined
         }
         onDragEnter={handleDragEnter}
         ref={(node: HTMLTableRowElement) => {
           if (node) {
             rowRef.current = node;
-            measureElement?.(node);
+            rowVirtualizer?.measureElement(node);
           }
         }}
         {...tableRowProps}
@@ -190,8 +193,8 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
                 ? columnVirtualizer?.measureElement
                 : undefined,
             numRows,
-            rowIndex,
             rowRef,
+            staticRowIndex,
             table,
             virtualCell: columnVirtualizer
               ? (cellOrVirtualCell as MRT_VirtualItem)
@@ -222,7 +225,8 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
         <MRT_TableDetailPanel
           parentRowRef={rowRef}
           row={row}
-          rowIndex={rowIndex}
+          rowVirtualizer={rowVirtualizer}
+          staticRowIndex={staticRowIndex}
           table={table}
           virtualRow={virtualRow}
         />
@@ -233,5 +237,6 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
 
 export const Memo_MRT_TableBodyRow = memo(
   MRT_TableBodyRow,
-  (prev, next) => prev.row === next.row && prev.rowIndex === next.rowIndex,
+  (prev, next) =>
+    prev.row === next.row && prev.staticRowIndex === next.staticRowIndex,
 ) as typeof MRT_TableBodyRow;

@@ -1,11 +1,11 @@
+import { babel } from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 import copy from 'rollup-plugin-copy';
 import del from 'rollup-plugin-delete';
 import dts from 'rollup-plugin-dts';
 import external from 'rollup-plugin-peer-deps-external';
-import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
-import { babel } from '@rollup/plugin-babel';
 
 export default [
   {
@@ -47,8 +47,8 @@ export default [
       }),
       postcss({
         extract: true,
-        modules: true,
         minimize: true,
+        modules: true,
       }),
     ],
   },
@@ -62,16 +62,16 @@ export default [
     ],
     plugins: [
       copy({
+        hook: 'buildStart',
         targets: [
-          { src: 'dist/cjs/index.css', dest: './', rename: 'styles.css' },
+          { dest: './', rename: 'styles.css', src: 'dist/cjs/index.css' },
         ],
         verbose: true,
-        hook: 'buildStart',
       }),
       del({
+        hook: 'buildEnd',
         targets: ['dist/cjs/index.css', 'dist/esm/mantine-react-table.esm.css'],
         verbose: true,
-        hook: 'buildEnd',
       }),
       dts(),
     ],

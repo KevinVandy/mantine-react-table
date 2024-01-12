@@ -20,11 +20,8 @@
     justify-content: center;
   }
 
-  @mixin light {
-    background-color: var(--mantine-color-white);
-  }
-
-  @mixin dark {
-    background-color: var(--mantine-color-dark-6);
-  }
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
 }

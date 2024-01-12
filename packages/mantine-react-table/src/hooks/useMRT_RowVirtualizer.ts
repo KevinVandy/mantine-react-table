@@ -24,22 +24,32 @@ export const useMRT_RowVirtualizer = <
     getState,
     options: {
       enableRowVirtualization,
+      renderDetailPanel,
       rowVirtualizerInstanceRef,
       rowVirtualizerOptions,
     },
     refs: { tableContainerRef },
   } = table;
-  const { density, draggingRow } = getState();
+  const { density, draggingRow, expanded } = getState();
 
   const rowVirtualizerProps = parseFromValuesOrFunc(rowVirtualizerOptions, {
     table,
   });
 
+  const rowCount = rows?.length ?? getRowModel().rows.length;
+
+  const normalRowHeight =
+    density === 'xs' ? 42.7 : density === 'md' ? 54.7 : 70.7;
+
   const rowVirtualizer = enableRowVirtualization
     ? (useVirtualizer({
-        count: rows?.length ?? getRowModel().rows.length,
-        estimateSize: () =>
-          density === 'xs' ? 42.7 : density === 'md' ? 54.7 : 70.7,
+        count: renderDetailPanel ? rowCount * 2 : rowCount,
+        estimateSize: (index) =>
+          renderDetailPanel && index % 2 === 1
+            ? expanded === true
+              ? 100
+              : 0
+            : normalRowHeight,
         getScrollElement: () => tableContainerRef.current,
         measureElement:
           typeof window !== 'undefined' &&

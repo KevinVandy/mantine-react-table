@@ -41,6 +41,7 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
       localization,
       mantineTableBodyProps,
       memoMode,
+      renderDetailPanel,
       renderEmptyRowsFallback,
       rowPinningDisplayMode,
     },
@@ -80,7 +81,11 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
   };
 
   const CreatingRow = creatingRow && createDisplayMode === 'row' && (
-    <MRT_TableBodyRow {...commonRowProps} row={creatingRow} rowIndex={-1} />
+    <MRT_TableBodyRow
+      {...commonRowProps}
+      row={creatingRow}
+      staticRowIndex={-1}
+    />
   );
 
   return (
@@ -97,11 +102,11 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
               ...(parseFromValuesOrFunc(tableBodyProps?.style, theme) as any),
             })}
           >
-            {getTopRows().map((row, rowIndex) => {
+            {getTopRows().map((row, staticRowIndex) => {
               const props = {
                 ...commonRowProps,
                 row,
-                rowIndex,
+                staticRowIndex,
               };
               return memoMode === 'rows' ? (
                 <Memo_MRT_TableBodyRow key={row.id} {...props} />
@@ -171,18 +176,29 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
             </tr>
           ) : (
             <>
-              {(virtualRows ?? rows).map((rowOrVirtualRow, rowIndex) => {
+              {(virtualRows ?? rows).map((rowOrVirtualRow, staticRowIndex) => {
+                if (rowVirtualizer) {
+                  if (renderDetailPanel) {
+                    if (rowOrVirtualRow.index % 2 === 1) {
+                      return null;
+                    } else {
+                      staticRowIndex = rowOrVirtualRow.index / 2;
+                    }
+                  } else {
+                    staticRowIndex = rowOrVirtualRow.index;
+                  }
+                }
                 const row = rowVirtualizer
-                  ? rows[rowOrVirtualRow.index]
+                  ? rows[staticRowIndex]
                   : (rowOrVirtualRow as MRT_Row<TData>);
                 const props = {
                   ...commonRowProps,
                   enableHover,
                   isStriped,
-                  measureElement: rowVirtualizer?.measureElement,
                   pinnedRowIds,
                   row,
-                  rowIndex: rowVirtualizer ? rowOrVirtualRow.index : rowIndex,
+                  rowVirtualizer,
+                  staticRowIndex,
                   virtualRow: rowVirtualizer
                     ? (rowOrVirtualRow as MRT_VirtualItem)
                     : undefined,
@@ -209,11 +225,11 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
               ...(parseFromValuesOrFunc(tableBodyProps?.style, theme) as any),
             })}
           >
-            {getBottomRows().map((row, rowIndex) => {
+            {getBottomRows().map((row, staticRowIndex) => {
               const props = {
                 ...commonRowProps,
                 row,
-                rowIndex,
+                staticRowIndex,
               };
               return memoMode === 'rows' ? (
                 <Memo_MRT_TableBodyRow key={row.id} {...props} />

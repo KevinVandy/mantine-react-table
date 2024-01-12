@@ -1,18 +1,21 @@
 import clsx from 'clsx';
 import classes from './MRT_TableDetailPanel.module.css';
-import { Box, Collapse } from '@mantine/core';
+import { type RefObject } from 'react';
+import { Collapse, TableTd, type TableTdProps, TableTr } from '@mantine/core';
 import { parseFromValuesOrFunc } from '../column.utils';
 import {
   type MRT_Row,
   type MRT_RowData,
+  type MRT_RowVirtualizer,
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../types';
 
-interface Props<TData extends MRT_RowData> {
-  parentRowRef: React.RefObject<HTMLTableRowElement>;
+interface Props<TData extends MRT_RowData> extends TableTdProps {
+  parentRowRef: RefObject<HTMLTableRowElement>;
   row: MRT_Row<TData>;
-  rowIndex: number;
+  rowVirtualizer?: MRT_RowVirtualizer;
+  staticRowIndex: number;
   table: MRT_TableInstance<TData>;
   virtualRow?: MRT_VirtualItem;
 }
@@ -20,14 +23,17 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
   parentRowRef,
   row,
-  rowIndex,
+  rowVirtualizer,
+  staticRowIndex,
   table,
   virtualRow,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
     getVisibleLeafColumns,
     options: {
+      enableRowVirtualization,
       layoutMode,
       mantineDetailPanelProps,
       mantineTableBodyRowProps,
@@ -39,25 +45,34 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
   const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     isDetailPanel: true,
     row,
-    staticRowIndex: rowIndex,
+    staticRowIndex,
     table,
   });
 
-  const tableCellProps = parseFromValuesOrFunc(mantineDetailPanelProps, {
-    row,
-    table,
-  });
+  const tableCellProps = {
+    ...parseFromValuesOrFunc(mantineDetailPanelProps, {
+      row,
+      table,
+    }),
+    ...rest,
+  };
 
-  const parentRowHeight = virtualRow
-    ? parentRowRef.current?.getBoundingClientRect()?.height
-    : 0;
+  const DetailPanel =
+    !isLoading && row.getIsExpanded() && renderDetailPanel?.({ row, table });
+
   return (
-    <Box
-      component="tr"
+    <TableTr
+      data-index={renderDetailPanel ? staticRowIndex * 2 + 1 : staticRowIndex}
+      ref={(node: HTMLTableRowElement) => {
+        if (node) {
+          rowVirtualizer?.measureElement?.(node);
+        }
+      }}
       {...tableRowProps}
       __vars={{
-        '--mrt-parent-row-height':
-          virtualRow && parentRowHeight ? `${parentRowHeight}px` : undefined,
+        '--mrt-parent-row-height': virtualRow
+          ? `${parentRowRef.current?.getBoundingClientRect()?.height}px`
+          : undefined,
         '--mrt-virtual-row-start': virtualRow
           ? `${virtualRow.start}px`
           : undefined,
@@ -71,7 +86,7 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
         tableRowProps?.className,
       )}
     >
-      <Box
+      <TableTd
         colSpan={getVisibleLeafColumns().length}
         component="td"
         {...tableCellProps}
@@ -87,12 +102,12 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
         )}
         p={row.getIsExpanded() ? 'md' : 0}
       >
-        {renderDetailPanel && (
-          <Collapse in={row.getIsExpanded()}>
-            {!isLoading && renderDetailPanel({ row, table })}
-          </Collapse>
+        {enableRowVirtualization ? (
+          row.getIsExpanded() && DetailPanel
+        ) : (
+          <Collapse in={row.getIsExpanded()}>{DetailPanel}</Collapse>
         )}
-      </Box>
-    </Box>
+      </TableTd>
+    </TableTr>
   );
 };
