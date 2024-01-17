@@ -346,7 +346,7 @@ export type MRT_TableState<TData extends MRT_RowData> = Prettify<
     editingCell: MRT_Cell<TData> | null;
     editingRow: MRT_Row<TData> | null;
     globalFilterFn: MRT_FilterOption;
-    hoveredColumn: { id: string } | MRT_Column<TData> | null;
+    hoveredColumn: Partial<MRT_Column<TData>> | null;
     hoveredRow: Partial<MRT_Row<TData>> | null;
     isFullScreen: boolean;
     isLoading: boolean;
