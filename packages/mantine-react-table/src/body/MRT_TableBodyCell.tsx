@@ -7,7 +7,13 @@ import {
   type MouseEvent,
   type RefObject,
 } from 'react';
-import { Box, Skeleton, useMantineTheme } from '@mantine/core';
+import {
+  Box,
+  Skeleton,
+  useMantineTheme,
+  type MantineColor,
+  type Sx,
+} from '@mantine/core';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
@@ -33,6 +39,24 @@ interface Props<TData extends Record<string, any> = {}> {
   table: MRT_TableInstance<TData>;
   virtualCell?: MRT_VirtualItem;
 }
+
+const getPinnedStyles = (backgroundColor: MantineColor): Sx => ({
+  '&[data-pinned="true"]': {
+    zIndex: 1,
+    position: 'sticky',
+    backgroundColor,
+    opacity: 0.98,
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'transparent',
+    },
+  }
+});
 
 export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
   cell,
@@ -203,6 +227,9 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
         }
       }}
       {...tableCellProps}
+      data-pinned={
+        column.getIsPinned() && column.columnDef.columnDefType !== 'group'
+      }
       onDragEnter={handleDragEnter}
       onDoubleClick={handleDoubleClick}
       sx={(theme) => ({
@@ -238,6 +265,9 @@ export const MRT_TableBodyCell = <TData extends Record<string, any> = {}>({
           theme,
           tableCellProps,
         }),
+        ...getPinnedStyles(
+          theme.colorScheme === 'light' ? theme.white : theme.black,
+        ),
         ...draggingBorders,
       })}
     >
