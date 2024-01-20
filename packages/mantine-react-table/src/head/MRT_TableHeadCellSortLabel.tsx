@@ -55,7 +55,6 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
             'mrt-table-head-multi-sort-indicator',
             classes['multi-sort-indicator'],
           )}
-          color="transparent"
           inline
           label={sortIndex + 1}
           offset={4}
