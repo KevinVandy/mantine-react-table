@@ -1,16 +1,37 @@
 import { useMemo } from 'react';
 import { useDirection } from '@mantine/core';
-import { MRT_AggregationFns } from '../aggregationFns';
-import { MRT_DefaultColumn, MRT_DefaultDisplayColumn } from '../column.utils';
-import { MRT_FilterFns } from '../filterFns';
+import { MRT_AggregationFns } from '../fns/aggregationFns';
+import { MRT_FilterFns } from '../fns/filterFns';
+import { MRT_SortingFns } from '../fns/sortingFns';
 import { MRT_Default_Icons } from '../icons';
 import { MRT_Localization_EN } from '../locales/en';
-import { MRT_SortingFns } from '../sortingFns';
 import {
   type MRT_DefinedTableOptions,
   type MRT_RowData,
   type MRT_TableOptions,
 } from '../types';
+
+export const MRT_DefaultColumn = {
+  filterVariant: 'text',
+  maxSize: 1000,
+  minSize: 40,
+  size: 180,
+} as const;
+
+export const MRT_DefaultDisplayColumn = {
+  columnDefType: 'display',
+  enableClickToCopy: false,
+  enableColumnActions: false,
+  enableColumnDragging: false,
+  enableColumnFilter: false,
+  enableColumnOrdering: false,
+  enableEditing: false,
+  enableGlobalFilter: false,
+  enableGrouping: false,
+  enableHiding: false,
+  enableResizing: false,
+  enableSorting: false,
+} as const;
 
 export const useMRT_TableOptions: <TData extends MRT_RowData>(
   tableOptions: MRT_TableOptions<TData>,
@@ -43,6 +64,7 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
   enableMultiRowSelection = true,
   enableMultiSort = true,
   enablePagination = true,
+  enableRowPinning = false,
   enableRowSelection = false,
   enableSelectAll = true,
   enableSorting = true,
@@ -61,6 +83,7 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
   manualSorting,
   paginationDisplayMode = 'default',
   positionActionsColumn = 'first',
+  positionCreatingRow = 'top',
   positionExpandColumn = 'first',
   positionGlobalFilter = 'right',
   positionPagination = 'bottom',
@@ -157,6 +180,7 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
     enableMultiRowSelection,
     enableMultiSort,
     enablePagination,
+    enableRowPinning,
     enableRowSelection,
     enableSelectAll,
     enableSorting,
@@ -175,6 +199,7 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
     manualSorting,
     paginationDisplayMode,
     positionActionsColumn,
+    positionCreatingRow,
     positionExpandColumn,
     positionGlobalFilter,
     positionPagination,

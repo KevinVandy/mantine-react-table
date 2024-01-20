@@ -1,6 +1,6 @@
 import { Box } from '@mantine/core';
 import { type MRT_ColumnDef, MantineReactTable } from '../../src';
-import { getPrimaryColor } from '../../src/column.utils';
+import { getPrimaryColor } from '../../src/utils/column.utils';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
