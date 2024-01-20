@@ -7,6 +7,8 @@ import {
   type MRT_TableInstance,
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
+import { CSSProperties, useMemo } from 'react';
+import { parseCSSVarId } from '../../utils/style.utils';
 
 interface Props<TData extends MRT_RowData> {
   footer: MRT_Header<TData>;
@@ -38,6 +40,25 @@ export const MRT_TableFooterCell = <TData extends MRT_RowData>({
         table,
       }) ?? columnDef?.footer;
 
+  const widthStyles = useMemo(() => {
+    const styles: CSSProperties = {
+      minWidth: `max(calc(var(--col-${parseCSSVarId(
+        column?.id,
+      )}-size) * 1px), ${columnDef.minSize ?? 30}px)`,
+      width: `calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px)`,
+    };
+    if (layoutMode === 'grid') {
+      styles.flex = `${
+        [0, false].includes(columnDef.grow!)
+          ? 0
+          : `var(--col-${parseCSSVarId(column.id)}-size)`
+      } 0 auto`;
+    } else if (layoutMode === 'grid-no-grow') {
+      styles.flex = `${+(columnDef.grow || 0)} 0 auto`;
+    }
+    return styles;
+  }, [column]);
+
   return (
     <TableTh
       colSpan={footer.colSpan}
@@ -49,6 +70,10 @@ export const MRT_TableFooterCell = <TData extends MRT_RowData>({
         columnDefType === 'group' && classes.group,
         className,
       )}
+      style={(theme) => ({
+        ...widthStyles,
+        ...parseFromValuesOrFunc(tableCellProps.style, theme),
+      })}
     >
       <>{footerProps}</>
     </TableTh>

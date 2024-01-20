@@ -6,7 +6,7 @@ import {
   type ReactNode,
   useMemo,
 } from 'react';
-import { Flex, TableTh } from '@mantine/core';
+import { Flex, TableTh, useDirection } from '@mantine/core';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
 import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
@@ -35,9 +35,12 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   header,
   table,
 }: Props<TData>) => {
+  const direction = useDirection();
   const {
     getState,
     options: {
+      columnResizeMode,
+      columnResizeDirection,
       columnFilterDisplayMode,
       enableColumnActions,
       enableColumnDragging,
@@ -50,7 +53,8 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
     refs: { tableHeadCellRefs },
     setHoveredColumn,
   } = table;
-  const { density, draggingColumn, grouping, hoveredColumn } = getState();
+  const { density, draggingColumn, grouping, hoveredColumn, columnSizingInfo } =
+    getState();
   const { column } = header;
   const { columnDef } = column;
   const { columnDefType } = columnDef;
@@ -63,18 +67,20 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
 
   const widthStyles = useMemo(() => {
     const styles: CSSProperties = {
-      minWidth: `max(calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px), ${
-        column.columnDef.minSize ?? 30
-      }px)`,
-      width: `calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px)`,
+      minWidth: `max(calc(var(--header-${parseCSSVarId(
+        header?.id,
+      )}-size) * 1px), ${columnDef.minSize ?? 30}px)`,
+      width: `calc(var(--header-${parseCSSVarId(header.id)}-size) * 1px)`,
     };
-
     if (layoutMode === 'grid') {
-      styles.flex = `${column.getSize()} 0 auto`;
+      styles.flex = `${
+        [0, false].includes(columnDef.grow!)
+          ? 0
+          : `var(--header-${parseCSSVarId(header.id)}-size)`
+      } 0 auto`;
     } else if (layoutMode === 'grid-no-grow') {
-      styles.flex = '0 0 auto';
+      styles.flex = `${+(columnDef.grow || 0)} 0 auto`;
     }
-
     return styles;
   }, [column]);
 
@@ -140,7 +146,13 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
               ? '2'
               : '1',
       }}
-      align={columnDefType === 'group' ? 'center' : 'left'}
+      align={
+        columnDefType === 'group'
+          ? 'center'
+          : direction.dir === 'rtl'
+            ? 'right'
+            : 'left'
+      }
       className={clsx(
         classes.root,
         layoutMode?.startsWith('grid') && classes['root-grid'],
@@ -155,6 +167,9 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
         getIsFirstRightPinnedColumn(column) &&
           classes['root-pinned-right-first'],
         tableCellProps?.className,
+        columnSizingInfo?.isResizingColumn === column.id &&
+          columnResizeMode === 'onChange' &&
+          classes[`resizing-${columnResizeDirection}`],
         draggingColumn?.id === column.id && classes['dragging'],
         draggingColumn?.id !== column.id &&
           hoveredColumn?.id === column.id &&
@@ -168,8 +183,8 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
         }
       }}
       style={(theme) => ({
-        ...parseFromValuesOrFunc(tableCellProps?.style, theme),
         ...widthStyles,
+        ...parseFromValuesOrFunc(tableCellProps?.style, theme),
       })}
     >
       {header.isPlaceholder ? null : (

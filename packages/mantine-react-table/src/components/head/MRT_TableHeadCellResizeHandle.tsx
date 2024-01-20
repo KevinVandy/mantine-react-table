@@ -18,7 +18,7 @@ export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     getState,
-    options: { columnResizeMode },
+    options: { columnResizeMode, columnResizeDirection },
     setColumnSizingInfo,
   } = table;
   const { density } = getState();
@@ -26,8 +26,11 @@ export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
   const handler = header.getResizeHandler();
 
   const offset =
-    columnResizeMode === 'onEnd' && column.getIsResizing()
-      ? `translateX(${getState().columnSizingInfo.deltaOffset ?? 0}px)`
+    column.getIsResizing() && columnResizeMode === 'onEnd'
+      ? `translateX(${
+          (columnResizeDirection === 'rtl' ? -1 : 1) *
+          (getState().columnSizingInfo.deltaOffset ?? 0)
+        }px)`
       : undefined;
 
   return (
@@ -36,6 +39,10 @@ export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
       className={clsx(
         'mrt-table-head-cell-resize-handle',
         classes.root,
+        classes[`root-${columnResizeDirection}`],
+        !header.subHeaders.length &&
+          columnResizeMode === 'onChange' &&
+          classes['root-hide'],
         density,
       )}
       onDoubleClick={() => {

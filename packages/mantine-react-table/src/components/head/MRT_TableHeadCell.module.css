@@ -1,6 +1,8 @@
 .root {
+  --resize-border-color: var(--mantine-primary-color-filled);
   --hover-color: var(--mantine-primary-color-filled);
   --drag-color: var(--mantine-color-gray-7);
+  --resize-thickness: 2px;
   --hover-thickness: 2px;
   --drag-thickness: 1px;
 
@@ -65,6 +67,14 @@
       var(--mantine-color-gray-outline),
       var(--mantine-color-dark-outline)
     ) inset;
+}
+
+.resizing-ltr {
+  border-right: var(--resize-thickness) solid var(--resize-border-color);
+}
+
+.resizing-rtl {
+  border-left: var(--resize-thickness) solid var(--resize-border-color);
 }
 
 .dragging {

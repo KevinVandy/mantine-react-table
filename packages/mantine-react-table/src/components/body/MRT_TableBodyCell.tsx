@@ -55,6 +55,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   const {
     getState,
     options: {
+      columnResizeMode,
+      columnResizeDirection,
       createDisplayMode,
       editDisplayMode,
       enableClickToCopy,
@@ -71,6 +73,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     setHoveredColumn,
   } = table;
   const {
+    columnSizingInfo,
     creatingRow,
     density,
     draggingColumn,
@@ -107,18 +110,20 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
 
   const widthStyles = useMemo(() => {
     const styles: CSSProperties = {
-      minWidth: `max(calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px), ${
-        column.columnDef.minSize ?? 30
-      }px)`,
+      minWidth: `max(calc(var(--col-${parseCSSVarId(
+        column?.id,
+      )}-size) * 1px), ${columnDef.minSize ?? 30}px)`,
       width: `calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px)`,
     };
-
     if (layoutMode === 'grid') {
-      styles.flex = `${column.getSize()} 0 auto`;
+      styles.flex = `${
+        [0, false].includes(columnDef.grow!)
+          ? 0
+          : `var(--col-${parseCSSVarId(column.id)}-size)`
+      } 0 auto`;
     } else if (layoutMode === 'grid-no-grow') {
-      styles.flex = '0 0 auto';
+      styles.flex = `${+(columnDef.grow || 0)} 0 auto`;
     }
-
     return styles;
   }, [column]);
 
@@ -221,6 +226,9 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
         column.id === 'mrt-row-expand' && classes['root-expand-depth'],
         columnDefType === 'data' && classes['root-data-col'],
         density === 'xs' && classes['root-nowrap'],
+        columnSizingInfo?.isResizingColumn === column.id &&
+          columnResizeMode === 'onChange' &&
+          classes[`resizing-${columnResizeDirection}`],
         draggingColumn?.id === column.id && classes['dragging-column'],
         draggingColumn?.id !== column.id &&
           hoveredColumn?.id === column.id &&

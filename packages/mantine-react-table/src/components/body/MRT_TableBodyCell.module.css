@@ -1,8 +1,11 @@
 .root {
+  --resize-border-color: var(--mantine-primary-color-filled);
   --hover-color: var(--mantine-primary-color-filled);
   --drag-color: var(--mantine-color-gray-7);
+  --resize-thickness: 2px;
   --hover-thickness: 2px;
   --drag-thickness: 1px;
+
   background-clip: padding-box;
   overflow: hidden;
   transition: padding 100ms ease-in-out;
@@ -95,6 +98,14 @@
 
 .root-expand-depth {
   padding-left: calc(calc(var(--mrt-row-depth, 0) + 1) * 1rem);
+}
+
+.resizing-ltr {
+  border-right: var(--resize-thickness) solid var(--resize-border-color);
+}
+
+.resizing-rtl {
+  border-left: var(--resize-thickness) solid var(--resize-border-color);
 }
 
 .dragging-column {
