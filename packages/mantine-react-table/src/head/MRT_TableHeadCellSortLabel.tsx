@@ -39,7 +39,6 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
         <ActionIcon
           aria-label={sortTooltip}
           className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
-          size={18}
           {...dataVariable('sorted', sorted)}
         >
           {sorted === 'desc' ? (
