@@ -1,0 +1,23 @@
+.sort-icon {
+  transition: all 100ms ease;
+  --ai-size: var(--ai-size-xs);
+  --ai-bg: transparent;
+  --ai-hover: light-dark(
+    var(--mantine-color-gray-1),
+    var(--mantine-color-dark-6)
+  );
+  color: light-dark(
+    var(--mantine-color-gray-5),
+    var(--mantine-color-dark-3)
+  );
+  &[data-sorted] {
+    color: var(--mantine-primary-color-filled);
+  }
+}
+
+.multi-sort-indicator {
+  --indicator-size: rem(16px);
+  --indicator-color: transparent;
+  --indicator-text-color: var(--mantine-color-bright);
+  height: var(--indicator-size);
+}
