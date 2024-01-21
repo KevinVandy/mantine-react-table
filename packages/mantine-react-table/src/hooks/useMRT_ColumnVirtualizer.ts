@@ -25,7 +25,7 @@ export const useMRT_ColumnVirtualizer = <
     },
     refs: { tableContainerRef },
   } = table;
-  const { columnPinning, columnVisibility, draggingColumn } = getState();
+  const { columnPinning, draggingColumn } = getState();
 
   const columnVirtualizerProps = parseFromValuesOrFunc(
     columnVirtualizerOptions,
@@ -51,19 +51,7 @@ export const useMRT_ColumnVirtualizer = <
     [columnPinning, enableColumnVirtualization, enableColumnPinning],
   );
 
-  //get first 16 column widths and average them if calc is needed
-  const averageColumnWidth = useMemo(() => {
-    if (!enableColumnVirtualization || columnVirtualizerProps?.estimateSize) {
-      return 0;
-    }
-    const columnsWidths =
-      table
-        .getRowModel()
-        .rows[0]?.getCenterVisibleCells()
-        ?.slice(0, 16)
-        ?.map((cell) => cell.column.getSize() * 1.2) ?? [];
-    return columnsWidths.reduce((a, b) => a + b, 0) / columnsWidths.length;
-  }, [table.getRowModel().rows, columnPinning, columnVisibility]);
+  const columns = table.getAllColumns();
 
   const draggingColumnIndex = draggingColumn?.id
     ? table
@@ -74,7 +62,7 @@ export const useMRT_ColumnVirtualizer = <
   const columnVirtualizer = enableColumnVirtualization
     ? (useVirtualizer({
         count: table.getVisibleLeafColumns().length,
-        estimateSize: () => averageColumnWidth,
+        estimateSize: (index) => columns[index].getSize(),
         getScrollElement: () => tableContainerRef.current,
         horizontal: true,
         overscan: 3,
