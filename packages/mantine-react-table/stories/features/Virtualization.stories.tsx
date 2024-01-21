@@ -354,3 +354,19 @@ export const MaxVirtualization = () => (
     mantineTableContainerProps={{ style: { maxHeight: 500 } }}
   />
 );
+
+export const EmptyDataVirtualization = () => (
+  <MantineReactTable
+    columns={fakeColumns}
+    data={[]}
+    enableBottomToolbar={false}
+    enableColumnPinning
+    enableColumnResizing
+    enableColumnVirtualization
+    enablePagination={false}
+    enableRowNumbers
+    enableRowVirtualization
+    mantinePaperProps={{ style: { margin: 'auto', maxWidth: 1000 } }}
+    mantineTableContainerProps={{ style: { maxHeight: 500 } }}
+  />
+);

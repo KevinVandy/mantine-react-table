@@ -1,16 +1,37 @@
 import { useMemo } from 'react';
 import { useDirection } from '@mantine/core';
-import { MRT_AggregationFns } from '../aggregationFns';
-import { MRT_DefaultColumn, MRT_DefaultDisplayColumn } from '../column.utils';
-import { MRT_FilterFns } from '../filterFns';
+import { MRT_AggregationFns } from '../fns/aggregationFns';
+import { MRT_FilterFns } from '../fns/filterFns';
+import { MRT_SortingFns } from '../fns/sortingFns';
 import { MRT_Default_Icons } from '../icons';
 import { MRT_Localization_EN } from '../locales/en';
-import { MRT_SortingFns } from '../sortingFns';
 import {
   type MRT_DefinedTableOptions,
   type MRT_RowData,
   type MRT_TableOptions,
 } from '../types';
+
+export const MRT_DefaultColumn = {
+  filterVariant: 'text',
+  maxSize: 1000,
+  minSize: 40,
+  size: 180,
+} as const;
+
+export const MRT_DefaultDisplayColumn = {
+  columnDefType: 'display',
+  enableClickToCopy: false,
+  enableColumnActions: false,
+  enableColumnDragging: false,
+  enableColumnFilter: false,
+  enableColumnOrdering: false,
+  enableEditing: false,
+  enableGlobalFilter: false,
+  enableGrouping: false,
+  enableHiding: false,
+  enableResizing: false,
+  enableSorting: false,
+} as const;
 
 export const useMRT_TableOptions: <TData extends MRT_RowData>(
   tableOptions: MRT_TableOptions<TData>,
@@ -30,6 +51,7 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
   enableColumnOrdering = false,
   enableColumnPinning = false,
   enableColumnResizing = false,
+  enableColumnVirtualization,
   enableDensityToggle = true,
   enableExpandAll = true,
   enableExpanding,
@@ -43,7 +65,9 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
   enableMultiRowSelection = true,
   enableMultiSort = true,
   enablePagination = true,
+  enableRowPinning = false,
   enableRowSelection = false,
+  enableRowVirtualization,
   enableSelectAll = true,
   enableSorting = true,
   enableStickyHeader = false,
@@ -61,6 +85,7 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
   manualSorting,
   paginationDisplayMode = 'default',
   positionActionsColumn = 'first',
+  positionCreatingRow = 'top',
   positionExpandColumn = 'first',
   positionGlobalFilter = 'right',
   positionPagination = 'bottom',
@@ -74,30 +99,35 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
 }: MRT_TableOptions<TData>) => {
   const direction = useDirection();
 
-  const _icons = useMemo(() => ({ ...MRT_Default_Icons, ...icons }), [icons]);
-  const _localization = useMemo(
+  icons = useMemo(() => ({ ...MRT_Default_Icons, ...icons }), [icons]);
+  localization = useMemo(
     () => ({
       ...MRT_Localization_EN,
       ...localization,
     }),
     [localization],
   );
-  const _aggregationFns = useMemo(
+  aggregationFns = useMemo(
     () => ({ ...MRT_AggregationFns, ...aggregationFns }),
     [],
   );
-  const _filterFns = useMemo(() => ({ ...MRT_FilterFns, ...filterFns }), []);
-  const _sortingFns = useMemo(() => ({ ...MRT_SortingFns, ...sortingFns }), []);
-  const _defaultColumn = useMemo(
+  filterFns = useMemo(() => ({ ...MRT_FilterFns, ...filterFns }), []);
+  sortingFns = useMemo(() => ({ ...MRT_SortingFns, ...sortingFns }), []);
+  defaultColumn = useMemo(
     () => ({ ...MRT_DefaultColumn, ...defaultColumn }),
     [defaultColumn],
   );
-  const _defaultDisplayColumn = useMemo(
+  defaultDisplayColumn = useMemo(
     () => ({
       ...MRT_DefaultDisplayColumn,
       ...defaultDisplayColumn,
     }),
     [defaultDisplayColumn],
+  );
+  //cannot be changed after initialization
+  [enableColumnVirtualization, enableRowVirtualization] = useMemo(
+    () => [enableColumnVirtualization, enableRowVirtualization],
+    [],
   );
 
   if (!columnResizeDirection) {
@@ -108,12 +138,12 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
     layoutMode || (enableColumnResizing ? 'grid-no-grow' : 'semantic');
   if (
     layoutMode === 'semantic' &&
-    (rest.enableRowVirtualization || rest.enableColumnVirtualization)
+    (enableRowVirtualization || enableColumnVirtualization)
   ) {
     layoutMode = 'grid';
   }
 
-  if (rest.enableRowVirtualization) {
+  if (enableRowVirtualization) {
     enableStickyHeader = true;
   }
 
@@ -129,14 +159,14 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
   }
 
   return {
-    aggregationFns: _aggregationFns,
+    aggregationFns,
     autoResetExpanded,
     columnFilterDisplayMode,
     columnResizeDirection,
     columnResizeMode,
     createDisplayMode,
-    defaultColumn: _defaultColumn,
-    defaultDisplayColumn: _defaultDisplayColumn,
+    defaultColumn,
+    defaultDisplayColumn,
     editDisplayMode,
     enableBottomToolbar,
     enableColumnActions,
@@ -144,6 +174,7 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
     enableColumnOrdering,
     enableColumnPinning,
     enableColumnResizing,
+    enableColumnVirtualization,
     enableDensityToggle,
     enableExpandAll,
     enableExpanding,
@@ -157,7 +188,9 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
     enableMultiRowSelection,
     enableMultiSort,
     enablePagination,
+    enableRowPinning,
     enableRowSelection,
+    enableRowVirtualization,
     enableSelectAll,
     enableSorting,
     enableStickyHeader,
@@ -165,16 +198,17 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
     enableTableHead,
     enableToolbarInternalActions,
     enableTopToolbar,
-    filterFns: _filterFns,
-    icons: _icons,
+    filterFns,
+    icons,
     layoutMode,
-    localization: _localization,
+    localization,
     manualFiltering,
     manualGrouping,
     manualPagination,
     manualSorting,
     paginationDisplayMode,
     positionActionsColumn,
+    positionCreatingRow,
     positionExpandColumn,
     positionGlobalFilter,
     positionPagination,
@@ -183,7 +217,7 @@ export const useMRT_TableOptions: <TData extends MRT_RowData>(
     rowNumberDisplayMode,
     rowPinningDisplayMode,
     selectAllMode,
-    sortingFns: _sortingFns,
+    sortingFns,
     ...rest,
-  };
+  } as MRT_DefinedTableOptions<TData>;
 };
