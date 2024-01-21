@@ -54,14 +54,14 @@
 }
 
 .root-pinned-left-last {
-  box-shadow: -4px 0 8px -6px light-dark(
+  box-shadow: -4px 0 4px -4px light-dark(
       var(--mantine-color-gray-outline),
       var(--mantine-color-dark-outline)
     ) inset;
 }
 
 .root-pinned-right-first {
-  box-shadow: 4px 0 8px -6px light-dark(
+  box-shadow: 4px 0 4px -4px light-dark(
       var(--mantine-color-gray-outline),
       var(--mantine-color-dark-outline)
     ) inset;
