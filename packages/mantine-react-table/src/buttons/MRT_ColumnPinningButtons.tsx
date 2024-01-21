@@ -36,7 +36,7 @@ export const MRT_ColumnPinningButtons = <TData extends MRT_RowData>({
           </ActionIcon>
         </Tooltip>
       ) : (
-        <>
+        <ActionIcon.Group>
           <Tooltip label={localization.pinToLeft} withinPortal>
             <ActionIcon
               color="gray"
@@ -57,7 +57,7 @@ export const MRT_ColumnPinningButtons = <TData extends MRT_RowData>({
               <IconPinned className={classes.right} />
             </ActionIcon>
           </Tooltip>
-        </>
+        </ActionIcon.Group>
       )}
     </Flex>
   );
