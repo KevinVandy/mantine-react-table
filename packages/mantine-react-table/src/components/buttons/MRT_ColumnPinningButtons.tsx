@@ -15,13 +15,14 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
 
 export const MRT_ColumnPinningButtons = <TData extends MRT_RowData>({
   column,
-  table: {
+  table,
+}: Props<TData>) => {
+  const {
     options: {
       icons: { IconPinned, IconPinnedOff },
       localization,
     },
-  },
-}: Props<TData>) => {
+  } = table;
   return (
     <Flex className={clsx('mrt-column-pinning-buttons', classes.root)}>
       {column.getIsPinned() ? (

@@ -244,6 +244,10 @@ export const routes: Array<RouteItem> = [
             label: 'Column Pinning (Freezing)',
           },
           {
+            href: '/docs/guides/column-size',
+            label: 'Column Size (Widths)',
+          },
+          {
             href: '/docs/guides/column-resizing',
             label: 'Column Resizing',
           },
