@@ -65,10 +65,10 @@ import {
   type UnstyledButtonProps,
 } from '@mantine/core';
 import { type DateInputProps } from '@mantine/dates';
-import { type MRT_AggregationFns } from './aggregationFns';
-import { type MRT_FilterFns } from './filterFns';
+import { type MRT_AggregationFns } from './fns/aggregationFns';
+import { type MRT_FilterFns } from './fns/filterFns';
+import { type MRT_SortingFns } from './fns/sortingFns';
 import { type MRT_Icons } from './icons';
-import { type MRT_SortingFns } from './sortingFns';
 
 export type { MRT_Icons };
 
@@ -300,7 +300,7 @@ export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
   getSelectedRowModel: () => MRT_RowModel<TData>;
   getState: () => MRT_TableState<TData>;
   getTopRows: () => MRT_Row<TData>[];
-  options: MRT_DefinedTableOptions<TData>;
+  options: MRT_StatefulTableOptions<TData>;
   refs: {
     bottomToolbarRef: MutableRefObject<HTMLDivElement>;
     editInputRefs: MutableRefObject<Record<string, HTMLInputElement>>;
@@ -334,6 +334,32 @@ export type MRT_DefinedTableOptions<TData extends MRT_RowData> =
   MRT_TableOptions<TData> & {
     icons: MRT_Icons;
     localization: MRT_Localization;
+  };
+
+export type MRT_StatefulTableOptions<TData extends MRT_RowData> =
+  MRT_DefinedTableOptions<TData> & {
+    state: Pick<
+      MRT_TableState<TData>,
+      | 'columnFilterFns'
+      | 'columnOrder'
+      | 'columnSizingInfo'
+      | 'creatingRow'
+      | 'density'
+      | 'draggingColumn'
+      | 'draggingRow'
+      | 'editingCell'
+      | 'editingRow'
+      | 'globalFilterFn'
+      | 'grouping'
+      | 'hoveredColumn'
+      | 'hoveredRow'
+      | 'isFullScreen'
+      | 'pagination'
+      | 'showAlertBanner'
+      | 'showColumnFilters'
+      | 'showGlobalFilter'
+      | 'showToolbarDropZone'
+    >;
   };
 
 export type MRT_TableState<TData extends MRT_RowData> = Prettify<
@@ -480,6 +506,10 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
    * footer must be a string. If you want custom JSX to render the footer, you can also specify a `Footer` option. (Capital F)
    */
   footer?: string;
+  /**
+   * If `layoutMode` is `'grid'` or `'grid-no-grow'`, you can specify the flex grow value for individual columns to still grow and take up remaining space, or set to `false`/0 to not grow.
+   */
+  grow?: boolean | number;
   /**
    * header must be a string. If you want custom JSX to render the header, you can also specify a `Header` option. (Capital H)
    */
@@ -901,6 +931,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineExpandButtonProps?:
     | ((props: {
         row: MRT_Row<TData>;
+        staticRowIndex?: number;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
@@ -1140,6 +1171,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   onShowToolbarDropZoneChange?: OnChangeFn<boolean>;
   paginationDisplayMode?: 'custom' | 'default' | 'pages';
   positionActionsColumn?: 'first' | 'last';
+  positionCreatingRow?: 'bottom' | 'top' | number;
   positionExpandColumn?: 'first' | 'last';
   positionGlobalFilter?: 'left' | 'none' | 'right';
   positionPagination?: 'both' | 'bottom' | 'none' | 'top';
@@ -1186,11 +1218,13 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   }) => ReactNode;
   renderRowActionMenuItems?: (props: {
     row: MRT_Row<TData>;
+    staticRowIndex?: number;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderRowActions?: (props: {
     cell: MRT_Cell<TData, unknown>;
     row: MRT_Row<TData>;
+    staticRowIndex?: number;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderToolbarAlertBannerContent?: (props: {

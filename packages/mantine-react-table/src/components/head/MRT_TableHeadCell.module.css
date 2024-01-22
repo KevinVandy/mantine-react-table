@@ -1,0 +1,151 @@
+.root {
+  --resize-border-color: var(--mantine-primary-color-filled);
+  --hover-color: var(--mantine-primary-color-filled);
+  --drag-color: var(--mantine-color-gray-7);
+  --resize-thickness: 2px;
+  --hover-thickness: 2px;
+  --drag-thickness: 1px;
+
+  background-clip: padding-box;
+  transition: padding 100ms ease-in-out;
+  font-weight: bold;
+  overflow: visible;
+  padding: calc(var(--mrt-table-head-cell-padding) * 1px);
+  vertical-align: top;
+  z-index: var(--mrt-table-head-cell-z-index);
+
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+
+  @mixin hover {
+    :global(.mantine-ActionIcon-root) {
+      opacity: 1;
+    }
+  }
+}
+
+.root-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.root-virtualized {
+  transition: none;
+}
+
+.root-no-select {
+  user-select: none;
+}
+
+.root-pinned {
+  position: sticky;
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+}
+
+.root-pinned-left {
+  left: calc(var(--mrt-table-cell-left, 0) * 1px);
+}
+
+.root-pinned-right {
+  right: calc(var(--mrt-table-cell-right, 0) * 1px);
+}
+
+.root-pinned-left-last {
+  box-shadow: -4px 0 4px -4px light-dark(
+      var(--mantine-color-gray-outline),
+      var(--mantine-color-dark-outline)
+    ) inset;
+}
+
+.root-pinned-right-first {
+  box-shadow: 4px 0 4px -4px light-dark(
+      var(--mantine-color-gray-outline),
+      var(--mantine-color-dark-outline)
+    ) inset;
+}
+
+.resizing-ltr {
+  border-right: var(--resize-thickness) solid var(--resize-border-color);
+}
+
+.resizing-rtl {
+  border-left: var(--resize-thickness) solid var(--resize-border-color);
+}
+
+.dragging {
+  opacity: 0.5;
+  border-left: var(--drag-thickness) dashed var(--drag-color);
+  border-right: var(--drag-thickness) dashed var(--drag-color);
+  border-top: var(--drag-thickness) dashed var(--drag-color);
+}
+
+.hovered {
+  z-index: 2;
+  border-left: var(--hover-thickness) dashed var(--hover-color);
+  border-right: var(--hover-thickness) dashed var(--hover-color);
+  border-top: var(--hover-thickness) dashed var(--hover-color);
+}
+
+.content {
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.content-spaced {
+  justify-content: space-between;
+}
+
+.content-center {
+  justify-content: center;
+}
+
+.content-right {
+  flex-direction: row-reverse;
+}
+
+.content-wrapper {
+  text-overflow: ellipsis;
+}
+
+.content-wrapper-hidden-overflow {
+  overflow: hidden;
+}
+
+.content-wrapper-nowrap {
+  white-space: nowrap;
+}
+
+.labels {
+  align-items: center;
+}
+
+.labels-right {
+  flex-direction: row-reverse;
+}
+
+.labels-center {
+  padding-left: calc(var(--mrt-table-head-cell-labels-padding-left) * 1rem);
+}
+
+.labels-sortable {
+  cursor: pointer;
+}
+
+.labels-data {
+  overflow: hidden;
+}
+
+.content-actions {
+  align-items: center;
+  align-self: center;
+  white-space: nowrap;
+  margin-left: 0.3em;
+}
