@@ -72,8 +72,8 @@ export const CustomExpandRotation = () => (
     enableExpandAll={false}
     mantineExpandButtonProps={({ row }) => ({
       style: {
-        transform: row.getIsExpanded() ? 'rotate(0deg)' : 'rotate(-90deg)',
-        transition: 'transform 0.2s',
+        transform: row.getIsExpanded() ? 'rotate(-180deg)' : 'rotate(270deg)',
+        transition: 'transform 0s',
       },
     })}
     renderDetailPanel={({ row }) => (

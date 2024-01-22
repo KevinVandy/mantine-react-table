@@ -55,8 +55,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   const {
     getState,
     options: {
-      columnResizeMode,
       columnResizeDirection,
+      columnResizeMode,
       createDisplayMode,
       editDisplayMode,
       enableClickToCopy,
@@ -181,8 +181,6 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       }}
       {...tableCellProps}
       __vars={{
-        '--mrt-row-depth':
-          column.id === 'mrt-row-expand' ? `${row.depth}` : undefined,
         '--mrt-table-cell-justify': layoutMode?.startsWith('grid')
           ? tableCellProps.align === 'left'
             ? 'flex-start'

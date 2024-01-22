@@ -48,6 +48,8 @@ export const MRT_TablePaper = <TData extends MRT_RowData>({
       }}
       // rare case where we should use inline styles to guarantee highest specificity
       style={(theme) => ({
+        zIndex: isFullScreen ? 100 : undefined,
+        ...parseFromValuesOrFunc(tablePaperProps?.style, theme),
         ...(isFullScreen
           ? {
               bottom: 0,
@@ -61,10 +63,8 @@ export const MRT_TablePaper = <TData extends MRT_RowData>({
               right: 0,
               top: 0,
               width: '100vw',
-              zIndex: 100,
             }
           : null),
-        ...(parseFromValuesOrFunc(tablePaperProps?.style, theme) as any),
       })}
     >
       {enableTopToolbar &&

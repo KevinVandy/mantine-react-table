@@ -1,4 +1,6 @@
+import { DirectionProvider } from '@mantine/core';
 import { type MRT_ColumnDef, MantineReactTable } from '../../src';
+import { MRT_Localization_HE } from '../../src/locales/he';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
@@ -63,6 +65,76 @@ const data = [...Array(5)].map(() => ({
 export const SubRowTreeEnabledDefault = () => (
   <MantineReactTable columns={columns} data={data} enableExpanding />
 );
+
+export const SubRowTreeLayoutGrid = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    displayColumnDefOptions={{
+      'mrt-row-expand': {
+        // size: 100,
+      },
+    }}
+    enableExpanding
+    initialState={{ expanded: true }}
+    layoutMode="grid"
+  />
+);
+
+export const SubRowTreeLayoutGridNoGrow = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    displayColumnDefOptions={{
+      'mrt-row-expand': {
+        // size: 100,
+      },
+    }}
+    enableExpanding
+    initialState={{ expanded: true }}
+    layoutMode="grid-no-grow"
+  />
+);
+
+export const SubRowTreeEnabledPositionLast = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableExpanding
+    positionExpandColumn="last"
+  />
+);
+
+export const SubRowTreeEnabledDefaultRTL = () => {
+  return (
+    <DirectionProvider initialDirection="rtl">
+      <div style={{ direction: 'rtl' }}>
+        <MantineReactTable
+          columns={columns}
+          data={data}
+          enableExpanding
+          localization={MRT_Localization_HE}
+        />
+      </div>
+    </DirectionProvider>
+  );
+};
+
+export const SubRowTreeEnabledDefaultRTLAndPositionLast = () => {
+  return (
+    <DirectionProvider initialDirection="rtl">
+      <div style={{ direction: 'rtl' }}>
+        <MantineReactTable
+          columns={columns}
+          data={data}
+          enableExpanding
+          localization={MRT_Localization_HE}
+          positionActionsColumn="last"
+        />
+      </div>
+    </DirectionProvider>
+  );
+};
 
 export const SubRowTreeDisableExpandAll = () => (
   <MantineReactTable

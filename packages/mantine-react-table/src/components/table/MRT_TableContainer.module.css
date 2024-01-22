@@ -13,5 +13,7 @@
 }
 
 .root-fullscreen {
-  max-height: calc(100vh - calc(var(--mrt-top-toolbar-height) * 1px));
+  max-height: calc(
+    100vh - calc(var(--mrt-top-toolbar-height) * 1px)
+  ) !important;
 }

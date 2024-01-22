@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import classes from './MRT_ExpandButton.module.css';
 import { type MouseEvent } from 'react';
-import { ActionIcon, Tooltip } from '@mantine/core';
+import { ActionIcon, Tooltip, useDirection } from '@mantine/core';
 import {
   type MRT_Row,
   type MRT_RowData,
@@ -18,11 +18,13 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
   row,
   table,
 }: Props<TData>) => {
+  const direction = useDirection();
   const {
     options: {
       icons: { IconChevronDown },
       localization,
       mantineExpandButtonProps,
+      positionExpandColumn,
       renderDetailPanel,
     },
   } = table;
@@ -39,6 +41,8 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
     row.toggleExpanded();
     actionIconProps?.onClick?.(event);
   };
+
+  const rtl = direction.dir === 'rtl' || positionExpandColumn === 'last';
 
   return (
     <Tooltip
@@ -57,9 +61,13 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
         disabled={!canExpand && !renderDetailPanel}
         variant="subtle"
         {...actionIconProps}
+        __vars={{
+          '--mrt-row-depth': `${row.depth}`,
+        }}
         className={clsx(
           'mrt-expand-button',
           classes.root,
+          classes[`root-${rtl ? 'rtl' : 'ltr'}`],
           actionIconProps?.className,
         )}
         onClick={handleToggleExpand}

@@ -96,10 +96,6 @@
     ) inset;
 }
 
-.root-expand-depth {
-  padding-left: calc(calc(var(--mrt-row-depth, 0) + 1) * 1rem);
-}
-
 .resizing-ltr {
   border-right: var(--resize-thickness) solid var(--resize-border-color);
 }
