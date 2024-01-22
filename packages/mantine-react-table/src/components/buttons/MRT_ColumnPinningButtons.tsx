@@ -30,19 +30,19 @@ export const MRT_ColumnPinningButtons = <TData extends MRT_RowData>({
             color="gray"
             onClick={() => column.pin(false)}
             size="md"
-            variant="default"
+            variant="subtle"
           >
             <IconPinnedOff />
           </ActionIcon>
         </Tooltip>
       ) : (
-        <ActionIcon.Group>
+        <>
           <Tooltip label={localization.pinToLeft} withinPortal>
             <ActionIcon
               color="gray"
               onClick={() => column.pin('left')}
               size="md"
-              variant="default"
+              variant="subtle"
             >
               <IconPinned className={classes.left} />
             </ActionIcon>
@@ -52,12 +52,12 @@ export const MRT_ColumnPinningButtons = <TData extends MRT_RowData>({
               color="gray"
               onClick={() => column.pin('right')}
               size="md"
-              variant="default"
+              variant="subtle"
             >
               <IconPinned className={classes.right} />
             </ActionIcon>
           </Tooltip>
-        </ActionIcon.Group>
+        </>
       )}
     </Flex>
   );
