@@ -1,15 +1,13 @@
 import { useCallback } from 'react';
 import { type Range, useVirtualizer } from '@tanstack/react-virtual';
 import {
-  extraIndexRangeExtractor,
-  parseFromValuesOrFunc,
-} from '../column.utils';
-import {
   type MRT_Row,
   type MRT_RowData,
   type MRT_RowVirtualizer,
   type MRT_TableInstance,
 } from '../types';
+import { parseFromValuesOrFunc } from '../utils/utils';
+import { extraIndexRangeExtractor } from '../utils/virtualization.utils';
 
 export const useMRT_RowVirtualizer = <
   TData extends MRT_RowData,
@@ -32,6 +30,8 @@ export const useMRT_RowVirtualizer = <
   } = table;
   const { density, draggingRow, expanded } = getState();
 
+  if (!enableRowVirtualization) return undefined;
+
   const rowVirtualizerProps = parseFromValuesOrFunc(rowVirtualizerOptions, {
     table,
   });
@@ -41,39 +41,35 @@ export const useMRT_RowVirtualizer = <
   const normalRowHeight =
     density === 'xs' ? 42.7 : density === 'md' ? 54.7 : 70.7;
 
-  const rowVirtualizer = enableRowVirtualization
-    ? (useVirtualizer({
-        count: renderDetailPanel ? rowCount * 2 : rowCount,
-        estimateSize: (index) =>
-          renderDetailPanel && index % 2 === 1
-            ? expanded === true
-              ? 100
-              : 0
-            : normalRowHeight,
-        getScrollElement: () => tableContainerRef.current,
-        measureElement:
-          typeof window !== 'undefined' &&
-          navigator.userAgent.indexOf('Firefox') === -1
-            ? (element) => element?.getBoundingClientRect().height
-            : undefined,
-        overscan: 4,
-        rangeExtractor: useCallback(
-          (range: Range) => {
-            return extraIndexRangeExtractor(range, draggingRow?.index ?? 0);
-          },
-          [draggingRow],
-        ),
-        ...rowVirtualizerProps,
-      }) as unknown as MRT_RowVirtualizer<TScrollElement, TItemElement>)
-    : undefined;
+  const rowVirtualizer = useVirtualizer({
+    count: renderDetailPanel ? rowCount * 2 : rowCount,
+    estimateSize: (index) =>
+      renderDetailPanel && index % 2 === 1
+        ? expanded === true
+          ? 100
+          : 0
+        : normalRowHeight,
+    getScrollElement: () => tableContainerRef.current,
+    measureElement:
+      typeof window !== 'undefined' &&
+      navigator.userAgent.indexOf('Firefox') === -1
+        ? (element) => element?.getBoundingClientRect().height
+        : undefined,
+    overscan: 4,
+    rangeExtractor: useCallback(
+      (range: Range) => {
+        return extraIndexRangeExtractor(range, draggingRow?.index ?? 0);
+      },
+      [draggingRow],
+    ),
+    ...rowVirtualizerProps,
+  }) as unknown as MRT_RowVirtualizer<TScrollElement, TItemElement>;
 
-  if (rowVirtualizer) {
-    const virtualRows = rowVirtualizer.getVirtualItems();
-    rowVirtualizer.virtualRows = virtualRows;
-    if (rowVirtualizerInstanceRef) {
-      //@ts-ignore
-      rowVirtualizerInstanceRef.current = rowVirtualizer;
-    }
+  rowVirtualizer.virtualRows = rowVirtualizer.getVirtualItems();
+
+  if (rowVirtualizerInstanceRef) {
+    //@ts-ignore
+    rowVirtualizerInstanceRef.current = rowVirtualizer;
   }
 
   return rowVirtualizer;

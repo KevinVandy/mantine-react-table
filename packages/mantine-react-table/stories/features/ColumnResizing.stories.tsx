@@ -38,6 +38,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
 const data = [...Array(88)].map(() => ({
   address: faker.location.streetAddress(),
   firstName: faker.person.firstName(),
+  id: faker.number.int(100),
   lastName: faker.person.lastName(),
   phoneNumber: faker.phone.number(),
   state: faker.location.state(),
@@ -46,6 +47,17 @@ const data = [...Array(88)].map(() => ({
 
 export const ColumnResizingEnabledDefaultOnChange = () => (
   <MantineReactTable columns={columns} data={data} enableColumnResizing />
+);
+
+export const ColumnResizingEnabledDefaultOnChangeRTL = () => (
+  <div style={{ direction: 'rtl' }}>
+    <MantineReactTable
+      columnResizeDirection="rtl"
+      columns={columns}
+      data={data}
+      enableColumnResizing
+    />
+  </div>
 );
 
 export const ColumnResizingEnabledDefaultOnChangeGrid = () => (
@@ -57,6 +69,42 @@ export const ColumnResizingEnabledDefaultOnChangeGrid = () => (
   />
 );
 
+export const ColumnResizingDefaultOnChangeGridWithIndividualShrink = () => (
+  <MantineReactTable
+    columns={[
+      {
+        accessorKey: 'id',
+        grow: false,
+        header: 'ID',
+        size: 50,
+      },
+      {
+        accessorKey: 'firstName',
+        header: 'First Name',
+      },
+      {
+        accessorKey: 'lastName',
+        header: 'Last Name',
+      },
+    ]}
+    data={data}
+    enableColumnResizing
+    layoutMode="grid"
+  />
+);
+
+export const ColumnResizingEnabledDefaultOnChangeGridRTL = () => (
+  <div style={{ direction: 'rtl' }}>
+    <MantineReactTable
+      columnResizeDirection="rtl"
+      columns={columns}
+      data={data}
+      enableColumnResizing
+      layoutMode="grid"
+    />
+  </div>
+);
+
 export const ColumnResizingEnabledDefaultOnChangeSemantic = () => (
   <MantineReactTable
     columns={columns}
@@ -64,6 +112,18 @@ export const ColumnResizingEnabledDefaultOnChangeSemantic = () => (
     enableColumnResizing
     layoutMode="semantic"
   />
+);
+
+export const ColumnResizingEnabledDefaultOnChangeSemanticRTL = () => (
+  <div style={{ direction: 'rtl' }}>
+    <MantineReactTable
+      columnResizeDirection="rtl"
+      columns={columns}
+      data={data}
+      enableColumnResizing
+      layoutMode="semantic"
+    />
+  </div>
 );
 
 export const ColumnResizingEnabledNoColumnActions = () => (
@@ -116,6 +176,18 @@ export const ColumnResizingEnabledOnEnd = () => (
     data={data}
     enableColumnResizing
   />
+);
+
+export const ColumnResizingEnabledOnEndRTL = () => (
+  <div style={{ direction: 'rtl' }}>
+    <MantineReactTable
+      columnResizeDirection="rtl"
+      columnResizeMode="onEnd"
+      columns={columns}
+      data={data}
+      enableColumnResizing
+    />
+  </div>
 );
 
 export const ColumnResizingCustomDefaultWidths = () => (
@@ -181,7 +253,6 @@ export const ColumnResizingWithHeaderGroups = () => (
       lastName: faker.person.lastName(),
     }))}
     enableColumnResizing
-    enableRowSelection
   />
 );
 
@@ -242,4 +313,17 @@ export const ColumnResizingLayoutGridGrow = () => (
     enableRowSelection
     layoutMode="grid"
   />
+);
+
+export const ColumnResizingLayoutGridGrowRTL = () => (
+  <div style={{ direction: 'rtl' }}>
+    <MantineReactTable
+      columnResizeDirection="rtl"
+      columns={columns.slice(0, 3)}
+      data={data}
+      enableColumnResizing
+      enableRowSelection
+      layoutMode="grid"
+    />
+  </div>
 );

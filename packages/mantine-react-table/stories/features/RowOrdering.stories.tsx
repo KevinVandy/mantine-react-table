@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import {
-  type MRT_ColumnDef,
-  type MRT_Row,
-  MantineReactTable,
-} from '../../src';
+import { type MRT_ColumnDef, type MRT_Row, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
 
