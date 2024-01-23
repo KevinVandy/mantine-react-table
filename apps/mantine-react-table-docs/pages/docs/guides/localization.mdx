@@ -3,7 +3,7 @@ import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable
 import LocaleExamples from '../../../example-groups/LocaleExamples';
 
 <Head>
-  <title>Localization/i18n Guide - Mantine React Table Docs</title>
+  <title>{'Localization/i18n Guide - Mantine React Table V2 Docs'}</title>
   <meta
     name="description"
     content="How to customize localization and translations (i18n) in Mantine React Table"
@@ -22,15 +22,18 @@ Mantine React Table has full support for localization (i18n). Some locales are i
 
 The following locales are included and can be imported from `'mantine-react-table/locales/'`:
 
-`ar`, `bg`, `cs`, `da`, `de`, `en`, `es`, `et`, `fa`, `fi`, `fr`, `id`, `it`, `nl`, `no`, `ja`, `ko`, `pl`, `pt`, `pt-BR`, `ro`, `ru`, `sk`, `sr-Cryl-RS`, `sr-Latn-RS`, `sv`, `tr`, `uk`, `vi`, `zh-Hans`, `zh-Hant`
+`am`, `ar`, `az`, `bg`, `cs`, `da`, `de`, `en`, `es`, `et`, `fa`, `fi`, `fr`, `hu`, `he`, `hy`, `id`, `it`, `ja`, `ko`, `nl`, `no`, `np`, `pl`, `pt`, `pt-BR`, `ro`, `ru`, `sk`, `sr-Cyrl-RS`, `sr-Latn-RS`, `sv`, `tr`, `uk`, `vi`, `zh-Hans`, `zh-Hant`
 
-> If your language is not yet supported, please consider making a PR to add it to the library! See [here on GitHub](https://github.com/KevinVandy/mantine-react-table/tree/main/packages/mantine-react-table/src/locales).
+> If your language is not yet supported, please consider making a PR to add it to the library! See [here on GitHub](https://github.com/KevinVandy/mantine-react-table/tree/v2/packages/mantine-react-table/src/locales).
 
 #### Built-in Locale Examples
 
 Scroll and find your language below to see an example of how to use it.
 
 <LocaleExamples />
+
+> Note: In some frameworks like Remix, you may need to use a full import path like <br /> `import { MRT_Localization_ES } from 'mantine-react-table/locales/es/index.js';` or <br /> `import { MRT_Localization_ES } from 'mantine-react-table/locales/es/index.esm.js';` <br />
+> to properly import the locale.
 
 ### Custom Non-Built-In Translations
 
@@ -53,8 +56,10 @@ const table = useMantineReactTable({
     // ... and many more - see link below for full list of translation keys
   },
 });
+
+return <MantineReactTable table={table} />;
 ```
 
-For a full list of all available translation keys, see [here](https://github.com/KevinVandy/mantine-react-table/blob/main/packages/mantine-react-table/src/locales/en.ts)
+For a full list of all available translation keys, see [here](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/locales/en.ts)
 
 If you end up fully translating MRT into another language that is not yet supported, please consider making a PR to add it to the library so that everyone can use it!

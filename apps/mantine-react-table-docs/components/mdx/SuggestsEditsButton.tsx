@@ -11,7 +11,7 @@ export const SuggestsEditsButton = () => {
   return (
     <Stack mt="2rem" justify="center">
       <a
-        href={`https://github.com/KevinVandy/mantine-react-table/edit/main/apps/mantine-react-table-docs/pages${pathname}${
+        href={`https://github.com/KevinVandy/mantine-react-table/edit/v2/apps/mantine-react-table-docs/pages${pathname}${
           ['/'].includes(pathname)
             ? 'index.tsx'
             : ['/docs', '/docs/api', '/docs/examples', '/docs/guides'].includes(

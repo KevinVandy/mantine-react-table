@@ -18,7 +18,7 @@ V1 released July 18, 2023
 <a href="https://star-history.com/#kevinvandy/mantine-react-table&Date" target="_blank">
   <img alt="" src="https://badgen.net/github/stars/KevinVandy/mantine-react-table?color=blue" />
 </a>
-<a href="https://github.com/KevinVandy/mantine-react-table/blob/main/LICENSE" target="_blank">
+<a href="https://github.com/KevinVandy/mantine-react-table/blob/v2/LICENSE" target="_blank">
   <img alt="" src="https://badgen.net/github/license/KevinVandy/mantine-react-table?color=blue" />
 </a>
 <a href="http://makeapullrequest.com" target="_blank">
@@ -185,6 +185,6 @@ _Open in [Code Sandbox](https://codesandbox.io/s/simple-mantine-react-table-exam
 
 PRs are Welcome, but please discuss in [GitHub Discussions](https://github.com/KevinVandy/mantine-react-table/discussions) or the [Discord Server](https://discord.gg/5wqyRx6fnm) first if it is a large change!
 
-Read the [Contributing Guide](https://github.com/KevinVandy/mantine-react-table/blob/main/CONTRIBUTING.md) to learn how to run this project locally.
+Read the [Contributing Guide](https://github.com/KevinVandy/mantine-react-table/blob/v2/CONTRIBUTING.md) to learn how to run this project locally.
 
 <!-- Use the FORCE Luke! -->

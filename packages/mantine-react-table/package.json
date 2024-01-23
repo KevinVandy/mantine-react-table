@@ -55,10 +55,6 @@
     {
       "path": "dist/index.esm.mjs",
       "limit": "50 KB"
-    },
-    {
-      "path": "styles.css",
-      "limit": "6 KB"
     }
   ],
   "engines": {
