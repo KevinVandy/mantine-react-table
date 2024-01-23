@@ -54,9 +54,7 @@ export default [
     plugins: [
       copy({
         hook: 'buildStart',
-        targets: [
-          { dest: './', rename: 'styles.css', src: 'dist/cjs/index.css' },
-        ],
+        targets: [{ dest: './', rename: 'styles.css', src: 'dist/index.css' }],
       }),
       del({
         hook: 'buildEnd',
