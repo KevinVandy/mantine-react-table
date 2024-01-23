@@ -1,5 +1,4 @@
-import { babel } from '@rollup/plugin-babel';
-import resolve from '@rollup/plugin-node-resolve';
+import pkg from './package.json' assert { type: 'json' };
 import typescript from '@rollup/plugin-typescript';
 import copy from 'rollup-plugin-copy';
 import del from 'rollup-plugin-delete';
@@ -24,24 +23,18 @@ export default [
     input: './src/index.ts',
     output: [
       {
-        file: './dist/cjs/index.js',
+        file: `./${pkg.main}`,
         format: 'cjs',
         sourcemap: true,
       },
       {
-        file: './dist/esm/mantine-react-table.esm.js',
+        file: `./${pkg.module}`,
         format: 'esm',
         sourcemap: true,
       },
     ],
     plugins: [
-      babel({
-        babelHelpers: 'bundled',
-        exclude: 'node_modules/**',
-        presets: ['@babel/preset-react'],
-      }),
       external(),
-      resolve(),
       typescript({
         rootDir: './src',
       }),
@@ -53,12 +46,10 @@ export default [
     ],
   },
   {
-    input: './dist/esm/types/index.d.ts',
+    input: './dist/types/index.d.ts',
     output: [
-      {
-        file: './dist/index.d.ts',
-        format: 'esm',
-      },
+      { file: `./${pkg.types}`, format: 'cjs' },
+      { file: `./${pkg.types}`.replace('.ts', '.mts'), format: 'esm' },
     ],
     plugins: [
       copy({
@@ -66,12 +57,10 @@ export default [
         targets: [
           { dest: './', rename: 'styles.css', src: 'dist/cjs/index.css' },
         ],
-        verbose: true,
       }),
       del({
         hook: 'buildEnd',
-        targets: ['dist/cjs/index.css', 'dist/esm/mantine-react-table.esm.css'],
-        verbose: true,
+        targets: ['dist/index.css', 'dist/index.esm.css', 'dist/types'],
       }),
       dts(),
     ],

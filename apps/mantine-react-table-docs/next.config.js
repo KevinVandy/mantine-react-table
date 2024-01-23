@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  transpilePackages: ['mantine-react-table'],
+  // transpilePackages: ['mantine-react-table'],
   reactStrictMode: true,
   i18n: {
     locales: ['en'],

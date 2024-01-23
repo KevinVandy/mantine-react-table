@@ -1,5 +1,6 @@
 import {
   type MRT_DefinedTableOptions,
+  type MRT_DisplayColumnDef,
   type MRT_DisplayColumnIds,
   type MRT_Localization,
   type MRT_RowData,
@@ -17,7 +18,7 @@ export function defaultDisplayColumnProps<TData extends MRT_RowData>({
   id: MRT_DisplayColumnIds;
   size?: number;
   tableOptions: MRT_DefinedTableOptions<TData>;
-}) {
+}): MRT_DisplayColumnDef<TData> {
   const { defaultDisplayColumn, displayColumnDefOptions, localization } =
     tableOptions;
   return {
@@ -26,7 +27,7 @@ export function defaultDisplayColumnProps<TData extends MRT_RowData>({
     size,
     ...displayColumnDefOptions?.[id],
     id,
-  } as const;
+  };
 }
 
 export const showRowPinningColumn = <TData extends MRT_RowData>(

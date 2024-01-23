@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-alpha.11",
+  "version": "2.0.0-alpha.13",
   "license": "MIT",
   "name": "mantine-react-table",
   "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",
@@ -23,14 +23,19 @@
   "bugs": {
     "url": "https://github.com/KevinVandy/mantine-react-table/issues"
   },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/mantine-react-table.esm.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.esm.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/esm/mantine-react-table.esm.js",
-      "default": "./dist/cjs/index.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.esm.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./package.json": "./package.json",
     "./locales/*": "./locales/*",
@@ -44,12 +49,16 @@
   ],
   "size-limit": [
     {
-      "path": "dist/cjs/index.js",
-      "limit": "58 KB"
+      "path": "dist/index.cjs",
+      "limit": "53 KB"
     },
     {
-      "path": "dist/esm/mantine-react-table.esm.js",
-      "limit": "56 KB"
+      "path": "dist/index.esm.mjs",
+      "limit": "50 KB"
+    },
+    {
+      "path": "styles.css",
+      "limit": "6 KB"
     }
   ],
   "engines": {
@@ -60,8 +69,8 @@
     "build-locales": "pnpm lib:build-locales",
     "build-lib": "pnpm lib:build-lib",
     "dev": "pnpm lib:dev",
-    "lib:build": "rm -rf dist && pnpm build-lib && pnpm build-locales && rm -rf dist/cjs/types dist/esm/types",
-    "lib:build-locales": "rm -rf locales && node build-locales.mjs",
+    "lib:build": "pnpm build-lib && pnpm build-locales",
+    "lib:build-locales": "node build-locales.mjs",
     "lib:build-lib": "rm -rf dist && rollup -c rollup.config.mjs && size-limit",
     "lib:dev": "rollup -c rollup.config.mjs --watch",
     "lint": "eslint .",
