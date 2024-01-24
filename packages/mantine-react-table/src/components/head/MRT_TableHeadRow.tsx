@@ -43,6 +43,7 @@ export const MRT_TableHeadRow = <TData extends MRT_RowData>({
         classes.root,
         (enableStickyHeader || isFullScreen) && classes.sticky,
         layoutMode?.startsWith('grid') && classes['layout-mode-grid'],
+        tableRowProps?.className
       )}
     >
       {virtualPaddingLeft ? (
