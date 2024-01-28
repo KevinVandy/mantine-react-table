@@ -3,20 +3,25 @@
 # Define the directory to search in. Change this to your specific directory.
 SEARCH_DIR="./apps/mantine-react-table-docs/examples/"
 
-# Define the text to be added
-TEXT="import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)"
+# Define the new multiline text to be added
+NEW_TEXT="import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Example from './TS';
+import { MantineProvider } from '@mantine/core';
 
-# Find all files named TS.tsx and append the text to the beginning of each file
-find "$SEARCH_DIR" -type f -name "Legacy.tsx" | while read -r file; do
-    # Check if the file already contains the line to avoid duplicate insertion
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    <MantineProvider>
+      <Example />
+    </MantineProvider>
+  </React.StrictMode>,
+);
+"
+
+# Find all files named Legacy.tsx and replace their contents with the new text
+find "$SEARCH_DIR" -type f -name "main.tsx" | while read -r file; do
     echo "Processing $file"
-    if ! grep -qxF "$TEXT" "$file"; then
-        # Use a temporary file to prepend the text
-        temp_file=$(mktemp)
-        echo "$TEXT" > "$temp_file"
-        cat "$file" >> "$temp_file"
-        mv "$temp_file" "$file"
-    fi
+    echo "$NEW_TEXT" > "$file"
 done
 
 echo "Processing complete."
