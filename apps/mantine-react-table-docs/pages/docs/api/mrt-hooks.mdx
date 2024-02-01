@@ -32,7 +32,7 @@ MRT has been adopting more and more of a hooks based approach for its internal l
 
 ### useMantineReactTable
 
-[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/useMantineReactTable.ts)
+[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMantineReactTable.ts)
 
 > This is probably the only MRT hook you will need to use, unless you are writing a custom headless table.
 
@@ -76,13 +76,7 @@ const table = useMRT_TableInstance({
 });
 ```
 
-This hook also uses the [`useMRT_DisplayColumns`](#usemrt_displaycolumns) and [`useMRT_Effects`](#usemrt_effects) to generate the built-in display columns (row numbers, actions, selection, etc) and house some extra useEffect hooks needed by some MRT features on a table wide level.
-
-### useMRT_DisplayColumns
-
-[Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMRT_DisplayColumns.tsx)
-
-This hook is responsible for generating the built-in display columns (row numbers, actions, selection, etc) and adding them to the table instance's columns array, alongside your own defined columns.
+This hook also uses the [`useMRT_Effects`](#usemrt_effects)
 
 ### useMRT_Effects
 
@@ -91,8 +85,6 @@ This hook is responsible for generating the built-in display columns (row number
 This hook is responsible for adding some extra useEffect hooks to the table instance. These hooks are needed by some MRT features on a table wide level.
 
 ### useMRT_Rows
-
-> New in v2.2.0
 
 [Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/hooks/useMRT_Rows.ts)
 

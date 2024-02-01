@@ -75,7 +75,8 @@ export const Footer = () => {
             items={
               routes
                 .find((item) => item.href === '/docs/api')
-                ?.items?.find((item) => item.label === 'Options')?.items ?? []
+                ?.items?.find((item) => item.label === 'Props and Options')
+                ?.secondaryItems ?? []
             }
             isFooter
           />
@@ -84,7 +85,16 @@ export const Footer = () => {
               routes
                 .find((item) => item.href === '/docs/api')
                 ?.items?.find((item) => item.label === 'Instance APIs')
-                ?.items ?? []
+                ?.secondaryItems ?? []
+            }
+            isFooter
+          />
+          <TableOfContentsList
+            items={
+              routes
+                .find((item) => item.href === '/docs/api')
+                ?.items?.find((item) => item.label === 'Components and Hooks')
+                ?.secondaryItems ?? []
             }
             isFooter
           />
@@ -99,26 +109,16 @@ export const Footer = () => {
           />
         </Box>
         <Box>
-          <Text>Fundamental Guides</Text>
-          <TableOfContentsList
-            items={
-              (
-                routes.find((item) => item.href === '/docs/guides')?.items ?? []
-              ).find((item) => item.label === 'Fundamentals')?.items ?? []
-            }
-            isFooter
-          />
-        </Box>
-        <Box>
-          <Text>Feature Guides</Text>
-          <TableOfContentsList
-            items={
-              (
-                routes.find((item) => item.href === '/docs/guides')?.items ?? []
-              ).find((item) => item.label === 'Feature Guides')?.items ?? []
-            }
-            isFooter
-          />
+          <Text>Guides</Text>
+          {routes
+            .find((item) => item.href === '/docs/guides')
+            ?.items?.map((item) => (
+              <TableOfContentsList
+                key={item.href}
+                items={item?.items ?? []}
+                isFooter
+              />
+            ))}
         </Box>
       </Box>
     </Paper>

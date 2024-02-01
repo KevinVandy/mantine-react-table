@@ -288,13 +288,11 @@ function useUpdateUsers() {
     },
     //client side optimistic update
     onMutate: (newUsers: User[]) => {
-      queryClient.setQueryData(
-        ['users'],
-        (prevUsers: any) =>
-          prevUsers?.map((user: User) => {
-            const newUser = newUsers.find((u) => u.id === user.id);
-            return newUser ? newUser : user;
-          }),
+      queryClient.setQueryData(['users'], (prevUsers: any) =>
+        prevUsers?.map((user: User) => {
+          const newUser = newUsers.find((u) => u.id === user.id);
+          return newUser ? newUser : user;
+        }),
       );
     },
     // onSettled: () => queryClient.invalidateQueries({ queryKey: ['users'] }), //refetch users after mutation, disabled for demo
@@ -312,10 +310,8 @@ function useDeleteUser() {
     },
     //client side optimistic update
     onMutate: (userId: string) => {
-      queryClient.setQueryData(
-        ['users'],
-        (prevUsers: any) =>
-          prevUsers?.filter((user: User) => user.id !== userId),
+      queryClient.setQueryData(['users'], (prevUsers: any) =>
+        prevUsers?.filter((user: User) => user.id !== userId),
       );
     },
     // onSettled: () => queryClient.invalidateQueries({ queryKey: ['users'] }), //refetch users after mutation, disabled for demo

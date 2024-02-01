@@ -46,8 +46,7 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
     },
     refs: { tableFooterRef, tableHeadRef, tablePaperRef },
   } = table;
-  const { columnFilters, globalFilter, isFullScreen, rowPinning } =
-    getState();
+  const { columnFilters, globalFilter, isFullScreen, rowPinning } = getState();
 
   const tableBodyProps = parseFromValuesOrFunc(mantineTableBodyProps, {
     table,

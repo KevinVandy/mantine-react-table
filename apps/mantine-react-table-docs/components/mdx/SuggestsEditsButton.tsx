@@ -35,21 +35,6 @@ export const SuggestsEditsButton = () => {
           Suggest an Edit for this page on GitHub
         </Button>
       </a>
-      <Text className={classes.youCanHelpMakeTheseDocsBetter}>
-        You can help make these docs better!{' '}
-        <a
-          aria-label="Learn how to contribute"
-          href="http://makeapullrequest.com"
-          target="_blank"
-          rel="noopener"
-          style={{ marginLeft: '8px' }}
-        >
-          <img
-            alt="PRs are Welcome"
-            src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
-          />
-        </a>
-      </Text>
       <Text className={classes.materialUi}>
         Using{' '}
         <Anchor

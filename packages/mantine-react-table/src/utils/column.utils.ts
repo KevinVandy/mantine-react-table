@@ -71,8 +71,8 @@ export const prepareColumns = <TData extends MRT_RowData>({
           leafRows: Row<TData>[],
           childRows: Row<TData>[],
         ) =>
-          aggFns.map(
-            (fn) => aggregationFns[fn]?.(columnId, leafRows, childRows),
+          aggFns.map((fn) =>
+            aggregationFns[fn]?.(columnId, leafRows, childRows),
           );
       }
 
