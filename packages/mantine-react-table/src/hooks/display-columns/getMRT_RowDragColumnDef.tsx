@@ -7,16 +7,11 @@ import {
 } from '../../types';
 import {
   defaultDisplayColumnProps,
-  showRowDragColumn,
 } from '../../utils/displayColumn.utils';
 
 export const getMRT_RowDragColumnDef = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
 ): MRT_ColumnDef<TData> | null => {
-  if (!showRowDragColumn(tableOptions)) {
-    return null;
-  }
-
   return {
     Cell: ({ row, rowRef, table }) => (
       <MRT_TableBodyRowGrabHandle
@@ -29,6 +24,7 @@ export const getMRT_RowDragColumnDef = <TData extends MRT_RowData>(
     ...defaultDisplayColumnProps({
       header: 'move',
       id: 'mrt-row-drag',
+      size: 60,
       tableOptions,
     }),
   };

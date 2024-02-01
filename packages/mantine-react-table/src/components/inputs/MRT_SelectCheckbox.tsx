@@ -13,20 +13,20 @@ import {
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
+import { getIsRowSelected } from '../../utils/row.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends CheckboxProps {
   row?: MRT_Row<TData>;
-  selectAll?: boolean;
   staticRowIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
   row,
-  selectAll,
   staticRowIndex,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -43,13 +43,18 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
   } = table;
   const { density, isLoading } = getState();
 
-  const checkboxProps = !row
-    ? parseFromValuesOrFunc(mantineSelectAllCheckboxProps, { table })
-    : parseFromValuesOrFunc(mantineSelectCheckboxProps, {
-        row,
-        staticRowIndex,
-        table,
-      });
+  const selectAll = !row;
+
+  const checkboxProps = {
+    ...(selectAll
+      ? parseFromValuesOrFunc(mantineSelectAllCheckboxProps, { table })
+      : parseFromValuesOrFunc(mantineSelectCheckboxProps, {
+          row,
+          staticRowIndex,
+          table,
+        })),
+    ...rest,
+  };
 
   const isStickySelection =
     enableRowPinning && rowPinningDisplayMode?.includes('select');
@@ -93,9 +98,7 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
     'aria-label': selectAll
       ? localization.toggleSelectAll
       : localization.toggleSelectRow,
-    checked: selectAll
-      ? allRowsSelected
-      : row?.getIsSelected() || row?.getIsAllSubRowsSelected(),
+    checked: selectAll ? allRowsSelected : getIsRowSelected({ row, table }),
     disabled: isLoading || (row && !row.getCanSelect()),
     onChange: (event) => {
       event.stopPropagation();

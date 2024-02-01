@@ -1,8 +1,4 @@
-import {
-  createRow as _createRow,
-  flexRender as _flexRender,
-  type Row,
-} from '@tanstack/react-table';
+import { type Row } from '@tanstack/react-table';
 import {
   type MRT_Column,
   type MRT_ColumnDef,
@@ -21,7 +17,7 @@ export const getColumnId = <TData extends MRT_RowData>(
 
 export const getAllLeafColumnDefs = <TData extends MRT_RowData>(
   columns: MRT_ColumnDef<TData>[],
-) => {
+): MRT_ColumnDef<TData>[] => {
   const allLeafColumnDefs: MRT_ColumnDef<TData>[] = [];
   const getLeafColumns = (cols: MRT_ColumnDef<TData>[]) => {
     cols.forEach((col) => {
@@ -121,8 +117,7 @@ export const getDefaultColumnFilterFn = <TData extends MRT_RowData>(
 ): MRT_FilterOption => {
   const { filterVariant } = columnDef;
   if (filterVariant === 'multi-select') return 'arrIncludesSome';
-  if (['date-range', 'range', 'range-slider'].includes(filterVariant || ''))
-    return 'betweenInclusive';
+  if (filterVariant?.includes('range')) return 'betweenInclusive';
   if (['checkbox', 'date', 'select'].includes(filterVariant || ''))
     return 'equals';
   return 'fuzzy';

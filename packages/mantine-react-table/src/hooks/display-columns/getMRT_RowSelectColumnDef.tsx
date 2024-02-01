@@ -6,16 +6,11 @@ import {
 } from '../../types';
 import {
   defaultDisplayColumnProps,
-  showRowSelectionColumn,
 } from '../../utils/displayColumn.utils';
 
 export const getMRT_RowSelectColumnDef = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
 ): MRT_ColumnDef<TData> | null => {
-  if (!showRowSelectionColumn(tableOptions)) {
-    return null;
-  }
-
   const { enableMultiRowSelection, enableSelectAll } = tableOptions;
 
   return {
@@ -28,12 +23,13 @@ export const getMRT_RowSelectColumnDef = <TData extends MRT_RowData>(
     ),
     Header:
       enableSelectAll && enableMultiRowSelection
-        ? ({ table }) => <MRT_SelectCheckbox selectAll table={table} />
+        ? ({ table }) => <MRT_SelectCheckbox table={table} />
         : undefined,
     grow: false,
     ...defaultDisplayColumnProps({
       header: 'select',
       id: 'mrt-row-select',
+      size: enableSelectAll ? 60 : 70,
       tableOptions,
     }),
   };

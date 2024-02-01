@@ -13,6 +13,7 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../../types';
+import { getIsRowSelected } from '../../utils/row.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
 interface Props<TData extends MRT_RowData> {
@@ -70,7 +71,8 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   const { virtualColumns, virtualPaddingLeft, virtualPaddingRight } =
     columnVirtualizer ?? {};
 
-  const isPinned = enableRowPinning && row.getIsPinned();
+  const isRowSelected = getIsRowSelected({ row, table });
+  const isRowPinned = enableRowPinning && row.getIsPinned();
   const isDraggingRow = draggingRow?.id === row.id;
   const isHoveredRow = hoveredRow?.id === row.id;
 
@@ -118,11 +120,8 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
     <>
       <TableTr
         data-index={renderDetailPanel ? staticRowIndex * 2 : staticRowIndex}
-        data-selected={
-          row?.getIsSelected() ||
-          (row?.getIsAllSubRowsSelected() && row.getCanSelectSubRows()) ||
-          undefined
-        }
+        data-pinned={!!isRowPinned || undefined}
+        data-selected={isRowSelected || undefined}
         onDragEnter={handleDragEnter}
         ref={(node: HTMLTableRowElement) => {
           if (node) {
@@ -134,7 +133,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
         __vars={{
           ...tableRowProps?.__vars,
           '--mrt-pinned-row-bottom':
-            !virtualRow && bottomPinnedIndex !== undefined && isPinned
+            !virtualRow && bottomPinnedIndex !== undefined && isRowPinned
               ? `${
                   bottomPinnedIndex * rowHeight +
                   (enableStickyFooter ? tableFooterHeight - 1 : 0)
@@ -142,7 +141,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
               : undefined,
           '--mrt-pinned-row-top': virtualRow
             ? '0'
-            : topPinnedIndex !== undefined && isPinned
+            : topPinnedIndex !== undefined && isRowPinned
               ? `${
                   topPinnedIndex * rowHeight +
                   (enableStickyHeader || isFullScreen ? tableHeadHeight - 1 : 0)
@@ -159,18 +158,18 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
           (isDraggingRow || isHoveredRow) && classes['root-dragging'],
           enableHover !== false && classes['root-hover'],
           tableRowProps?.className,
-          isPinned && classes['root-pinned'],
+          isRowPinned && classes['root-pinned'],
           !virtualRow &&
-            isPinned &&
+            isRowPinned &&
             rowPinningDisplayMode?.includes('sticky') &&
             classes['root-sticky-pinned'],
           !virtualRow &&
-            isPinned &&
+            isRowPinned &&
             rowPinningDisplayMode?.includes('sticky') &&
             bottomPinnedIndex !== undefined &&
             classes['root-sticky-pinned-top'],
           !virtualRow &&
-            isPinned &&
+            isRowPinned &&
             rowPinningDisplayMode?.includes('sticky') &&
             topPinnedIndex !== undefined &&
             classes['root-sticky-pinned-bottom'],

@@ -1,16 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
-import {
-  getCoreRowModel,
-  getExpandedRowModel,
-  getFacetedMinMaxValues,
-  getFacetedRowModel,
-  getFacetedUniqueValues,
-  getFilteredRowModel,
-  getGroupedRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
+import { useReactTable } from '@tanstack/react-table';
 import {
   type MRT_Cell,
   type MRT_Column,
@@ -36,14 +25,35 @@ import {
   getDefaultColumnFilterFn,
   prepareColumns,
 } from '../utils/column.utils';
-import { getDefaultColumnOrderIds } from '../utils/displayColumn.utils';
+import {
+  getDefaultColumnOrderIds,
+  showRowActionsColumn,
+  showRowDragColumn,
+  showRowExpandColumn,
+  showRowNumbersColumn,
+  showRowPinningColumn,
+  showRowSelectionColumn,
+  showRowSpacerColumn,
+} from '../utils/displayColumn.utils';
 import { createRow } from '../utils/tanstack.helpers';
-import { getMRT_DisplayColumns } from './display-columns/getMRT_DisplayColumns';
+import { getMRT_RowActionsColumnDef } from './display-columns/getMRT_RowActionsColumnDef';
+import { getMRT_RowDragColumnDef } from './display-columns/getMRT_RowDragColumnDef';
+import { getMRT_RowExpandColumnDef } from './display-columns/getMRT_RowExpandColumnDef';
+import { getMRT_RowNumbersColumnDef } from './display-columns/getMRT_RowNumbersColumnDef';
+import { getMRT_RowPinningColumnDef } from './display-columns/getMRT_RowPinningColumnDef';
+import { getMRT_RowSelectColumnDef } from './display-columns/getMRT_RowSelectColumnDef';
+import { getMRT_RowSpacerColumnDef } from './display-columns/getMRT_RowSpacerColumnDef';
 import { useMRT_Effects } from './useMRT_Effects';
 
+/**
+ * The MRT hook that wraps the TanStack useReactTable hook and adds additional functionality
+ * @param definedTableOptions - table options with proper defaults set
+ * @returns the MRT table instance
+ */
 export const useMRT_TableInstance = <TData extends MRT_RowData>(
-  _tableOptions: MRT_DefinedTableOptions<TData>,
+  definedTableOptions: MRT_DefinedTableOptions<TData>,
 ): MRT_TableInstance<TData> => {
+  const actionCellRef = useRef<HTMLTableCellElement>(null);
   const bottomToolbarRef = useRef<HTMLDivElement>(null);
   const editInputRefs = useRef<Record<string, HTMLInputElement>>({});
   const filterInputRefs = useRef<Record<string, HTMLInputElement>>({});
@@ -55,20 +65,27 @@ export const useMRT_TableInstance = <TData extends MRT_RowData>(
   const tableHeadRef = useRef<HTMLTableSectionElement>(null);
   const tableFooterRef = useRef<HTMLTableSectionElement>(null);
 
+  //transform initial state with proper column order
   const initialState: Partial<MRT_TableState<TData>> = useMemo(() => {
-    const initState = _tableOptions.initialState ?? {};
+    const initState = definedTableOptions.initialState ?? {};
     initState.columnOrder =
       initState.columnOrder ??
       getDefaultColumnOrderIds({
-        ..._tableOptions,
-        state: { ..._tableOptions.initialState, ..._tableOptions.state },
+        ...definedTableOptions,
+        state: {
+          ...definedTableOptions.initialState,
+          ...definedTableOptions.state,
+        },
       } as MRT_StatefulTableOptions<TData>);
-    initState.globalFilterFn = _tableOptions.globalFilterFn ?? 'fuzzy';
+    initState.globalFilterFn = definedTableOptions.globalFilterFn ?? 'fuzzy';
     return initState;
   }, []);
 
-  _tableOptions.initialState = initialState;
+  definedTableOptions.initialState = initialState;
 
+  const [actionCell, setActionCell] = useState<MRT_Cell<TData> | null>(
+    initialState.actionCell ?? null,
+  );
   const [creatingRow, _setCreatingRow] = useState<MRT_Row<TData> | null>(
     initialState.creatingRow ?? null,
   );
@@ -77,7 +94,7 @@ export const useMRT_TableInstance = <TData extends MRT_RowData>(
       Object.assign(
         {},
         ...getAllLeafColumnDefs(
-          _tableOptions.columns as MRT_ColumnDef<TData>[],
+          definedTableOptions.columns as MRT_ColumnDef<TData>[],
         ).map((col) => ({
           [getColumnId(col)]:
             col.filterFn instanceof Function
@@ -140,7 +157,8 @@ export const useMRT_TableInstance = <TData extends MRT_RowData>(
     initialState?.showToolbarDropZone ?? false,
   );
 
-  _tableOptions.state = {
+  definedTableOptions.state = {
+    actionCell,
     columnFilterFns,
     columnOrder,
     columnSizingInfo,
@@ -160,142 +178,136 @@ export const useMRT_TableInstance = <TData extends MRT_RowData>(
     showColumnFilters,
     showGlobalFilter,
     showToolbarDropZone,
-    ..._tableOptions.state,
+    ...definedTableOptions.state,
   };
 
-  const tableOptions = _tableOptions as MRT_StatefulTableOptions<TData>;
+  //The table options now include all state needed to help determine column visibility and order logic
+  const statefulTableOptions =
+    definedTableOptions as MRT_StatefulTableOptions<TData>;
 
   //don't recompute columnDefs while resizing column or dragging column/row
   const columnDefsRef = useRef<MRT_ColumnDef<TData>[]>([]);
-  tableOptions.columns =
-    tableOptions.state.columnSizingInfo.isResizingColumn ||
-    tableOptions.state.draggingColumn ||
-    tableOptions.state.draggingRow
+  statefulTableOptions.columns =
+    statefulTableOptions.state.columnSizingInfo.isResizingColumn ||
+    statefulTableOptions.state.draggingColumn ||
+    statefulTableOptions.state.draggingRow
       ? columnDefsRef.current
       : prepareColumns({
           columnDefs: [
-            ...getMRT_DisplayColumns(tableOptions),
-            ...tableOptions.columns,
+            ...([
+              showRowPinningColumn(statefulTableOptions) &&
+                getMRT_RowPinningColumnDef(statefulTableOptions),
+              showRowDragColumn(statefulTableOptions) &&
+                getMRT_RowDragColumnDef(statefulTableOptions),
+              showRowActionsColumn(statefulTableOptions) &&
+                getMRT_RowActionsColumnDef(statefulTableOptions),
+              showRowExpandColumn(statefulTableOptions) &&
+                getMRT_RowExpandColumnDef(statefulTableOptions),
+              showRowSelectionColumn(statefulTableOptions) &&
+                getMRT_RowSelectColumnDef(statefulTableOptions),
+              showRowNumbersColumn(statefulTableOptions) &&
+                getMRT_RowNumbersColumnDef(statefulTableOptions),
+            ].filter(Boolean) as MRT_ColumnDef<TData>[]),
+            ...statefulTableOptions.columns,
+            ...([
+              showRowSpacerColumn(statefulTableOptions) &&
+                getMRT_RowSpacerColumnDef(statefulTableOptions),
+            ].filter(Boolean) as MRT_ColumnDef<TData>[]),
           ],
-          tableOptions,
+          tableOptions: statefulTableOptions,
         });
-  columnDefsRef.current = tableOptions.columns;
+  columnDefsRef.current = statefulTableOptions.columns;
 
-  tableOptions.data = useMemo(
+  //if loading, generate blank rows to show skeleton loaders
+  statefulTableOptions.data = useMemo(
     () =>
-      (tableOptions.state.isLoading || tableOptions.state.showSkeletons) &&
-      !tableOptions.data.length
+      (statefulTableOptions.state.isLoading ||
+        statefulTableOptions.state.showSkeletons) &&
+      !statefulTableOptions.data.length
         ? [
-            ...Array(Math.min(tableOptions.state.pagination.pageSize, 20)).fill(
-              null,
-            ),
+            ...Array(
+              Math.min(statefulTableOptions.state.pagination.pageSize, 20),
+            ).fill(null),
           ].map(() =>
             Object.assign(
               {},
-              ...getAllLeafColumnDefs(tableOptions.columns).map((col) => ({
-                [getColumnId(col)]: null,
-              })),
+              ...getAllLeafColumnDefs(statefulTableOptions.columns).map(
+                (col) => ({
+                  [getColumnId(col)]: null,
+                }),
+              ),
             ),
           )
-        : tableOptions.data,
+        : statefulTableOptions.data,
     [
-      tableOptions.data,
-      tableOptions.state.isLoading,
-      tableOptions.state.showSkeletons,
+      statefulTableOptions.data,
+      statefulTableOptions.state.isLoading,
+      statefulTableOptions.state.showSkeletons,
     ],
   );
 
   //@ts-ignore
   const table = useReactTable({
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel:
-      tableOptions.enableExpanding || tableOptions.enableGrouping
-        ? getExpandedRowModel()
-        : undefined,
-    getFacetedMinMaxValues: tableOptions.enableFacetedValues
-      ? getFacetedMinMaxValues()
-      : undefined,
-    getFacetedRowModel: tableOptions.enableFacetedValues
-      ? getFacetedRowModel()
-      : undefined,
-    getFacetedUniqueValues: tableOptions.enableFacetedValues
-      ? getFacetedUniqueValues()
-      : undefined,
-    getFilteredRowModel:
-      tableOptions.enableColumnFilters ||
-      tableOptions.enableGlobalFilter ||
-      tableOptions.enableFilters
-        ? getFilteredRowModel()
-        : undefined,
-    getGroupedRowModel: tableOptions.enableGrouping
-      ? getGroupedRowModel()
-      : undefined,
-    getPaginationRowModel: tableOptions.enablePagination
-      ? getPaginationRowModel()
-      : undefined,
-    getSortedRowModel: tableOptions.enableSorting
-      ? getSortedRowModel()
-      : undefined,
-    getSubRows: (row) => row?.subRows,
     onColumnOrderChange,
     onColumnSizingInfoChange,
     onGroupingChange,
     onPaginationChange,
-    ...tableOptions,
-    globalFilterFn: tableOptions.filterFns?.[globalFilterFn ?? 'fuzzy'],
+    ...statefulTableOptions,
+    globalFilterFn: statefulTableOptions.filterFns?.[globalFilterFn ?? 'fuzzy'],
   }) as MRT_TableInstance<TData>;
 
-  //@ts-ignore
   table.refs = {
-    //@ts-ignore
+    actionCellRef,
     bottomToolbarRef,
     editInputRefs,
     filterInputRefs,
-    //@ts-ignore
     searchInputRef,
-    //@ts-ignore
     tableContainerRef,
-    //@ts-ignore
     tableFooterRef,
     tableHeadCellRefs,
-    //@ts-ignore
     tableHeadRef,
-    //@ts-ignore
     tablePaperRef,
-    //@ts-ignore
     topToolbarRef,
   };
 
+  table.setActionCell =
+    statefulTableOptions.onActionCellChange ?? setActionCell;
   table.setCreatingRow = (row: MRT_Updater<MRT_Row<TData> | null | true>) => {
     let _row = row;
     if (row === true) {
       _row = createRow(table);
     }
-    tableOptions?.onCreatingRowChange?.(_row as MRT_Row<TData> | null) ??
-      _setCreatingRow(_row as MRT_Row<TData> | null);
+    statefulTableOptions?.onCreatingRowChange?.(
+      _row as MRT_Row<TData> | null,
+    ) ?? _setCreatingRow(_row as MRT_Row<TData> | null);
   };
   table.setColumnFilterFns =
-    tableOptions.onColumnFilterFnsChange ?? setColumnFilterFns;
-  table.setDensity = tableOptions.onDensityChange ?? setDensity;
+    statefulTableOptions.onColumnFilterFnsChange ?? setColumnFilterFns;
+  table.setDensity = statefulTableOptions.onDensityChange ?? setDensity;
   table.setDraggingColumn =
-    tableOptions.onDraggingColumnChange ?? setDraggingColumn;
-  table.setDraggingRow = tableOptions.onDraggingRowChange ?? setDraggingRow;
-  table.setEditingCell = tableOptions.onEditingCellChange ?? setEditingCell;
-  table.setEditingRow = tableOptions.onEditingRowChange ?? setEditingRow;
+    statefulTableOptions.onDraggingColumnChange ?? setDraggingColumn;
+  table.setDraggingRow =
+    statefulTableOptions.onDraggingRowChange ?? setDraggingRow;
+  table.setEditingCell =
+    statefulTableOptions.onEditingCellChange ?? setEditingCell;
+  table.setEditingRow =
+    statefulTableOptions.onEditingRowChange ?? setEditingRow;
   table.setGlobalFilterFn =
-    tableOptions.onGlobalFilterFnChange ?? setGlobalFilterFn;
+    statefulTableOptions.onGlobalFilterFnChange ?? setGlobalFilterFn;
   table.setHoveredColumn =
-    tableOptions.onHoveredColumnChange ?? setHoveredColumn;
-  table.setHoveredRow = tableOptions.onHoveredRowChange ?? setHoveredRow;
-  table.setIsFullScreen = tableOptions.onIsFullScreenChange ?? setIsFullScreen;
+    statefulTableOptions.onHoveredColumnChange ?? setHoveredColumn;
+  table.setHoveredRow =
+    statefulTableOptions.onHoveredRowChange ?? setHoveredRow;
+  table.setIsFullScreen =
+    statefulTableOptions.onIsFullScreenChange ?? setIsFullScreen;
   table.setShowAlertBanner =
-    tableOptions.onShowAlertBannerChange ?? setShowAlertBanner;
+    statefulTableOptions.onShowAlertBannerChange ?? setShowAlertBanner;
   table.setShowColumnFilters =
-    tableOptions.onShowColumnFiltersChange ?? setShowColumnFilters;
+    statefulTableOptions.onShowColumnFiltersChange ?? setShowColumnFilters;
   table.setShowGlobalFilter =
-    tableOptions.onShowGlobalFilterChange ?? setShowGlobalFilter;
+    statefulTableOptions.onShowGlobalFilterChange ?? setShowGlobalFilter;
   table.setShowToolbarDropZone =
-    tableOptions.onShowToolbarDropZoneChange ?? setShowToolbarDropZone;
+    statefulTableOptions.onShowToolbarDropZoneChange ?? setShowToolbarDropZone;
 
   useMRT_Effects(table);
 

@@ -67,6 +67,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
                 <ActionIcon
                   onClick={() => table.getColumn(columnId).toggleGrouping()}
                   size="xs"
+                  variant="subtle"
                 >
                   <IconX />
                 </ActionIcon>
@@ -117,7 +118,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
             {enableRowSelection &&
               enableSelectAll &&
               positionToolbarAlertBanner === 'head-overlay' && (
-                <MRT_SelectCheckbox selectAll table={table} />
+                <MRT_SelectCheckbox table={table} />
               )}
             <Stack>
               {alertProps?.children}

@@ -1,6 +1,5 @@
 import {
   type MRT_DefinedTableOptions,
-  type MRT_DisplayColumnDef,
   type MRT_DisplayColumnIds,
   type MRT_Localization,
   type MRT_RowData,
@@ -11,14 +10,14 @@ import { getAllLeafColumnDefs, getColumnId } from './column.utils';
 export function defaultDisplayColumnProps<TData extends MRT_RowData>({
   header,
   id,
-  size = 60,
+  size,
   tableOptions,
 }: {
   header?: keyof MRT_Localization;
   id: MRT_DisplayColumnIds;
-  size?: number;
+  size: number;
   tableOptions: MRT_DefinedTableOptions<TData>;
-}): MRT_DisplayColumnDef<TData> {
+}) {
   const { defaultDisplayColumn, displayColumnDefOptions, localization } =
     tableOptions;
   return {
@@ -27,26 +26,26 @@ export function defaultDisplayColumnProps<TData extends MRT_RowData>({
     size,
     ...displayColumnDefOptions?.[id],
     id,
-  };
+  } as const;
 }
 
 export const showRowPinningColumn = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
-) => {
+): boolean => {
   const { enableRowPinning, rowPinningDisplayMode } = tableOptions;
-  return enableRowPinning && !rowPinningDisplayMode?.startsWith('select');
+  return !!(enableRowPinning && !rowPinningDisplayMode?.startsWith('select'));
 };
 
 export const showRowDragColumn = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
-) => {
+): boolean => {
   const { enableRowDragging, enableRowOrdering } = tableOptions;
-  return enableRowDragging || enableRowOrdering;
+  return !!(enableRowDragging || enableRowOrdering);
 };
 
 export const showRowExpandColumn = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
-) => {
+): boolean => {
   const {
     enableExpanding,
     enableGrouping,
@@ -55,14 +54,14 @@ export const showRowExpandColumn = <TData extends MRT_RowData>(
   } = tableOptions;
   return !!(
     enableExpanding ||
-    (enableGrouping && (grouping === undefined || grouping?.length)) ||
+    (enableGrouping && grouping?.length) ||
     renderDetailPanel
   );
 };
 
 export const showRowActionsColumn = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
-) => {
+): boolean => {
   const {
     createDisplayMode,
     editDisplayMode,
@@ -70,7 +69,7 @@ export const showRowActionsColumn = <TData extends MRT_RowData>(
     enableRowActions,
     state: { creatingRow },
   } = tableOptions;
-  return (
+  return !!(
     enableRowActions ||
     (creatingRow && createDisplayMode === 'row') ||
     (enableEditing && ['modal', 'row'].includes(editDisplayMode ?? ''))
@@ -79,15 +78,15 @@ export const showRowActionsColumn = <TData extends MRT_RowData>(
 
 export const showRowSelectionColumn = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
-) => tableOptions.enableRowSelection;
+): boolean => !!tableOptions.enableRowSelection;
 
 export const showRowNumbersColumn = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
-) => tableOptions.enableRowNumbers;
+): boolean => !!tableOptions.enableRowNumbers;
 
 export const showRowSpacerColumn = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
-) => tableOptions.layoutMode === 'grid-no-grow';
+): boolean => tableOptions.layoutMode === 'grid-no-grow';
 
 export const getLeadingDisplayColumnIds = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
@@ -120,16 +119,34 @@ export const getTrailingDisplayColumnIds = <TData extends MRT_RowData>(
 
 export const getDefaultColumnOrderIds = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
+  reset = false,
 ) => {
-  const leadingDisplayCols: string[] = getLeadingDisplayColumnIds(tableOptions);
-  const trailingDisplayCols: string[] =
+  const {
+    state: { columnOrder: currentColumnOrderIds = [] },
+  } = tableOptions;
+
+  const leadingDisplayColIds: string[] =
+    getLeadingDisplayColumnIds(tableOptions);
+  const trailingDisplayColIds: string[] =
     getTrailingDisplayColumnIds(tableOptions);
-  const allLeafColumnDefs = getAllLeafColumnDefs(tableOptions.columns)
-    .map((columnDef) => getColumnId(columnDef))
-    .filter(
-      (columnId) =>
-        !leadingDisplayCols.includes(columnId) &&
-        !trailingDisplayCols.includes(columnId),
-    );
-  return [...leadingDisplayCols, ...allLeafColumnDefs, ...trailingDisplayCols];
+
+  const defaultColumnDefIds = getAllLeafColumnDefs(tableOptions.columns).map(
+    (columnDef) => getColumnId(columnDef),
+  );
+
+  let allLeafColumnDefIds = reset
+    ? defaultColumnDefIds
+    : Array.from(new Set([...currentColumnOrderIds, ...defaultColumnDefIds]));
+
+  allLeafColumnDefIds = allLeafColumnDefIds.filter(
+    (colId) =>
+      !leadingDisplayColIds.includes(colId) &&
+      !trailingDisplayColIds.includes(colId),
+  );
+
+  return [
+    ...leadingDisplayColIds,
+    ...allLeafColumnDefIds,
+    ...trailingDisplayColIds,
+  ];
 };

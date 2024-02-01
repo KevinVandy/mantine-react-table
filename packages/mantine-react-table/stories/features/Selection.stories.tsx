@@ -202,7 +202,7 @@ export const CustomAlertBannerHeadOverlay = () => (
     renderToolbarAlertBannerContent={({ selectedAlert, table }) => (
       <Flex justify="space-between">
         <Flex gap="xl" p="6px">
-          <MRT_SelectCheckbox selectAll table={table} /> {selectedAlert}{' '}
+          <MRT_SelectCheckbox table={table} /> {selectedAlert}{' '}
         </Flex>
         <Flex gap="md">
           <Button color="blue" leftSection={<IconSend />}>

@@ -6,16 +6,11 @@ import {
 } from '../../types';
 import {
   defaultDisplayColumnProps,
-  showRowActionsColumn,
 } from '../../utils/displayColumn.utils';
 
 export const getMRT_RowActionsColumnDef = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
 ): MRT_ColumnDef<TData> | null => {
-  if (!showRowActionsColumn(tableOptions)) {
-    return null;
-  }
-
   return {
     Cell: ({ cell, row, staticRowIndex, table }) => (
       <MRT_ToggleRowActionMenuButton
@@ -28,6 +23,7 @@ export const getMRT_RowActionsColumnDef = <TData extends MRT_RowData>(
     ...defaultDisplayColumnProps({
       header: 'actions',
       id: 'mrt-row-actions',
+      size: 70,
       tableOptions,
     }),
   };
