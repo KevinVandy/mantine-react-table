@@ -225,7 +225,6 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
                 (columnDef.header?.length ?? 0) < 20 &&
                   classes['content-wrapper-nowrap'],
               )}
-              title={columnDefType === 'data' ? columnDef.header : undefined}
             >
               {headerElement}
             </Flex>
