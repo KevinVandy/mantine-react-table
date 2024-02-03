@@ -147,9 +147,6 @@ importers:
       '@tanstack/react-virtual':
         specifier: 3.0.2
         version: 3.0.2(react-dom@18.2.0)(react@18.2.0)
-      clsx:
-        specifier: ^2.1.0
-        version: 2.1.0
     devDependencies:
       '@babel/core':
         specifier: ^7.23.9
@@ -229,6 +226,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.0.12)
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
       dayjs:
         specifier: ^1.11.10
         version: 1.11.10
@@ -238,6 +238,9 @@ importers:
       eslint-plugin-perfectionist:
         specifier: ^2.5.0
         version: 2.5.0(eslint@8.56.0)(typescript@5.3.3)
+      mantine-contextmenu:
+        specifier: ^7.5.0
+        version: 7.5.0(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(clsx@2.1.0)(react@18.2.0)
       postcss:
         specifier: ^8.4.33
         version: 8.4.33
@@ -6020,7 +6023,6 @@ packages:
   /clsx@2.1.0:
     resolution: {integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==}
     engines: {node: '>=6'}
-    dev: false
 
   /collapse-white-space@2.1.0:
     resolution: {integrity: sha512-loKTxY1zCOuG4j9f6EPnuyyYkf58RnhhWTvRoZEokgB+WbdXehfjFviyOVYkqzEWz1Q5kRiZdBYS5SwxbQYwzw==}
@@ -8874,6 +8876,20 @@ packages:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
     dependencies:
       tmpl: 1.0.5
+    dev: true
+
+  /mantine-contextmenu@7.5.0(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(clsx@2.1.0)(react@18.2.0):
+    resolution: {integrity: sha512-LWT+cWLfKlWm9iiGIfB1d+19NyM5tsZ3/RSCdGFr48OYUz++5A3aZ6VbBK4vyP670ECl/+aN3qIi+y6tjcWFTQ==}
+    peerDependencies:
+      '@mantine/core': '>=7'
+      '@mantine/hooks': '>=7'
+      clsx: '>=2'
+      react: '>=18.2'
+    dependencies:
+      '@mantine/core': 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.51)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 7.5.1(react@18.2.0)
+      clsx: 2.1.0
+      react: 18.2.0
     dev: true
 
   /map-or-similar@1.5.0:

@@ -25,15 +25,15 @@
   },
   "main": "dist/index.cjs",
   "module": "dist/index.esm.mjs",
-  "types": "dist/index.d.ts",
+  "types": "dist/index.d.cts",
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/index.d.ts",
+        "types": "./dist/index.d.cts",
         "default": "./dist/index.esm.mjs"
       },
       "require": {
-        "types": "./dist/index.d.mts",
+        "types": "./dist/index.esm.d.mts",
         "default": "./dist/index.cjs"
       }
     },
@@ -102,9 +102,11 @@
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
     "eslint": "^8.56.0",
     "eslint-plugin-perfectionist": "^2.5.0",
+    "mantine-contextmenu": "^7.5.0",
     "postcss": "^8.4.33",
     "postcss-preset-mantine": "^1.13.0",
     "postcss-simple-vars": "^7.0.1",
@@ -129,14 +131,14 @@
   "dependencies": {
     "@tanstack/match-sorter-utils": "8.11.7",
     "@tanstack/react-table": "8.11.7",
-    "@tanstack/react-virtual": "3.0.2",
-    "clsx": "^2.1.0"
+    "@tanstack/react-virtual": "3.0.2"
   },
   "peerDependencies": {
     "@mantine/core": "^7.3",
     "@mantine/dates": "^7.3",
     "@mantine/hooks": "^7.3",
     "@tabler/icons-react": ">=2.23.0",
+    "clsx": ">=2",
     "dayjs": ">=1.11",
     "react": ">=18.0",
     "react-dom": ">=18.0"

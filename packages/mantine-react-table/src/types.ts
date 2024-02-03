@@ -179,7 +179,6 @@ export interface MRT_Localization {
   collapseAll: string;
   columnActions: string;
   copiedToClipboard: string;
-  create?: string;
   dropToGroupBy: string;
   edit: string;
   expand: string;
@@ -308,7 +307,6 @@ export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
   getTopRows: () => MRT_Row<TData>[];
   options: MRT_StatefulTableOptions<TData>;
   refs: {
-    actionCellRef: MutableRefObject<HTMLTableCellElement | null>;
     bottomToolbarRef: MutableRefObject<HTMLDivElement | null>;
     editInputRefs: MutableRefObject<Record<string, HTMLInputElement>>;
     filterInputRefs: MutableRefObject<Record<string, HTMLInputElement>>;
@@ -320,7 +318,6 @@ export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
     tablePaperRef: MutableRefObject<HTMLDivElement | null>;
     topToolbarRef: MutableRefObject<HTMLDivElement | null>;
   };
-  setActionCell: Dispatch<SetStateAction<MRT_Cell<TData> | null>>;
   setColumnFilterFns: Dispatch<SetStateAction<MRT_ColumnFilterFnsState>>;
   setCreatingRow: Dispatch<SetStateAction<MRT_Row<TData> | null | true>>;
   setDensity: Dispatch<SetStateAction<MRT_DensityState>>;
@@ -372,7 +369,6 @@ export type MRT_StatefulTableOptions<TData extends MRT_RowData> =
 
 export type MRT_TableState<TData extends MRT_RowData> = Prettify<
   TableState & {
-    actionCell?: MRT_Cell<TData> | null;
     columnFilterFns: MRT_ColumnFilterFnsState;
     creatingRow: MRT_Row<TData> | null;
     density: MRT_DensityState;
@@ -493,7 +489,7 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
   > | null;
   columns?: MRT_ColumnDef<TData>[];
   editVariant?: 'select' | 'text';
-  enableClickToCopy?: boolean;
+  enableClickToCopy?: ((cell: MRT_Cell<TData>) => boolean) | boolean;
   enableColumnActions?: boolean;
   enableColumnDragging?: boolean;
   enableColumnFilterModes?: boolean;
@@ -637,6 +633,15 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLTableCellElement> & TableThProps & ColumnAlignment)
     | (HTMLPropsRef<HTMLTableCellElement> & TableThProps & ColumnAlignment);
+  renderCellActionMenuItems?: (props: {
+    cell: MRT_Cell<TData>;
+    column: MRT_Column<TData>;
+    internalMenuItems: ReactNode[];
+    row: MRT_Row<TData>;
+    staticColumnIndex?: number;
+    staticRowIndex?: number;
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode[];
   renderColumnActionsMenuItems?: (props: {
     column: MRT_Column<TData, TValue>;
     internalColumnMenuItems: ReactNode;
@@ -824,7 +829,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   }>;
   editDisplayMode?: 'cell' | 'custom' | 'modal' | 'row' | 'table';
   enableBottomToolbar?: boolean;
-  enableClickToCopy?: boolean;
+  enableClickToCopy?: ((cell: MRT_Cell<TData>) => boolean) | boolean;
   enableColumnActions?: boolean;
   enableColumnDragging?: boolean;
   enableColumnFilterModes?: boolean;
@@ -1143,7 +1148,6 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
    * @link https://www.mantine-react-table.com/docs/guides/memoize-components
    */
   memoMode?: 'cells' | 'rows' | 'table-body';
-  onActionCellChange?: OnChangeFn<MRT_Cell<TData> | null>;
   onColumnFilterFnsChange?: OnChangeFn<{ [key: string]: MRT_FilterOption }>;
   onCreatingRowCancel?: (props: {
     row: MRT_Row<TData>;
@@ -1191,6 +1195,15 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | ((props: { table: MRT_TableInstance<TData> }) => ReactNode)
     | ReactNode;
   renderBottomToolbarCustomActions?: (props: {
+    table: MRT_TableInstance<TData>;
+  }) => ReactNode;
+  renderCellActionMenuItems?: (props: {
+    cell: MRT_Cell<TData>;
+    column: MRT_Column<TData>;
+    internalMenuItems: ReactNode;
+    row: MRT_Row<TData>;
+    staticColumnIndex?: number;
+    staticRowIndex?: number;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderColumnActionsMenuItems?: (props: {

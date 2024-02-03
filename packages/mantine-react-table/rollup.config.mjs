@@ -49,7 +49,7 @@ export default [
     input: './dist/types/index.d.ts',
     output: [
       { file: `./${pkg.types}`, format: 'cjs' },
-      { file: `./${pkg.types}`.replace('.ts', '.mts'), format: 'esm' },
+      { file: './dist/index.esm.d.mts', format: 'esm' },
     ],
     plugins: [
       copy({

@@ -7,10 +7,9 @@ import {
   type RefObject,
   memo,
   useEffect,
-  useMemo,
   useState,
 } from 'react';
-import { Skeleton, TableTd } from '@mantine/core';
+import { Skeleton, TableTd, type TableTdProps } from '@mantine/core';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
 import {
   type MRT_Cell,
@@ -31,7 +30,8 @@ import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
 import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 
-interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
+  extends TableTdProps {
   cell: MRT_Cell<TData, TValue>;
   isStriped?: 'even' | 'odd' | boolean;
   measureElement?: (element: HTMLTableCellElement) => void;
@@ -51,6 +51,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   staticRowIndex,
   table,
   virtualCell,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -89,13 +90,14 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   const { columnDef } = column;
   const { columnDefType } = columnDef;
 
-  const arg = { cell, column, row, table };
+  const args = { cell, column, row, table };
   const tableCellProps = {
-    ...parseFromValuesOrFunc(mantineTableBodyCellProps, arg),
-    ...parseFromValuesOrFunc(columnDef.mantineTableBodyCellProps, arg),
+    ...parseFromValuesOrFunc(mantineTableBodyCellProps, args),
+    ...parseFromValuesOrFunc(columnDef.mantineTableBodyCellProps, args),
+    ...rest,
   };
 
-  const skeletonProps = parseFromValuesOrFunc(mantineSkeletonProps, arg);
+  const skeletonProps = parseFromValuesOrFunc(mantineSkeletonProps, args);
 
   const [skeletonWidth, setSkeletonWidth] = useState(100);
   useEffect(() => {
@@ -108,24 +110,21 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     );
   }, [isLoading, showSkeletons]);
 
-  const widthStyles = useMemo(() => {
-    const styles: CSSProperties = {
-      minWidth: `max(calc(var(--col-${parseCSSVarId(
-        column?.id,
-      )}-size) * 1px), ${columnDef.minSize ?? 30}px)`,
-      width: `calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px)`,
-    };
-    if (layoutMode === 'grid') {
-      styles.flex = `${
-        [0, false].includes(columnDef.grow!)
-          ? 0
-          : `var(--col-${parseCSSVarId(column.id)}-size)`
-      } 0 auto`;
-    } else if (layoutMode === 'grid-no-grow') {
-      styles.flex = `${+(columnDef.grow || 0)} 0 auto`;
-    }
-    return styles;
-  }, [column]);
+  const widthStyles: CSSProperties = {
+    minWidth: `max(calc(var(--col-${parseCSSVarId(
+      column?.id,
+    )}-size) * 1px), ${columnDef.minSize ?? 30}px)`,
+    width: `calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px)`,
+  };
+  if (layoutMode === 'grid') {
+    widthStyles.flex = `${
+      [0, false].includes(columnDef.grow!)
+        ? 0
+        : `var(--col-${parseCSSVarId(column.id)}-size)`
+    } 0 auto`;
+  } else if (layoutMode === 'grid-no-grow') {
+    widthStyles.flex = `${+(columnDef.grow || 0)} 0 auto`;
+  }
 
   const isEditable =
     (parseFromValuesOrFunc(enableEditing, row) &&
@@ -141,6 +140,11 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
 
   const isCreating =
     isEditable && createDisplayMode === 'row' && creatingRow?.id === row.id;
+
+  const showClickToCopyButton =
+    parseFromValuesOrFunc(enableClickToCopy, cell) ||
+    (parseFromValuesOrFunc(columnDef.enableClickToCopy, cell) &&
+      parseFromValuesOrFunc(columnDef.enableClickToCopy, cell) !== false);
 
   const handleDoubleClick = (event: MouseEvent<HTMLTableCellElement>) => {
     tableCellProps?.onDoubleClick?.(event);
@@ -166,6 +170,11 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
         columnDef.enableColumnOrdering !== false ? column : null,
       );
     }
+  };
+
+  const cellValueProps = {
+    cell,
+    table,
   };
 
   return (
@@ -247,38 +256,39 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
         ...parseFromValuesOrFunc(tableCellProps.style, theme),
       })}
     >
-      <>
-        {cell.getIsPlaceholder() ? (
-          columnDef.PlaceholderCell?.({ cell, column, row, table }) ?? null
-        ) : isLoading || showSkeletons ? (
-          <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />
-        ) : columnDefType === 'display' &&
-          (['mrt-row-expand', 'mrt-row-numbers', 'mrt-row-select'].includes(
-            column.id,
-          ) ||
-            !row.getIsGrouped()) ? (
-          columnDef.Cell?.({
-            cell,
-            column,
-            renderedCellValue: cell.renderValue() as any,
-            row,
-            rowRef,
-            staticRowIndex,
-            table,
-          })
-        ) : isCreating || isEditing ? (
-          <MRT_EditCellTextInput cell={cell} table={table} />
-        ) : (enableClickToCopy || columnDef.enableClickToCopy) &&
-          columnDef.enableClickToCopy !== false ? (
-          <MRT_CopyButton cell={cell} table={table}>
-            <MRT_TableBodyCellValue cell={cell} table={table} />
-          </MRT_CopyButton>
-        ) : (
-          <MRT_TableBodyCellValue cell={cell} table={table} />
-        )}
-      </>
-      {cell.getIsGrouped() && !columnDef.GroupedCell && (
-        <> ({row.subRows?.length})</>
+      {tableCellProps.children ?? (
+        <>
+          {cell.getIsPlaceholder() ? (
+            columnDef.PlaceholderCell?.({ cell, column, row, table }) ?? null
+          ) : showSkeletons !== false && (isLoading || showSkeletons) ? (
+            <Skeleton height={20} width={skeletonWidth} {...skeletonProps} />
+          ) : columnDefType === 'display' &&
+            (['mrt-row-expand', 'mrt-row-numbers', 'mrt-row-select'].includes(
+              column.id,
+            ) ||
+              !row.getIsGrouped()) ? (
+            columnDef.Cell?.({
+              cell,
+              column,
+              renderedCellValue: cell.renderValue() as any,
+              row,
+              rowRef,
+              staticRowIndex,
+              table,
+            })
+          ) : isCreating || isEditing ? (
+            <MRT_EditCellTextInput cell={cell} table={table} />
+          ) : showClickToCopyButton && columnDef.enableClickToCopy !== false ? (
+            <MRT_CopyButton cell={cell} table={table}>
+              <MRT_TableBodyCellValue {...cellValueProps} />
+            </MRT_CopyButton>
+          ) : (
+            <MRT_TableBodyCellValue {...cellValueProps} />
+          )}
+          {cell.getIsGrouped() && !columnDef.GroupedCell && (
+            <> ({row.subRows?.length})</>
+          )}
+        </>
       )}
     </TableTd>
   );
