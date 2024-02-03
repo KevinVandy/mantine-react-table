@@ -16,7 +16,7 @@
 
 .inner {
   display: table-cell;
-  transition: all 100ms ease-in-out;
+  transition: all 150ms ease-in-out;
   width: var(--mrt-inner-width);
 }
 

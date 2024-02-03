@@ -95,7 +95,7 @@ function App({ Component, pageProps }: AppProps) {
                         ? '300px'
                         : '36px'
                   } 0 ${isMobile ? '16px' : isNavOpen ? '300px' : '36px'}`,
-                  transition: 'all 100ms ease-in-out',
+                  transition: 'all 150ms ease-in-out',
                   width: '100%',
                 }}
               >

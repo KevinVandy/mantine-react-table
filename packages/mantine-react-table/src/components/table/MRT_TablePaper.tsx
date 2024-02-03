@@ -48,7 +48,7 @@ export const MRT_TablePaper = <TData extends MRT_RowData>({
       }}
       // rare case where we should use inline styles to guarantee highest specificity
       style={(theme) => ({
-        zIndex: isFullScreen ? 100 : undefined,
+        zIndex: isFullScreen ? 200 : undefined,
         ...parseFromValuesOrFunc(tablePaperProps?.style, theme),
         ...(isFullScreen
           ? {

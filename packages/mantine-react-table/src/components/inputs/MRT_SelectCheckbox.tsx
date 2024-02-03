@@ -18,13 +18,11 @@ import { parseFromValuesOrFunc } from '../../utils/utils';
 
 interface Props<TData extends MRT_RowData> extends CheckboxProps {
   row?: MRT_Row<TData>;
-  staticRowIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
   row,
-  staticRowIndex,
   table,
   ...rest
 }: Props<TData>) => {
@@ -50,7 +48,6 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
       ? parseFromValuesOrFunc(mantineSelectAllCheckboxProps, { table })
       : parseFromValuesOrFunc(mantineSelectCheckboxProps, {
           row,
-          staticRowIndex,
           table,
         })),
     ...rest,

@@ -4,21 +4,14 @@ import {
   type MRT_RowData,
   type MRT_StatefulTableOptions,
 } from '../../types';
-import {
-  defaultDisplayColumnProps,
-} from '../../utils/displayColumn.utils';
+import { defaultDisplayColumnProps } from '../../utils/displayColumn.utils';
 
 export const getMRT_RowActionsColumnDef = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
 ): MRT_ColumnDef<TData> | null => {
   return {
-    Cell: ({ cell, row, staticRowIndex, table }) => (
-      <MRT_ToggleRowActionMenuButton
-        cell={cell}
-        row={row}
-        staticRowIndex={staticRowIndex}
-        table={table}
-      />
+    Cell: ({ cell, row, table }) => (
+      <MRT_ToggleRowActionMenuButton cell={cell} row={row} table={table} />
     ),
     ...defaultDisplayColumnProps({
       header: 'actions',

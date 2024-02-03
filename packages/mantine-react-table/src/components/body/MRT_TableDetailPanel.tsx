@@ -15,7 +15,6 @@ interface Props<TData extends MRT_RowData> extends TableTdProps {
   parentRowRef: RefObject<HTMLTableRowElement>;
   row: MRT_Row<TData>;
   rowVirtualizer?: MRT_RowVirtualizer;
-  staticRowIndex: number;
   table: MRT_TableInstance<TData>;
   virtualRow?: MRT_VirtualItem;
 }
@@ -24,7 +23,6 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
   parentRowRef,
   row,
   rowVirtualizer,
-  staticRowIndex,
   table,
   virtualRow,
   ...rest
@@ -41,11 +39,11 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
     },
   } = table;
   const { isLoading } = getState();
+  const { renderIndex: rowRenderIndex = 0 } = row;
 
   const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     isDetailPanel: true,
     row,
-    staticRowIndex,
     table,
   });
 
@@ -62,7 +60,7 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
 
   return (
     <TableTr
-      data-index={renderDetailPanel ? staticRowIndex * 2 + 1 : staticRowIndex}
+      data-index={renderDetailPanel ? rowRenderIndex * 2 + 1 : rowRenderIndex}
       ref={(node: HTMLTableRowElement) => {
         if (node) {
           rowVirtualizer?.measureElement?.(node);

@@ -15,7 +15,7 @@
     margin-left: 0;
   }
   .chevron {
-    transition: transform 100ms;
+    transition: transform 150ms;
     &.up {
       transform: rotate(-180deg);
     }

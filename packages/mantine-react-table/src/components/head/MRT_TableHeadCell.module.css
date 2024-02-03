@@ -7,7 +7,7 @@
   --drag-thickness: 1px;
 
   background-clip: padding-box;
-  transition: padding 100ms ease-in-out;
+  transition: padding 150ms ease-in-out;
   font-weight: bold;
   overflow: visible;
   padding: calc(var(--mrt-table-head-cell-padding) * 1px);

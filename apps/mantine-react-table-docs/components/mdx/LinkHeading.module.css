@@ -17,7 +17,7 @@
 
 .actionIcon {
   opacity: 0.2;
-  transition: all 100ms ease;
+  transition: all 150ms ease;
   color: '#e9ecef';
   background-color: transparent;
 

@@ -24,7 +24,6 @@ interface Props<TData extends MRT_RowData> {
   pinnedRowIds?: string[];
   row: MRT_Row<TData>;
   rowVirtualizer?: MRT_RowVirtualizer;
-  staticRowIndex: number;
   table: MRT_TableInstance<TData>;
   virtualRow?: MRT_VirtualItem;
 }
@@ -37,7 +36,6 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   pinnedRowIds,
   row,
   rowVirtualizer,
-  staticRowIndex,
   table,
   virtualRow,
 }: Props<TData>) => {
@@ -57,6 +55,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
     refs: { tableFooterRef, tableHeadRef },
     setHoveredRow,
   } = table;
+  const { renderIndex: rowRenderIndex = 0 } = row;
   const {
     density,
     draggingColumn,
@@ -68,6 +67,8 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
     rowPinning,
   } = getState();
 
+  const visibleCells = row.getVisibleCells();
+
   const { virtualColumns, virtualPaddingLeft, virtualPaddingRight } =
     columnVirtualizer ?? {};
 
@@ -78,7 +79,6 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
 
   const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     row,
-    staticRowIndex,
     table,
   });
 
@@ -119,7 +119,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   return (
     <>
       <TableTr
-        data-index={renderDetailPanel ? staticRowIndex * 2 : staticRowIndex}
+        data-index={renderDetailPanel ? rowRenderIndex * 2 : rowRenderIndex}
         data-pinned={!!isRowPinned || undefined}
         data-selected={isRowSelected || undefined}
         onDragEnter={handleDragEnter}
@@ -178,44 +178,36 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
         {virtualPaddingLeft ? (
           <Box component="td" display="flex" w={virtualPaddingLeft} />
         ) : null}
-        {(virtualColumns ?? row.getVisibleCells()).map((cellOrVirtualCell) => {
-          const cell = columnVirtualizer
-            ? row.getVisibleCells()[
-                (cellOrVirtualCell as MRT_VirtualItem).index
-              ]
-            : (cellOrVirtualCell as MRT_Cell<TData>);
-          const props = {
-            cell,
-            isStriped,
-            measureElement:
-              !isDraggingRow && !isHoveredRow
-                ? columnVirtualizer?.measureElement
+        {(virtualColumns ?? row.getVisibleCells()).map(
+          (cellOrVirtualCell, columnRenderIndex) => {
+            let cell = cellOrVirtualCell as MRT_Cell<TData>;
+            if (columnVirtualizer) {
+              columnRenderIndex = (cellOrVirtualCell as MRT_VirtualItem).index;
+              cell = visibleCells[columnRenderIndex];
+            }
+            cell.column.renderIndex = columnRenderIndex;
+            const cellProps = {
+              cell,
+              isStriped,
+              numRows,
+              rowRef,
+              table,
+              virtualCell: columnVirtualizer
+                ? (cellOrVirtualCell as MRT_VirtualItem)
                 : undefined,
-            numRows,
-            rowRef,
-            staticRowIndex,
-            table,
-            virtualCell: columnVirtualizer
-              ? (cellOrVirtualCell as MRT_VirtualItem)
-              : undefined,
-          };
-          return memoMode === 'cells' &&
-            cell.column.columnDef.columnDefType === 'data' &&
-            !draggingColumn &&
-            !draggingRow &&
-            editingCell?.id !== cell.id &&
-            editingRow?.id !== row.id ? (
-            <Memo_MRT_TableBodyCell
-              key={cell.id + cell.getValue()?.toString()}
-              {...props}
-            />
-          ) : (
-            <MRT_TableBodyCell
-              key={cell.id + cell.getValue?.toString()}
-              {...props}
-            />
-          );
-        })}
+            };
+            return memoMode === 'cells' &&
+              cell.column.columnDef.columnDefType === 'data' &&
+              !draggingColumn &&
+              !draggingRow &&
+              editingCell?.id !== cell.id &&
+              editingRow?.id !== row.id ? (
+              <Memo_MRT_TableBodyCell key={cell.id} {...cellProps} />
+            ) : (
+              <MRT_TableBodyCell key={cell.id} {...cellProps} />
+            );
+          },
+        )}
         {virtualPaddingRight ? (
           <Box component="td" display="flex" w={virtualPaddingRight} />
         ) : null}
@@ -225,7 +217,6 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
           parentRowRef={rowRef}
           row={row}
           rowVirtualizer={rowVirtualizer}
-          staticRowIndex={staticRowIndex}
           table={table}
           virtualRow={virtualRow}
         />
@@ -236,6 +227,5 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
 
 export const Memo_MRT_TableBodyRow = memo(
   MRT_TableBodyRow,
-  (prev, next) =>
-    prev.row === next.row && prev.staticRowIndex === next.staticRowIndex,
+  (prev, next) => prev.row === next.row,
 ) as typeof MRT_TableBodyRow;

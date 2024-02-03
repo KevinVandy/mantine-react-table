@@ -4,9 +4,7 @@ import {
   type MRT_RowData,
   type MRT_StatefulTableOptions,
 } from '../../types';
-import {
-  defaultDisplayColumnProps,
-} from '../../utils/displayColumn.utils';
+import { defaultDisplayColumnProps } from '../../utils/displayColumn.utils';
 
 export const getMRT_RowSelectColumnDef = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
@@ -14,13 +12,7 @@ export const getMRT_RowSelectColumnDef = <TData extends MRT_RowData>(
   const { enableMultiRowSelection, enableSelectAll } = tableOptions;
 
   return {
-    Cell: ({ row, staticRowIndex, table }) => (
-      <MRT_SelectCheckbox
-        row={row}
-        staticRowIndex={staticRowIndex}
-        table={table}
-      />
-    ),
+    Cell: ({ row, table }) => <MRT_SelectCheckbox row={row} table={table} />,
     Header:
       enableSelectAll && enableMultiRowSelection
         ? ({ table }) => <MRT_SelectCheckbox table={table} />

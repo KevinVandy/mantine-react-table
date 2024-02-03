@@ -7,8 +7,8 @@ import {
 } from 'mantine-react-table';
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type TableInstanceAPI, tableInstanceAPIs } from './tableInstanceAPIs';
+import { InlineCodeHighlight } from '@mantine/code-highlight';
 
 interface Props {
   onlyOptions?: Set<keyof MRT_TableInstance<TableInstanceAPI>>;
@@ -34,9 +34,9 @@ const TableInstanceAPIsTable = ({ onlyOptions }: Props) => {
           header: 'Type',
           enableGlobalFilter: false,
           Cell: ({ cell }) => (
-            <SampleCodeSnippet
+            <InlineCodeHighlight
+              bg="transparent"
               language="typescript"
-              withCopyButton={false}
               code={cell.getValue<string>()}
             />
           ),

@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { MantineReactTable, type MRT_ColumnDef } from 'mantine-react-table';
 import { Anchor, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { SampleCodeSnippet } from '../mdx/SampleCodeSnippet';
 import { type ColumnOption, columnOptions } from './columnOptions';
 import { getPrimaryColor } from 'mantine-react-table';
+import { InlineCodeHighlight } from '@mantine/code-highlight';
 
 interface Props {
   onlyOptions?: Set<keyof MRT_ColumnDef<ColumnOption>>;
@@ -44,9 +44,9 @@ const ColumnOptionsTable = ({ onlyOptions }: Props) => {
           header: 'Type',
           enableGlobalFilter: false,
           Cell: ({ cell }) => (
-            <SampleCodeSnippet
+            <InlineCodeHighlight
+              bg="transparent"
               language="typescript"
-              withCopyButton={false}
               code={cell.getValue<string>()}
             />
           ),
@@ -61,9 +61,9 @@ const ColumnOptionsTable = ({ onlyOptions }: Props) => {
           enableGlobalFilter: false,
           header: 'Default Value',
           Cell: ({ cell }) => (
-            <SampleCodeSnippet
+            <InlineCodeHighlight
+              bg="transparent"
               language="typescript"
-              withCopyButton={false}
               code={cell.getValue<string>()}
             />
           ),

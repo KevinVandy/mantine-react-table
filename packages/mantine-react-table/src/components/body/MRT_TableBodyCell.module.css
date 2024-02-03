@@ -8,7 +8,7 @@
 
   background-clip: padding-box;
   overflow: hidden;
-  transition: padding 100ms ease-in-out;
+  transition: padding 150ms ease-in-out;
   @mixin hover {
     outline-offset: -1px;
     text-overflow: clip;
@@ -71,7 +71,7 @@
     width: 100%;
     height: 100%;
     background-color: transparent;
-    zIndex: -1;
+    zindex: -1;
   }
 }
 

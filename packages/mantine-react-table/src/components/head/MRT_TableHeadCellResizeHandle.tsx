@@ -18,7 +18,7 @@ export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     getState,
-    options: { columnResizeMode, columnResizeDirection },
+    options: { columnResizeDirection, columnResizeMode },
     setColumnSizingInfo,
   } = table;
   const { density } = getState();

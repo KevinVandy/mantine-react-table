@@ -34,10 +34,8 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
   extends TableTdProps {
   cell: MRT_Cell<TData, TValue>;
   isStriped?: 'even' | 'odd' | boolean;
-  measureElement?: (element: HTMLTableCellElement) => void;
   numRows?: number;
   rowRef: RefObject<HTMLTableRowElement>;
-  staticRowIndex: number;
   table: MRT_TableInstance<TData>;
   virtualCell?: MRT_VirtualItem;
 }
@@ -45,10 +43,8 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
 export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   cell,
   isStriped,
-  measureElement,
   numRows,
   rowRef,
-  staticRowIndex,
   table,
   virtualCell,
   ...rest
@@ -62,6 +58,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       editDisplayMode,
       enableClickToCopy,
       enableColumnOrdering,
+      enableColumnPinning,
       enableColumnVirtualization,
       enableEditing,
       enableGrouping,
@@ -87,8 +84,9 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     showSkeletons,
   } = getState();
   const { column, row } = cell;
-  const { columnDef } = column;
+  const { columnDef, renderIndex: columnRenderIndex = 0 } = column;
   const { columnDefType } = columnDef;
+  const { renderIndex: rowRenderIndex = 0 } = row;
 
   const args = { cell, column, row, table };
   const tableCellProps = {
@@ -125,6 +123,11 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   } else if (layoutMode === 'grid-no-grow') {
     widthStyles.flex = `${+(columnDef.grow || 0)} 0 auto`;
   }
+
+  const isColumnPinned =
+    enableColumnPinning &&
+    columnDef.columnDefType !== 'group' &&
+    column.getIsPinned();
 
   const isEditable =
     !cell.getIsPlaceholder() &&
@@ -180,15 +183,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
 
   return (
     <TableTd
-      data-index={virtualCell?.index}
-      data-pinned={
-        column.getIsPinned() && column.columnDef.columnDefType !== 'group'
-      }
-      ref={(node: HTMLTableCellElement) => {
-        if (node) {
-          measureElement?.(node);
-        }
-      }}
+      data-index={columnRenderIndex}
+      data-pinned={!!isColumnPinned || undefined}
       {...tableCellProps}
       __vars={{
         '--mrt-table-cell-justify': layoutMode?.startsWith('grid')
@@ -247,7 +243,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           classes['hovered-row'],
         getIsFirstColumn(column, table) && classes['first-column'],
         getIsLastColumn(column, table) && classes['last-column'],
-        numRows && staticRowIndex === numRows - 1 && classes['last-row'],
+        numRows && rowRenderIndex === numRows - 1 && classes['last-row'],
         tableCellProps?.className,
       )}
       onDoubleClick={handleDoubleClick}
@@ -274,13 +270,12 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
               renderedCellValue: cell.renderValue() as any,
               row,
               rowRef,
-              staticRowIndex,
               table,
             })
           ) : isCreating || isEditing ? (
-            <MRT_EditCellTextInput cell={cell} table={table} />
+            <MRT_EditCellTextInput {...cellValueProps} />
           ) : showClickToCopyButton && columnDef.enableClickToCopy !== false ? (
-            <MRT_CopyButton cell={cell} table={table}>
+            <MRT_CopyButton {...cellValueProps}>
               <MRT_TableBodyCellValue {...cellValueProps} />
             </MRT_CopyButton>
           ) : (

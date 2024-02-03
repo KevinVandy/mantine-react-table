@@ -10,6 +10,6 @@
   min-height: 3.5rem;
   overflow: visible;
   padding: 0;
-  transition: all 100ms ease-in-out;
+  transition: all 150ms ease-in-out;
   z-index: 3;
 }

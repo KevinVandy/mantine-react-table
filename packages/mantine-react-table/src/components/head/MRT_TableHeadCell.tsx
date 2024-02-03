@@ -13,6 +13,7 @@ import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
 import { MRT_TableHeadCellResizeHandle } from './MRT_TableHeadCellResizeHandle';
 import { MRT_TableHeadCellSortLabel } from './MRT_TableHeadCellSortLabel';
 import {
+  type MRT_ColumnVirtualizer,
   type MRT_Header,
   type MRT_RowData,
   type MRT_TableInstance,
@@ -27,11 +28,13 @@ import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 
 interface Props<TData extends MRT_RowData> {
+  columnVirtualizer?: MRT_ColumnVirtualizer;
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TableHeadCell = <TData extends MRT_RowData>({
+  columnVirtualizer,
   header,
   table,
 }: Props<TData>) => {
@@ -39,12 +42,13 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   const {
     getState,
     options: {
-      columnResizeMode,
-      columnResizeDirection,
       columnFilterDisplayMode,
+      columnResizeDirection,
+      columnResizeMode,
       enableColumnActions,
       enableColumnDragging,
       enableColumnOrdering,
+      enableColumnPinning,
       enableGrouping,
       enableMultiSort,
       layoutMode,
@@ -53,9 +57,9 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
     refs: { tableHeadCellRefs },
     setHoveredColumn,
   } = table;
-  const { density, draggingColumn, grouping, hoveredColumn, columnSizingInfo } =
+  const { columnSizingInfo, density, draggingColumn, grouping, hoveredColumn } =
     getState();
-  const { column } = header;
+  const { column, renderIndex: headerRenderIndex } = header;
   const { columnDef } = column;
   const { columnDefType } = columnDef;
 
@@ -65,24 +69,26 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
     ...parseFromValuesOrFunc(columnDef.mantineTableHeadCellProps, arg),
   };
 
-  const widthStyles = useMemo(() => {
-    const styles: CSSProperties = {
-      minWidth: `max(calc(var(--header-${parseCSSVarId(
-        header?.id,
-      )}-size) * 1px), ${columnDef.minSize ?? 30}px)`,
-      width: `calc(var(--header-${parseCSSVarId(header.id)}-size) * 1px)`,
-    };
-    if (layoutMode === 'grid') {
-      styles.flex = `${
-        [0, false].includes(columnDef.grow!)
-          ? 0
-          : `var(--header-${parseCSSVarId(header.id)}-size)`
-      } 0 auto`;
-    } else if (layoutMode === 'grid-no-grow') {
-      styles.flex = `${+(columnDef.grow || 0)} 0 auto`;
-    }
-    return styles;
-  }, [column]);
+  const widthStyles: CSSProperties = {
+    minWidth: `max(calc(var(--header-${parseCSSVarId(
+      header?.id,
+    )}-size) * 1px), ${columnDef.minSize ?? 30}px)`,
+    width: `calc(var(--header-${parseCSSVarId(header.id)}-size) * 1px)`,
+  };
+  if (layoutMode === 'grid') {
+    widthStyles.flex = `${
+      [0, false].includes(columnDef.grow!)
+        ? 0
+        : `var(--header-${parseCSSVarId(header.id)}-size)`
+    } 0 auto`;
+  } else if (layoutMode === 'grid-no-grow') {
+    widthStyles.flex = `${+(columnDef.grow || 0)} 0 auto`;
+  }
+
+  const isColumnPinned =
+    enableColumnPinning &&
+    columnDef.columnDefType !== 'group' &&
+    column.getIsPinned();
 
   const showColumnActions =
     (enableColumnActions || columnDef.enableColumnActions) &&
@@ -127,14 +133,15 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
 
   return (
     <TableTh
+      colSpan={header.colSpan}
+      data-index={headerRenderIndex}
+      data-pinned={!!isColumnPinned || undefined}
       {...tableCellProps}
       __vars={{
         '--mrt-table-cell-left':
-          column.getIsPinned() === 'left'
-            ? `${column.getStart('left')}`
-            : undefined,
+          isColumnPinned === 'left' ? `${column.getStart('left')}` : undefined,
         '--mrt-table-cell-right':
-          column.getIsPinned() === 'right'
+          isColumnPinned === 'right'
             ? `${getTotalRight(table, column)}`
             : undefined,
         '--mrt-table-head-cell-padding':
@@ -142,7 +149,7 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
         '--mrt-table-head-cell-z-index':
           column.getIsResizing() || draggingColumn?.id === column.id
             ? '3'
-            : column.getIsPinned() && columnDefType !== 'group'
+            : isColumnPinned && columnDefType !== 'group'
               ? '2'
               : '1',
       }}
@@ -157,11 +164,11 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
         classes.root,
         layoutMode?.startsWith('grid') && classes['root-grid'],
         enableMultiSort && column.getCanSort() && classes['root-no-select'],
-        column.getIsPinned() &&
+        isColumnPinned &&
           column.columnDef.columnDefType !== 'group' &&
           classes['root-pinned'],
-        column.getIsPinned() === 'left' && classes['root-pinned-left'],
-        column.getIsPinned() === 'right' && classes['root-pinned-right'],
+        isColumnPinned === 'left' && classes['root-pinned-left'],
+        isColumnPinned === 'right' && classes['root-pinned-right'],
         getIsLastLeftPinnedColumn(table, column) &&
           classes['root-pinned-left-last'],
         getIsFirstRightPinnedColumn(column) &&
@@ -175,11 +182,13 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
           hoveredColumn?.id === column.id &&
           classes['hovered'],
       )}
-      colSpan={header.colSpan}
       onDragEnter={handleDragEnter}
       ref={(node: HTMLTableCellElement) => {
         if (node) {
           tableHeadCellRefs.current[column.id] = node;
+          if (columnDefType !== 'group') {
+            columnVirtualizer?.measureElement?.(node);
+          }
         }
       }}
       style={(theme) => ({

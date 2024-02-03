@@ -1168,7 +1168,7 @@ export const tableOptions: TableOption[] = [
     linkText: 'Mantine Box Docs',
     required: false,
     source: 'Mantine',
-    type: 'BoxProps | ({ isDetailPanel, row, staticRowIndex, table }) => BoxProps',
+    type: 'BoxProps | ({ isDetailPanel, row, table }) => BoxProps',
   },
   {
     tableOption: 'mantineTableContainerProps',

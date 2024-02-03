@@ -9,14 +9,12 @@ import {
 interface Props<TData extends MRT_RowData> {
   handleEdit: (event: MouseEvent) => void;
   row: MRT_Row<TData>;
-  staticRowIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_RowActionMenu = <TData extends MRT_RowData>({
   handleEdit,
   row,
-  staticRowIndex,
   table,
 }: Props<TData>) => {
   const {
@@ -63,7 +61,6 @@ export const MRT_RowActionMenu = <TData extends MRT_RowData>({
         )}
         {renderRowActionMenuItems?.({
           row,
-          staticRowIndex,
           table,
         })}
       </Menu.Dropdown>

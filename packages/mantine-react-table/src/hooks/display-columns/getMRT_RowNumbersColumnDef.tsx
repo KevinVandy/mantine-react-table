@@ -3,9 +3,7 @@ import {
   type MRT_RowData,
   type MRT_StatefulTableOptions,
 } from '../../types';
-import {
-  defaultDisplayColumnProps,
-} from '../../utils/displayColumn.utils';
+import { defaultDisplayColumnProps } from '../../utils/displayColumn.utils';
 
 export const getMRT_RowNumbersColumnDef = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
@@ -16,9 +14,9 @@ export const getMRT_RowNumbersColumnDef = <TData extends MRT_RowData>(
   } = tableOptions.state;
 
   return {
-    Cell: ({ row, staticRowIndex }) =>
+    Cell: ({ row }) =>
       ((rowNumberDisplayMode === 'static'
-        ? (staticRowIndex || 0) + (pageSize || 0) * (pageIndex || 0)
+        ? (row.renderIndex || 0) + (pageSize || 0) * (pageIndex || 0)
         : row.index) ?? 0) + 1,
     Header: () => localization.rowNumber,
     grow: false,

@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 import classes from './MRT_TableFooterCell.module.css';
+import { type CSSProperties, useMemo } from 'react';
 import { TableTh } from '@mantine/core';
 import {
   type MRT_Header,
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
-import { parseFromValuesOrFunc } from '../../utils/utils';
-import { CSSProperties, useMemo } from 'react';
 import { parseCSSVarId } from '../../utils/style.utils';
+import { parseFromValuesOrFunc } from '../../utils/utils';
 
 interface Props<TData extends MRT_RowData> {
   footer: MRT_Header<TData>;

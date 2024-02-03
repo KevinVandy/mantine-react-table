@@ -14,14 +14,12 @@ import { MRT_RowActionMenu } from '../menus/MRT_RowActionMenu';
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   cell: MRT_Cell<TData, TValue>;
   row: MRT_Row<TData>;
-  staticRowIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_ToggleRowActionMenuButton = <TData extends MRT_RowData>({
   cell,
   row,
-  staticRowIndex,
   table,
 }: Props<TData>) => {
   const {
@@ -55,7 +53,7 @@ export const MRT_ToggleRowActionMenuButton = <TData extends MRT_RowData>({
   return (
     <>
       {renderRowActions && !showEditActionButtons ? (
-        renderRowActions({ cell, row, staticRowIndex, table })
+        renderRowActions({ cell, row, table })
       ) : showEditActionButtons ? (
         <MRT_EditActionButtons row={row} table={table} />
       ) : !renderRowActionMenuItems &&
@@ -75,7 +73,6 @@ export const MRT_ToggleRowActionMenuButton = <TData extends MRT_RowData>({
         <MRT_RowActionMenu
           handleEdit={handleStartEditMode}
           row={row}
-          staticRowIndex={staticRowIndex}
           table={table}
         />
       ) : null}

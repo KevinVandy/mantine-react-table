@@ -8,6 +8,7 @@ import {
   type MRT_HeaderGroup,
   type MRT_RowData,
   type MRT_TableInstance,
+  type MRT_VirtualItem,
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
@@ -49,15 +50,26 @@ export const MRT_TableHeadRow = <TData extends MRT_RowData>({
       {virtualPaddingLeft ? (
         <Box component="th" display="flex" w={virtualPaddingLeft} />
       ) : null}
-      {(virtualColumns ?? headerGroup.headers).map((headerOrVirtualHeader) => {
-        const header = virtualColumns
-          ? headerGroup.headers[headerOrVirtualHeader.index]
-          : (headerOrVirtualHeader as MRT_Header<TData>);
+      {(virtualColumns ?? headerGroup.headers).map(
+        (headerOrVirtualHeader, headerRenderIndex) => {
+          let header = headerOrVirtualHeader as MRT_Header<TData>;
+          if (columnVirtualizer) {
+            headerRenderIndex = (headerOrVirtualHeader as MRT_VirtualItem)
+              .index;
+            header = headerGroup.headers[headerRenderIndex];
+          }
+          header.renderIndex = headerRenderIndex;
 
-        return (
-          <MRT_TableHeadCell header={header} key={header.id} table={table} />
-        );
-      })}
+          return (
+            <MRT_TableHeadCell
+              columnVirtualizer={columnVirtualizer}
+              header={header}
+              key={header.id}
+              table={table}
+            />
+          );
+        },
+      )}
       {virtualPaddingRight ? (
         <Box component="th" display="flex" w={virtualPaddingRight} />
       ) : null}

@@ -1,7 +1,7 @@
 .root {
   box-sizing: border-box;
   width: 100%;
-  transition: all 100ms ease-in-out;
+  transition: all 150ms ease-in-out;
 
   &[data-selected='true'] {
     background-color: var(--mantine-primary-color-light);
@@ -38,7 +38,7 @@
           var(--mantine-color-white),
           var(--mantine-color-dark-7)
         );
-  
+
         &:before {
           background-color: light-dark(
             var(--mantine-color-dark-light-hover),
@@ -59,7 +59,7 @@
             var(--mantine-color-white),
             var(--mantine-color-dark-7)
           );
-  
+
           &:before {
             background-color: var(--mantine-primary-color-light-hover);
           }

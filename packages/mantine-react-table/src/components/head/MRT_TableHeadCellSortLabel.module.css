@@ -1,15 +1,12 @@
 .sort-icon {
-  transition: all 100ms ease;
+  transition: all 150ms ease;
   --ai-size: var(--ai-size-xs);
   --ai-bg: transparent;
   --ai-hover: light-dark(
     var(--mantine-color-gray-1),
     var(--mantine-color-dark-6)
   );
-  color: light-dark(
-    var(--mantine-color-gray-5),
-    var(--mantine-color-dark-3)
-  );
+  color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-3));
   &[data-sorted] {
     color: var(--mantine-primary-color-filled);
   }

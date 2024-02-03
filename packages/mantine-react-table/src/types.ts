@@ -417,7 +417,6 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
     renderedCellValue: ReactNode | number | string;
     row: MRT_Row<TData>;
     rowRef?: RefObject<HTMLTableRowElement>;
-    staticRowIndex?: number;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   Edit?: (props: {
@@ -638,8 +637,6 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
     column: MRT_Column<TData>;
     internalMenuItems: ReactNode[];
     row: MRT_Row<TData>;
-    staticColumnIndex?: number;
-    staticRowIndex?: number;
     table: MRT_TableInstance<TData>;
   }) => ReactNode[];
   renderColumnActionsMenuItems?: (props: {
@@ -685,6 +682,7 @@ export type MRT_Column<TData extends MRT_RowData, TValue = unknown> = Omit<
   filterFn?: MRT_FilterFn<TData>;
   footer: string;
   header: string;
+  renderIndex?: number;
 };
 
 export type MRT_Header<TData extends MRT_RowData, TValue = unknown> = Omit<
@@ -692,6 +690,7 @@ export type MRT_Header<TData extends MRT_RowData, TValue = unknown> = Omit<
   'column'
 > & {
   column: MRT_Column<TData, TValue>;
+  renderIndex?: number;
 };
 
 export type MRT_HeaderGroup<TData extends MRT_RowData> = Omit<
@@ -708,6 +707,7 @@ export type MRT_Row<TData extends MRT_RowData> = Omit<
   _valuesCache: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
   getAllCells: () => MRT_Cell<TData>[];
   getVisibleCells: () => MRT_Cell<TData>[];
+  renderIndex?: number;
   subRows?: MRT_Row<TData>[];
 };
 
@@ -945,7 +945,6 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineExpandButtonProps?:
     | ((props: {
         row: MRT_Row<TData>;
-        staticRowIndex?: number;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
@@ -1047,7 +1046,6 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineSelectCheckboxProps?:
     | ((props: {
         row: MRT_Row<TData>;
-        staticRowIndex?: number;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> &
         (CheckboxProps | RadioProps | SwitchProps))
@@ -1078,7 +1076,6 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | ((props: {
         isDetailPanel?: boolean;
         row: MRT_Row<TData>;
-        staticRowIndex: number;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLTableRowElement> & TableTrProps)
     | (HTMLPropsRef<HTMLTableRowElement> & TableTrProps);
@@ -1202,8 +1199,6 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     column: MRT_Column<TData>;
     internalMenuItems: ReactNode;
     row: MRT_Row<TData>;
-    staticColumnIndex?: number;
-    staticRowIndex?: number;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderColumnActionsMenuItems?: (props: {
@@ -1241,13 +1236,11 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   }) => ReactNode;
   renderRowActionMenuItems?: (props: {
     row: MRT_Row<TData>;
-    staticRowIndex?: number;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderRowActions?: (props: {
     cell: MRT_Cell<TData, unknown>;
     row: MRT_Row<TData>;
-    staticRowIndex?: number;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderToolbarAlertBannerContent?: (props: {
