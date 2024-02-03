@@ -127,6 +127,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   }
 
   const isEditable =
+    !cell.getIsPlaceholder() &&
     (parseFromValuesOrFunc(enableEditing, row) &&
       parseFromValuesOrFunc(columnDef.enableEditing, row)) !== false;
 

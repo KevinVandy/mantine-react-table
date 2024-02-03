@@ -11,7 +11,7 @@ import {
   Text,
 } from '@mantine/core';
 import '@mantine/core/styles.css';
-import '@mantine/dates/styles.css';
+import '@mantine/dates/styles.css'; //if using mantine component features
 import 'mantine-contextmenu/styles.css';
 import { ContextMenuProvider } from 'mantine-contextmenu';
 

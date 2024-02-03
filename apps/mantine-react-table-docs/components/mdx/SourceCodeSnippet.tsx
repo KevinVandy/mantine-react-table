@@ -6,11 +6,11 @@ import {
   Select,
   Tooltip,
   useMantineColorScheme,
+  Paper,
 } from '@mantine/core';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
 import {
   IconBrandTypescript,
-  IconBrandJavascript,
   IconApi,
   IconBrandGithub,
   IconBolt,
@@ -46,7 +46,6 @@ export interface Props {
   Component?;
   apiCode?: string;
   cssCode?: string;
-  javaScriptCode?: string;
   legacyCode?: string;
   tableId: string;
   typeScriptCode: string;
@@ -57,7 +56,6 @@ export const SourceCodeSnippet = ({
   Component,
   apiCode,
   cssCode,
-  javaScriptCode,
   legacyCode,
   tableId,
   typeScriptCode,
@@ -73,20 +71,6 @@ export const SourceCodeSnippet = ({
     darkDark,
     setDarkDark,
   } = useThemeContext();
-  const [defaultTS, setDefaultTS] = useState(true);
-
-  useEffect(
-    () =>
-      setDefaultTS(
-        localStorage.getItem('defaultTS') === 'true' || !javaScriptCode,
-      ),
-    [javaScriptCode],
-  );
-
-  useEffect(
-    () => localStorage.setItem('defaultTS', defaultTS.toString()),
-    [defaultTS],
-  );
 
   function filterUndefined<TValue>(value: TValue | undefined): value is TValue {
     if (value === null || value === undefined) return false;
@@ -135,9 +119,7 @@ export const SourceCodeSnippet = ({
                     </Button>
                   </a>
                   <a
-                    href={`https://github.com/KevinVandy/mantine-react-table/tree/v2/apps/mantine-react-table-docs/examples/${tableId}/sandbox/src/${
-                      defaultTS ? 'TS.tsx' : 'JS.js'
-                    }`}
+                    href={`https://github.com/KevinVandy/mantine-react-table/tree/v2/apps/mantine-react-table-docs/examples/${tableId}/sandbox/src/TS.tsx`}
                     rel="noopener"
                     target="_blank"
                   >
@@ -157,7 +139,6 @@ export const SourceCodeSnippet = ({
                     <Select
                       aria-label="Select theme shade"
                       data={['1', '2', '3', '4', '5', '6', '7', '8', '9']}
-                      /*Hack for a weird SSG error in which primaryShade is not available (it is undefined) so hydration/compiling breaks*/
                       value={(primaryShade ?? 7).toString()}
                       onChange={(value) => {
                         setPrimaryShade(+(value as string) as MantineShade);
@@ -215,48 +196,50 @@ export const SourceCodeSnippet = ({
           <Component />
         </>
       )}
-      <CodeHighlightTabs
-        code={[
-          {
-            fileName: 'TS',
-            code: typeScriptCode,
-            language: 'tsx',
-            icon: <IconBrandTypescript />,
-          },
-          javaScriptCode
-            ? {
-                fileName: 'JS',
-                code: javaScriptCode,
-                language: 'jsx',
-                icon: <IconBrandJavascript />,
-              }
-            : undefined,
-          cssCode
-            ? {
-                fileName: 'CSS',
-                code: cssCode,
-                language: 'css',
-                icon: <IconBrandCss3 />,
-              }
-            : undefined,
-          legacyCode
-            ? {
-                fileName: 'Legacy',
-                code: legacyCode,
-                language: 'tsx',
-                icon: <IconCode />,
-              }
-            : undefined,
-          apiCode
-            ? {
-                fileName: 'API',
-                code: apiCode,
-                language: 'typescript',
-                icon: <IconApi />,
-              }
-            : undefined,
-        ].filter(filterUndefined)}
-      />
+      <Paper withBorder p="0" style={{ overflow: 'hidden' }}>
+        <CodeHighlightTabs
+          collapseCodeLabel="Show less"
+          defaultExpanded={false}
+          expandCodeLabel="Show full code"
+          maxCollapsedHeight={500}
+          withExpandButton
+          onExpandedChange={(expanded) => {
+            plausible(expanded ? 'expand-code' : 'collapse-code');
+          }}
+          code={[
+            {
+              fileName: 'TS',
+              code: typeScriptCode,
+              language: 'tsx',
+              icon: <IconBrandTypescript />,
+            },
+            cssCode
+              ? {
+                  fileName: 'CSS',
+                  code: cssCode,
+                  language: 'css',
+                  icon: <IconBrandCss3 />,
+                }
+              : undefined,
+            legacyCode
+              ? {
+                  fileName: 'Legacy',
+                  code: legacyCode,
+                  language: 'tsx',
+                  icon: <IconCode />,
+                }
+              : undefined,
+            apiCode
+              ? {
+                  fileName: 'API',
+                  code: apiCode,
+                  language: 'typescript',
+                  icon: <IconApi />,
+                }
+              : undefined,
+          ].filter(filterUndefined)}
+        />
+      </Paper>
     </Box>
   );
 };

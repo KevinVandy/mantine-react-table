@@ -1,9 +1,13 @@
 import '@mantine/core/styles.css';
-import '@mantine/dates/styles.css';
+import '@mantine/dates/styles.css'; //if using mantine component features
 import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
 import { useMemo, useState } from 'react';
-import { MantineReactTable, MRT_ColumnDef, MRT_Row } from 'mantine-react-table';
-import { data as initData, Person } from './makeData';
+import {
+  MantineReactTable,
+  type MRT_ColumnDef,
+  type MRT_Row,
+} from 'mantine-react-table';
+import { data as initData, type Person } from './makeData';
 
 const Example = () => {
   const columns = useMemo<MRT_ColumnDef<Person>[]>(

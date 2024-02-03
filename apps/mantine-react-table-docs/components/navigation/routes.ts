@@ -512,12 +512,12 @@ export const routes: Array<RouteItem> = [
         href: '/docs/guides#action-button---menu-guides',
         items: [
           {
-            href: '/docs/guides/column-actions',
-            label: 'Column Actions (Menu)',
-          },
-          {
             href: '/docs/guides/cell-actions',
             label: 'Cell Actions (Context Menu)',
+          },
+          {
+            href: '/docs/guides/column-actions',
+            label: 'Column Actions (Menu)',
           },
           {
             href: '/docs/guides/row-actions',

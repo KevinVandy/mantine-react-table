@@ -11,18 +11,14 @@ import { IconInfoCircle } from '@tabler/icons-react';
 
 > This is the install guide for `mantine-react-table` **V2** and `@mantine/` packages **V7**. MRT V2 will not work with Mantine V6.
 
-<Alert
-  variant="light"
-  color="orange"
-  icon={<IconInfoCircle />}
->
+<Alert variant="light" color="orange" icon={<IconInfoCircle />}>
   Mantine React Table V2 is still a work in progress, but we are making good
   progress every day.
 </Alert>
 
 ## Installation
 
-> `mantine-react-table` V1\2 requires **Mantine V7.3+** packages as dependencies in your project.
+> `mantine-react-table` V2 requires **Mantine V7.3+** packages as dependencies in your project.
 >
 > If you are already using Mantine, you probably already have most of these peer dependencies installed.
 >
@@ -33,7 +29,8 @@ import { IconInfoCircle } from '@tabler/icons-react';
 > 3.  `@mantine/dates` (^v7.3+)
 > 4.  `@tabler/icons-react` (2.23.0+)
 > 5.  `dayjs` (v1.11+)
-> 6.  `react` and `react-dom` (v18)
+> 6.  `clsx` (v2+)
+> 7.  `react` and `react-dom` (v18)
 
 ### Quick Install
 
@@ -108,7 +105,7 @@ After you install mantine-react-table, you will need to import the CSS styles fr
 
 ```js
 import '@mantine/core/styles.css'; //import Mantine V7 styles needed by MRT
-import '@mantine/dates/styles.css';
+import '@mantine/dates/styles.css'; //if using mantine component features
 import 'mantine-react-table/styles.css'; //import MRT styles
 ```
 
