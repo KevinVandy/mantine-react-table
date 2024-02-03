@@ -15,7 +15,7 @@
     "@tabler/icons-react": "2.47.0",
     "dayjs": "^1.11.10",
     "export-to-csv": "^1.2.2",
-    "mantine-react-table": "^2.0.0-alpha.14",
+    "mantine-react-table": "^2.0.0-alpha.15",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
