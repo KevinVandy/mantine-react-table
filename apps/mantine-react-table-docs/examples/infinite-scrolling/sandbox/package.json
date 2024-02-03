@@ -12,15 +12,15 @@
     "@mantine/core": "^7.5.1",
     "@mantine/dates": "^7.5.1",
     "@mantine/hooks": "^7.5.1",
-    "@tabler/icons-react": "2.46.0",
-    "@tanstack/react-query": "^5.18.0",
+    "@tabler/icons-react": "2.47.0",
+    "@tanstack/react-query": "^5.18.1",
     "dayjs": "^1.11.10",
     "mantine-react-table": "^2.0.0-alpha.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.51",
+    "@types/react": "^18.2.52",
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
     "postcss": "^8.4.33",
