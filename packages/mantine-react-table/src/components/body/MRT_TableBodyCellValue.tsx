@@ -12,11 +12,15 @@ const allowedFilterVariants = ['text', 'autocomplete'];
 
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
   cell: MRT_Cell<TData, TValue>;
+  renderedColumnIndex?: number;
+  renderedRowIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TableBodyCellValue = <TData extends MRT_RowData>({
   cell,
+  renderedColumnIndex = 0,
+  renderedRowIndex = 0,
   table,
 }: Props<TData>) => {
   const {
@@ -93,6 +97,8 @@ export const MRT_TableBodyCellValue = <TData extends MRT_RowData>({
       cell,
       column,
       renderedCellValue,
+      renderedColumnIndex,
+      renderedRowIndex,
       row,
       table,
     });

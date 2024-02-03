@@ -115,6 +115,7 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
         {...textFieldProps}
         className={clsx(
           'mrt-global-filter-text-input',
+          classes.root,
           textFieldProps?.className,
         )}
         ref={(node) => {

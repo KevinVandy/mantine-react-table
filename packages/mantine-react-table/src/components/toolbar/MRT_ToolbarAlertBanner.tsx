@@ -1,7 +1,15 @@
 import clsx from 'clsx';
 import classes from './MRT_ToolbarAlertBanner.module.css';
 import { Fragment, useMemo } from 'react';
-import { ActionIcon, Alert, Badge, Collapse, Flex, Stack } from '@mantine/core';
+import {
+  ActionIcon,
+  Alert,
+  Badge,
+  Button,
+  Collapse,
+  Flex,
+  Stack,
+} from '@mantine/core';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_SelectCheckbox } from '../inputs/MRT_SelectCheckbox';
@@ -16,6 +24,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
   table,
 }: Props<TData>) => {
   const {
+    getFilteredSelectedRowModel,
     getPrePaginationRowModel,
     getState,
     options: {
@@ -25,6 +34,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
       localization,
       mantineToolbarAlertBannerBadgeProps,
       mantineToolbarAlertBannerProps,
+      manualPagination,
       positionToolbarAlertBanner,
       renderToolbarAlertBannerContent,
       rowCount,
@@ -40,19 +50,30 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
     { table },
   );
 
+  const totalRowCount = rowCount ?? getPrePaginationRowModel().rows.length;
+
   const selectedRowCount = useMemo(
-    () => Object.values(rowSelection).filter(Boolean).length,
-    [rowSelection],
+    () =>
+      manualPagination
+        ? Object.values(rowSelection).filter(Boolean).length
+        : getFilteredSelectedRowModel().rows.length,
+    [rowSelection, totalRowCount, manualPagination],
   );
 
-  const selectedAlert = selectedRowCount
-    ? localization.selectedCountOfRowCountRowsSelected
+  const selectedAlert = selectedRowCount ? (
+    <Flex align="center" gap="sm">
+      {localization.selectedCountOfRowCountRowsSelected
         ?.replace('{selectedCount}', selectedRowCount.toString())
-        ?.replace(
-          '{rowCount}',
-          (rowCount ?? getPrePaginationRowModel().rows.length).toString(),
-        )
-    : null;
+        ?.replace('{rowCount}', totalRowCount.toString())}
+      <Button
+        onClick={() => table.toggleAllRowsSelected(false)}
+        size="compact-xs"
+        variant="subtle"
+      >
+        {localization.clearSelection}
+      </Button>
+    </Flex>
+  ) : null;
 
   const groupedAlert =
     grouping.length > 0 ? (

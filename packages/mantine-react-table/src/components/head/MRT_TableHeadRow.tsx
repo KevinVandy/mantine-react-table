@@ -51,20 +51,20 @@ export const MRT_TableHeadRow = <TData extends MRT_RowData>({
         <Box component="th" display="flex" w={virtualPaddingLeft} />
       ) : null}
       {(virtualColumns ?? headerGroup.headers).map(
-        (headerOrVirtualHeader, headerRenderIndex) => {
+        (headerOrVirtualHeader, renderedHeaderIndex) => {
           let header = headerOrVirtualHeader as MRT_Header<TData>;
           if (columnVirtualizer) {
-            headerRenderIndex = (headerOrVirtualHeader as MRT_VirtualItem)
+            renderedHeaderIndex = (headerOrVirtualHeader as MRT_VirtualItem)
               .index;
-            header = headerGroup.headers[headerRenderIndex];
+            header = headerGroup.headers[renderedHeaderIndex];
           }
-          header.renderIndex = headerRenderIndex;
 
           return (
             <MRT_TableHeadCell
               columnVirtualizer={columnVirtualizer}
               header={header}
               key={header.id}
+              renderedHeaderIndex={renderedHeaderIndex}
               table={table}
             />
           );

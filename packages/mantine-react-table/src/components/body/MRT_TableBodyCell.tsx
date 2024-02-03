@@ -35,6 +35,8 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
   cell: MRT_Cell<TData, TValue>;
   isStriped?: 'even' | 'odd' | boolean;
   numRows?: number;
+  renderedColumnIndex?: number;
+  renderedRowIndex?: number;
   rowRef: RefObject<HTMLTableRowElement>;
   table: MRT_TableInstance<TData>;
   virtualCell?: MRT_VirtualItem;
@@ -44,6 +46,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   cell,
   isStriped,
   numRows,
+  renderedColumnIndex = 0,
+  renderedRowIndex = 0,
   rowRef,
   table,
   virtualCell,
@@ -84,11 +88,17 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     showSkeletons,
   } = getState();
   const { column, row } = cell;
-  const { columnDef, renderIndex: columnRenderIndex = 0 } = column;
+  const { columnDef } = column;
   const { columnDefType } = columnDef;
-  const { renderIndex: rowRenderIndex = 0 } = row;
 
-  const args = { cell, column, row, table };
+  const args = {
+    cell,
+    column,
+    renderedColumnIndex,
+    renderedRowIndex,
+    row,
+    table,
+  };
   const tableCellProps = {
     ...parseFromValuesOrFunc(mantineTableBodyCellProps, args),
     ...parseFromValuesOrFunc(columnDef.mantineTableBodyCellProps, args),
@@ -178,12 +188,14 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
 
   const cellValueProps = {
     cell,
+    renderedColumnIndex,
+    renderedRowIndex,
     table,
   };
 
   return (
     <TableTd
-      data-index={columnRenderIndex}
+      data-index={renderedColumnIndex}
       data-pinned={!!isColumnPinned || undefined}
       {...tableCellProps}
       __vars={{
@@ -243,7 +255,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           classes['hovered-row'],
         getIsFirstColumn(column, table) && classes['first-column'],
         getIsLastColumn(column, table) && classes['last-column'],
-        numRows && rowRenderIndex === numRows - 1 && classes['last-row'],
+        numRows && renderedRowIndex === numRows - 1 && classes['last-row'],
         tableCellProps?.className,
       )}
       onDoubleClick={handleDoubleClick}
@@ -268,6 +280,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
               cell,
               column,
               renderedCellValue: cell.renderValue() as any,
+              renderedColumnIndex,
+              renderedRowIndex,
               row,
               rowRef,
               table,

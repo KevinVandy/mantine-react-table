@@ -13,6 +13,7 @@ import { parseFromValuesOrFunc } from '../../utils/utils';
 
 interface Props<TData extends MRT_RowData> extends TableTdProps {
   parentRowRef: RefObject<HTMLTableRowElement>;
+  renderedRowIndex?: number;
   row: MRT_Row<TData>;
   rowVirtualizer?: MRT_RowVirtualizer;
   table: MRT_TableInstance<TData>;
@@ -21,6 +22,7 @@ interface Props<TData extends MRT_RowData> extends TableTdProps {
 
 export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
   parentRowRef,
+  renderedRowIndex = 0,
   row,
   rowVirtualizer,
   table,
@@ -39,7 +41,6 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
     },
   } = table;
   const { isLoading } = getState();
-  const { renderIndex: rowRenderIndex = 0 } = row;
 
   const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
     isDetailPanel: true,
@@ -60,7 +61,9 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
 
   return (
     <TableTr
-      data-index={renderDetailPanel ? rowRenderIndex * 2 + 1 : rowRenderIndex}
+      data-index={
+        renderDetailPanel ? renderedRowIndex * 2 + 1 : renderedRowIndex
+      }
       ref={(node: HTMLTableRowElement) => {
         if (node) {
           rowVirtualizer?.measureElement?.(node);

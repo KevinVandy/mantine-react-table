@@ -173,6 +173,7 @@ export interface MRT_Localization {
   changeSearchMode: string;
   clearFilter: string;
   clearSearch: string;
+  clearSelection: string;
   clearSort: string;
   clickToCopy: string;
   collapse: string;
@@ -310,6 +311,7 @@ export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
     bottomToolbarRef: MutableRefObject<HTMLDivElement | null>;
     editInputRefs: MutableRefObject<Record<string, HTMLInputElement>>;
     filterInputRefs: MutableRefObject<Record<string, HTMLInputElement>>;
+    lastSelectedRowId: MutableRefObject<null | string>;
     searchInputRef: MutableRefObject<HTMLInputElement | null>;
     tableContainerRef: MutableRefObject<HTMLDivElement | null>;
     tableFooterRef: MutableRefObject<HTMLTableSectionElement | null>;
@@ -415,6 +417,8 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
     cell: MRT_Cell<TData, TValue>;
     column: MRT_Column<TData, TValue>;
     renderedCellValue: ReactNode | number | string;
+    renderedColumnIndex?: number;
+    renderedRowIndex?: number;
     row: MRT_Row<TData>;
     rowRef?: RefObject<HTMLTableRowElement>;
     table: MRT_TableInstance<TData>;
@@ -616,6 +620,7 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
     | ((props: {
         cell: MRT_Cell<TData, TValue>;
         column: MRT_Column<TData, TValue>;
+        renderedRowIndex?: number;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLTableCellElement> & TableTdProps & ColumnAlignment)
@@ -632,13 +637,6 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = Omit<
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLTableCellElement> & TableThProps & ColumnAlignment)
     | (HTMLPropsRef<HTMLTableCellElement> & TableThProps & ColumnAlignment);
-  renderCellActionMenuItems?: (props: {
-    cell: MRT_Cell<TData>;
-    column: MRT_Column<TData>;
-    internalMenuItems: ReactNode[];
-    row: MRT_Row<TData>;
-    table: MRT_TableInstance<TData>;
-  }) => ReactNode[];
   renderColumnActionsMenuItems?: (props: {
     column: MRT_Column<TData, TValue>;
     internalColumnMenuItems: ReactNode;
@@ -682,7 +680,6 @@ export type MRT_Column<TData extends MRT_RowData, TValue = unknown> = Omit<
   filterFn?: MRT_FilterFn<TData>;
   footer: string;
   header: string;
-  renderIndex?: number;
 };
 
 export type MRT_Header<TData extends MRT_RowData, TValue = unknown> = Omit<
@@ -690,7 +687,6 @@ export type MRT_Header<TData extends MRT_RowData, TValue = unknown> = Omit<
   'column'
 > & {
   column: MRT_Column<TData, TValue>;
-  renderIndex?: number;
 };
 
 export type MRT_HeaderGroup<TData extends MRT_RowData> = Omit<
@@ -707,7 +703,6 @@ export type MRT_Row<TData extends MRT_RowData> = Omit<
   _valuesCache: Record<LiteralUnion<string & DeepKeys<TData>>, any>;
   getAllCells: () => MRT_Cell<TData>[];
   getVisibleCells: () => MRT_Cell<TData>[];
-  renderIndex?: number;
   subRows?: MRT_Row<TData>[];
 };
 
@@ -828,6 +823,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     [key in MRT_DisplayColumnIds]: Partial<MRT_DisplayColumnDef<TData>>;
   }>;
   editDisplayMode?: 'cell' | 'custom' | 'modal' | 'row' | 'table';
+  enableBatchRowSelection?: boolean;
   enableBottomToolbar?: boolean;
   enableClickToCopy?: ((cell: MRT_Cell<TData>) => boolean) | boolean;
   enableColumnActions?: boolean;
@@ -944,6 +940,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
   mantineExpandButtonProps?:
     | ((props: {
+        renderedRowIndex?: number;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
@@ -1045,6 +1042,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
         (CheckboxProps | RadioProps | SwitchProps));
   mantineSelectCheckboxProps?:
     | ((props: {
+        renderedRowIndex?: number;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> &
@@ -1063,6 +1061,8 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     | ((props: {
         cell: MRT_Cell<TData, unknown>;
         column: MRT_Column<TData, unknown>;
+        renderedColumnIndex?: number;
+        renderedRowIndex?: number;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLTableCellElement> & TableTdProps & ColumnAlignment)
@@ -1075,6 +1075,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   mantineTableBodyRowProps?:
     | ((props: {
         isDetailPanel?: boolean;
+        renderedRowIndex?: number;
         row: MRT_Row<TData>;
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLTableRowElement> & TableTrProps)
@@ -1194,13 +1195,6 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   renderBottomToolbarCustomActions?: (props: {
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
-  renderCellActionMenuItems?: (props: {
-    cell: MRT_Cell<TData>;
-    column: MRT_Column<TData>;
-    internalMenuItems: ReactNode;
-    row: MRT_Row<TData>;
-    table: MRT_TableInstance<TData>;
-  }) => ReactNode;
   renderColumnActionsMenuItems?: (props: {
     column: MRT_Column<TData, unknown>;
     internalColumnMenuItems: ReactNode;
@@ -1235,11 +1229,13 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderRowActionMenuItems?: (props: {
+    renderedRowIndex?: number;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;
   renderRowActions?: (props: {
     cell: MRT_Cell<TData, unknown>;
+    renderedRowIndex?: number;
     row: MRT_Row<TData>;
     table: MRT_TableInstance<TData>;
   }) => ReactNode;

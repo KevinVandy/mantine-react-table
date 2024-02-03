@@ -217,6 +217,16 @@ export const tableOptions: TableOption[] = [
     type: "'modal' | 'row' | 'cell' | 'table' | 'custom'",
   },
   {
+    tableOption: 'enableBatchRowSelection',
+    defaultValue: 'true',
+    description: '',
+    link: '/docs/guides/row-selection#batch-row-selection',
+    linkText: 'MRT Row Selection Docs',
+    required: false,
+    source: 'MRT',
+    type: 'boolean',
+  },
+  {
     tableOption: 'enableBottomToolbar',
     defaultValue: 'true',
     description: '',

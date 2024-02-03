@@ -256,12 +256,12 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
         <Menu.Target>
           <ActionIcon
             aria-label={localization.columnActions}
-            {...actionIconProps}
             color="gray"
             size="sm"
             variant="subtle"
+            {...actionIconProps}
           >
-            <IconDotsVertical />
+            <IconDotsVertical size="100%" />
           </ActionIcon>
         </Menu.Target>
       </Tooltip>

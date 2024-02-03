@@ -4,6 +4,7 @@ import {
   type MRT_ColumnDef,
   MRT_SelectCheckbox,
   MantineReactTable,
+  getMRT_RowSelectionHandler,
 } from '../../src';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
@@ -41,7 +42,22 @@ const data = [...Array(15)].map(() => ({
 }));
 
 export const SelectionEnabled = () => (
-  <MantineReactTable columns={columns} data={data} enableRowSelection />
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowNumbers
+    enableRowSelection
+  />
+);
+
+export const BatchSelectionDisabled = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableBatchRowSelection={false}
+    enableRowNumbers
+    enableRowSelection
+  />
 );
 
 export const SelectionEnabledConditionally = () => (
@@ -52,15 +68,35 @@ export const SelectionEnabledConditionally = () => (
   />
 );
 
+export const SelectionEnabledConditionallyWithInitial = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowSelection={(row) => row.original.age >= 21}
+    initialState={{
+      rowSelection: {
+        1: true,
+        2: true,
+        3: true,
+        4: true,
+        5: true,
+        6: true,
+      },
+    }}
+  />
+);
+
 export const SelectionEnabledWithRowClick = () => (
   <MantineReactTable
     columns={columns}
     data={data}
     enableRowSelection
-    mantineTableBodyRowProps={({ row }) => ({
-      onClick: row.getToggleSelectedHandler(),
+    mantineTableBodyRowProps={({ renderedRowIndex, row, table }) => ({
+      onClick: (event) =>
+        getMRT_RowSelectionHandler()({ event, renderedRowIndex, row, table }),
       style: {
         cursor: 'pointer',
+        userSelect: 'none',
       },
     })}
   />

@@ -30,12 +30,14 @@ import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 interface Props<TData extends MRT_RowData> {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   header: MRT_Header<TData>;
+  renderedHeaderIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   columnVirtualizer,
   header,
+  renderedHeaderIndex = 0,
   table,
 }: Props<TData>) => {
   const direction = useDirection();
@@ -59,7 +61,7 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   } = table;
   const { columnSizingInfo, density, draggingColumn, grouping, hoveredColumn } =
     getState();
-  const { column, renderIndex: headerRenderIndex } = header;
+  const { column } = header;
   const { columnDef } = column;
   const { columnDefType } = columnDef;
 
@@ -134,7 +136,7 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   return (
     <TableTh
       colSpan={header.colSpan}
-      data-index={headerRenderIndex}
+      data-index={renderedHeaderIndex}
       data-pinned={!!isColumnPinned || undefined}
       {...tableCellProps}
       __vars={{

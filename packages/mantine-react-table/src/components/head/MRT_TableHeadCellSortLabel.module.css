@@ -6,10 +6,11 @@
     var(--mantine-color-gray-1),
     var(--mantine-color-dark-6)
   );
-  color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-3));
+  color: var(--mantine-color-bright);
   &[data-sorted] {
     color: var(--mantine-primary-color-filled);
   }
+  margin-left: 1px;
 }
 
 .multi-sort-indicator {

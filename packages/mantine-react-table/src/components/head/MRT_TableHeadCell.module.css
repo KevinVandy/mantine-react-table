@@ -11,6 +11,7 @@
   font-weight: bold;
   overflow: visible;
   padding: calc(var(--mrt-table-head-cell-padding) * 1px);
+  padding-bottom: calc(var(--mrt-table-head-cell-padding) * 2 / 3 * 1px);
   vertical-align: top;
   z-index: var(--mrt-table-head-cell-z-index);
 
@@ -18,6 +19,10 @@
     var(--mantine-color-white),
     var(--mantine-color-dark-7)
   );
+
+  :global(.mantine-ActionIcon-root) {
+    opacity: 0.5;
+  }
 
   @mixin hover {
     :global(.mantine-ActionIcon-root) {
@@ -147,5 +152,5 @@
   align-items: center;
   align-self: center;
   white-space: nowrap;
-  margin-left: 0.3em;
+  margin-left: 2px;
 }

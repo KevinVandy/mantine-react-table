@@ -33,6 +33,15 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
       ? localization.sortByColumnDesc.replace('{column}', columnDef.header)
       : localization.sortByColumnAsc.replace('{column}', columnDef.header);
 
+  const SortIcon =
+    sorted === 'desc' ? (
+      <IconSortDescending size="100%" />
+    ) : sorted === 'asc' ? (
+      <IconSortAscending size="100%" />
+    ) : (
+      <IconArrowsSort size="100%" />
+    );
+
   return (
     <Tooltip label={sortTooltip} openDelay={1000} withinPortal>
       {sorting.length < 2 || sortIndex === -1 ? (
@@ -41,13 +50,7 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
           className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
           {...dataVariable('sorted', sorted)}
         >
-          {sorted === 'desc' ? (
-            <IconSortDescending />
-          ) : sorted === 'asc' ? (
-            <IconSortAscending />
-          ) : (
-            <IconArrowsSort />
-          )}
+          {SortIcon}
         </ActionIcon>
       ) : (
         <Indicator
@@ -64,13 +67,7 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
             className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
             {...dataVariable('sorted', sorted)}
           >
-            {sorted === 'desc' ? (
-              <IconSortDescending />
-            ) : sorted === 'asc' ? (
-              <IconSortAscending />
-            ) : (
-              <IconArrowsSort />
-            )}
+            {SortIcon}
           </ActionIcon>
         </Indicator>
       )}

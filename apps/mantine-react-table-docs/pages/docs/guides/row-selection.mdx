@@ -24,6 +24,7 @@ Mantine React Table has a built-in row-selection feature and makes it easy to ma
 <TableOptionsTable
   onlyOptions={
     new Set([
+      'enableBatchRowSelection',
       'enableMultiRowSelection',
       'enableRowSelection',
       'enableSelectAll',
@@ -49,6 +50,19 @@ Selection checkboxes can be enabled with the `enableRowSelection` table option.
 
 ```jsx
 const table = useMantineReactTable({ columns, data, enableRowSelection: true });
+```
+
+### Batch Row Selection
+
+By default, when the user holds down the <kbd>Shift</kbd> key and clicks a row, all rows between the last selected row and the clicked row will be selected. This can be disabled with the `enableBatchRowSelection` table option.
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  enableRowSelection: true,
+  enableBatchRowSelection: false, //disable batch row selection with shift key
+});
 ```
 
 #### Enable Row Selection Conditionally Per Row

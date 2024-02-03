@@ -22,6 +22,7 @@ interface Props<TData extends MRT_RowData> {
   isStriped?: 'even' | 'odd' | boolean;
   numRows?: number;
   pinnedRowIds?: string[];
+  renderedRowIndex?: number;
   row: MRT_Row<TData>;
   rowVirtualizer?: MRT_RowVirtualizer;
   table: MRT_TableInstance<TData>;
@@ -34,6 +35,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   isStriped,
   numRows,
   pinnedRowIds,
+  renderedRowIndex = 0,
   row,
   rowVirtualizer,
   table,
@@ -55,7 +57,6 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
     refs: { tableFooterRef, tableHeadRef },
     setHoveredRow,
   } = table;
-  const { renderIndex: rowRenderIndex = 0 } = row;
   const {
     density,
     draggingColumn,
@@ -78,6 +79,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   const isHoveredRow = hoveredRow?.id === row.id;
 
   const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
+    renderedRowIndex,
     row,
     table,
   });
@@ -119,7 +121,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   return (
     <>
       <TableTr
-        data-index={renderDetailPanel ? rowRenderIndex * 2 : rowRenderIndex}
+        data-index={renderDetailPanel ? renderedRowIndex * 2 : renderedRowIndex}
         data-pinned={!!isRowPinned || undefined}
         data-selected={isRowSelected || undefined}
         onDragEnter={handleDragEnter}
@@ -179,17 +181,19 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
           <Box component="td" display="flex" w={virtualPaddingLeft} />
         ) : null}
         {(virtualColumns ?? row.getVisibleCells()).map(
-          (cellOrVirtualCell, columnRenderIndex) => {
+          (cellOrVirtualCell, renderedColumnIndex) => {
             let cell = cellOrVirtualCell as MRT_Cell<TData>;
             if (columnVirtualizer) {
-              columnRenderIndex = (cellOrVirtualCell as MRT_VirtualItem).index;
-              cell = visibleCells[columnRenderIndex];
+              renderedColumnIndex = (cellOrVirtualCell as MRT_VirtualItem)
+                .index;
+              cell = visibleCells[renderedColumnIndex];
             }
-            cell.column.renderIndex = columnRenderIndex;
             const cellProps = {
               cell,
               isStriped,
               numRows,
+              renderedColumnIndex,
+              renderedRowIndex,
               rowRef,
               table,
               virtualCell: columnVirtualizer

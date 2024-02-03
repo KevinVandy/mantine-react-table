@@ -14,9 +14,9 @@ export const getMRT_RowNumbersColumnDef = <TData extends MRT_RowData>(
   } = tableOptions.state;
 
   return {
-    Cell: ({ row }) =>
+    Cell: ({ renderedRowIndex = 0, row }) =>
       ((rowNumberDisplayMode === 'static'
-        ? (row.renderIndex || 0) + (pageSize || 0) * (pageIndex || 0)
+        ? renderedRowIndex + pageSize * pageIndex
         : row.index) ?? 0) + 1,
     Header: () => localization.rowNumber,
     grow: false,

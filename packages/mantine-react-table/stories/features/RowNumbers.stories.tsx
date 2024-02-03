@@ -53,7 +53,6 @@ export const enableRowNumbersStatic = () => (
     columns={columns}
     data={data}
     enableRowNumbers
-    enableRowVirtualization
     rowNumberDisplayMode="static"
   />
 );

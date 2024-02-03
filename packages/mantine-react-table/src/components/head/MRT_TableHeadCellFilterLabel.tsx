@@ -121,7 +121,7 @@ export const MRT_TableHeadCellFilterLabel = <TData extends MRT_RowData>({
                     }, 100);
                   }}
                 >
-                  <IconFilter />
+                  <IconFilter size="100%" />
                 </ActionIcon>
               </Tooltip>
             </Popover.Target>

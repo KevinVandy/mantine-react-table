@@ -53,6 +53,7 @@ import { useMRT_Effects } from './useMRT_Effects';
 export const useMRT_TableInstance = <TData extends MRT_RowData>(
   definedTableOptions: MRT_DefinedTableOptions<TData>,
 ): MRT_TableInstance<TData> => {
+  const lastSelectedRowId = useRef<null | string>(null);
   const bottomToolbarRef = useRef<HTMLDivElement>(null);
   const editInputRefs = useRef<Record<string, HTMLInputElement>>({});
   const filterInputRefs = useRef<Record<string, HTMLInputElement>>({});
@@ -81,7 +82,6 @@ export const useMRT_TableInstance = <TData extends MRT_RowData>(
   }, []);
 
   definedTableOptions.initialState = initialState;
-
 
   const [creatingRow, _setCreatingRow] = useState<MRT_Row<TData> | null>(
     initialState.creatingRow ?? null,
@@ -256,6 +256,7 @@ export const useMRT_TableInstance = <TData extends MRT_RowData>(
     bottomToolbarRef,
     editInputRefs,
     filterInputRefs,
+    lastSelectedRowId,
     searchInputRef,
     tableContainerRef,
     tableFooterRef,
@@ -264,7 +265,6 @@ export const useMRT_TableInstance = <TData extends MRT_RowData>(
     tablePaperRef,
     topToolbarRef,
   };
-
 
   table.setCreatingRow = (row: MRT_Updater<MRT_Row<TData> | null | true>) => {
     let _row = row;

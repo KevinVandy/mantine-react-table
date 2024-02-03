@@ -13,15 +13,20 @@ import {
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
-import { getIsRowSelected } from '../../utils/row.utils';
+import {
+  getIsRowSelected,
+  getMRT_RowSelectionHandler,
+} from '../../utils/row.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
 interface Props<TData extends MRT_RowData> extends CheckboxProps {
+  renderedRowIndex?: number;
   row?: MRT_Row<TData>;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
+  renderedRowIndex = 0,
   row,
   table,
   ...rest
@@ -42,6 +47,19 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
   const { density, isLoading } = getState();
 
   const selectAll = !row;
+  
+  const isStickySelection =
+    enableRowPinning && rowPinningDisplayMode?.includes('select');
+
+  const allRowsSelected = selectAll
+    ? selectAllMode === 'page'
+      ? table.getIsAllPageRowsSelected()
+      : table.getIsAllRowsSelected()
+    : undefined;
+
+  const isChecked = selectAll
+    ? allRowsSelected
+    : getIsRowSelected({ row, table });
 
   const checkboxProps = {
     ...(selectAll
@@ -53,34 +71,7 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
     ...rest,
   };
 
-  const isStickySelection =
-    enableRowPinning && rowPinningDisplayMode?.includes('select');
-
-  const allRowsSelected = selectAll
-    ? selectAllMode === 'page'
-      ? table.getIsAllPageRowsSelected()
-      : table.getIsAllRowsSelected()
-    : undefined;
-
-  const onSelectionChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    row: MRT_Row<TData>,
-  ) => {
-    if (row.getIsAllSubRowsSelected()) {
-      row.subRows?.forEach((r) => r.toggleSelected(false));
-    }
-    row.getToggleSelectedHandler()(event);
-
-    if (isStickySelection) {
-      row.pin(
-        !row.getIsPinned() && event.target.checked
-          ? rowPinningDisplayMode?.includes('bottom')
-            ? 'bottom'
-            : 'top'
-          : false,
-      );
-    }
-  };
+  const onSelectionChange = getMRT_RowSelectionHandler();
 
   const onSelectAllChange = (event: ChangeEvent<HTMLInputElement>) => {
     selectAllMode === 'all'
@@ -95,11 +86,13 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
     'aria-label': selectAll
       ? localization.toggleSelectAll
       : localization.toggleSelectRow,
-    checked: selectAll ? allRowsSelected : getIsRowSelected({ row, table }),
+    checked: isChecked,
     disabled: isLoading || (row && !row.getCanSelect()),
     onChange: (event) => {
       event.stopPropagation();
-      row ? onSelectionChange(event, row) : onSelectAllChange(event);
+      row
+        ? onSelectionChange({ event, renderedRowIndex, row, table })
+        : onSelectAllChange(event);
     },
     size: density === 'xs' ? 'sm' : 'md',
     ...checkboxProps,
