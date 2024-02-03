@@ -77,12 +77,12 @@ const Example = () => {
         withColumnBorders
         m="0"
       >
-        {/* Use your own markup, customize however you want using the power of TanStack Table */}
-        <thead>
+        {/* Use your own markup or stock Mantine components, customize however you want using the power of TanStack Table */}
+        <Table.Thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <Table.Tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>
+                <Table.Th key={header.id}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -90,22 +90,22 @@ const Example = () => {
                           header.column.columnDef.header,
                         header.getContext(),
                       )}
-                </th>
+                </Table.Th>
               ))}
-            </tr>
+            </Table.Tr>
           ))}
-        </thead>
-        <tbody>
+        </Table.Thead>
+        <Table.Tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <Table.Tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
+                <Table.Td key={cell.id}>
                   <MRT_TableBodyCellValue cell={cell} table={table} />
-                </td>
+                </Table.Td>
               ))}
-            </tr>
+            </Table.Tr>
           ))}
-        </tbody>
+        </Table.Tbody>
       </Table>
       <MRT_ToolbarAlertBanner stackAlertBanner table={table} />
     </Stack>

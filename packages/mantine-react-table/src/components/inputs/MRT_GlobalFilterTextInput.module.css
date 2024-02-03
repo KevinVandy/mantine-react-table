@@ -1,12 +1,8 @@
-.root {
-  min-width: 250px;
-}
-
 .collapse {
   & > div {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 4px;
     flex-wrap: nowrap;
   }
 }

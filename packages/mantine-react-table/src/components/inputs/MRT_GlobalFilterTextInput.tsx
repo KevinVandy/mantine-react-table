@@ -90,6 +90,7 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
       )}
       <TextInput
         leftSection={!enableGlobalFilterModes && <IconSearch />}
+        miw={250}
         mt={0}
         onChange={(event) => setSearchValue(event.target.value)}
         placeholder={localization.search}
@@ -114,7 +115,6 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
         {...textFieldProps}
         className={clsx(
           'mrt-global-filter-text-input',
-          classes.root,
           textFieldProps?.className,
         )}
         ref={(node) => {
