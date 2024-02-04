@@ -1,7 +1,12 @@
 import clsx from 'clsx';
 import classes from './MRT_CopyButton.module.css';
 import { type ReactNode } from 'react';
-import { CopyButton, Tooltip, UnstyledButton } from '@mantine/core';
+import {
+  CopyButton,
+  Tooltip,
+  UnstyledButton,
+  type UnstyledButtonProps,
+} from '@mantine/core';
 import {
   type MRT_Cell,
   type MRT_CellValue,
@@ -10,7 +15,8 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
+  extends UnstyledButtonProps {
   cell: MRT_Cell<TData, TValue>;
   children: ReactNode;
   table: MRT_TableInstance<TData>;
@@ -20,6 +26,7 @@ export const MRT_CopyButton = <TData extends MRT_RowData>({
   cell,
   children,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     options: {
@@ -34,6 +41,7 @@ export const MRT_CopyButton = <TData extends MRT_RowData>({
   const buttonProps = {
     ...parseFromValuesOrFunc(mantineCopyButtonProps, arg),
     ...parseFromValuesOrFunc(columnDef.mantineCopyButtonProps, arg),
+    ...rest,
   };
 
   return (

@@ -1,12 +1,12 @@
 import { type MouseEvent } from 'react';
-import { ActionIcon, Menu, Tooltip } from '@mantine/core';
+import { ActionIcon, type ActionIconProps, Menu, Tooltip } from '@mantine/core';
 import {
   type MRT_Row,
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends ActionIconProps {
   handleEdit: (event: MouseEvent) => void;
   row: MRT_Row<TData>;
   table: MRT_TableInstance<TData>;
@@ -16,6 +16,7 @@ export const MRT_RowActionMenu = <TData extends MRT_RowData>({
   handleEdit,
   row,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     options: {
@@ -48,6 +49,7 @@ export const MRT_RowActionMenu = <TData extends MRT_RowData>({
             onClick={(event) => event.stopPropagation()}
             size="sm"
             variant="subtle"
+            {...rest}
           >
             <IconDots />
           </ActionIcon>

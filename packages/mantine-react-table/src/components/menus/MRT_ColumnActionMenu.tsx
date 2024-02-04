@@ -1,5 +1,5 @@
 import classes from './MRT_ColumnActionMenu.module.css';
-import { ActionIcon, Menu, Tooltip } from '@mantine/core';
+import { ActionIcon, Menu, type MenuProps, Tooltip } from '@mantine/core';
 import {
   type MRT_Header,
   type MRT_RowData,
@@ -7,7 +7,7 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends MenuProps {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
@@ -15,6 +15,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
   header,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -247,7 +248,7 @@ export const MRT_ColumnActionMenu = <TData extends MRT_RowData>({
   );
 
   return (
-    <Menu closeOnItemClick position="bottom-start" withinPortal>
+    <Menu closeOnItemClick position="bottom-start" withinPortal {...rest}>
       <Tooltip
         label={actionIconProps?.title ?? localization.columnActions}
         openDelay={1000}

@@ -9,7 +9,7 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends RangeSliderProps {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
@@ -17,6 +17,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_FilterRangeSlider = <TData extends MRT_RowData>({
   header,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     options: { mantineFilterRangeSliderProps },
@@ -29,6 +30,7 @@ export const MRT_FilterRangeSlider = <TData extends MRT_RowData>({
   const rangeSliderProps = {
     ...parseFromValuesOrFunc(mantineFilterRangeSliderProps, arg),
     ...parseFromValuesOrFunc(columnDef.mantineFilterRangeSliderProps, arg),
+    ...rest,
   } as RangeSliderProps;
 
   let [min, max] =

@@ -2,14 +2,13 @@ import clsx from 'clsx';
 import classes from './MRT_ColumnPinningButtons.module.css';
 import { ActionIcon, Flex, Tooltip } from '@mantine/core';
 import {
-  type MRT_CellValue,
   type MRT_Column,
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
 
-interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
-  column: MRT_Column<TData, TValue>;
+interface Props<TData extends MRT_RowData> {
+  column: MRT_Column<TData>;
   table: MRT_TableInstance<TData>;
 }
 

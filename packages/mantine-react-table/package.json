@@ -61,7 +61,7 @@
     }
   ],
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "scripts": {
     "build": "pnpm lib:build",
@@ -98,9 +98,9 @@
     "@storybook/react": "^7.6.12",
     "@storybook/react-vite": "^7.6.12",
     "@storybook/testing-library": "^0.2.2",
-    "@tabler/icons-react": "2.46.0",
+    "@tabler/icons-react": "2.47.0",
     "@types/node": "^20.11.16",
-    "@types/react": "^18.2.51",
+    "@types/react": "^18.2.52",
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",
@@ -132,9 +132,9 @@
     "vite": "^5.0.12"
   },
   "dependencies": {
-    "@tanstack/match-sorter-utils": "8.11.7",
-    "@tanstack/react-table": "8.11.7",
-    "@tanstack/react-virtual": "3.0.2"
+    "@tanstack/match-sorter-utils": "8.11.8",
+    "@tanstack/react-table": "8.11.8",
+    "@tanstack/react-virtual": "3.0.4"
   },
   "peerDependencies": {
     "@mantine/core": "^7.3",

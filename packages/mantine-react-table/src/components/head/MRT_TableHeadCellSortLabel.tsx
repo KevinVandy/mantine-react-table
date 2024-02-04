@@ -1,24 +1,31 @@
 import clsx from 'clsx';
 import classes from './MRT_TableHeadCellSortLabel.module.css';
-import { ActionIcon, Indicator, Tooltip } from '@mantine/core';
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Indicator,
+  Tooltip,
+} from '@mantine/core';
 import { dataVariable } from '../../utils/style.utils';
 import type { MRT_Header, MRT_RowData, MRT_TableInstance } from '../../types';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends ActionIconProps {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
   header,
-  table: {
+  table,
+  ...rest
+}: Props<TData>) => {
+  const {
     getState,
     options: {
       icons: { IconArrowsSort, IconSortAscending, IconSortDescending },
       localization,
     },
-  },
-}: Props<TData>) => {
+  } = table;
   const column = header.column;
   const { columnDef } = column;
   const { sorting } = getState();
@@ -33,25 +40,31 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
       ? localization.sortByColumnDesc.replace('{column}', columnDef.header)
       : localization.sortByColumnAsc.replace('{column}', columnDef.header);
 
-  const SortIcon =
-    sorted === 'desc' ? (
-      <IconSortDescending size="100%" />
-    ) : sorted === 'asc' ? (
-      <IconSortAscending size="100%" />
-    ) : (
-      <IconArrowsSort size="100%" />
-    );
+  const SortActionButton = (
+    <ActionIcon
+      aria-label={sortTooltip}
+      {...dataVariable('sorted', sorted)}
+      {...rest}
+      className={clsx(
+        'mrt-table-head-sort-button',
+        classes['sort-icon'],
+        rest.className,
+      )}
+    >
+      {sorted === 'desc' ? (
+        <IconSortDescending size="100%" />
+      ) : sorted === 'asc' ? (
+        <IconSortAscending size="100%" />
+      ) : (
+        <IconArrowsSort size="100%" />
+      )}
+    </ActionIcon>
+  );
 
   return (
     <Tooltip label={sortTooltip} openDelay={1000} withinPortal>
       {sorting.length < 2 || sortIndex === -1 ? (
-        <ActionIcon
-          aria-label={sortTooltip}
-          className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
-          {...dataVariable('sorted', sorted)}
-        >
-          {SortIcon}
-        </ActionIcon>
+        SortActionButton
       ) : (
         <Indicator
           className={clsx(
@@ -62,13 +75,7 @@ export const MRT_TableHeadCellSortLabel = <TData extends MRT_RowData>({
           label={sortIndex + 1}
           offset={4}
         >
-          <ActionIcon
-            aria-label={sortTooltip}
-            className={clsx('mrt-table-head-sort-button', classes['sort-icon'])}
-            {...dataVariable('sorted', sorted)}
-          >
-            {SortIcon}
-          </ActionIcon>
+          {SortActionButton}
         </Indicator>
       )}
     </Tooltip>

@@ -1,5 +1,13 @@
 import classes from './MRT_TableHeadCellFilterContainer.module.css';
-import { ActionIcon, Collapse, Flex, Menu, Text, Tooltip } from '@mantine/core';
+import {
+  ActionIcon,
+  Collapse,
+  Flex,
+  type FlexProps,
+  Menu,
+  Text,
+  Tooltip,
+} from '@mantine/core';
 import { localizedFilterOption } from '../../fns/filterFns';
 import {
   type MRT_Header,
@@ -12,7 +20,7 @@ import { MRT_FilterRangeSlider } from '../inputs/MRT_FilterRangeSlider';
 import { MRT_FilterTextInput } from '../inputs/MRT_FilterTextInput';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends FlexProps {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
@@ -20,6 +28,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
   header,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -47,7 +56,7 @@ export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
 
   return (
     <Collapse in={showColumnFilters || columnFilterDisplayMode === 'popover'}>
-      <Flex direction="column">
+      <Flex direction="column" {...rest}>
         <Flex align="flex-end">
           {columnDef.filterVariant === 'checkbox' ? (
             <MRT_FilterCheckbox column={column} table={table} />

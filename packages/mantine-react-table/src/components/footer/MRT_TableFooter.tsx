@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import classes from './MRT_TableFooter.module.css';
-import { TableTfoot } from '@mantine/core';
+import { TableTfoot, type TableTfootProps } from '@mantine/core';
 import { MRT_TableFooterRow } from './MRT_TableFooterRow';
 import {
   type MRT_ColumnVirtualizer,
@@ -9,7 +9,7 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends TableTfootProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   table: MRT_TableInstance<TData>;
 }
@@ -17,6 +17,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_TableFooter = <TData extends MRT_RowData>({
   columnVirtualizer,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getFooterGroups,
@@ -26,9 +27,12 @@ export const MRT_TableFooter = <TData extends MRT_RowData>({
   } = table;
   const { isFullScreen } = getState();
 
-  const tableFooterProps = parseFromValuesOrFunc(mantineTableFooterProps, {
-    table,
-  });
+  const tableFooterProps = {
+    ...parseFromValuesOrFunc(mantineTableFooterProps, {
+      table,
+    }),
+    ...rest,
+  };
 
   const stickFooter =
     (isFullScreen || enableStickyFooter) && enableStickyFooter !== false;

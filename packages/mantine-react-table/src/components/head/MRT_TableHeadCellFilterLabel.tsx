@@ -1,7 +1,13 @@
 import clsx from 'clsx';
 import classes from './MRT_TableHeadCellFilterLabel.module.css';
 import { type MouseEvent, useState } from 'react';
-import { ActionIcon, Popover, Tooltip, Transition } from '@mantine/core';
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Popover,
+  Tooltip,
+  Transition,
+} from '@mantine/core';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { localizedFilterOption } from '../../fns/filterFns';
 import {
@@ -11,7 +17,7 @@ import {
 } from '../../types';
 import { dataVariable } from '../../utils/style.utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends ActionIconProps {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
@@ -19,6 +25,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_TableHeadCellFilterLabel = <TData extends MRT_RowData>({
   header,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     options: {
@@ -120,6 +127,7 @@ export const MRT_TableHeadCellFilterLabel = <TData extends MRT_RowData>({
                       input?.select();
                     }, 100);
                   }}
+                  {...rest}
                 >
                   <IconFilter size="100%" />
                 </ActionIcon>

@@ -4,6 +4,7 @@ import { Fragment, useMemo } from 'react';
 import {
   ActionIcon,
   Alert,
+  type AlertProps,
   Badge,
   Button,
   Collapse,
@@ -14,7 +15,7 @@ import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_SelectCheckbox } from '../inputs/MRT_SelectCheckbox';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends Partial<AlertProps> {
   stackAlertBanner?: boolean;
   table: MRT_TableInstance<TData>;
 }
@@ -22,6 +23,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
   stackAlertBanner,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getFilteredSelectedRowModel,
@@ -42,9 +44,12 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
   } = table;
   const { density, grouping, rowSelection, showAlertBanner } = getState();
 
-  const alertProps = parseFromValuesOrFunc(mantineToolbarAlertBannerProps, {
-    table,
-  });
+  const alertProps = {
+    ...parseFromValuesOrFunc(mantineToolbarAlertBannerProps, {
+      table,
+    }),
+    ...rest,
+  };
   const badgeProps = parseFromValuesOrFunc(
     mantineToolbarAlertBannerBadgeProps,
     { table },

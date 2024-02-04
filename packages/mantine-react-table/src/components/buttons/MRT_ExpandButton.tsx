@@ -1,7 +1,12 @@
 import clsx from 'clsx';
 import classes from './MRT_ExpandButton.module.css';
 import { type MouseEvent } from 'react';
-import { ActionIcon, Tooltip, useDirection } from '@mantine/core';
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Tooltip,
+  useDirection,
+} from '@mantine/core';
 import {
   type MRT_Row,
   type MRT_RowData,
@@ -9,7 +14,7 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends ActionIconProps {
   row: MRT_Row<TData>;
   table: MRT_TableInstance<TData>;
 }
@@ -17,6 +22,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_ExpandButton = <TData extends MRT_RowData>({
   row,
   table,
+  ...rest
 }: Props<TData>) => {
   const direction = useDirection();
   const {
@@ -29,10 +35,13 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
     },
   } = table;
 
-  const actionIconProps = parseFromValuesOrFunc(mantineExpandButtonProps, {
-    row,
-    table,
-  });
+  const actionIconProps = {
+    ...parseFromValuesOrFunc(mantineExpandButtonProps, {
+      row,
+      table,
+    }),
+    ...rest,
+  };
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();
 

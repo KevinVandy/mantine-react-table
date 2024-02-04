@@ -718,7 +718,7 @@ export const tableOptions: TableOption[] = [
     linkText: '',
     required: false,
     source: '',
-    type: '(column: Column<TData, unknown>) => boolean',
+    type: '(column: Column<TData, MRT_CellValue>) => boolean',
   },
   {
     tableOption: 'getCoreRowModel',

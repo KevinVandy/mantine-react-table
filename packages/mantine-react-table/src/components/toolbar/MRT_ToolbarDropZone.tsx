@@ -1,15 +1,16 @@
 import clsx from 'clsx';
 import classes from './MRT_ToolbarDropZone.module.css';
 import { type DragEvent, useEffect } from 'react';
-import { Flex, Text, Transition } from '@mantine/core';
+import { Flex, type FlexProps, Text, Transition } from '@mantine/core';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends FlexProps {
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_ToolbarDropZone = <TData extends MRT_RowData>({
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -46,6 +47,7 @@ export const MRT_ToolbarDropZone = <TData extends MRT_RowData>({
             hoveredColumn?.id === 'drop-zone' && classes.hovered,
           )}
           onDragEnter={handleDragEnter}
+          {...rest}
         >
           <Text>
             {localization.dropToGroupBy.replace(

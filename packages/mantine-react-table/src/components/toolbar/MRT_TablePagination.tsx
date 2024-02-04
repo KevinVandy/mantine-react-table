@@ -5,6 +5,7 @@ import {
   Box,
   Group,
   Pagination,
+  type PaginationProps,
   Select,
   Text,
 } from '@mantine/core';
@@ -15,7 +16,7 @@ const defaultRowsPerPage = [5, 10, 15, 20, 25, 30, 50, 100].map((x) =>
   x.toString(),
 );
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends Partial<PaginationProps> {
   position?: 'bottom' | 'top';
   table: MRT_TableInstance<TData>;
 }
@@ -23,6 +24,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_TablePagination = <TData extends MRT_RowData>({
   position = 'bottom',
   table,
+  ...props
 }: Props<TData>) => {
   const {
     getPrePaginationRowModel,
@@ -48,9 +50,12 @@ export const MRT_TablePagination = <TData extends MRT_RowData>({
     showGlobalFilter,
   } = getState();
 
-  const paginationProps = parseFromValuesOrFunc(mantinePaginationProps, {
-    table,
-  });
+  const paginationProps = {
+    ...parseFromValuesOrFunc(mantinePaginationProps, {
+      table,
+    }),
+    ...props,
+  };
 
   const totalRowCount = rowCount ?? getPrePaginationRowModel().rows.length;
   const numberOfPages = Math.ceil(totalRowCount / pageSize);

@@ -6,7 +6,7 @@ import {
   type ReactNode,
   useMemo,
 } from 'react';
-import { Flex, TableTh, useDirection } from '@mantine/core';
+import { Flex, TableTh, type TableThProps, useDirection } from '@mantine/core';
 import { MRT_TableHeadCellFilterContainer } from './MRT_TableHeadCellFilterContainer';
 import { MRT_TableHeadCellFilterLabel } from './MRT_TableHeadCellFilterLabel';
 import { MRT_TableHeadCellGrabHandle } from './MRT_TableHeadCellGrabHandle';
@@ -27,7 +27,7 @@ import { parseCSSVarId } from '../../utils/style.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends TableThProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   header: MRT_Header<TData>;
   renderedHeaderIndex?: number;
@@ -39,6 +39,7 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   header,
   renderedHeaderIndex = 0,
   table,
+  ...rest
 }: Props<TData>) => {
   const direction = useDirection();
   const {
@@ -69,6 +70,7 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   const tableCellProps = {
     ...parseFromValuesOrFunc(mantineTableHeadCellProps, arg),
     ...parseFromValuesOrFunc(columnDef.mantineTableHeadCellProps, arg),
+    ...rest,
   };
 
   const widthStyles: CSSProperties = {

@@ -1,6 +1,11 @@
 import clsx from 'clsx';
 import classes from './MRT_TableHead.module.css';
-import { TableTh, TableThead, TableTr } from '@mantine/core';
+import {
+  TableTh,
+  TableThead,
+  type TableTheadProps,
+  TableTr,
+} from '@mantine/core';
 import { MRT_TableHeadRow } from './MRT_TableHeadRow';
 import {
   type MRT_ColumnVirtualizer,
@@ -10,7 +15,7 @@ import {
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_ToolbarAlertBanner } from '../toolbar/MRT_ToolbarAlertBanner';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends TableTheadProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   table: MRT_TableInstance<TData>;
 }
@@ -18,6 +23,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_TableHead = <TData extends MRT_RowData>({
   columnVirtualizer,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getHeaderGroups,
@@ -33,9 +39,12 @@ export const MRT_TableHead = <TData extends MRT_RowData>({
   } = table;
   const { isFullScreen, showAlertBanner } = getState();
 
-  const tableHeadProps = parseFromValuesOrFunc(mantineTableHeadProps, {
-    table,
-  });
+  const tableHeadProps = {
+    ...parseFromValuesOrFunc(mantineTableHeadProps, {
+      table,
+    }),
+    ...rest,
+  };
 
   const stickyHeader = enableStickyHeader || isFullScreen;
 

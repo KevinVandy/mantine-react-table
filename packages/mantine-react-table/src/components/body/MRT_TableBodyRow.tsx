@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import classes from './MRT_TableBodyRow.module.css';
 import { type DragEvent, memo, useMemo, useRef } from 'react';
-import { Box, TableTr } from '@mantine/core';
+import { Box, TableTr, type TableTrProps } from '@mantine/core';
 import { MRT_TableBodyCell, Memo_MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import {
@@ -16,7 +16,7 @@ import {
 import { getIsRowSelected } from '../../utils/row.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends TableTrProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   enableHover?: boolean;
   isStriped?: 'even' | 'odd' | boolean;
@@ -40,6 +40,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   rowVirtualizer,
   table,
   virtualRow,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -78,11 +79,14 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   const isDraggingRow = draggingRow?.id === row.id;
   const isHoveredRow = hoveredRow?.id === row.id;
 
-  const tableRowProps = parseFromValuesOrFunc(mantineTableBodyRowProps, {
-    renderedRowIndex,
-    row,
-    table,
-  });
+  const tableRowProps = {
+    ...parseFromValuesOrFunc(mantineTableBodyRowProps, {
+      renderedRowIndex,
+      row,
+      table,
+    }),
+    ...rest,
+  };
 
   const [bottomPinnedIndex, topPinnedIndex] = useMemo(() => {
     if (

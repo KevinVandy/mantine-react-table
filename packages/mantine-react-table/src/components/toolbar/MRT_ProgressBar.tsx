@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import classes from './MRT_ProgressBar.module.css';
-import { Collapse, Progress } from '@mantine/core';
+import { Collapse, Progress, type ProgressProps } from '@mantine/core';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends Partial<ProgressProps> {
   isTopToolbar: boolean;
   table: MRT_TableInstance<TData>;
 }
@@ -12,6 +12,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_ProgressBar = <TData extends MRT_RowData>({
   isTopToolbar,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -19,10 +20,13 @@ export const MRT_ProgressBar = <TData extends MRT_RowData>({
   } = table;
   const { isSaving, showProgressBars } = getState();
 
-  const linearProgressProps = parseFromValuesOrFunc(mantineProgressProps, {
-    isTopToolbar,
-    table,
-  });
+  const linearProgressProps = {
+    ...parseFromValuesOrFunc(mantineProgressProps, {
+      isTopToolbar,
+      table,
+    }),
+    ...rest,
+  };
 
   return (
     <Collapse

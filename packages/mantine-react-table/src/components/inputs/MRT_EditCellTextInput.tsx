@@ -1,5 +1,9 @@
 import { type FocusEvent, type KeyboardEvent, useState } from 'react';
-import { Select, TextInput } from '@mantine/core';
+import {
+  Select,
+  TextInput,
+  type TextInputProps,
+} from '@mantine/core';
 import {
   type MRT_Cell,
   type MRT_CellValue,
@@ -8,7 +12,8 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
+  extends TextInputProps {
   cell: MRT_Cell<TData, TValue>;
   table: MRT_TableInstance<TData>;
 }
@@ -16,6 +21,7 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
 export const MRT_EditCellTextInput = <TData extends MRT_RowData>({
   cell,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -44,11 +50,13 @@ export const MRT_EditCellTextInput = <TData extends MRT_RowData>({
   const textInputProps = {
     ...parseFromValuesOrFunc(mantineEditTextInputProps, arg),
     ...parseFromValuesOrFunc(columnDef.mantineEditTextInputProps, arg),
+    ...rest,
   };
 
   const selectProps = {
     ...parseFromValuesOrFunc(mantineEditSelectProps, arg),
     ...parseFromValuesOrFunc(columnDef.mantineEditSelectProps, arg),
+    ...rest,
   };
 
   const saveInputValueToRowCache = (newValue: null | string) => {

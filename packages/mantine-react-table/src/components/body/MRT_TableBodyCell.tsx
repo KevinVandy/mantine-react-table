@@ -9,7 +9,12 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { Skeleton, TableTd, type TableTdProps } from '@mantine/core';
+import {
+  Skeleton,
+  TableTd,
+  type TableTdProps,
+  useDirection,
+} from '@mantine/core';
 import { MRT_TableBodyCellValue } from './MRT_TableBodyCellValue';
 import {
   type MRT_Cell,
@@ -53,6 +58,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   virtualCell,
   ...rest
 }: Props<TData>) => {
+  const direction = useDirection();
+
   const {
     getState,
     options: {
@@ -199,13 +206,13 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       data-pinned={!!isColumnPinned || undefined}
       {...tableCellProps}
       __vars={{
-        '--mrt-table-cell-justify': layoutMode?.startsWith('grid')
-          ? tableCellProps.align === 'left'
-            ? 'flex-start'
-            : tableCellProps.align === 'right'
-              ? 'flex-end'
-              : tableCellProps.align
-          : undefined,
+        '--mrt-align':
+          tableCellProps.align ??
+          (columnDefType === 'group'
+            ? 'center'
+            : direction.dir === 'rtl'
+              ? 'right'
+              : 'left'),
         '--mrt-table-cell-left':
           column.getIsPinned() === 'left'
             ? `${column.getStart('left')}`

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import classes from './MRT_TableFooterCell.module.css';
-import { type CSSProperties, useMemo } from 'react';
-import { TableTh } from '@mantine/core';
+import { type CSSProperties } from 'react';
+import { TableTh, type TableThProps, useDirection } from '@mantine/core';
 import {
   type MRT_Header,
   type MRT_RowData,
@@ -10,72 +10,92 @@ import {
 import { parseCSSVarId } from '../../utils/style.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends TableThProps {
   footer: MRT_Header<TData>;
+  renderedColumnIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TableFooterCell = <TData extends MRT_RowData>({
   footer,
+  renderedColumnIndex,
   table,
+  ...rest
 }: Props<TData>) => {
+  const direction = useDirection();
   const {
-    options: { layoutMode, mantineTableFooterCellProps },
+    options: { enableColumnPinning, layoutMode, mantineTableFooterCellProps },
   } = table;
   const { column } = footer;
   const { columnDef } = column;
   const { columnDefType } = columnDef;
 
-  const arg = { column, table };
-  const { className, ...tableCellProps } = {
-    ...parseFromValuesOrFunc(mantineTableFooterCellProps, arg),
-    ...parseFromValuesOrFunc(columnDef.mantineTableFooterCellProps, arg),
+  const isColumnPinned =
+    enableColumnPinning &&
+    columnDef.columnDefType !== 'group' &&
+    column.getIsPinned();
+
+  const args = { column, table };
+  const tableCellProps = {
+    ...parseFromValuesOrFunc(mantineTableFooterCellProps, args),
+    ...parseFromValuesOrFunc(columnDef.mantineTableFooterCellProps, args),
+    ...rest,
   };
 
-  const footerProps = footer.isPlaceholder
-    ? null
-    : parseFromValuesOrFunc(columnDef.Footer, {
-        column,
-        footer,
-        table,
-      }) ?? columnDef?.footer;
-
-  const widthStyles = useMemo(() => {
-    const styles: CSSProperties = {
-      minWidth: `max(calc(var(--col-${parseCSSVarId(
-        column?.id,
-      )}-size) * 1px), ${columnDef.minSize ?? 30}px)`,
-      width: `calc(var(--col-${parseCSSVarId(column.id)}-size) * 1px)`,
-    };
-    if (layoutMode === 'grid') {
-      styles.flex = `${
-        [0, false].includes(columnDef.grow!)
-          ? 0
-          : `var(--col-${parseCSSVarId(column.id)}-size)`
-      } 0 auto`;
-    } else if (layoutMode === 'grid-no-grow') {
-      styles.flex = `${+(columnDef.grow || 0)} 0 auto`;
-    }
-    return styles;
-  }, [column]);
+  const widthStyles: CSSProperties = {
+    minWidth: `max(calc(var(--header-${parseCSSVarId(
+      footer?.id,
+    )}-size) * 1px), ${columnDef.minSize ?? 30}px)`,
+    width: `calc(var(--header-${parseCSSVarId(footer.id)}-size) * 1px)`,
+  };
+  if (layoutMode === 'grid') {
+    widthStyles.flex = `${
+      [0, false].includes(columnDef.grow!)
+        ? 0
+        : `var(--header-${parseCSSVarId(footer.id)}-size)`
+    } 0 auto`;
+  } else if (layoutMode === 'grid-no-grow') {
+    widthStyles.flex = `${+(columnDef.grow || 0)} 0 auto`;
+  }
 
   return (
     <TableTh
       colSpan={footer.colSpan}
+      data-index={renderedColumnIndex}
+      data-pinned={!!isColumnPinned || undefined}
       {...tableCellProps}
+      __vars={{
+        '--mrt-align':
+          tableCellProps.align ??
+          (columnDefType === 'group'
+            ? 'center'
+            : direction.dir === 'rtl'
+              ? 'right'
+              : 'left'),
+        ...tableCellProps?.__vars,
+      }}
       className={clsx(
         classes.root,
         layoutMode?.startsWith('grid') && classes.grid,
-        column.getIsPinned() && columnDefType !== 'group' && classes.pinned,
+        isColumnPinned && classes.pinned,
         columnDefType === 'group' && classes.group,
-        className,
+        tableCellProps?.className,
       )}
       style={(theme) => ({
         ...widthStyles,
         ...parseFromValuesOrFunc(tableCellProps.style, theme),
       })}
     >
-      <>{footerProps}</>
+      {tableCellProps.children ??
+        (footer.isPlaceholder
+          ? null
+          : parseFromValuesOrFunc(columnDef.Footer, {
+              column,
+              footer,
+              table,
+            }) ??
+            columnDef.footer ??
+            null)}
     </TableTh>
   );
 };

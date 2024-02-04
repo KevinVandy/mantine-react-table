@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import classes from './MRT_TableHeadCellResizeHandle.module.css';
-import { Box } from '@mantine/core';
+import { Box, type BoxProps } from '@mantine/core';
 import {
   type MRT_Header,
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends BoxProps {
   header: MRT_Header<TData>;
   table: MRT_TableInstance<TData>;
 }
@@ -15,6 +15,7 @@ interface Props<TData extends MRT_RowData> {
 export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
   header,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -35,16 +36,6 @@ export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
 
   return (
     <Box
-      __vars={{ '--mrt-transform': offset }}
-      className={clsx(
-        'mrt-table-head-cell-resize-handle',
-        classes.root,
-        classes[`root-${columnResizeDirection}`],
-        !header.subHeaders.length &&
-          columnResizeMode === 'onChange' &&
-          classes['root-hide'],
-        density,
-      )}
       onDoubleClick={() => {
         setColumnSizingInfo((old) => ({
           ...old,
@@ -55,6 +46,18 @@ export const MRT_TableHeadCellResizeHandle = <TData extends MRT_RowData>({
       onMouseDown={handler}
       onTouchStart={handler}
       role="separator"
+      {...rest}
+      __vars={{ '--mrt-transform': offset, ...rest.__vars }}
+      className={clsx(
+        'mrt-table-head-cell-resize-handle',
+        classes.root,
+        classes[`root-${columnResizeDirection}`],
+        !header.subHeaders.length &&
+          columnResizeMode === 'onChange' &&
+          classes['root-hide'],
+        density,
+        rest.className,
+      )}
     />
   );
 };

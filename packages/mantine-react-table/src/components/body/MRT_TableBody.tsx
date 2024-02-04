@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import classes from './MRT_TableBody.module.css';
 import { memo, useMemo } from 'react';
-import { TableTbody, Text } from '@mantine/core';
+import { TableTbody, type TableTbodyProps, Text } from '@mantine/core';
 import { MRT_TableBodyRow, Memo_MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { useMRT_RowVirtualizer } from '../../hooks/useMRT_RowVirtualizer';
 import { useMRT_Rows } from '../../hooks/useMRT_Rows';
@@ -14,7 +14,7 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends TableTbodyProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   enableHover?: boolean;
   isStriped?: 'even' | 'odd' | boolean;
@@ -26,6 +26,7 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
   enableHover,
   isStriped,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getBottomRows,
@@ -48,9 +49,10 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
   } = table;
   const { columnFilters, globalFilter, isFullScreen, rowPinning } = getState();
 
-  const tableBodyProps = parseFromValuesOrFunc(mantineTableBodyProps, {
-    table,
-  });
+  const tableBodyProps = {
+    ...parseFromValuesOrFunc(mantineTableBodyProps, { table }),
+    ...rest,
+  };
 
   const tableHeadHeight =
     ((enableStickyHeader || isFullScreen) &&

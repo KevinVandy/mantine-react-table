@@ -9,7 +9,7 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> extends CheckboxProps {
   column: MRT_Column<TData, TValue>;
   table: MRT_TableInstance<TData>;
 }
@@ -17,6 +17,7 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
 export const MRT_FilterCheckbox = <TData extends MRT_RowData>({
   column,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -29,6 +30,7 @@ export const MRT_FilterCheckbox = <TData extends MRT_RowData>({
   const checkboxProps = {
     ...parseFromValuesOrFunc(mantineFilterCheckboxProps, arg),
     ...parseFromValuesOrFunc(columnDef.mantineFilterCheckboxProps, arg),
+    ...rest,
   } as CheckboxProps;
 
   const filterLabel = localization.filterByColumn?.replace(

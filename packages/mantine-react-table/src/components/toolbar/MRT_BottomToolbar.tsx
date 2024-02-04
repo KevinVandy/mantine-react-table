@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import classes from './MRT_BottomToolbar.module.css';
 import commonClasses from './common.styles.module.css';
-import { Box } from '@mantine/core';
+import { Box, type BoxProps } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_TablePagination } from './MRT_TablePagination';
@@ -10,12 +10,13 @@ import { MRT_ToolbarDropZone } from './MRT_ToolbarDropZone';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends BoxProps {
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_BottomToolbar = <TData extends MRT_RowData>({
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -33,9 +34,12 @@ export const MRT_BottomToolbar = <TData extends MRT_RowData>({
 
   const isMobile = useMediaQuery('(max-width: 720px)');
 
-  const toolbarProps = parseFromValuesOrFunc(mantineBottomToolbarProps, {
-    table,
-  });
+  const toolbarProps = {
+    ...parseFromValuesOrFunc(mantineBottomToolbarProps, {
+      table,
+    }),
+    ...rest,
+  };
 
   const stackAlertBanner = isMobile || !!renderBottomToolbarCustomActions;
 

@@ -1,19 +1,19 @@
 .root {
+  font-size: 0.8rem;
   font-weight: bold;
   padding: 1rem;
+  text-align: var(--mrt-align, left);
   vertical-align: top;
   z-index: 1;
-  border-top: var(--_paper-border);
 
   &.pinned {
     z-index: 2;
   }
 
   &.grid {
-    display: grid;
+    display: flex;
+    justify-content: var(--mrt-align, flex-start);
   }
-
-  text-align: left;
 
   &.group {
     text-align: center;

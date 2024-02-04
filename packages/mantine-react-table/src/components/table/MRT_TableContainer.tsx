@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import classes from './MRT_TableContainer.module.css';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { Box, LoadingOverlay } from '@mantine/core';
+import { Box, type BoxProps, LoadingOverlay } from '@mantine/core';
 import { MRT_Table } from './MRT_Table';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
@@ -10,12 +10,13 @@ import { MRT_EditRowModal } from '../modals/MRT_EditRowModal';
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends BoxProps {
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TableContainer = <TData extends MRT_RowData>({
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -38,10 +39,10 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
 
   const [totalToolbarHeight, setTotalToolbarHeight] = useState(0);
 
-  const tableContainerProps = parseFromValuesOrFunc(
-    mantineTableContainerProps,
-    { table },
-  );
+  const tableContainerProps = {
+    ...parseFromValuesOrFunc(mantineTableContainerProps, { table }),
+    ...rest,
+  };
   const loadingOverlayProps = parseFromValuesOrFunc(
     mantineLoadingOverlayProps,
     { table },

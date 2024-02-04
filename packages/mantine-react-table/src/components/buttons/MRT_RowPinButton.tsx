@@ -1,13 +1,13 @@
 import { type MouseEvent, useState } from 'react';
 import { type RowPinningPosition } from '@tanstack/react-table';
-import { ActionIcon, Tooltip } from '@mantine/core';
+import { ActionIcon, type ActionIconProps, Tooltip } from '@mantine/core';
 import {
   type MRT_Row,
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends ActionIconProps {
   pinningPosition: RowPinningPosition;
   row: MRT_Row<TData>;
   table: MRT_TableInstance<TData>;
@@ -17,6 +17,7 @@ export const MRT_RowPinButton = <TData extends MRT_RowData>({
   pinningPosition,
   row,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     options: {
@@ -54,6 +55,7 @@ export const MRT_RowPinButton = <TData extends MRT_RowData>({
           width: '24px',
         }}
         variant="subtle"
+        {...rest}
       >
         {isPinned ? (
           <IconX />

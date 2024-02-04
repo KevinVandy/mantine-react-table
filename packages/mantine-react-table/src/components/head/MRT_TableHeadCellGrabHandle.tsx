@@ -1,4 +1,5 @@
 import { type DragEvent, type RefObject } from 'react';
+import { type ActionIconProps } from '@mantine/core';
 import {
   type MRT_CellValue,
   type MRT_Column,
@@ -9,7 +10,8 @@ import { reorderColumn } from '../../utils/column.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
 
-interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> {
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
+  extends ActionIconProps {
   column: MRT_Column<TData, TValue>;
   table: MRT_TableInstance<TData>;
   tableHeadCellRef: RefObject<HTMLTableCellElement>;
@@ -19,6 +21,7 @@ export const MRT_TableHeadCellGrabHandle = <TData extends MRT_RowData>({
   column,
   table,
   tableHeadCellRef,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -34,6 +37,7 @@ export const MRT_TableHeadCellGrabHandle = <TData extends MRT_RowData>({
   const actionIconProps = {
     ...parseFromValuesOrFunc(mantineColumnDragHandleProps, arg),
     ...parseFromValuesOrFunc(columnDef.mantineColumnDragHandleProps, arg),
+    ...rest,
   };
 
   const handleDragStart = (event: DragEvent<HTMLButtonElement>) => {

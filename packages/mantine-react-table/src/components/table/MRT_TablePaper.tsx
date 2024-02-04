@@ -1,18 +1,19 @@
 import clsx from 'clsx';
 import classes from './MRT_TablePaper.module.css';
-import { Paper } from '@mantine/core';
+import { Paper, type PaperProps } from '@mantine/core';
 import { MRT_TableContainer } from './MRT_TableContainer';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_BottomToolbar } from '../toolbar/MRT_BottomToolbar';
 import { MRT_TopToolbar } from '../toolbar/MRT_TopToolbar';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends PaperProps {
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_TablePaper = <TData extends MRT_RowData>({
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -27,7 +28,10 @@ export const MRT_TablePaper = <TData extends MRT_RowData>({
   } = table;
   const { isFullScreen } = getState();
 
-  const tablePaperProps = parseFromValuesOrFunc(mantinePaperProps, { table });
+  const tablePaperProps = {
+    ...parseFromValuesOrFunc(mantinePaperProps, { table }),
+    ...rest,
+  };
 
   return (
     <Paper

@@ -7,6 +7,7 @@
   --drag-thickness: 1px;
 
   background-clip: padding-box;
+  text-align: var(--mrt-align, left);
   overflow: hidden;
   transition: padding 150ms ease-in-out;
   @mixin hover {
@@ -28,7 +29,7 @@
 
 .root-grid {
   align-items: center;
-  justify-content: var(--mrt-table-cell-justify, flex-start);
+  justify-content: var(--mrt-align, flex-start);
   display: flex;
 }
 

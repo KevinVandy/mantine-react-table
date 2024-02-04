@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import classes from './MRT_TableHeadRow.module.css';
-import { Box, TableTr } from '@mantine/core';
+import { Box, TableTr, type TableTrProps } from '@mantine/core';
 import { MRT_TableHeadCell } from './MRT_TableHeadCell';
 import {
   type MRT_ColumnVirtualizer,
@@ -12,7 +12,7 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends TableTrProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   headerGroup: MRT_HeaderGroup<TData>;
   table: MRT_TableInstance<TData>;
@@ -22,6 +22,7 @@ export const MRT_TableHeadRow = <TData extends MRT_RowData>({
   columnVirtualizer,
   headerGroup,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     getState,
@@ -32,10 +33,13 @@ export const MRT_TableHeadRow = <TData extends MRT_RowData>({
   const { virtualColumns, virtualPaddingLeft, virtualPaddingRight } =
     columnVirtualizer ?? {};
 
-  const tableRowProps = parseFromValuesOrFunc(mantineTableHeadRowProps, {
-    headerGroup,
-    table,
-  });
+  const tableRowProps = {
+    ...parseFromValuesOrFunc(mantineTableHeadRowProps, {
+      headerGroup,
+      table,
+    }),
+    ...rest,
+  };
 
   return (
     <TableTr

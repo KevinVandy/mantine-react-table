@@ -9,6 +9,7 @@ import {
   MultiSelect,
   Select,
   TextInput,
+  type TextInputProps,
 } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import { useDebouncedValue } from '@mantine/hooks';
@@ -20,7 +21,7 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> {
+interface Props<TData extends MRT_RowData> extends TextInputProps {
   header: MRT_Header<TData>;
   rangeFilterIndex?: number;
   table: MRT_TableInstance<TData>;
@@ -30,6 +31,7 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
   header,
   rangeFilterIndex,
   table,
+  ...rest
 }: Props<TData>) => {
   const {
     options: {
@@ -54,6 +56,7 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
   const textInputProps = {
     ...parseFromValuesOrFunc(mantineFilterTextInputProps, arg),
     ...parseFromValuesOrFunc(columnDef.mantineFilterTextInputProps, arg),
+    ...rest,
   };
 
   const selectProps = {

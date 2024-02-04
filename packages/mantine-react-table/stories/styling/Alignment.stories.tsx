@@ -11,26 +11,32 @@ export default meta;
 const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
   {
     accessorKey: 'firstName',
+    footer: 'First Name',
     header: 'First Name',
   },
   {
     accessorKey: 'lastName',
+    footer: 'Last Name',
     header: 'Last Name',
   },
   {
     accessorKey: 'age',
+    footer: 'Age',
     header: 'Age',
   },
   {
     accessorKey: 'address',
+    footer: 'Address',
     header: 'Address',
   },
   {
     accessorKey: 'state',
+    footer: 'State',
     header: 'State',
   },
   {
     accessorKey: 'phoneNumber',
+    footer: 'Phone Number',
     header: 'Phone Number',
   },
 ];
@@ -48,11 +54,51 @@ export const DefaultLeft = () => (
   <MantineReactTable columns={columns} data={data} />
 );
 
+export const DefaultLeftGrid = () => (
+  <MantineReactTable columns={columns} data={data} layoutMode="grid" />
+);
+
+export const RightCells = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    mantineTableBodyCellProps={{
+      align: 'right',
+    }}
+    mantineTableFooterCellProps={{
+      align: 'right',
+    }}
+    mantineTableHeadCellProps={{
+      align: 'right',
+    }}
+  />
+);
+
+export const RightCellsGrid = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    layoutMode="grid"
+    mantineTableBodyCellProps={{
+      align: 'right',
+    }}
+    mantineTableFooterCellProps={{
+      align: 'right',
+    }}
+    mantineTableHeadCellProps={{
+      align: 'right',
+    }}
+  />
+);
+
 export const CenterCells = () => (
   <MantineReactTable
     columns={columns}
     data={data}
     mantineTableBodyCellProps={{
+      align: 'center',
+    }}
+    mantineTableFooterCellProps={{
       align: 'center',
     }}
     mantineTableHeadCellProps={{
@@ -61,12 +107,15 @@ export const CenterCells = () => (
   />
 );
 
-export const CenterGridCells = () => (
+export const CenterCellsGrid = () => (
   <MantineReactTable
     columns={columns}
     data={data}
     layoutMode="grid"
     mantineTableBodyCellProps={{
+      align: 'center',
+    }}
+    mantineTableFooterCellProps={{
       align: 'center',
     }}
     mantineTableHeadCellProps={{
@@ -81,6 +130,9 @@ export const CenterCellsWithGrabHandle = () => (
     data={data}
     enableColumnDragging
     mantineTableBodyCellProps={{
+      align: 'center',
+    }}
+    mantineTableFooterCellProps={{
       align: 'center',
     }}
     mantineTableHeadCellProps={{
@@ -98,6 +150,9 @@ export const CenterCellsWithGrabHandleNoSorting = () => (
     mantineTableBodyCellProps={{
       align: 'center',
     }}
+    mantineTableFooterCellProps={{
+      align: 'center',
+    }}
     mantineTableHeadCellProps={{
       align: 'center',
     }}
@@ -112,35 +167,11 @@ export const CenterCellsNoColumnActions = () => (
     mantineTableBodyCellProps={{
       align: 'center',
     }}
-    mantineTableHeadCellProps={{
+    mantineTableFooterCellProps={{
       align: 'center',
     }}
-  />
-);
-
-export const RightCells = () => (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    mantineTableBodyCellProps={{
-      align: 'right',
-    }}
     mantineTableHeadCellProps={{
-      align: 'right',
-    }}
-  />
-);
-
-export const RightGridCells = () => (
-  <MantineReactTable
-    columns={columns}
-    data={data}
-    layoutMode="grid"
-    mantineTableBodyCellProps={{
-      align: 'right',
-    }}
-    mantineTableHeadCellProps={{
-      align: 'right',
+      align: 'center',
     }}
   />
 );
