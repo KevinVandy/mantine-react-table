@@ -41,6 +41,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
       renderToolbarAlertBannerContent,
       rowCount,
     },
+    refs: { lastSelectedRowId}
   } = table;
   const { density, grouping, rowSelection, showAlertBanner } = getState();
 
@@ -71,7 +72,10 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
         ?.replace('{selectedCount}', selectedRowCount.toString())
         ?.replace('{rowCount}', totalRowCount.toString())}
       <Button
-        onClick={() => table.toggleAllRowsSelected(false)}
+        onClick={() => {
+          table.toggleAllRowsSelected(false);
+          lastSelectedRowId.current = null;
+        }}
         size="compact-xs"
         variant="subtle"
       >

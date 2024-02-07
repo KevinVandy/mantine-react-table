@@ -50,6 +50,26 @@ export const SelectionEnabled = () => (
   />
 );
 
+export const SelectionEnabledGrid = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowNumbers
+    enableRowSelection
+    layoutMode="grid"
+  />
+);
+
+export const SelectionEnabledGridNoGrow = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enableRowNumbers
+    enableRowSelection
+    layoutMode="grid-no-grow"
+  />
+);
+
 export const BatchSelectionDisabled = () => (
   <MantineReactTable
     columns={columns}

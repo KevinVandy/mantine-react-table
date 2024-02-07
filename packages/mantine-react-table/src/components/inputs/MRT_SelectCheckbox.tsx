@@ -47,7 +47,7 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
   const { density, isLoading } = getState();
 
   const selectAll = !row;
-  
+
   const isStickySelection =
     enableRowPinning && rowPinningDisplayMode?.includes('select');
 
@@ -87,7 +87,8 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
       ? localization.toggleSelectAll
       : localization.toggleSelectRow,
     checked: isChecked,
-    disabled: isLoading || (row && !row.getCanSelect()),
+    disabled:
+      isLoading || (row && !row.getCanSelect()) || row?.id === 'mrt-row-create',
     onChange: (event) => {
       event.stopPropagation();
       row

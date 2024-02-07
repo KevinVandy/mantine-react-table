@@ -24,9 +24,7 @@ import {
   type MRT_VirtualItem,
 } from '../../types';
 import {
-  getIsFirstColumn,
   getIsFirstRightPinnedColumn,
-  getIsLastColumn,
   getIsLastLeftPinnedColumn,
   getTotalRight,
 } from '../../utils/column.utils';
@@ -70,7 +68,6 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       enableClickToCopy,
       enableColumnOrdering,
       enableColumnPinning,
-      enableColumnVirtualization,
       enableEditing,
       enableGrouping,
       layoutMode,
@@ -86,11 +83,9 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     creatingRow,
     density,
     draggingColumn,
-    draggingRow,
     editingCell,
     editingRow,
     hoveredColumn,
-    hoveredRow,
     isLoading,
     showSkeletons,
   } = getState();
@@ -140,7 +135,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   } else if (layoutMode === 'grid-no-grow') {
     widthStyles.flex = `${+(columnDef.grow || 0)} 0 auto`;
   }
-
+  const isDraggingColumn = draggingColumn?.id === column.id;
+  const isHoveredColumn = hoveredColumn?.id === column.id;
   const isColumnPinned =
     enableColumnPinning &&
     columnDef.columnDefType !== 'group' &&
@@ -202,8 +198,20 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
 
   return (
     <TableTd
+      data-column-pinned={isColumnPinned || undefined}
+      data-dragging-column={isDraggingColumn || undefined}
+      data-first-right-pinned={getIsFirstRightPinnedColumn(column) || undefined}
+      data-hovered-column-target={isHoveredColumn || undefined}
       data-index={renderedColumnIndex}
-      data-pinned={!!isColumnPinned || undefined}
+      data-last-left-pinned={
+        getIsLastLeftPinnedColumn(table, column) || undefined
+      }
+      data-resizing={
+        (columnResizeMode === 'onChange' &&
+          columnSizingInfo?.isResizingColumn === column.id &&
+          columnResizeDirection) ||
+        undefined
+      }
       {...tableCellProps}
       __vars={{
         '--mrt-align':
@@ -229,6 +237,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           ? classes['root-inherit-background-color']
           : classes['root-default-background'],
         layoutMode?.startsWith('grid') && classes['root-grid'],
+        virtualCell && classes['root-virtualized'],
         isEditable &&
           editDisplayMode === 'cell' &&
           classes['root-cursor-pointer'],
@@ -236,33 +245,8 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
           ['cell', 'table'].includes(editDisplayMode ?? '') &&
           columnDefType !== 'display' &&
           classes['root-editable-hover'],
-        enableColumnVirtualization && classes['root-virtualized'],
-        column.getIsPinned() &&
-          column.columnDef.columnDefType !== 'group' &&
-          classes['root-pinned'],
-        column.getIsPinned() === 'left' && classes['root-pinned-left'],
-        column.getIsPinned() === 'right' && classes['root-pinned-right'],
-        getIsLastLeftPinnedColumn(table, column) &&
-          classes['root-pinned-left-last'],
-        getIsFirstRightPinnedColumn(column) &&
-          classes['root-pinned-right-first'],
-        column.id === 'mrt-row-expand' && classes['root-expand-depth'],
         columnDefType === 'data' && classes['root-data-col'],
         density === 'xs' && classes['root-nowrap'],
-        columnSizingInfo?.isResizingColumn === column.id &&
-          columnResizeMode === 'onChange' &&
-          classes[`resizing-${columnResizeDirection}`],
-        draggingColumn?.id === column.id && classes['dragging-column'],
-        draggingColumn?.id !== column.id &&
-          hoveredColumn?.id === column.id &&
-          classes['hovered-column'],
-        draggingRow?.id === row.id && classes['dragging-row'],
-        draggingRow?.id !== row.id &&
-          hoveredRow?.id === row.id &&
-          classes['hovered-row'],
-        getIsFirstColumn(column, table) && classes['first-column'],
-        getIsLastColumn(column, table) && classes['last-column'],
-        numRows && renderedRowIndex === numRows - 1 && classes['last-row'],
         tableCellProps?.className,
       )}
       onDoubleClick={handleDoubleClick}

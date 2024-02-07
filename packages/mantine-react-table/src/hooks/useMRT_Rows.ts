@@ -13,12 +13,7 @@ export const useMRT_Rows = <TData extends MRT_RowData>(
   const {
     getRowModel,
     getState,
-    options: {
-      enableGlobalFilterRankedResults,
-      manualFiltering,
-      manualPagination,
-      positionCreatingRow,
-    },
+    options: { data, enableGlobalFilterRankedResults, positionCreatingRow },
   } = table;
   const {
     creatingRow,
@@ -33,12 +28,11 @@ export const useMRT_Rows = <TData extends MRT_RowData>(
     () => getMRT_Rows(table, pinnedRowIds),
     [
       creatingRow,
+      data,
       enableGlobalFilterRankedResults,
       expanded,
       getRowModel().rows,
       globalFilter,
-      manualFiltering,
-      manualPagination,
       pagination.pageIndex,
       pagination.pageSize,
       positionCreatingRow,

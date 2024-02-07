@@ -1,13 +1,46 @@
 .root {
-  box-sizing: border-box;
-  width: 100%;
-  transition: all 150ms ease-in-out;
+  --hover-color: var(--mantine-primary-color-filled);
+  --drag-color: var(--mantine-color-gray-7);
+  --hover-thickness: 2px;
+  --drag-thickness: 1px;
 
-  &[data-selected='true'] {
+  box-sizing: border-box;
+  transition: all 150ms ease-in-out;
+  width: 100%;
+
+  &[data-dragging-row] {
+    opacity: 0.5;
+    td {
+      border-bottom: var(--drag-thickness) dashed var(--drag-color);
+      border-top: var(--drag-thickness) dashed var(--drag-color);
+      &:first-child {
+        border-left: var(--drag-thickness) dashed var(--drag-color);
+      }
+      &:last-child {
+        border-right: var(--drag-thickness) dashed var(--drag-color);
+      }
+    }
+  }
+
+  &[data-hovered-row-target] {
+    td {
+      opacity: 0.5;
+      border-top: var(--hover-thickness) dashed var(--hover-color);
+      border-bottom: var(--hover-thickness) dashed var(--hover-color);
+      &:first-child {
+        border-left: var(--hover-thickness) dashed var(--hover-color);
+      }
+      &:last-child {
+        border-right: var(--hover-thickness) dashed var(--hover-color);
+      }
+    }
+  }
+
+  &[data-selected] {
     background-color: var(--mantine-primary-color-light);
 
     td {
-      &[data-pinned='true'] {
+      &[data-column-pinned] {
         background-color: light-dark(
           var(--mantine-color-white),
           var(--mantine-color-dark-7)
@@ -19,49 +52,59 @@
       }
     }
   }
-}
 
-.root-grid {
-  display: flex;
-}
-
-.root-hover {
-  &:hover {
+  &[data-row-pinned] {
+    bottom: calc(var(--mrt-pinned-row-bottom, unset) * 1px);
+    opacity: 0.98;
+    top: calc(var(--mrt-pinned-row-top, unset) * 1px);
     td {
       background-color: light-dark(
-        var(--mantine-color-dark-light-hover),
-        var(--mantine-color-gray-light-hover)
+        var(--mantine-color-dark-0),
+        var(--mantine-color-dark-8)
       );
-
-      &[data-pinned='true'] {
-        background-color: light-dark(
-          var(--mantine-color-white),
-          var(--mantine-color-dark-7)
-        );
-
-        &:before {
-          background-color: light-dark(
-            var(--mantine-color-dark-light-hover),
-            var(--mantine-color-gray-light-hover)
-          );
-        }
-      }
     }
   }
 
-  &[data-selected='true'] {
+  &[data-row-pinned='sticky'] {
+    z-index: 2;
+    position: sticky;
+  }
+
+  &[data-hover] {
     &:hover {
       td {
-        background-color: var(--mantine-primary-color-light-hover);
+        background-color: light-dark(
+          var(--mantine-color-dark-light-hover),
+          var(--mantine-color-gray-light-hover)
+        );
 
-        &[data-pinned='true'] {
+        &[data-column-pinned] {
           background-color: light-dark(
             var(--mantine-color-white),
             var(--mantine-color-dark-7)
           );
 
           &:before {
-            background-color: var(--mantine-primary-color-light-hover);
+            background-color: light-dark(
+              var(--mantine-color-dark-light-hover),
+              var(--mantine-color-gray-light-hover)
+            );
+          }
+        }
+      }
+      &[data-selected] {
+        td {
+          background-color: var(--mantine-primary-color-light-hover);
+
+          &[data-column-pinned] {
+            background-color: light-dark(
+              var(--mantine-color-white),
+              var(--mantine-color-dark-7)
+            );
+
+            &:before {
+              background-color: var(--mantine-primary-color-light-hover);
+            }
           }
         }
       }
@@ -69,27 +112,8 @@
   }
 }
 
-.root-pinned {
-  opacity: 0.98;
-  td {
-    background-color: light-dark(
-      var(--mantine-color-dark-0),
-      var(--mantine-color-dark-8)
-    );
-  }
-}
-
-.root-sticky-pinned {
-  z-index: 2;
-  position: sticky;
-}
-
-.root-sticky-pinned-top {
-  top: calc(var(--mrt-pinned-row-top, 0) * 1px);
-}
-
-.root-sticky-pinned-bottom {
-  bottom: calc(var(--mrt-pinned-row-bottom, 0) * 1px);
+.root-grid {
+  display: flex;
 }
 
 .root-virtualized {
@@ -97,4 +121,5 @@
   top: 0;
   transition: none !important;
   transform: translateY(calc(var(--mrt-virtual-row-start) * 1px));
+  will-change: transform;
 }
