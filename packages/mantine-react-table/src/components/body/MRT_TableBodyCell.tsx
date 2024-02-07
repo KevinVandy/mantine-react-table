@@ -48,7 +48,7 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
 export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   cell,
   isStriped,
-  numRows,
+  numRows = 1,
   renderedColumnIndex = 0,
   renderedRowIndex = 0,
   rowRef,
@@ -206,6 +206,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       data-last-left-pinned={
         getIsLastLeftPinnedColumn(table, column) || undefined
       }
+      data-last-row={renderedRowIndex === numRows - 1 || undefined}
       data-resizing={
         (columnResizeMode === 'onChange' &&
           columnSizingInfo?.isResizingColumn === column.id &&

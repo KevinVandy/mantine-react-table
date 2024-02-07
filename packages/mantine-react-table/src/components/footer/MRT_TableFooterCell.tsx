@@ -61,8 +61,8 @@ export const MRT_TableFooterCell = <TData extends MRT_RowData>({
   return (
     <TableTh
       colSpan={footer.colSpan}
+      data-column-pinned={!!isColumnPinned || undefined}
       data-index={renderedColumnIndex}
-      data-pinned={!!isColumnPinned || undefined}
       {...tableCellProps}
       __vars={{
         '--mrt-align':

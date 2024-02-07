@@ -3,28 +3,82 @@
   --hover-color: var(--mantine-primary-color-filled);
   --drag-color: var(--mantine-color-gray-7);
   --resize-thickness: 2px;
-  --hover-thickness: 2px;
+  --hover-thickness: 3px;
   --drag-thickness: 1px;
-
-  background-clip: padding-box;
-  transition: padding 150ms ease-in-out;
-  font-weight: bold;
-  overflow: visible;
-  padding: calc(var(--mrt-table-head-cell-padding) * 1px);
-  padding-bottom: calc(var(--mrt-table-head-cell-padding) * 2 / 3 * 1px);
-  vertical-align: top;
-  z-index: var(--mrt-table-head-cell-z-index);
 
   background-color: light-dark(
     var(--mantine-color-white),
     var(--mantine-color-dark-7)
   );
+  background-clip: padding-box;
+  font-weight: bold;
+  overflow: visible;
+  padding-bottom: calc(var(--mrt-table-head-cell-padding) * 2 / 3 * 1px);
+  padding: calc(var(--mrt-table-head-cell-padding) * 1px);
+  position: relative;
+  transition: padding 150ms ease-in-out;
+  vertical-align: top;
+  z-index: 1;
 
-  :global(.mantine-ActionIcon-root) {
-    opacity: 0.5;
+  &[data-column-pinned] {
+    background-color: light-dark(
+      var(--mantine-color-white),
+      var(--mantine-color-dark-7)
+    );
+    opacity: 0.97;
+    position: sticky;
+    z-index: 2;
+    &[data-column-pinned='left'] {
+      left: calc(var(--mrt-table-cell-left, 0) * 1px);
+      &[data-last-left-pinned] {
+        box-shadow: -4px 0 4px -4px light-dark(
+            var(--mantine-color-gray-outline),
+            var(--mantine-color-dark-outline)
+          ) inset;
+      }
+    }
+    &[data-column-pinned='right'] {
+      right: calc(var(--mrt-table-cell-right, 0) * 1px);
+      &[data-first-right-pinned] {
+        box-shadow: 4px 0 4px -4px light-dark(
+            var(--mantine-color-gray-outline),
+            var(--mantine-color-dark-outline)
+          ) inset;
+      }
+    }
   }
 
-  @mixin hover {
+  &[data-resizing] {
+    z-index: 3;
+    &[data-resizing='ltr'] {
+      border-right: var(--resize-thickness) solid var(--resize-border-color);
+    }
+    &[data-resizing='rtl'] {
+      border-left: var(--resize-thickness) solid var(--resize-border-color);
+    }
+  }
+
+  &[data-dragging-column] {
+    border-left: var(--drag-thickness) dashed var(--drag-color);
+    border-right: var(--drag-thickness) dashed var(--drag-color);
+    border-top: var(--drag-thickness) dashed var(--drag-color);
+    opacity: 0.5;
+    z-index: 3;
+  }
+
+  &[data-hovered-column-target] {
+    border-left: var(--hover-thickness) dashed var(--hover-color);
+    border-right: var(--hover-thickness) dashed var(--hover-color);
+    border-top: var(--hover-thickness) dashed var(--hover-color);
+    z-index: 2;
+  }
+
+  :global(.mantine-ActionIcon-root) {
+    opacity: 0.7;
+    transition: opacity 100ms ease-in-out;
+  }
+
+  &:hover {
     :global(.mantine-ActionIcon-root) {
       opacity: 1;
     }
@@ -42,58 +96,6 @@
 
 .root-no-select {
   user-select: none;
-}
-
-.root-pinned {
-  position: sticky;
-  background-color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-dark-7)
-  );
-}
-
-.root-pinned-left {
-  left: calc(var(--mrt-table-cell-left, 0) * 1px);
-}
-
-.root-pinned-right {
-  right: calc(var(--mrt-table-cell-right, 0) * 1px);
-}
-
-.root-pinned-left-last {
-  box-shadow: -4px 0 4px -4px light-dark(
-      var(--mantine-color-gray-outline),
-      var(--mantine-color-dark-outline)
-    ) inset;
-}
-
-.root-pinned-right-first {
-  box-shadow: 4px 0 4px -4px light-dark(
-      var(--mantine-color-gray-outline),
-      var(--mantine-color-dark-outline)
-    ) inset;
-}
-
-.resizing-ltr {
-  border-right: var(--resize-thickness) solid var(--resize-border-color);
-}
-
-.resizing-rtl {
-  border-left: var(--resize-thickness) solid var(--resize-border-color);
-}
-
-.dragging {
-  opacity: 0.5;
-  border-left: var(--drag-thickness) dashed var(--drag-color);
-  border-right: var(--drag-thickness) dashed var(--drag-color);
-  border-top: var(--drag-thickness) dashed var(--drag-color);
-}
-
-.hovered {
-  z-index: 2;
-  border-left: var(--hover-thickness) dashed var(--hover-color);
-  border-right: var(--hover-thickness) dashed var(--hover-color);
-  border-top: var(--hover-thickness) dashed var(--hover-color);
 }
 
 .content {

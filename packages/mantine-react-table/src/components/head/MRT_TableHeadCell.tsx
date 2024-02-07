@@ -94,6 +94,9 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
     columnDef.columnDefType !== 'group' &&
     column.getIsPinned();
 
+  const isDraggingColumn = draggingColumn?.id === column.id;
+  const isHoveredColumn = hoveredColumn?.id === column.id;
+
   const showColumnActions =
     (enableColumnActions || columnDef.enableColumnActions) &&
     columnDef.enableColumnActions !== false;
@@ -138,8 +141,20 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   return (
     <TableTh
       colSpan={header.colSpan}
+      data-column-pinned={isColumnPinned || undefined}
+      data-dragging-column={isDraggingColumn || undefined}
+      data-first-right-pinned={getIsFirstRightPinnedColumn(column) || undefined}
+      data-hovered-column-target={isHoveredColumn || undefined}
       data-index={renderedHeaderIndex}
-      data-pinned={!!isColumnPinned || undefined}
+      data-last-left-pinned={
+        getIsLastLeftPinnedColumn(table, column) || undefined
+      }
+      data-resizing={
+        (columnResizeMode === 'onChange' &&
+          columnSizingInfo?.isResizingColumn === column.id &&
+          columnResizeDirection) ||
+        undefined
+      }
       {...tableCellProps}
       __vars={{
         '--mrt-table-cell-left':
@@ -150,12 +165,6 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
             : undefined,
         '--mrt-table-head-cell-padding':
           density === 'xl' ? '23' : density === 'md' ? '16' : '10',
-        '--mrt-table-head-cell-z-index':
-          column.getIsResizing() || draggingColumn?.id === column.id
-            ? '3'
-            : isColumnPinned && columnDefType !== 'group'
-              ? '2'
-              : '1',
       }}
       align={
         columnDefType === 'group'
@@ -168,23 +177,8 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
         classes.root,
         layoutMode?.startsWith('grid') && classes['root-grid'],
         enableMultiSort && column.getCanSort() && classes['root-no-select'],
-        isColumnPinned &&
-          column.columnDef.columnDefType !== 'group' &&
-          classes['root-pinned'],
-        isColumnPinned === 'left' && classes['root-pinned-left'],
-        isColumnPinned === 'right' && classes['root-pinned-right'],
-        getIsLastLeftPinnedColumn(table, column) &&
-          classes['root-pinned-left-last'],
-        getIsFirstRightPinnedColumn(column) &&
-          classes['root-pinned-right-first'],
+        columnVirtualizer && classes['root-virtualized'],
         tableCellProps?.className,
-        columnSizingInfo?.isResizingColumn === column.id &&
-          columnResizeMode === 'onChange' &&
-          classes[`resizing-${columnResizeDirection}`],
-        draggingColumn?.id === column.id && classes['dragging'],
-        draggingColumn?.id !== column.id &&
-          hoveredColumn?.id === column.id &&
-          classes['hovered'],
       )}
       onDragEnter={handleDragEnter}
       ref={(node: HTMLTableCellElement) => {
@@ -200,80 +194,83 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
         ...parseFromValuesOrFunc(tableCellProps?.style, theme),
       })}
     >
-      {header.isPlaceholder ? null : (
-        <Flex
-          className={clsx(
-            'mrt-table-head-cell-content',
-            classes.content,
-            (columnDefType === 'group' || tableCellProps?.align === 'center') &&
-              classes['content-center'],
-            tableCellProps?.align === 'right' && classes['content-right'],
-            column.getCanResize() && classes['content-spaced'],
-          )}
-        >
-          <Flex
-            __vars={{
-              '--mrt-table-head-cell-labels-padding-left': `${headerPL}`,
-            }}
-            className={clsx(
-              'mrt-table-head-cell-labels',
-              classes.labels,
-              column.getCanSort() &&
-                columnDefType !== 'group' &&
-                classes['labels-sortable'],
-              tableCellProps?.align === 'right'
-                ? classes['labels-right']
-                : tableCellProps?.align === 'center' &&
-                    classes['labels-center'],
-              columnDefType === 'data' && classes['labels-data'],
-            )}
-            onClick={column.getToggleSortingHandler()}
-          >
+      {header.isPlaceholder
+        ? null
+        : tableCellProps.children ?? (
             <Flex
               className={clsx(
-                'mrt-table-head-cell-content-wrapper',
-                classes['content-wrapper'],
-                columnDefType === 'data' &&
-                  classes['content-wrapper-hidden-overflow'],
-                (columnDef.header?.length ?? 0) < 20 &&
-                  classes['content-wrapper-nowrap'],
+                'mrt-table-head-cell-content',
+                classes.content,
+                (columnDefType === 'group' ||
+                  tableCellProps?.align === 'center') &&
+                  classes['content-center'],
+                tableCellProps?.align === 'right' && classes['content-right'],
+                column.getCanResize() && classes['content-spaced'],
               )}
             >
-              {headerElement}
-            </Flex>
-            {column.getCanFilter() && (
-              <MRT_TableHeadCellFilterLabel header={header} table={table} />
-            )}
-            {column.getCanSort() && (
-              <MRT_TableHeadCellSortLabel header={header} table={table} />
-            )}
-          </Flex>
-          {columnDefType !== 'group' && (
-            <Flex
-              className={clsx(
-                'mrt-table-head-cell-content-actions',
-                classes['content-actions'],
+              <Flex
+                __vars={{
+                  '--mrt-table-head-cell-labels-padding-left': `${headerPL}`,
+                }}
+                className={clsx(
+                  'mrt-table-head-cell-labels',
+                  classes.labels,
+                  column.getCanSort() &&
+                    columnDefType !== 'group' &&
+                    classes['labels-sortable'],
+                  tableCellProps?.align === 'right'
+                    ? classes['labels-right']
+                    : tableCellProps?.align === 'center' &&
+                        classes['labels-center'],
+                  columnDefType === 'data' && classes['labels-data'],
+                )}
+                onClick={column.getToggleSortingHandler()}
+              >
+                <Flex
+                  className={clsx(
+                    'mrt-table-head-cell-content-wrapper',
+                    classes['content-wrapper'],
+                    columnDefType === 'data' &&
+                      classes['content-wrapper-hidden-overflow'],
+                    (columnDef.header?.length ?? 0) < 20 &&
+                      classes['content-wrapper-nowrap'],
+                  )}
+                >
+                  {headerElement}
+                </Flex>
+                {column.getCanFilter() && (
+                  <MRT_TableHeadCellFilterLabel header={header} table={table} />
+                )}
+                {column.getCanSort() && (
+                  <MRT_TableHeadCellSortLabel header={header} table={table} />
+                )}
+              </Flex>
+              {columnDefType !== 'group' && (
+                <Flex
+                  className={clsx(
+                    'mrt-table-head-cell-content-actions',
+                    classes['content-actions'],
+                  )}
+                >
+                  {showDragHandle && (
+                    <MRT_TableHeadCellGrabHandle
+                      column={column}
+                      table={table}
+                      tableHeadCellRef={{
+                        current: tableHeadCellRefs.current[column.id],
+                      }}
+                    />
+                  )}
+                  {showColumnActions && (
+                    <MRT_ColumnActionMenu header={header} table={table} />
+                  )}
+                </Flex>
               )}
-            >
-              {showDragHandle && (
-                <MRT_TableHeadCellGrabHandle
-                  column={column}
-                  table={table}
-                  tableHeadCellRef={{
-                    current: tableHeadCellRefs.current[column.id],
-                  }}
-                />
-              )}
-              {showColumnActions && (
-                <MRT_ColumnActionMenu header={header} table={table} />
+              {column.getCanResize() && (
+                <MRT_TableHeadCellResizeHandle header={header} table={table} />
               )}
             </Flex>
           )}
-          {column.getCanResize() && (
-            <MRT_TableHeadCellResizeHandle header={header} table={table} />
-          )}
-        </Flex>
-      )}
       {columnFilterDisplayMode === 'subheader' && column.getCanFilter() && (
         <MRT_TableHeadCellFilterContainer header={header} table={table} />
       )}

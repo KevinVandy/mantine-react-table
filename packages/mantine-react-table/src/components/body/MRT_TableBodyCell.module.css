@@ -12,7 +12,7 @@
       var(--mantine-color-white),
       var(--mantine-color-dark-7)
     );
-    opacity: 0.98;
+    opacity: 0.97;
     position: sticky;
     z-index: 1;
 
@@ -52,7 +52,7 @@
     z-index: 2;
     border-left: var(--drag-thickness) dashed var(--drag-color);
     border-right: var(--drag-thickness) dashed var(--drag-color);
-    &.last-row {
+    &[data-last-row] {
       border-bottom: var(--drag-thickness) dashed var(--drag-color);
     }
   }
@@ -61,7 +61,7 @@
     opacity: 0.5;
     border-left: var(--hover-thickness) dashed var(--hover-color);
     border-right: var(--hover-thickness) dashed var(--hover-color);
-    &.last-row {
+    &[data-last-row] {
       border-bottom: var(--hover-thickness) dashed var(--hover-color);
     }
   }
