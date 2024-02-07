@@ -7,9 +7,7 @@ import {
   type MRT_RowData,
   type MRT_StatefulTableOptions,
 } from '../../types';
-import {
-  defaultDisplayColumnProps,
-} from '../../utils/displayColumn.utils';
+import { defaultDisplayColumnProps } from '../../utils/displayColumn.utils';
 
 export const getMRT_RowExpandColumnDef = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,
@@ -60,7 +58,7 @@ export const getMRT_RowExpandColumnDef = <TData extends MRT_RowData>(
     Header: enableExpandAll
       ? ({ table }) => {
           return (
-            <>
+            <Flex align="center">
               <MRT_ExpandAllButton table={table} />
               {groupedColumnMode === 'remove' &&
                 grouping
@@ -69,7 +67,7 @@ export const getMRT_RowExpandColumnDef = <TData extends MRT_RowData>(
                       table.getColumn(groupedColumnId).columnDef.header,
                   )
                   ?.join(', ')}
-            </>
+            </Flex>
           );
         }
       : undefined,

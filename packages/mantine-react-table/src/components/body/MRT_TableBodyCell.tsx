@@ -216,12 +216,7 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       {...tableCellProps}
       __vars={{
         '--mrt-align':
-          tableCellProps.align ??
-          (columnDefType === 'group'
-            ? 'center'
-            : direction.dir === 'rtl'
-              ? 'right'
-              : 'left'),
+          tableCellProps.align ?? (direction.dir === 'rtl' ? 'right' : 'left'),
         '--mrt-table-cell-left':
           column.getIsPinned() === 'left'
             ? `${column.getStart('left')}`

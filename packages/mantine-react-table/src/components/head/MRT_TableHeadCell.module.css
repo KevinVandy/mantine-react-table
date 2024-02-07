@@ -13,12 +13,16 @@
   background-clip: padding-box;
   font-weight: bold;
   overflow: visible;
-  padding-bottom: calc(var(--mrt-table-head-cell-padding) * 2 / 3 * 1px);
   padding: calc(var(--mrt-table-head-cell-padding) * 1px);
+  padding-bottom: calc(var(--mrt-table-head-cell-padding) * 2 / 3 * 1px);
   position: relative;
   transition: padding 150ms ease-in-out;
   vertical-align: top;
   z-index: 1;
+
+  &:active {
+    z-index: 3;
+  }
 
   &[data-column-pinned] {
     background-color: light-dark(
@@ -49,7 +53,6 @@
   }
 
   &[data-resizing] {
-    z-index: 3;
     &[data-resizing='ltr'] {
       border-right: var(--resize-thickness) solid var(--resize-border-color);
     }

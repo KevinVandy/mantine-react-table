@@ -41,7 +41,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
       renderToolbarAlertBannerContent,
       rowCount,
     },
-    refs: { lastSelectedRowId}
+    refs: { lastSelectedRowId },
   } = table;
   const { density, grouping, rowSelection, showAlertBanner } = getState();
 
@@ -95,11 +95,12 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
               className={classes['alert-badge']}
               rightSection={
                 <ActionIcon
+                  color="white"
                   onClick={() => table.getColumn(columnId).toggleGrouping()}
                   size="xs"
                   variant="subtle"
                 >
-                  <IconX />
+                  <IconX style={{ transform: 'scale(0.8)' }} />
                 </ActionIcon>
               }
               variant="filled"
@@ -152,11 +153,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
               )}
             <Stack>
               {alertProps?.children}
-              {alertProps?.children && (selectedAlert || groupedAlert) && (
-                <br />
-              )}
               {selectedAlert}
-              {selectedAlert && groupedAlert && <br />}
               {groupedAlert}
             </Stack>
           </Flex>

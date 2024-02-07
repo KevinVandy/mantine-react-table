@@ -4,9 +4,7 @@ import {
   type MRT_RowData,
   type MRT_StatefulTableOptions,
 } from '../../types';
-import {
-  defaultDisplayColumnProps,
-} from '../../utils/displayColumn.utils';
+import { defaultDisplayColumnProps } from '../../utils/displayColumn.utils';
 
 export const getMRT_RowPinningColumnDef = <TData extends MRT_RowData>(
   tableOptions: MRT_StatefulTableOptions<TData>,

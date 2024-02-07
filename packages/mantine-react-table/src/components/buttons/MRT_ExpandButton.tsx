@@ -45,6 +45,8 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
   const canExpand = row.getCanExpand();
   const isExpanded = row.getIsExpanded();
 
+  const DetailPanel = !!renderDetailPanel?.({ row, table });
+
   const handleToggleExpand = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     row.toggleExpanded();
@@ -55,7 +57,7 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
 
   return (
     <Tooltip
-      disabled={!canExpand && !renderDetailPanel}
+      disabled={!canExpand && !DetailPanel}
       label={
         actionIconProps?.title ?? isExpanded
           ? localization.collapse
@@ -67,7 +69,7 @@ export const MRT_ExpandButton = <TData extends MRT_RowData>({
       <ActionIcon
         aria-label={localization.expand}
         color="gray"
-        disabled={!canExpand && !renderDetailPanel}
+        disabled={!canExpand && !DetailPanel}
         variant="subtle"
         {...actionIconProps}
         __vars={{

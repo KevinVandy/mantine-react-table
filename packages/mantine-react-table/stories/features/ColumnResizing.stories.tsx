@@ -1,3 +1,4 @@
+import { DirectionProvider } from '@mantine/core';
 import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
@@ -50,14 +51,16 @@ export const ColumnResizingEnabledDefaultOnChange = () => (
 );
 
 export const ColumnResizingEnabledDefaultOnChangeRTL = () => (
-  <div style={{ direction: 'rtl' }}>
-    <MantineReactTable
-      columnResizeDirection="rtl"
-      columns={columns}
-      data={data}
-      enableColumnResizing
-    />
-  </div>
+  <DirectionProvider initialDirection="rtl">
+    <div style={{ direction: 'rtl' }}>
+      <MantineReactTable
+        columnResizeDirection="rtl"
+        columns={columns}
+        data={data}
+        enableColumnResizing
+      />
+    </div>
+  </DirectionProvider>
 );
 
 export const ColumnResizingEnabledDefaultOnChangeGrid = () => (
@@ -94,15 +97,17 @@ export const ColumnResizingDefaultOnChangeGridWithIndividualShrink = () => (
 );
 
 export const ColumnResizingEnabledDefaultOnChangeGridRTL = () => (
-  <div style={{ direction: 'rtl' }}>
-    <MantineReactTable
-      columnResizeDirection="rtl"
-      columns={columns}
-      data={data}
-      enableColumnResizing
-      layoutMode="grid"
-    />
-  </div>
+  <DirectionProvider initialDirection="rtl">
+    <div style={{ direction: 'rtl' }}>
+      <MantineReactTable
+        columnResizeDirection="rtl"
+        columns={columns}
+        data={data}
+        enableColumnResizing
+        layoutMode="grid"
+      />
+    </div>
+  </DirectionProvider>
 );
 
 export const ColumnResizingEnabledDefaultOnChangeSemantic = () => (
@@ -115,15 +120,17 @@ export const ColumnResizingEnabledDefaultOnChangeSemantic = () => (
 );
 
 export const ColumnResizingEnabledDefaultOnChangeSemanticRTL = () => (
-  <div style={{ direction: 'rtl' }}>
-    <MantineReactTable
-      columnResizeDirection="rtl"
-      columns={columns}
-      data={data}
-      enableColumnResizing
-      layoutMode="semantic"
-    />
-  </div>
+  <DirectionProvider initialDirection="rtl">
+    <div style={{ direction: 'rtl' }}>
+      <MantineReactTable
+        columnResizeDirection="rtl"
+        columns={columns}
+        data={data}
+        enableColumnResizing
+        layoutMode="semantic"
+      />
+    </div>
+  </DirectionProvider>
 );
 
 export const ColumnResizingEnabledNoColumnActions = () => (
@@ -179,15 +186,17 @@ export const ColumnResizingEnabledOnEnd = () => (
 );
 
 export const ColumnResizingEnabledOnEndRTL = () => (
-  <div style={{ direction: 'rtl' }}>
-    <MantineReactTable
-      columnResizeDirection="rtl"
-      columnResizeMode="onEnd"
-      columns={columns}
-      data={data}
-      enableColumnResizing
-    />
-  </div>
+  <DirectionProvider initialDirection="rtl">
+    <div style={{ direction: 'rtl' }}>
+      <MantineReactTable
+        columnResizeDirection="rtl"
+        columnResizeMode="onEnd"
+        columns={columns}
+        data={data}
+        enableColumnResizing
+      />
+    </div>
+  </DirectionProvider>
 );
 
 export const ColumnResizingCustomDefaultWidths = () => (
@@ -316,14 +325,16 @@ export const ColumnResizingLayoutGridGrow = () => (
 );
 
 export const ColumnResizingLayoutGridGrowRTL = () => (
-  <div style={{ direction: 'rtl' }}>
-    <MantineReactTable
-      columnResizeDirection="rtl"
-      columns={columns.slice(0, 3)}
-      data={data}
-      enableColumnResizing
-      enableRowSelection
-      layoutMode="grid"
-    />
-  </div>
+  <DirectionProvider initialDirection="rtl">
+    <div style={{ direction: 'rtl' }}>
+      <MantineReactTable
+        columnResizeDirection="rtl"
+        columns={columns.slice(0, 3)}
+        data={data}
+        enableColumnResizing
+        enableRowSelection
+        layoutMode="grid"
+      />
+    </div>
+  </DirectionProvider>
 );

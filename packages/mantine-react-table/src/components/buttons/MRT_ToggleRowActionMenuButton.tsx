@@ -61,10 +61,11 @@ export const MRT_ToggleRowActionMenuButton = <TData extends MRT_RowData>({
         <Tooltip label={edit} openDelay={1000} position="right" withinPortal>
           <ActionIcon
             aria-label={edit}
+            color="gray"
             disabled={!!editingRow && editingRow.id !== row.id}
             onClick={handleStartEditMode}
             size="md"
-            variant="default"
+            variant="subtle"
           >
             <IconEdit />
           </ActionIcon>

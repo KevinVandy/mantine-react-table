@@ -101,7 +101,7 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
           row.getIsExpanded() && classes['inner-expanded'],
           virtualRow && classes['inner-virtual'],
         )}
-        p={row.getIsExpanded() ? 'md' : 0}
+        p={row.getIsExpanded() && DetailPanel ? 'md' : 0}
       >
         {enableRowVirtualization ? (
           row.getIsExpanded() && DetailPanel

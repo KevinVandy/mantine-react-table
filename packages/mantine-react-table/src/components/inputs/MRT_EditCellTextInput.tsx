@@ -1,9 +1,5 @@
 import { type FocusEvent, type KeyboardEvent, useState } from 'react';
-import {
-  Select,
-  TextInput,
-  type TextInputProps,
-} from '@mantine/core';
+import { Select, TextInput, type TextInputProps } from '@mantine/core';
 import {
   type MRT_Cell,
   type MRT_CellValue,

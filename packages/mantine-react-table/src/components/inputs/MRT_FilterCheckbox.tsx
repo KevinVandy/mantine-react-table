@@ -9,7 +9,8 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData, TValue = MRT_CellValue> extends CheckboxProps {
+interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
+  extends CheckboxProps {
   column: MRT_Column<TData, TValue>;
   table: MRT_TableInstance<TData>;
 }

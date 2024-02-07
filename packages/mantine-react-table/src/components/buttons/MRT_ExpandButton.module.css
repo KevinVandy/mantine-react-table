@@ -3,6 +3,7 @@
   &:disabled {
     background-color: transparent;
     border: none;
+    opacity: 0.3;
   }
   &:hover {
     opacity: 1;
