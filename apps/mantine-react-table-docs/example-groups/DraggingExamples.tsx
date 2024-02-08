@@ -8,7 +8,7 @@ import { useState } from 'react';
 const DraggingExamples = ({ isPage = false }) => {
   const { pathname, push } = useRouter();
   const [activeTab, setActiveTab] = useState(
-    isPage ? pathname.split('/').pop() : 'export-csv',
+    isPage ? pathname.split('/').pop() : 'column-ordering',
   );
   return (
     <>
