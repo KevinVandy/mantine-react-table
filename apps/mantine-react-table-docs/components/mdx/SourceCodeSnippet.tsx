@@ -24,6 +24,7 @@ import { usePlausible } from 'next-plausible';
 import { useThemeContext } from '../../styles/ThemeContext';
 import { type MantineShade } from 'mantine-react-table';
 import classes from './SourceCodeSnippet.module.css';
+import { useRouter } from 'next/router';
 
 const mantineColors = [
   'dark',
@@ -61,6 +62,7 @@ export const SourceCodeSnippet = ({
   typeScriptCode,
   showTopRow = true,
 }: Props) => {
+  const { pathname } = useRouter();
   const plausible = usePlausible();
   const { setColorScheme, colorScheme } = useMantineColorScheme();
   const {
@@ -199,10 +201,10 @@ export const SourceCodeSnippet = ({
       <Paper withBorder p="0" style={{ overflow: 'hidden' }}>
         <CodeHighlightTabs
           collapseCodeLabel="Show less"
-          defaultExpanded={false}
+          defaultExpanded={pathname.includes('/examples')}
           expandCodeLabel="Show full code"
           maxCollapsedHeight={500}
-          withExpandButton
+          withExpandButton={!pathname.includes('/examples')}
           onExpandedChange={(expanded) => {
             plausible(expanded ? 'expand-code' : 'collapse-code');
           }}

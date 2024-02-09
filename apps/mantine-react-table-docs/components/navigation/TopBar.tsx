@@ -87,7 +87,8 @@ export const TopBar = ({ navOpen, setNavOpen }: Props) => {
           display: 'flex',
           justifyContent: 'space-between',
           padding: '4px 20px',
-          zIndex: 5,
+          zIndex: 101,
+          opacity: 0.97,
         }}
       >
         <Flex align="center" gap="md">

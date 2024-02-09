@@ -31,3 +31,10 @@
   text-align: center;
   width: 100%;
 }
+
+.pinned {
+  bottom: calc(var(--mrt-table-footer-height, unset) * 1px - 1px);
+  position: sticky;
+  top: calc(var(--mrt-table-head-height, unset) * 1px - 1px);
+  z-index: 1;
+}

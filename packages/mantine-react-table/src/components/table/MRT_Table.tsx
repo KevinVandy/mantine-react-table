@@ -55,8 +55,6 @@ export const MRT_Table = <TData extends MRT_RowData>({
 
   const commonTableGroupProps = {
     columnVirtualizer,
-    enableHover: tableProps?.highlightOnHover,
-    isStriped: tableProps?.striped,
     table,
   };
 
@@ -83,7 +81,11 @@ export const MRT_Table = <TData extends MRT_RowData>({
       {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (
         <Memo_MRT_TableBody {...commonTableGroupProps} />
       ) : (
-        <MRT_TableBody {...commonTableGroupProps} />
+        <MRT_TableBody
+          {...commonTableGroupProps}
+          enableHover={tableProps?.highlightOnHover}
+          isStriped={tableProps.striped}
+        />
       )}
       {enableTableFooter && <MRT_TableFooter {...commonTableGroupProps} />}
     </Table>

@@ -86,13 +86,15 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
         getIsSomeRowsPinned('top') && (
           <TableTbody
             {...tableBodyProps}
-            style={(theme) => ({
-              display: layoutMode?.startsWith('grid') ? 'grid' : undefined,
-              position: 'sticky',
-              top: tableHeadHeight - 1,
-              zIndex: 1,
-              ...(parseFromValuesOrFunc(tableBodyProps?.style, theme) as any),
-            })}
+            __vars={{
+              '--mrt-table-head-height': `${tableHeadHeight}`,
+              ...tableBodyProps?.__vars,
+            }}
+            className={clsx(
+              classes.pinned,
+              layoutMode?.startsWith('grid') && classes['root-grid'],
+              tableBodyProps?.className,
+            )}
           >
             {getTopRows().map((row, renderedRowIndex) => {
               const rowProps = {
@@ -199,13 +201,15 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
         getIsSomeRowsPinned('bottom') && (
           <TableTbody
             {...tableBodyProps}
-            style={(theme) => ({
-              bottom: tableFooterHeight - 1,
-              display: layoutMode?.startsWith('grid') ? 'grid' : undefined,
-              position: 'sticky',
-              zIndex: 1,
-              ...(parseFromValuesOrFunc(tableBodyProps?.style, theme) as any),
-            })}
+            __vars={{
+              '--mrt-table-footer-height': `${tableFooterHeight}`,
+              ...tableBodyProps?.__vars,
+            }}
+            className={clsx(
+              classes.pinned,
+              layoutMode?.startsWith('grid') && classes['root-grid'],
+              tableBodyProps?.className,
+            )}
           >
             {getBottomRows().map((row, renderedRowIndex) => {
               const props = {
