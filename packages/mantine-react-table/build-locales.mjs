@@ -1,4 +1,5 @@
 /* eslint-disable */
+import pkg from './package.json' assert { type: 'json' };
 import typescript from '@rollup/plugin-typescript';
 import fs from 'fs';
 import { rollup } from 'rollup';
@@ -118,6 +119,25 @@ async function run() {
   for (const locale of supportedLocales) {
     await build(locale);
   }
+  // pkg.exports = {
+  //   ...pkg.exports,
+  //   ...supportedLocales.reduce((acc, locale) => {
+  //     acc[`./locales/${locale}`] = {
+  //       import: {
+  //         types: `./locales/${locale}/index.d.cts`,
+  //         default: `./locales/${locale}/index.esm.mjs`,
+  //       },
+  //       require: {
+  //         types: `./locales/${locale}/index.esm.d.mts`,
+  //         default: `./locales/${locale}/index.cjs`,
+  //       },
+  //     };
+  //     return acc;
+  //   }, {}),
+  // };
+  // await fs.writeFile('./package.json', JSON.stringify(pkg, null, 2), (err) => {
+  //   if (err) console.log(err);
+  // });
 }
 
 run().catch((error) => console.error(error));

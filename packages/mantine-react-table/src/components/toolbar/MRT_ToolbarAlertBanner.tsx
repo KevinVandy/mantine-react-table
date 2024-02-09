@@ -12,6 +12,7 @@ import {
   Stack,
 } from '@mantine/core';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
+import { getMRT_SelectAllHandler } from '../../utils/row.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_SelectCheckbox } from '../inputs/MRT_SelectCheckbox';
 
@@ -41,7 +42,6 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
       renderToolbarAlertBannerContent,
       rowCount,
     },
-    refs: { lastSelectedRowId },
   } = table;
   const { density, grouping, rowSelection, showAlertBanner } = getState();
 
@@ -56,7 +56,7 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
     { table },
   );
 
-  const totalRowCount = rowCount ?? getPrePaginationRowModel().rows.length;
+  const totalRowCount = rowCount ?? getPrePaginationRowModel().flatRows.length;
 
   const selectedRowCount = useMemo(
     () =>
@@ -72,10 +72,9 @@ export const MRT_ToolbarAlertBanner = <TData extends MRT_RowData>({
         ?.replace('{selectedCount}', selectedRowCount.toString())
         ?.replace('{rowCount}', totalRowCount.toString())}
       <Button
-        onClick={() => {
-          table.toggleAllRowsSelected(false);
-          lastSelectedRowId.current = null;
-        }}
+        onClick={(event) =>
+          getMRT_SelectAllHandler({ table })(event, false, true)
+        }
         size="compact-xs"
         variant="subtle"
       >

@@ -1,4 +1,4 @@
-import { type ChangeEvent, type MouseEvent } from 'react';
+import { type MouseEvent } from 'react';
 import {
   Checkbox,
   type CheckboxProps,
@@ -16,6 +16,7 @@ import {
 import {
   getIsRowSelected,
   getMRT_RowSelectionHandler,
+  getMRT_SelectAllHandler,
 } from '../../utils/row.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
@@ -35,11 +36,9 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
     getState,
     options: {
       enableMultiRowSelection,
-      enableRowPinning,
       localization,
       mantineSelectAllCheckboxProps,
       mantineSelectCheckboxProps,
-      rowPinningDisplayMode,
       selectAllMode,
       selectDisplayMode,
     },
@@ -47,9 +46,6 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
   const { density, isLoading } = getState();
 
   const selectAll = !row;
-
-  const isStickySelection =
-    enableRowPinning && rowPinningDisplayMode?.includes('select');
 
   const allRowsSelected = selectAll
     ? selectAllMode === 'page'
@@ -71,16 +67,15 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
     ...rest,
   };
 
-  const onSelectionChange = getMRT_RowSelectionHandler();
+  const onSelectionChange = row
+    ? getMRT_RowSelectionHandler({
+        renderedRowIndex,
+        row,
+        table,
+      })
+    : undefined;
 
-  const onSelectAllChange = (event: ChangeEvent<HTMLInputElement>) => {
-    selectAllMode === 'all'
-      ? table.getToggleAllRowsSelectedHandler()(event)
-      : table.getToggleAllPageRowsSelectedHandler()(event);
-    if (isStickySelection) {
-      table.setRowPinning({ bottom: [], top: [] });
-    }
-  };
+  const onSelectAllChange = getMRT_SelectAllHandler({ table });
 
   const commonProps = {
     'aria-label': selectAll
@@ -91,9 +86,7 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
       isLoading || (row && !row.getCanSelect()) || row?.id === 'mrt-row-create',
     onChange: (event) => {
       event.stopPropagation();
-      row
-        ? onSelectionChange({ event, renderedRowIndex, row, table })
-        : onSelectAllChange(event);
+      selectAll ? onSelectAllChange(event) : onSelectionChange!(event);
     },
     size: density === 'xs' ? 'sm' : 'md',
     ...checkboxProps,
@@ -124,9 +117,9 @@ export const MRT_SelectCheckbox = <TData extends MRT_RowData>({
         ) : (
           <Checkbox
             indeterminate={
-              selectAll
-                ? table.getIsSomeRowsSelected() && !allRowsSelected
-                : row?.getIsSomeSelected()
+              !isChecked && selectAll
+                ? table.getIsSomeRowsSelected()
+                : row?.getIsSomeSelected() && row.getCanSelectSubRows()
             }
             {...commonProps}
           />
