@@ -40,7 +40,7 @@ export default [
       }),
       postcss({
         extract: true,
-        minimize: true,
+        minimize: false,
         modules: true,
       }),
     ],
