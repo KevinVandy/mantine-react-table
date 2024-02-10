@@ -65,8 +65,8 @@ export const MRT_TopToolbar = <TData extends MRT_RowData>({
       {...toolbarProps}
       className={clsx(
         commonClasses['common-toolbar-styles'],
-        classes['top-toolbar'],
-        isFullScreen && classes['top-toolbar-fullscreen'],
+        classes['root'],
+        isFullScreen && classes['root-fullscreen'],
         toolbarProps?.className,
       )}
       ref={(node: HTMLDivElement) => {

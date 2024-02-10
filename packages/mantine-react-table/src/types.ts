@@ -333,11 +333,13 @@ export type MRT_TableInstance<TData extends MRT_RowData> = Omit<
   setShowToolbarDropZone: Dispatch<SetStateAction<boolean>>;
 };
 
-export type MRT_DefinedTableOptions<TData extends MRT_RowData> =
-  MRT_TableOptions<TData> & {
-    icons: MRT_Icons;
-    localization: MRT_Localization;
-  };
+export type MRT_DefinedTableOptions<TData extends MRT_RowData> = Omit<
+  MRT_TableOptions<TData>,
+  'icons' | 'localization'
+> & {
+  icons: MRT_Icons;
+  localization: MRT_Localization;
+};
 
 export type MRT_StatefulTableOptions<TData extends MRT_RowData> =
   MRT_DefinedTableOptions<TData> & {

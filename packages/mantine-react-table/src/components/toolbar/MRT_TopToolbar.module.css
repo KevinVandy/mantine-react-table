@@ -1,8 +1,9 @@
-.top-toolbar {
+.root {
+  background-color: var(--mrt-base-background-color);
   position: relative;
 }
 
-.top-toolbar-fullscreen {
+.root-fullscreen {
   position: sticky !important;
   top: 0;
 }

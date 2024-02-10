@@ -50,7 +50,7 @@ export const MRT_BottomToolbar = <TData extends MRT_RowData>({
         'mrt-bottom-toolbar',
         classes.root,
         commonClasses['common-toolbar-styles'],
-        isFullScreen && classes['bottom-toolbar-fullscreen'],
+        isFullScreen && classes['root-fullscreen'],
         toolbarProps?.className,
       )}
       ref={(node: HTMLDivElement) => {

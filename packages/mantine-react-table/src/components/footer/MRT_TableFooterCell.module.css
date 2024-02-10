@@ -2,7 +2,7 @@
   font-size: 0.8rem;
   font-weight: bold;
   padding: 1rem;
-  text-align: var(--mrt-align, left);
+  text-align: var(--mrt-cell-align, left);
   vertical-align: top;
   z-index: 1;
 
@@ -12,7 +12,7 @@
 
   &.grid {
     display: flex;
-    justify-content: var(--mrt-align, flex-start);
+    justify-content: var(--mrt-cell-align, flex-start);
   }
 
   &.group {

@@ -23,7 +23,6 @@ export const MRT_Table = <TData extends MRT_RowData>({
     getState,
     options: {
       columns,
-      enableColumnResizing,
       enableTableFooter,
       enableTableHead,
       layoutMode,
@@ -62,10 +61,8 @@ export const MRT_Table = <TData extends MRT_RowData>({
     <Table
       className={clsx(
         'mrt-table',
+        classes.root,
         layoutMode?.startsWith('grid') && classes['root-grid'],
-        enableColumnResizing &&
-          layoutMode === 'semantic' &&
-          classes['root-semantic-not-resizing'],
         tableProps?.className,
       )}
       highlightOnHover

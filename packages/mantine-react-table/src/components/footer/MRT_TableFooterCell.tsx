@@ -65,7 +65,7 @@ export const MRT_TableFooterCell = <TData extends MRT_RowData>({
       data-index={renderedColumnIndex}
       {...tableCellProps}
       __vars={{
-        '--mrt-align':
+        '--mrt-cell-align':
           tableCellProps.align ??
           (columnDefType === 'group'
             ? 'center'

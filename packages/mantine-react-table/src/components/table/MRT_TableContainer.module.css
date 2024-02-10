@@ -1,4 +1,5 @@
 .root {
+  background-color: var(--mrt-base-background-color);
   max-width: 100%;
   overflow: auto;
   position: relative;

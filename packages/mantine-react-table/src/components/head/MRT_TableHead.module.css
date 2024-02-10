@@ -1,4 +1,5 @@
 .root {
+  background-color: var(--mrt-base-background-color);
   opacity: 0.97;
   position: relative;
 }

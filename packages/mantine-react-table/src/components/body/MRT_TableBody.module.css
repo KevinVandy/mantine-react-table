@@ -1,4 +1,5 @@
 .root {
+  background-color: var(--mrt-base-background-color);
   position: relative;
 }
 
@@ -23,7 +24,7 @@
 }
 
 .empty-row-td-content {
-  color: var(--mantine-color-gray-3);
+  color: var(--mantine-color-dimmed);
   font-style: italic;
   max-width: min(100vw, calc(var(--mrt-paper-width) * 1px));
   padding-bottom: 2rem;

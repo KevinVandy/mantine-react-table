@@ -1,8 +1,5 @@
 .root {
-  background-color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-dark-7)
-  );
+  background-color: var(--mrt-base-background-color);
   display: table-row;
   &.layout-mode-grid {
     display: flex;

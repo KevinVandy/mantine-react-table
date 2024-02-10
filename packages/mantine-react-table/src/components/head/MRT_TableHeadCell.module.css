@@ -6,10 +6,7 @@
   --hover-thickness: 3px;
   --drag-thickness: 1px;
 
-  background-color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-dark-7)
-  );
+  background-color: var(--mrt-base-background-color);
   background-clip: padding-box;
   font-weight: bold;
   overflow: visible;
@@ -25,10 +22,7 @@
   }
 
   &[data-column-pinned] {
-    background-color: light-dark(
-      var(--mantine-color-white),
-      var(--mantine-color-dark-7)
-    );
+    background-color: var(--mrt-base-background-color);
     opacity: 0.97;
     position: sticky;
     z-index: 2;

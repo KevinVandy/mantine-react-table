@@ -1,4 +1,5 @@
 .root {
+  background-color: var(--mrt-base-background-color);
   overflow: hidden;
   transition: all 150ms ease-in-out;
 }

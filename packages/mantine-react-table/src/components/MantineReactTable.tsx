@@ -1,3 +1,4 @@
+import './MantineReactTable.module.css';
 import { useMantineReactTable } from '../hooks/useMantineReactTable';
 import {
   type MRT_RowData,

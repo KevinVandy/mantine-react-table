@@ -1,17 +1,13 @@
 .root {
-  --resize-border-color: var(--mantine-primary-color-filled);
   --resize-thickness: 2px;
 
   background-clip: padding-box;
-  text-align: var(--mrt-align, left);
+  text-align: var(--mrt-cell-align, left);
   overflow: hidden;
   transition: padding 150ms ease-in-out;
 
   &[data-column-pinned] {
-    background-color: light-dark(
-      var(--mantine-color-white),
-      var(--mantine-color-dark-7)
-    );
+    background-color: var(--mrt-pinned-column-background-color);
     opacity: 0.97;
     position: sticky;
     z-index: 1;
@@ -50,28 +46,36 @@
 
   &[data-dragging-column] {
     z-index: 2;
-    border-left: var(--drag-thickness) dashed var(--drag-color);
-    border-right: var(--drag-thickness) dashed var(--drag-color);
+    border-left: var(--drag-thickness) dashed
+      var(--mrt-dragging-drag-border-color);
+    border-right: var(--drag-thickness) dashed
+      var(--mrt-dragging-drag-border-color);
     &[data-last-row] {
-      border-bottom: var(--drag-thickness) dashed var(--drag-color);
+      border-bottom: var(--drag-thickness) dashed
+        var(--mrt-dragging-drag-border-color);
     }
   }
 
   &[data-hovered-column-target] {
     opacity: 0.5;
-    border-left: var(--hover-thickness) dashed var(--hover-color);
-    border-right: var(--hover-thickness) dashed var(--hover-color);
+    border-left: var(--hover-thickness) dashed
+      var(--mrt-dragging-hovered-border-color);
+    border-right: var(--hover-thickness) dashed
+      var(--mrt-dragging-hovered-border-color);
     &[data-last-row] {
-      border-bottom: var(--hover-thickness) dashed var(--hover-color);
+      border-bottom: var(--hover-thickness) dashed
+        var(--mrt-dragging-hovered-border-color);
     }
   }
 
   &[data-resizing='ltr'] {
-    border-right: var(--resize-thickness) solid var(--resize-border-color);
+    border-right: var(--resize-thickness) solid
+      var(--mrt-resize-column-border-color);
   }
 
   &[data-resizing='rtl'] {
-    border-left: var(--resize-thickness) solid var(--resize-border-color);
+    border-left: var(--resize-thickness) solid
+      var(--mrt-resize-column-border-color);
   }
 
   &:hover {
@@ -81,10 +85,7 @@
 }
 
 .root-default-background {
-  background-color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-dark-7)
-  );
+  background-color: var(--mrt-base-background-color);
 }
 
 .root-inherit-background-color {
@@ -93,7 +94,7 @@
 
 .root-grid {
   align-items: center;
-  justify-content: var(--mrt-align, flex-start);
+  justify-content: var(--mrt-cell-align, flex-start);
   display: flex;
 }
 
