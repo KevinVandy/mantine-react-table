@@ -2,9 +2,34 @@
   --hover-thickness: 3px;
   --drag-thickness: 1px;
 
+  background-color: var(--mrt-base-background-color);
   box-sizing: border-box;
   transition: all 150ms ease-in-out;
   width: 100%;
+
+  &[data-row-pinned] {
+    bottom: calc(var(--mrt-pinned-row-bottom, unset) * 1px);
+    opacity: 0.98;
+    top: calc(var(--mrt-pinned-row-top, unset) * 1px);
+    td {
+      background-color: var(--mrt-pinned-row-background-color);
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--mrt-base-background-color);
+        z-index: -1;
+      }
+    }
+  }
+
+  &[data-row-pinned='sticky'] {
+    z-index: 2;
+    position: sticky;
+  }
 
   &[data-selected] {
     background-color: var(--mrt-selected-row-background-color);
@@ -18,20 +43,6 @@
         }
       }
     }
-  }
-
-  &[data-row-pinned] {
-    bottom: calc(var(--mrt-pinned-row-bottom, unset) * 1px);
-    opacity: 0.98;
-    top: calc(var(--mrt-pinned-row-top, unset) * 1px);
-    td {
-      background-color: var(--mrt-pinned-row-background-color);
-    }
-  }
-
-  &[data-row-pinned='sticky'] {
-    z-index: 2;
-    position: sticky;
   }
 
   &[data-hover] {

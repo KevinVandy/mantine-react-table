@@ -1,10 +1,5 @@
 .common-toolbar-styles {
   align-items: flex-start;
-  background-color: light-dark(
-    var(--mantine-color-default),
-    var(--mantine-color-dark-7)
-  );
-  background-image: none;
   display: grid;
   flex-wrap: wrap-reverse;
   min-height: 3.5rem;

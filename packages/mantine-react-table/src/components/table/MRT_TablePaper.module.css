@@ -1,47 +1,67 @@
-.root {
-  background-color: var(--mrt-base-background-color);
-  overflow: hidden;
-  transition: all 150ms ease-in-out;
-}
-
 :root {
   /* default background color for everything */
   --mrt-base-background-color: var(--mantine-color-body);
 
   /* row hover */
-  &[data-mantine-color-scheme='light'] {
-    --mrt-row-hover-background-color: var(--mantine-color-dark-light-hover);
+  @mixin light-root {
+    --mrt-row-hover-background-color: darken(
+      var(--mrt-base-background-color),
+      0.05
+    );
   }
-  &[data-mantine-color-scheme='dark'] {
-    --mrt-row-hover-background-color: var(--mantine-color-gray-light-hover);
+  @mixin dark-root {
+    --mrt-row-hover-background-color: lighten(
+      var(--mrt-base-background-color),
+      0.05
+    );
   }
 
   /* row selection */
-  --mrt-selected-row-background-color: var(--mantine-primary-color-light);
-  --mrt-selected-row-hover-background-color: var(
-    --mantine-primary-color-light-hover
+  --mrt-selected-row-background-color: alpha(
+    var(--mantine-primary-color-light),
+    0.8
   );
+  @mixin light-root {
+    --mrt-selected-row-hover-background-color: darken(
+      var(--mantine-primary-color-light-hover),
+      0.05
+    );
+  }
+  @mixin dark-root {
+    --mrt-selected-row-hover-background-color: lighten(
+      var(--mantine-primary-color-light-hover),
+      0.05
+    );
+  }
 
   /* row pinning */
-  &[data-mantine-color-scheme='light'] {
-    --mrt-pinned-row-background-color: var(--mantine-color-gray-1);
-    --mrt-pinned-row-hover-background-color: var(--mantine-color-gray-2);
-  }
-  &[data-mantine-color-scheme='dark'] {
-    --mrt-pinned-row-background-color: var(--mantine-color-dark-8);
-    --mrt-pinned-row-hover-background-color: var(--mantine-color-gray-7);
-  }
+  --mrt-pinned-row-background-color: var(--mrt-selected-row-background-color);
+  --mrt-pinned-row-hover-background-color: var(
+    --mrt-selected-row-hover-background-color
+  );
 
   /* column pinning */
-  &[data-mantine-color-scheme='light'] {
-    --mrt-pinned-column-background-color: var(--mantine-color-gray-0);
+  @mixin light-root {
+    --mrt-pinned-column-background-color: darken(
+      var(--mrt-base-background-color),
+      0.01
+    );
   }
-  &[data-mantine-color-scheme='dark'] {
-    --mrt-pinned-column-background-color: var(--mantine-color-dark-8);
+  @mixin dark-root {
+    --mrt-pinned-column-background-color: darken(
+      var(--mrt-base-background-color),
+      0.05
+    );
   }
 
   /* cell borders */
   --mrt-dragging-hovered-border-color: var(--mantine-primary-color-filled);
   --mrt-dragging-drag-border-color: var(--mantine-color-gray-7);
   --mrt-resize-column-border-color: var(--mantine-primary-color-filled);
+}
+
+.root {
+  background-color: var(--mrt-base-background-color);
+  overflow: hidden;
+  transition: all 150ms ease-in-out;
 }
