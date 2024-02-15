@@ -50,7 +50,7 @@ export const CustomTableBody = () => (
     columns={columns}
     data={data}
     mantineTableBodyProps={{
-      children: 'Custom Table Body',
+      children: <div>Custom Table Body</div>,
     }}
   />
 );

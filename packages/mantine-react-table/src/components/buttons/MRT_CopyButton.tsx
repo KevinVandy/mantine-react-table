@@ -19,12 +19,16 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
   extends UnstyledButtonProps {
   cell: MRT_Cell<TData, TValue>;
   children: ReactNode;
+  renderedColumnIndex?: number;
+  renderedRowIndex?: number;
   table: MRT_TableInstance<TData>;
 }
 
 export const MRT_CopyButton = <TData extends MRT_RowData>({
   cell,
   children,
+  renderedColumnIndex,
+  renderedRowIndex,
   table,
   ...rest
 }: Props<TData>) => {
