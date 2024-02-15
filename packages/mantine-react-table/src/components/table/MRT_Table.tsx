@@ -63,7 +63,7 @@ export const MRT_Table = <TData extends MRT_RowData>({
         'mrt-table',
         classes.root,
         layoutMode?.startsWith('grid') && classes['root-grid'],
-        tableProps?.className,
+        tableProps.className,
       )}
       highlightOnHover
       horizontalSpacing={density}
@@ -71,7 +71,7 @@ export const MRT_Table = <TData extends MRT_RowData>({
       {...tableProps}
       __vars={{
         ...columnSizeVars,
-        ...tableProps?.__vars,
+        ...tableProps.__vars,
       }}
     >
       {enableTableHead && <MRT_TableHead {...commonTableGroupProps} />}
@@ -80,7 +80,7 @@ export const MRT_Table = <TData extends MRT_RowData>({
       ) : (
         <MRT_TableBody
           {...commonTableGroupProps}
-          enableHover={tableProps?.highlightOnHover}
+          enableHover={tableProps.highlightOnHover}
           isStriped={tableProps.striped}
         />
       )}
