@@ -264,19 +264,16 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
             ) ||
               !row.getIsGrouped()) ? (
             columnDef.Cell?.({
-              cell,
               column,
               renderedCellValue: cell.renderValue() as any,
-              renderedColumnIndex,
-              renderedRowIndex,
               row,
               rowRef,
-              table,
+              ...cellValueProps,
             })
           ) : isCreating || isEditing ? (
-            <MRT_EditCellTextInput {...cellValueProps} />
+            <MRT_EditCellTextInput cell={cell} table={table} />
           ) : showClickToCopyButton && columnDef.enableClickToCopy !== false ? (
-            <MRT_CopyButton {...cellValueProps}>
+            <MRT_CopyButton cell={cell} table={table}>
               <MRT_TableBodyCellValue {...cellValueProps} />
             </MRT_CopyButton>
           ) : (
