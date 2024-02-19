@@ -85,14 +85,6 @@
   }
 }
 
-.root-default-background {
-  background-color: var(--mrt-base-background-color);
-}
-
-.root-inherit-background-color {
-  background-color: inherit;
-}
-
 .root-grid {
   align-items: center;
   justify-content: var(--mrt-cell-align, flex-start);

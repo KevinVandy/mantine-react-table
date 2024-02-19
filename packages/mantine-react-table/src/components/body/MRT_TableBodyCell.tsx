@@ -36,7 +36,6 @@ import { MRT_EditCellTextInput } from '../inputs/MRT_EditCellTextInput';
 interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
   extends TableTdProps {
   cell: MRT_Cell<TData, TValue>;
-  isStriped?: 'even' | 'odd' | boolean;
   numRows?: number;
   renderedColumnIndex?: number;
   renderedRowIndex?: number;
@@ -47,7 +46,6 @@ interface Props<TData extends MRT_RowData, TValue = MRT_CellValue>
 
 export const MRT_TableBodyCell = <TData extends MRT_RowData>({
   cell,
-  isStriped,
   numRows = 1,
   renderedColumnIndex = 0,
   renderedRowIndex = 0,
@@ -229,9 +227,6 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
       }}
       className={clsx(
         classes.root,
-        isStriped || row.getIsSelected()
-          ? classes['root-inherit-background-color']
-          : classes['root-default-background'],
         layoutMode?.startsWith('grid') && classes['root-grid'],
         virtualCell && classes['root-virtualized'],
         isEditable &&

@@ -1,7 +1,12 @@
 import clsx from 'clsx';
 import classes from './MRT_TableBodyRow.module.css';
 import { type DragEvent, memo, useMemo, useRef } from 'react';
-import { Box, TableTr, type TableTrProps } from '@mantine/core';
+import {
+  Box,
+  type TableProps,
+  TableTr,
+  type TableTrProps,
+} from '@mantine/core';
 import { MRT_TableBodyCell, Memo_MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import {
@@ -18,27 +23,25 @@ import { parseFromValuesOrFunc } from '../../utils/utils';
 
 interface Props<TData extends MRT_RowData> extends TableTrProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
-  enableHover?: boolean;
-  isStriped?: 'even' | 'odd' | boolean;
   numRows?: number;
   pinnedRowIds?: string[];
   renderedRowIndex?: number;
   row: MRT_Row<TData>;
   rowVirtualizer?: MRT_RowVirtualizer;
   table: MRT_TableInstance<TData>;
+  tableProps: Partial<TableProps>;
   virtualRow?: MRT_VirtualItem;
 }
 
 export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   columnVirtualizer,
-  enableHover,
-  isStriped,
   numRows,
   pinnedRowIds,
   renderedRowIndex = 0,
   row,
   rowVirtualizer,
   table,
+  tableProps,
   virtualRow,
   ...rest
 }: Props<TData>) => {
@@ -124,6 +127,20 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
 
   const rowRef = useRef<HTMLTableRowElement | null>(null);
 
+  let striped = tableProps.striped as boolean | string;
+
+  if (striped) {
+    if (striped === true) {
+      striped = 'odd';
+    }
+    if (striped === 'odd' && renderedRowIndex % 2 !== 0) {
+      striped = false;
+    }
+    if (striped === 'even' && renderedRowIndex % 2 === 0) {
+      striped = false;
+    }
+  }
+
   return (
     <>
       <TableTr
@@ -132,6 +149,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
         data-index={renderDetailPanel ? renderedRowIndex * 2 : renderedRowIndex}
         data-row-pinned={isRowStickyPinned || isRowPinned || undefined}
         data-selected={isRowSelected || undefined}
+        data-striped={striped}
         onDragEnter={handleDragEnter}
         ref={(node: HTMLTableRowElement) => {
           if (node) {
@@ -181,7 +199,6 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
             }
             const cellProps = {
               cell,
-              isStriped,
               numRows,
               renderedColumnIndex,
               renderedRowIndex,
@@ -212,6 +229,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
           parentRowRef={rowRef}
           row={row}
           rowVirtualizer={rowVirtualizer}
+          striped={striped}
           table={table}
           virtualRow={virtualRow}
         />

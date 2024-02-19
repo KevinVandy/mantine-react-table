@@ -16,6 +16,7 @@ interface Props<TData extends MRT_RowData> extends TableTdProps {
   renderedRowIndex?: number;
   row: MRT_Row<TData>;
   rowVirtualizer?: MRT_RowVirtualizer;
+  striped?: false | string;
   table: MRT_TableInstance<TData>;
   virtualRow?: MRT_VirtualItem;
 }
@@ -25,6 +26,7 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
   renderedRowIndex = 0,
   row,
   rowVirtualizer,
+  striped,
   table,
   virtualRow,
   ...rest
@@ -64,6 +66,7 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
       data-index={
         renderDetailPanel ? renderedRowIndex * 2 + 1 : renderedRowIndex
       }
+      data-striped={striped}
       ref={(node: HTMLTableRowElement) => {
         if (node) {
           rowVirtualizer?.measureElement?.(node);

@@ -1,4 +1,3 @@
-import classes from './TableBodyRowStyles.stories.module.css';
 import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
@@ -27,7 +26,7 @@ const columns: MRT_ColumnDef<(typeof data)[0]>[] = [
     header: 'Address',
   },
 ];
-const data = [...Array(21)].map(() => ({
+const data = [...Array(44)].map(() => ({
   address: faker.location.streetAddress(),
   age: faker.number.int(80),
   firstName: faker.person.firstName(),
@@ -55,29 +54,99 @@ export const StyleMantineTableBodyRow = () => (
     mantineTableBodyRowProps={{
       style: {
         backgroundColor: 'rgba(52, 210, 235, 0.1)',
-        borderRight: '1px solid rgba(224,224,224,1)',
       },
     }}
   />
 );
 
-export const StyleCustomStripedRows = () => (
+export const StripedRowsTrue = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    mantineTableBodyProps={{
-      className: classes.striped,
+    enableRowPinning
+    enableRowSelection
+    mantineTableProps={{
+      striped: true,
     }}
   />
 );
 
-export const StyleCustomStripedRowsDetailPanel = () => (
+export const StripedRowsCustomColor = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    mantineTableBodyCellProps={{ style: { border: 'none' } }}
-    mantineTableBodyProps={{
-      className: classes.stripeddetails,
+    enablePagination={false}
+    enableRowPinning
+    enableRowSelection
+    enableRowVirtualization
+    mantineTableProps={{
+      striped: true,
+      stripedColor: 'rgba(255, 255, 0, 0.1)',
+    }}
+  />
+);
+
+export const StripedRowsOdd = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    mantineTableProps={{
+      striped: 'odd',
+    }}
+  />
+);
+
+export const StripedRowsEven = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    mantineTableProps={{
+      striped: 'even',
+    }}
+  />
+);
+
+export const StripedRowsTrueDetailPanel = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    mantineTableProps={{
+      striped: true,
+    }}
+    renderDetailPanel={() => <div>Detail Panel</div>}
+  />
+);
+
+export const StripedRowsOddDetailPanel = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    mantineTableProps={{
+      striped: 'odd',
+    }}
+    renderDetailPanel={() => <div>Detail Panel</div>}
+  />
+);
+
+export const StripedRowsEvenDetailPanel = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    mantineTableProps={{
+      striped: 'even',
+    }}
+    renderDetailPanel={() => <div>Detail Panel</div>}
+  />
+);
+
+export const StripedRowsEvenDetailPanelVirtual = () => (
+  <MantineReactTable
+    columns={columns}
+    data={data}
+    enablePagination={false}
+    enableRowVirtualization
+    mantineTableProps={{
+      striped: 'even',
     }}
     renderDetailPanel={() => <div>Detail Panel</div>}
   />

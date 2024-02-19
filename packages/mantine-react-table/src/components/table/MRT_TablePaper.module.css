@@ -2,17 +2,30 @@
   /* default background color for everything */
   --mrt-base-background-color: var(--mantine-color-body);
 
-  /* row hover */
   @mixin light-root {
-    --mrt-row-hover-background-color: darken(
+    --mrt-striped-row-background-color: darken(
       var(--mrt-base-background-color),
       0.05
     );
   }
   @mixin dark-root {
-    --mrt-row-hover-background-color: lighten(
+    --mrt-striped-row-background-color: lighten(
       var(--mrt-base-background-color),
       0.05
+    );
+  }
+
+  /* row hover */
+  @mixin light-root {
+    --mrt-row-hover-background-color: darken(
+      var(--mrt-base-background-color),
+      0.08
+    );
+  }
+  @mixin dark-root {
+    --mrt-row-hover-background-color: lighten(
+      var(--mrt-base-background-color),
+      0.08
     );
   }
 

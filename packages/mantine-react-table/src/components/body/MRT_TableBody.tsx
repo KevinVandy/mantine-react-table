@@ -1,7 +1,12 @@
 import clsx from 'clsx';
 import classes from './MRT_TableBody.module.css';
 import { memo, useMemo } from 'react';
-import { TableTbody, type TableTbodyProps, Text } from '@mantine/core';
+import {
+  type TableProps,
+  TableTbody,
+  type TableTbodyProps,
+  Text,
+} from '@mantine/core';
 import { MRT_TableBodyRow, Memo_MRT_TableBodyRow } from './MRT_TableBodyRow';
 import { useMRT_RowVirtualizer } from '../../hooks/useMRT_RowVirtualizer';
 import { useMRT_Rows } from '../../hooks/useMRT_Rows';
@@ -16,16 +21,14 @@ import { parseFromValuesOrFunc } from '../../utils/utils';
 
 interface Props<TData extends MRT_RowData> extends TableTbodyProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
-  enableHover?: boolean;
-  isStriped?: 'even' | 'odd' | boolean;
   table: MRT_TableInstance<TData>;
+  tableProps: Partial<TableProps>;
 }
 
 export const MRT_TableBody = <TData extends MRT_RowData>({
   columnVirtualizer,
-  enableHover,
-  isStriped,
   table,
+  tableProps,
   ...rest
 }: Props<TData>) => {
   const {
@@ -78,6 +81,7 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
     columnVirtualizer,
     numRows: rows.length,
     table,
+    tableProps,
   };
 
   return (
@@ -176,8 +180,6 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
                     : (rowOrVirtualRow as MRT_Row<TData>);
                   const props = {
                     ...commonRowProps,
-                    enableHover,
-                    isStriped,
                     pinnedRowIds,
                     renderedRowIndex,
                     row,

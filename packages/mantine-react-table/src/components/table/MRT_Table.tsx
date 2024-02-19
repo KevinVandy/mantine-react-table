@@ -71,18 +71,18 @@ export const MRT_Table = <TData extends MRT_RowData>({
       {...tableProps}
       __vars={{
         ...columnSizeVars,
+        '--mrt-striped-row-background-color': tableProps.stripedColor,
         ...tableProps.__vars,
       }}
     >
       {enableTableHead && <MRT_TableHead {...commonTableGroupProps} />}
       {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (
-        <Memo_MRT_TableBody {...commonTableGroupProps} />
-      ) : (
-        <MRT_TableBody
+        <Memo_MRT_TableBody
           {...commonTableGroupProps}
-          enableHover={tableProps.highlightOnHover}
-          isStriped={tableProps.striped}
+          tableProps={tableProps}
         />
+      ) : (
+        <MRT_TableBody {...commonTableGroupProps} tableProps={tableProps} />
       )}
       {enableTableFooter && <MRT_TableFooter {...commonTableGroupProps} />}
     </Table>

@@ -11,6 +11,7 @@
   position: absolute;
   top: var(--mrt-parent-row-height);
   transform: translateY(var(--mrt-virtual-row-start));
+  transition: none;
   z-index: 1;
 }
 
@@ -29,8 +30,5 @@
 }
 
 .inner-virtual {
-  background-color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-dark-7)
-  );
+  background-color: var(--mrt-base-background-color);
 }

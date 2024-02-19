@@ -1,11 +1,25 @@
 .root {
   --hover-thickness: 3px;
   --drag-thickness: 1px;
+  --_table-striped-color: none;
 
-  background-color: var(--mrt-base-background-color);
   box-sizing: border-box;
   transition: all 150ms ease-in-out;
   width: 100%;
+
+  /* default background-color */
+  &:not([data-striped], [data-striped='false']) {
+    background-color: var(--mrt-base-background-color);
+  }
+  /* striped background-colors (take detail panels and virtualization into account */
+  &:not([data-selected], [data-row-pinned]) {
+    &[data-striped='odd'] {
+      background-color: var(--mrt-striped-row-background-color);
+    }
+    &[data-striped='even'] {
+      background-color: var(--mrt-striped-row-background-color);
+    }
+  }
 
   &[data-row-pinned] {
     bottom: calc(var(--mrt-pinned-row-bottom, unset) * 1px);
