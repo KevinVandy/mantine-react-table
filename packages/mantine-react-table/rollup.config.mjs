@@ -48,7 +48,7 @@ export default [
   {
     input: './dist/types/index.d.ts',
     output: [
-      { file: `./${pkg.types}`, format: 'cjs' },
+      { file: `./dist/index.d.cts`, format: 'cjs' },
       { file: './dist/index.esm.d.mts', format: 'esm' },
     ],
     plugins: [
