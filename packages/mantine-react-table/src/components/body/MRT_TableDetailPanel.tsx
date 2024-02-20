@@ -35,7 +35,6 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
     getState,
     getVisibleLeafColumns,
     options: {
-      enableRowVirtualization,
       layoutMode,
       mantineDetailPanelProps,
       mantineTableBodyRowProps,
@@ -106,7 +105,7 @@ export const MRT_TableDetailPanel = <TData extends MRT_RowData>({
         )}
         p={row.getIsExpanded() && DetailPanel ? 'md' : 0}
       >
-        {enableRowVirtualization ? (
+        {rowVirtualizer ? (
           row.getIsExpanded() && DetailPanel
         ) : (
           <Collapse in={row.getIsExpanded()}>{DetailPanel}</Collapse>

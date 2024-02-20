@@ -168,7 +168,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
                 }`
               : undefined,
           '--mrt-pinned-row-top': virtualRow
-            ? '0'
+            ? undefined
             : topPinnedIndex !== undefined && isRowPinned
               ? `${
                   topPinnedIndex * rowHeight +
@@ -227,6 +227,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
       {renderDetailPanel && !row.getIsGrouped() && (
         <MRT_TableDetailPanel
           parentRowRef={rowRef}
+          renderedRowIndex={renderedRowIndex}
           row={row}
           rowVirtualizer={rowVirtualizer}
           striped={striped}

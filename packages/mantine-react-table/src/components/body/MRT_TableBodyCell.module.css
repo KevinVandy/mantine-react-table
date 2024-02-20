@@ -7,44 +7,6 @@
   position: relative;
   transition: padding 150ms ease-in-out;
 
-  &[data-column-pinned] {
-    background-color: var(--mrt-pinned-column-background-color);
-    opacity: 0.97;
-    position: sticky;
-    z-index: 1;
-
-    &:before {
-      background-color: transparent;
-      content: '';
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: -1;
-    }
-
-    &[data-column-pinned='left'] {
-      left: calc(var(--mrt-table-cell-left, 0) * 1px);
-      &[data-last-left-pinned] {
-        box-shadow: -4px 0 4px -4px light-dark(
-            var(--mantine-color-gray-outline),
-            var(--mantine-color-dark-outline)
-          ) inset;
-      }
-    }
-
-    &[data-column-pinned='right'] {
-      right: calc(var(--mrt-table-cell-right, 0) * 1px);
-      &[data-first-right-pinned] {
-        box-shadow: 4px 0 4px -4px light-dark(
-            var(--mantine-color-gray-outline),
-            var(--mantine-color-dark-outline)
-          ) inset;
-      }
-    }
-  }
-
   &[data-dragging-column] {
     z-index: 2;
     border-left: var(--drag-thickness) dashed

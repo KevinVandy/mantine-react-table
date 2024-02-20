@@ -1,6 +1,6 @@
 import '../styles/globals.css';
 import '@mantine/core/styles.css';
-import '@mantine/dates/styles.css'; //if using mantine component features
+import '@mantine/dates/styles.css'; //if using mantine date picker features
 import '@mantine/code-highlight/styles.css';
 import 'mantine-react-table/styles.css';
 import { useState } from 'react';

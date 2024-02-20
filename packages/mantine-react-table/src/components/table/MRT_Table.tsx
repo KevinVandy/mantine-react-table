@@ -1,7 +1,13 @@
 import clsx from 'clsx';
 import classes from './MRT_Table.module.css';
 import { useMemo } from 'react';
-import { Table, type TableProps } from '@mantine/core';
+import {
+  Table,
+  type TableProps,
+  darken,
+  lighten,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { useMRT_ColumnVirtualizer } from '../../hooks/useMRT_ColumnVirtualizer';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseCSSVarId } from '../../utils/style.utils';
@@ -57,6 +63,10 @@ export const MRT_Table = <TData extends MRT_RowData>({
     table,
   };
 
+  const { colorScheme } = useMantineColorScheme();
+
+  const { stripedColor } = tableProps;
+
   return (
     <Table
       className={clsx(
@@ -71,7 +81,12 @@ export const MRT_Table = <TData extends MRT_RowData>({
       {...tableProps}
       __vars={{
         ...columnSizeVars,
-        '--mrt-striped-row-background-color': tableProps.stripedColor,
+        '--mrt-striped-row-background-color': stripedColor,
+        '--mrt-striped-row-hover-background-color': stripedColor
+          ? colorScheme === 'dark'
+            ? lighten(stripedColor, 0.08)
+            : darken(stripedColor, 0.12)
+          : undefined,
         ...tableProps.__vars,
       }}
     >

@@ -1,5 +1,5 @@
 import '@mantine/core/styles.css';
-import '@mantine/dates/styles.css'; //if using mantine component features
+import '@mantine/dates/styles.css'; //if using mantine date picker features
 import 'mantine-react-table/styles.css'; //make sure MRT styles were imported in your app root (once)
 import classes from './CSS.module.css';
 import clsx from 'clsx';
@@ -51,6 +51,7 @@ export const Example = () => {
     mantineTableProps: {
       className: clsx(classes.table),
       highlightOnHover: false,
+      striped: 'odd',
       withColumnBorders: true,
       withRowBorders: true,
       withTableBorder: true,

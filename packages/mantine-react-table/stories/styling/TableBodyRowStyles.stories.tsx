@@ -75,6 +75,7 @@ export const StripedRowsCustomColor = () => (
   <MantineReactTable
     columns={columns}
     data={data}
+    enableColumnPinning
     enablePagination={false}
     enableRowPinning
     enableRowSelection

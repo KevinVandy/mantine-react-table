@@ -61,8 +61,17 @@ export const MRT_TableFooterCell = <TData extends MRT_RowData>({
   return (
     <TableTh
       colSpan={footer.colSpan}
-      data-column-pinned={!!isColumnPinned || undefined}
+      data-column-pinned={isColumnPinned || undefined}
+      data-first-right-pinned={
+        (isColumnPinned === 'right' &&
+          column.getIsLastColumn(isColumnPinned)) ||
+        undefined
+      }
       data-index={renderedColumnIndex}
+      data-last-left-pinned={
+        (isColumnPinned === 'left' && column.getIsLastColumn(isColumnPinned)) ||
+        undefined
+      }
       {...tableCellProps}
       __vars={{
         '--mrt-cell-align':
@@ -72,12 +81,19 @@ export const MRT_TableFooterCell = <TData extends MRT_RowData>({
             : direction.dir === 'rtl'
               ? 'right'
               : 'left'),
+        '--mrt-table-cell-left':
+          isColumnPinned === 'left'
+            ? `${column.getStart(isColumnPinned)}`
+            : undefined,
+        '--mrt-table-cell-right':
+          isColumnPinned === 'right'
+            ? `${column.getAfter(isColumnPinned)}`
+            : undefined,
         ...tableCellProps?.__vars,
       }}
       className={clsx(
         classes.root,
         layoutMode?.startsWith('grid') && classes.grid,
-        isColumnPinned && classes.pinned,
         columnDefType === 'group' && classes.group,
         tableCellProps?.className,
       )}

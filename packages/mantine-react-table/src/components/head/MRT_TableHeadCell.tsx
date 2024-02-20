@@ -18,11 +18,6 @@ import {
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
-import {
-  getIsFirstRightPinnedColumn,
-  getIsLastLeftPinnedColumn,
-  getTotalRight,
-} from '../../utils/column.utils';
 import { parseCSSVarId } from '../../utils/style.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
@@ -143,11 +138,16 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
       colSpan={header.colSpan}
       data-column-pinned={isColumnPinned || undefined}
       data-dragging-column={isDraggingColumn || undefined}
-      data-first-right-pinned={getIsFirstRightPinnedColumn(column) || undefined}
+      data-first-right-pinned={
+        (isColumnPinned === 'right' &&
+          column.getIsLastColumn(isColumnPinned)) ||
+        undefined
+      }
       data-hovered-column-target={isHoveredColumn || undefined}
       data-index={renderedHeaderIndex}
       data-last-left-pinned={
-        getIsLastLeftPinnedColumn(table, column) || undefined
+        (isColumnPinned === 'left' && column.getIsLastColumn(isColumnPinned)) ||
+        undefined
       }
       data-resizing={
         (columnResizeMode === 'onChange' &&
@@ -158,10 +158,12 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
       {...tableCellProps}
       __vars={{
         '--mrt-table-cell-left':
-          isColumnPinned === 'left' ? `${column.getStart('left')}` : undefined,
+          isColumnPinned === 'left'
+            ? `${column.getStart(isColumnPinned)}`
+            : undefined,
         '--mrt-table-cell-right':
           isColumnPinned === 'right'
-            ? `${getTotalRight(table, column)}`
+            ? `${column.getAfter(isColumnPinned)}`
             : undefined,
         '--mrt-table-head-cell-padding':
           density === 'xl' ? '23' : density === 'md' ? '16' : '10',

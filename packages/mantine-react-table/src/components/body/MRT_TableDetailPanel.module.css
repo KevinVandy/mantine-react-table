@@ -26,9 +26,10 @@
 }
 
 .inner-expanded {
-  border-bottom: rem(1px) solid var(--_table-border-color);
+  border-bottom: 1px solid var(--_table-border-color);
 }
 
 .inner-virtual {
   background-color: var(--mrt-base-background-color);
+  transition: none;
 }

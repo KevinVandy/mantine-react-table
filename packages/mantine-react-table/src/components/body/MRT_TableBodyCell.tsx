@@ -23,11 +23,6 @@ import {
   type MRT_TableInstance,
   type MRT_VirtualItem,
 } from '../../types';
-import {
-  getIsFirstRightPinnedColumn,
-  getIsLastLeftPinnedColumn,
-  getTotalRight,
-} from '../../utils/column.utils';
 import { parseCSSVarId } from '../../utils/style.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_CopyButton } from '../buttons/MRT_CopyButton';
@@ -198,11 +193,16 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
     <TableTd
       data-column-pinned={isColumnPinned || undefined}
       data-dragging-column={isDraggingColumn || undefined}
-      data-first-right-pinned={getIsFirstRightPinnedColumn(column) || undefined}
+      data-first-right-pinned={
+        (isColumnPinned === 'right' &&
+          column.getIsLastColumn(isColumnPinned)) ||
+        undefined
+      }
       data-hovered-column-target={isHoveredColumn || undefined}
       data-index={renderedColumnIndex}
       data-last-left-pinned={
-        getIsLastLeftPinnedColumn(table, column) || undefined
+        (isColumnPinned === 'left' && column.getIsLastColumn(isColumnPinned)) ||
+        undefined
       }
       data-last-row={renderedRowIndex === numRows - 1 || undefined}
       data-resizing={
@@ -216,12 +216,12 @@ export const MRT_TableBodyCell = <TData extends MRT_RowData>({
         '--mrt-cell-align':
           tableCellProps.align ?? (direction.dir === 'rtl' ? 'right' : 'left'),
         '--mrt-table-cell-left':
-          column.getIsPinned() === 'left'
-            ? `${column.getStart('left')}`
+          isColumnPinned === 'left'
+            ? `${column.getStart(isColumnPinned)}`
             : undefined,
         '--mrt-table-cell-right':
-          column.getIsPinned() === 'right'
-            ? `${getTotalRight(table, column)}`
+          isColumnPinned === 'right'
+            ? `${column.getAfter(isColumnPinned)}`
             : undefined,
         ...tableCellProps.__vars,
       }}

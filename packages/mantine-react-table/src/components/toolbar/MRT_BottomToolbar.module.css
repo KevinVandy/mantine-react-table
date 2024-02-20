@@ -1,6 +1,6 @@
 .root {
   background-color: var(--mrt-base-background-color);
-  border-top: 0.5px solid
+  border-top: 1px solid
     light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
   bottom: var(--mrt-bottom-toolbar-bottom);
   box-shadow: 0 1px 2px -1px color-mix(

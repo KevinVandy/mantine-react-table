@@ -11,7 +11,7 @@
   @mixin dark-root {
     --mrt-striped-row-background-color: lighten(
       var(--mrt-base-background-color),
-      0.05
+      0.04
     );
   }
 
@@ -21,10 +21,18 @@
       var(--mrt-base-background-color),
       0.08
     );
+    --mrt-striped-row-hover-background-color: darken(
+      var(--mrt-striped-row-background-color),
+      0.12
+    );
   }
   @mixin dark-root {
     --mrt-row-hover-background-color: lighten(
       var(--mrt-base-background-color),
+      0.08
+    );
+    --mrt-striped-row-hover-background-color: lighten(
+      var(--mrt-striped-row-background-color),
       0.08
     );
   }
