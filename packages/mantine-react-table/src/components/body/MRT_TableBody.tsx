@@ -19,7 +19,7 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-interface Props<TData extends MRT_RowData> extends TableTbodyProps {
+export interface MRT_TableBodyProps<TData extends MRT_RowData> extends TableTbodyProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   table: MRT_TableInstance<TData>;
   tableProps: Partial<TableProps>;
@@ -30,7 +30,7 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
   table,
   tableProps,
   ...rest
-}: Props<TData>) => {
+}: MRT_TableBodyProps<TData>) => {
   const {
     getBottomRows,
     getIsSomeRowsPinned,
