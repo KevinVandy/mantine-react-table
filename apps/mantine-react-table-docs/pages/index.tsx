@@ -4,7 +4,6 @@ import {
   Anchor,
   Box,
   Button,
-  Paper,
   Stack,
   Text,
   Title,
@@ -24,8 +23,8 @@ import classes from './index.module.css';
 const HomePage = () => {
   return (
     <Stack className={classes.wrapper}>
-      <Alert variant="light" color="orange" icon={<IconInfoCircle />}>
-        Mantine React Table V2 is still in alpha development.
+      <Alert variant="light" color="blue" icon={<IconInfoCircle />}>
+        Mantine React Table V2 is now in beta. 🎉
       </Alert>
       <Title className={classes.title} order={1}>
         Welcome To
