@@ -1,0 +1,218 @@
+import Head from 'next/head';
+import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
+import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
+import CSSVarExample from '../../../examples/customize-css-variables';
+import CustomizeStylesExample from '../../../examples/customize-table-styles';
+import { Box } from '@mantine/core';
+
+<Head>
+  <title>{'Customize Component Styles Guide - Mantine React Table Docs'}</title>
+  <meta
+    name="description"
+    content="How to customize and pass props to Mantine components and set up a Mantine Theme in Mantine React Table"
+  />
+</Head>
+
+## Customize Component Styles Guide
+
+There are a few ways in which you can style the internal components of Mantine React Table. Some ways are much easier and faster than others. This guide will cover the new MRT CSS variable system, how you customize your Mantine Theme, how you can write your own CSS with CSS modules, or how to pass in custom styles to the components.
+
+> If all you care about is changing the background color of the table, you should try to use the MRT CSS variables first. They are the easiest and fastest way to change the background color of the table.
+
+### MRT CSS Variables
+
+Before you try to write a bunch of overriding CSS (with `className` or `style` props), you should try to customize the MRT CSS variables first, especially if all you want to do is change the background color of some parts of the table.
+
+#### MRT CSS Variables List
+
+Here is a list of all of the MRT CSS variables that are set in the `:root` of your document once you import the MRT `styles.css` file from `'mantine-react-table'`:
+
+- `--mrt-base-background-color`: default background color for everything
+- `--mrt-striped-row-background-color`: background color for striped rows
+- `--mrt-row-hover-background-color`: background color for row hover
+- `--mrt-striped-row-hover-background-color`: background color for striped row hover
+- `--mrt-selected-row-background-color`: background color for selected row
+- `--mrt-selected-row-hover-background-color`: background color for selected row hover
+- `--mrt-pinned-row-background-color`: background color for pinned row
+- `--mrt-pinned-row-hover-background-color`: background color for pinned row hover
+- `--mrt-pinned-column-background-color`: background color for pinned column
+- `--mrt-dragging-hovered-border-color`: border color for dragging hovered cell
+- `--mrt-dragging-drag-border-color`: border color for dragging cell
+- `--mrt-resize-column-border-color`: border color for column resize
+
+These CSS variables are automatically calculated with intelligent defaults based on light and dark mode.
+
+#### How to set MRT CSS Variables
+
+You can override these CSS variables on a per table basis, or globally in your app from a higher up root element. MRT already defines these CSS variables in the `:root` of the document, so if you try to override them there in your own CSS, you may have some issues. Instead, you can either just override them in the `style` surrounding the MRT table components, or by defining them in a class and passing the classes to the `className` of the most "root" MRT component that you are using. Usually, this is the `mantinePaperProps` table option.
+
+If you do start changing some CSS variables like the `--mrt-base-background-color`, make sure to also redefine the other CSS variables that derive from it, like `--mrt-striped-row-background-color`, `--mrt-row-hover-background-color`, etc. Otherwise, those CSS variables will still be calculated based on the default `--mrt-base-background-color`. Row hovers will have gray backgrounds instead of lighted or darkened versions of your new `--mrt-base-background-color`.
+
+##### 1. Define MRT CSS Variables in a CSS Class (Recommended)
+
+```css
+/* Define MRT CSS variables in your CSS */
+.root {
+  /* You can account for both light and dark mode with the Mantine mixins */
+  @mixin dark {
+    --mrt-base-background-color: rgb(33, 24, 44);
+  }
+  @mixin light {
+    --mrt-base-background-color: rgb(244, 233, 255);
+  }
+  /* It's also best to redefine all of the other MRT CSS variables that derive from --mrt-base-background-color */
+  /* ... */
+}
+```
+
+You can copy the MRT CSS variable definitions from [the MRT Source Code](https://github.com/KevinVandy/mantine-react-table/blob/v2/packages/mantine-react-table/src/components/table/MRT_TablePaper.module.css)
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantinePaperProps: { className: classes.root },
+});
+```
+
+##### 2. Define MRT CSS Variables in Style Props
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantinePaperProps: {
+    style: { '--mrt-base-background-color': 'rgb(33, 24, 44)' },
+  },
+});
+
+// OR
+<div style={{ '--mrt-base-background-color': 'rgb(33, 24, 44)' }}>
+  <MantineReactTable table={table} />
+</div>;
+```
+
+<CSSVarExample />
+
+### Mantine Theme
+
+Mantine React Table respects your Mantine Theme. If you have already set up Mantine and a global Mantine Theme, you should already be set. But if you have not, you should visit the official [Mantine Theming Docs](https://mantine.dev/theming/theme-object/) to learn how to set that up.
+
+```jsx
+function App() {
+  //Have you setup your Mantine Theme globally in your app root?
+  return (
+    <MantineProvider theme={createTheme({...})}>
+      ...rest of your application
+    </MantineProvider>
+  );
+}
+```
+
+#### Customize Theme Just for your Table
+
+Thanks to Mantine allowing you to [nest multiple Theme Providers](https://mantine.dev/theming/theme-object/#merge-multiple-theme-overrides), you can change your Mantine Theme just for the `<MantineReactTable />` component by wrapping a `<MantineProvider theme={{...}}>` around just your table. The values in this theme will only effect the `<MantineReactTable />` component, and not the rest of your site. It will also inherit values from your global theme, so you do not have to redefine everything again. You can just tweak the values you want to change.
+
+```jsx
+import { MantineProvider } from '@mantine/core';
+//in one of your normal components
+return (
+  <MantineProvider
+    theme={{
+      primaryColor: 'blue',
+      primaryShade: 8,
+      colors: {
+        blue: [
+          //define 9 custom blue shades
+        ],
+      },
+    }}
+  >
+    <MantineReactTable columns={columns} data={data} />
+  </MantineProvider>
+);
+```
+
+### CSS Modules with MRT
+
+Anytime that you want to style the components inside of Mantine React Table, you can just do it with CSS. It's (usually) just that easy.
+
+All internal components of any significance have specific `mrt-` classNames or `mantine-` classNames that you can target from your CSS or CSS modules. If you are using CSS modules and you are trying to target the pre-defined MRT classNames, you will need to use the `:global()` selector to target the internal MRT classNames so that the classNames do not get hashed.
+
+> Note: If overriding background colors, try to customize the MRT CSS variables first. There is somewhat complicated logic that goes into calculating the background colors of the table components that solve edge cases with multiple features enabled. It's best to let MRT handle that for you.
+
+```css
+/* Example CSS Module */
+.head-cells {
+  font-weight: bold;
+  color: indigo;
+}
+
+/* Target an internal MRT class already defined */
+.toolbar {
+  /* Use :global() to make sure this className does not get hashed */
+  :global(.mrt-toolbar-internal-buttons) {
+    gap: 0.5rem;
+  }
+}
+```
+
+```jsx
+import classes from './MyTable.module.css';
+
+const table = useMantineReactTable({
+  columns,
+  data,
+  //connect your CSS module to the MRT component
+  mantineTableHeadCellProps: { className: classes['head-cells'] },
+  mantineTopToolbarProps: { className: classes.toolbar },
+});
+```
+
+#### Target Conditional data- attributes
+
+MRT makes use of a lot of `data-` attributes to conditionally style the table components. You can target these `data-` attributes in your CSS or CSS modules to style the components based on their state.
+
+```css
+/* Target a data- attribute */
+.body-row {
+  /* Target a row that is selected */
+  &[data-selected='true'] {
+    font-weight: bold;
+  }
+}
+```
+
+Here is a list of just some of the `data-` attributes that MRT uses:
+
+- `data-column-pinned`: position of the pinned column if it is pinned
+- `data-dragging-column`: true if the column is being dragged
+- `data-dragging-row`: true if the row is being dragged
+- `data-first-right-pinned`: true if the column is the first right pinned column
+- `data-hovered-column-target`: true if the column is being hovered
+- `data-hovered-row-target`: true if the row is being hovered
+- `data-index`: the index of the row or column
+- `data-last-left-pinned`: true if the column is the last left pinned column
+- `data-last-row`: true if the row is the last row
+- `data-resizing`: true if the column is being resized
+- `data-row-pinned`: position of the pinned row if it is pinned
+- `data-selected`: true if the row is selected
+- `data-striped`: true if the row is striped
+
+This list is subject to change as MRT evolves, but you can always inspect the table components in your browser to see what `data-` attributes are being used.
+
+### Pass in Custom Styles
+
+For quick and "dirty" styling, you can always just use the `style` prop on any of the `mantine*Props` options. It depends on your codebase and your team's preferences whether or not you want to use this method. Technically, Inline Styles are less performant than CSS or CSS modules, as discussed in the official [Mantine Docs](https://mantine.dev/styles/styles-performance/#inline-styles). But for some quick styling, especially conditional styling, it can be very useful.
+
+```jsx
+const table = useMantineReactTable({
+  columns,
+  data,
+  mantineTableBodyCell: ({ row }) => ({
+    style: { //you could also easily conditionally use a className here instead.
+      fontWeight: row.getIsSelected() ? 'bold' : 'normal', //conditional styling
+    },
+  }),
+});
+```

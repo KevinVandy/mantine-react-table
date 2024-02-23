@@ -1,0 +1,101 @@
+/* Copy all CSS variable declarations even if those values remain unchanged */
+
+.paper {
+  /* default background color for everything */
+
+  /* customize base background color, other values below will calc based off of this */
+  @mixin dark {
+    --mrt-base-background-color: rgb(33, 24, 44);
+  }
+  @mixin light {
+    --mrt-base-background-color: rgb(244, 233, 255);
+  }
+
+  @mixin light {
+    --mrt-striped-row-background-color: darken(
+      var(--mrt-base-background-color),
+      0.05
+    );
+  }
+  @mixin dark {
+    --mrt-striped-row-background-color: lighten(
+      var(--mrt-base-background-color),
+      0.04
+    );
+  }
+
+  /* row hover */
+  @mixin light {
+    --mrt-row-hover-background-color: darken(
+      var(--mrt-base-background-color),
+      0.08
+    );
+    --mrt-striped-row-hover-background-color: darken(
+      var(--mrt-striped-row-background-color),
+      0.12
+    );
+  }
+  @mixin dark {
+    --mrt-row-hover-background-color: lighten(
+      var(--mrt-base-background-color),
+      0.08
+    );
+    --mrt-striped-row-hover-background-color: lighten(
+      var(--mrt-striped-row-background-color),
+      0.08
+    );
+  }
+
+  /* row selection */
+  --mrt-selected-row-background-color: alpha(
+    var(--mantine-primary-color-light),
+    0.8
+  );
+  @mixin light {
+    --mrt-selected-row-hover-background-color: darken(
+      var(--mantine-primary-color-light-hover),
+      0.05
+    );
+  }
+  @mixin dark {
+    --mrt-selected-row-hover-background-color: lighten(
+      var(--mantine-primary-color-light-hover),
+      0.05
+    );
+  }
+
+  /* row pinning */
+  --mrt-pinned-row-background-color: var(--mrt-selected-row-background-color);
+  --mrt-pinned-row-hover-background-color: var(
+    --mrt-selected-row-hover-background-color
+  );
+
+  /* column pinning */
+  @mixin light {
+    --mrt-pinned-column-background-color: darken(
+      var(--mrt-base-background-color),
+      0.01
+    );
+  }
+  @mixin dark {
+    --mrt-pinned-column-background-color: darken(
+      var(--mrt-base-background-color),
+      0.05
+    );
+  }
+
+  /* cell borders */
+  --mrt-dragging-hovered-border-color: var(--mantine-primary-color-filled);
+  --mrt-dragging-drag-border-color: var(--mantine-color-gray-7);
+  --mrt-resize-column-border-color: var(--mantine-primary-color-filled);
+}
+
+/* Optionally, override the CSS variables in a different scope of the table locally */
+.toolbars {
+  @mixin dark {
+    --mrt-base-background-color: rgb(44, 34, 44);
+  }
+  @mixin light {
+    --mrt-base-background-color: rgb(200, 200, 244);
+  }
+}

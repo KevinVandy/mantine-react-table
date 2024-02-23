@@ -356,8 +356,12 @@ export const routes: Array<RouteItem> = [
         href: '/docs/guides#customization-guides',
         items: [
           {
-            href: '/docs/guides/customize-components',
-            label: 'Customize (Style) Components',
+            href: '/docs/guides/customize-component-props',
+            label: 'Customize Component Props',
+          },
+          {
+            href: '/docs/guides/customize-component-styles',
+            label: 'Customize Component Styles',
           },
           {
             href: '/docs/guides/custom-icons',

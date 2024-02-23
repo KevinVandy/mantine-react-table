@@ -25,7 +25,7 @@ export const mdxComponents = {
   h6: (props: any) => <Title order={6} my="md" {...props} />,
   hr: (props: any) => <Divider style={{ marginBottom: '16px' }} {...props} />,
   li: (props: any) => (
-    <li className="docsearch-content" {...props}>
+    <li style={{ marginTop: '8px' }} className="docsearch-content" {...props}>
       <Text>{props.children}</Text>
     </li>
   ),

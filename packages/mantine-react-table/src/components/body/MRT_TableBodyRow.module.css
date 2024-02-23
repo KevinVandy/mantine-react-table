@@ -172,6 +172,12 @@
         &[data-striped='even'] {
           td {
             background-color: var(--mrt-striped-row-hover-background-color);
+            &[data-column-pinned] {
+              background-color: var(--mrt-base-background-color);
+              &:before {
+                background-color: var(--mrt-striped-row-hover-background-color);
+              }
+            }
           }
         }
       }

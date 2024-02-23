@@ -1,0 +1,137 @@
+import Head from 'next/head';
+import TableOptionsTable from '../../../components/prop-tables/TableOptionsTable';
+import ColumnOptionsTable from '../../../components/prop-tables/ColumnOptionsTable';
+import ThemeExample from '../../../examples/mantine-theme';
+import CustomizeStylesExample from '../../../examples/customize-table-styles';
+import { Box } from '@mantine/core';
+
+<Head>
+  <title>{'Customize Component Props Guide - Mantine React Table Docs'}</title>
+  <meta
+    name="description"
+    content="How to customize and pass props to Mantine components in Mantine React Table"
+  />
+</Head>
+
+## Customize Component Props Guide
+
+One of the strengths of Mantine React Table is that it exposes a majority of all the underlying Mantine component props used to build the table.
+
+Additionally, in one of the sections below, you will learn [how to customize and use the Mantine Theme](#mantine-theme) to customize colors, typography, or any other default CSS that is used by Mantine React Table.
+
+### Relevant Table Options
+
+All props labeled `mantine...Props` get forwarded to Mantine components. Here is a list of all the props that are exposed in both the root props and column options.
+
+<TableOptionsTable
+  onlyOptions={
+    new Set([
+      'layoutMode',
+      'mantineBottomToolbarProps',
+      'mantineColumnActionsButtonProps',
+      'mantineColumnDragHandleProps',
+      'mantineCopyButtonProps',
+      'mantineCreateRowModalProps',
+      'mantineDetailPanelProps',
+      'mantineEditRowModalProps',
+      'mantineEditSelectProps',
+      'mantineEditTextInputProps',
+      'mantineExpandAllButtonProps',
+      'mantineExpandButtonProps',
+      'mantineFilterAutocompleteProps',
+      'mantineFilterCheckboxProps',
+      'mantineFilterMultiSelectProps',
+      'mantineFilterRangeSliderProps',
+      'mantineFilterSelectProps',
+      'mantineFilterTextInputProps',
+      'mantineHighlightProps',
+      'mantineLoadingOverlayProps',
+      'mantinePaginationProps',
+      'mantinePaperProps',
+      'mantineProgressProps',
+      'mantineRowDragHandleProps',
+      'mantineSearchTextInputProps',
+      'mantineSelectAllCheckboxProps',
+      'mantineSelectCheckboxProps',
+      'mantineSkeletonProps',
+      'mantineTableBodyCellProps',
+      'mantineTableBodyProps',
+      'mantineTableBodyRowProps',
+      'mantineTableContainerProps',
+      'mantineTableFooterCellProps',
+      'mantineTableFooterProps',
+      'mantineTableFooterRowProps',
+      'mantineTableHeadCellProps',
+      'mantineTableHeadProps',
+      'mantineTableHeadRowProps',
+      'mantineTableProps',
+      'mantineToolbarAlertBannerBadgeProps',
+      'mantineToolbarAlertBannerProps',
+      'mantineTopToolbarProps',
+    ])
+  }
+/>
+
+### Relevant Column Options
+
+Some of the column options expose the same props as above, but on a per column basis.
+
+<ColumnOptionsTable
+  onlyOptions={
+    new Set([
+      'mantineColumnActionsButtonProps',
+      'mantineColumnDragHandleProps',
+      'mantineCopyButtonProps',
+      'mantineEditSelectProps',
+      'mantineEditTextInputProps',
+      'mantineFilterAutocompleteProps',
+      'mantineFilterCheckboxProps',
+      'mantineFilterMultiSelectProps',
+      'mantineFilterRangeSliderProps',
+      'mantineFilterSelectProps',
+      'mantineFilterTextInputProps',
+      'mantineTableBodyCellProps',
+      'mantineTableFooterCellProps',
+      'mantineTableHeadCellProps',
+    ])
+  }
+/>
+
+### Mantine Props and Types
+
+Each prop can either be passed as an object or as a callback function where you get access to the underlying `table` instance and any other relevant callback parameters, such as `cell`, `row`, `column`, etc. This lets you easily run conditional logic on the props you pass. Let's take a look at a few examples.
+
+> All `mantine...Props` props are strongly typed and you should get ts hints as you write them. API docs are available on the [Mantine website](https://mantine.dev/) for each component.
+
+#### Static Prop Objects
+
+```jsx
+<MantineReactTable
+  columns={columns}
+  data={data}
+  enableRowSelection
+  //passing the static object variant if no dynamic logic is needed
+  mantineSelectCheckboxProps={{
+    color: 'violet', //makes all checkboxes use a different color other than the primaryColor
+  }}
+/>
+```
+
+#### Callback Functions to Dynamically Set Prop Values
+
+```jsx
+<MantineReactTable
+  columns={columns}
+  data={data}
+  enableRowSelection
+  //passing the callback function variant. (You should get type hints for all the callback parameters available)
+  mantineSelectCheckboxProps={({ row }) => ({
+    color: 'violet',
+    disabled: row.original.isAccountLocked, //access the row data to determine if the checkbox should be disabled
+  })}
+/>
+```
+
+### Styling Mantine Components
+
+TODO link style guide

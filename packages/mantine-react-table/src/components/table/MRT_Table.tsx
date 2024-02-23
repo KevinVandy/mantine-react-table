@@ -40,6 +40,9 @@ export const MRT_Table = <TData extends MRT_RowData>({
     getState();
 
   const tableProps = {
+    highlightOnHover: true,
+    horizontalSpacing: density,
+    verticalSpacing: density,
     ...parseFromValuesOrFunc(mantineTableProps, { table }),
     ...rest,
   };
@@ -75,9 +78,6 @@ export const MRT_Table = <TData extends MRT_RowData>({
         layoutMode?.startsWith('grid') && classes['root-grid'],
         tableProps.className,
       )}
-      highlightOnHover
-      horizontalSpacing={density}
-      verticalSpacing={density}
       {...tableProps}
       __vars={{
         ...columnSizeVars,

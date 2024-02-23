@@ -1,0 +1,32 @@
+{
+  "name": "mantine-react-table-example-customize-css-variables",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --port 3001",
+    "build": "vite build",
+    "serve": "vite preview",
+    "start": "vite"
+  },
+  "dependencies": {
+    "@mantine/core": "^7.5.3",
+    "@mantine/dates": "^7.5.3",
+    "@mantine/hooks": "^7.5.3",
+    "@tabler/icons-react": "2.47.0",
+    "clsx": "^2.1.0",
+    "dayjs": "^1.11.10",
+    "mantine-react-table": "^2.0.0-beta.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "postcss": "^8.4.35",
+    "postcss-preset-mantine": "^1.13.0",
+    "postcss-simple-vars": "^7.0.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  }
+}
