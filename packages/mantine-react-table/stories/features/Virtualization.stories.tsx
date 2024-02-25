@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { Modal } from '@mantine/core';
 import { type MRT_ColumnDef, MantineReactTable } from '../../src';
 import { faker } from '@faker-js/faker';
 import { type Meta } from '@storybook/react';
@@ -98,6 +100,30 @@ export const EnableRowVirtualizationDense = () => (
     initialState={{ density: 'xs' }}
   />
 );
+
+export const EnableRowVirtualizationInModal = () => {
+  const [opened, setOpened] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOpened(true);
+    }, 100);
+  }, []);
+
+  return (
+    <Modal onClose={() => setOpened(false)} opened={opened} size="xl">
+      <MantineReactTable
+        columns={longColumns}
+        data={longData}
+        enableBottomToolbar={false}
+        enableColumnVirtualization
+        enablePagination={false}
+        enableRowNumbers
+        enableRowVirtualization
+      />
+    </Modal>
+  );
+};
 
 export const EnableRowVirtualizationComfortable = () => (
   <MantineReactTable
