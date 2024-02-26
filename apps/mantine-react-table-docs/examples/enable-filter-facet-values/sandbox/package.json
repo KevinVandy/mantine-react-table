@@ -10,9 +10,9 @@
     "start": "vite"
   },
   "dependencies": {
-    "@mantine/core": "^7.5.3",
-    "@mantine/dates": "^7.5.3",
-    "@mantine/hooks": "^7.5.3",
+    "@mantine/core": "^7.6.0",
+    "@mantine/dates": "^7.6.0",
+    "@mantine/hooks": "^7.6.0",
     "@tabler/icons-react": "2.47.0",
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
@@ -21,7 +21,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.57",
+    "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
     "postcss": "^8.4.35",

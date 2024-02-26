@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.10",
+    "@mui/material": "^5.15.11",
     "mantine-react-table": "^2.0.0-beta.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.57",
+    "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
     "postcss": "^8.4.35",
