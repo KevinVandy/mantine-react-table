@@ -16,7 +16,7 @@
     justify-content: center;
   }
 
-  background-color: var(----mrt-base-background-color);
+  background-color: var(--mrt-base-background-color);
 
   &[data-column-pinned] {
     position: sticky;
