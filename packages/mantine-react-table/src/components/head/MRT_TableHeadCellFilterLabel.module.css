@@ -11,6 +11,6 @@
     var(--mantine-color-dark-3)
   );
   &[data-active] {
-    --ai-color: var(--mantine-primary-color-filled);
+    color: var(--mantine-primary-color-filled);
   }
 }
