@@ -286,13 +286,7 @@ export const GroupingColumnsSetState = () => {
     ]);
   }, []);
 
-  return (
-    <MantineReactTable
-      columns={columns}
-      data={data}
-      enableGrouping
-    />
-  );
+  return <MantineReactTable columns={columns} data={data} enableGrouping />;
 };
 
 export const ColumnGroupingDropZoneAlwaysVisible = () => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { addons } from '@storybook/preview-api';
 import { Preview } from '@storybook/react';
-import { useDarkMode } from 'storybook-dark-mode';
+import { useDarkMode, DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
 import {
   Anchor,
   ColorSchemeScript,
@@ -15,6 +16,8 @@ import '@mantine/dates/styles.css'; //if using mantine date picker features
 import 'mantine-contextmenu/styles.css';
 import { ContextMenuProvider } from 'mantine-contextmenu';
 
+const channel = addons.getChannel();
+
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -27,7 +30,6 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const colorScheme = useDarkMode() ? 'dark' : 'light';
       const [primaryColor, setPrimaryColor] = useState<string>('blue');
       const mantineColors = [
         'dark',
@@ -46,15 +48,20 @@ const preview: Preview = {
         'orange',
       ];
 
+      const [isDark, setDark] = useState(false);
+      const colorScheme = isDark ? 'dark' : 'light';
+
       useEffect(() => {
         const sbRoot = document.getElementsByClassName(
           'sb-show-main',
         )[0] as HTMLElement;
+        channel.on(DARK_MODE_EVENT_NAME, setDark);
         if (sbRoot) {
           sbRoot.style.backgroundColor =
             colorScheme === 'dark' ? '#333' : '#fff';
         }
-      }, [useDarkMode()]);
+        return () => channel.off(DARK_MODE_EVENT_NAME, setDark);
+      }, [isDark]);
 
       useEffect(() => {
         if (process.env.NODE_ENV === 'development') return;
@@ -72,7 +79,7 @@ const preview: Preview = {
       return (
         <MantineProvider
           forceColorScheme={colorScheme}
-          theme={{ colorScheme, primaryColor }}
+          theme={{ primaryColor }}
         >
           <ContextMenuProvider>
             <ColorSchemeScript forceColorScheme={colorScheme} />

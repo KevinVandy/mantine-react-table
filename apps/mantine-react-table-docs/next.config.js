@@ -10,6 +10,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/docs/guides/customize-components',
+        destination: '/docs/guides/customize-component-styles',
+        permanent: true,
+      },
+      {
         source: '/docs/guides/table-event-listeners',
         destination: '/docs/guides/event-listeners',
         permanent: true,
