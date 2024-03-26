@@ -1,13 +1,5 @@
 import Link from 'next/link';
-import {
-  Alert,
-  Anchor,
-  Box,
-  Button,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Alert, Anchor, Box, Button, Stack, Text, Title } from '@mantine/core';
 import { IconChevronRight, IconInfoCircle } from '@tabler/icons-react';
 import { HomeCards } from '../components/mdx/HomeCards';
 import { LinkCards } from '../components/mdx/LinkCards';

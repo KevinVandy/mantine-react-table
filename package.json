@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "prettier": "^3.2.5",
-    "turbo": "^1.12.4"
+    "turbo": "^1.13.0"
   },
   "engines": {
     "node": ">=16.0.0"

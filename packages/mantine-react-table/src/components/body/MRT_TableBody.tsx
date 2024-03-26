@@ -19,7 +19,8 @@ import {
 } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 
-export interface MRT_TableBodyProps<TData extends MRT_RowData> extends TableTbodyProps {
+export interface MRT_TableBodyProps<TData extends MRT_RowData>
+  extends TableTbodyProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
   table: MRT_TableInstance<TData>;
   tableProps: Partial<TableProps>;

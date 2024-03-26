@@ -1,5 +1,5 @@
 import {
-  MRT_ColumnDef,
+  type MRT_ColumnDef,
   type MRT_DefinedTableOptions,
   type MRT_DisplayColumnIds,
   type MRT_Localization,
