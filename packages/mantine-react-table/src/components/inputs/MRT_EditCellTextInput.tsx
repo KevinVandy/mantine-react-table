@@ -73,7 +73,7 @@ export const MRT_EditCellTextInput = <TData extends MRT_RowData>({
 
   const handleEnterKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     textInputProps.onKeyDown?.(event);
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && table.options.enableIMEMode !== true) {
       editInputRefs.current[cell.id]?.blur();
     }
   };

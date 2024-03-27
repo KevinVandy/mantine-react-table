@@ -837,6 +837,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = Omit<
   enableFullScreenToggle?: boolean;
   enableGlobalFilterModes?: boolean;
   enableGlobalFilterRankedResults?: boolean;
+  enableIMEMode?: boolean;
   enablePagination?: boolean;
   enableRowActions?: boolean;
   enableRowDragging?: boolean;
