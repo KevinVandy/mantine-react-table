@@ -1,6 +1,7 @@
 .root {
   display: table-row;
   width: 100%;
+  background-color: var(--mrt-base-background-color);
 }
 
 .root-grid {
@@ -30,6 +31,5 @@
 }
 
 .inner-virtual {
-  background-color: var(--mrt-base-background-color);
   transition: none;
 }
