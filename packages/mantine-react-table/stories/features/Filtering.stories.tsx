@@ -385,7 +385,18 @@ export const EnableFilterModes = () => (
       },
       {
         accessorKey: 'state',
+        columnFilterModeOptions: [
+          'empty',
+          'notEmpty',
+          'arrIncludes',
+          'arrIncludesAll',
+          'arrIncludesSome',
+        ],
+        filterVariant: 'multi-select',
         header: 'State',
+        mantineFilterMultiSelectProps: {
+          data: Array.from(new Set(data.map((d) => d.state))),
+        },
       },
     ]}
     data={data}

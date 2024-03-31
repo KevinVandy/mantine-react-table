@@ -97,6 +97,18 @@ export const mrtFilterOptions = (
     option: 'notEmpty',
     symbol: '!∅',
   },
+  {
+    divider: false,
+    label: localization.filterArrIncludes,
+    option: 'arrIncludes',
+    symbol: '∈',
+  },
+  {
+    divider: false,
+    label: localization.filterArrIncludesAll,
+    option: 'arrIncludesAll',
+    symbol: '=',
+  },
 ];
 
 const rangeModes = ['between', 'betweenInclusive', 'inNumberRange'];

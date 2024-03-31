@@ -262,7 +262,6 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
       <Badge
         className={classes['filter-chip-badge']}
         onClick={handleClearEmptyFilterChip}
-        rightSection={ClearButton}
         size="lg"
       >
         {filterChipLabel}
@@ -271,6 +270,7 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
   ) : isMultiSelectFilter ? (
     <MultiSelect
       {...commonProps}
+      clearable
       searchable
       {...multiSelectProps}
       className={clsx(className, multiSelectProps.className)}
@@ -287,6 +287,7 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
       }}
       rightSection={filterValue?.toString()?.length ? ClearButton : undefined}
       style={commonProps.style}
+      value={Array.isArray(commonProps?.value) ? commonProps.value : []}
     />
   ) : isSelectFilter ? (
     <Select
