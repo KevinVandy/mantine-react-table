@@ -91,11 +91,12 @@ export const prepareColumns = <TData extends MRT_RowData>({
       };
     }
     if (columnDef?.accessorFn !== undefined) {
+      const originalAccessorFn = columnDef.accessorFn
       // If there is an accessorFn defined, make sure not to call it if the table is loading
       columnDef.accessorFn = (...args) =>
         !tableOptions?.state?.isLoading &&
         !tableOptions?.state?.showSkeletons &&
-        columnDef.accessorFn!(...args);
+        originalAccessorFn(...args);
     }
     return columnDef;
   }) as MRT_DefinedColumnDef<TData>[];
