@@ -27,6 +27,7 @@ const supportedLocales = [
   'ro',
   'ru',
   'sk',
+  'sl',
   'sr-Cyrl-RS',
   'sr-Latn-RS',
   'sv',
