@@ -89,16 +89,54 @@ export const MRT_TableBodyRow = <TData extends Record<string, any> = {}>({
           top: virtualRow ? 0 : undefined,
           transition: virtualRow ? 'none' : 'all 100ms ease-in-out',
           width: '100%',
-          '&:hover td': {
-            backgroundColor:
-              enableHover !== false
-                ? row.getIsSelected()
-                  ? theme.fn.rgba(getPrimaryColor(theme), 0.2)
-                  : theme.colorScheme === 'dark'
+          ...(row.getIsSelected() && {
+            backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.2),
+            td: {
+              '* > .mantine-Checkbox-root': {
+                zIndex: 0,
+                position: 'relative'
+              },
+              '&[data-pinned="true"]': {
+                backgroundColor:
+                  theme.colorScheme === 'light' ? theme.white : theme.black,
+                '&:before': {
+                  backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.2),
+                },
+              },
+            },
+          }),
+          ...(enableHover && {
+            '&:hover td': {
+              backgroundColor:
+                theme.colorScheme === 'dark'
                   ? `${theme.fn.lighten(theme.colors.dark[7], 0.12)}`
-                  : `${theme.fn.darken(theme.white, 0.05)}`
-                : undefined,
-          },
+                  : `${theme.fn.darken(theme.white, 0.05)}`,
+              '&[data-pinned="true"]': {
+                backgroundColor:
+                  theme.colorScheme === 'light'
+                    ? theme.white
+                    : theme.colors.dark[7],
+                '&:before': {
+                  backgroundColor:
+                    theme.colorScheme === 'dark'
+                      ? `${theme.fn.lighten(theme.colors.dark[7], 0.12)}`
+                      : `${theme.fn.darken(theme.white, 0.05)}`,
+                },
+              },
+            },
+          }),
+          ...(row.getIsSelected() && {
+            '&:hover td': {
+              backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.2),
+              '&[data-pinned="true"]': {
+                backgroundColor:
+                  theme.colorScheme === 'light' ? theme.white : theme.black,
+                '&:before': {
+                  backgroundColor: theme.fn.rgba(getPrimaryColor(theme), 0.2),
+                },
+              },
+            },
+          }),
           ...(tableRowProps?.sx instanceof Function
             ? tableRowProps.sx(theme)
             : (tableRowProps?.sx as any)),
