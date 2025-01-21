@@ -1,20 +1,27 @@
 .root {
+  --max-height-calc: calc(100vh - calc(var(--mrt-top-toolbar-height) * 1px));
   background-color: var(--mrt-base-background-color);
   max-width: 100%;
-  overflow: auto;
   position: relative;
+  max-height: var(--max-height)
 }
 
 .root-sticky {
-  max-height: clamp(
+  --max-height: clamp(
     350px,
-    calc(100vh - calc(var(--mrt-top-toolbar-height) * 1px)),
+    var(--max-height-calc),
     9999px
   );
 }
 
 .root-fullscreen {
-  max-height: calc(
-    100vh - calc(var(--mrt-top-toolbar-height) * 1px)
-  ) !important;
+  --max-height: var(--max-height-calc) !important;
+}
+
+.root :global(.mantine-ScrollArea-root) {
+  max-height: var(--max-height);
+
+  [data-orientation='vertical'] {
+    top: calc(1px * var(--mrt-scroll-offset))
+  }
 }

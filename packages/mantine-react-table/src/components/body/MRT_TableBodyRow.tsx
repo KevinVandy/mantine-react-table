@@ -182,7 +182,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
                 }`
               : undefined,
           '--mrt-virtual-row-start': virtualRow
-            ? `${virtualRow.start}`
+            ? `${virtualRow.start}px`
             : undefined,
         }}
         className={clsx(

@@ -79,8 +79,6 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
 
   const rowVirtualizer = useMRT_RowVirtualizer(table, rows);
 
-  const { virtualRows } = rowVirtualizer ?? {};
-
   const commonRowProps = {
     columnVirtualizer,
     numRows: rows.length,
@@ -139,7 +137,7 @@ export const MRT_TableBody = <TData extends MRT_RowData>({
             <MRT_TableBodyEmptyRow {...commonRowProps} />
           ) : (
             <>
-              {(virtualRows ?? rows).map(
+              {(rowVirtualizer?.virtualRows ?? rows).map(
                 (rowOrVirtualRow, renderedRowIndex) => {
                   if (rowVirtualizer) {
                     if (renderDetailPanel) {

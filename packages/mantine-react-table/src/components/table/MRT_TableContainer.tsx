@@ -11,10 +11,8 @@ import { MRT_Table } from './MRT_Table';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_EditRowModal } from '../modals/MRT_EditRowModal';
-
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
-
 interface Props<TData extends MRT_RowData> extends BoxProps {
   table: MRT_TableInstance<TData>;
 }
@@ -32,7 +30,7 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
       mantineLoadingOverlayProps,
       mantineTableContainerProps,
     },
-    refs: { bottomToolbarRef, tableContainerRef, topToolbarRef },
+    refs: { bottomToolbarRef, tableContainerRef, tableHeadRef, topToolbarRef },
   } = table;
   const {
     creatingRow,
@@ -65,7 +63,12 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
         : 0;
 
     setTotalToolbarHeight(topToolbarHeight + bottomToolbarHeight);
-  });
+  }, [
+    topToolbarRef.current?.offsetHeight,
+    bottomToolbarRef.current?.offsetHeight,
+  ]);
+
+  const tableHeadHeight = tableHeadRef.current?.clientHeight || 0;
 
   const createModalOpen = createDisplayMode === 'modal' && creatingRow;
   const editModalOpen = editDisplayMode === 'modal' && editingRow;
@@ -74,6 +77,7 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
     <Box
       {...tableContainerProps}
       __vars={{
+        '--mrt-scroll-offset': `${tableHeadHeight}`,
         '--mrt-top-toolbar-height': `${totalToolbarHeight}`,
         ...tableContainerProps?.__vars,
       }}
