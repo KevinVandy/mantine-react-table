@@ -291,6 +291,7 @@ export type MRT_TableInstance<TData extends MRT_RowData> = {
     editInputRefs: MutableRefObject<Record<string, HTMLInputElement>>;
     filterInputRefs: MutableRefObject<Record<string, HTMLInputElement>>;
     lastSelectedRowId: MutableRefObject<null | string>;
+    scrollAreaViewportRef: MutableRefObject<HTMLDivElement | null>;
     searchInputRef: MutableRefObject<HTMLInputElement | null>;
     tableContainerRef: MutableRefObject<HTMLDivElement | null>;
     tableFooterRef: MutableRefObject<HTMLTableSectionElement | null>;

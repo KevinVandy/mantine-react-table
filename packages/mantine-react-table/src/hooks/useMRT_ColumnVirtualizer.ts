@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
 
 import { type Range, useVirtualizer } from '@tanstack/react-virtual';
 
@@ -17,6 +17,9 @@ export const useMRT_ColumnVirtualizer = <
 >(
   table: MRT_TableInstance<TData>,
 ): MRT_ColumnVirtualizer | undefined => {
+  const useIsomorphicLayoutEffect =
+    typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
   const {
     getLeftLeafColumns,
     getRightLeafColumns,
@@ -69,10 +72,16 @@ export const useMRT_ColumnVirtualizer = <
     [draggingColumn?.id],
   );
 
+  useIsomorphicLayoutEffect(() => {
+      if (!table.refs.scrollAreaViewportRef.current) {
+        table.refs.scrollAreaViewportRef.current = tableContainerRef.current?.querySelector('.mantine-ScrollArea-viewport') as HTMLDivElement
+      }
+    })
+
   const columnVirtualizer = useVirtualizer({
     count: visibleColumns.length,
     estimateSize: (index) => visibleColumns[index].getSize(),
-    getScrollElement: () => tableContainerRef.current,
+    getScrollElement: () => table.refs.scrollAreaViewportRef.current ?? tableContainerRef.current,
     horizontal: true,
     overscan: 3,
     rangeExtractor: useCallback(
@@ -126,3 +135,4 @@ export const useMRT_ColumnVirtualizer = <
 
   return columnVirtualizer as any;
 };
+

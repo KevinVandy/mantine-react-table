@@ -59,6 +59,7 @@ export const useMRT_TableInstance = <TData extends MRT_RowData>(
   const bottomToolbarRef = useRef<HTMLDivElement>(null);
   const editInputRefs = useRef<Record<string, HTMLInputElement>>({});
   const filterInputRefs = useRef<Record<string, HTMLInputElement>>({});
+  const scrollAreaViewportRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
   const tableHeadCellRefs = useRef<Record<string, HTMLTableCellElement>>({});
@@ -259,6 +260,7 @@ export const useMRT_TableInstance = <TData extends MRT_RowData>(
     editInputRefs,
     filterInputRefs,
     lastSelectedRowId,
+    scrollAreaViewportRef,
     searchInputRef,
     tableContainerRef,
     tableFooterRef,

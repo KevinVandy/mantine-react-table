@@ -74,36 +74,46 @@ export const MRT_Table = <TData extends MRT_RowData>({
 
   const { stripedColor } = tableProps;
 
+  const scrollContainerProps = {
+    className: classes.scrollContainer,
+    h: '100vh',
+    minWidth: '100%',
+    scrollbars: 'xy',
+    w: '100%',
+  };
+
   return (
-    <Table
-      className={clsx(
-        'mrt-table',
-        classes.root,
-        layoutMode?.startsWith('grid') && classes['root-grid'],
-        tableProps.className,
-      )}
-      {...tableProps}
-      __vars={{
-        ...columnSizeVars,
-        '--mrt-striped-row-background-color': stripedColor,
-        '--mrt-striped-row-hover-background-color': stripedColor
-          ? colorScheme === 'dark'
-            ? lighten(stripedColor, 0.08)
-            : darken(stripedColor, 0.12)
-          : undefined,
-        ...tableProps.__vars,
-      }}
-    >
-      {enableTableHead && <MRT_TableHead {...commonTableGroupProps} />}
-      {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (
-        <Memo_MRT_TableBody
-          {...commonTableGroupProps}
-          tableProps={tableProps}
-        />
-      ) : (
-        <MRT_TableBody {...commonTableGroupProps} tableProps={tableProps} />
-      )}
-      {enableTableFooter && <MRT_TableFooter {...commonTableGroupProps} />}
-    </Table>
+    <Table.ScrollContainer {...scrollContainerProps}>
+      <Table
+        className={clsx(
+          'mrt-table',
+          classes.root,
+          layoutMode?.startsWith('grid') && classes['root-grid'],
+          tableProps.className,
+        )}
+        {...tableProps}
+        __vars={{
+          ...columnSizeVars,
+          '--mrt-striped-row-background-color': stripedColor,
+          '--mrt-striped-row-hover-background-color': stripedColor
+            ? colorScheme === 'dark'
+              ? lighten(stripedColor, 0.08)
+              : darken(stripedColor, 0.12)
+            : undefined,
+          ...tableProps.__vars,
+        }}
+      >
+        {enableTableHead && <MRT_TableHead {...commonTableGroupProps} />}
+        {memoMode === 'table-body' || columnSizingInfo.isResizingColumn ? (
+          <Memo_MRT_TableBody
+            {...commonTableGroupProps}
+            tableProps={tableProps}
+          />
+        ) : (
+          <MRT_TableBody {...commonTableGroupProps} tableProps={tableProps} />
+        )}
+        {enableTableFooter && <MRT_TableFooter {...commonTableGroupProps} />}
+      </Table>
+    </Table.ScrollContainer>
   );
 };

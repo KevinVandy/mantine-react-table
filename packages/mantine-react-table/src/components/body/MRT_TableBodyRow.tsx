@@ -25,6 +25,8 @@ import {
 } from '../../types';
 import { getIsRowSelected } from '../../utils/row.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
+import { useElementSize, useResizeObserver } from '@mantine/hooks';
+import { measureElement } from '@tanstack/react-virtual';
 
 interface Props<TData extends MRT_RowData> extends TableTrProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;
@@ -160,7 +162,9 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
         ref={(node: HTMLTableRowElement) => {
           if (node) {
             rowRef.current = node;
-            rowVirtualizer?.measureElement(node);
+            if (virtualRow?.size !== node.getBoundingClientRect().height) {
+              rowVirtualizer?.measureElement(node);
+            }
           }
         }}
         {...tableRowProps}
@@ -182,7 +186,7 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
                 }`
               : undefined,
           '--mrt-virtual-row-start': virtualRow
-            ? `${virtualRow.start}`
+            ? `${virtualRow.start}px`
             : undefined,
         }}
         className={clsx(

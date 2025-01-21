@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useLayoutEffect } from 'react';
 
 import { type Range, useVirtualizer } from '@tanstack/react-virtual';
 
@@ -19,6 +19,8 @@ export const useMRT_RowVirtualizer = <
   table: MRT_TableInstance<TData>,
   rows?: MRT_Row<TData>[],
 ): MRT_RowVirtualizer<TScrollElement, TItemElement> | undefined => {
+  const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
   const {
     getRowModel,
     getState,
@@ -40,9 +42,14 @@ export const useMRT_RowVirtualizer = <
 
   const rowCount = rows?.length ?? getRowModel().rows.length;
 
+  useIsomorphicLayoutEffect(() => {
+    if (!table.refs.scrollAreaViewportRef.current) {
+      table.refs.scrollAreaViewportRef.current = tableContainerRef.current?.querySelector('.mantine-ScrollArea-viewport') as HTMLDivElement
+    }
+  }, [tableContainerRef.current]);
+
   const normalRowHeight =
     density === 'xs' ? 42.7 : density === 'md' ? 54.7 : 70.7;
-
   const rowVirtualizer = useVirtualizer({
     count: renderDetailPanel ? rowCount * 2 : rowCount,
     estimateSize: (index) =>
@@ -51,7 +58,8 @@ export const useMRT_RowVirtualizer = <
           ? 100
           : 0
         : normalRowHeight,
-    getScrollElement: () => tableContainerRef.current,
+    getScrollElement: () => table.refs.scrollAreaViewportRef?.current ?? tableContainerRef.current,
+    horizontal: false,
     measureElement:
       typeof window !== 'undefined' &&
       navigator.userAgent.indexOf('Firefox') === -1
@@ -60,7 +68,7 @@ export const useMRT_RowVirtualizer = <
     overscan: 4,
     rangeExtractor: useCallback(
       (range: Range) => {
-        return extraIndexRangeExtractor(range, draggingRow?.index ?? 0);
+        return extraIndexRangeExtractor(range, draggingRow?.index);
       },
       [draggingRow],
     ),
