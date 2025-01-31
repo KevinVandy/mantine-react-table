@@ -21,6 +21,7 @@
 
 .empty-row-td-grid {
   display: grid;
+  width: inherit;
 }
 
 .empty-row-td-content {

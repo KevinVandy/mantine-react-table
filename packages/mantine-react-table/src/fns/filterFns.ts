@@ -33,7 +33,7 @@ const contains = <TData extends MRT_RowData>(
 ) =>
   row
     .getValue<number | string>(id)
-    .toString()
+    ?.toString()
     .toLowerCase()
     .trim()
     .includes(filterValue.toString().toLowerCase().trim());
@@ -47,7 +47,7 @@ const startsWith = <TData extends MRT_RowData>(
 ) =>
   row
     .getValue<number | string>(id)
-    .toString()
+    ?.toString()
     .toLowerCase()
     .trim()
     .startsWith(filterValue.toString().toLowerCase().trim());
@@ -61,7 +61,7 @@ const endsWith = <TData extends MRT_RowData>(
 ) =>
   row
     .getValue<number | string>(id)
-    .toString()
+    ?.toString()
     .toLowerCase()
     .trim()
     .endsWith(filterValue.toString().toLowerCase().trim());
@@ -73,7 +73,7 @@ const equals = <TData extends MRT_RowData>(
   id: string,
   filterValue: number | string,
 ) =>
-  row.getValue<number | string>(id).toString().toLowerCase().trim() ===
+  row.getValue<number | string>(id)?.toString().toLowerCase().trim() ===
   filterValue?.toString().toLowerCase().trim();
 
 equals.autoRemove = (val: any) => !val;
@@ -83,7 +83,7 @@ const notEquals = <TData extends MRT_RowData>(
   id: string,
   filterValue: number | string,
 ) =>
-  row.getValue<number | string>(id).toString().toLowerCase().trim() !==
+  row.getValue<number | string>(id)?.toString().toLowerCase().trim() !==
   filterValue.toString().toLowerCase().trim();
 
 notEquals.autoRemove = (val: any) => !val;
@@ -95,7 +95,7 @@ const greaterThan = <TData extends MRT_RowData>(
 ) =>
   !isNaN(+filterValue) && !isNaN(+row.getValue<number | string>(id))
     ? +row.getValue<number | string>(id) > +filterValue
-    : row.getValue<number | string>(id).toString().toLowerCase().trim() >
+    : row.getValue<number | string>(id)?.toString().toLowerCase().trim() >
       filterValue?.toString().toLowerCase().trim();
 
 greaterThan.autoRemove = (val: any) => !val;
@@ -115,7 +115,7 @@ const lessThan = <TData extends MRT_RowData>(
 ) =>
   !isNaN(+filterValue) && !isNaN(+row.getValue<number | string>(id))
     ? +row.getValue<number | string>(id) < +filterValue
-    : row.getValue<number | string>(id).toString().toLowerCase().trim() <
+    : row.getValue<number | string>(id)?.toString().toLowerCase().trim() <
       filterValue?.toString().toLowerCase().trim();
 
 lessThan.autoRemove = (val: any) => !val;
@@ -162,7 +162,7 @@ const empty = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
   _filterValue: number | string,
-) => !row.getValue<number | string>(id).toString().trim();
+) => !row.getValue<number | string>(id)?.toString().trim();
 
 empty.autoRemove = (val: any) => !val;
 
@@ -170,7 +170,7 @@ const notEmpty = <TData extends MRT_RowData>(
   row: Row<TData>,
   id: string,
   _filterValue: number | string,
-) => !!row.getValue<number | string>(id).toString().trim();
+) => !!row.getValue<number | string>(id)?.toString().trim();
 
 notEmpty.autoRemove = (val: any) => !val;
 

@@ -71,7 +71,7 @@ export const useMRT_Effects = <TData extends MRT_RowData>(
     if (!enablePagination || isLoading || showSkeletons) return;
     const { pageIndex, pageSize } = pagination;
     const firstVisibleRowIndex = pageIndex * pageSize;
-    if (firstVisibleRowIndex >= totalRowCount) {
+    if (firstVisibleRowIndex >= totalRowCount && firstVisibleRowIndex > 0) {
       table.setPageIndex(Math.ceil(totalRowCount / pageSize) - 1);
     }
   }, [totalRowCount]);
