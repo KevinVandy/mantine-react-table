@@ -17,6 +17,7 @@ export const useMRT_ColumnVirtualizer = <
 >(
   table: MRT_TableInstance<TData>,
 ): MRT_ColumnVirtualizer | undefined => {
+
   const {
     getLeftLeafColumns,
     getRightLeafColumns,

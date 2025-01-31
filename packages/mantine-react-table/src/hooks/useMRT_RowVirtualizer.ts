@@ -19,6 +19,7 @@ export const useMRT_RowVirtualizer = <
   table: MRT_TableInstance<TData>,
   rows?: MRT_Row<TData>[],
 ): MRT_RowVirtualizer<TScrollElement, TItemElement> | undefined => {
+
   const {
     getRowModel,
     getState,
