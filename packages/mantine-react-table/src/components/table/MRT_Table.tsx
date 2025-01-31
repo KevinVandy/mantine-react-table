@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import classes from './MRT_Table.module.css';
 
-import { useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 
 import {
   darken,
@@ -11,6 +11,7 @@ import {
   type TableProps,
   useMantineColorScheme,
 } from '@mantine/core';
+import { type TableScrollContainerProps } from '@mantine/core/lib/components/Table/TableScrollContainer';
 
 import { useMRT_ColumnVirtualizer } from '../../hooks/useMRT_ColumnVirtualizer';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
@@ -38,6 +39,7 @@ export const MRT_Table = <TData extends MRT_RowData>({
       layoutMode,
       mantineTableProps,
       memoMode,
+      withScrollArea,
     },
   } = table;
   const { columnSizing, columnSizingInfo, columnVisibility, density } =
@@ -74,16 +76,20 @@ export const MRT_Table = <TData extends MRT_RowData>({
 
   const { stripedColor } = tableProps;
 
-  const scrollContainerProps = {
-    className: classes.scrollContainer,
-    h: '100vh',
-    minWidth: '100%',
-    scrollbars: 'xy',
-    w: '100%',
-  };
+  const scrollContainerProps = withScrollArea
+    ? {
+        className: classes.scrollContainer,
+        h: '100%',
+        minWidth: '100%',
+        scrollbars: 'xy',
+        w: '100%',
+      }
+    : {};
+
+  const ScrollWrapper = withScrollArea ? Table.ScrollContainer : Fragment;
 
   return (
-    <Table.ScrollContainer {...scrollContainerProps}>
+    <ScrollWrapper {...(scrollContainerProps as TableScrollContainerProps)}>
       <Table
         className={clsx(
           'mrt-table',
@@ -114,6 +120,6 @@ export const MRT_Table = <TData extends MRT_RowData>({
         )}
         {enableTableFooter && <MRT_TableFooter {...commonTableGroupProps} />}
       </Table>
-    </Table.ScrollContainer>
+    </ScrollWrapper>
   );
 };

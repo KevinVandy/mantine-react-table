@@ -247,6 +247,6 @@
   position: absolute !important;
   top: 0;
   transition: none !important;
-  transform: translate3d(0, var(--mrt-virtual-row-start), 0);
+  transform: translateY(var(--mrt-virtual-row-start));
   will-change: transform;
 }

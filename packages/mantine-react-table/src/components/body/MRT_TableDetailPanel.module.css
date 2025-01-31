@@ -11,7 +11,7 @@
 .root-virtual-row {
   position: absolute;
   top: var(--mrt-parent-row-height);
-  transform: translate3d(0, var(--mrt-virtual-row-start), 0);
+  transform: translateY(var(--mrt-virtual-row-start));
   transition: none;
   z-index: 1;
 }

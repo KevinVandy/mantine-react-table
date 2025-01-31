@@ -1,9 +1,16 @@
 .root {
   --max-height-calc: calc(100vh - calc(var(--mrt-top-toolbar-height) * 1px));
+  --max-height: 100%;
+
   background-color: var(--mrt-base-background-color);
   max-width: 100%;
+  overflow: auto;
   position: relative;
-  max-height: var(--max-height)
+
+  &:has(:global(.mantine-ScrollArea-root)) {
+    overflow: unset;
+    height: var(--max-height-calc);
+  }
 }
 
 .root-sticky {
@@ -12,6 +19,7 @@
     var(--max-height-calc),
     9999px
   );
+  max-height: var(--max-height)
 }
 
 .root-fullscreen {

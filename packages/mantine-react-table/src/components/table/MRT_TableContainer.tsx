@@ -69,7 +69,7 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
     bottomToolbarRef.current?.offsetHeight,
   ]);
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     setScrollOffset(tableHeadRef.current?.offsetHeight ?? 0);
   }, [tableHeadRef.current?.offsetHeight]);
 

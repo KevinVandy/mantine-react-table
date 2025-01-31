@@ -25,8 +25,6 @@ import {
 } from '../../types';
 import { getIsRowSelected } from '../../utils/row.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
-import { useElementSize, useResizeObserver } from '@mantine/hooks';
-import { measureElement } from '@tanstack/react-virtual';
 
 interface Props<TData extends MRT_RowData> extends TableTrProps {
   columnVirtualizer?: MRT_ColumnVirtualizer;

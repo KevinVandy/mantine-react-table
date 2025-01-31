@@ -1262,6 +1262,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = {
    * Manage state externally any way you want, then pass it back into MRT.
    */
   state?: Partial<MRT_TableState<TData>>;
+  withScrollArea?: boolean;
 } & Omit<
   Partial<TableOptions<TData>>,
   | 'columns'
