@@ -2,21 +2,22 @@ import Head from 'next/head';
 import Examples from '../../../example-groups/VirtualizedExamples';
 
 <Head>
-  <title>Infinite Scrolling Example - Mantine React Table Docs</title>
+  <title>Infinite Scrolling With ScrollArea Example - Mantine React Table Docs</title>
   <meta
     name="description"
-    content="An example of Mantine React Table which shows how to implement an infinite scrolling table that fetches data from a remote server as the user scrolls down the table with the useInfiniteQuery hook from react-query"
+    content="An example of Mantine React Table which shows how to implement an infinite scrolling table with ScrollArea that fetches data from a remote server as the user scrolls down the table with the useInfiniteQuery hook from react-query"
   />
   <meta
     property="og:title"
-    content="Infinite Scrolling Mantine React Table Example"
+    content="Infinite Scrolling Mantine React Table Example using ScrollArea"
   />
   <meta
     property="og:description"
-    content="Learn how to stream rows on scroll with infinite scrolling in Mantine React Table"
+    content="Learn how to stream rows on scroll with infinite scrolling in Mantine React Table using ScrollArea"
   />
 </Head>
-## Infinite Scrolling Example
+
+## Infinite Scrolling With ScrollArea Example
 
 An infinite scrolling table is a table that streams data from a remote server as the user scrolls down the table. This works great with large datasets, just like our [Virtualized Example](/docs/examples/virtualized), except here we do not fetch all of the data at once upfront. Instead, we just fetch data a little bit at a time, as it becomes necessary.
 
@@ -24,7 +25,7 @@ Using a library like [`@tanstack/react-query`](https://tanstack.com/query/v4) ma
 
 Enabling the virtualization feature is actually optional here but is encouraged if the table will be expected to render more than 100 rows at a time.
 
-This example uses the native scrolling behavior of the browser
+This Example utilizes a Mantine [`ScrollArea`](https://mantine.dev/core/scroll-area/) via the `withScrollArea` and `mantineScrollAreaProps` properties.
 
 <Examples isPage />
 

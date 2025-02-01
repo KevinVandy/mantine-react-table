@@ -5,6 +5,7 @@
   background-color: var(--mrt-base-background-color);
   max-width: 100%;
   position: relative;
+  overflow: auto;
 
   &:has(:global(.mantine-ScrollArea-root)) {
     overflow: unset;
@@ -13,12 +14,8 @@
 }
 
 .root-sticky {
-  --max-height: clamp(
-    350px,
-    var(--max-height-calc),
-    9999px
-  );
-  max-height: var(--max-height)
+  --max-height: clamp(350px, var(--max-height-calc), 9999px);
+  max-height: var(--max-height);
 }
 
 .root-fullscreen {

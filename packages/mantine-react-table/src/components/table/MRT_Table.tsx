@@ -37,6 +37,7 @@ export const MRT_Table = <TData extends MRT_RowData>({
       enableTableFooter,
       enableTableHead,
       layoutMode,
+      mantineScrollAreaProps,
       mantineTableProps,
       memoMode,
       withScrollArea,
@@ -83,6 +84,7 @@ export const MRT_Table = <TData extends MRT_RowData>({
         minWidth: '100%',
         scrollbars: 'xy',
         w: '100%',
+        ...mantineScrollAreaProps
       }
     : {};
 

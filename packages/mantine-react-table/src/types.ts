@@ -44,6 +44,7 @@ import {
 } from '@tanstack/react-virtual';
 
 import {
+  ScrollAreaProps,
   type ActionIconProps,
   type AlertProps,
   type AutocompleteProps,
@@ -600,6 +601,11 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = {
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+  mantineScrollAreaProps?:
+    | ((props: {
+        table: MRT_TableInstance<TData>;
+      }) => HTMLPropsRef<HTMLDivElement> & ScrollAreaProps)
+    | (HTMLPropsRef<HTMLDivElement> & ScrollAreaProps);
   mantineTableBodyCellProps?:
     | ((props: {
         cell: MRT_Cell<TData, TValue>;
@@ -1011,6 +1017,11 @@ export type MRT_TableOptions<TData extends MRT_RowData> = {
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+  mantineScrollAreaProps?:
+    | ((props: {
+        table: MRT_TableInstance<TData>;
+      }) => HTMLPropsRef<HTMLDivElement> & ScrollAreaProps)
+    | (HTMLPropsRef<HTMLDivElement> & ScrollAreaProps);
   mantineSearchTextInputProps?:
     | ((props: {
         table: MRT_TableInstance<TData>;

@@ -1,0 +1,32 @@
+{
+  "name": "mantine-react-table-example-infinite-scrolling-with-scroll-area",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --port 3001",
+    "build": "vite build",
+    "serve": "vite preview",
+    "start": "vite"
+  },
+  "dependencies": {
+    "@mantine/core": "^7.15.3",
+    "@mantine/dates": "^7.15.3",
+    "@mantine/hooks": "^7.15.3",
+    "@tabler/icons-react": "3.28.1",
+    "@tanstack/react-query": "^5.63.0",
+    "dayjs": "^1.11.13",
+    "mantine-react-table": "^2.0.0-beta.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.4",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "postcss": "^8.4.49",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7"
+  }
+}
