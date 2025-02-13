@@ -562,8 +562,8 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = {
     | ((props: {
         column: MRT_Column<TData, TValue>;
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
-    | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+      }) => HTMLPropsRef<HTMLInputElement> & Partial<CheckboxProps>)
+    | (HTMLPropsRef<HTMLInputElement> & Partial<CheckboxProps>);
   mantineFilterDateInputProps?:
     | ((props: {
         column: MRT_Column<TData, TValue>;
