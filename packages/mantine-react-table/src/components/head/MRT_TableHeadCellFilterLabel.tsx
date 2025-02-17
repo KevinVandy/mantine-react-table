@@ -97,6 +97,7 @@ export const MRT_TableHeadCellFilterLabel = <TData extends MRT_RowData>({
     <>
       <Popover
         keepMounted={columnDef.filterVariant === 'range-slider'}
+        onChange={setPopoverOpened}
         onClose={() => setPopoverOpened(false)}
         opened={popoverOpened}
         position="top"
