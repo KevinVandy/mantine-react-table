@@ -4,7 +4,7 @@ import classes from './MRT_TableContainer.module.css';
 
 import { useEffect, useLayoutEffect, useState } from 'react';
 
-import { Box, type BoxProps, LoadingOverlay } from '@mantine/core';
+import { Box, type BoxProps, LoadingOverlay, Table } from '@mantine/core';
 
 import { MRT_Table } from './MRT_Table';
 
@@ -34,6 +34,7 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
   } = table;
   const {
     creatingRow,
+    density,
     editingRow,
     isFullScreen,
     isLoading,
@@ -69,9 +70,19 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
     bottomToolbarRef.current?.offsetHeight,
   ]);
 
-  useLayoutEffect(() => {
-    setScrollOffset(tableHeadRef.current?.offsetHeight ?? 0);
-  }, [tableHeadRef.current?.offsetHeight]);
+  useIsomorphicLayoutEffect(() => {
+    const setOffset = () => {
+      const offset =
+        typeof document !== 'undefined'
+          ? (tableHeadRef?.current?.offsetHeight ?? 0)
+          : 0;
+      setScrollOffset(offset);
+    };
+
+    setOffset();
+    const timeout = setTimeout(setOffset, 150);
+    return () => clearTimeout(timeout);
+  }, [tableHeadRef?.current?.offsetHeight, density]);
 
   const createModalOpen = createDisplayMode === 'modal' && creatingRow;
   const editModalOpen = editDisplayMode === 'modal' && editingRow;

@@ -44,7 +44,6 @@ import {
 } from '@tanstack/react-virtual';
 
 import {
-  ScrollAreaProps,
   type ActionIconProps,
   type AlertProps,
   type AutocompleteProps,
@@ -60,6 +59,7 @@ import {
   type ProgressProps,
   type RadioProps,
   type RangeSliderProps,
+  type ScrollAreaProps,
   type SelectProps,
   type SkeletonProps,
   type SwitchProps,
@@ -73,6 +73,7 @@ import {
   type TextInputProps,
   type UnstyledButtonProps,
 } from '@mantine/core';
+import { type TableScrollContainerProps } from '@mantine/core/lib/components/Table/TableScrollContainer';
 import { type DateInputProps } from '@mantine/dates';
 
 import { type MRT_AggregationFns } from './fns/aggregationFns';
@@ -1020,8 +1021,8 @@ export type MRT_TableOptions<TData extends MRT_RowData> = {
   mantineScrollAreaProps?:
     | ((props: {
         table: MRT_TableInstance<TData>;
-      }) => HTMLPropsRef<HTMLDivElement> & ScrollAreaProps)
-    | (HTMLPropsRef<HTMLDivElement> & ScrollAreaProps);
+      }) => HTMLPropsRef<HTMLDivElement> & Partial<TableScrollContainerProps>)
+    | HTMLPropsRef<HTMLDivElement> & Partial<TableScrollContainerProps>;
   mantineSearchTextInputProps?:
     | ((props: {
         table: MRT_TableInstance<TData>;

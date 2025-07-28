@@ -7,19 +7,24 @@ import { Fragment, useMemo } from 'react';
 import {
   darken,
   lighten,
+  ScrollAreaProps,
   Table,
   type TableProps,
   useMantineColorScheme,
 } from '@mantine/core';
-import { type TableScrollContainerProps } from '@mantine/core/lib/components/Table/TableScrollContainer';
 
 import { useMRT_ColumnVirtualizer } from '../../hooks/useMRT_ColumnVirtualizer';
-import { type MRT_RowData, type MRT_TableInstance } from '../../types';
+import {
+  HTMLPropsRef,
+  type MRT_RowData,
+  type MRT_TableInstance,
+} from '../../types';
 import { parseCSSVarId } from '../../utils/style.utils';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
 import { MRT_TableHead } from '../head/MRT_TableHead';
+import { TableScrollContainerProps } from '@mantine/core/lib/components/Table/TableScrollContainer';
 
 interface Props<TData extends MRT_RowData> extends TableProps {
   table: MRT_TableInstance<TData>;
@@ -77,21 +82,39 @@ export const MRT_Table = <TData extends MRT_RowData>({
 
   const { stripedColor } = tableProps;
 
-  const scrollContainerProps = withScrollArea
-    ? {
-        className: classes.scrollContainer,
-        h: '100%',
-        minWidth: '100%',
-        scrollbars: 'xy',
-        w: '100%',
-        ...mantineScrollAreaProps
-      }
-    : {};
-
+  const scrollContainerProps = (
+    withScrollArea
+      ? {
+          h: '100%',
+          minWidth: '100%',
+          offsetScrollbars: 'present',
+          w: '100%',
+          ...mantineScrollAreaProps,
+        }
+      : {}
+  ) as HTMLPropsRef<HTMLDivElement> & TableScrollContainerProps;
   const ScrollWrapper = withScrollArea ? Table.ScrollContainer : Fragment;
 
   return (
-    <ScrollWrapper {...(scrollContainerProps as TableScrollContainerProps)}>
+    <ScrollWrapper
+      {...scrollContainerProps}
+      className={clsx(
+        withScrollArea && classes.scrollContainer,
+        scrollContainerProps?.className,
+      )}
+      ref={(node: HTMLDivElement) => {
+        if (node && !table.refs.scrollAreaViewportRef.current) {
+          const viewPort = node.querySelector(
+            '.mantine-ScrollArea-viewport',
+          ) as HTMLDivElement;
+
+          table.refs.scrollAreaViewportRef.current = viewPort;
+          if (scrollContainerProps.ref) {
+            scrollContainerProps.ref.current = viewPort;
+          }
+        }
+      }}
+    >
       <Table
         className={clsx(
           'mrt-table',

@@ -29,7 +29,7 @@ export const useMRT_RowVirtualizer = <
       renderDetailPanel,
       rowVirtualizerInstanceRef,
       rowVirtualizerOptions,
-      withScrollArea,
+      // withScrollArea,
     },
     refs: { tableContainerRef },
   } = table;
@@ -42,15 +42,6 @@ export const useMRT_RowVirtualizer = <
   });
 
   const rowCount = rows?.length ?? getRowModel().rows.length;
-
-  useLayoutEffect(() => {
-    if (withScrollArea && !table.refs.scrollAreaViewportRef.current) {
-      table.refs.scrollAreaViewportRef.current =
-        tableContainerRef.current?.querySelector(
-          '.mantine-ScrollArea-viewport',
-        ) as HTMLDivElement;
-    }
-  }, [tableContainerRef.current]);
 
   const defaultRowHeightByDensity: Record<MRT_DensityState, number> = {
     lg: 62.7,

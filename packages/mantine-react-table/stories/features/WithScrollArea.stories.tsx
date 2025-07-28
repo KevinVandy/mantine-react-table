@@ -54,7 +54,6 @@ export const PaginationWithScrollArea = () => (
   <MantineReactTable
     columns={columns}
     data={data}
-    mantineTableContainerProps={{ style: { maxHeight: 500 } }}
     withScrollArea
   />
 );
@@ -65,7 +64,6 @@ export const StickyHeaderWithScrollArea = () => (
     data={data}
     enableStickyHeader
     initialState={{ pagination: { pageIndex: 0, pageSize: 50 } }}
-    mantineTableContainerProps={{ style: { maxHeight: 500 } }}
     withScrollArea
   />
 );
@@ -81,7 +79,6 @@ export const VirtualizationWithScrollArea = () => (
     enablePagination={false}
     enableRowNumbers
     enableRowVirtualization
-    mantineTableContainerProps={{ style: { maxHeight: 500 } }}
     withScrollArea
   />
 );
