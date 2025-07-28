@@ -34,7 +34,7 @@ const EditingCRUD = ({ isPage = false }) => {
             <Tabs.Tab value="editing-crud-inline-table">
               Inline Table (All Rows Editable)
             </Tabs.Tab>
-            <Link href="/docs/editing-crud-tree">
+            <Link href="/docs/examples/editing-crud-tree">
               <Tabs.Tab value="editing-crud-tree">Tree Editing</Tabs.Tab>
             </Link>
             <Link href="/docs/examples">

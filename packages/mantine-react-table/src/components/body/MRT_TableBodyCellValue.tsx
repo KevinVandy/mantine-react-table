@@ -26,7 +26,10 @@ export const MRT_TableBodyCellValue = <TData extends MRT_RowData>({
 }: Props<TData>) => {
   const {
     getState,
-    options: { enableFilterMatchHighlighting, mantineHighlightProps },
+    options: {
+      enableFilterMatchHighlighting,
+      mantineHighlightProps = { size: 'sm' },
+    },
   } = table;
   const { column, row } = cell;
   const { columnDef } = column;

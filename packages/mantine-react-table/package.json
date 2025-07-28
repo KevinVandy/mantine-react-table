@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-beta.8",
+  "version": "2.0.0-beta.9",
   "license": "MIT",
   "name": "mantine-react-table",
   "description": "A fully featured Mantine implementation of TanStack React Table V8, written from the ground up in TypeScript.",
@@ -32,11 +32,11 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/index.d.cts",
+        "types": "./dist/index.esm.d.mts",
         "default": "./dist/index.esm.mjs"
       },
       "require": {
-        "types": "./dist/index.esm.d.mts",
+        "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
     },
@@ -138,9 +138,9 @@
     "@tanstack/react-virtual": "3.11.2"
   },
   "peerDependencies": {
-    "@mantine/core": "^7.9",
-    "@mantine/dates": "^7.9",
-    "@mantine/hooks": "^7.9",
+    "@mantine/core": "^7.17.7",
+    "@mantine/dates": "^7.17.7",
+    "@mantine/hooks": "^7.17.7",
     "@tabler/icons-react": ">=2.23.0",
     "clsx": ">=2",
     "dayjs": ">=1.11",

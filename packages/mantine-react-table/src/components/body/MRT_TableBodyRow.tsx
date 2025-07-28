@@ -17,6 +17,7 @@ import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import {
   type MRT_Cell,
   type MRT_ColumnVirtualizer,
+  type MRT_DensityState,
   type MRT_Row,
   type MRT_RowData,
   type MRT_RowVirtualizer,
@@ -120,10 +121,18 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
   const tableFooterHeight =
     (enableStickyFooter && tableFooterRef.current?.clientHeight) || 0;
 
+  const defaultRowHeightByDensity: Record<MRT_DensityState, number> = {
+    lg: 61,
+    md: 53,
+    sm: 45,
+    xl: 69,
+    xs: 37,
+  };
+
   const rowHeight =
     // @ts-ignore
     parseInt(tableRowProps?.style?.height, 10) ||
-    (density === 'xs' ? 37 : density === 'md' ? 53 : 69);
+    (defaultRowHeightByDensity[density] ?? defaultRowHeightByDensity['md']);
 
   const handleDragEnter = (_e: DragEvent) => {
     if (enableRowOrdering && draggingRow) {

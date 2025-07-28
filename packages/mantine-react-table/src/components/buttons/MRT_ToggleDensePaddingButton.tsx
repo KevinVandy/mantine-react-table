@@ -13,7 +13,9 @@ interface Props<TData extends MRT_RowData>
   table: MRT_TableInstance<TData>;
 }
 
-const next: Record<MRT_DensityState, MRT_DensityState> = {
+type TogglableDensityState = Exclude<MRT_DensityState, 'lg' | 'sm'>;
+
+const next: Record<TogglableDensityState, TogglableDensityState> = {
   md: 'xs',
   xl: 'md',
   xs: 'xl',
@@ -42,7 +44,9 @@ export const MRT_ToggleDensePaddingButton = <TData extends MRT_RowData>({
       <ActionIcon
         aria-label={title ?? toggleDensity}
         color="gray"
-        onClick={() => setDensity((current) => next[current])}
+        onClick={() =>
+          setDensity((current) => next[current as TogglableDensityState])
+        }
         size="lg"
         variant="subtle"
         {...rest}

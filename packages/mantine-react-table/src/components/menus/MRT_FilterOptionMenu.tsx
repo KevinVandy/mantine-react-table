@@ -145,18 +145,21 @@ export const MRT_FilterOptionMenu = <TData extends MRT_RowData>({
     ].filter((option) => rangeModes.includes(option));
   }
 
-  const internalFilterOptions = useMemo(
-    () =>
-      mrtFilterOptions(localization).filter((filterOption) =>
+  const internalFilterOptions = useMemo(() => {
+    const filterOptions = mrtFilterOptions(localization).filter(
+      (filterOption) =>
         columnDef
           ? allowedColumnFilterOptions === undefined ||
             allowedColumnFilterOptions?.includes(filterOption.option)
           : (!globalFilterModeOptions ||
               globalFilterModeOptions.includes(filterOption.option)) &&
             ['contains', 'fuzzy', 'startsWith'].includes(filterOption.option),
-      ),
-    [],
-  );
+    );
+    if (filterOptions[filterOptions.length - 1].divider) {
+      filterOptions[filterOptions.length - 1].divider = false;
+    }
+    return filterOptions;
+  }, [columnDef, globalFilterModeOptions]);
 
   const handleSelectFilterMode = (option: MRT_FilterOption) => {
     const prevFilterMode = columnDef?._filterFn ?? '';

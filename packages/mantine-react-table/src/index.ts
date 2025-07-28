@@ -87,3 +87,4 @@ export * from './utils/row.utils';
 export * from './utils/style.utils';
 //helpers
 export * from './utils/tanstack.helpers';
+export * from './utils/utils';

@@ -3,6 +3,7 @@ import { useCallback, useLayoutEffect } from 'react';
 import { type Range, useVirtualizer } from '@tanstack/react-virtual';
 
 import {
+  type MRT_DensityState,
   type MRT_Row,
   type MRT_RowData,
   type MRT_RowVirtualizer,
@@ -51,8 +52,17 @@ export const useMRT_RowVirtualizer = <
     }
   }, [tableContainerRef.current]);
 
+  const defaultRowHeightByDensity: Record<MRT_DensityState, number> = {
+    lg: 62.7,
+    md: 54.7,
+    sm: 48.7,
+    xl: 70.7,
+    xs: 42.7,
+  };
+
   const normalRowHeight =
-    density === 'xs' ? 42.7 : density === 'md' ? 54.7 : 70.7;
+    defaultRowHeightByDensity[density] ?? defaultRowHeightByDensity['md'];
+
   const rowVirtualizer = useVirtualizer({
     count: renderDetailPanel ? rowCount * 2 : rowCount,
     estimateSize: (index) =>
@@ -71,7 +81,14 @@ export const useMRT_RowVirtualizer = <
     overscan: 4,
     rangeExtractor: useCallback(
       (range: Range) => {
-        return extraIndexRangeExtractor(range, draggingRow?.index);
+        const current_index = getRowModel().rows.findIndex(
+          (row) => row.id === draggingRow?.id,
+        );
+
+        return extraIndexRangeExtractor(
+          range,
+          current_index >= 0 ? current_index : 0,
+        );
       },
       [draggingRow],
     ),

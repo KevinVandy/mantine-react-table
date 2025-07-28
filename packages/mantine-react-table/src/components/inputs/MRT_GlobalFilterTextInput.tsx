@@ -100,20 +100,22 @@ export const MRT_GlobalFilterTextInput = <TData extends MRT_RowData>({
         onChange={(event) => setSearchValue(event.target.value)}
         placeholder={localization.search}
         rightSection={
-          searchValue ? (
-            <ActionIcon
-              aria-label={localization.clearSearch}
-              color="gray"
-              disabled={!searchValue?.length}
-              onClick={handleClear}
-              size="sm"
-              variant="transparent"
-            >
-              <Tooltip label={localization.clearSearch} withinPortal>
-                <IconX />
-              </Tooltip>
-            </ActionIcon>
-          ) : null
+          <ActionIcon
+            aria-label={localization.clearSearch}
+            color="gray"
+            disabled={!searchValue?.length}
+            hidden={!searchValue}
+            onClick={handleClear}
+            size="sm"
+            style={{
+              visibility: !searchValue ? 'hidden' : undefined,
+            }}
+            variant="transparent"
+          >
+            <Tooltip label={localization.clearSearch} withinPortal>
+              <IconX />
+            </Tooltip>
+          </ActionIcon>
         }
         value={searchValue ?? ''}
         variant="filled"

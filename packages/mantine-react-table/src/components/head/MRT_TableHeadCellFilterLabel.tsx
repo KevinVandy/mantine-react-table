@@ -125,6 +125,7 @@ export const MRT_TableHeadCellFilterLabel = <TData extends MRT_RowData>({
                 withinPortal
               >
                 <ActionIcon
+                  aria-label={filterTooltip}
                   className={clsx(
                     'mrt-table-head-cell-filter-label-icon',
                     classes.root,

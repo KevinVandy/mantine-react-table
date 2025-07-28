@@ -129,10 +129,12 @@ export const MRT_TableHeadCell = <TData extends MRT_RowData>({
   const headerPL = useMemo(() => {
     let pl = 0;
     if (column.getCanSort()) pl++;
-    if (showColumnButtons) pl += 1.75;
+    // Only add padding for buttons if they will actually be displayed
+    if (showColumnButtons && (columnActionsEnabled || showDragHandle))
+      pl += 1.75;
     if (showDragHandle) pl += 1.25;
     return pl;
-  }, [showColumnButtons, showDragHandle]);
+  }, [showColumnButtons, showDragHandle, columnActionsEnabled]);
 
   const handleDragEnter: DragEventHandler<HTMLTableCellElement> = (_e) => {
     if (enableGrouping && hoveredColumn?.id === 'drop-zone') {

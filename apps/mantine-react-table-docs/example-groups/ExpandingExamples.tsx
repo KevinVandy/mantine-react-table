@@ -6,6 +6,7 @@ import MinimalExample from '../examples/minimal';
 import AdvancedExample from '../examples/advanced';
 import AggregationAndGroupingExample from '../examples/aggregation-and-grouping';
 import CustomHeadlessExample from '../examples/custom-headless';
+import ExpandingTreeExample from '../examples/editing-crud-tree';
 
 const ExpandingExamples = ({ isPage = false }) => {
   const { pathname, push } = useRouter();
@@ -28,6 +29,7 @@ const ExpandingExamples = ({ isPage = false }) => {
           <Tabs.Tab value="aggregation-and-grouping">Aggregation</Tabs.Tab>
           <Tabs.Tab value="detail-panel">Detail Panel</Tabs.Tab>
           <Tabs.Tab value="chart-detail-panel">Chart Detail Panel</Tabs.Tab>
+          <Tabs.Tab value="expanding-tree">Expanding Tree</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value="column-grouping">
           <ExampleGrouping showTopRow={isPage} />
@@ -43,6 +45,9 @@ const ExpandingExamples = ({ isPage = false }) => {
         </Tabs.Panel>
         <Tabs.Panel value="chart-detail-panel">
           <CustomHeadlessExample showTopRow={isPage} />
+        </Tabs.Panel>
+        <Tabs.Panel value="expanding-tree">
+          <ExpandingTreeExample showTopRow={isPage} />
         </Tabs.Panel>
       </Tabs>
     </Box>
