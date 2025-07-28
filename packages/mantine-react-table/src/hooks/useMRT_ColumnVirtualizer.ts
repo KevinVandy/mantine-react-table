@@ -28,7 +28,7 @@ export const useMRT_ColumnVirtualizer = <
       enableColumnPinning,
       enableColumnVirtualization,
     },
-    refs: { tableContainerRef },
+    refs: { scrollAreaViewportRef, tableContainerRef },
   } = table;
   const { columnPinning, draggingColumn } = getState();
 
@@ -73,7 +73,7 @@ export const useMRT_ColumnVirtualizer = <
     count: visibleColumns.length,
     estimateSize: (index) => visibleColumns[index].getSize(),
     getScrollElement: () =>
-      table.refs.scrollAreaViewportRef.current ?? tableContainerRef.current,
+      scrollAreaViewportRef.current ?? tableContainerRef.current,
     horizontal: true,
     overscan: 3,
     rangeExtractor: useCallback(

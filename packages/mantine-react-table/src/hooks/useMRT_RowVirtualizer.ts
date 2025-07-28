@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect } from 'react';
+import { useCallback } from 'react';
 
 import { type Range, useVirtualizer } from '@tanstack/react-virtual';
 
@@ -20,7 +20,6 @@ export const useMRT_RowVirtualizer = <
   table: MRT_TableInstance<TData>,
   rows?: MRT_Row<TData>[],
 ): MRT_RowVirtualizer<TScrollElement, TItemElement> | undefined => {
-
   const {
     getRowModel,
     getState,
@@ -29,9 +28,8 @@ export const useMRT_RowVirtualizer = <
       renderDetailPanel,
       rowVirtualizerInstanceRef,
       rowVirtualizerOptions,
-      // withScrollArea,
     },
-    refs: { tableContainerRef },
+    refs: { scrollAreaViewportRef, tableContainerRef },
   } = table;
   const { density, draggingRow, expanded } = getState();
 
@@ -63,7 +61,7 @@ export const useMRT_RowVirtualizer = <
           : 0
         : normalRowHeight,
     getScrollElement: () =>
-      table.refs.scrollAreaViewportRef?.current ?? tableContainerRef.current,
+      scrollAreaViewportRef.current ?? tableContainerRef.current,
     measureElement:
       typeof window !== 'undefined' &&
       navigator.userAgent.indexOf('Firefox') === -1

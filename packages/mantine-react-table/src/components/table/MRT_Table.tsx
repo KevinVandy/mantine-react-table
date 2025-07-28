@@ -7,15 +7,15 @@ import { Fragment, useMemo } from 'react';
 import {
   darken,
   lighten,
-  ScrollAreaProps,
   Table,
   type TableProps,
   useMantineColorScheme,
 } from '@mantine/core';
+import { type TableScrollContainerProps } from '@mantine/core/lib/components/Table/TableScrollContainer';
 
 import { useMRT_ColumnVirtualizer } from '../../hooks/useMRT_ColumnVirtualizer';
 import {
-  HTMLPropsRef,
+  type HTMLPropsRef,
   type MRT_RowData,
   type MRT_TableInstance,
 } from '../../types';
@@ -24,7 +24,6 @@ import { parseFromValuesOrFunc } from '../../utils/utils';
 import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
 import { MRT_TableHead } from '../head/MRT_TableHead';
-import { TableScrollContainerProps } from '@mantine/core/lib/components/Table/TableScrollContainer';
 
 interface Props<TData extends MRT_RowData> extends TableProps {
   table: MRT_TableInstance<TData>;
