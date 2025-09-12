@@ -142,7 +142,9 @@ export const MRT_TableHeadCellFilterLabel = <TData extends MRT_RowData>({
                     setTimeout(() => {
                       const input = filterInputRefs.current[`${column.id}-0`];
                       input?.focus();
-                      input?.select();
+                      if (typeof input?.select === 'function') {
+                        input.select();
+                      }
                     }, 100);
                   }}
                   {...rest}
