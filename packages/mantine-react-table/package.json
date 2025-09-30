@@ -88,7 +88,6 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@rollup/rollup-darwin-arm64": "4.24.0",
     "@size-limit/preset-small-lib": "^11.1.6",
     "@storybook/addon-a11y": "^8.3.5",
     "@storybook/addon-essentials": "^8.3.5",
