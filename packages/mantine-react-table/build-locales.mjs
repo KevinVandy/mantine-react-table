@@ -1,12 +1,8 @@
 /* eslint-disable */
-import fs from 'fs';
-import { readFileSync } from 'node:fs';
+import pkg from './package.json' assert { type: 'json' };
 import typescript from '@rollup/plugin-typescript';
+import fs from 'fs';
 import { rollup } from 'rollup';
-
-const pkg = JSON.parse(
-  readFileSync(new URL('./package.json', import.meta.url), 'utf8'),
-);
 
 const supportedLocales = [
   'ar',
