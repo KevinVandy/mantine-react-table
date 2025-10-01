@@ -1,6 +1,6 @@
 import classes from './MRT_TableHeadCellFilterContainer.module.css';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import {
   ActionIcon,
@@ -54,14 +54,7 @@ export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
     columnDef?.columnFilterModeOptions ?? columnFilterModeOptions;
   const isCollapseOpen =
     showColumnFilters || columnFilterDisplayMode === 'popover';
-  const [allowOverflow, setAllowOverflow] = useState(isCollapseOpen);
-  const collapseRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (isCollapseOpen) {
-      setAllowOverflow(true);
-    }
-  }, [isCollapseOpen]);
+const collapseRef = useRef<HTMLDivElement | null>(null);
 
   const showChangeModeButton =
     enableColumnFilterModes &&
@@ -85,14 +78,10 @@ export const MRT_TableHeadCellFilterContainer = <TData extends MRT_RowData>({
           }}
           style={{
             ...style,
-            overflow: allowOverflow ? 'visible' : style?.overflow,
+            overflow: isCollapseOpen ? 'visible' : style?.overflow,
           }}
         />
       )}
-      transitionProps={{
-        onEntered: () => setAllowOverflow(true),
-        onExit: () => setAllowOverflow(false),
-      }}
     >
       <Flex direction="column" {...rest}>
         <Flex align="flex-end">
