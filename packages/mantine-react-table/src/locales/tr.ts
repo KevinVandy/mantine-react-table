@@ -59,7 +59,7 @@ export const MRT_Localization_TR: MRT_Localization = {
   move: 'Taşı',
   noRecordsToDisplay: 'Gösterilecek Kayıt Yok',
   noResultsFound: 'Herhangi Bir Sonuç Bulunamadı',
-  of: 'of',
+  of: '/',
   or: 'veya',
   pin: 'Sabitle',
   pinToLeft: 'Sola Sabitle',
