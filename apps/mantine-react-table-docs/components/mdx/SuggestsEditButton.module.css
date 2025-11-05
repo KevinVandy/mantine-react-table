@@ -16,7 +16,7 @@
 }
 
 .materialUiAnchor {
-  background-image: linear-gradient(to right, var(--TODO), var(--TODO));
+  background-image: linear-gradient(to right, var(--mantine-primary-color-filled), var(--mantine-color-cyan-text));
   display: inline;
   -webkit-background-clip: text;
   background-clip: text;
@@ -24,6 +24,6 @@
   text-decoration: none;
   &:hover {
     text-decoration: underline;
-    text-decoration-color: var(--TODO);
+    text-decoration-color: var(--mantine-primary-color-filled);
   }
 }
