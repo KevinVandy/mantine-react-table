@@ -258,5 +258,4 @@ export const MRT_TableBodyRow = <TData extends MRT_RowData>({
 
 export const Memo_MRT_TableBodyRow = memo(
   MRT_TableBodyRow,
-  (prev, next) => prev.row === next.row,
 ) as typeof MRT_TableBodyRow;
