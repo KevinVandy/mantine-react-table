@@ -29,7 +29,7 @@ export const useMRT_RowVirtualizer = <
       rowVirtualizerInstanceRef,
       rowVirtualizerOptions,
     },
-    refs: { tableContainerRef },
+    refs: { scrollAreaViewportRef, tableContainerRef },
   } = table;
   const { density, draggingRow, expanded } = getState();
 
@@ -60,7 +60,8 @@ export const useMRT_RowVirtualizer = <
           ? 100
           : 0
         : normalRowHeight,
-    getScrollElement: () => tableContainerRef.current,
+    getScrollElement: () =>
+      scrollAreaViewportRef.current ?? tableContainerRef.current,
     measureElement:
       typeof window !== 'undefined' &&
       navigator.userAgent.indexOf('Firefox') === -1

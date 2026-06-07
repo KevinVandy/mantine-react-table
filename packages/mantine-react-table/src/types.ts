@@ -59,6 +59,7 @@ import {
   type ProgressProps,
   type RadioProps,
   type RangeSliderProps,
+  type ScrollAreaProps,
   type SelectProps,
   type SkeletonProps,
   type SwitchProps,
@@ -72,6 +73,7 @@ import {
   type TextInputProps,
   type UnstyledButtonProps,
 } from '@mantine/core';
+import { type TableScrollContainerProps } from '@mantine/core/lib/components/Table/TableScrollContainer';
 import { type DateInputProps } from '@mantine/dates';
 
 import { type MRT_AggregationFns } from './fns/aggregationFns';
@@ -291,6 +293,7 @@ export type MRT_TableInstance<TData extends MRT_RowData> = {
     editInputRefs: MutableRefObject<Record<string, HTMLInputElement>>;
     filterInputRefs: MutableRefObject<Record<string, HTMLInputElement>>;
     lastSelectedRowId: MutableRefObject<null | string>;
+    scrollAreaViewportRef: MutableRefObject<HTMLDivElement | null>;
     searchInputRef: MutableRefObject<HTMLInputElement | null>;
     tableContainerRef: MutableRefObject<HTMLDivElement | null>;
     tableFooterRef: MutableRefObject<HTMLTableSectionElement | null>;
@@ -599,6 +602,11 @@ export type MRT_ColumnDef<TData extends MRT_RowData, TValue = unknown> = {
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>)
     | (HTMLPropsRef<HTMLInputElement> & Partial<TextInputProps>);
+  mantineScrollAreaProps?:
+    | ((props: {
+        table: MRT_TableInstance<TData>;
+      }) => HTMLPropsRef<HTMLDivElement> & ScrollAreaProps)
+    | (HTMLPropsRef<HTMLDivElement> & ScrollAreaProps);
   mantineTableBodyCellProps?:
     | ((props: {
         cell: MRT_Cell<TData, TValue>;
@@ -1010,6 +1018,11 @@ export type MRT_TableOptions<TData extends MRT_RowData> = {
         table: MRT_TableInstance<TData>;
       }) => HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>)
     | (HTMLPropsRef<HTMLButtonElement> & Partial<ActionIconProps>);
+  mantineScrollAreaProps?:
+    | ((props: {
+        table: MRT_TableInstance<TData>;
+      }) => HTMLPropsRef<HTMLDivElement> & Partial<TableScrollContainerProps>)
+    | HTMLPropsRef<HTMLDivElement> & Partial<TableScrollContainerProps>;
   mantineSearchTextInputProps?:
     | ((props: {
         table: MRT_TableInstance<TData>;
@@ -1261,6 +1274,7 @@ export type MRT_TableOptions<TData extends MRT_RowData> = {
    * Manage state externally any way you want, then pass it back into MRT.
    */
   state?: Partial<MRT_TableState<TData>>;
+  withScrollArea?: boolean;
 } & Omit<
   Partial<TableOptions<TData>>,
   | 'columns'

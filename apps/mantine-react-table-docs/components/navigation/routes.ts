@@ -297,6 +297,10 @@ export const routes: Array<RouteItem> = [
             label: 'Fully Virtualized Example',
           },
           {
+            href: '/docs/examples/virtualized-with-scroll-area',
+            label: 'Fully Virtualized With ScrollArea Example',
+          },
+          {
             href: '/docs/examples/row-virtualization',
             label: 'Row Virtualization Example',
           },
@@ -307,6 +311,10 @@ export const routes: Array<RouteItem> = [
           {
             href: '/docs/examples/infinite-scrolling',
             label: 'Infinite Scrolling Example',
+          },
+          {
+            href: '/docs/examples/infinite-scrolling-with-scroll-area',
+            label: 'Infinite Scrolling With ScrollArea Example',
           },
         ],
       },

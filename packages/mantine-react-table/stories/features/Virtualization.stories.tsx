@@ -214,6 +214,21 @@ export const EnableRowVirtualizationWithMemoizedRows = () => (
   />
 );
 
+export const EnableRowVirtualizationWithMemoizedRowsWithScrollArea = () => (
+  <MantineReactTable
+    columns={longColumns}
+    data={longData}
+    enableBottomToolbar={false}
+    enableDensityToggle={false}
+    enablePagination={false}
+    enableRowNumbers
+    enableRowVirtualization
+    initialState={{ density: 'xs' }}
+    memoMode="rows"
+    withScrollArea
+  />
+);
+
 export const EnableRowVirtualizationStickyFooter = () => (
   <MantineReactTable
     columns={[
@@ -375,6 +390,22 @@ export const MaxVirtualization = () => (
     enableRowVirtualization
     mantinePaperProps={{ style: { margin: 'auto', maxWidth: 1000 } }}
     mantineTableContainerProps={{ style: { maxHeight: 500 } }}
+  />
+);
+
+export const MaxVirtualizationWithScrollArea = () => (
+  <MantineReactTable
+    columns={fakeColumns}
+    data={fakeData}
+    enableBottomToolbar={false}
+    enableColumnPinning
+    enableColumnResizing
+    enableColumnVirtualization
+    enablePagination={false}
+    enableRowNumbers
+    enableRowVirtualization
+    mantinePaperProps={{ style: { margin: 'auto', maxWidth: 1000 } }}
+    withScrollArea
   />
 );
 

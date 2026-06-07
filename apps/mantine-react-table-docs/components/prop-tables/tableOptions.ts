@@ -1452,6 +1452,16 @@ export const tableOptions: TableOption[] = [
     type: 'BoxProps | ({ table }) => BoxProps',
   },
   {
+    tableOption: 'mantineScrollAreaProps',
+    defaultValue: '',
+    description: '',
+    link: 'https://mantine.dev/core/scroll-area/?t=props',
+    linkText: 'Mantine ScrollArea Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'ScrollAreaProps | ({ table }) => ScrollAreaProps',
+  },
+  {
     tableOption: 'mantineTopToolbarProps',
     defaultValue: '',
     description: '',
@@ -2120,4 +2130,14 @@ export const tableOptions: TableOption[] = [
     source: 'MRT',
     type: 'MutableRefObject<Virtualizer | null>',
   },
+  {
+    tableOption: 'withScrollArea',
+    defaultValue: '',
+    description: 'When true, the table will be wrapped in a mantine ScrollArea component. Props can be provided via the mantineScrollAreaProps option.',
+    link: 'https://mantine.dev/core/scroll-area/?t=props',
+    linkText: 'Mantine ScrollArea Docs',
+    required: false,
+    source: 'Mantine',
+    type: 'boolean'
+  }
 ];

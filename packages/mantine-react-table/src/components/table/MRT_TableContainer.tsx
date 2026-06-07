@@ -11,10 +11,8 @@ import { MRT_Table } from './MRT_Table';
 import { type MRT_RowData, type MRT_TableInstance } from '../../types';
 import { parseFromValuesOrFunc } from '../../utils/utils';
 import { MRT_EditRowModal } from '../modals/MRT_EditRowModal';
-
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
-
 interface Props<TData extends MRT_RowData> extends BoxProps {
   table: MRT_TableInstance<TData>;
 }
@@ -32,10 +30,11 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
       mantineLoadingOverlayProps,
       mantineTableContainerProps,
     },
-    refs: { bottomToolbarRef, tableContainerRef, topToolbarRef },
+    refs: { bottomToolbarRef, tableContainerRef, tableHeadRef, topToolbarRef },
   } = table;
   const {
     creatingRow,
+    density,
     editingRow,
     isFullScreen,
     isLoading,
@@ -43,6 +42,7 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
   } = getState();
 
   const [totalToolbarHeight, setTotalToolbarHeight] = useState(0);
+  const [scrollOffset, setScrollOffset] = useState(0);
 
   const tableContainerProps = {
     ...parseFromValuesOrFunc(mantineTableContainerProps, { table }),
@@ -65,7 +65,24 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
         : 0;
 
     setTotalToolbarHeight(topToolbarHeight + bottomToolbarHeight);
-  });
+  }, [
+    topToolbarRef.current?.offsetHeight,
+    bottomToolbarRef.current?.offsetHeight,
+  ]);
+
+  useIsomorphicLayoutEffect(() => {
+    const setOffset = () => {
+      const offset =
+        typeof document !== 'undefined'
+          ? (tableHeadRef?.current?.offsetHeight ?? 0)
+          : 0;
+      setScrollOffset(offset);
+    };
+
+    setOffset();
+    const timeout = setTimeout(setOffset, 150);
+    return () => clearTimeout(timeout);
+  }, [tableHeadRef?.current?.offsetHeight, density]);
 
   const createModalOpen = createDisplayMode === 'modal' && creatingRow;
   const editModalOpen = editDisplayMode === 'modal' && editingRow;
@@ -74,6 +91,7 @@ export const MRT_TableContainer = <TData extends MRT_RowData>({
     <Box
       {...tableContainerProps}
       __vars={{
+        '--mrt-scroll-offset': `${scrollOffset}px`,
         '--mrt-top-toolbar-height': `${totalToolbarHeight}`,
         ...tableContainerProps?.__vars,
       }}
