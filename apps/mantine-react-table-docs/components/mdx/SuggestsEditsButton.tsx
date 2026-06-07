@@ -38,7 +38,6 @@ export const SuggestsEditsButton = () => {
       <Text className={classes.materialUi}>
         Using{' '}
         <Anchor
-          color="blue.6"
           href="https://mui.com/"
           target="_blank"
           rel="noopener"
